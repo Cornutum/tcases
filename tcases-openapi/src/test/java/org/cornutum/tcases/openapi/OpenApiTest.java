@@ -61,6 +61,14 @@ public abstract class OpenApiTest
   /**
    * Verifies the expected request examples model for the given API.
    */
+  protected void verifyRequestExamplesModel( String apiName)
+    {
+    verifyRequestExamplesModel( apiName, apiName);
+    }
+  
+  /**
+   * Verifies the expected request examples model for the given API.
+   */
   protected void verifyRequestExamplesModel( String apiName, String expectedName)
     {
     verifyInputModel( apiName, expectedName, api -> getRequestExamplesModel( api));

@@ -1,0 +1,2741 @@
+//////////////////////////////////////////////////////////////////////////////
+// 
+//                    Copyright 2020, Cornutum Project
+//                             www.cornutum.org
+//
+//////////////////////////////////////////////////////////////////////////////
+
+package org.cornutum.tcases.openapi;
+
+import org.junit.Test;
+
+/**
+ * Runs tests for {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using
+ * variations of the basic properties of an API spec.
+ */
+public class RequestExamplesTest extends OpenApiTest
+  {
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_0()
+    {
+    verifyRequestExamplesModel( "examples-0");
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 1. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> query </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Enums </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> integer </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_1()
+    {
+    // properties = bodyNone,paramInteger,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = query
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Enums
+    //
+    //   Parameters.Schema.Type = integer
+    //
+    //   Parameters.Schema.Assertions.Enum = Yes
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 2. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> cookie </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_2()
+    {
+    // properties = bodyExample,bodyExampleMany,paramContent,paramContentExample,paramContentExampleOne,paramExample,paramExampleOne
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = cookie
+    //
+    //   Parameters.Example = Yes
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Content
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = Yes
+    //
+    //   Parameters.Content.Examples = No
+    //
+    //   Parameters.Content.Schema.Example.Defined = Yes
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = Yes
+    //
+    //   Body.Content.Schema.Example.Defined = Yes
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 3. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> path </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_3()
+    {
+    // properties = bodyNone,paramContent,paramContentExample,paramContentExampleMany,paramExample,paramExampleOne
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = path
+    //
+    //   Parameters.Example = Yes
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Content
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = No
+    //
+    //   Parameters.Content.Examples = Yes
+    //
+    //   Parameters.Content.Schema.Example.Defined = No
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 4. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_4()
+    {
+    // properties = bodyExample,bodyExampleOne,paramContent,paramExample,paramExampleMany
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = Yes
+    //
+    //   Parameters.Described-By = Content
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = No
+    //
+    //   Parameters.Content.Examples = No
+    //
+    //   Parameters.Content.Schema.Example.Defined = Yes
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = Yes
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = No
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 5. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> query </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_5()
+    {
+    // properties = bodyNone,paramContent,paramContentExample,paramContentExampleMany,paramExample,paramExampleMany
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = query
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = Yes
+    //
+    //   Parameters.Described-By = Content
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = No
+    //
+    //   Parameters.Content.Examples = Yes
+    //
+    //   Parameters.Content.Schema.Example.Defined = Yes
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 6. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> cookie </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> string </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_6()
+    {
+    // properties = bodyExample,bodyExampleMany,paramSchema,paramString,schemaAnyOf,schemaComposed,schemaExample,schemaExampleProperty,schemaLeaf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = cookie
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = string
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = Yes
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Yes
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = Yes
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = Yes
+    //
+    //   Body.Content.Schema.Example.Defined = Yes
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 7. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> path </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> number </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_7()
+    {
+    // properties = bodyNone,paramNumber,paramSchema,schemaComposed,schemaExample,schemaExampleProperty,schemaLeaf,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = path
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = number
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 8. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Enums </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_8()
+    {
+    // properties = bodyExample,bodyExampleOne,paramObject,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Enums
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = Yes
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = Yes
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = No
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 9. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> query </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> array </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_9()
+    {
+    // properties = bodyNone,paramArray,paramSchema,schemaExample,schemaExampleComposed
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = query
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = array
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 10. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> cookie </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> integer </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_10()
+    {
+    // properties = bodyExample,bodyExampleMany,paramInteger,paramSchema,schemaAnyOf,schemaComposed,schemaExample,schemaExampleProperty
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = cookie
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = integer
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Yes
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = Yes
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = Yes
+    //
+    //   Body.Content.Schema.Example.Defined = Yes
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 11. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> path </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> number </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_11()
+    {
+    // properties = bodyNone,paramNumber,paramSchema,schemaAnyOf,schemaComposed,schemaExample,schemaExampleProperty,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = path
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = number
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = Yes
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Yes
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 12. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_12()
+    {
+    // properties = bodyExample,bodyExampleOne,paramObject,paramSchema,schemaComposed,schemaExample,schemaExampleProperty,schemaLeaf,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = Yes
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = Yes
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = Yes
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = No
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 13. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> query </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> boolean </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_13()
+    {
+    // properties = bodyNone,paramBoolean,paramSchema,schemaExample,schemaExampleProperty
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = query
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = boolean
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 14. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> cookie </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> integer </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_14()
+    {
+    // properties = bodyExample,bodyExampleMany,paramInteger,paramSchema,schemaComposed,schemaExample,schemaExampleProperty,schemaLeaf,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = cookie
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = integer
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = Yes
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = Yes
+    //
+    //   Body.Content.Schema.Example.Defined = Yes
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 15. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> path </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Enums </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> boolean </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_15()
+    {
+    // properties = bodyNone,paramBoolean,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = path
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Enums
+    //
+    //   Parameters.Schema.Type = boolean
+    //
+    //   Parameters.Schema.Assertions.Enum = Yes
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 16. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> string </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_16()
+    {
+    // properties = bodyExample,bodyExampleOne,paramSchema,paramString,schemaComposed,schemaExample,schemaExampleProperty,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = string
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = Yes
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = No
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 17. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> query </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_17()
+    {
+    // properties = bodyNone,paramObject,paramSchema,schemaAnyOf,schemaComposed,schemaExample,schemaExampleComposed
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = query
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Yes
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 18. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> cookie </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Enums </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> number </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_18()
+    {
+    // properties = bodyExample,bodyExampleMany,paramNumber,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = cookie
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Enums
+    //
+    //   Parameters.Schema.Type = number
+    //
+    //   Parameters.Schema.Assertions.Enum = Yes
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = Yes
+    //
+    //   Body.Content.Schema.Example.Defined = Yes
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 19. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> path </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> number </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_19()
+    {
+    // properties = bodyNone,paramNumber,paramSchema,schemaAnyOf,schemaComposed,schemaExample,schemaExampleProperty,schemaLeaf
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = path
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = number
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = Yes
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Yes
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = Yes
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 20. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Enums </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> string </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_20()
+    {
+    // properties = bodyExample,bodyExampleOne,paramSchema,paramString,schemaEnum,schemaExample,schemaExampleEnums
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Enums
+    //
+    //   Parameters.Schema.Type = string
+    //
+    //   Parameters.Schema.Assertions.Enum = Yes
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = Yes
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = No
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 21. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> query </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> array </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_21()
+    {
+    // properties = bodyNone,paramArray,paramSchema,schemaExample,schemaExampleProperty,schemaLeaf
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = query
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = array
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 22. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> cookie </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Enums </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> array </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_22()
+    {
+    // properties = bodyExample,bodyExampleMany,paramArray,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = cookie
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Enums
+    //
+    //   Parameters.Schema.Type = array
+    //
+    //   Parameters.Schema.Assertions.Enum = Yes
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = Yes
+    //
+    //   Body.Content.Schema.Example.Defined = Yes
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 23. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> Many </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> path </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Property </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> boolean </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_23()
+    {
+    // properties = bodyNone,paramBoolean,paramSchema,schemaExample,schemaExampleProperty,schemaLeaf
+
+    // Given...
+    //
+    //   Parameters.Count = Many
+    //
+    //   Parameters.In = path
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Property
+    //
+    //   Parameters.Schema.Type = boolean
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Yes
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = No
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 24. Examples (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> None </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_24()
+    {
+    // properties = bodyExample,bodyExampleOne,paramNone
+
+    // Given...
+    //
+    //   Parameters.Count = None
+    //
+    //   Parameters.In = (not applicable)
+    //
+    //   Parameters.Example = (not applicable)
+    //
+    //   Parameters.Examples = (not applicable)
+    //
+    //   Parameters.Described-By = (not applicable)
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = Yes
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = No
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 25. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> <FONT color="red"> Invalid  </FONT> </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_25()
+    {
+    // properties = bodyNone,paramObject,paramSchema,schemaComposed,schemaExample,schemaExampleComposed,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = Invalid
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 26. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> <FONT color="red"> Missing  </FONT> </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_26()
+    {
+    // properties = bodyNone,paramContent
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Content
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = No
+    //
+    //   Parameters.Content.Examples = No
+    //
+    //   Parameters.Content.Schema.Example.Defined = Missing
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 27. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> <FONT color="red"> Invalid  </FONT> </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_27()
+    {
+    // properties = bodyNone,paramObject,paramSchema,schemaComposed,schemaExample,schemaExampleComposed,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Invalid
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 28. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Content </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> <FONT color="red"> Missing  </FONT> </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_28()
+    {
+    // properties = paramContent,paramContentExample,paramContentExampleOne,paramExample,paramExampleMany
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = Yes
+    //
+    //   Parameters.Described-By = Content
+    //
+    //   Parameters.Schema.Example.Defined = (not applicable)
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = Yes
+    //
+    //   Parameters.Content.Examples = No
+    //
+    //   Parameters.Content.Schema.Example.Defined = No
+    //
+    //   Body.Defined = Yes
+    //
+    //   Body.Content.Example = No
+    //
+    //   Body.Content.Examples = No
+    //
+    //   Body.Content.Schema.Example.Defined = Missing
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 29. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> <FONT color="red"> Invalid  </FONT> </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_29()
+    {
+    // properties = bodyNone,paramObject,paramSchema,schemaAnyOf,schemaComposed,schemaExample,schemaExampleComposed
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = Yes
+    //
+    //   Parameters.Schema.Assertions.OneOf = Invalid
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 30. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> <FONT color="red"> Invalid  </FONT> </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_30()
+    {
+    // properties = bodyNone,paramObject,paramSchema,schemaComposed,schemaExample,schemaExampleComposed,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = Invalid
+    //
+    //   Parameters.Schema.Assertions.AllOf = No
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 31. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> Composed </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> object </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> <FONT color="red"> Invalid  </FONT> </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_31()
+    {
+    // properties = bodyNone,paramObject,paramSchema,schemaComposed,schemaExample,schemaExampleComposed,schemaOneOf
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Yes
+    //
+    //   Parameters.Schema.Example.Source = Composed
+    //
+    //   Parameters.Schema.Type = object
+    //
+    //   Parameters.Schema.Assertions.Enum = No
+    //
+    //   Parameters.Schema.Assertions.Leaf = No
+    //
+    //   Parameters.Schema.Assertions.AllOf = Invalid
+    //
+    //   Parameters.Schema.Assertions.AnyOf = No
+    //
+    //   Parameters.Schema.Assertions.OneOf = Yes
+    //
+    //   Parameters.Schema.Assertions.Not = No
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 32. Examples (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Parameters.Count </TD> <TD> One </TD> </TR>
+   * <TR><TD> Parameters.In </TD> <TD> header </TD> </TR>
+   * <TR><TD> Parameters.Example </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Examples </TD> <TD> No </TD> </TR>
+   * <TR><TD> Parameters.Described-By </TD> <TD> Schema </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Defined </TD> <TD> <FONT color="red"> Missing  </FONT> </TD> </TR>
+   * <TR><TD> Parameters.Schema.Example.Source </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Type </TD> <TD> integer </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Enum </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Leaf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AllOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.AnyOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.OneOf </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Schema.Assertions.Not </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Parameters.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Body.Content.Example </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Examples </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Body.Content.Schema.Example.Defined </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void Examples_32()
+    {
+    // properties = bodyNone,paramInteger,paramSchema
+
+    // Given...
+    //
+    //   Parameters.Count = One
+    //
+    //   Parameters.In = header
+    //
+    //   Parameters.Example = No
+    //
+    //   Parameters.Examples = No
+    //
+    //   Parameters.Described-By = Schema
+    //
+    //   Parameters.Schema.Example.Defined = Missing
+    //
+    //   Parameters.Schema.Example.Source = (not applicable)
+    //
+    //   Parameters.Schema.Type = integer
+    //
+    //   Parameters.Schema.Assertions.Enum = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Leaf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AllOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.OneOf = (not applicable)
+    //
+    //   Parameters.Schema.Assertions.Not = (not applicable)
+    //
+    //   Parameters.Content.Example = (not applicable)
+    //
+    //   Parameters.Content.Examples = (not applicable)
+    //
+    //   Parameters.Content.Schema.Example.Defined = (not applicable)
+    //
+    //   Body.Defined = No
+    //
+    //   Body.Content.Example = (not applicable)
+    //
+    //   Body.Content.Examples = (not applicable)
+    //
+    //   Body.Content.Schema.Example.Defined = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+  }

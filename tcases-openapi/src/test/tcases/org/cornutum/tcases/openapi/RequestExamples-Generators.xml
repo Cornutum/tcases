@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Examples" seed="4112739040482777088" tuples="1">
+    <Combine tuples="2">
+      <Include var="Parameters.Example"/>
+      <Include var="Parameters.Examples"/>
+      <Include var="Parameters.Schema.Example.Defined"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Parameters.Content.Example"/>
+      <Include var="Parameters.Content.Examples"/>
+      <Include var="Parameters.Content.Schema.Example.Defined"/>
+      <Include var="Parameters.Example"/>
+      <Include var="Parameters.Examples"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Parameters.Schema.Assertions.*"/>
+      <Include var="Parameters.Schema.Type"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Parameters.Schema.Example.Source"/>
+      <Include var="Parameters.Schema.Type"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>
