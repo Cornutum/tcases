@@ -66,6 +66,15 @@ public class Tuple
    * Returns null if all of the given bindings cannot be included in compatible Tuple.
    * Otherwise, returns a new compatible Tuple containing all of the given bindings.
    */
+  public static Tuple of( VarBindingDef... tupleBindings)
+    {
+    return of( Arrays.asList( tupleBindings));
+    }
+  
+  /**
+   * Returns null if all of the given bindings cannot be included in compatible Tuple.
+   * Otherwise, returns a new compatible Tuple containing all of the given bindings.
+   */
   public static Tuple of( Collection<VarBindingDef> tupleBindings)
     {
     Tuple tuple = new Tuple();

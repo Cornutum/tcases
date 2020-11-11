@@ -522,7 +522,7 @@ public class TupleGenerator implements ITestCaseGenerator
     }
 
   /**
-   * Returns a set of 1-tuples containing the bindings for the given variable that are applicable to the given test case.
+   * Returns tuples that contain a binding for the given variable.
    */
   private Iterator<Tuple> getBindingsFor( VarTupleSet tuples, VarDef var)
     {
@@ -531,7 +531,9 @@ public class TupleGenerator implements ITestCaseGenerator
         tuples.getUnused( var),
         IteratorUtils.chainedIterator(
           tuples.getUsed( var),
-          tuples.getUsedOnce( var)));
+          IteratorUtils.chainedIterator(
+            tuples.getUsedOnce( var),
+            getOneTuples( var))));
     }
 
   /**
@@ -540,6 +542,17 @@ public class TupleGenerator implements ITestCaseGenerator
   private Tuple getNaBindingFor( VarDef var)
     {
     return new Tuple( new VarBindingDef( var, VarNaDef.NA));
+    }
+
+  /**
+   * Returns all valid 1-tuples for the given variable.
+   */
+  private Iterator<Tuple> getOneTuples( VarDef var)
+    {
+    return
+      IteratorUtils.transformedIterator(
+        var.getValidValues(),
+        value -> Tuple.of( new VarBindingDef( var, value)));
     }
 
   /**
