@@ -1125,59 +1125,76 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private IVarDef arrayValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
-    Schema<?> itemSchema =
-      Optional.ofNullable( asArraySchema( instanceSchema))
-      .map( array -> array.getItems())
-      .orElse( null);
+    IVarDef valueVar;
 
-    Optional<IVarDef> itemsVar = arrayItemsVar( instanceVarTag, instanceSchema, itemSchema);
-
-    // If the item schema defines a maximum number of possible values...
-    Optional<Integer> maxUniqueItems =
-      Optional.ofNullable( itemSchema)
-      .flatMap( s -> itemsVar)
-      .flatMap( items -> Optional.ofNullable( getMaxAlternativeValues( itemSchema)));
-
-    // ... and the items must be unique...
-    boolean uniqueRequired = Boolean.TRUE.equals( instanceSchema.getUniqueItems());
-    boolean failBelowMinItems = true;
-    boolean failAboveMaxItems = true;
-    if( uniqueRequired)
+    Set<?> enums = asOrderedSet( instanceSchema.getEnum());
+    if( !enums.isEmpty())
       {
-      // ... then, if necessary, adjust "minItems"
-      if( maxUniqueItems
-          .map( maxUnique -> Optional.ofNullable( instanceSchema.getMinItems()).map( minItems -> minItems > maxUnique).orElse( true))
-          .orElse( false))
-        {
-        notifyError(
-          String.format( "minItems=%s can exceed the number of unique item values possible", instanceSchema.getMinItems()),
-          String.format( "Adjusting to unique minItems=%s", maxUniqueItems.get()));
+      valueVar = 
+        VarDefBuilder.with( "Value")
+        .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()))
+        .build();
+      }
+    else
+      {
+      Schema<?> itemSchema =
+        Optional.ofNullable( asArraySchema( instanceSchema))
+        .map( array -> array.getItems())
+        .orElse( null);
 
-        instanceSchema.setMinItems( maxUniqueItems.get());
-        failBelowMinItems = false;
+      Optional<IVarDef> itemsVar = arrayItemsVar( instanceVarTag, instanceSchema, itemSchema);
+
+      // If the item schema defines a maximum number of possible values...
+      Optional<Integer> maxUniqueItems =
+        Optional.ofNullable( itemSchema)
+        .flatMap( s -> itemsVar)
+        .flatMap( items -> Optional.ofNullable( getMaxAlternativeValues( itemSchema)));
+
+      // ... and the items must be unique...
+      boolean uniqueRequired = Boolean.TRUE.equals( instanceSchema.getUniqueItems());
+      boolean failBelowMinItems = true;
+      boolean failAboveMaxItems = true;
+      if( uniqueRequired)
+        {
+        // ... then, if necessary, adjust "minItems"
+        if( maxUniqueItems
+            .map( maxUnique -> Optional.ofNullable( instanceSchema.getMinItems()).map( minItems -> minItems > maxUnique).orElse( true))
+            .orElse( false))
+          {
+          notifyError(
+            String.format( "minItems=%s can exceed the number of unique item values possible", instanceSchema.getMinItems()),
+            String.format( "Adjusting to unique minItems=%s", maxUniqueItems.get()));
+
+          instanceSchema.setMinItems( maxUniqueItems.get());
+          failBelowMinItems = false;
+          }
+
+        // ... and, if necessary, adjust "maxItems"
+        if( maxUniqueItems
+            .map( maxUnique -> Optional.ofNullable( instanceSchema.getMaxItems()).map( maxItems -> maxItems > maxUnique).orElse( true))
+            .orElse( false))
+          {
+          notifyError(
+            String.format( "maxItems=%s can exceed the number of unique item values possible", instanceSchema.getMaxItems()),
+            String.format( "Adjusting to unique maxItems=%s", maxUniqueItems.get()));
+
+          instanceSchema.setMaxItems( maxUniqueItems.get());
+          failAboveMaxItems = false;
+          }
         }
 
-      // ... and, if necessary, adjust "maxItems"
-      if( maxUniqueItems
-          .map( maxUnique -> Optional.ofNullable( instanceSchema.getMaxItems()).map( maxItems -> maxItems > maxUnique).orElse( true))
-          .orElse( false))
-        {
-        notifyError(
-          String.format( "maxItems=%s can exceed the number of unique item values possible", instanceSchema.getMaxItems()),
-          String.format( "Adjusting to unique maxItems=%s", maxUniqueItems.get()));
-
-        instanceSchema.setMaxItems( maxUniqueItems.get());
-        failAboveMaxItems = false;
-        }
+      valueVar =
+        VarSetBuilder.with( "Items")
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .members( arraySizeVar( instanceVarTag, instanceSchema, instanceItem, failBelowMinItems, failAboveMaxItems))
+        .members( iterableOf( itemsVar))
+        .members( iterableOf( arrayUniqueItemsVar( instanceVarTag, instanceSchema)))
+        .build();
       }
 
-    return
-      VarSetBuilder.with( "Items")
-      .when( has( instanceValueProperty( instanceVarTag)))
-      .members( arraySizeVar( instanceVarTag, instanceSchema, instanceItem, failBelowMinItems, failAboveMaxItems))
-      .members( iterableOf( itemsVar))
-      .members( iterableOf( arrayUniqueItemsVar( instanceVarTag, instanceSchema)))
-      .build();
+    return valueVar;
     }
 
   /**
@@ -1612,76 +1629,93 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   @SuppressWarnings("rawtypes")
   private IVarDef objectValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
-    // Ensure schema defined for all required properties, using a default empty schema if necessary.
-    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
-    Optional.ofNullable( instanceSchema.getRequired())
-      .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
-      .filter( undefined -> !undefined.isEmpty())
-      .ifPresent( undefined -> {
-        undefined.stream().forEach( required -> propertyDefs.put( required, emptySchema()));
-        instanceSchema.setProperties( propertyDefs);
-        });
+    IVarDef valueVar;
 
-    // Reconcile any "required" constraints for read/WriteOnly properties.
-    instanceSchema.setRequired(
-      Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
-      .stream()
-      .filter( property -> expectedInView( propertyDefs.get( property)))
-      .collect( toList()));
+    Set<?> enums = asOrderedSet( instanceSchema.getEnum());
+    if( !enums.isEmpty())
+      {
+      valueVar = 
+        VarDefBuilder.with( "Value")
+        .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()))
+        .build();
+      }
+    else
+      {
+      // Ensure schema defined for all required properties, using a default empty schema if necessary.
+      Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
+      Optional.ofNullable( instanceSchema.getRequired())
+        .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
+        .filter( undefined -> !undefined.isEmpty())
+        .ifPresent( undefined -> {
+          undefined.stream().forEach( required -> propertyDefs.put( required, emptySchema()));
+          instanceSchema.setProperties( propertyDefs);
+          });
 
-    // Accumulate constraints on the number of properties expected.
-    PropertyCountConstraints constraints = new PropertyCountConstraints();
-    constraints.setRequiredCount( Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList()).size());
-    constraints.setTotalCount( objectTotalProperties( instanceSchema));
+      // Reconcile any "required" constraints for read/WriteOnly properties.
+      instanceSchema.setRequired(
+        Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
+        .stream()
+        .filter( property -> expectedInView( propertyDefs.get( property)))
+        .collect( toList()));
 
-    constraints.setHasAdditional(
-      // additionalProperties keyword is not false...
-      Optional.ofNullable( instanceSchema.getAdditionalProperties())
-      .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
-      .orElse( true)
-      &&
-      // maxProperties not already satisfied by required properties
-      Optional.ofNullable( instanceSchema.getMaxProperties())
-      .map( max -> max > constraints.getRequiredCount())
-      .orElse( true));
+      // Accumulate constraints on the number of properties expected.
+      PropertyCountConstraints constraints = new PropertyCountConstraints();
+      constraints.setRequiredCount( Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList()).size());
+      constraints.setTotalCount( objectTotalProperties( instanceSchema));
 
-    // Ensure min/max range is feasible
-    instanceSchema.setMinProperties(
-      Optional.ofNullable( instanceSchema.getMinProperties())
-      .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
-      .orElse( null));
+      constraints.setHasAdditional(
+        // additionalProperties keyword is not false...
+        Optional.ofNullable( instanceSchema.getAdditionalProperties())
+        .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
+        .orElse( true)
+        &&
+        // maxProperties not already satisfied by required properties
+        Optional.ofNullable( instanceSchema.getMaxProperties())
+        .map( max -> max > constraints.getRequiredCount())
+        .orElse( true));
 
-    // Ensure minimum is a usable constraint
-    instanceSchema.setMinProperties(
-      Optional.ofNullable( instanceSchema.getMinProperties())
-      .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
-      .orElse( null));
+      // Ensure min/max range is feasible
+      instanceSchema.setMinProperties(
+        Optional.ofNullable( instanceSchema.getMinProperties())
+        .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
+        .orElse( null));
 
-    // Ensure maximum is a usable constraint
-    instanceSchema.setMaxProperties(
-      Optional.ofNullable( instanceSchema.getMaxProperties())
-      .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
-      .orElse( null));
+      // Ensure minimum is a usable constraint
+      instanceSchema.setMinProperties(
+        Optional.ofNullable( instanceSchema.getMinProperties())
+        .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
+        .orElse( null));
 
-    // Are additional properties are required to satisfy the minimum?
-    Integer minProperties = instanceSchema.getMinProperties();
-    constraints.setRequiresAdditional(
-      Optional.ofNullable( minProperties)
-      .map( min -> min > constraints.getTotalCount() && constraints.hasAdditional())
-      .orElse( false));
+      // Ensure maximum is a usable constraint
+      instanceSchema.setMaxProperties(
+        Optional.ofNullable( instanceSchema.getMaxProperties())
+        .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
+        .orElse( null));
 
-    // Are all properties effectively required to satisfy the minimum?
-    constraints.setAllRequired(
-      Optional.ofNullable( minProperties)
-      .map( min -> min == constraints.getTotalCount() && !constraints.hasAdditional())
-      .orElse( false));
+      // Are additional properties are required to satisfy the minimum?
+      Integer minProperties = instanceSchema.getMinProperties();
+      constraints.setRequiresAdditional(
+        Optional.ofNullable( minProperties)
+        .map( min -> min > constraints.getTotalCount() && constraints.hasAdditional())
+        .orElse( false));
 
-    return
-      VarSetBuilder.with( "Value")
-      .when( has( instanceValueProperty( instanceVarTag)))
-      .members( iterableOf( objectPropertyCountVar( instanceVarTag, instanceSchema, constraints)))
-      .members( objectPropertiesVar( instanceVarTag, instanceSchema, constraints))
-      .build();
+      // Are all properties effectively required to satisfy the minimum?
+      constraints.setAllRequired(
+        Optional.ofNullable( minProperties)
+        .map( min -> min == constraints.getTotalCount() && !constraints.hasAdditional())
+        .orElse( false));
+
+      valueVar =
+        VarSetBuilder.with( "Value")
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .members( iterableOf( objectPropertyCountVar( instanceVarTag, instanceSchema, constraints)))
+        .members( objectPropertiesVar( instanceVarTag, instanceSchema, constraints))
+        .build();
+      }
+
+    return valueVar;
     }
 
   /**
@@ -1895,7 +1929,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           new ComposedSchema()
           .oneOf(
             ( IntStream.range( 0, members.size())
-              .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf"), () -> exampleSchemaFor( members.get(i)))) 
+              .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
               .collect( toList())));
         }
 

@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -34,7 +34,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
+        <Var name="Body.application-json.Value" value="{&quot;name&quot;:&quot;Godot&quot;}"/>
       </Input>
     </TestCase>
     <TestCase id="1" name="param0.Defined=&apos;No&apos;">
@@ -59,7 +59,7 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.application-json.Value" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="2" name="param0.Value=&apos;Knock, knock&apos;">
@@ -87,7 +87,7 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.application-json.Value" value="{&quot;name&quot;:&quot;Godot&quot;}"/>
       </Input>
     </TestCase>
   </Function>

@@ -38,14 +38,9 @@
           <Var name="Type">
             <Value name="object" property="application-jsonValue"/>
           </Var>
-          <VarSet name="Value" when="application-jsonValue">
-            <VarSet name="Properties">
-              <Var name="Additional">
-                <Value name="Yes" property="application-jsonProperties"/>
-                <Value name="No"/>
-              </Var>
-            </VarSet>
-          </VarSet>
+          <Var name="Value" when="application-jsonValue">
+            <Value name="{&quot;name&quot;:&quot;Godot&quot;}"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>
