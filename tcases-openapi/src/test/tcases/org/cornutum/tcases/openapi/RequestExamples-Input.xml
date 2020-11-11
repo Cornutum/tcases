@@ -13,6 +13,10 @@
                     <Value name="path"/>
                     <Value name="cookie"/>
                 </Var>
+                <Var name="Required" whenNot="paramNone">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
                 <Var name="Example" whenNot="paramNone">
                     <Value name="Yes" property="paramExample,paramExampleOne" whenNot="paramExampleMany"/>
                     <Value name="No"/>
@@ -51,6 +55,10 @@
                         <Value name="string" property="paramString"/>
                     </Var>
                     <VarSet name="Assertions" when="schemaExample" whenNot="paramExample">
+                        <Var name="Nullable">
+                            <Value name="Yes"/>
+                            <Value name="No"/>
+                        </Var>
                         <Var name="Enum">
                             <Value name="Yes" property="schemaEnum"/>
                             <Value name="No"/>
@@ -132,6 +140,10 @@
                 <Var name="Defined">
                     <Value name="No" property="bodyNone" whenNot="paramNone"/>
                     <Value name="Yes"/>
+                </Var>
+                <Var name="Required" whenNot="bodyNone">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
                 </Var>
                 <VarSet name="Content" whenNot="bodyNone">
                     <Var name="Example" whenNot="bodyNone">
