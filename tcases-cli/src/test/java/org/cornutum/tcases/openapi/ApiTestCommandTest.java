@@ -8,7 +8,6 @@
 package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.openapi.ApiTestCommand.Options;
-import org.cornutum.tcases.openapi.OpenApiException;
 import org.cornutum.tcases.openapi.moco.CertConfigResource;
 import org.cornutum.tcases.openapi.moco.MocoServerConfig;
 import org.cornutum.tcases.openapi.moco.MocoTestConfig;
