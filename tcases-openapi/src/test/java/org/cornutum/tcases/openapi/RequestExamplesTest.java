@@ -909,61 +909,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_22()
     {
-    // properties = bodyExample,bodyExampleMany,paramNumber,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
-
-    // Given...
-    //
-    //   Parameters.Count = Many
-    //
-    //   Parameters.In = query
-    //
-    //   Parameters.Required = Yes
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Schema
-    //
-    //   Parameters.Schema.Example.Defined = Yes
-    //
-    //   Parameters.Schema.Example.Source = Enums
-    //
-    //   Parameters.Schema.Type = number
-    //
-    //   Parameters.Schema.Assertions.Nullable = Yes
-    //
-    //   Parameters.Schema.Assertions.Enum = Yes
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = (not applicable)
-    //
-    //   Parameters.Content.Examples = (not applicable)
-    //
-    //   Parameters.Content.Schema.Example.Defined = (not applicable)
-    //
-    //   Body.Defined = Yes
-    //
-    //   Body.Required = No
-    //
-    //   Body.Content.Example = No
-    //
-    //   Body.Content.Examples = Yes
-    //
-    //   Body.Content.Schema.Example.Defined = Yes
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-22");
     }
 
   /**

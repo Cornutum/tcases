@@ -1778,18 +1778,21 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     Schema<?> instanceSchema)
     {
     String exampleType = Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null);
+    boolean exampleNullable = Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false);
+
     Optional<Object> exampleObject = Optional.ofNullable( instanceExample);
 
     Schema<?> exampleSchema =
       exampleObject.isPresent()?
-      exampleSchemaFor( exampleObject.get(), exampleType) :
+      exampleSchemaFor( exampleObject.get(), exampleType, exampleNullable) :
 
       !Optional.ofNullable( instanceExamples).map( Map::isEmpty).orElse( true)?
       exampleSchemaFor(
         instanceExamples.values().stream().map( Example::getValue).collect( toList()),
-        exampleType) :
+        exampleType,
+        exampleNullable) :
 
-      exampleSchemaFor( instanceSchema, exampleType);
+      exampleSchemaFor( instanceSchema, exampleType, exampleNullable);
 
     if( exampleSchema == null)
       {
@@ -1804,23 +1807,27 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Schema<?> exampleSchemaFor( Schema<?> instanceSchema)
     {
-    return exampleSchemaFor( instanceSchema, Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null));
+    return
+      exampleSchemaFor(
+        instanceSchema,
+        Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null),
+        Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false));
     }
 
   /**
    * Returns a new schema that validates only examples described by the given schema.
    */
-  private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType)
+  private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType, boolean exampleNullable)
     {
     Optional<Object> exampleObject;
     List<Object> exampleEnum;
 
     return
       (exampleObject = schemaExample( instanceSchema)) != null?
-      exampleSchemaFor( exampleObject.orElse( null), exampleType) :
+      exampleSchemaFor( exampleObject.orElse( null), exampleType, exampleNullable) :
 
       !(exampleEnum = exampleEnum( instanceSchema)).isEmpty()?
-      exampleSchemaForEnum( exampleEnum, exampleType) :
+      exampleSchemaForEnum( exampleEnum, exampleType, exampleNullable) :
 
       composedExampleSchemaFor( instanceSchema, exampleType);
     }
@@ -1828,16 +1835,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns a new schema that validates only the given example value.
    */
-  private Schema<?> exampleSchemaFor( Object exampleValue, String exampleType)
+  private Schema<?> exampleSchemaFor( Object exampleValue, String exampleType, boolean exampleNullable)
     {
-    return exampleSchemaForEnum( Arrays.asList( exampleValue), exampleType);
+    return exampleSchemaForEnum( Arrays.asList( exampleValue), exampleType, exampleNullable);
     }
 
   /**
    * Returns a new schema that validates only the given example value.
    */
   @SuppressWarnings("rawtypes")
-  private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType)
+  private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType, boolean exampleNullable)
     {
     Map<String,List<Object>> exampleEnums =
       asOrderedSet( exampleValues)
@@ -1879,7 +1886,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
     List<Schema> exampleSchemas =
       exampleEnums.entrySet().stream()
-      .map( e -> exampleSchemaForEnum( e.getValue(), e.getKey()))
+      .map( e -> exampleSchemaForEnum( e.getValue(), e.getKey(), exampleNullable))
       .collect( toList());
 
     return
@@ -1893,9 +1900,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns a new schema that validates only the given example values.
    */
   @SuppressWarnings("unchecked")
-  private Schema<?> exampleSchemaForEnum( List<Object> exampleValues, String exampleType)
+  private Schema<?> exampleSchemaForEnum( List<Object> exampleValues, String exampleType, boolean exampleNullable)
     {
-    Schema<Object> exampleSchema = new Schema<Object>().type( exampleType);
+    Schema<Object> exampleSchema = new Schema<Object>().type( exampleType).nullable( exampleNullable);
     exampleSchema.setEnum( exampleValues);
     return exampleSchema;
     }

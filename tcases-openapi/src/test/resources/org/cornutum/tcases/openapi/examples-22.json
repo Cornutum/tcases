@@ -1,0 +1,90 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "examples",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/examples": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "number",
+                                    "enum": [ 1.23, 45.6, 0.789],
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "param1",
+                        "in": "query",
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "number",
+                                    "enum": [ -2.71828]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "number",
+                                "example": 3.14156
+                            },
+                            "examples": {
+                                "Positive": { "value": 0.1234},
+                                "Zero": { "value": 0.0},
+                                "Negative": { "value": -0.9876}
+                            }
+                        }
+                    }  
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
