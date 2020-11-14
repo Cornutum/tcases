@@ -12,41 +12,40 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="path">
+      <Input type="header">
         <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="false"/>
           <Has name="paramName" value="param0"/>
           <Has name="style" value="simple"/>
         </Var>
-        <Var name="param0.Type" value="object">
+        <Var name="param0.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value" value="{&quot;alpha&quot;:1,&quot;bravo&quot;:2}">
+        <Var name="param0.Value" value="Sup?">
           <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param1.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="param1"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param1.Type" value="object">
-          <Has name="paramName" value="param1"/>
-        </Var>
-        <Var name="param1.Value" value="{&quot;charlie&quot;:3,&quot;easy&quot;:5}">
-          <Has name="paramName" value="param1"/>
         </Var>
       </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
+    </TestCase>
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/examples"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="examples"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
         </Var>
-        <Var name="Body.application-json.Type" value="integer"/>
-        <Var name="Body.application-json.Value.Is" value="123"/>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>

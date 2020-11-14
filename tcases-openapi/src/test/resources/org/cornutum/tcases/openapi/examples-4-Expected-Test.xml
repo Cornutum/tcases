@@ -25,7 +25,7 @@
         <Var name="param0.Type" value="object">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value" value="{&quot;alpha&quot;:1,&quot;bravo&quot;:2}">
+        <Var name="param0.Value" value="{&quot;alpha&quot;:&quot;name&quot;}">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -36,7 +36,7 @@
         <Var name="param1.Type" value="object">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Value" value="{&quot;charlie&quot;:3,&quot;easy&quot;:5}">
+        <Var name="param1.Value" value="{&quot;beta&quot;:&quot;name&quot;}">
           <Has name="paramName" value="param1"/>
         </Var>
       </Input>
@@ -45,8 +45,8 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.Type" value="integer"/>
-        <Var name="Body.application-json.Value.Is" value="123"/>
+        <Var name="Body.application-json.Type" value="string"/>
+        <Var name="Body.application-json.Value" value="Hello"/>
       </Input>
     </TestCase>
   </Function>

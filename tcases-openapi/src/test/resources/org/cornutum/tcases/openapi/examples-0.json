@@ -10,32 +10,82 @@
                 "parameters": [
                     {
                         "name": "param0",
-                        "in": "header",
-                        "examples": {
-                            "numeric": {
-                                "value": "3.14156"
-                            },
-                            "joke": {
-                                "value": "Knock, knock"
-                            }
-                        },
-                        "content": {
-                            "application/json": {
-                                "example": "Hello",
-                                "schema": {
-                                    "type": "string"
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "allOf": [
+                                {
+                                    "properties": {
+                                        "alpha": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "bravo": {
+                                            "type": "integer"
+                                        }
+                                    }
                                 }
-                            }
+                            ],
+                            "not": {
+                                "minProperties": 3
+                            },
+                            "example": {"alpha": 1, "bravo": 2}
+                        }
+                    },
+                    {
+                        "name": "param1",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "anyOf": [
+                                {
+                                    "properties": {
+                                        "charlie": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "delta": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            ],
+                            "oneOf": [
+                                {
+                                    "properties": {
+                                        "easy": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "foxtrot": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            ],
+                            "example": {"charlie": 3, "easy": 5}
                         }
                     }
                 ],
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json": {
-                            "example": {"name": "Godot"},
                             "schema": {
-                                "type": "object"
-                            }
+                                "type": "integer"
+                            },
+                            "example": 123
                         }
                     }
                 },

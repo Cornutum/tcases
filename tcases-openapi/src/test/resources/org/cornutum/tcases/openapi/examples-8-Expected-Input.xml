@@ -10,29 +10,27 @@
       <VarSet name="param0">
         <Has name="paramName" value="param0"/>
         <Var name="Defined">
-          <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
           <Value name="Yes" property="param0"/>
         </Var>
         <Var name="Type">
-          <Value name="object" property="param0Value"/>
+          <Value name="string" property="param0Value"/>
         </Var>
         <Var name="Value" when="param0Value">
-          <Value name="{&quot;alpha&quot;:1,&quot;bravo&quot;:2}"/>
+          <Value name="Sup?"/>
         </Var>
       </VarSet>
       <VarSet name="param1">
         <Has name="paramName" value="param1"/>
         <Var name="Defined">
-          <Has name="explode" value="false"/>
           <Has name="style" value="simple"/>
           <Value name="Yes" property="param1"/>
         </Var>
         <Var name="Type">
-          <Value name="object" property="param1Value"/>
+          <Value name="string" property="param1Value"/>
         </Var>
         <Var name="Value" when="param1Value">
-          <Value name="{&quot;charlie&quot;:3,&quot;easy&quot;:5}"/>
+          <Value name="Other"/>
         </Var>
       </VarSet>
     </Input>
@@ -48,13 +46,11 @@
         </Var>
         <VarSet name="application-json" when="application-json">
           <Var name="Type">
-            <Value name="integer" property="application-jsonValue"/>
+            <Value name="string" property="application-jsonValue"/>
           </Var>
-          <VarSet name="Value" when="application-jsonValue">
-            <Var name="Is">
-              <Value name="123"/>
-            </Var>
-          </VarSet>
+          <Var name="Value" when="application-jsonValue">
+            <Value name="Cuerpo"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>

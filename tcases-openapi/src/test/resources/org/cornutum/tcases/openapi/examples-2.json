@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "examples",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/examples": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+                        "required": true,
+                        "examples": {
+                            "name": { "value": { "alpha": "name" }},
+                            "extra": { "value": { "alpha": "none", "extra": "more"}}
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "alpha": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [ "alpha" ],
+                            "example": { "alpha": "other" }
+                        }
+                    },
+                    {
+                        "name": "param1",
+                        "in": "query",
+                        "required": true,
+                        "examples": {
+                            "name": { "value": { "beta": "name" }},
+                            "extra": { "value": { "beta": "none", "extra": "more"}}
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "beta": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [ "beta" ],
+                            "example": { "beta": "other" }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": { "A": 0 }
+                            },
+                            "examples": {
+                                "B": { "value": { "B": 1 }},
+                                "C": { "value": { "C": 2 }} 
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

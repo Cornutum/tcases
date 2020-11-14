@@ -18,7 +18,7 @@
           <Value name="object" property="param0Value"/>
         </Var>
         <Var name="Value" when="param0Value">
-          <Value name="{&quot;alpha&quot;:1,&quot;bravo&quot;:2}"/>
+          <Value name="{&quot;alpha&quot;:&quot;name&quot;}"/>
         </Var>
       </VarSet>
       <VarSet name="param1">
@@ -32,7 +32,7 @@
           <Value name="object" property="param1Value"/>
         </Var>
         <Var name="Value" when="param1Value">
-          <Value name="{&quot;charlie&quot;:3,&quot;easy&quot;:5}"/>
+          <Value name="{&quot;beta&quot;:&quot;name&quot;}"/>
         </Var>
       </VarSet>
     </Input>
@@ -48,13 +48,11 @@
         </Var>
         <VarSet name="application-json" when="application-json">
           <Var name="Type">
-            <Value name="integer" property="application-jsonValue"/>
+            <Value name="string" property="application-jsonValue"/>
           </Var>
-          <VarSet name="Value" when="application-jsonValue">
-            <Var name="Is">
-              <Value name="123"/>
-            </Var>
-          </VarSet>
+          <Var name="Value" when="application-jsonValue">
+            <Value name="Hello"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>

@@ -634,9 +634,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     return
       instanceExampleVars(
         parameterVarTag,
-        true,
-        parameter.getExample(),
-        parameter.getExamples(),
+        !parameter.getRequired(),
+        parameterContentExample( parameter),
+        parameterContentExamples( parameter),
         parameterSchema);
     }
 
@@ -651,12 +651,47 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       Optional.ofNullable( parameter.getSchema())
       
       // ... or the content property
-      .orElse(
-        Optional.ofNullable( parameter.getContent())
-        .map( content -> content.values().stream().findFirst().map( MediaType::getSchema).orElse( null))
-        .orElse( null));
+      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getSchema).orElse( null));
 
     return analyzeSchema( api, schema);
+    }
+
+  /**
+   * Returns the media type defined for the given parameter.
+   */
+  private Optional<MediaType> parameterMediaType( Parameter parameter)
+    {
+    return
+      Optional.ofNullable( parameter.getContent())
+      .flatMap( content -> content.values().stream().findFirst());
+    }
+
+  /**
+   * Returns the example content for the given parameter.
+   */
+  private Object parameterContentExample( Parameter parameter)
+    {
+    // The example should be defined either by...
+    return
+      // ... the parameter itself...
+      Optional.ofNullable( parameter.getExample())
+      
+      // ... or the parameter media type
+      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getExample).orElse( null));
+    }
+
+  /**
+   * Returns the content examples for the given parameter.
+   */
+  private Map<String,Example> parameterContentExamples( Parameter parameter)
+    {
+    // The examples should be defined either by...
+    return
+      // ... the parameter itself...
+      Optional.ofNullable( parameter.getExamples())
+      
+      // ... or the parameter media type
+      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getExamples).orElse( null));
     }
 
   /**
@@ -1135,6 +1170,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()))
+        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
         .build();
       }
     else
@@ -1639,6 +1675,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()))
+        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
         .build();
       }
     else
@@ -2293,7 +2330,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
-        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
+        .values( VarValueDefBuilder.with( stringNotEnumerated( enums)).type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
         .build();
 
       setMaxValues( instanceSchema, enums.size());
@@ -2883,6 +2920,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private String mediaTypeVarTag( String contentVarTag, String mediaType)
     {
     return contentVarTag.replace( "Content", "") + mediaTypeVarName( mediaType);
+    }
+
+  /**
+   * Returns the name that identifies a value not in the given set of enumerated values.
+   */
+  private String stringNotEnumerated( Set<?> enums)
+    {
+    // In case "Other", etc. is already listed as an enumerated string value.
+    return
+      Stream.of( "Other", "Not enumerated", "Not listed", "?")
+      .filter( other -> enums.stream().noneMatch( e -> String.valueOf(e).equals( other)))
+      .findFirst()
+      .orElseThrow( () -> new IllegalStateException( "Can't find a name for a non-enumerated value"));
     }
 
   /**

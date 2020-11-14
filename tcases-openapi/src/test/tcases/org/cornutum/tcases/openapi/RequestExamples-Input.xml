@@ -33,7 +33,7 @@
                     <VarSet name="Example">
                         <Var name="Defined">
                             <Value name="Yes" property="schemaExample"/>
-                            <Value name="No"/>
+                            <Value name="No" when="paramExample"/>
                             <Value name="Missing" failure="true" whenNot="paramExample"/>
                         </Var>
                         <Var name="Source" when="schemaExample" whenNot="paramExample">
@@ -129,7 +129,11 @@
                         <VarSet name="Example">
                             <Var name="Defined">
                                 <Value name="Yes"/>
-                                <Value name="No"/>
+                                <Value name="No">
+                                    <When>
+                                        <AnyOf property="paramExample,paramContentExample"/>
+                                    </When>
+                                </Value>
                                 <Value name="Missing" failure="true" whenNot="paramExample,paramContentExample"/>
                             </Var>           
                         </VarSet>
@@ -158,7 +162,7 @@
                         <VarSet name="Example">
                             <Var name="Defined">
                                 <Value name="Yes"/>
-                                <Value name="No"/>
+                                <Value name="No" when="bodyExample"/>
                                 <Value name="Missing" failure="true" whenNot="bodyExample"/>
                             </Var>           
                         </VarSet>
