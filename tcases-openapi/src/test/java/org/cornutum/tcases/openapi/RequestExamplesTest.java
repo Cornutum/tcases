@@ -441,61 +441,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_10()
     {
-    // properties = bodyExample,bodyExampleMany,paramContent,paramExample,paramExampleMany
-
-    // Given...
-    //
-    //   Parameters.Count = Many
-    //
-    //   Parameters.In = query
-    //
-    //   Parameters.Required = Yes
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = Yes
-    //
-    //   Parameters.Described-By = Content
-    //
-    //   Parameters.Schema.Example.Defined = (not applicable)
-    //
-    //   Parameters.Schema.Example.Source = (not applicable)
-    //
-    //   Parameters.Schema.Type = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Nullable = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Enum = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = No
-    //
-    //   Parameters.Content.Examples = No
-    //
-    //   Parameters.Content.Schema.Example.Defined = Yes
-    //
-    //   Body.Defined = Yes
-    //
-    //   Body.Required = No
-    //
-    //   Body.Content.Example = No
-    //
-    //   Body.Content.Examples = Yes
-    //
-    //   Body.Content.Schema.Example.Defined = Yes
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-10");
     }
 
   /**
@@ -534,61 +480,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_11()
     {
-    // properties = bodyNone,paramContent,paramContentExample,paramContentExampleOne
-
-    // Given...
-    //
-    //   Parameters.Count = One
-    //
-    //   Parameters.In = cookie
-    //
-    //   Parameters.Required = No
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Content
-    //
-    //   Parameters.Schema.Example.Defined = (not applicable)
-    //
-    //   Parameters.Schema.Example.Source = (not applicable)
-    //
-    //   Parameters.Schema.Type = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Nullable = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Enum = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = Yes
-    //
-    //   Parameters.Content.Examples = No
-    //
-    //   Parameters.Content.Schema.Example.Defined = No
-    //
-    //   Body.Defined = No
-    //
-    //   Body.Required = (not applicable)
-    //
-    //   Body.Content.Example = (not applicable)
-    //
-    //   Body.Content.Examples = (not applicable)
-    //
-    //   Body.Content.Schema.Example.Defined = (not applicable)
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-11");
     }
 
   /**
@@ -627,61 +519,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_12()
     {
-    // properties = bodyExample,bodyExampleOne,paramContent,paramContentExample,paramContentExampleMany,paramExample,paramExampleOne
-
-    // Given...
-    //
-    //   Parameters.Count = Many
-    //
-    //   Parameters.In = path
-    //
-    //   Parameters.Required = Yes
-    //
-    //   Parameters.Example = Yes
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Content
-    //
-    //   Parameters.Schema.Example.Defined = (not applicable)
-    //
-    //   Parameters.Schema.Example.Source = (not applicable)
-    //
-    //   Parameters.Schema.Type = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Nullable = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Enum = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = No
-    //
-    //   Parameters.Content.Examples = Yes
-    //
-    //   Parameters.Content.Schema.Example.Defined = No
-    //
-    //   Body.Defined = Yes
-    //
-    //   Body.Required = Yes
-    //
-    //   Body.Content.Example = Yes
-    //
-    //   Body.Content.Examples = No
-    //
-    //   Body.Content.Schema.Example.Defined = No
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-12");
     }
 
   /**
@@ -720,61 +558,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_13()
     {
-    // properties = bodyNone,paramContent,paramContentExample,paramContentExampleMany
-
-    // Given...
-    //
-    //   Parameters.Count = One
-    //
-    //   Parameters.In = header
-    //
-    //   Parameters.Required = No
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Content
-    //
-    //   Parameters.Schema.Example.Defined = (not applicable)
-    //
-    //   Parameters.Schema.Example.Source = (not applicable)
-    //
-    //   Parameters.Schema.Type = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Nullable = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Enum = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = No
-    //
-    //   Parameters.Content.Examples = Yes
-    //
-    //   Parameters.Content.Schema.Example.Defined = Yes
-    //
-    //   Body.Defined = No
-    //
-    //   Body.Required = (not applicable)
-    //
-    //   Body.Content.Example = (not applicable)
-    //
-    //   Body.Content.Examples = (not applicable)
-    //
-    //   Body.Content.Schema.Example.Defined = (not applicable)
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-13");
     }
 
   /**
