@@ -676,8 +676,14 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       // ... the parameter itself...
       Optional.ofNullable( parameter.getExample())
       
-      // ... or the parameter media type
-      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getExample).orElse( null));
+      .orElseGet( () -> {
+        return
+          // ... or if no parameter examples defined...
+          parameter.getExamples() == null
+          // ... by the parameter media type
+          ? parameterMediaType( parameter).map( MediaType::getExample).orElse( null)
+          : null;
+        });
     }
 
   /**
@@ -690,8 +696,14 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       // ... the parameter itself...
       Optional.ofNullable( parameter.getExamples())
       
-      // ... or the parameter media type
-      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getExamples).orElse( null));
+      .orElseGet( () -> {
+        return
+          // ... or if no parameter example defined...
+          parameter.getExample() == null
+          // ... by the parameter media type
+          ? parameterMediaType( parameter).map( MediaType::getExamples).orElse( null)
+          : null;
+        });
     }
 
   /**
