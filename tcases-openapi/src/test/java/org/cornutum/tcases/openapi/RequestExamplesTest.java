@@ -948,61 +948,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_23()
     {
-    // properties = bodyNone,paramBoolean,paramSchema,schemaEnum,schemaExample,schemaExampleEnums
-
-    // Given...
-    //
-    //   Parameters.Count = One
-    //
-    //   Parameters.In = cookie
-    //
-    //   Parameters.Required = No
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Schema
-    //
-    //   Parameters.Schema.Example.Defined = Yes
-    //
-    //   Parameters.Schema.Example.Source = Enums
-    //
-    //   Parameters.Schema.Type = boolean
-    //
-    //   Parameters.Schema.Assertions.Nullable = No
-    //
-    //   Parameters.Schema.Assertions.Enum = Yes
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = (not applicable)
-    //
-    //   Parameters.Content.Examples = (not applicable)
-    //
-    //   Parameters.Content.Schema.Example.Defined = (not applicable)
-    //
-    //   Body.Defined = No
-    //
-    //   Body.Required = (not applicable)
-    //
-    //   Body.Content.Example = (not applicable)
-    //
-    //   Body.Content.Examples = (not applicable)
-    //
-    //   Body.Content.Schema.Example.Defined = (not applicable)
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-23");
     }
 
   /**
@@ -1041,61 +987,7 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_24()
     {
-    // properties = bodyExample,bodyExampleOne,paramInteger,paramSchema,schemaComposed,schemaExample,schemaExampleProperty,schemaLeaf
-
-    // Given...
-    //
-    //   Parameters.Count = Many
-    //
-    //   Parameters.In = path
-    //
-    //   Parameters.Required = Yes
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Schema
-    //
-    //   Parameters.Schema.Example.Defined = Yes
-    //
-    //   Parameters.Schema.Example.Source = Property
-    //
-    //   Parameters.Schema.Type = integer
-    //
-    //   Parameters.Schema.Assertions.Nullable = Yes
-    //
-    //   Parameters.Schema.Assertions.Enum = No
-    //
-    //   Parameters.Schema.Assertions.Leaf = Yes
-    //
-    //   Parameters.Schema.Assertions.AllOf = No
-    //
-    //   Parameters.Schema.Assertions.AnyOf = No
-    //
-    //   Parameters.Schema.Assertions.OneOf = No
-    //
-    //   Parameters.Schema.Assertions.Not = Yes
-    //
-    //   Parameters.Content.Example = (not applicable)
-    //
-    //   Parameters.Content.Examples = (not applicable)
-    //
-    //   Parameters.Content.Schema.Example.Defined = (not applicable)
-    //
-    //   Body.Defined = Yes
-    //
-    //   Body.Required = Yes
-    //
-    //   Body.Content.Example = Yes
-    //
-    //   Body.Content.Examples = No
-    //
-    //   Body.Content.Schema.Example.Defined = No
-    
-    // When...
-
-    // Then...
+    verifyRequestExamplesModel( "examples-24");
     }
 
   /**
