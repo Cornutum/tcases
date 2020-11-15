@@ -14,7 +14,7 @@
       <Include var="Parameters.Examples"/>
     </Combine>
     <Combine tuples="2">
-      <Include var="Parameters.Schema.Assertions.*"/>
+      <Include var="Parameters.Schema.Assertions.Enum"/>
       <Include var="Parameters.Schema.Type"/>
     </Combine>
     <Combine tuples="2">

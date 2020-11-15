@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "examples",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/examples": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Howdy",
+                            "nullable": false,
+                            "pattern": "^[A-Z]",
+                            "anyOf": [
+                                {
+                                    "minLength": 1
+                                },
+                                {
+                                    "maxLength": 10
+                                }
+                            ],
+                            "oneOf": [
+                                {
+                                    "minLength": 3
+                                },
+                                {
+                                    "maxLength": 3
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "param1",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [ "A", "B", "C", null, "A" ],
+                            "nullable": false
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string",
+                                "example": "2.71828"
+                            }, 
+                            "examples": {
+                                "Positive": { "value": ".1234"},
+                                "Zero": { "value": "0.0"},
+                                "Negative": { "value": "-0.9876"}
+                            }
+                        }
+                    }  
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

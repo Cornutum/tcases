@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<System name="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="header">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="array" property="param0Value"/>
+          <Value name="null" once="true"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="[2,4,8]"/>
+          <Value name="[3,9,81]"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
