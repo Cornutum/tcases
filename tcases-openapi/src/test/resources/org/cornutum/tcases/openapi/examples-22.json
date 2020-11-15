@@ -16,7 +16,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "number",
-                                    "enum": [ 1.23, 45.6, 0.789],
+                                    "enum": [ 1.23, 45.6, null, 0.789],
                                     "nullable": true
                                 }
                             }

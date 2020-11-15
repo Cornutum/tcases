@@ -42,6 +42,16 @@ public class NotifierTest extends OpenApiTest
     }
   
   @Test
+  public void warningWhenEnumNullInvalid()
+    {
+    // When...
+    getTests( getRequestInputModel( "warnings-3"));
+    
+    // Then...
+    assertWarnings( "Operations,/operations,PATCH,requestBody,application/json,nonNullable: 'null' is not a valid enumerated value for a non-nullable schema.");
+    }
+  
+  @Test
   public void errorWhenUnknownSchemaType()
     {
     // When...

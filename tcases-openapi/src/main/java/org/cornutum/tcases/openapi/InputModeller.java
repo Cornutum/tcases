@@ -1174,7 +1174,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     {
     IVarDef valueVar;
 
-    Set<?> enums = asOrderedSet( instanceSchema.getEnum());
+    Set<?> enums = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
     if( !enums.isEmpty())
       {
       valueVar = 
@@ -1462,7 +1462,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     BigDecimal effectiveMinimum = null;
 
     // Enumerated values?
-    Set<BigDecimal> enums = getNumberEnum( instanceSchema);
+    Set<BigDecimal> enums = nullableEnums( getNumberEnum( instanceSchema), instanceSchema.getNullable());
     Set<BigDecimal> notEnums = getNumberEnum( getNotEnums( instanceSchema));
     if( !enums.isEmpty())
       {
@@ -1679,7 +1679,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     {
     IVarDef valueVar;
 
-    Set<?> enums = asOrderedSet( instanceSchema.getEnum());
+    Set<?> enums = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
     if( !enums.isEmpty())
       {
       valueVar = 
@@ -1823,6 +1823,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     List<Object> exampleEnum;
 
     return
+      instanceSchema == null?
+      null :
+      
       (exampleObject = schemaExample( instanceSchema)) != null?
       exampleSchemaFor( exampleObject.orElse( null), exampleType, exampleNullable) :
 
@@ -1940,16 +1943,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   @SuppressWarnings({ "rawtypes", "unchecked" })
   private List<Object> exampleEnum( Schema instanceSchema)
     {
+    Set<Object> instanceEnum = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
+    
     return
-      Optional.ofNullable( instanceSchema.getEnum())
-      .filter( values -> !values.isEmpty())
-      .orElseGet( () -> {
-        return
-          Optional.ofNullable( instanceSchema.getType())
-          .filter( type -> "boolean".equals( type))
-          .map( type -> Arrays.asList( "true", "false"))
-          .orElse( emptyList());
-        });
+      !instanceEnum.isEmpty()?
+      instanceEnum.stream().collect( toList()) :
+
+      "boolean".equals( instanceSchema.getType())?
+      Arrays.asList( Boolean.TRUE, Boolean.FALSE) :
+
+      emptyList();
     }
 
   /**
@@ -2338,7 +2341,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
     // Enumerated values?
     String format = instanceSchema.getFormat();
-    Set<FormattedString> enums = getFormattedStrings( "enumerated", format, instanceSchema.getEnum());
+
+    Set<FormattedString> enums =
+      getFormattedStrings(
+        "enumerated",
+        format,
+        nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable()));
+
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
@@ -2578,9 +2587,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     {
     Set<Boolean> possibleValues = asOrderedSet( Boolean.TRUE, Boolean.FALSE);
     Set<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
+    Set<Boolean> enumValues = nullableEnums( getBooleanEnum( instanceSchema), instanceSchema.getNullable());
 
     List<Boolean> allowedValues =
-      Optional.of( getBooleanEnum( instanceSchema))
+      Optional.of( enumValues)
       .filter( enums -> !enums.isEmpty())
       .orElse( possibleValues)
       .stream()
@@ -2607,6 +2617,20 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             .build();
           }))
       .build();
+    }
+
+  /**
+   * Returns the given set of enumerated values, excluding any null value.
+   */
+  private <T> Set<T> nullableEnums( Set<T> enums, Boolean instanceNullable)
+    {
+    if( enums.contains( null) && !Optional.ofNullable( instanceNullable).orElse( false))
+      {
+      notifyWarning( "'null' is not a valid enumerated value for a non-nullable schema");
+      }
+
+    enums.remove( null);
+    return enums;
     }
 
   /**
