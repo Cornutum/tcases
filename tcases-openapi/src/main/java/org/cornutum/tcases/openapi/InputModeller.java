@@ -1820,7 +1820,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType, boolean exampleNullable)
     {
     Optional<Object> exampleObject;
-    List<Object> exampleEnum;
+    Set<Object> exampleEnum;
 
     return
       instanceSchema == null?
@@ -1840,7 +1840,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Schema<?> exampleSchemaFor( Object exampleValue, String exampleType, boolean exampleNullable)
     {
-    return exampleSchemaForEnum( Arrays.asList( exampleValue), exampleType, exampleNullable);
+    Set<Object> exampleEnum = nullableEnums( asOrderedSet( Arrays.asList( exampleValue)), exampleNullable);
+    return exampleSchemaForEnum( exampleEnum, exampleType, exampleNullable);
     }
 
   /**
@@ -1850,11 +1851,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType, boolean exampleNullable)
     {
     Map<String,List<Object>> exampleEnums =
-      asOrderedSet( exampleValues)
+      nullableEnums( asOrderedSet( exampleValues), exampleNullable)
       .stream()
       .collect( groupingBy( v -> String.valueOf( exampleTypeOf( v))));
-
-    List<Object> nullEnum = exampleEnums.remove( "null");
 
     if( exampleType != null)
       {
@@ -1870,26 +1869,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
                 exampleEnums.get( type)));
           });
       }
-    
-    if( nullEnum != null)
-      {
-      if( !exampleEnums.isEmpty())
-        {
-        exampleEnums.values().iterator().next().add( null);
-        }
-      else if( exampleType != null)
-        {
-        exampleEnums.put( exampleType, nullEnum);
-        }
-      else
-        {
-        throw new IllegalStateException( "No type defined for example value=null");
-        }
-      }
 
     List<Schema> exampleSchemas =
       exampleEnums.entrySet().stream()
-      .map( e -> exampleSchemaForEnum( e.getValue(), e.getKey(), exampleNullable))
+      .map( e -> exampleSchemaForEnum( asOrderedSet( e.getValue()), e.getKey(), exampleNullable))
       .collect( toList());
 
     return
@@ -1903,10 +1886,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns a new schema that validates only the given example values.
    */
   @SuppressWarnings("unchecked")
-  private Schema<?> exampleSchemaForEnum( List<Object> exampleValues, String exampleType, boolean exampleNullable)
+  private Schema<?> exampleSchemaForEnum( Set<Object> exampleValues, String exampleType, boolean exampleNullable)
     {
-    Schema<Object> exampleSchema = new Schema<Object>().type( exampleType).nullable( exampleNullable);
-    exampleSchema.setEnum( exampleValues);
+    Schema<Object> exampleSchema;
+    if( exampleValues.isEmpty())
+      {
+      exampleSchema = null;
+      }
+    else
+      {
+      exampleSchema = new Schema<Object>().type( exampleType).nullable( exampleNullable);
+      exampleSchema.setEnum( exampleValues.stream().collect( toList()));
+      }
+    
     return exampleSchema;
     }
 
@@ -1941,18 +1933,18 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns the enumerated values for the given schema.
    */
   @SuppressWarnings({ "rawtypes", "unchecked" })
-  private List<Object> exampleEnum( Schema instanceSchema)
+  private Set<Object> exampleEnum( Schema instanceSchema)
     {
     Set<Object> instanceEnum = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
     
     return
       !instanceEnum.isEmpty()?
-      instanceEnum.stream().collect( toList()) :
+      instanceEnum :
 
       "boolean".equals( instanceSchema.getType())?
-      Arrays.asList( Boolean.TRUE, Boolean.FALSE) :
+      asOrderedSet( Arrays.asList( Boolean.TRUE, Boolean.FALSE)) :
 
-      emptyList();
+      emptySet();
     }
 
   /**
