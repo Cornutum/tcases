@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "examples",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/examples": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "param0",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "alpha": {
+                                    "type": "number",
+                                    "enum": [ 1.2, 3.4 ]
+                                }                                
+                            },
+                            "oneOf": [
+                                {
+                                    "additionalProperties": false
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

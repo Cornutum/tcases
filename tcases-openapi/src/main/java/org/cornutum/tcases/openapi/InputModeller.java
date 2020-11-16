@@ -1965,14 +1965,21 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       ComposedSchema composed = asComposedSchema( instanceSchema);
       if( composed != null)
         {
+        if( !composed.getAllOf().isEmpty())
+          {
+          throw new IllegalStateException( "'allOf' assertion defined");
+          }
+
         boolean anyOf = !composed.getAnyOf().isEmpty();
         boolean oneOf = !composed.getOneOf().isEmpty();
-
-        if( !(isLeafEmpty( composed)
-              && composed.getAllOf().isEmpty()
-              && anyOf != oneOf))
+        if( anyOf && oneOf)
           {
-          throw new IllegalStateException( "Only one assertion -- either 'anyOf' or 'oneOf' -- is allowed");
+          throw new IllegalStateException( "Both 'anyOf' and 'oneOf' assertions defined");
+          }
+
+        if( !isLeafEmpty( composed))
+          {
+          throw new IllegalStateException( String.format( "If '%s' defined, no other assertions allowed", oneOf? "oneOf" : "anyOf"));
           }
 
         List<Schema> members = oneOf? composed.getOneOf() : composed.getAnyOf();
