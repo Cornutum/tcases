@@ -325,6 +325,16 @@ public abstract class OpenApiTest
     }
 
   /**
+   * Verifies that a valid examples input model can't be created for the given API spec for the specified reasons.
+   */
+  protected void assertRequestExamplesModelFailure( String apiName, String... expected)
+    {
+    assertOpenApiException(
+      () -> TcasesOpenApi.getRequestExamplesModel( readApi( apiName)),
+      expected);
+    }
+
+  /**
    * Verifies that an OpenApiException occurs when the given Failable is executed.
    */
   protected void assertOpenApiException( Failable failable, String... expected)

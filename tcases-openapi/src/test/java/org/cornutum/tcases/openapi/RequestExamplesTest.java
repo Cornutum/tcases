@@ -1533,61 +1533,11 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_38()
     {
-    // properties = bodyNone,paramObject,paramSchema,schemaComposed,schemaExample,schemaExampleComposed,schemaOneOf
-
-    // Given...
-    //
-    //   Parameters.Count = One
-    //
-    //   Parameters.In = header
-    //
-    //   Parameters.Required = No
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Schema
-    //
-    //   Parameters.Schema.Example.Defined = Yes
-    //
-    //   Parameters.Schema.Example.Source = Composed
-    //
-    //   Parameters.Schema.Type = object
-    //
-    //   Parameters.Schema.Assertions.Nullable = Yes
-    //
-    //   Parameters.Schema.Assertions.Enum = No
-    //
-    //   Parameters.Schema.Assertions.Leaf = No
-    //
-    //   Parameters.Schema.Assertions.AllOf = No
-    //
-    //   Parameters.Schema.Assertions.AnyOf = Invalid
-    //
-    //   Parameters.Schema.Assertions.OneOf = Yes
-    //
-    //   Parameters.Schema.Assertions.Not = No
-    //
-    //   Parameters.Content.Example = (not applicable)
-    //
-    //   Parameters.Content.Examples = (not applicable)
-    //
-    //   Parameters.Content.Schema.Example.Defined = (not applicable)
-    //
-    //   Body.Defined = No
-    //
-    //   Body.Required = (not applicable)
-    //
-    //   Body.Content.Example = (not applicable)
-    //
-    //   Body.Content.Examples = (not applicable)
-    //
-    //   Body.Content.Schema.Example.Defined = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertRequestExamplesModelFailure(
+      "examples-38",
+      "Error processing examples, /examples, POST, param0",
+      "Can't compose schema examples",
+      "Only one assertion -- either 'anyOf' or 'oneOf' -- is allowed");
     }
 
   /**
@@ -1626,61 +1576,11 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_39()
     {
-    // properties = bodyNone,paramContent
-
-    // Given...
-    //
-    //   Parameters.Count = One
-    //
-    //   Parameters.In = header
-    //
-    //   Parameters.Required = No
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Content
-    //
-    //   Parameters.Schema.Example.Defined = (not applicable)
-    //
-    //   Parameters.Schema.Example.Source = (not applicable)
-    //
-    //   Parameters.Schema.Type = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Nullable = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Enum = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Leaf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AllOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.AnyOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.OneOf = (not applicable)
-    //
-    //   Parameters.Schema.Assertions.Not = (not applicable)
-    //
-    //   Parameters.Content.Example = No
-    //
-    //   Parameters.Content.Examples = No
-    //
-    //   Parameters.Content.Schema.Example.Defined = Missing
-    //
-    //   Body.Defined = No
-    //
-    //   Body.Required = (not applicable)
-    //
-    //   Body.Content.Example = (not applicable)
-    //
-    //   Body.Content.Examples = (not applicable)
-    //
-    //   Body.Content.Schema.Example.Defined = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertRequestExamplesModelFailure(
+      "examples-39",
+      "Error processing examples, /examples, POST, param0",
+      "Can't compose schema examples",
+      "No example defined for schema of type=string");
     }
 
   /**
@@ -1719,61 +1619,11 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_40()
     {
-    // properties = bodyNone,paramObject,paramSchema,schemaAnyOf,schemaComposed,schemaExample,schemaExampleComposed
-
-    // Given...
-    //
-    //   Parameters.Count = One
-    //
-    //   Parameters.In = header
-    //
-    //   Parameters.Required = No
-    //
-    //   Parameters.Example = No
-    //
-    //   Parameters.Examples = No
-    //
-    //   Parameters.Described-By = Schema
-    //
-    //   Parameters.Schema.Example.Defined = Yes
-    //
-    //   Parameters.Schema.Example.Source = Composed
-    //
-    //   Parameters.Schema.Type = object
-    //
-    //   Parameters.Schema.Assertions.Nullable = Yes
-    //
-    //   Parameters.Schema.Assertions.Enum = No
-    //
-    //   Parameters.Schema.Assertions.Leaf = No
-    //
-    //   Parameters.Schema.Assertions.AllOf = No
-    //
-    //   Parameters.Schema.Assertions.AnyOf = Yes
-    //
-    //   Parameters.Schema.Assertions.OneOf = Invalid
-    //
-    //   Parameters.Schema.Assertions.Not = No
-    //
-    //   Parameters.Content.Example = (not applicable)
-    //
-    //   Parameters.Content.Examples = (not applicable)
-    //
-    //   Parameters.Content.Schema.Example.Defined = (not applicable)
-    //
-    //   Body.Defined = No
-    //
-    //   Body.Required = (not applicable)
-    //
-    //   Body.Content.Example = (not applicable)
-    //
-    //   Body.Content.Examples = (not applicable)
-    //
-    //   Body.Content.Schema.Example.Defined = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertRequestExamplesModelFailure(
+      "examples-40",
+      "Error processing examples, /examples, POST, param0, anyOf[0]",
+      "Can't compose schema examples",
+      "No example defined for schema of type=object");
     }
 
   /**

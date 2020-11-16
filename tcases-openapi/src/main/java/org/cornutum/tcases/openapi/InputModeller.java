@@ -1968,7 +1968,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         boolean anyOf = !composed.getAnyOf().isEmpty();
         boolean oneOf = !composed.getOneOf().isEmpty();
 
-        if( !(isEmpty( copySchema( composed).type( null))
+        if( !(isLeafEmpty( composed)
               && composed.getAllOf().isEmpty()
               && anyOf != oneOf))
           {
@@ -1992,13 +1992,17 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .orElseThrow( () -> new IllegalStateException( "Can't compose array schema examples"));
         }
 
-      else if( "object".equals( instanceType))
+      else if( "object".equals( instanceType)
+               &&
+               !(Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap()).isEmpty()
+                 && additionalPropertiesSchema( instanceSchema) == null))
         {
         exampleSchema =
           copySchema( instanceSchema)
 
           .properties(
-            instanceSchema.getProperties().entrySet().stream()
+            Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
+            .entrySet().stream()
             .collect( toMap( e -> e.getKey(), e -> resultFor( e.getKey(), () -> exampleSchemaFor( e.getValue())), (s1,s2) -> s1, LinkedHashMap::new)))
 
           .additionalProperties(

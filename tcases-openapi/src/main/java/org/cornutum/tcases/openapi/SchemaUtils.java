@@ -336,6 +336,20 @@ public final class SchemaUtils
     }
 
   /**
+   * Returns true if this schema contains no leaf assertions.
+   */
+  @SuppressWarnings("unchecked")
+  public static boolean isLeafEmpty( Schema<?> schema)
+    {
+    return
+      isEmpty(
+        withExtensions(
+          copySchema( schema)
+          .type( null)
+          .properties( Optional.ofNullable( schema.getProperties()).filter( p ->!p.isEmpty()).orElse( null))));
+    }
+
+  /**
    * Returns null if no example is defined for the given schema. Otherwise, returns
    * <CODE>Optional.empty()</CODE> if the schema example value is <CODE>null<CODE>.
    * Otherwise, returns the schema example value.
