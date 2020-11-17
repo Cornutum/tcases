@@ -546,7 +546,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             return
               VarSetBuilder.with( mediaTypeVarName)
               .when( has( mediaTypeVarTag))
-              .members( mediaTypeExampleVars( mediaTypeVarTag, mediaType))
+              .members( mediaTypeExampleVars( api, mediaTypeVarTag, mediaType))
               .build();
             });
         });
@@ -555,10 +555,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns the {@link IVarDef input variable definitions} for the given media type examples.
    */
-  private Stream<IVarDef> mediaTypeExampleVars( String mediaTypeVarTag, MediaType mediaType)
+  private Stream<IVarDef> mediaTypeExampleVars( OpenAPI api, String mediaTypeVarTag, MediaType mediaType)
     {
     return
       instanceExampleVars(
+        api,
         mediaTypeVarTag,
         false,
         mediaType.getExample(),
@@ -621,7 +622,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .type( parameterIn)
           .has( "paramName", parameterName)
           .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
-          .members( parameterExampleVars( parameterVarName, parameterSchema, parameter))
+          .members( parameterExampleVars( api, parameterVarName, parameterSchema, parameter))
           .build();
         });
     }
@@ -629,10 +630,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns the {@link IVarDef input variable definitions} for the given parameter examples.
    */
-  private Stream<IVarDef> parameterExampleVars( String parameterVarTag, Schema<?> parameterSchema, Parameter parameter)
+  private Stream<IVarDef> parameterExampleVars( OpenAPI api, String parameterVarTag, Schema<?> parameterSchema, Parameter parameter)
     {
     return
       instanceExampleVars(
+        api,
         parameterVarTag,
         !parameter.getRequired(),
         parameterContentExample( parameter),
@@ -1771,6 +1773,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns the {@link IVarDef input variable definitions} for the given examples.
    */
   private Stream<IVarDef> instanceExampleVars(
+    OpenAPI api,
     String instanceVarTag,
     boolean instanceOptional,
     Object instanceExample,
@@ -1799,7 +1802,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       throw new IllegalStateException( "No examples defined");
       }
 
-    return instanceSchemaVars( instanceVarTag, instanceOptional, exampleSchema);
+    return instanceSchemaVars( instanceVarTag, instanceOptional, analyzeSchema( api, exampleSchema));
     }
 
   /**

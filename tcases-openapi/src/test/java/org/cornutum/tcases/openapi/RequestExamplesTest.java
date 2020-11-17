@@ -1844,4 +1844,10 @@ public class RequestExamplesTest extends OpenApiTest
       "Can't compose schema examples",
       "'allOf' assertion defined");
     }
+
+  @Test
+  public void whenBooleanCombinations()
+    {
+    verifyRequestExamplesModel( "examples-combinations");
+    }
   }
