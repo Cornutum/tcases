@@ -1850,4 +1850,10 @@ public class RequestExamplesTest extends OpenApiTest
     {
     verifyRequestExamplesModel( "examples-combinations");
     }
+
+  @Test
+  public void whenMultipleTypes()
+    {
+    verifyRequestExamplesModel( "examples-multitype");
+    }
   }

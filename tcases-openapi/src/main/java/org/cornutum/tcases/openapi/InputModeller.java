@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ListBuilder;
+
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.openapi.OpenApiUtils.*;
@@ -19,6 +20,7 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 import org.cornutum.regexpgen.RegExpGen;
 import static org.cornutum.regexpgen.Bounds.bounded;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -1926,7 +1928,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       exampleValue instanceof Boolean?
       "boolean" :
 
-      exampleValue instanceof List?
+      exampleValue instanceof ArrayNode?
       "array" :
 
       "object";
