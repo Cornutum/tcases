@@ -838,6 +838,28 @@ public class ApiTestCommandTest extends TestWriterTest
     verifyTest( "api-test-stdout", testFileResults);
     }
 
+  @Test
+  public void whenSourceExamples() throws Exception
+    {
+    // Given...
+    File apiFile = apiSpecFor( getResourceClass(),  "examples-multitype");
+    
+    String[] args =
+      {
+        "-X",
+        "-p", "org.cornutum.examples",
+        apiFile.getPath()
+      };
+    
+    // When...
+    ApiTestCommand.run( new Options( args));
+        
+    // Then...
+    File testFile = new File( apiFile.getParentFile(), "ExamplesTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-examples", testFileResults);
+    }
+
   /**
    * Run Tcases with the given options, using the given standard input/output.
    * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.

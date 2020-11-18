@@ -68,6 +68,19 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-X</NOBR>
+   * </TD>
+   * <TD>
+   * If specified, test cases are generated based on the examples specified in the <I>apiSpec</I>.
+   * Otherwise, by default, test cases are created by generating random request input values.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-t testType </NOBR>
    * </TD>
    * <TD>
@@ -302,7 +315,7 @@ public class ApiTestCommand
     public enum TestType { JUNIT, TESTNG, MOCO };
 
     public enum ExecType { RESTASSURED };
-    
+
     /**
      * Creates a new Options object.
      */
@@ -343,6 +356,11 @@ public class ApiTestCommand
         throwHelpException();
         }
 
+      else if( arg.equals( "-X"))
+        {
+        setSource( ModelOptions.Source.EXAMPLES);
+        }
+      
       else if( arg.equals( "-t"))
         {
         i++;
@@ -580,6 +598,10 @@ public class ApiTestCommand
                "",
                "Each option is one of the following:",
                "",
+               "  -X              If specified, test cases are generated based on the examples specified in the",
+               "                  apiSpec. Otherwise, by default, test cases are created by generating random",
+               "                  request input values.",
+               "",
                "  -t testType     Defines the test framework used to run API tests. Valid values are 'junit', 'testng',",
                "                  or 'moco'. If omitted, the default is 'junit'.",
                "",
@@ -672,7 +694,7 @@ public class ApiTestCommand
       }
 
     /**
-     * Changes the request execution intervce used to run API tests.
+     * Changes the request execution interface used to run API tests.
      */
     public void setExecType( ExecType execType)
       {
@@ -680,7 +702,7 @@ public class ApiTestCommand
       }
 
     /**
-     * Changes the request execution intervce used to run API tests.
+     * Changes the request execution interface used to run API tests.
      */
     public void setExecType( String execType)
       {
@@ -688,11 +710,27 @@ public class ApiTestCommand
       }
 
     /**
-     * Returns the request execution intervce used to run API tests.
+     * Returns the request execution interface used to run API tests.
      */
     public ExecType getExecType()
       {
       return execType_;
+      }
+
+    /**
+     * Changes the source of API input definitions.
+     */
+    public void setSource( ModelOptions.Source source)
+      {
+      getModelOptions().setSource( source);
+      }
+
+    /**
+     * Returns the source of API input definitions.
+     */
+    public ModelOptions.Source getSource()
+      {
+      return getModelOptions().getSource();
       }
 
     /**
@@ -1198,6 +1236,7 @@ public class ApiTestCommand
       {
       StringBuilder builder = new StringBuilder();
 
+      Optional.of( getSource()).filter( s -> ModelOptions.Source.EXAMPLES.equals( s)).ifPresent( g -> builder.append( " -X"));
       builder.append( " -t ").append( getTestType());
       builder.append( " -e ").append( getExecType());
       Optional.ofNullable( getTestName()).ifPresent( name -> builder.append( " -n ").append( name));
@@ -1262,6 +1301,12 @@ public class ApiTestCommand
       public Builder execType( ExecType execType)
         {
         options_.setExecType( execType);
+        return this;
+        }
+
+      public Builder source( ModelOptions.Source source)
+        {
+        options_.setSource( source);
         return this;
         }
 
@@ -1425,7 +1470,15 @@ public class ApiTestCommand
         {
         options.setRandomSeed( options.getDefaultRandomSeed());
         }
-      logger_.info( "Generating request test cases using random seed={}", options.getRandomSeed());
+
+      if( options.getModelOptions().getSource().equals( ModelOptions.Source.EXAMPLES))
+        {
+        logger_.info( "Generating request test cases using API examples");
+        }
+      else
+        {
+        logger_.info( "Generating request test cases using random seed={}", options.getRandomSeed());
+        }
       RequestTestDef testDef = RequestCases.getRequestCases( Tcases.getTests( inputDef, null, null), options.getResolverContext());
 
       // Write API tests for realized request cases only
