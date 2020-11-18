@@ -105,6 +105,18 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   protected SystemInputDef requestInputModel( OpenAPI api)
     {
+    return
+      getOptions().getSource() == ModelOptions.Source.EXAMPLES
+      ? requestExamplesModel( api)
+      : requestSchemasModel( api);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by schemas in the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  private SystemInputDef requestSchemasModel( OpenAPI api)
+    {
     Info info;
     String title;
     try
@@ -139,7 +151,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by examples in the given
    * OpenAPI specification. Returns null if the given spec defines no API request examples to model.
    */
-  protected SystemInputDef requestExamplesModel( OpenAPI api)
+  private SystemInputDef requestExamplesModel( OpenAPI api)
     {
     Info info;
     String title;

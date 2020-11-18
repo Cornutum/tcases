@@ -78,7 +78,6 @@ public final class TcasesOpenApi
    */
   public static SystemInputDef getRequestExamplesModel( OpenAPI api, ModelOptions options)
     {
-    RequestExamplesModeller examplesModeller = new RequestExamplesModeller( options);
-    return examplesModeller.getRequestExamplesModel( api);
+    return getRequestInputModel( api, ModelOptions.builder( options).source( ModelOptions.Source.EXAMPLES).build());
     }
   }
