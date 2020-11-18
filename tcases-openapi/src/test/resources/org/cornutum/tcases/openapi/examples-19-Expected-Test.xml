@@ -16,7 +16,7 @@
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
@@ -35,7 +35,7 @@
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
@@ -55,7 +55,7 @@
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
@@ -75,7 +75,7 @@
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
+      <Input type="query">
         <Var name="param0.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>

@@ -10,7 +10,7 @@
                 "parameters": [
                     {
                         "name": "param0",
-                        "in": "cookie",
+                        "in": "query",
                         "required": false,
                         "examples": {
                             "French": { "value": "Allô"},

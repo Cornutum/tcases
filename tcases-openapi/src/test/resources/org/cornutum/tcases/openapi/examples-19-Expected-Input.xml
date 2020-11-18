@@ -6,7 +6,7 @@
   <Function name="POST_examples">
     <Has name="operation" value="POST"/>
     <Has name="path" value="/examples"/>
-    <Input type="cookie">
+    <Input type="query">
       <VarSet name="param0">
         <Has name="paramName" value="param0"/>
         <Var name="Defined">
