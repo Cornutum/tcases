@@ -1,0 +1,411 @@
+
+[
+    {
+        "id": 0,
+        "name": "param0.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 2,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "null",
+                        "value": null
+                    },
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 2,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 3,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "name": "param1.Items.Size='1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 2,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "null",
+                        "value": null
+                    },
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 2,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 3,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "name": "param1.Items.Contains.Value.Is='3'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 2,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "null",
+                        "value": null
+                    },
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 2,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 3,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 4,
+        "name": "param1.Items.Unique='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 2,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 2,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 3,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 2,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "array",
+                "value": [
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "null",
+                        "value": null
+                    },
+                    {
+                        "type": "integer",
+                        "value": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 2,
+                        "format": "int32"
+                    },
+                    {
+                        "type": "integer",
+                        "value": 3,
+                        "format": "int32"
+                    }
+                ]
+            },
+            "valid": true
+        }
+    }
+]
