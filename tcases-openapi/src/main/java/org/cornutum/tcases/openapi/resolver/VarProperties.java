@@ -420,34 +420,46 @@ public final class VarProperties
   /**
    * Returns the array domain specified by the given properties.
    */
-  public static ArrayDomain<?> toArrayDomain( Map<String,Object> propertyValues, Characters chars)
+  public static ValueDomain<?> toArrayDomain( Map<String,Object> propertyValues, Characters chars)
     {
-    ArrayDomain<?> domain;
+    ValueDomain<?> domain;
 
-    Map<String,Object> items = getPropertyValues( propertyValues, "Items");
-    if( items == null)
+    VarBinding value = getIfVarBinding( propertyValues, "Value");
+    if( value != null)
       {
-      domain = new ArrayDomain<Object>();
+      domain = new ArrayConstant( JsonNodes.toArrayValue( value.getValue()));
       }
     else
       {
-      Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
-      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
-      ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
-      ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
-      domain = itemDomain.arrayOf();
-      domain.setOtherItemValues( otherItemValues);
+      ArrayDomain<?> arrayDomain;
 
-      VarBinding size = expectVarBinding( items, "Size");
-      domain.setItemCount( Range.of( size));
+      Map<String,Object> items = getPropertyValues( propertyValues, "Items");
+      if( items == null)
+        {
+        arrayDomain = new ArrayDomain<Object>();
+        }
+      else
+        {
+        Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
+        ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
+        ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
+        ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
+        arrayDomain = itemDomain.arrayOf();
+        arrayDomain.setOtherItemValues( otherItemValues);
 
-      domain.setItemsUnique(
-        Optional.ofNullable( getVarBinding( items, "Unique"))
-        .filter( u -> !u.isValueNA())
-        .map( u -> "Yes".equals( u.getValue()))
-        .orElse( size.getAnnotation( "itemsUnique") != null));
+        VarBinding size = expectVarBinding( items, "Size");
+        arrayDomain.setItemCount( Range.of( size));
+
+        arrayDomain.setItemsUnique(
+          Optional.ofNullable( getVarBinding( items, "Unique"))
+          .filter( u -> !u.isValueNA())
+          .map( u -> "Yes".equals( u.getValue()))
+          .orElse( size.getAnnotation( "itemsUnique") != null));
+        }
+
+      domain = arrayDomain;
       }
-
+    
     return domain;
     }
 
@@ -607,54 +619,65 @@ public final class VarProperties
    */
   public static ValueDomain<?> toObjectDomain( Map<String,Object> propertyValues, Characters chars)
     {
-    ObjectDomain domain = new ObjectDomain( chars);
+    ValueDomain<?> domain;
 
-    Map<String,Object> value = getPropertyValues( propertyValues, "Value");
+    VarBinding value = getIfVarBinding( propertyValues, "Value");
     if( value != null)
       {
-      Map<String,Object> properties = expectPropertyValues( value, "Properties");
-
-      domain.setPropertyDomains(
-        properties.keySet().stream()
-        .filter( p -> !p.equals( "Additional"))
-        .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p), chars)))
-        .filter( e -> e.getValue() != null)
-        .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
-
-      Map<String,Object> additionalProperties = getIfPropertyValues( properties, "Additional");
-      ValueDomain<?> additionalPropertyValues =
-        additionalProperties != null?
-        toPropertyDomain( additionalProperties, chars) :
-
-        "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
-        new MultiTypeDomain( chars, Type.any()) :
-
-        null;
-
-      if( additionalPropertyValues != null)
-        {
-        domain.setAdditionalPropertyValues( additionalPropertyValues);
-
-        IntegerDomain expectedPropertyCount =
-          new IntegerDomain(
-            Optional.ofNullable( getVarBinding( value, "Property-Count"))
-            .map( Range::of)
-            .orElse( Range.of( ">=", "0")));
-
-        int definedPropertyCount = domain.getPropertyDomains().size();
-        int expectedPropertyCountMin = expectedPropertyCount.getMin();
-        int additionalPropertyCountMin = Math.max( 1, expectedPropertyCountMin - definedPropertyCount);
-
-        int expectedPropertyCountMax = expectedPropertyCount.getMax();
-        int additionalPropertyCountMax =
-          expectedPropertyCountMax == expectedPropertyCount.getMaxRange()
-          ? additionalPropertyCountMin + 2
-          : expectedPropertyCountMax - definedPropertyCount;
-
-        domain.setAdditionalPropertyCount( new IntegerDomain( additionalPropertyCountMin, additionalPropertyCountMax));
-        }
+      domain = new ObjectConstant( JsonNodes.toObjectValue( value.getValue()));
       }
+    else
+      {
+      ObjectDomain objDomain = new ObjectDomain( chars);
+      Map<String,Object> valueProperties = getPropertyValues( propertyValues, "Value");
+      if( valueProperties != null)
+        {
+        Map<String,Object> properties = expectPropertyValues( valueProperties, "Properties");
+
+        objDomain.setPropertyDomains(
+          properties.keySet().stream()
+          .filter( p -> !p.equals( "Additional"))
+          .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p), chars)))
+          .filter( e -> e.getValue() != null)
+          .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
+
+        Map<String,Object> additionalProperties = getIfPropertyValues( properties, "Additional");
+        ValueDomain<?> additionalPropertyValues =
+          additionalProperties != null?
+          toPropertyDomain( additionalProperties, chars) :
+
+          "Yes".equals( expectVarBinding( properties, "Additional").getValue())?
+          new MultiTypeDomain( chars, Type.any()) :
+
+          null;
+
+        if( additionalPropertyValues != null)
+          {
+          objDomain.setAdditionalPropertyValues( additionalPropertyValues);
+
+          IntegerDomain expectedPropertyCount =
+            new IntegerDomain(
+              Optional.ofNullable( getVarBinding( valueProperties, "Property-Count"))
+              .map( Range::of)
+              .orElse( Range.of( ">=", "0")));
+
+          int definedPropertyCount = objDomain.getPropertyDomains().size();
+          int expectedPropertyCountMin = expectedPropertyCount.getMin();
+          int additionalPropertyCountMin = Math.max( 1, expectedPropertyCountMin - definedPropertyCount);
+
+          int expectedPropertyCountMax = expectedPropertyCount.getMax();
+          int additionalPropertyCountMax =
+            expectedPropertyCountMax == expectedPropertyCount.getMaxRange()
+            ? additionalPropertyCountMin + 2
+            : expectedPropertyCountMax - definedPropertyCount;
+
+          objDomain.setAdditionalPropertyCount( new IntegerDomain( additionalPropertyCountMin, additionalPropertyCountMax));
+          }
+        }
     
+      domain = objDomain;
+      }
+
     return domain;
     }
 

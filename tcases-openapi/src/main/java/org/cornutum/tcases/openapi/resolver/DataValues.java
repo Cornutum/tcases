@@ -10,7 +10,9 @@ package org.cornutum.tcases.openapi.resolver;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Factory methods for {@link DataValue} objects.
@@ -29,9 +31,19 @@ public final class DataValues
    * Returns a new {@link ArrayValue}.
    */
   @SafeVarargs
-  public static <T> ArrayValue<T>  arrayOf( DataValue<T>... items)
+  public static <T> ArrayValue<T> arrayOf( DataValue<T>... items)
     {
     return new ArrayValue<T>( Arrays.asList( items));
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
+  @SuppressWarnings("unchecked")
+  public static ArrayValue<Object>  arrayOfAny( List<DataValue<?>> items)
+    {
+	List<DataValue<Object>> objects = items.stream().map( item -> (DataValue<Object>) item).collect( toList());
+    return new ArrayValue<Object>( objects);
     }
 
   /**
