@@ -842,12 +842,12 @@ public class ApiTestCommandTest extends TestWriterTest
   public void whenSourceExamples() throws Exception
     {
     // Given...
-    File apiFile = apiSpecFor( getResourceClass(),  "examples-multitype");
+    File apiFile = stdApiSpec( "OpenApiTest");
     
     String[] args =
       {
         "-X",
-        "-p", "org.cornutum.examples",
+        "-n", "org.cornutum.examples.OpenApiExamplesTest",
         apiFile.getPath()
       };
     
@@ -855,7 +855,7 @@ public class ApiTestCommandTest extends TestWriterTest
     ApiTestCommand.run( new Options( args));
         
     // Then...
-    File testFile = new File( apiFile.getParentFile(), "ExamplesTest.java");
+    File testFile = new File( apiFile.getParentFile(), "OpenApiExamplesTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-examples", testFileResults);
     }
