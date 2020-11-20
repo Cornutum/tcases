@@ -16,9 +16,6 @@
                             "type": "object",
                             "anyOf": [
                                 {
-                                    "required": [ "alpha" ]
-                                },
-                                {
                                     "minProperties": 0
                                 }
                             ],
@@ -34,6 +31,17 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+
+            "get": {
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/success"

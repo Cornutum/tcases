@@ -22,16 +22,6 @@ import java.util.Arrays;
 public class NotifierTest extends OpenApiTest
   {
   @Test
-  public void warningWhenNoOpInputs()
-    {
-    // When...
-    getTests( getRequestInputModel( "warnings-0"));
-    
-    // Then...
-    assertWarnings( "Operations: No inputs to model for operation=OPTIONS_operations.");
-    }
-  
-  @Test
   public void warningWhenNoMediaTypeSchema()
     {
     // When...

@@ -38,6 +38,8 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.servers.ServerVariable;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -203,10 +205,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         opRequestDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
       // Skip if operation not defined
-      .filter( Objects::nonNull)
-
-      // Ensure a complete input model for each operation
-      .map( this::completeInputs));
+      .filter( Objects::nonNull));
     }
 
   /**
@@ -229,10 +228,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         opRequestExamples( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
       // Skip if operation not defined
-      .filter( Objects::nonNull)
-
-      // Ensure a complete input model for each operation
-      .map( this::completeInputs));
+      .filter( Objects::nonNull));
     }
 
   /**
@@ -251,9 +247,23 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
         .has( "path", path)
         .has( "operation", opName)
-        .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
-        .vars( iterableOf( requestBodyVarDef( api, op.getRequestBody())))
+        .vars( opRequestVars( api, pathItem, op))
         .build());
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the operation request.
+   */
+  private Stream<IVarDef> opRequestVars( OpenAPI api, PathItem pathItem, Operation op)
+    {
+    return
+      hasInputs( pathItem, op)?
+
+      Stream.concat(
+        opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))),
+        requestBodyVarDef( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty())) :
+
+      Stream.of( noInputs());
     }
 
   /**
@@ -262,20 +272,67 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private FunctionInputDef opRequestExamples( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
     {
     return
-      resultFor( opName,
-        () ->
-        op == null?
-        null :
-        
-        withoutFailures(         
-          FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-          .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
-          .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
-          .has( "path", path)
-          .has( "operation", opName)
-          .vars( opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))))
-          .vars( iterableOf( requestBodyExamples( api, op.getRequestBody())))
-          .build()));
+      resultFor( opName, () -> {
+        FunctionInputDef opDef = null;
+        if( op != null)
+          {
+          try
+            {
+            opDef = 
+              withoutFailures(         
+                FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
+                .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+                .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
+                .has( "path", path)
+                .has( "operation", opName)
+                .vars( opExampleVars( api, pathItem, op))
+                .build());
+            }
+          catch( ExampleException e)
+            {
+            notifyExampleFailure( e);
+            }
+          }
+        return opDef;
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the examples of the given operation request.
+   */
+  private Stream<IVarDef> opExampleVars( OpenAPI api, PathItem pathItem, Operation op)
+    {
+    return
+      hasInputs( pathItem, op)?
+
+      Stream.concat(
+        opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))),
+        requestBodyExamples( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty())) :
+
+      Stream.of( noInputs());
+    }
+
+  /**
+   * Returns true if at least one input is defined for the given request.
+   */
+  private boolean hasInputs( PathItem pathItem, Operation op)
+    {
+    return
+      opParameters( pathItem, op).findAny().isPresent()
+      || op.getRequestBody() != null;
+    }
+
+  /**
+   * Returns a dummy variable representing a "no inputs" condition for an API request.
+   */
+  private IVarDef noInputs()
+    {
+    String none = "None";
+    return
+      VarSetBuilder.with( none)
+      .type( "implicit")
+      .members( instanceDefinedVar( none, Definition.NEVER))
+      .build();
     }
 
   /**
@@ -346,43 +403,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         opResponseDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
       // Skip if operation not defined
-      .filter( Objects::nonNull)
-
-      // Skip if operation has no inputs to model
-      .filter( this::hasInputs));
-    }
-
-  /**
-   * Returns the given {@link FunctionInputDef function input definition}, adding a null input variable
-   * if no other variables are defined.
-   */
-  private FunctionInputDef completeInputs( FunctionInputDef functionDef)
-    {
-    if( !hasInputs( functionDef))
-      {
-      String none = "None";
-      functionDef.addVarDef(
-        VarSetBuilder.with( none)
-        .type( "implicit")
-        .members( instanceDefinedVar( none, Definition.NEVER))
-        .build());
-      }
-    
-    return functionDef;
-    }
-
-  /**
-   * Returns if the given {@link FunctionInputDef function input definition} defines input variables.
-   */
-  private boolean hasInputs( FunctionInputDef functionDef)
-    {
-    boolean hasVars = functionDef.getVarDefs().hasNext();
-    if( !hasVars)
-      {
-      notifyWarning( String.format( "No inputs to model for operation=%s", functionDef.getName()));
-      }
-    
-    return hasVars;
+      .filter( Objects::nonNull));
     }
 
   /**
@@ -1813,7 +1834,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
     if( exampleSchema == null)
       {
-      throw new IllegalStateException( "No examples defined");
+      throw exampleException( "No examples defined");
       }
 
     return instanceSchemaVars( instanceVarTag, instanceOptional, analyzeSchema( api, exampleSchema));
@@ -1879,7 +1900,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .findFirst()
         .ifPresent( type -> {
           throw
-            new IllegalStateException(
+            exampleException(
               String.format(
                 "Expecting example values of type=%s, but found values=%s",
                 exampleType,
@@ -1896,7 +1917,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       Optional.of( exampleSchemas)
       .filter( s -> !s.isEmpty())
       .map( s -> s.size() == 1 ? s.iterator().next() : new ComposedSchema().oneOf( s))
-      .orElseThrow( () -> new IllegalStateException( "No example values defined"));
+      .orElseThrow( () -> exampleException( "No example values defined"));
     }
 
   /**
@@ -1972,80 +1993,109 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     {
     Schema<?> exampleSchema;
 
-    try
+    if( instanceSchema.getNot() != null)
       {
-      if( instanceSchema.getNot() != null)
-        {
-        throw new IllegalStateException( "'not' assertion defined");
-        }
-      
-      ComposedSchema composed = asComposedSchema( instanceSchema);
-      if( composed != null)
-        {
-        if( !composed.getAllOf().isEmpty())
-          {
-          throw new IllegalStateException( "'allOf' assertion defined");
-          }
-
-        boolean anyOf = !composed.getAnyOf().isEmpty();
-        boolean oneOf = !composed.getOneOf().isEmpty();
-        if( anyOf && oneOf)
-          {
-          throw new IllegalStateException( "Both 'anyOf' and 'oneOf' assertions defined");
-          }
-
-        if( !isLeafEmpty( composed))
-          {
-          throw new IllegalStateException( String.format( "If '%s' defined, no other assertions allowed", oneOf? "oneOf" : "anyOf"));
-          }
-
-        List<Schema> members = oneOf? composed.getOneOf() : composed.getAnyOf();
-        exampleSchema =
-          new ComposedSchema()
-          .oneOf(
-            ( IntStream.range( 0, members.size())
-              .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
-              .collect( toList())));
-        }
-
-      else if( "array".equals( instanceType))
-        {
-        exampleSchema =
-          Optional.of( asArraySchema( copySchema( instanceSchema)))
-          .map( s -> s.items( resultFor( "items", () -> exampleSchemaFor( s.getItems()))))
-          .orElseThrow( () -> new IllegalStateException( "Can't compose array schema examples"));
-        }
-
-      else if( "object".equals( instanceType)
-               &&
-               !(Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap()).isEmpty()
-                 && additionalPropertiesSchema( instanceSchema) == null))
-        {
-        exampleSchema =
-          copySchema( instanceSchema)
-
-          .properties(
-            Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
-            .entrySet().stream()
-            .collect( toMap( e -> e.getKey(), e -> resultFor( e.getKey(), () -> exampleSchemaFor( e.getValue())), (s1,s2) -> s1, LinkedHashMap::new)))
-
-          .additionalProperties(
-            Optional.ofNullable( additionalPropertiesSchema( instanceSchema))
-            .map( s -> resultFor( "additionalProperties", () -> (Object) exampleSchemaFor( s)))
-            .orElse( instanceSchema.getAdditionalProperties()));
-        }
-
-      else
-        {
-        throw new IllegalStateException( String.format( "No example defined for schema of type=%s", instanceType));
-        }
+      throw exampleException( "'not' assertion defined");
       }
-    catch( Exception e)
+      
+    ComposedSchema composed = asComposedSchema( instanceSchema);
+    if( composed != null)
       {
-      throw new IllegalStateException( "Can't compose schema examples", e);
+      if( !composed.getAllOf().isEmpty())
+        {
+        throw exampleException( "'allOf' assertion defined");
+        }
+
+      boolean anyOf = !composed.getAnyOf().isEmpty();
+      boolean oneOf = !composed.getOneOf().isEmpty();
+      if( anyOf && oneOf)
+        {
+        throw exampleException( "Both 'anyOf' and 'oneOf' assertions defined");
+        }
+
+      if( !isLeafEmpty( composed))
+        {
+        throw exampleException( String.format( "If '%s' defined, no other assertions allowed", oneOf? "oneOf" : "anyOf"));
+        }
+
+      List<Schema> members = oneOf? composed.getOneOf() : composed.getAnyOf();
+      exampleSchema =
+        new ComposedSchema()
+        .oneOf(
+          ( IntStream.range( 0, members.size())
+            .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
+            .collect( toList())));
+      }
+
+    else if( "array".equals( instanceType))
+      {
+      exampleSchema =
+        Optional.of( asArraySchema( copySchema( instanceSchema)))
+        .map( s -> s.items( resultFor( "items", () -> exampleSchemaFor( s.getItems()))))
+        .orElseThrow( () -> exampleException( "Can't compose array schema examples"));
+      }
+
+    else if( "object".equals( instanceType)
+             &&
+             !(Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap()).isEmpty()
+               && additionalPropertiesSchema( instanceSchema) == null))
+      {
+      exampleSchema =
+        copySchema( instanceSchema)
+
+        .properties(
+          Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
+          .entrySet().stream()
+          .collect( toMap( e -> e.getKey(), e -> resultFor( e.getKey(), () -> exampleSchemaFor( e.getValue())), (s1,s2) -> s1, LinkedHashMap::new)))
+
+        .additionalProperties(
+          Optional.ofNullable( additionalPropertiesSchema( instanceSchema))
+          .map( s -> resultFor( "additionalProperties", () -> (Object) exampleSchemaFor( s)))
+          .orElse( instanceSchema.getAdditionalProperties()));
+      }
+
+    else
+      {
+      throw exampleException( String.format( "No example defined for schema of type=%s", instanceType));
       }
 
     return exampleSchema;
+    }
+
+  /**
+   * Returns a new {@link ExampleException}.
+   */
+  private ExampleException exampleException( String reason)
+    {
+    return new ExampleException( getContext().getLocation(), reason);
+    }
+
+  /**
+   * Notify the occurrence of a failure deriving input models from API examples.
+   */
+  private void notifyExampleFailure( ExampleException e)
+    {
+    String[] thisLocation = getContext().getLocation();
+    String[] failureLocation = e.getLocation();
+    for( int i = 0;
+
+         i < thisLocation.length
+           && failureLocation[0].equals( thisLocation[i]);
+
+         i++,
+           failureLocation = ArrayUtils.remove( failureLocation, 0));
+
+    String forElement =
+      Optional.of( failureLocation)
+      .filter( ArrayUtils::isNotEmpty)
+      .map( location -> String.format( " for %s", StringUtils.join( location, ",")))
+      .orElse( "");
+    
+    notifyWarning(
+      String.format(
+        "Failed to create examples%s -- %s. Ignoring this operation",
+        forElement,
+        e.getMessage()));
     }
 
   /**

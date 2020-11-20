@@ -1533,11 +1533,8 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_38()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-38",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples",
-      "Both 'anyOf' and 'oneOf' assertions defined");
+    verifyRequestExamplesModel( "examples-error-38");
+    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- Both 'anyOf' and 'oneOf' assertions defined. Ignoring this operation.");
     }
 
   /**
@@ -1576,11 +1573,8 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_39()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-39",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples",
-      "No example defined for schema of type=string");
+    verifyRequestExamplesModel( "examples-error-39");
+    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- No example defined for schema of type=string. Ignoring this operation.");
     }
 
   /**
@@ -1619,13 +1613,10 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_40()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-40",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples", 
-      "Error processing examples, /examples, POST, param0, anyOf[0]",
-      "Can't compose schema examples",
-      "No example defined for schema of type=object");
+    verifyRequestExamplesModel( "examples-error-40");
+    assertWarnings(
+      "examples,/examples,POST,param0,anyOf[0]: 'null' is not a valid enumerated value for a non-nullable schema.",
+      "examples,/examples,POST: Failed to create examples for param0,anyOf[0] -- No example defined for schema of type=object. Ignoring this operation.");
     }
 
   /**
@@ -1664,11 +1655,9 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_41()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-41",
-      "Error processing examples, /examples, POST, requestBody, application/json",
-      "Can't compose schema examples", 
-      "No example defined for schema of type=integer");
+    verifyRequestExamplesModel( "examples-error-41");
+    assertWarnings(
+      "examples,/examples,POST: Failed to create examples for requestBody,application/json -- No example defined for schema of type=integer. Ignoring this operation.");
     }
 
   /**
@@ -1707,13 +1696,8 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_42()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-42",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples",
-      "Error processing examples, /examples, POST, param0, charlie",
-      "Can't compose schema examples",
-      "No example defined for schema of type=string");
+    verifyRequestExamplesModel( "examples-error-42");
+    assertWarnings( "examples,/examples,POST: Failed to create examples for param0,charlie -- No example defined for schema of type=string. Ignoring this operation.");
     }
 
   /**
@@ -1752,11 +1736,8 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_43()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-43",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples",
-      "If 'oneOf' defined, no other assertions allowed");
+    verifyRequestExamplesModel( "examples-error-43");
+    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- If 'oneOf' defined, no other assertions allowed. Ignoring this operation.");
     }
 
   /**
@@ -1795,11 +1776,8 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_44()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-44",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples",
-      "'not' assertion defined");
+    verifyRequestExamplesModel( "examples-error-44");
+    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- 'not' assertion defined. Ignoring this operation.");
     }
 
   /**
@@ -1838,11 +1816,8 @@ public class RequestExamplesTest extends OpenApiTest
   @Test
   public void Examples_45()
     {
-    assertRequestExamplesModelFailure(
-      "examples-error-45",
-      "Error processing examples, /examples, POST, param0",
-      "Can't compose schema examples",
-      "'allOf' assertion defined");
+    verifyRequestExamplesModel( "examples-error-45");
+    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- 'allOf' assertion defined. Ignoring this operation.");
     }
 
   @Test
@@ -1855,5 +1830,13 @@ public class RequestExamplesTest extends OpenApiTest
   public void whenMultipleTypes()
     {
     verifyRequestExamplesModel( "examples-multitype");
+    }
+
+  /**
+   * Returns the {@link ModelOptions} used for this test.
+   */
+  protected ModelOptions getModelOptions()
+    {
+    return withConditionRecorder();
     }
   }
