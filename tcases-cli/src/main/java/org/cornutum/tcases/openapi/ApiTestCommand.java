@@ -726,6 +726,14 @@ public class ApiTestCommand
       }
 
     /**
+     * Changes the source of API input definitions.
+     */
+    public void setSource( String source)
+      {
+      setSource( ModelOptions.Source.valueOf( String.valueOf( source).toUpperCase()));
+      }
+
+    /**
      * Returns the source of API input definitions.
      */
     public ModelOptions.Source getSource()
