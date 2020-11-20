@@ -75,6 +75,7 @@ public class ApiMojo extends AbstractMojo
         // Set generator options for this API spec.
         Options options = new Options();
         options.setApiSpec( apiDef);
+        options.setSource( getSource());
         options.setContentType( getContentType());
         options.setOutDir( new File( getOutDirFile(), getPath( inputFile)));
         if( isJunit())
@@ -516,6 +517,22 @@ public class ApiMojo extends AbstractMojo
     {
     return random;
     }
+
+  /**
+   * Changes the source of API input definitions.
+   */
+  public void setSource( String source)
+    {
+    this.source = source;
+    }
+
+  /**
+   * Returns the source of API input definitions.
+   */
+  public String getSource()
+    {
+    return source;
+    }
   
   /**
    * Defines a set of patterns that match the OpenAPI specification files read by Tcases for OpenAPI.
@@ -649,6 +666,12 @@ public class ApiMojo extends AbstractMojo
    */
   @Parameter(property="requestCases",defaultValue="false")
   private boolean requestCases;
+
+  /**
+   * Defines the source of API input definitions. Valid values are "schemas", or "examples".
+   */
+  @Parameter(property="source",defaultValue="schemas")
+  private String source;
 
   /**
    * Defines the maximum attempts made to resolve a request test case input value before reporting failure.
