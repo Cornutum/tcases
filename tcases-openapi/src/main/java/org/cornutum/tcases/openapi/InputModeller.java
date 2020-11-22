@@ -56,6 +56,7 @@ import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
+import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
@@ -411,20 +412,37 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           {
           throw new IllegalStateException( String.format( "Parameter name='%s' contains characters not allowed in a cookie name", parameterName));
           }
-        
-        String parameterVarName = toIdentifier( parameterName);
+
+        // Normalize parameter properties
         Schema<?> parameterSchema = parameterSchema( api, parameter);
         String parameterType = parameterSchema.getType();
+        parameter.setStyle( parameterStyle( parameter, parameterType));
+        parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
 
+        // Normalize parameter schema
+        if( singleton( "string").equals( getValidTypes( parameterSchema))
+            && "path".equals( parameter.getIn())
+            && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
+            && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength())).orElse(0) == 0)
+          {
+          // The value of a simple path parameter cannot be an empty string (equivalent to "undefined", which is invalid)
+          notifyWarning( "Empty string values not allowed -- using minLength=1");
+          parameterSchema.setMinLength( 1);
+
+          setDnf( parameterSchema, null);
+          parameterSchema = analyzeSchema( api, parameterSchema);
+          }
+        
+        String parameterVarName = toIdentifier( parameterName);
         return
           VarSetBuilder.with( parameterVarName)
-          .type( parameterIn)
+          .type( parameter.getIn())
           .has( "paramName", parameterName)
-          .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
+          .members( parameterDefinedVar( parameterVarName, parameter))
           .members( instanceSchemaVars( parameterVarName, parameterSchema))
           .build();
         });
-    }
+    }    
 
   /**
    * Returns the schema for the given parameter.
@@ -437,7 +455,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       Optional.ofNullable( parameter.getSchema())
       
       // ... or the content property
-      .orElse(
+      .orElseGet(
+        () ->
         Optional.ofNullable( parameter.getContent())
         .map( content -> content.values().stream().findFirst().map( MediaType::getSchema).orElse( null))
         .orElse( null));
@@ -503,14 +522,12 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns an {@link IVarDef input variable} to represent if the given parameter is defined.
    */
-  private IVarDef parameterDefinedVar( String parameterVarTag, String parameterType, Parameter parameter)
+  private IVarDef parameterDefinedVar( String parameterVarTag, Parameter parameter)
     {
-    Parameter.StyleEnum parameterStyle = parameterStyle( parameter, parameterType);
-      
     return
       VarDefBuilder.with( instanceDefinedVar( parameterVarTag, Boolean.TRUE.equals( parameter.getRequired())))
-      .has( "style", parameterStyle)
-      .has( "explode", parameterExplode( parameter.getExplode(), parameterType, parameterStyle))
+      .has( "style", parameter.getStyle())
+      .has( "explode", parameter.getExplode())
       .build();
     }
 

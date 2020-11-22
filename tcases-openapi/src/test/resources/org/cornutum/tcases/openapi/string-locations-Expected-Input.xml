@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<System name="Locations">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Locations"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_locations-pathSimple-pathLabel-pathDate-pathOneOf">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
+    <Input type="header">
+      <VarSet name="headerSimple">
+        <Has name="paramName" value="headerSimple"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="headerSimple"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="headerSimple">
+          <Value name="string" property="headerSimpleValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="headerSimpleValue">
+          <Var name="Length">
+            <Value name="&gt; 0" property="headerSimpleLengthValid, headerSimpleNotEmpty"/>
+            <Value name="0" property="headerSimpleLengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="path">
+      <VarSet name="pathSimple">
+        <Has name="paramName" value="pathSimple"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="pathSimple"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="pathSimple">
+          <Value name="string" property="pathSimpleValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="pathSimpleValue">
+          <Var name="Length">
+            <Value name="0" failure="true"/>
+            <Value name="1" property="pathSimpleLengthValid, pathSimpleNotEmpty"/>
+            <Value name="&gt; 1" property="pathSimpleLengthValid, pathSimpleNotEmpty"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="pathLabel">
+        <Has name="paramName" value="pathLabel"/>
+        <Var name="Defined">
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="pathLabel"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="pathLabel">
+          <Value name="string" property="pathLabelValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="pathLabelValue">
+          <Var name="Length">
+            <Value name="&gt; 0" property="pathLabelLengthValid, pathLabelNotEmpty"/>
+            <Value name="0" property="pathLabelLengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="pathDate">
+        <Has name="paramName" value="pathDate"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="pathDate"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="pathDate">
+          <Value name="string" property="pathDateValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="pathDateValue">
+          <Has name="format" value="date"/>
+          <Var name="Length">
+            <Value name="9" failure="true"/>
+            <Value name="10" property="pathDateLengthValid, pathDateNotEmpty"/>
+            <Value name="11" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="pathOneOf">
+        <Has name="paramName" value="pathOneOf"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="pathOneOf"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="pathOneOfAlternative0"/>
+            <Value name="1" property="pathOneOfAlternative1"/>
+          </Var>
+          <VarSet name="0" when="pathOneOfAlternative0">
+            <Var name="Type" when="pathOneOf">
+              <Value name="string" property="pathOneOfValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="pathOneOfValue">
+              <Var name="Length">
+                <Value name="16" failure="true"/>
+                <Value name="17" property="pathOneOfLengthValid, pathOneOfNotEmpty"/>
+                <Value name="&gt; 17" property="pathOneOfLengthValid, pathOneOfNotEmpty"/>
+              </Var>
+              <Var name="Matches-Pattern" when="pathOneOfLengthValid">
+                <Has name="pattern" value="^[A-Z]*$"/>
+                <Value name="Yes"/>
+                <Value name="No" failure="true" when="pathOneOfNotEmpty"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="1" when="pathOneOfAlternative1">
+            <Var name="Type" when="pathOneOf">
+              <Value name="string" property="pathOneOfValue"/>
+            </Var>
+            <VarSet name="Value" when="pathOneOfValue">
+              <Var name="Length">
+                <Value name="0" failure="true"/>
+                <Value name="1" property="pathOneOfLengthValid, pathOneOfNotEmpty"/>
+                <Value name="16" property="pathOneOfLengthValid, pathOneOfNotEmpty"/>
+                <Value name="17" failure="true"/>
+              </Var>
+              <Var name="Matches-Pattern" when="pathOneOfLengthValid">
+                <Has name="pattern" value="^[A-Z]*$"/>
+                <Value name="Yes" failure="true" when="pathOneOfNotEmpty"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
