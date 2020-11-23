@@ -1927,12 +1927,12 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     return
       instanceSchema == null?
       null :
-      
-      (exampleObject = schemaExample( instanceSchema)) != null?
-      exampleSchemaFor( exampleObject.orElse( null), exampleType, exampleNullable) :
 
       !(exampleEnum = exampleEnum( instanceSchema)).isEmpty()?
       exampleSchemaForEnum( exampleEnum, exampleType, exampleNullable) :
+      
+      (exampleObject = schemaExample( instanceSchema)) != null?
+      exampleSchemaFor( exampleObject.orElse( null), exampleType, exampleNullable) :
 
       composedExampleSchemaFor( instanceSchema, exampleType);
     }

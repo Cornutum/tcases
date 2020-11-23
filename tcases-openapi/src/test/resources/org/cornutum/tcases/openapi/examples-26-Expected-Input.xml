@@ -18,6 +18,7 @@
           <Value name="null" once="true"/>
         </Var>
         <Var name="Value" when="param0Value">
+          <Value name="true"/>
           <Value name="false"/>
         </Var>
       </VarSet>
