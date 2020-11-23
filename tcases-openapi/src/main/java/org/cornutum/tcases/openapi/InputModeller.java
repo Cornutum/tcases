@@ -465,7 +465,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       singleton( "string").equals( getValidTypes( parameterSchema))
 
       // ... for which an empty string value is allowed?
-      && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength())).orElse(0) == 0)
+      && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
       {
       // Yes, is this a simple path parameter?
       if( "path".equals( parameter.getIn()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
@@ -2147,6 +2147,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Integer minStringFormat( String format, Integer minLength)
     {
+    return minStringFormat( format, minLength, true);
+    }
+
+  /**
+   * If the given <CODE>minLength</CODE> is valid for a string in the given format, returns <CODE>minLength</CODE>.
+   * Otherwise, returns the format-specific minimum length. If <CODE>notify</CODE> is true, reports a warning
+   * if the original was invalid.
+   */
+  private Integer minStringFormat( String format, Integer minLength, boolean notify)
+    {
     Integer min;
     Integer minAllowed = stringFormatMin( format);
 
@@ -2164,12 +2174,15 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
     else
       {
-      notifyWarning(
-        String.format(
-          "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
-          minLength,
-          format,
-          minAllowed));
+      if( notify)
+        {
+        notifyWarning(
+          String.format(
+            "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
+            minLength,
+            format,
+            minAllowed));
+        }
       min = minAllowed;
       }
 
