@@ -60,6 +60,47 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "querySimple",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "queryNullable",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "queryUuid",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "queryOneOf",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "pattern": "^[A-Z]*$"
+                                },
+                                {
+                                    "maxLength": 16
+                                }
+                            ]
+                        }
                     }
                 ],
                 "responses": {

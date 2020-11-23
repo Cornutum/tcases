@@ -79,7 +79,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "X"
                 },
                 "valid": true
             }
@@ -123,30 +123,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "object",
-                    "value": {
-                        "iummgqkajnn": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "9A"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "*A"
-                                }
-                            ]
-                        },
-                        "qyujogjixine": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "fckshuxlts": {
-                            "type": "number",
-                            "value": 751.1
-                        }
-                    }
+                    "type": "number",
+                    "value": -1021.1
                 },
                 "valid": false
             }
@@ -169,7 +147,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "`p?H|Q~4%@"
+                    "value": "%AlU1l`p?H"
                 },
                 "valid": false
             }
@@ -178,7 +156,7 @@
     },
     {
         "id": 8,
-        "name": "param0.Alternative.1.Value.Length='1'",
+        "name": "param0.Alternative.1.Value.Length='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -192,11 +170,34 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "O"
+                    "value": ""
                 },
                 "valid": false
             }
         ],
-        "invalidInput": "param0.Alternative.1.Value.Length=1"
+        "invalidInput": "param0.Alternative.1.Value.Length=0"
+    },
+    {
+        "id": 9,
+        "name": "param0.Alternative.1.Value.Length='2'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OneOf",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "/I"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Length=2"
     }
 ]

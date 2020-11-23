@@ -246,7 +246,7 @@ public class StringSchemaTest extends OpenApiTest
     }
   
   @Test
-  public void whenEmptyPathParams()
+  public void whenStringParamNormalized()
     {
     verifyRequestInputModel( "string-locations");
     }

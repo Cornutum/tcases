@@ -140,5 +140,118 @@
         </VarSet>
       </VarSet>
     </Input>
+    <Input type="query">
+      <VarSet name="querySimple">
+        <Has name="paramName" value="querySimple"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="querySimple"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="querySimple">
+          <Value name="string" property="querySimpleValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="querySimpleValue">
+          <Var name="Length">
+            <Value name="0" failure="true"/>
+            <Value name="1" property="querySimpleLengthValid, querySimpleNotEmpty"/>
+            <Value name="&gt; 1" property="querySimpleLengthValid, querySimpleNotEmpty"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="queryNullable">
+        <Has name="paramName" value="queryNullable"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="queryNullable"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="queryNullable">
+          <Value name="string" property="queryNullableValue"/>
+          <Value name="null" once="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="queryNullableValue">
+          <Var name="Length">
+            <Value name="&gt; 0" property="queryNullableLengthValid, queryNullableNotEmpty"/>
+            <Value name="0" property="queryNullableLengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="queryUuid">
+        <Has name="paramName" value="queryUuid"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="queryUuid"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="queryUuid">
+          <Value name="string" property="queryUuidValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="queryUuidValue">
+          <Has name="format" value="uuid"/>
+          <Var name="Length">
+            <Value name="35" failure="true"/>
+            <Value name="36" property="queryUuidLengthValid, queryUuidNotEmpty"/>
+            <Value name="37" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="queryOneOf">
+        <Has name="paramName" value="queryOneOf"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="queryOneOf"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <VarSet name="Alternative">
+          <Var name="Used">
+            <Value name="0" property="queryOneOfAlternative0"/>
+            <Value name="1" property="queryOneOfAlternative1"/>
+          </Var>
+          <VarSet name="0" when="queryOneOfAlternative0">
+            <Var name="Type" when="queryOneOf">
+              <Value name="string" property="queryOneOfValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="queryOneOfValue">
+              <Var name="Length">
+                <Value name="16" failure="true"/>
+                <Value name="17" property="queryOneOfLengthValid, queryOneOfNotEmpty"/>
+                <Value name="&gt; 17" property="queryOneOfLengthValid, queryOneOfNotEmpty"/>
+              </Var>
+              <Var name="Matches-Pattern" when="queryOneOfLengthValid">
+                <Has name="pattern" value="^[A-Z]*$"/>
+                <Value name="Yes"/>
+                <Value name="No" failure="true" when="queryOneOfNotEmpty"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="1" when="queryOneOfAlternative1">
+            <Var name="Type" when="queryOneOf">
+              <Value name="string" property="queryOneOfValue"/>
+            </Var>
+            <VarSet name="Value" when="queryOneOfValue">
+              <Var name="Length">
+                <Value name="0" failure="true"/>
+                <Value name="1" property="queryOneOfLengthValid, queryOneOfNotEmpty"/>
+                <Value name="16" property="queryOneOfLengthValid, queryOneOfNotEmpty"/>
+                <Value name="17" failure="true"/>
+              </Var>
+              <Var name="Matches-Pattern" when="queryOneOfLengthValid">
+                <Has name="pattern" value="^[A-Z]*$"/>
+                <Value name="Yes" failure="true" when="queryOneOfNotEmpty"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
   </Function>
 </System>
