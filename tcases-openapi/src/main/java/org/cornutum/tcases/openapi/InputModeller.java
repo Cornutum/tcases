@@ -420,18 +420,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
 
         // Normalize parameter schema
-        if( singleton( "string").equals( getValidTypes( parameterSchema))
-            && "path".equals( parameter.getIn())
-            && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
-            && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength())).orElse(0) == 0)
-          {
-          // The value of a simple path parameter cannot be an empty string (equivalent to "undefined", which is invalid)
-          notifyWarning( "Empty string values not allowed -- using minLength=1");
-          parameterSchema.setMinLength( 1);
-
-          setDnf( parameterSchema, null);
-          parameterSchema = analyzeSchema( api, parameterSchema);
-          }
+        parameterSchema = normalizeParameterSchema( api, parameter, parameterSchema);
         
         String parameterVarName = toIdentifier( parameterName);
         return
@@ -462,6 +451,52 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .orElse( null));
 
     return analyzeSchema( api, schema);
+    }    
+
+  /**
+   * Returns the given parameter schema after normalizing parameter correctly designate valid/invalid values.
+   */
+  private Schema<?> normalizeParameterSchema( OpenAPI api, Parameter parameter, Schema<?> parameterSchema)
+    {
+    Schema<?> normalized = null;
+    
+    if(
+      // Is this a string parameter...
+      singleton( "string").equals( getValidTypes( parameterSchema))
+
+      // ... for which an empty string value is allowed?
+      && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength())).orElse(0) == 0)
+      {
+      // Yes, is this a simple path parameter?
+      if( "path".equals( parameter.getIn()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
+        {
+        // Yes, an empty string is equivalent to "undefined", which is invalid
+        notifyWarning( "Empty string values not allowed -- using minLength=1");
+        parameterSchema.setMinLength( 1);
+        normalized = parameterSchema;
+        }
+
+      // Is this a non-nullable query parameter?
+      else if( "query".equals( parameter.getIn()) && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
+        {
+        // Yes, an empty string is equivalent to null, which is invalid.
+        notifyWarning( "Empty string values not allowed -- using minLength=1");
+        parameterSchema.setMinLength( 1);
+        normalized = parameterSchema;
+        }
+      }
+
+    if( normalized != null)
+      {
+      setDnf( normalized, null);
+      normalized =  analyzeSchema( api, normalized);
+      }
+    else
+      {
+      normalized = parameterSchema;
+      }
+
+    return normalized;
     }
 
   /**
