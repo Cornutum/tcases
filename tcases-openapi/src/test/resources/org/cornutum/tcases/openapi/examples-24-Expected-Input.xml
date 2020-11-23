@@ -15,7 +15,6 @@
         </Var>
         <Var name="Type">
           <Value name="integer" property="param0Value"/>
-          <Value name="null" once="true"/>
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Is">

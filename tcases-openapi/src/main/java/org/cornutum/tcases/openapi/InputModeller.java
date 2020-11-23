@@ -654,16 +654,22 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           {
           throw new IllegalStateException( String.format( "Parameter name='%s' contains characters not allowed in a cookie name", parameterName));
           }
-        
-        String parameterVarName = toIdentifier( parameterName);
+
+        // Normalize parameter properties
         Schema<?> parameterSchema = parameterSchema( api, parameter);
         String parameterType = parameterSchema.getType();
+        parameter.setStyle( parameterStyle( parameter, parameterType));
+        parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
 
+        // Normalize parameter schema
+        parameterSchema = normalizeParameterSchema( api, parameter, parameterSchema);
+        
+        String parameterVarName = toIdentifier( parameterName);
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameterIn)
           .has( "paramName", parameterName)
-          .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
+          .members( parameterDefinedVar( parameterVarName, parameter))
           .members( parameterExampleVars( api, parameterVarName, parameterSchema, parameter))
           .build();
         });

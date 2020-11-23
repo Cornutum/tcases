@@ -47,43 +47,5 @@
         <Var name="Body.application-json.Value.Is" value="-1"/>
       </Input>
     </TestCase>
-    <TestCase id="1" name="param0.Type=null">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param1,param1Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="examples"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="path">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="null">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Is" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param1.Defined" value="Yes">
-          <Has name="paramName" value="param1"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param1.Type" value="integer">
-          <Has name="paramName" value="param1"/>
-        </Var>
-        <Var name="param1.Value.Is" value="-1">
-          <Has name="paramName" value="param1"/>
-        </Var>
-      </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="integer"/>
-        <Var name="Body.application-json.Value.Is" value="-1"/>
-      </Input>
-    </TestCase>
   </Function>
 </TestCases>

@@ -30,7 +30,6 @@
         </Var>
         <Var name="Type">
           <Value name="integer" property="param1Value"/>
-          <Value name="null" once="true"/>
         </Var>
         <VarSet name="Value" when="param1Value">
           <Var name="Is">
