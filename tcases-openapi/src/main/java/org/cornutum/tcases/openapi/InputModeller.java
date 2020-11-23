@@ -459,13 +459,20 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Schema<?> normalizeParameterSchema( OpenAPI api, Parameter parameter, Schema<?> parameterSchema)
     {
     Schema<?> normalized = null;
-    
-    if(
-      // Is this a string parameter...
-      singleton( "string").equals( getValidTypes( parameterSchema))
 
-      // ... for which an empty string value is allowed?
-      && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
+    // Is this a nullable path parameter?
+    if( "path".equals( parameter.getIn()) && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
+      {
+      // Yes, null is equivalent to "undefined", which is invalid
+      notifyError( "Null values not allowed", "Using nullable=false");
+      parameterSchema.setNullable( false);
+      normalized = parameterSchema;
+      }
+
+      // Is this a string parameter...
+    if( singleton( "string").equals( getValidTypes( parameterSchema))
+        // ... for which an empty string value is allowed?
+        && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
       {
       // Yes, is this a simple path parameter?
       if( "path".equals( parameter.getIn()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
