@@ -62,6 +62,7 @@ import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
+import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
@@ -617,20 +618,26 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           {
           throw new IllegalStateException( String.format( "Parameter name='%s' contains characters not allowed in a cookie name", parameterName));
           }
-        
-        String parameterVarName = toIdentifier( parameterName);
+
+        // Normalize parameter properties
         Schema<?> parameterSchema = parameterSchema( api, parameter);
         String parameterType = parameterSchema.getType();
+        parameter.setStyle( parameterStyle( parameter, parameterType));
+        parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
 
+        // Normalize parameter schema
+        parameterSchema = normalizeParameterSchema( api, parameter, parameterSchema);
+        
+        String parameterVarName = toIdentifier( parameterName);
         return
           VarSetBuilder.with( parameterVarName)
-          .type( parameterIn)
+          .type( parameter.getIn())
           .has( "paramName", parameterName)
-          .members( parameterDefinedVar( parameterVarName, parameterType, parameter))
+          .members( parameterDefinedVar( parameterVarName, parameter))
           .members( instanceSchemaVars( parameterVarName, parameterSchema))
           .build();
         });
-    }
+    }    
 
   /**
    * Returns the {@link IVarDef input variable definition} for the given parameter examples.
@@ -691,6 +698,59 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getSchema).orElse( null));
 
     return analyzeSchema( api, schema);
+    }    
+
+  /**
+   * Returns the given parameter schema after normalizing parameter correctly designate valid/invalid values.
+   */
+  private Schema<?> normalizeParameterSchema( OpenAPI api, Parameter parameter, Schema<?> parameterSchema)
+    {
+    Schema<?> normalized = null;
+
+    // Is this a nullable path parameter?
+    if( "path".equals( parameter.getIn()) && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
+      {
+      // Yes, null is equivalent to "undefined", which is invalid
+      notifyError( "Null values not allowed", "Using nullable=false");
+      parameterSchema.setNullable( false);
+      normalized = parameterSchema;
+      }
+
+      // Is this a string parameter...
+    if( singleton( "string").equals( getValidTypes( parameterSchema))
+        // ... for which an empty string value is allowed?
+        && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
+      {
+      // Yes, is this a simple path parameter?
+      if( "path".equals( parameter.getIn()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
+        {
+        // Yes, an empty string is equivalent to "undefined", which is invalid
+        notifyWarning( "Empty string values not allowed -- using minLength=1");
+        parameterSchema.setMinLength( 1);
+        normalized = parameterSchema;
+        }
+
+      // Is this a non-nullable query parameter?
+      else if( "query".equals( parameter.getIn()) && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
+        {
+        // Yes, an empty string is equivalent to null, which is invalid.
+        notifyWarning( "Empty string values not allowed -- using minLength=1");
+        parameterSchema.setMinLength( 1);
+        normalized = parameterSchema;
+        }
+      }
+
+    if( normalized != null)
+      {
+      setDnf( normalized, null);
+      normalized =  analyzeSchema( api, normalized);
+      }
+    else
+      {
+      normalized = parameterSchema;
+      }
+
+    return normalized;
     }
 
   /**
@@ -801,14 +861,12 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns an {@link IVarDef input variable} to represent if the given parameter is defined.
    */
-  private IVarDef parameterDefinedVar( String parameterVarTag, String parameterType, Parameter parameter)
+  private IVarDef parameterDefinedVar( String parameterVarTag, Parameter parameter)
     {
-    Parameter.StyleEnum parameterStyle = parameterStyle( parameter, parameterType);
-      
     return
       VarDefBuilder.with( instanceDefinedVar( parameterVarTag, Boolean.TRUE.equals( parameter.getRequired())))
-      .has( "style", parameterStyle)
-      .has( "explode", parameterExplode( parameter.getExplode(), parameterType, parameterStyle))
+      .has( "style", parameter.getStyle())
+      .has( "explode", parameter.getExplode())
       .build();
     }
 
@@ -2744,6 +2802,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Integer minStringFormat( String format, Integer minLength)
     {
+    return minStringFormat( format, minLength, true);
+    }
+
+  /**
+   * If the given <CODE>minLength</CODE> is valid for a string in the given format, returns <CODE>minLength</CODE>.
+   * Otherwise, returns the format-specific minimum length. If <CODE>notify</CODE> is true, reports a warning
+   * if the original was invalid.
+   */
+  private Integer minStringFormat( String format, Integer minLength, boolean notify)
+    {
     Integer min;
     Integer minAllowed = stringFormatMin( format);
 
@@ -2761,12 +2829,15 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
     else
       {
-      notifyWarning(
-        String.format(
-          "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
-          minLength,
-          format,
-          minAllowed));
+      if( notify)
+        {
+        notifyWarning(
+          String.format(
+            "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
+            minLength,
+            format,
+            minAllowed));
+        }
       min = minAllowed;
       }
 

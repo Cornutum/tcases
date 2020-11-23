@@ -244,4 +244,10 @@ public class StringSchemaTest extends OpenApiTest
     {
     verifyRequestInputModel( "string-9");
     }
+  
+  @Test
+  public void whenStringParamNormalized()
+    {
+    verifyRequestInputModel( "string-locations");
+    }
   }

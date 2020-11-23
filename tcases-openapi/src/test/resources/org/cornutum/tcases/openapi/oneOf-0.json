@@ -16,7 +16,7 @@
                             "pattern": "X*",
                             "oneOf": [
                                 {
-                                    "minLength": 1
+                                    "minLength": 2
                                 },
                                 {
                                     "maxLength": 10

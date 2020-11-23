@@ -1,0 +1,141 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Locations",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "pathSimple",
+                        "required": true,
+                        "in": "path",
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pathLabel",
+                        "required": true,
+                        "in": "path",
+                        "style": "label",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pathDate",
+                        "required": true,
+                        "in": "path",
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "pathOneOf",
+                        "required": true,
+                        "in": "path",
+                        "style": "simple",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "pattern": "^[A-Z]*$"
+                                },
+                                {
+                                    "maxLength": 16
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headerSimple",
+                        "required": true,
+                        "in": "header",
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "querySimple",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "queryNullable",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "queryUuid",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "queryOneOf",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "pattern": "^[A-Z]*$"
+                                },
+                                {
+                                    "maxLength": 16
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
