@@ -16,7 +16,7 @@
                             "oneOf": [
                                 {
                                     "type": "integer",
-                                    "example": 42
+                                    "default": 42
                                 },
                                 {
                                     "anyOf": [

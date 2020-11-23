@@ -2118,6 +2118,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .orElse( instanceSchema.getAdditionalProperties()));
       }
 
+    else if( instanceSchema.getDefault() != null)
+      {
+      exampleSchema = exampleSchemaFor( instanceSchema.getDefault(), instanceType, Optional.ofNullable( instanceSchema.getNullable()).orElse( false));
+      }
+
     else
       {
       throw exampleException( String.format( "No example defined for schema of type=%s", instanceType));
