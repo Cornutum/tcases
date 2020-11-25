@@ -593,6 +593,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Stream<IVarDef> mediaTypeExampleVars( OpenAPI api, String mediaTypeVarTag, MediaType mediaType)
     {
+    Schema<?> mediaTypeSchema =
+      Optional.ofNullable( mediaType.getSchema())
+      .map( s -> analyzeSchema( api, s))
+      .orElse( null);
+    
     return
       instanceExampleVars(
         api,
@@ -600,7 +605,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         false,
         mediaType.getExample(),
         mediaType.getExamples(),
-        mediaType.getSchema());
+        mediaTypeSchema);
     }
   
   /**
