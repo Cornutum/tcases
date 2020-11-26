@@ -8,6 +8,7 @@
     - [How does it work?](#how-does-it-work)
     - [Example: REST Assured and JUnit](#example-rest-assured-and-junit) 
     - [Example: Create a specific TestNG class](#example-create-a-specific-testng-class)
+    - [Example: Create tests from examples](#example-create-tests-from-examples)
     - [Understanding the TestWriter API](#understanding-the-testwriter-api)    
   - [Generating request inputs](#generating-request-inputs)
     - [Instead of input descriptions...](#instead-of-input-descriptions)
@@ -182,6 +183,28 @@ public class MyTests extends MyBaseClass {
     }
 ...
 }
+```
+
+### Example: Create tests from examples  ###
+
+By default, Tcases for OpenAPI generates test cases using the schemas defined by the OpenAPI spec.
+But you can also create executable tests using the [examples](./README.md#how-does-it-work) defined for the API.
+
+```bash
+# Generate JUnit tests for requests defined by the examples in 'petstore-expanded.yaml'.
+# Write results to 'PetstoreTestExamples.java'.
+tcases-api-test -X -n org.examples.PetstoreExamplesTest petstore-expanded.yaml
+```
+
+You can see a summary of the result in the `tcases-api-test.log` file:
+
+```
+12:48:35.769 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
+12:48:35.773 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+12:48:36.114 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using API examples
+...
+12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
+12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing API test to ./PetstoreExamplesTest.java
 ```
 
 ### Understanding the TestWriter API ###
