@@ -5,8 +5,6 @@ import org.junit.Test;
 import java.io.StringWriter;
 
 import org.apache.commons.io.IOUtils;
-import org.cornutum.tcases.io.XmlWriter;
-
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 

@@ -1,6 +1,5 @@
 package org.cornutum.tcases.util;
 
-import org.cornutum.tcases.util.ObjectUtils;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;

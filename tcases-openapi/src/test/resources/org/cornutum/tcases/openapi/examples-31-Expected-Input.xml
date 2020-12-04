@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<System name="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="object" property="param0Value"/>
+          <Value name="null" once="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Property-Count">
+            <Value name="&lt;= 2">
+              <When>
+                <NotMoreThan property="param0Properties" max="2"/>
+              </When>
+            </Value>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="alpha">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Alpha, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Alpha">
+                <Value name="array" property="param0AlphaValue"/>
+              </Var>
+              <Var name="Value" when="param0AlphaValue">
+                <Value name="[&quot;X&quot;,&quot;Y&quot;,&quot;Z&quot;]"/>
+                <Value name="[&quot;empty&quot;]"/>
+              </Var>
+            </VarSet>
+            <VarSet name="bravo">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Bravo, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Bravo">
+                <Value name="number" property="param0BravoValue"/>
+              </Var>
+              <VarSet name="Value" when="param0BravoValue">
+                <Var name="Is">
+                  <Value name="3.14156"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="charlie">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Charlie, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Charlie">
+                <Value name="integer" property="param0CharlieValue"/>
+              </Var>
+              <VarSet name="Value" when="param0CharlieValue">
+                <Var name="Is">
+                  <Value name="42"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="Additional">
+              <Var name="Defined">
+                <Value name="Yes" property="param0Additional, param0Properties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="param0Additional">
+                <Value name="string" property="param0AdditionalValue"/>
+              </Var>
+              <Var name="Value" when="param0AdditionalValue">
+                <Value name="A"/>
+                <Value name="B"/>
+                <Value name="C"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

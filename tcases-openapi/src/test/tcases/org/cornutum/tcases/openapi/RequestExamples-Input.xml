@@ -1,0 +1,174 @@
+<System name="Requests">
+    <Function name="Examples">
+        <Input>
+            <VarSet name="Parameters">
+                <Var name="Count">
+                    <Value name="None" property="paramNone" whenNot="bodyNone"/>
+                    <Value name="One"/>
+                    <Value name="Many"/>
+                </Var>
+                <Var name="In" whenNot="paramNone">
+                    <Value name="query"/>
+                    <Value name="header"/>
+                    <Value name="path"/>
+                    <Value name="cookie"/>
+                </Var>
+                <Var name="Required" whenNot="paramNone">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Example" whenNot="paramNone">
+                    <Value name="Yes" property="paramExample,paramExampleOne" whenNot="paramExampleMany"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Examples" whenNot="paramNone">
+                    <Value name="Yes" property="paramExample,paramExampleMany" whenNot="paramExampleOne"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Described-By" whenNot="paramNone">
+                    <Value name="Schema" property="paramSchema"/>
+                    <Value name="Content" property="paramContent"/>                    
+                </Var>
+                <VarSet name="Schema" when="paramSchema">
+                    <VarSet name="Example">
+                        <Var name="Defined">
+                            <Value name="Yes" property="schemaExample"/>
+                            <Value name="No" when="paramExample"/>
+                            <Value name="Missing" failure="true" whenNot="paramExample"/>
+                        </Var>
+                        <Var name="Source" when="schemaExample" whenNot="paramExample">
+                            <Value name="Property" property="schemaExampleProperty"/>
+                            <Value name="Enums" property="schemaExampleEnums" when="schemaEnum"/>
+                            <Value name="Composed" property="schemaExampleComposed">
+                                <When>
+                                    <AnyOf property="paramArray,paramObject"/>
+                                </When>
+                            </Value>
+                        </Var>           
+                    </VarSet>
+                    <Var name="Type">
+                        <Value name="array" property="paramArray" whenNot="schemaComposed"/>
+                        <Value name="boolean" property="paramBoolean" whenNot="schemaComposed"/>
+                        <Value name="integer" property="paramInteger"/>
+                        <Value name="number" property="paramNumber"/>
+                        <Value name="object" property="paramObject"/>
+                        <Value name="string" property="paramString"/>
+                    </Var>
+                    <VarSet name="Assertions" when="schemaExample" whenNot="paramExample">
+                        <Var name="Nullable">
+                            <Value name="Yes"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Enum">
+                            <Value name="Yes" property="schemaEnum"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Leaf" whenNot="schemaEnum">
+                            <Value name="Yes" property="schemaLeaf">
+                                <When>
+                                    <Not>
+                                        <AllOf property="schemaExampleComposed">
+                                            <AnyOf property="schemaAnyOf, schemaOneOf"/>
+                                        </AllOf> 
+                                    </Not>
+                                </When> 
+                            </Value>
+                            <Value name="No"/>
+                            <Value name="Invalid" failure="true">
+                                <When>
+                                    <AllOf property="schemaExampleComposed">
+                                        <AnyOf property="schemaAnyOf, schemaOneOf"/>
+                                    </AllOf>
+                                </When>
+                            </Value>
+                        </Var>
+                        <Var name="AllOf" whenNot="schemaEnum">
+                            <Value name="Yes" property="schemaComposed" when="schemaExampleProperty"/>
+                            <Value name="No"/>
+                            <Value name="Invalid" failure="true" when="schemaExampleComposed"/>
+                        </Var>
+                        <Var name="AnyOf" whenNot="schemaEnum">
+                            <Value name="Yes" property="schemaComposed, schemaAnyOf">
+                                <When>
+                                    <Not>
+                                        <AllOf property="schemaExampleComposed, schemaOneOf"/>
+                                    </Not>
+                                </When>
+                            </Value>
+                            <Value name="No"/>
+                            <Value name="Invalid" failure="true" when="schemaExampleComposed, schemaOneOf"/>
+                        </Var>
+                        <Var name="OneOf" whenNot="schemaEnum">
+                            <Value name="Yes" property="schemaComposed, schemaOneOf">
+                                <When>
+                                    <Not>
+                                        <AllOf property="schemaExampleComposed, schemaAnyOf"/>
+                                    </Not>
+                                </When>
+                            </Value>
+                            <Value name="No"/>
+                            <Value name="Invalid" failure="true" when="schemaExampleComposed, schemaAnyOf"/>
+                        </Var>
+                        <Var name="Not" whenNot="schemaEnum">
+                            <Value name="Yes" property="schemaComposed" when="schemaExampleProperty"/>
+                            <Value name="No"/>
+                            <Value name="Invalid" failure="true" when="schemaExampleComposed"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+                <VarSet name="Content" when="paramContent">
+                    <Var name="Example">
+                        <Value name="Yes" property="paramContentExample,paramContentExampleOne" whenNot="paramContentExampleMany"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Examples">
+                        <Value name="Yes" property="paramContentExample,paramContentExampleMany" whenNot="paramContentExampleOne"/>
+                        <Value name="No"/>
+                    </Var>
+                    <VarSet name="Schema">
+                        <VarSet name="Example">
+                            <Var name="Defined">
+                                <Value name="Yes"/>
+                                <Value name="No">
+                                    <When>
+                                        <AnyOf property="paramExample,paramContentExample"/>
+                                    </When>
+                                </Value>
+                                <Value name="Missing" failure="true" whenNot="paramExample,paramContentExample"/>
+                            </Var>           
+                        </VarSet>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+            <VarSet name="Body">
+                <Var name="Defined">
+                    <Value name="No" property="bodyNone" whenNot="paramNone"/>
+                    <Value name="Yes"/>
+                </Var>
+                <Var name="Required" whenNot="bodyNone">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+                <VarSet name="Content" whenNot="bodyNone">
+                    <Var name="Example" whenNot="bodyNone">
+                        <Value name="Yes" property="bodyExample,bodyExampleOne" whenNot="bodyExampleMany"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Examples" whenNot="bodyNone">
+                        <Value name="Yes" property="bodyExample,bodyExampleMany" whenNot="bodyExampleOne"/>
+                        <Value name="No"/>
+                    </Var>
+                    <VarSet name="Schema" whenNot="bodyNone">
+                        <VarSet name="Example">
+                            <Var name="Defined">
+                                <Value name="Yes"/>
+                                <Value name="No" when="bodyExample"/>
+                                <Value name="Missing" failure="true" whenNot="bodyExample"/>
+                            </Var>           
+                        </VarSet>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

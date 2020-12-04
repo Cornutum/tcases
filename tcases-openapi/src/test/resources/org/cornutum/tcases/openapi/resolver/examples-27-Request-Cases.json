@@ -1,0 +1,127 @@
+
+[
+    {
+        "id": 1,
+        "name": "param0.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "param0.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "param0.Items.Size='< 3'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "object",
+                            "value": {
+                                "bravo": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "alpha": {
+                                    "type": "integer",
+                                    "value": 1,
+                                    "format": "int32"
+                                },
+                                "charlie": {
+                                    "type": "string",
+                                    "value": "~#@"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "param0.Items.Contains.Value.Properties.alpha.Value.Is='3'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "object",
+                            "value": {
+                                "bravo": {
+                                    "type": "boolean",
+                                    "value": false
+                                },
+                                "alpha": {
+                                    "type": "integer",
+                                    "value": 3,
+                                    "format": "int32"
+                                },
+                                "charlie": {
+                                    "type": "string",
+                                    "value": "~#@"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    }
+]

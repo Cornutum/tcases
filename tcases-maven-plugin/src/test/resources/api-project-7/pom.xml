@@ -19,6 +19,7 @@
         <artifactId>tcases-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
+            <source>examples</source>
             <transformDef>${basedir}/src/test/resources/$P-$B.xsl</transformDef>
             <transformParams>
                 <system>SYSTEM</system>

@@ -22,7 +22,8 @@
                             "minItems": 1,
                             "maxItems": 2,
                             "uniqueItems": true
-                        }
+                        },
+                        "example": [ "A", "C"]
                     }
                 ],
                 "responses": {
@@ -47,11 +48,16 @@
                             "type": "array",
                             "items": {
                                 "type": "integer",
-                                "enum": [ "1001", "2345", "7700"]
+                                "enum": [ 1001, 2345, 7700 ]
                             },
                             "minItems": 2,
                             "maxItems": 2,
                             "uniqueItems": true
+                        },
+                        "examples": {
+                            "1": { "value": [ 1001, 2345 ]},
+                            "2": { "value": [ 7700, 2345 ]},
+                            "3": { "value": [ 1001, 7700 ]}
                         }
                     },
                     {
@@ -63,7 +69,8 @@
                         "schema": {
                             "type": "integer",
                             "minimum": 0
-                        }
+                        },
+                        "example": 255
                     }
                 ],
                 "responses": {
@@ -108,6 +115,11 @@
                                 },
                                 "required": [ "email", "text" ],
                                 "additionalProperties": false
+                            },
+                            "examples": {
+                                "1": { "value": {"email": "howdy@hello.com", "text": ""}},
+                                "2": { "value": {"email": "hi@hello.com", "text": "informal"}},
+                                "3": { "value": {"email": "hola@hello.com", "text": "jaunty"}}
                             }
                         }
                     }
@@ -138,7 +150,8 @@
                             },
                             "minItems": 1,
                             "maxItems": 4,
-                            "uniqueItems": true
+                            "uniqueItems": true,
+                            "example": [ 50 ]
                         }
                     }
                 ],
@@ -175,7 +188,8 @@
                             },
                             "required": [ "country", "region" ],
                             "additionalProperties": false
-                        }
+                        },
+                        "example": {"country": "USA", "region": "West"}
                     }
                 ],
                 "requestBody": {
@@ -197,7 +211,8 @@
                                     }
                                 },
                                 "required": [ "email", "text" ],
-                                "additionalProperties": false
+                                "additionalProperties": false,
+                                "example": {"email": "hello@hello.com", "text": "standard"}
                             }
                         }
                     }
@@ -225,6 +240,11 @@
                         "schema": {
                             "type": "integer",
                             "minimum": 0
+                        },
+                        "examples": {
+                            "1": { "value": 1 },
+                            "2": { "value": 22 },
+                            "3": { "value": 3333 }
                         }
                     },
                     {
@@ -241,7 +261,8 @@
                                 },
                                 "likes": {
                                     "type": "integer",
-                                    "minimum": 0
+                                    "minimum": 0,
+                                    "example": 12345
                                 }
                             },
                             "minProperties": 1,
@@ -312,6 +333,11 @@
                         "schema": {
                             "type": "number",
                             "minimum": 0
+                        },
+                        "examples": {
+                            "1": { "value": 1.23 },
+                            "2": { "value": -456.78 },
+                            "3": { "value": 9.01 }
                         }
                     }
                 ],
@@ -444,7 +470,8 @@
                             "type": "integer",
                             "minimum": 0,
                             "maximum": 1000
-                        }
+                        },
+                        "example": 999
                     },
                     {
                         "name": "approved",

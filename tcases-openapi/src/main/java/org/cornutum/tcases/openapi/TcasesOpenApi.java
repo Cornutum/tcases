@@ -62,4 +62,22 @@ public final class TcasesOpenApi
     ResponseInputModeller inputModeller = new ResponseInputModeller( options);
     return inputModeller.getResponseInputModel( api);
     }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined examples in the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemInputDef getRequestExamplesModel( OpenAPI api)
+    {
+    return getRequestExamplesModel( api, null);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined examples in the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  public static SystemInputDef getRequestExamplesModel( OpenAPI api, ModelOptions options)
+    {
+    return getRequestInputModel( api, ModelOptions.builder( options).source( ModelOptions.Source.EXAMPLES).build());
+    }
   }

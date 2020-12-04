@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<System name="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="number" property="application-jsonValue"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Is">
+              <Value name="0.1234"/>
+              <Value name="0.0"/>
+              <Value name="-0.9876"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

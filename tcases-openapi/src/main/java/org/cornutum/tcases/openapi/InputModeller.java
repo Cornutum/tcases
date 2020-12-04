@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.util.ListBuilder;
+
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.openapi.OpenApiUtils.*;
@@ -19,12 +20,15 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 import org.cornutum.regexpgen.RegExpGen;
 import static org.cornutum.regexpgen.Bounds.bounded;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.BooleanSchema;
+import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -34,6 +38,8 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.servers.ServerVariable;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -102,6 +108,18 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   protected SystemInputDef requestInputModel( OpenAPI api)
     {
+    return
+      getOptions().getSource() == ModelOptions.Source.EXAMPLES
+      ? requestExamplesModel( api)
+      : requestSchemasModel( api);
+    }
+
+  /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by schemas in the given
+   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   */
+  private SystemInputDef requestSchemasModel( OpenAPI api)
+    {
     Info info;
     String title;
     try
@@ -133,6 +151,42 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns a {@link SystemInputDef system input definition} for the API requests defined by examples in the given
+   * OpenAPI specification. Returns null if the given spec defines no API request examples to model.
+   */
+  private SystemInputDef requestExamplesModel( OpenAPI api)
+    {
+    Info info;
+    String title;
+    try
+      {
+      info = expectedValueOf( api.getInfo(), "API info");
+      title = expectedValueOf( StringUtils.trimToNull( info.getTitle()), "API title");
+      }
+    catch( Exception e)
+      {
+      throw new OpenApiException( "Invalid API spec", e);
+      }
+
+    return
+      resultFor( title,
+        () -> {
+        SystemInputDef inputDef =
+          SystemInputDefBuilder.with( toIdentifier( title))
+          .has( "title", title)
+          .has( "version", info.getVersion())
+          .hasIf( "server", membersOf( api.getServers()).findFirst().map( InputModeller::getServerUrl))
+          .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestExamples( api, path.getKey(), path.getValue())))
+          .build();
+
+        return
+          inputDef.getFunctionInputDefs().hasNext()
+          ? inputDef
+          : null;
+        });
+    }
+
+  /**
    * Returns a request {@link FunctionInputDef function input definition} for each of the API operations for the given path.
    */
   private Stream<FunctionInputDef> pathRequestDefs( OpenAPI api, String path, PathItem pathItem)
@@ -152,10 +206,30 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         opRequestDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
       // Skip if operation not defined
-      .filter( Objects::nonNull)
+      .filter( Objects::nonNull));
+    }
 
-      // Ensure a complete input model for each operation
-      .map( this::completeInputs));
+  /**
+   * Returns a request {@link FunctionInputDef function input definition} for the examples of each of the API operations for the given path.
+   */
+  private Stream<FunctionInputDef> pathRequestExamples( OpenAPI api, String path, PathItem pathItem)
+    {
+    return
+      resultFor( path,
+
+      () ->
+      Stream.of(
+        opRequestExamples( api, path, pathItem, "GET", pathItem.getGet()),
+        opRequestExamples( api, path, pathItem, "PUT", pathItem.getPut()),
+        opRequestExamples( api, path, pathItem, "POST", pathItem.getPost()),
+        opRequestExamples( api, path, pathItem, "DELETE", pathItem.getDelete()),
+        opRequestExamples( api, path, pathItem, "OPTIONS", pathItem.getOptions()),
+        opRequestExamples( api, path, pathItem, "HEAD", pathItem.getHead()),
+        opRequestExamples( api, path, pathItem, "PATCH", pathItem.getPatch()),
+        opRequestExamples( api, path, pathItem, "TRACE", pathItem.getTrace()))
+
+      // Skip if operation not defined
+      .filter( Objects::nonNull));
     }
 
   /**
@@ -174,9 +248,92 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
         .has( "path", path)
         .has( "operation", opName)
-        .vars( opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))))
-        .vars( iterableOf( requestBodyVarDef( api, op.getRequestBody())))
+        .vars( opRequestVars( api, pathItem, op))
         .build());
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the operation request.
+   */
+  private Stream<IVarDef> opRequestVars( OpenAPI api, PathItem pathItem, Operation op)
+    {
+    return
+      hasInputs( pathItem, op)?
+
+      Stream.concat(
+        opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))),
+        requestBodyVarDef( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty())) :
+
+      Stream.of( noInputs());
+    }
+
+  /**
+   * Returns the request {@link FunctionInputDef function input definition} for the examples of the given API operation.
+   */
+  private FunctionInputDef opRequestExamples( OpenAPI api, String path, PathItem pathItem, String opName, Operation op)
+    {
+    return
+      resultFor( opName, () -> {
+        FunctionInputDef opDef = null;
+        if( op != null)
+          {
+          try
+            {
+            opDef = 
+              withoutFailures(         
+                FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
+                .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+                .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
+                .has( "path", path)
+                .has( "operation", opName)
+                .vars( opExampleVars( api, pathItem, op))
+                .build());
+            }
+          catch( ExampleException e)
+            {
+            notifyExampleFailure( e);
+            }
+          }
+        return opDef;
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the examples of the given operation request.
+   */
+  private Stream<IVarDef> opExampleVars( OpenAPI api, PathItem pathItem, Operation op)
+    {
+    return
+      hasInputs( pathItem, op)?
+
+      Stream.concat(
+        opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))),
+        requestBodyExamples( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty())) :
+
+      Stream.of( noInputs());
+    }
+
+  /**
+   * Returns true if at least one input is defined for the given request.
+   */
+  private boolean hasInputs( PathItem pathItem, Operation op)
+    {
+    return
+      opParameters( pathItem, op).findAny().isPresent()
+      || op.getRequestBody() != null;
+    }
+
+  /**
+   * Returns a dummy variable representing a "no inputs" condition for an API request.
+   */
+  private IVarDef noInputs()
+    {
+    String none = "None";
+    return
+      VarSetBuilder.with( none)
+      .type( "implicit")
+      .members( instanceDefinedVar( none, Definition.NEVER))
+      .build();
     }
 
   /**
@@ -247,43 +404,24 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         opResponseDef( api, path, pathItem, "TRACE", pathItem.getTrace()))
 
       // Skip if operation not defined
-      .filter( Objects::nonNull)
-
-      // Skip if operation has no inputs to model
-      .filter( this::hasInputs));
+      .filter( Objects::nonNull));
     }
 
   /**
-   * Returns if the given {@link FunctionInputDef function input definition}, adding a null input variable
-   * if no other variables are defined.
+   * Returns the given {@link FunctionInputDef function input definition} after removing failure values for all variables.
    */
-  private FunctionInputDef completeInputs( FunctionInputDef functionDef)
+  private FunctionInputDef withoutFailures( FunctionInputDef functionDef)
     {
-    if( !hasInputs( functionDef))
-      {
-      String none = "None";
-      functionDef.addVarDef(
-        VarSetBuilder.with( none)
-        .type( "implicit")
-        .members( instanceDefinedVar( none, Definition.NEVER))
-        .build());
-      }
+    toStream( new VarDefIterator( functionDef))
+      .forEach( varDef -> {
+        toStream( varDef.getFailureValues())
+          .map( VarValueDef::getName)
+          .collect( toList())
+          .stream()
+          .forEach( value -> varDef.removeValue( value));
+        });
     
     return functionDef;
-    }
-
-  /**
-   * Returns if the given {@link FunctionInputDef function input definition} defines input variables.
-   */
-  private boolean hasInputs( FunctionInputDef functionDef)
-    {
-    boolean hasVars = functionDef.getVarDefs().hasNext();
-    if( !hasVars)
-      {
-      notifyWarning( String.format( "No inputs to model for operation=%s", functionDef.getName()));
-      }
-    
-    return hasVars;
     }
 
   /**
@@ -325,6 +463,31 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               mediaTypeVar( contentVarTag, mediaTypes))
             .members(
               mediaTypeContentVars( api, contentVarTag, mediaTypes))
+            .build();
+          }));
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given request body examples.
+   */
+  private Optional<IVarDef> requestBodyExamples( OpenAPI api, RequestBody body)
+    {
+    return
+      resultFor( "requestBody",
+        () ->
+        Optional.ofNullable( body)
+        .map( b -> resolveRequestBody( api, b))
+        .map( b -> {
+          String contentVarTag = "Content";
+          Map<String,MediaType> mediaTypes = expectedValueOf( b.getContent(), "Request body content");
+          return
+            VarSetBuilder.with( "Body")
+            .type( "request")
+            .members(
+              instanceDefinedVar( contentVarTag, Boolean.TRUE.equals( b.getRequired())),
+              mediaTypeVar( contentVarTag, mediaTypes))
+            .members(
+              mediaTypeContentExamples( api, contentVarTag, mediaTypes))
             .build();
           }));
     }
@@ -398,6 +561,54 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns the {@link IVarDef input variable definitions} for the given media type content examples.
+   */
+  private Stream<IVarDef> mediaTypeContentExamples( OpenAPI api, String contentVarTag, Map<String,MediaType> mediaTypes)
+    {
+    return
+      mediaTypes.entrySet().stream()
+      .map(
+        contentDef ->
+        {
+        String mediaTypeName = contentDef.getKey();
+
+        return
+          resultFor( mediaTypeName,
+            () -> {
+            String mediaTypeVarName = mediaTypeVarName( mediaTypeName);
+            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaTypeName);
+            MediaType mediaType = contentDef.getValue();
+
+            return
+              VarSetBuilder.with( mediaTypeVarName)
+              .when( has( mediaTypeVarTag))
+              .members( mediaTypeExampleVars( api, mediaTypeVarTag, mediaType))
+              .build();
+            });
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given media type examples.
+   */
+  private Stream<IVarDef> mediaTypeExampleVars( OpenAPI api, String mediaTypeVarTag, MediaType mediaType)
+    {
+    Schema<?> mediaTypeSchema =
+      Optional.ofNullable( mediaType.getSchema())
+      .map( s -> analyzeSchema( api, s))
+      .orElse( null);
+    
+    return
+      instanceExampleVars(
+        api,
+        mediaTypeVarTag,
+        false,
+        mediaType.getExample(),
+        mediaType.getExamples(),
+        mediaTypeSchema);
+    }
+  
+  /**
    * Returns the {@link IVarDef input variable definition} for the given parameter.
    */
   private IVarDef parameterVarDef( OpenAPI api, Parameter parameter)
@@ -434,6 +645,57 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }    
 
   /**
+   * Returns the {@link IVarDef input variable definition} for the given parameter examples.
+   */
+  private IVarDef parameterExamples( OpenAPI api, Parameter parameter)
+    {
+    String parameterName = parameter.getName();
+    return
+      resultFor( parameterName,
+        () ->
+        {
+        String parameterIn = expectedValueOf( parameter.getIn(), "in", parameterName);
+        if( parameterIn.equals( "cookie") && !Characters.TOKEN.allowed( parameterName))
+          {
+          throw new IllegalStateException( String.format( "Parameter name='%s' contains characters not allowed in a cookie name", parameterName));
+          }
+
+        // Normalize parameter properties
+        Schema<?> parameterSchema = parameterSchema( api, parameter);
+        String parameterType = parameterSchema.getType();
+        parameter.setStyle( parameterStyle( parameter, parameterType));
+        parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
+
+        // Normalize parameter schema
+        parameterSchema = normalizeParameterSchema( api, parameter, parameterSchema);
+        
+        String parameterVarName = toIdentifier( parameterName);
+        return
+          VarSetBuilder.with( parameterVarName)
+          .type( parameterIn)
+          .has( "paramName", parameterName)
+          .members( parameterDefinedVar( parameterVarName, parameter))
+          .members( parameterExampleVars( api, parameterVarName, parameterSchema, parameter))
+          .build();
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given parameter examples.
+   */
+  private Stream<IVarDef> parameterExampleVars( OpenAPI api, String parameterVarTag, Schema<?> parameterSchema, Parameter parameter)
+    {
+    return
+      instanceExampleVars(
+        api,
+        parameterVarTag,
+        !parameter.getRequired(),
+        parameterContentExample( parameter),
+        parameterContentExamples( parameter),
+        parameterSchema);
+    }
+
+  /**
    * Returns the schema for the given parameter.
    */
   private Schema<?> parameterSchema( OpenAPI api, Parameter parameter)
@@ -444,11 +706,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       Optional.ofNullable( parameter.getSchema())
       
       // ... or the content property
-      .orElseGet(
-        () ->
-        Optional.ofNullable( parameter.getContent())
-        .map( content -> content.values().stream().findFirst().map( MediaType::getSchema).orElse( null))
-        .orElse( null));
+      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getSchema).orElse( null));
 
     return analyzeSchema( api, schema);
     }    
@@ -504,6 +762,56 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
 
     return normalized;
+    }
+
+  /**
+   * Returns the media type defined for the given parameter.
+   */
+  private Optional<MediaType> parameterMediaType( Parameter parameter)
+    {
+    return
+      Optional.ofNullable( parameter.getContent())
+      .flatMap( content -> content.values().stream().findFirst());
+    }
+
+  /**
+   * Returns the example content for the given parameter.
+   */
+  private Object parameterContentExample( Parameter parameter)
+    {
+    // The example should be defined either by...
+    return
+      // ... the parameter itself...
+      Optional.ofNullable( parameter.getExample())
+      
+      .orElseGet( () -> {
+        return
+          // ... or if no parameter examples defined...
+          parameter.getExamples() == null
+          // ... by the parameter media type
+          ? parameterMediaType( parameter).map( MediaType::getExample).orElse( null)
+          : null;
+        });
+    }
+
+  /**
+   * Returns the content examples for the given parameter.
+   */
+  private Map<String,Example> parameterContentExamples( Parameter parameter)
+    {
+    // The examples should be defined either by...
+    return
+      // ... the parameter itself...
+      Optional.ofNullable( parameter.getExamples())
+      
+      .orElseGet( () -> {
+        return
+          // ... or if no parameter example defined...
+          parameter.getExample() == null
+          // ... by the parameter media type
+          ? parameterMediaType( parameter).map( MediaType::getExamples).orElse( null)
+          : null;
+        });
     }
 
   /**
@@ -970,59 +1278,77 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private IVarDef arrayValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
-    Schema<?> itemSchema =
-      Optional.ofNullable( asArraySchema( instanceSchema))
-      .map( array -> array.getItems())
-      .orElse( null);
+    IVarDef valueVar;
 
-    Optional<IVarDef> itemsVar = arrayItemsVar( instanceVarTag, instanceSchema, itemSchema);
-
-    // If the item schema defines a maximum number of possible values...
-    Optional<Integer> maxUniqueItems =
-      Optional.ofNullable( itemSchema)
-      .flatMap( s -> itemsVar)
-      .flatMap( items -> Optional.ofNullable( getMaxAlternativeValues( itemSchema)));
-
-    // ... and the items must be unique...
-    boolean uniqueRequired = Boolean.TRUE.equals( instanceSchema.getUniqueItems());
-    boolean failBelowMinItems = true;
-    boolean failAboveMaxItems = true;
-    if( uniqueRequired)
+    Set<?> enums = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
+    if( !enums.isEmpty())
       {
-      // ... then, if necessary, adjust "minItems"
-      if( maxUniqueItems
-          .map( maxUnique -> Optional.ofNullable( instanceSchema.getMinItems()).map( minItems -> minItems > maxUnique).orElse( true))
-          .orElse( false))
-        {
-        notifyError(
-          String.format( "minItems=%s can exceed the number of unique item values possible", instanceSchema.getMinItems()),
-          String.format( "Adjusting to unique minItems=%s", maxUniqueItems.get()));
+      valueVar = 
+        VarDefBuilder.with( "Value")
+        .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()))
+        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
+        .build();
+      }
+    else
+      {
+      Schema<?> itemSchema =
+        Optional.ofNullable( asArraySchema( instanceSchema))
+        .map( array -> array.getItems())
+        .orElse( null);
 
-        instanceSchema.setMinItems( maxUniqueItems.get());
-        failBelowMinItems = false;
+      Optional<IVarDef> itemsVar = arrayItemsVar( instanceVarTag, instanceSchema, itemSchema);
+
+      // If the item schema defines a maximum number of possible values...
+      Optional<Integer> maxUniqueItems =
+        Optional.ofNullable( itemSchema)
+        .flatMap( s -> itemsVar)
+        .flatMap( items -> Optional.ofNullable( getMaxAlternativeValues( itemSchema)));
+
+      // ... and the items must be unique...
+      boolean uniqueRequired = Boolean.TRUE.equals( instanceSchema.getUniqueItems());
+      boolean failBelowMinItems = true;
+      boolean failAboveMaxItems = true;
+      if( uniqueRequired)
+        {
+        // ... then, if necessary, adjust "minItems"
+        if( maxUniqueItems
+            .map( maxUnique -> Optional.ofNullable( instanceSchema.getMinItems()).map( minItems -> minItems > maxUnique).orElse( true))
+            .orElse( false))
+          {
+          notifyError(
+            String.format( "minItems=%s can exceed the number of unique item values possible", instanceSchema.getMinItems()),
+            String.format( "Adjusting to unique minItems=%s", maxUniqueItems.get()));
+
+          instanceSchema.setMinItems( maxUniqueItems.get());
+          failBelowMinItems = false;
+          }
+
+        // ... and, if necessary, adjust "maxItems"
+        if( maxUniqueItems
+            .map( maxUnique -> Optional.ofNullable( instanceSchema.getMaxItems()).map( maxItems -> maxItems > maxUnique).orElse( true))
+            .orElse( false))
+          {
+          notifyError(
+            String.format( "maxItems=%s can exceed the number of unique item values possible", instanceSchema.getMaxItems()),
+            String.format( "Adjusting to unique maxItems=%s", maxUniqueItems.get()));
+
+          instanceSchema.setMaxItems( maxUniqueItems.get());
+          failAboveMaxItems = false;
+          }
         }
 
-      // ... and, if necessary, adjust "maxItems"
-      if( maxUniqueItems
-          .map( maxUnique -> Optional.ofNullable( instanceSchema.getMaxItems()).map( maxItems -> maxItems > maxUnique).orElse( true))
-          .orElse( false))
-        {
-        notifyError(
-          String.format( "maxItems=%s can exceed the number of unique item values possible", instanceSchema.getMaxItems()),
-          String.format( "Adjusting to unique maxItems=%s", maxUniqueItems.get()));
-
-        instanceSchema.setMaxItems( maxUniqueItems.get());
-        failAboveMaxItems = false;
-        }
+      valueVar =
+        VarSetBuilder.with( "Items")
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .members( arraySizeVar( instanceVarTag, instanceSchema, instanceItem, failBelowMinItems, failAboveMaxItems))
+        .members( iterableOf( itemsVar))
+        .members( iterableOf( arrayUniqueItemsVar( instanceVarTag, instanceSchema)))
+        .build();
       }
 
-    return
-      VarSetBuilder.with( "Items")
-      .when( has( instanceValueProperty( instanceVarTag)))
-      .members( arraySizeVar( instanceVarTag, instanceSchema, instanceItem, failBelowMinItems, failAboveMaxItems))
-      .members( iterableOf( itemsVar))
-      .members( iterableOf( arrayUniqueItemsVar( instanceVarTag, instanceSchema)))
-      .build();
+    return valueVar;
     }
 
   /**
@@ -1242,7 +1568,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     BigDecimal effectiveMinimum = null;
 
     // Enumerated values?
-    Set<BigDecimal> enums = getNumberEnum( instanceSchema);
+    Set<BigDecimal> enums = nullableEnums( getNumberEnum( instanceSchema), instanceSchema.getNullable());
     Set<BigDecimal> notEnums = getNumberEnum( getNotEnums( instanceSchema));
     if( !enums.isEmpty())
       {
@@ -1457,76 +1783,393 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   @SuppressWarnings("rawtypes")
   private IVarDef objectValueVar( String instanceVarTag, Schema<?> instanceSchema, boolean instanceItem)
     {
-    // Ensure schema defined for all required properties, using a default empty schema if necessary.
-    Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
-    Optional.ofNullable( instanceSchema.getRequired())
-      .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
-      .filter( undefined -> !undefined.isEmpty())
-      .ifPresent( undefined -> {
-        undefined.stream().forEach( required -> propertyDefs.put( required, emptySchema()));
-        instanceSchema.setProperties( propertyDefs);
-        });
+    IVarDef valueVar;
 
-    // Reconcile any "required" constraints for read/WriteOnly properties.
-    instanceSchema.setRequired(
-      Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
-      .stream()
-      .filter( property -> expectedInView( propertyDefs.get( property)))
-      .collect( toList()));
+    Set<?> enums = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
+    if( !enums.isEmpty())
+      {
+      valueVar = 
+        VarDefBuilder.with( "Value")
+        .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .values( enums.stream().map( i -> VarValueDefBuilder.with( i).build()))
+        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
+        .build();
+      }
+    else
+      {
+      // Ensure schema defined for all required properties, using a default empty schema if necessary.
+      Map<String,Schema> propertyDefs = Optional.ofNullable( instanceSchema.getProperties()).orElse( new LinkedHashMap<String,Schema>());
+      Optional.ofNullable( instanceSchema.getRequired())
+        .map( required -> required.stream().filter( property -> !propertyDefs.containsKey( property)).collect( toList()))
+        .filter( undefined -> !undefined.isEmpty())
+        .ifPresent( undefined -> {
+          undefined.stream().forEach( required -> propertyDefs.put( required, emptySchema()));
+          instanceSchema.setProperties( propertyDefs);
+          });
 
-    // Accumulate constraints on the number of properties expected.
-    PropertyCountConstraints constraints = new PropertyCountConstraints();
-    constraints.setRequiredCount( Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList()).size());
-    constraints.setTotalCount( objectTotalProperties( instanceSchema));
+      // Reconcile any "required" constraints for read/WriteOnly properties.
+      instanceSchema.setRequired(
+        Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList())
+        .stream()
+        .filter( property -> expectedInView( propertyDefs.get( property)))
+        .collect( toList()));
 
-    constraints.setHasAdditional(
-      // additionalProperties keyword is not false...
-      Optional.ofNullable( instanceSchema.getAdditionalProperties())
-      .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
-      .orElse( true)
-      &&
-      // maxProperties not already satisfied by required properties
-      Optional.ofNullable( instanceSchema.getMaxProperties())
-      .map( max -> max > constraints.getRequiredCount())
-      .orElse( true));
+      // Accumulate constraints on the number of properties expected.
+      PropertyCountConstraints constraints = new PropertyCountConstraints();
+      constraints.setRequiredCount( Optional.ofNullable( instanceSchema.getRequired()).orElse( emptyList()).size());
+      constraints.setTotalCount( objectTotalProperties( instanceSchema));
 
-    // Ensure min/max range is feasible
-    instanceSchema.setMinProperties(
-      Optional.ofNullable( instanceSchema.getMinProperties())
-      .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
-      .orElse( null));
+      constraints.setHasAdditional(
+        // additionalProperties keyword is not false...
+        Optional.ofNullable( instanceSchema.getAdditionalProperties())
+        .map( additional -> additional.getClass().equals( Boolean.class)? (Boolean) additional : true)
+        .orElse( true)
+        &&
+        // maxProperties not already satisfied by required properties
+        Optional.ofNullable( instanceSchema.getMaxProperties())
+        .map( max -> max > constraints.getRequiredCount())
+        .orElse( true));
 
-    // Ensure minimum is a usable constraint
-    instanceSchema.setMinProperties(
-      Optional.ofNullable( instanceSchema.getMinProperties())
-      .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
-      .orElse( null));
+      // Ensure min/max range is feasible
+      instanceSchema.setMinProperties(
+        Optional.ofNullable( instanceSchema.getMinProperties())
+        .map( min -> Optional.ofNullable( instanceSchema.getMaxProperties()).map( max -> adjustedMinOf( "Properties", min, max)).orElse( min))
+        .orElse( null));
 
-    // Ensure maximum is a usable constraint
-    instanceSchema.setMaxProperties(
-      Optional.ofNullable( instanceSchema.getMaxProperties())
-      .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
-      .orElse( null));
+      // Ensure minimum is a usable constraint
+      instanceSchema.setMinProperties(
+        Optional.ofNullable( instanceSchema.getMinProperties())
+        .filter( min -> isUsablePropertyLimit( "minProperties", min, constraints))
+        .orElse( null));
 
-    // Are additional properties are required to satisfy the minimum?
-    Integer minProperties = instanceSchema.getMinProperties();
-    constraints.setRequiresAdditional(
-      Optional.ofNullable( minProperties)
-      .map( min -> min > constraints.getTotalCount() && constraints.hasAdditional())
-      .orElse( false));
+      // Ensure maximum is a usable constraint
+      instanceSchema.setMaxProperties(
+        Optional.ofNullable( instanceSchema.getMaxProperties())
+        .filter( max -> isUsablePropertyMax( "maxProperties", max, constraints))
+        .orElse( null));
 
-    // Are all properties effectively required to satisfy the minimum?
-    constraints.setAllRequired(
-      Optional.ofNullable( minProperties)
-      .map( min -> min == constraints.getTotalCount() && !constraints.hasAdditional())
-      .orElse( false));
+      // Are additional properties are required to satisfy the minimum?
+      Integer minProperties = instanceSchema.getMinProperties();
+      constraints.setRequiresAdditional(
+        Optional.ofNullable( minProperties)
+        .map( min -> min > constraints.getTotalCount() && constraints.hasAdditional())
+        .orElse( false));
+
+      // Are all properties effectively required to satisfy the minimum?
+      constraints.setAllRequired(
+        Optional.ofNullable( minProperties)
+        .map( min -> min == constraints.getTotalCount() && !constraints.hasAdditional())
+        .orElse( false));
+
+      valueVar =
+        VarSetBuilder.with( "Value")
+        .when( has( instanceValueProperty( instanceVarTag)))
+        .members( iterableOf( objectPropertyCountVar( instanceVarTag, instanceSchema, constraints)))
+        .members( objectPropertiesVar( instanceVarTag, instanceSchema, constraints))
+        .build();
+      }
+
+    return valueVar;
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given examples.
+   */
+  private Stream<IVarDef> instanceExampleVars(
+    OpenAPI api,
+    String instanceVarTag,
+    boolean instanceOptional,
+    Object instanceExample,
+    Map<String,Example> instanceExamples,
+    Schema<?> instanceSchema)
+    {
+    String exampleType = Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null);
+    boolean exampleNullable = Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false);
+
+    Optional<Object> exampleObject = Optional.ofNullable( instanceExample);
+
+    Schema<?> exampleSchema =
+      exampleObject.isPresent()?
+      exampleSchemaFor( exampleObject.get(), exampleType, exampleNullable) :
+
+      !Optional.ofNullable( instanceExamples).map( Map::isEmpty).orElse( true)?
+      exampleSchemaFor(
+        instanceExamples.values().stream().map( Example::getValue).collect( toList()),
+        exampleType,
+        exampleNullable) :
+
+      exampleSchemaFor( instanceSchema, exampleType, exampleNullable);
+
+    if( exampleSchema == null)
+      {
+      throw exampleException( "No examples defined");
+      }
+
+    return instanceSchemaVars( instanceVarTag, instanceOptional, analyzeSchema( api, exampleSchema));
+    }
+
+  /**
+   * Returns a new schema that validates only examples described by the given schema.
+   */
+  private Schema<?> exampleSchemaFor( Schema<?> instanceSchema)
+    {
+    return
+      exampleSchemaFor(
+        instanceSchema,
+        Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null),
+        Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false));
+    }
+
+  /**
+   * Returns a new schema that validates only examples described by the given schema.
+   */
+  private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType, boolean exampleNullable)
+    {
+    Optional<Object> exampleObject;
+    Set<Object> exampleEnum;
 
     return
-      VarSetBuilder.with( "Value")
-      .when( has( instanceValueProperty( instanceVarTag)))
-      .members( iterableOf( objectPropertyCountVar( instanceVarTag, instanceSchema, constraints)))
-      .members( objectPropertiesVar( instanceVarTag, instanceSchema, constraints))
-      .build();
+      instanceSchema == null?
+      null :
+
+      !(exampleEnum = exampleEnum( instanceSchema)).isEmpty()?
+      exampleSchemaForEnum( exampleEnum, exampleType, exampleNullable) :
+      
+      (exampleObject = schemaExample( instanceSchema)) != null?
+      exampleSchemaFor( exampleObject.orElse( null), exampleType, exampleNullable) :
+
+      composedExampleSchemaFor( instanceSchema, exampleType);
+    }
+
+  /**
+   * Returns a new schema that validates only the given example value.
+   */
+  private Schema<?> exampleSchemaFor( Object exampleValue, String exampleType, boolean exampleNullable)
+    {
+    Set<Object> exampleEnum = nullableEnums( asOrderedSet( Arrays.asList( exampleValue)), exampleNullable);
+    return exampleSchemaForEnum( exampleEnum, exampleType, exampleNullable);
+    }
+
+  /**
+   * Returns a new schema that validates only the given example value.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType, boolean exampleNullable)
+    {
+    Map<String,List<Object>> exampleEnums =
+      nullableEnums( asOrderedSet( exampleValues), exampleNullable)
+      .stream()
+      .collect( groupingBy( v -> String.valueOf( exampleTypeOf( v))));
+
+    if( exampleType != null)
+      {
+      exampleEnums.keySet().stream()
+        .filter( type -> !exampleType.equals( type))
+        .findFirst()
+        .ifPresent( type -> {
+          throw
+            exampleException(
+              String.format(
+                "Expecting example values of type=%s, but found values=%s",
+                exampleType,
+                exampleEnums.get( type)));
+          });
+      }
+
+    List<Schema> exampleSchemas =
+      exampleEnums.entrySet().stream()
+      .map( e -> exampleSchemaForEnum( asOrderedSet( e.getValue()), e.getKey(), exampleNullable))
+      .collect( toList());
+
+    return
+      Optional.of( exampleSchemas)
+      .filter( s -> !s.isEmpty())
+      .map( s -> s.size() == 1 ? s.iterator().next() : new ComposedSchema().oneOf( s))
+      .orElseThrow( () -> exampleException( "No example values defined"));
+    }
+
+  /**
+   * Returns a new schema that validates only the given example values.
+   */
+  @SuppressWarnings("unchecked")
+  private Schema<?> exampleSchemaForEnum( Set<Object> exampleValues, String exampleType, boolean exampleNullable)
+    {
+    Schema<Object> exampleSchema;
+    if( exampleValues.isEmpty())
+      {
+      exampleSchema = null;
+      }
+    else
+      {
+      exampleSchema = new Schema<Object>().type( exampleType).nullable( exampleNullable);
+      exampleSchema.setEnum( exampleValues.stream().collect( toList()));
+      }
+    
+    return exampleSchema;
+    }
+
+  /**
+   * Returns the schema type for the given example value
+   */
+  private String exampleTypeOf( Object exampleValue)
+    {
+    return
+      exampleValue == null?
+      null :
+
+      exampleValue instanceof String?
+      "string" :
+
+      (exampleValue instanceof Integer || exampleValue instanceof Long)?
+      "integer" :
+
+      exampleValue instanceof Number?
+      "number" :
+
+      exampleValue instanceof Boolean?
+      "boolean" :
+
+      exampleValue instanceof ArrayNode?
+      "array" :
+
+      "object";
+    }
+
+  /**
+   * Returns the enumerated values for the given schema.
+   */
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  private Set<Object> exampleEnum( Schema instanceSchema)
+    {
+    Set<Object> instanceEnum = nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable());
+    
+    return
+      !instanceEnum.isEmpty()?
+      instanceEnum :
+
+      "boolean".equals( instanceSchema.getType())?
+      asOrderedSet( Arrays.asList( Boolean.TRUE, Boolean.FALSE)) :
+
+      emptySet();
+    }
+
+  /**
+   * Returns a new schema that validates only examples described by the given schema.
+   */
+  @SuppressWarnings("rawtypes")
+  private Schema<?> composedExampleSchemaFor( Schema<?> instanceSchema, String instanceType)
+    {
+    Schema<?> exampleSchema;
+
+    if( instanceSchema.getNot() != null)
+      {
+      throw exampleException( "'not' assertion defined");
+      }
+      
+    ComposedSchema composed = asComposedSchema( instanceSchema);
+    if( composed != null)
+      {
+      if( !composed.getAllOf().isEmpty())
+        {
+        throw exampleException( "'allOf' assertion defined");
+        }
+
+      boolean anyOf = !composed.getAnyOf().isEmpty();
+      boolean oneOf = !composed.getOneOf().isEmpty();
+      if( anyOf && oneOf)
+        {
+        throw exampleException( "Both 'anyOf' and 'oneOf' assertions defined");
+        }
+
+      if( !isLeafEmpty( composed))
+        {
+        throw exampleException( String.format( "If '%s' defined, no other assertions allowed", oneOf? "oneOf" : "anyOf"));
+        }
+
+      List<Schema> members = oneOf? composed.getOneOf() : composed.getAnyOf();
+      exampleSchema =
+        new ComposedSchema()
+        .oneOf(
+          ( IntStream.range( 0, members.size())
+            .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
+            .collect( toList())));
+      }
+
+    else if( "array".equals( instanceType))
+      {
+      exampleSchema =
+        Optional.of( asArraySchema( copySchema( instanceSchema)))
+        .map( s -> s.items( resultFor( "items", () -> exampleSchemaFor( s.getItems()))))
+        .orElseThrow( () -> exampleException( "Can't compose array schema examples"));
+      }
+
+    else if( "object".equals( instanceType)
+             &&
+             !(Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap()).isEmpty()
+               && additionalPropertiesSchema( instanceSchema) == null))
+      {
+      exampleSchema =
+        copySchema( instanceSchema)
+
+        .properties(
+          Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
+          .entrySet().stream()
+          .collect( toMap( e -> e.getKey(), e -> resultFor( e.getKey(), () -> exampleSchemaFor( e.getValue())), (s1,s2) -> s1, LinkedHashMap::new)))
+
+        .additionalProperties(
+          Optional.ofNullable( additionalPropertiesSchema( instanceSchema))
+          .map( s -> resultFor( "additionalProperties", () -> (Object) exampleSchemaFor( s)))
+          .orElse( instanceSchema.getAdditionalProperties()));
+      }
+
+    else if( instanceSchema.getDefault() != null)
+      {
+      exampleSchema = exampleSchemaFor( instanceSchema.getDefault(), instanceType, Optional.ofNullable( instanceSchema.getNullable()).orElse( false));
+      }
+
+    else
+      {
+      throw exampleException( String.format( "No example defined for schema of type=%s", instanceType));
+      }
+
+    return exampleSchema;
+    }
+
+  /**
+   * Returns a new {@link ExampleException}.
+   */
+  private ExampleException exampleException( String reason)
+    {
+    return new ExampleException( getContext().getLocation(), reason);
+    }
+
+  /**
+   * Notify the occurrence of a failure deriving input models from API examples.
+   */
+  private void notifyExampleFailure( ExampleException e)
+    {
+    String[] thisLocation = getContext().getLocation();
+    String[] failureLocation = e.getLocation();
+    for( int i = 0;
+
+         i < thisLocation.length
+           && failureLocation[0].equals( thisLocation[i]);
+
+         i++,
+           failureLocation = ArrayUtils.remove( failureLocation, 0));
+
+    String forElement =
+      Optional.of( failureLocation)
+      .filter( ArrayUtils::isNotEmpty)
+      .map( location -> String.format( " for %s", StringUtils.join( location, ",")))
+      .orElse( "");
+    
+    notifyWarning(
+      String.format(
+        "Failed to create examples%s -- %s. Ignoring this operation",
+        forElement,
+        e.getMessage()));
     }
 
   /**
@@ -1842,7 +2485,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
     // Enumerated values?
     String format = instanceSchema.getFormat();
-    Set<FormattedString> enums = getFormattedStrings( "enumerated", format, instanceSchema.getEnum());
+
+    Set<FormattedString> enums =
+      getFormattedStrings(
+        "enumerated",
+        format,
+        nullableEnums( asOrderedSet( instanceSchema.getEnum()), instanceSchema.getNullable()));
+
     if( !enums.isEmpty())
       {
       // Yes, add valid and invalid values for this enumeration
@@ -1853,7 +2502,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .hasIf( "itemEnums", Optional.of( enums).filter( e -> instanceItem).orElse( null))
         .when( has( instanceValueProperty( instanceVarTag)))
         .values( enums.stream().map( i -> VarValueDefBuilder.with( String.valueOf( i)).build()))
-        .values( VarValueDefBuilder.with( "Other").type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
+        .values( VarValueDefBuilder.with( stringNotEnumerated( enums)).type( VarValueDef.Type.FAILURE).has( "excluded", enums).build())
         .build();
 
       setMaxValues( instanceSchema, enums.size());
@@ -2082,9 +2731,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     {
     Set<Boolean> possibleValues = asOrderedSet( Boolean.TRUE, Boolean.FALSE);
     Set<Boolean> excludedValues = getBooleanEnum( getNotEnums( instanceSchema));
+    Set<Boolean> enumValues = nullableEnums( getBooleanEnum( instanceSchema), instanceSchema.getNullable());
 
     List<Boolean> allowedValues =
-      Optional.of( getBooleanEnum( instanceSchema))
+      Optional.of( enumValues)
       .filter( enums -> !enums.isEmpty())
       .orElse( possibleValues)
       .stream()
@@ -2111,6 +2761,20 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             .build();
           }))
       .build();
+    }
+
+  /**
+   * Returns the given set of enumerated values, excluding any null value.
+   */
+  private <T> Set<T> nullableEnums( Set<T> enums, Boolean instanceNullable)
+    {
+    if( enums.contains( null) && !Optional.ofNullable( instanceNullable).orElse( false))
+      {
+      notifyWarning( "'null' is not a valid enumerated value for a non-nullable schema");
+      }
+
+    enums.remove( null);
+    return enums;
     }
 
   /**
@@ -2456,6 +3120,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private String mediaTypeVarTag( String contentVarTag, String mediaType)
     {
     return contentVarTag.replace( "Content", "") + mediaTypeVarName( mediaType);
+    }
+
+  /**
+   * Returns the name that identifies a value not in the given set of enumerated values.
+   */
+  private String stringNotEnumerated( Set<?> enums)
+    {
+    // In case "Other", etc. is already listed as an enumerated string value.
+    return
+      Stream.of( "Other", "Not enumerated", "Not listed", "?")
+      .filter( other -> enums.stream().noneMatch( e -> String.valueOf(e).equals( other)))
+      .findFirst()
+      .orElseThrow( () -> new IllegalStateException( "Can't find a name for a non-enumerated value"));
     }
 
   /**

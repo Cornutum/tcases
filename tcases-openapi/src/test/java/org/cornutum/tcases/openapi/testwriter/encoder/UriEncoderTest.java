@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder;
 import static org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component.*;
 
 import org.junit.Test;

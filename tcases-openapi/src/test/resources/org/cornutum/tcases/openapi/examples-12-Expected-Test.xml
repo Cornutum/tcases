@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<TestCases system="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="examples"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/examples"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="examples"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value" value="Howdy">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param1.Type" value="string">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value" value="Other">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="string"/>
+        <Var name="Body.application-json.Value" value="Corps"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

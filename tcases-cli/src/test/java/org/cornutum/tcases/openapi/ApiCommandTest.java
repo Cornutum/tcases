@@ -715,6 +715,29 @@ public class ApiCommandTest
     assertThat( "Output model created", outFile.exists(), is( true));
     }
 
+  @Test
+  public void run_examples() throws Exception
+    {
+    // Given...
+    File apiFile = getResourceFile( "api-run-examples.json");
+    File outFile = new File( apiFile.getParentFile(), "api-run-examples-Request-Cases.json");
+
+    outFile.delete();
+    
+    String[] args =
+      {
+        "-D",
+        "-X",
+        apiFile.getPath()
+      };
+    
+    // When...
+    ApiCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Output model created", outFile.exists(), is( true));
+    }
+
   /**
    * Return the file for the given resource.
    */

@@ -8,9 +8,6 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.io.SystemInputResources;
-import org.cornutum.tcases.io.SystemTestResources;
-
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;

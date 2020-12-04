@@ -1,0 +1,163 @@
+
+[
+    {
+        "id": 0,
+        "name": "param0.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "X"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Q"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Allô"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "name": "param0.Value='Y'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Y"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "name": "param0.Value='Z'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Z"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Q"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Hola"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "name": "Body.application-json.Value='Howdy'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "X"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Q"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Howdy"
+            },
+            "valid": true
+        }
+    }
+]

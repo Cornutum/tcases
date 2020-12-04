@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<System name="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="path">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+        </Var>
+        <Var name="Type">
+          <Value name="object" property="param0Value"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="{&quot;alpha&quot;:1,&quot;bravo&quot;:2}"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param1">
+        <Has name="paramName" value="param1"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param1"/>
+        </Var>
+        <Var name="Type">
+          <Value name="object" property="param1Value"/>
+        </Var>
+        <Var name="Value" when="param1Value">
+          <Value name="{&quot;charlie&quot;:3,&quot;easy&quot;:5}"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="integer" property="application-jsonValue"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Is">
+              <Value name="123"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -328,11 +328,38 @@ public final class SchemaUtils
     }
 
   /**
-   * Returns true if this schema asserts some any boolean combinations of subschemas.
+   * Returns true if this schema asserts any boolean combinations of subschemas.
    */
   public static boolean isNotLeafSchema( Schema<?> schema)
     {
     return !isLeafSchema( schema);
+    }
+
+  /**
+   * Returns true if this schema contains no leaf assertions.
+   */
+  @SuppressWarnings("unchecked")
+  public static boolean isLeafEmpty( Schema<?> schema)
+    {
+    return
+      isEmpty(
+        withExtensions(
+          copySchema( schema)
+          .type( null)
+          .properties( Optional.ofNullable( schema.getProperties()).filter( p ->!p.isEmpty()).orElse( null))));
+    }
+
+  /**
+   * Returns null if no example is defined for the given schema. Otherwise, returns
+   * <CODE>Optional.empty()</CODE> if the schema example value is <CODE>null<CODE>.
+   * Otherwise, returns the schema example value.
+   */
+  public static Optional<Object> schemaExample( Schema<?> schema)
+    {
+    return
+      Optional.ofNullable( schema).map( Schema::getExampleSetFlag).orElse( false)
+      ? Optional.ofNullable( schema.getExample())
+      : null;
     }
 
   /**
