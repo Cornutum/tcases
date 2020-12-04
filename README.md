@@ -2,11 +2,13 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.4.2](ReleaseNotes.md#342)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.5.0](ReleaseNotes.md#350)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * Tcases 3.4.2 provide improvements for several Tcases components.
-    See the [release notes](ReleaseNotes.md#342) for details.
+  * Tcases 3.5.0 introduces a new capability to Tcases for OpenAPI: generating API tests using the examples defined in an OpenAPI v3 spec.
+    And other improvements, too -- see the [release notes](ReleaseNotes.md#350) for details.
+
+  * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 
   * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
 
@@ -38,14 +40,20 @@ JUnit or TestNG test class.
 
 ## Get Started! ##
 
-  * [Tcases: The Complete Guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm)
-  * [Tcases: The JSON Guide](http://www.cornutum.org/tcases/docs/Tcases-Json.htm): A companion to _The Complete Guide_ adding info specific to JSON
-  * [Tcases for OpenAPI](tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful): Testing a REST-ful API? Generate test cases directly from your OpenAPI v3 spec.
-  * [The Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/)
-  * [How To Download Using Maven](HowToDownload.md)
-  * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
-  * [Release Notes](ReleaseNotes.md)
-  * Javadoc: [Tcases API](http://www.cornutum.org/tcases/docs/api/)
+  * **The Lowdown**
+    * [Tcases: The Complete Guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm)
+    * [Tcases: The JSON Guide](http://www.cornutum.org/tcases/docs/Tcases-Json.htm): A companion to _The Complete Guide_ adding info specific to JSON
+    * [Tcases for OpenAPI](tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful): Testing a REST-ful API? Generate test cases directly from your OpenAPI v3 spec.
+    * [The Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/)
+
+  * **Helpful Guides**
+    * [How To Download Using Maven](HowToDownload.md)
+    * [Troubleshooting FAQ](./Troubleshooting-FAQs.md)
+    * [Release Notes](ReleaseNotes.md)
+
+  * **More Info**
+    * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
+    * Javadoc: [Tcases API](http://www.cornutum.org/tcases/docs/api/)
 
 ## Contributors ##
 

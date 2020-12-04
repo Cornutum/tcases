@@ -6,6 +6,7 @@
   - [Then use Tcases to generate your API test cases ](#then-use-tcases-to-generate-your-api-test-cases)
   - [How do you run generated API test cases?](#how-do-you-run-generated-api-test-cases)
   - [Why Tcases for OpenAPI? ](#why-tcases-for-openapi)
+  - [How does it work? ](#how-does-it-work)
   - [Is your OpenAPI spec an input model? No, it's two! ](#is-your-openapi-spec-an-input-model-no-its-two)
   - [Running Tcases for OpenAPI from the command line ](#running-tcases-for-openapi-from-the-command-line)
   - [Running Tcases for OpenAPI using Maven](#running-tcases-for-openapi-using-maven)
@@ -211,6 +212,29 @@ clients. But Tcases for OpenAPI makes no such assumptions. It relentlessly cover
 actually defines. If you find that some of these test cases are surprising, you may find an opportunity to make your
 OpenAPI spec even better.
 
+## How does it work? ##
+
+Your OpenAPI spec defines rules for all the data that flows to and from the API server. Most of these rules are represented by
+the [schema](http://spec.openapis.org/oas/v3.0.2#schema-object) that describe each data item. By default, Tcases for OpenAPI
+uses these schema definitions to compose a model of the input space of your API -- a model of all the forms of data that
+could be accepted. From this input model, Tcases can generate a set of test cases, including not only cases of valid data but also
+cases of data that do not match the schema and are expected to produce an error response.
+
+Alternatively, Tcases for OpenAPI can create an input model from a different source: the <A name="examples">examples</A>
+defined in your OpenAPI spec.  Every request parameter, content object, or schema can list at least one example data
+item. From these, Tcases for OpenAPI can assemble a different set of test cases, using only example data. Examples are
+presumed to be valid data, so no failure cases are generated from this input model. To generate test cases from example
+data, you must provide at least one example for every data item, although that might be [easier than you
+think](#example-tips).
+
+So which source should you use for your test cases? Schemas or examples? The answer, of course, is both. Each source has
+complementary advantages and disadvantages. With example data, you can make sure that your tests cover specific "happy
+path" cases. However, creating these examples, which are not strictly required, is extra work and the resulting test
+cases produce minimal coverage at best. On the other hand, by generating test cases from the schemas, you can get
+complete coverage of both valid and error cases automatically, although the generated test inputs are synthetic and not
+completely realistic.
+
+
 ## Is your OpenAPI spec an input model? No, it's two! ##
 
 There are two sides to your API: the requests and their responses. Both are defined in an OpenAPI spec. But which side
@@ -260,6 +284,13 @@ tcases-api -C -f someTests.json -o otherDir my-api.json
 tcases-api -S -c fail < my-api.json
 ```
 
+
+```bash
+# Generate tests for requests, using example data defined in 'my-api.json'. Write results to 'my-api-Request-Tests.json'.
+# (See 'OpenAPI tips, For example test cases'.)
+tcases-api -X my-api.json
+```
+
 ## Running Tcases for OpenAPI using Maven ##
 
 You can also run Tcases for OpenAPI with the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/),
@@ -295,7 +326,6 @@ Some examples:
 # Generate tests for requests and responses defined by all OpenAPI specs of the 
 # form ${basedir}/src/test/tcases/openapi/**/my-api.(json,yaml). Write results to
 # ${basedir}/target/tcases/openapi.
-
 mvn tcases:api -Dproject=my-api
 ```
 
@@ -304,8 +334,13 @@ mvn tcases:api -Dproject=my-api
 # Generate an HTML report of tests for requests and responses for each
 # OpenAPI spec found in ${basedir}/src/test/tcases/openapi. Report a failure if
 # any input modelling condition is found.
-
 mvn tcases:api -Dhtml=true -DonModellingCondition=fail
+```
+
+```bash
+# Generate tests for requests, using example data defined by my-api.(json,yaml).
+# (See 'OpenAPI tips, For example test cases'.)
+mvn tcases:api -Dproject=my-api -Dsource=examples
 ```
 
 
@@ -417,6 +452,37 @@ To use Tcases for OpenAPI effectively, there are some things to keep in mind whe
        which implies `type: "string"`, together with an `items` keyword, which implies `type: "array"`, is not accepted. Although mixed-type schemas are allowed in OpenAPI,
        they imply a very large and complex input space. (Probably much more than was actually intended!) Fortunately, it's easy to avoid them. In cases where
        different types of values are actually expected, you can define this explicitly using the `oneOf` keyword.
+
+  1. **For example test cases, make your <A name="example-tips">examples</A> complete.** You can generate test cases
+     using the [examples](#examples) defined in your OpenAPI spec, but only if an example is defined for every
+     input data item. Fortunately, there are lots of ways to do that.
+
+     * You can do it explicitly at a high level, by defining the `examples` or `example` field
+       for a request parameter or a `content` object.
+
+     * You can do it explicitly at a lower level, by defining the `example` field of a schema.
+
+     * For an `object` schema, you don't need a top-level `example` if example data is defined for each property schema.
+
+     * Similarly, for an `array` schema, you don't need a top-level `example` if example data is defined for the `items` schema.
+
+     * For a schema that uses `enum` to list valid data, no other examples are necessary.
+
+     * For a `boolean` schema, only `true` and `false` are valid, so no other examples are necessary.
+
+     * For a basic type schema (`integer`, `number`, or `string`), if no `example` is defined, the `default` data value is used
+       instead.
+
+     * What about a schema that is based on boolean combinations of sub-schemas (e.g. `allOf`, `oneOf`, etc.)? If no `example` is defined
+       explicitly, can example data be assembled from the sub-schemas? Yes, but only under certain conditions. The basic rule is that
+       example data can be assembled only if it is not required to satisfy two or more different sets of assertions. Therefore, example
+       data can be assembled from sub-schemas only if:
+       
+       * there is no `not` assertion,
+       * there is no `allOf` assertion,
+       * there is either an `anyOf` or a `oneOf` assertion but not both,
+       * and if `anyOf` or `oneOf` is specified, it is the only schema assertion.
+
 
 ## Test case generation tips ##
 

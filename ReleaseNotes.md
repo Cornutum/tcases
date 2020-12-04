@@ -1,5 +1,37 @@
 # Release Notes #
 
+## 3.5.0 ##
+
+This release introduces a new capability to Tcases for OpenAPI: generating API tests using the
+[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 spec.
+
+Other improvements:
+    
+  * **CLI**
+
+    * Want to report a problem with your input model but unable to share proprietary information?
+      Introducing the [Tcases Anonymizer](./How-To-Anonymize.md#how-to-anonymize-your-input-model).
+    
+  * **Tcases For OpenAPI**
+
+    * Fixes a defect that produced inconsistent test cases for requests with path parameters or non-nullable query
+      parameters when the value is a simple string. [[154](https://github.com/Cornutum/tcases/issues/154)]
+
+    * Upgraded to swagger-parser 2.0.24
+
+  * **Core**
+
+    * Fixes a defect that caused Tcases to incorrectly claim that a required value combination is [infeasible](./Troubleshooting-FAQs.md#infeasible).
+      In previous versions, this problem could arise when generating tests using high-level combination coverage
+      requirements (2-tuples, 3-tuples, etc) for an input model with complex conditions.
+
+  * **Other**
+
+    * When a system input definition is written as an XML document, variable and value conditions are correctly represented using
+      a "whenNot" attribute when possible. [[62](https://github.com/Cornutum/tcases/issues/62)]
+
+    * Troubleshooting tips are now consolidated in a new [Troubleshooting FAQ](./Troubleshooting-FAQs.md).
+  
 ## 3.4.2 ##
 
 This release provides the following improvements:
