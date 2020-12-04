@@ -1,0 +1,44 @@
+
+[
+    {
+        "id": 0,
+        "name": "param0.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Howdy"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Other"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Corps"
+            },
+            "valid": true
+        }
+    }
+]

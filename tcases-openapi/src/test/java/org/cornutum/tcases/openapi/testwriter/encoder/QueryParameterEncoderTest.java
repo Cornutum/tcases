@@ -9,7 +9,6 @@ package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
-import org.cornutum.tcases.openapi.testwriter.encoder.FormParameterEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component;
 import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;

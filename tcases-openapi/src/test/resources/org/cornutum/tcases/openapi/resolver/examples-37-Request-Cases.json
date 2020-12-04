@@ -1,0 +1,67 @@
+
+[
+    {
+        "id": 0,
+        "name": "Body.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 0.1234
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "name": "Body.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "body": {
+            "data": null,
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "name": "Body.application-json.Value.Is='0.0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": 0.0
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "name": "Body.application-json.Value.Is='-0.9876'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "number",
+                "value": -0.9876
+            },
+            "valid": true
+        }
+    }
+]

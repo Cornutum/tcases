@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<System name="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="path">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param0"/>
+        </Var>
+        <Var name="Type">
+          <Value name="array" property="param0Value"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="[1,null,1,2,3]"/>
+        </Var>
+      </VarSet>
+      <VarSet name="param1">
+        <Has name="paramName" value="param1"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param1"/>
+        </Var>
+        <Var name="Type">
+          <Value name="array" property="param1Value"/>
+        </Var>
+        <VarSet name="Items" when="param1Value">
+          <Var name="Size">
+            <Value name="0" property="param1ItemsNone"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="param1ItemsMany"/>
+          </Var>
+          <VarSet name="Contains" whenNot="param1ItemsNone">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="param1ItemsValue"/>
+            </Var>
+            <VarSet name="Value" when="param1ItemsValue">
+              <Var name="Is">
+                <Has name="itemEnums" value="&apos;1&apos;,&apos;2&apos;,&apos;3&apos;"/>
+                <Value name="1"/>
+                <Value name="2"/>
+                <Value name="3"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="param1ItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="array" property="application-jsonValue"/>
+          </Var>
+          <Var name="Value" when="application-jsonValue">
+            <Value name="[1,null,1,2,3]"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

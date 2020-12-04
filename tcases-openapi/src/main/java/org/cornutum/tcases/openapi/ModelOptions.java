@@ -17,11 +17,28 @@ import java.util.Optional;
 public class ModelOptions
   {
   /**
+   * Defines the source of API input definitions.
+   */
+  public enum Source
+    {
+      /**
+       * Derive the API input model from the examples defined by the OpenAPI definition.
+       */
+      EXAMPLES,
+
+      /**
+       * Derive the API input model from the schemas defined by the OpenAPI definition.
+       */
+      SCHEMAS
+    };
+
+  /**
    * Creates a new ModelOptions instance.
    */
   public ModelOptions()
     {
     setConditionNotifier( ModelConditionNotifier.log());
+    setSource( Source.SCHEMAS);
     }
 
   /**
@@ -73,17 +90,42 @@ public class ModelOptions
     }
 
   /**
+   * Changes the source of API input definitions.
+   */
+  public void setSource( Source source)
+    {
+    source_ = source;
+    }
+
+  /**
+   * Returns the source of API input definitions.
+   */
+  public Source getSource()
+    {
+    return source_;
+    }
+
+  /**
    * Returns a new ModelOptions builder.
    */
   public static Builder builder()
     {
-    return new Builder();
+    return builder( null);
+    }
+
+  /**
+   * Returns a new ModelOptions builder.
+   */
+  public static Builder builder( ModelOptions defaults)
+    {
+    return new Builder( defaults);
     }
 
   public String toString()
     {
     return
       ToString.getBuilder( this)
+      .append( "source", getSource())
       .append( "conditionNotifier", getConditionNotifier())
       .append( "readOnlyEnforced", isReadOnlyEnforced())
       .append( "writeOnlyEnforced", isWriteOnlyEnforced())
@@ -97,7 +139,19 @@ public class ModelOptions
     {
     public Builder()
       {
+      this( null);
+      }
+
+    public Builder( ModelOptions defaults)
+      {
       modelOptions_ = new ModelOptions();
+      if( defaults != null)
+        {
+        notifier( defaults.getConditionNotifier())
+        .readOnlyEnforced( defaults.isReadOnlyEnforced())
+        .writeOnlyEnforced( defaults.isWriteOnlyEnforced())
+        .source( defaults.getSource());
+        }
       }
 
     public Builder notifier( ModelConditionNotifier notifier)
@@ -128,6 +182,12 @@ public class ModelOptions
       return writeOnlyEnforced( true);
       }
 
+    public Builder source( Source source)
+      {
+      modelOptions_.setSource( source);
+      return this;
+      }
+
     public ModelOptions build()
       {
       return modelOptions_;
@@ -139,4 +199,5 @@ public class ModelOptions
   private ModelConditionNotifier notifier_;
   private boolean readOnlyEnforced_;
   private boolean writeOnlyEnforced_;
+  private Source source_;
   }

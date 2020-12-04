@@ -81,6 +81,19 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-X</NOBR>
+   * </TD>
+   * <TD>
+   * If specified, test models are generated based on the examples specified in the <I>apiSpec</I>.
+   * Otherwise, by default, test models are created by generating random input values.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-I</NOBR>
    * </TD>
    * <TD>
@@ -414,6 +427,11 @@ public class ApiCommand
         setRequestCases( true);
         }
 
+      else if( arg.equals( "-X"))
+        {
+        setSource( ModelOptions.Source.EXAMPLES);
+        }
+
       else if( arg.equals( "-I"))
         {
         setTests( false);
@@ -572,6 +590,9 @@ public class ApiCommand
                "              produce results to test inputs to an API server, i.e. API requests. If -D is given, produce request",
                "              test cases for an API server, i.e. API request tests. If none of these is given, the default is -S.",
                "",
+               "  -X          If specified, test models are generated based on the examples specified in the apiSpec. Otherwise,",
+               "              by default, test models are created by generating random input values.",
+               "",
                "  -I          Produce an input definition file for either an API client (-C) or an API server (-S). If omitted,",
                "              produce the corresponding test definition file.",
                "",
@@ -713,6 +734,30 @@ public class ApiCommand
     public boolean isRequestCases()
       {
       return requestCases_;
+      }
+
+    /**
+     * Changes the source of API input definitions.
+     */
+    public void setSource( ModelOptions.Source source)
+      {
+      getModelOptions().setSource( source);
+      }
+
+    /**
+     * Changes the source of API input definitions.
+     */
+    public void setSource( String source)
+      {
+      setSource( ModelOptions.Source.valueOf( String.valueOf( source).toUpperCase()));
+      }
+
+    /**
+     * Returns the source of API input definitions.
+     */
+    public ModelOptions.Source getSource()
+      {
+      return getModelOptions().getSource();
       }
 
     /**
@@ -1028,6 +1073,11 @@ public class ApiCommand
         builder.append( " -C");
         }
 
+      if( ModelOptions.Source.EXAMPLES.equals( getSource()))
+        {
+        builder.append( " -X");
+        }
+
       if( !isTests())
         {
         builder.append( " -I");
@@ -1155,6 +1205,12 @@ public class ApiCommand
       public Builder requestCases()
         {
         options_.setRequestCases( true);
+        return this;
+        }
+
+      public Builder source( ModelOptions.Source source)
+        {
+        options_.setSource( source);
         return this;
         }
 
@@ -1309,6 +1365,7 @@ public class ApiCommand
     
     // Generate requested input definition
     logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
+    logger_.info( "Generating an input model based on API {}", options.getModelOptions().getSource().equals( ModelOptions.Source.EXAMPLES)? "examples" : "schemas");
     SystemInputDef inputDef =
       options.isServerTest()
       ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getContentType(), options.getModelOptions())

@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<System name="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="cookie">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="array" property="param0Value"/>
+        </Var>
+        <VarSet name="Items" when="param0Value">
+          <Var name="Size">
+            <Value name="3" property="param0ItemsMany"/>
+            <Value name="0" property="param0ItemsNone"/>
+            <Value name="&lt; 3" property="param0ItemsMany">
+              <Has name="rangeMin" value="1"/>
+            </Value>
+          </Var>
+          <VarSet name="Contains" whenNot="param0ItemsNone">
+            <Var name="Type">
+              <Has name="itemType" value="object"/>
+              <Value name="object" property="param0ItemsValue"/>
+            </Var>
+            <VarSet name="Value" when="param0ItemsValue">
+              <Var name="Property-Count">
+                <Value name="0" once="true" whenNot="param0ItemsProperties"/>
+                <Value name="&gt; 0" when="param0ItemsProperties"/>
+              </Var>
+              <VarSet name="Properties">
+                <VarSet name="alpha">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0ItemsAlpha, param0ItemsProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0ItemsAlpha">
+                    <Value name="integer" property="param0ItemsAlphaValue"/>
+                  </Var>
+                  <VarSet name="Value" when="param0ItemsAlphaValue">
+                    <Var name="Is">
+                      <Value name="1"/>
+                      <Value name="2"/>
+                      <Value name="3"/>
+                      <Value name="5"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <VarSet name="bravo">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0ItemsBravo, param0ItemsProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0ItemsBravo">
+                    <Value name="boolean" property="param0ItemsBravoValue"/>
+                  </Var>
+                  <Var name="Value" when="param0ItemsBravoValue">
+                    <Value name="true"/>
+                    <Value name="false"/>
+                  </Var>
+                </VarSet>
+                <VarSet name="charlie">
+                  <Var name="Defined">
+                    <Value name="Yes" property="param0ItemsCharlie, param0ItemsProperties"/>
+                    <Value name="No"/>
+                  </Var>
+                  <Var name="Type" when="param0ItemsCharlie">
+                    <Value name="string" property="param0ItemsCharlieValue"/>
+                  </Var>
+                  <Var name="Value" when="param0ItemsCharlieValue">
+                    <Value name="~#@"/>
+                  </Var>
+                </VarSet>
+                <Var name="Additional">
+                  <Value name="No"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="param0ItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -8,7 +8,6 @@
 package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.openapi.ApiTestCommand.Options;
-import org.cornutum.tcases.openapi.OpenApiException;
 import org.cornutum.tcases.openapi.moco.CertConfigResource;
 import org.cornutum.tcases.openapi.moco.MocoServerConfig;
 import org.cornutum.tcases.openapi.moco.MocoTestConfig;
@@ -837,6 +836,28 @@ public class ApiTestCommandTest extends TestWriterTest
     // Then...
     String testFileResults = stdOut.toString();
     verifyTest( "api-test-stdout", testFileResults);
+    }
+
+  @Test
+  public void whenSourceExamples() throws Exception
+    {
+    // Given...
+    File apiFile = stdApiSpec( "OpenApiTest");
+    
+    String[] args =
+      {
+        "-X",
+        "-n", "org.cornutum.examples.OpenApiExamplesTest",
+        apiFile.getPath()
+      };
+    
+    // When...
+    ApiTestCommand.run( new Options( args));
+        
+    // Then...
+    File testFile = new File( apiFile.getParentFile(), "OpenApiExamplesTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-examples", testFileResults);
     }
 
   /**

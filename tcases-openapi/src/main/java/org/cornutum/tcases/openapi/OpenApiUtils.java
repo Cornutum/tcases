@@ -10,15 +10,18 @@ package org.cornutum.tcases.openapi;
 import static org.cornutum.tcases.openapi.SchemaUtils.*;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.Parameter.StyleEnum;
+import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
+import org.apache.commons.io.IOUtils;
 import static io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.*;
 
+import java.net.URL;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
@@ -189,6 +192,44 @@ public final class OpenApiUtils
     }
 
   /**
+   * If the given example is defined by a reference, returns the referenced example. Otherwise, returns the given example.
+   */
+  public static Example resolveExample( OpenAPI api, Example example)
+    {
+    return
+      Optional.ofNullable( example.get$ref())
+      .map( ref -> componentExampleRef( api, ref))
+      .orElse( example);
+    }
+
+  /**
+   * Returns the value of the given example.
+   */
+  public static Object exampleValue( Example example)
+    {
+    Object value;
+
+    String externalUrl = Optional.ofNullable( example.getExternalValue()).orElse( null);
+    if( externalUrl != null)
+      {
+      try
+        {
+        value = IOUtils.toString( new URL( externalUrl));
+        }
+      catch( Exception e)
+        {
+        throw new IllegalStateException( String.format( "Can't get example value for url=%s", externalUrl), e);
+        }
+      }
+    else
+      {
+      value = example.getValue();
+      }
+
+    return value;
+    }
+
+  /**
    * When the given reference is non-null, returns the component parameter referenced.
    */
   public static Parameter componentParameterRef( OpenAPI api, String reference)
@@ -247,6 +288,18 @@ public final class OpenApiUtils
       .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_HEADERS_REF, ref)))
       .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getHeaders(), "Component headers").get( name)))
       .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve header reference=%s", reference)));
+    }
+
+  /**
+   * When the given reference is non-null, returns the component example referenced.
+   */
+  public static Example componentExampleRef( OpenAPI api, String reference)
+    {
+    return
+      Optional.ofNullable( reference)
+      .flatMap( ref -> Optional.ofNullable( componentName( COMPONENTS_EXAMPLES_REF, ref)))
+      .flatMap( name -> Optional.ofNullable( expectedValueOf( expectedValueOf( api.getComponents(), "Components").getExamples(), "Component examples").get( name)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't resolve example reference=%s", reference)));
     }
 
   /**
@@ -394,4 +447,5 @@ public final class OpenApiUtils
   private static final String COMPONENTS_RESPONSES_REF = "#/components/responses/";
   private static final String COMPONENTS_SCHEMAS_REF = "#/components/schemas/";
   private static final String COMPONENTS_HEADERS_REF = "#/components/headers/";
+  private static final String COMPONENTS_EXAMPLES_REF = "#/components/examples/";
   }

@@ -79,6 +79,7 @@ public class ApiTestMojo extends AbstractMojo
         // Set generator options for this API spec.
         Options options = new Options();
         options.setApiSpec( apiDef);
+        options.setSource( getSource());
         options.setTestType( getTestType());
         options.setExecType( getExecType());
         options.setTestName( getTestName());
@@ -315,6 +316,22 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
+   * Changes the source of API input definitions.
+   */
+  public void setSource( String source)
+    {
+    this.source = source;
+    }
+
+  /**
+   * Returns the source of API input definitions.
+   */
+  public String getSource()
+    {
+    return source;
+    }
+
+  /**
    * Changes the test framework used to run API tests.
    */
   public void setTestType( String testType)
@@ -533,6 +550,12 @@ public class ApiTestMojo extends AbstractMojo
    */
   @Parameter(property="random")
   private Long random;
+
+  /**
+   * Defines the source of API input definitions. Valid values are "schemas", or "examples".
+   */
+  @Parameter(property="source",defaultValue="schemas")
+  private String source;
 
   /**
    * Defines the test framework used to run API tests. Valid values are "junit", "testng", or "moco".

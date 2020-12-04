@@ -36,6 +36,7 @@
             </paths>
             <random>98765</random>
             <readOnlyEnforced>true</readOnlyEnforced>
+            <source>examples</source>
             <testName>MyTest</testName>
             <testPackage>org.cornutum.mojo</testPackage>
             <testType>moco</testType>

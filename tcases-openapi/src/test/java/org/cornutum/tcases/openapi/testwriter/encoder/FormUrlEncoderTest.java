@@ -9,7 +9,6 @@ package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.Base64Domain;
 import org.cornutum.tcases.openapi.resolver.DataValue;
-import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 

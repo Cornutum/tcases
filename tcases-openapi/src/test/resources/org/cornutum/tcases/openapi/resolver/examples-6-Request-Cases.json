@@ -1,0 +1,163 @@
+
+[
+    {
+        "id": 0,
+        "name": "param0.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Sup?"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Autre"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Corps"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 1,
+        "name": "param1.Value='Otra'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Sup?"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Otra"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "data": null,
+            "valid": true
+        }
+    },
+    {
+        "id": 2,
+        "name": "param1.Value='Othern'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Sup?"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Othern"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Cuerpo"
+            },
+            "valid": true
+        }
+    },
+    {
+        "id": 3,
+        "name": "Body.application-json.Value='Carcass'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Sup?"
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Autre"
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "Carcass"
+            },
+            "valid": true
+        }
+    }
+]

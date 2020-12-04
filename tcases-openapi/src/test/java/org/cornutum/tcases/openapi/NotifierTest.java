@@ -22,16 +22,6 @@ import java.util.Arrays;
 public class NotifierTest extends OpenApiTest
   {
   @Test
-  public void warningWhenNoOpInputs()
-    {
-    // When...
-    getTests( getRequestInputModel( "warnings-0"));
-    
-    // Then...
-    assertWarnings( "Operations: No inputs to model for operation=OPTIONS_operations.");
-    }
-  
-  @Test
   public void warningWhenNoMediaTypeSchema()
     {
     // When...
@@ -39,6 +29,16 @@ public class NotifierTest extends OpenApiTest
     
     // Then...
     assertWarnings( "Operations,/operations,PATCH,requestBody,text/plain: No schema defined for media type=text/plain.");
+    }
+  
+  @Test
+  public void warningWhenEnumNullInvalid()
+    {
+    // When...
+    getTests( getRequestInputModel( "warnings-3"));
+    
+    // Then...
+    assertWarnings( "Operations,/operations,PATCH,requestBody,application/json,nonNullable: 'null' is not a valid enumerated value for a non-nullable schema.");
     }
   
   @Test

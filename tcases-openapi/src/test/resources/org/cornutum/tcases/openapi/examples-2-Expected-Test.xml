@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<TestCases system="examples">
+  <Has name="server" value="/"/>
+  <Has name="title" value="examples"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="examples"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/examples"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="examples"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value" value="{&quot;alpha&quot;:&quot;name&quot;}">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="object">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value" value="{&quot;beta&quot;:&quot;name&quot;}">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value" value="{&quot;B&quot;:1}"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="param0.Value=&apos;{&quot;alpha&quot;:&quot;none&quot;,&quot;extra&quot;:&quot;more&quot;}&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/examples"/>
+      <Has name="properties" value="param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="examples"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value" value="{&quot;alpha&quot;:&quot;none&quot;,&quot;extra&quot;:&quot;more&quot;}">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="object">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value" value="{&quot;beta&quot;:&quot;none&quot;,&quot;extra&quot;:&quot;more&quot;}">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="Body.application-json.Value=&apos;{&quot;C&quot;:2}&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/examples"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="examples"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value" value="{&quot;alpha&quot;:&quot;name&quot;}">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="object">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value" value="{&quot;beta&quot;:&quot;name&quot;}">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value" value="{&quot;C&quot;:2}"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>
