@@ -3,7 +3,9 @@
 ## 3.5.0 ##
 
 This release introduces a new capability to Tcases for OpenAPI: generating API tests using the
-[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 spec.
+[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 spec.  You can do this from the command line,
+using the `-X` option, or with the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/), using the
+`-Dsource=examples` option.
 
 Other improvements:
     

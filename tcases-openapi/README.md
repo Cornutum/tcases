@@ -220,12 +220,13 @@ uses these schema definitions to compose a model of the input space of your API 
 could be accepted. From this input model, Tcases can generate a set of test cases, including not only cases of valid data but also
 cases of data that do not match the schema and are expected to produce an error response.
 
-Alternatively, Tcases for OpenAPI can create an input model from a different source: the <A name="examples">examples</A>
-defined in your OpenAPI spec.  Every request parameter, content object, or schema can list at least one example data
-item. From these, Tcases for OpenAPI can assemble a different set of test cases, using only example data. Examples are
-presumed to be valid data, so no failure cases are generated from this input model. To generate test cases from example
-data, you must provide at least one example for every data item, although that might be [easier than you
-think](#example-tips).
+Alternatively, Tcases for OpenAPI can create an input model from a different source: the <A name="examples">examples</A> defined
+in your OpenAPI spec.  Every request parameter, content object, or schema can list at least one example data item. From these,
+Tcases for OpenAPI can assemble a different set of test cases, using only example data. Examples are presumed to be valid data,
+so no failure cases are generated from this input model. To generate test cases from example data, you must provide at least one
+example for every data item, although that might be [easier than you think](#example-tips).  You can choose an example-based
+input model from the command line, using the `-X` option, or with the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/),
+using the `-Dsource=examples` option.
 
 So which source should you use for your test cases? Schemas or examples? The answer, of course, is both. Each source has
 complementary advantages and disadvantages. With example data, you can make sure that your tests cover specific "happy
