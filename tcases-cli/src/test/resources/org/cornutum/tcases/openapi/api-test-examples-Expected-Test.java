@@ -278,6 +278,39 @@ public class OpenApiExamplesTest {
     }
 
     @Test
+    public void tracePostsAttributes_AttributesDefined_Is_Yes() {
+        given()
+            .pathParam( "attributes", ";approved=true;subject=A Day In Hell;likes=0")
+        .when()
+            .request( "TRACE", "/posts/{attributes}")
+        .then()
+            .statusCode( isSuccess())
+            ;
+    }
+
+    @Test
+    public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
+        given()
+            .pathParam( "attributes", ";approved=false;likes=409592852")
+        .when()
+            .request( "TRACE", "/posts/{attributes}")
+        .then()
+            .statusCode( isSuccess())
+            ;
+    }
+
+    @Test
+    public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_WhatMeWorry() {
+        given()
+            .pathParam( "attributes", ";approved=true;subject=What? Me, worry?;likes=0")
+        .when()
+            .request( "TRACE", "/posts/{attributes}")
+        .then()
+            .statusCode( isSuccess())
+            ;
+    }
+
+    @Test
     public void deletePostsUserIdAttributes_UserIdDefined_Is_Yes() {
         given()
             .pathParam( "[attributes]", "approved=true,likes=12345")

@@ -9,6 +9,8 @@ package org.cornutum.tcases.openapi;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * Runs tests for {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using
  * variations of the basic properties of an API spec.
@@ -1534,7 +1536,12 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_38()
     {
     verifyRequestExamplesModel( "examples-error-38");
-    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- Both 'anyOf' and 'oneOf' assertions defined. Ignoring this operation.");
+    assertConditions(
+      Arrays.asList(
+        "examples,/examples,POST,param0: Example data unavailable -- both 'anyOf' and 'oneOf' assertions defined. Inputs will be defined by schema.",
+        "examples,/examples,POST,param0: minProperties=0 is superfluous -- same as required."),
+      Arrays.asList(
+        "examples,/examples,POST,param0: minProperties=2 exceeds the total number of properties. Ignoring infeasible minProperties."));
     }
 
   /**
@@ -1574,7 +1581,7 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_39()
     {
     verifyRequestExamplesModel( "examples-error-39");
-    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- No example defined for schema of type=string. Ignoring this operation.");
+    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.");
     }
 
   /**
@@ -1616,7 +1623,8 @@ public class RequestExamplesTest extends OpenApiTest
     verifyRequestExamplesModel( "examples-error-40");
     assertWarnings(
       "examples,/examples,POST,param0,anyOf[0]: 'null' is not a valid enumerated value for a non-nullable schema.",
-      "examples,/examples,POST: Failed to create examples for param0,anyOf[0] -- No example defined for schema of type=object. Ignoring this operation.");
+      "examples,/examples,POST,param0,anyOf[0]: Example data unavailable -- no example defined for schema of type=object. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: 'null' is not a valid enumerated value for a non-nullable schema.");
     }
 
   /**
@@ -1657,7 +1665,8 @@ public class RequestExamplesTest extends OpenApiTest
     {
     verifyRequestExamplesModel( "examples-error-41");
     assertWarnings(
-      "examples,/examples,POST: Failed to create examples for requestBody,application/json -- No example defined for schema of type=integer. Ignoring this operation.");
+      "examples,/examples,POST,requestBody,application/json: Example data unavailable -- no example defined for schema of type=integer. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: Empty string values not allowed -- using minLength=1.");
     }
 
   /**
@@ -1697,7 +1706,7 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_42()
     {
     verifyRequestExamplesModel( "examples-error-42");
-    assertWarnings( "examples,/examples,POST: Failed to create examples for param0,charlie -- No example defined for schema of type=string. Ignoring this operation.");
+    assertWarnings( "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.");
     }
 
   /**
@@ -1737,7 +1746,7 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_43()
     {
     verifyRequestExamplesModel( "examples-error-43");
-    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- If 'oneOf' defined, no other assertions allowed. Ignoring this operation.");
+    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- if 'oneOf' defined, no other assertions allowed. Inputs will be defined by schema.");
     }
 
   /**
@@ -1777,7 +1786,7 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_44()
     {
     verifyRequestExamplesModel( "examples-error-44");
-    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- 'not' assertion defined. Ignoring this operation.");
+    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- 'not' assertion defined. Inputs will be defined by schema.");
     }
 
   /**
@@ -1817,7 +1826,7 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_45()
     {
     verifyRequestExamplesModel( "examples-error-45");
-    assertWarnings( "examples,/examples,POST: Failed to create examples for param0 -- 'allOf' assertion defined. Ignoring this operation.");
+    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- 'allOf' assertion defined. Inputs will be defined by schema.");
     }
 
   @Test

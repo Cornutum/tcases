@@ -14,4 +14,49 @@
       </VarSet>
     </Input>
   </Function>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="query">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="string" property="param0Value"/>
+        </Var>
+        <Var name="Value" when="param0Value">
+          <Value name="Allô"/>
+          <Value name="Hola"/>
+          <Value name="Howdy"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="integer" property="application-jsonValue"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Is">
+              <Value name="0"/>
+              <Value name="10"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
 </System>
