@@ -39,7 +39,6 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.servers.ServerVariable;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -274,27 +273,18 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     {
     return
       resultFor( opName, () -> {
-        FunctionInputDef opDef = null;
-        if( op != null)
-          {
-          try
-            {
-            opDef = 
-              withoutFailures(         
-                FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-                .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
-                .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
-                .has( "path", path)
-                .has( "operation", opName)
-                .vars( opExampleVars( api, pathItem, op))
-                .build());
-            }
-          catch( ExampleException e)
-            {
-            notifyExampleFailure( e);
-            }
-          }
-        return opDef;
+        return
+          op == null?
+          null :
+
+          withoutFailures(         
+            FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
+            .hasIf( "server", membersOf( pathItem.getServers()).findFirst().map( InputModeller::getServerUrl))
+            .hasIf( "server", membersOf( op.getServers()).findFirst().map( InputModeller::getServerUrl))
+            .has( "path", path)
+            .has( "operation", opName)
+            .vars( opExampleVars( api, pathItem, op))
+            .build());
         });
     }
 
@@ -1901,16 +1891,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
       exampleSchemaFor( instanceSchema, exampleType, exampleNullable);
 
-    if( exampleSchema == null)
-      {
-      throw exampleException( "No examples defined");
-      }
-
     return instanceSchemaVars( instanceVarTag, instanceOptional, analyzeSchema( api, exampleSchema));
     }
 
   /**
-   * Returns a new schema that validates only examples described by the given schema.
+   * Returns a new schema that validates examples described by the given schema.
    */
   private Schema<?> exampleSchemaFor( Schema<?> instanceSchema)
     {
@@ -1922,7 +1907,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns a new schema that validates only examples described by the given schema.
+   * Returns a new schema that validates examples described by the given schema.
    */
   private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType, boolean exampleNullable)
     {
@@ -1939,7 +1924,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       (exampleObject = schemaExample( instanceSchema)) != null?
       exampleSchemaFor( exampleObject.orElse( null), exampleType, exampleNullable) :
 
-      composedExampleSchemaFor( instanceSchema, exampleType);
+      derivedExampleSchemaFor( instanceSchema, exampleType);
     }
 
   /**
@@ -1952,7 +1937,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns a new schema that validates only the given example value.
+   * Returns a new schema that validates only the given example values.
    */
   @SuppressWarnings("rawtypes")
   private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType, boolean exampleNullable)
@@ -1962,31 +1947,29 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       .stream()
       .collect( groupingBy( v -> String.valueOf( exampleTypeOf( v))));
 
-    if( exampleType != null)
-      {
+    List<Schema> exampleSchemas =
       exampleEnums.keySet().stream()
-        .filter( type -> !exampleType.equals( type))
-        .findFirst()
-        .ifPresent( type -> {
-          throw
-            exampleException(
+      .filter( type -> {
+          boolean typeValid = exampleType == null || exampleType.equals( type);
+          if( !typeValid)
+            {
+            notifyError(
               String.format(
                 "Expecting example values of type=%s, but found values=%s",
                 exampleType,
-                exampleEnums.get( type)));
-          });
-      }
-
-    List<Schema> exampleSchemas =
-      exampleEnums.entrySet().stream()
-      .map( e -> exampleSchemaForEnum( asOrderedSet( e.getValue()), e.getKey(), exampleNullable))
+                exampleEnums.get( type)),
+              "Ignoring unexpected example values");
+            }
+          return typeValid;
+        })
+      .map( type -> exampleSchemaForEnum( asOrderedSet( exampleEnums.get( type)), type, exampleNullable))
       .collect( toList());
 
     return
       Optional.of( exampleSchemas)
       .filter( s -> !s.isEmpty())
       .map( s -> s.size() == 1 ? s.iterator().next() : new ComposedSchema().oneOf( s))
-      .orElseThrow( () -> exampleException( "No example values defined"));
+      .orElseThrow( () -> new IllegalStateException( "No example values defined"));
     }
 
   /**
@@ -2055,82 +2038,95 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns a new schema that validates only examples described by the given schema.
+   * If example data can be derived for the <CODE>instanceSchema</CODE>, returns a new schema that
+   * validates example data. Otherwise, returns the <CODE>instanceSchema</CODE>.
    */
   @SuppressWarnings("rawtypes")
-  private Schema<?> composedExampleSchemaFor( Schema<?> instanceSchema, String instanceType)
+  private Schema<?> derivedExampleSchemaFor( Schema<?> instanceSchema, String instanceType)
     {
     Schema<?> exampleSchema;
 
-    if( instanceSchema.getNot() != null)
+    try
       {
-      throw exampleException( "'not' assertion defined");
-      }
+      if( instanceSchema.getNot() != null)
+        {
+        throw exampleException( "'not' assertion defined");
+        }
       
-    ComposedSchema composed = asComposedSchema( instanceSchema);
-    if( composed != null)
-      {
-      if( !composed.getAllOf().isEmpty())
+      ComposedSchema composed = asComposedSchema( instanceSchema);
+      if( composed != null)
         {
-        throw exampleException( "'allOf' assertion defined");
+        if( !composed.getAllOf().isEmpty())
+          {
+          throw exampleException( "'allOf' assertion defined");
+          }
+
+        boolean anyOf = !composed.getAnyOf().isEmpty();
+        boolean oneOf = !composed.getOneOf().isEmpty();
+        if( anyOf && oneOf)
+          {
+          throw exampleException( "both 'anyOf' and 'oneOf' assertions defined");
+          }
+
+        if( !isLeafEmpty( composed))
+          {
+          throw exampleException( String.format( "if '%s' defined, no other assertions allowed", oneOf? "oneOf" : "anyOf"));
+          }
+
+        List<Schema> members = oneOf? composed.getOneOf() : composed.getAnyOf();
+        exampleSchema =
+          new ComposedSchema()
+          .oneOf(
+            ( IntStream.range( 0, members.size())
+              .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
+              .collect( toList())));
         }
 
-      boolean anyOf = !composed.getAnyOf().isEmpty();
-      boolean oneOf = !composed.getOneOf().isEmpty();
-      if( anyOf && oneOf)
+      else if( "array".equals( instanceType))
         {
-        throw exampleException( "Both 'anyOf' and 'oneOf' assertions defined");
+        exampleSchema =
+          Optional.of( asArraySchema( copySchema( instanceSchema)))
+          .map( s -> s.items( resultFor( "items", () -> exampleSchemaFor( s.getItems()))))
+          .orElseThrow( () -> new IllegalStateException( "Can't compose array schema examples"));
         }
 
-      if( !isLeafEmpty( composed))
+      else if( "object".equals( instanceType)
+               &&
+               !(Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap()).isEmpty()
+                 && additionalPropertiesSchema( instanceSchema) == null))
         {
-        throw exampleException( String.format( "If '%s' defined, no other assertions allowed", oneOf? "oneOf" : "anyOf"));
+        exampleSchema =
+          copySchema( instanceSchema)
+
+          .properties(
+            Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
+            .entrySet().stream()
+            .collect( toMap( e -> e.getKey(), e -> resultFor( e.getKey(), () -> exampleSchemaFor( e.getValue())), (s1,s2) -> s1, LinkedHashMap::new)))
+
+          .additionalProperties(
+            Optional.ofNullable( additionalPropertiesSchema( instanceSchema))
+            .map( s -> resultFor( "additionalProperties", () -> (Object) exampleSchemaFor( s)))
+            .orElse( instanceSchema.getAdditionalProperties()));
         }
 
-      List<Schema> members = oneOf? composed.getOneOf() : composed.getAnyOf();
-      exampleSchema =
-        new ComposedSchema()
-        .oneOf(
-          ( IntStream.range( 0, members.size())
-            .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
-            .collect( toList())));
+      else if( instanceSchema.getDefault() != null)
+        {
+        exampleSchema = exampleSchemaFor( instanceSchema.getDefault(), instanceType, Optional.ofNullable( instanceSchema.getNullable()).orElse( false));
+        }
+
+      else
+        {
+        throw exampleException( String.format( "no example defined for schema of type=%s", instanceType));
+        }
       }
-
-    else if( "array".equals( instanceType))
+    catch( ExampleException e)
       {
-      exampleSchema =
-        Optional.of( asArraySchema( copySchema( instanceSchema)))
-        .map( s -> s.items( resultFor( "items", () -> exampleSchemaFor( s.getItems()))))
-        .orElseThrow( () -> exampleException( "Can't compose array schema examples"));
-      }
+      notifyWarning(
+        String.format(
+          "Example data unavailable -- %s. Inputs will be defined by schema",
+          e.getMessage()));
 
-    else if( "object".equals( instanceType)
-             &&
-             !(Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap()).isEmpty()
-               && additionalPropertiesSchema( instanceSchema) == null))
-      {
-      exampleSchema =
-        copySchema( instanceSchema)
-
-        .properties(
-          Optional.ofNullable( instanceSchema.getProperties()).orElse( emptyMap())
-          .entrySet().stream()
-          .collect( toMap( e -> e.getKey(), e -> resultFor( e.getKey(), () -> exampleSchemaFor( e.getValue())), (s1,s2) -> s1, LinkedHashMap::new)))
-
-        .additionalProperties(
-          Optional.ofNullable( additionalPropertiesSchema( instanceSchema))
-          .map( s -> resultFor( "additionalProperties", () -> (Object) exampleSchemaFor( s)))
-          .orElse( instanceSchema.getAdditionalProperties()));
-      }
-
-    else if( instanceSchema.getDefault() != null)
-      {
-      exampleSchema = exampleSchemaFor( instanceSchema.getDefault(), instanceType, Optional.ofNullable( instanceSchema.getNullable()).orElse( false));
-      }
-
-    else
-      {
-      throw exampleException( String.format( "No example defined for schema of type=%s", instanceType));
+      exampleSchema = instanceSchema;
       }
 
     return exampleSchema;
@@ -2142,34 +2138,6 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private ExampleException exampleException( String reason)
     {
     return new ExampleException( getContext().getLocation(), reason);
-    }
-
-  /**
-   * Notify the occurrence of a failure deriving input models from API examples.
-   */
-  private void notifyExampleFailure( ExampleException e)
-    {
-    String[] thisLocation = getContext().getLocation();
-    String[] failureLocation = e.getLocation();
-    for( int i = 0;
-
-         i < thisLocation.length
-           && failureLocation[0].equals( thisLocation[i]);
-
-         i++,
-           failureLocation = ArrayUtils.remove( failureLocation, 0));
-
-    String forElement =
-      Optional.of( failureLocation)
-      .filter( ArrayUtils::isNotEmpty)
-      .map( location -> String.format( " for %s", StringUtils.join( location, ",")))
-      .orElse( "");
-    
-    notifyWarning(
-      String.format(
-        "Failed to create examples%s -- %s. Ignoring this operation",
-        forElement,
-        e.getMessage()));
     }
 
   /**
