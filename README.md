@@ -2,11 +2,10 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.5.0](ReleaseNotes.md#350)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.5.1](ReleaseNotes.md#351)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * Tcases 3.5.0 introduces a new capability to Tcases for OpenAPI: generating API tests using the examples defined in an OpenAPI v3 spec.
-    And other improvements, too -- see the [release notes](ReleaseNotes.md#350) for details.
+  * Tcases 3.5.1 provides improvements to Tcases for OpenAPI. See the [release notes](ReleaseNotes.md#351) for details.
 
   * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 

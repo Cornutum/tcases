@@ -1,5 +1,12 @@
 # Release Notes #
 
+## 3.5.1 ##
+
+This release provides improvements to Tcases for OpenAPI when generating API tests using the
+[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 spec.  Specifically, request test cases are
+generated even if example data is not defined for some request input data items. When example data is not available,
+request inputs are generated using the default input model source (i.e. based on schema definitions).
+
 ## 3.5.0 ##
 
 This release introduces a new capability to Tcases for OpenAPI: generating API tests using the
