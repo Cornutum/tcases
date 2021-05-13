@@ -85,7 +85,7 @@ public class SystemTestResources
       }
     finally
       {
-      IOUtils.closeQuietly( writer);
+      IOUtils.closeQuietly( writer, null);
       }
     }
 

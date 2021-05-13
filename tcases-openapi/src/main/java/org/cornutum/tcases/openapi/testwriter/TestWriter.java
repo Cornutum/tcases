@@ -86,7 +86,7 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
         targetWriter.flush();
         }
       
-      closeQuietly( fileStream);
+      closeQuietly( fileStream, null);
       }
     }
 

@@ -171,7 +171,7 @@ public abstract class AbstractFilter implements Runnable
    */
   public void close()
     {
-    IOUtils.closeQuietly( source_);
+    IOUtils.closeQuietly( source_, null);
     try
       {
       complete();
@@ -231,7 +231,7 @@ public abstract class AbstractFilter implements Runnable
       }
     finally
       {
-      IOUtils.closeQuietly( target_);
+      IOUtils.closeQuietly( target_, null);
       }
     
     logger_.debug( "Completed, thread={}", thread_);

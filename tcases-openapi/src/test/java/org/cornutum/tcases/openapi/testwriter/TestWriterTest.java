@@ -227,7 +227,7 @@ public abstract class TestWriterTest
         }
       finally
         {
-        IOUtils.closeQuietly( newOut);
+        IOUtils.closeQuietly( newOut, null);
         System.setOut( prevOut);
         }
 

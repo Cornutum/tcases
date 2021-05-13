@@ -1554,7 +1554,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
 
   public void close()
     {
-    IOUtils.closeQuietly( stream_);
+    IOUtils.closeQuietly( stream_, null);
     }
 
   /**

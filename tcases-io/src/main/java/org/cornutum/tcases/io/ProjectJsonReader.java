@@ -92,7 +92,7 @@ public class ProjectJsonReader implements Closeable
 
   public void close()
     {
-    IOUtils.closeQuietly( getInputStream());
+    IOUtils.closeQuietly( getInputStream(), null);
     }
 
   /**

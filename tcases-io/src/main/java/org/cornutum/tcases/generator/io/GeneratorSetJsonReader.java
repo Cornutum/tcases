@@ -86,7 +86,7 @@ public class GeneratorSetJsonReader implements IGeneratorSetSource, Closeable
 
   public void close()
     {
-    IOUtils.closeQuietly( getInputStream());
+    IOUtils.closeQuietly( getInputStream(), null);
     }
 
   private InputStream stream_;

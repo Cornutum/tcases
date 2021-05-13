@@ -255,8 +255,8 @@ public class AnonCommandTest
       }
     finally
       {
-      IOUtils.closeQuietly( newIn);
-      IOUtils.closeQuietly( newOut);
+      IOUtils.closeQuietly( newIn, null);
+      IOUtils.closeQuietly( newOut, null);
 
       System.setIn( prevIn);
       System.setOut( prevOut);

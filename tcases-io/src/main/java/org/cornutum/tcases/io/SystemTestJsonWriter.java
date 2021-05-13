@@ -82,7 +82,7 @@ public class SystemTestJsonWriter implements Closeable
    */
   public void close()
     {
-    IOUtils.closeQuietly( getWriter());
+    IOUtils.closeQuietly( getWriter(), null);
     }
 
   /**
