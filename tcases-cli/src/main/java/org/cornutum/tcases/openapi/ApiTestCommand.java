@@ -1209,7 +1209,7 @@ public class ApiTestCommand
             configFile.exists()
             ? new FileInputStream( configFile)
             : getClass().getResourceAsStream( configFile.getPath()))
-          .orElseThrow( () -> new IllegalStateException( String.format( "Moco server test configuration=%s not found")));
+          .orElseThrow( () -> new IllegalStateException( String.format( "Moco server test configuration=%s not found", configFile)));
 
         try( MocoTestConfigReader reader = new MocoTestConfigReader( configStream))
           {
