@@ -334,7 +334,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       if( tupleSize == null)
         {
         TupleGeneratorHandler parent = (TupleGeneratorHandler) getParent();
-        tupleSize = new Long( parent.getTupleGenerator().getDefaultTupleSize());
+        tupleSize = Long.valueOf( parent.getTupleGenerator().getDefaultTupleSize());
         }
       tupleCombiner.setTupleSize( tupleSize.intValue());
       }
