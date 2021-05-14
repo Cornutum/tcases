@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.moco;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 import org.cornutum.tcases.io.IndentedWriter;
@@ -27,16 +28,16 @@ public class MocoServerConfigPojo extends MocoServerConfig
   /**
    * Creates a new MocoServerConfigPojo instance.
    */
-  public MocoServerConfigPojo( Class<PojoWriterFactory> factoryClass) throws InstantiationException, IllegalAccessException
+  public MocoServerConfigPojo( Class<PojoWriterFactory> factoryClass) throws InstantiationException, IllegalAccessException, InvocationTargetException, IllegalArgumentException, NoSuchMethodException, SecurityException
     {
-    this( factoryClass.newInstance());
+    this( factoryClass.getDeclaredConstructor().newInstance());
     }
   
   /**
    * Creates a new MocoServerConfigPojo instance.
    */
   @SuppressWarnings("unchecked")
-  public MocoServerConfigPojo( String factoryClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+  public MocoServerConfigPojo( String factoryClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException, InvocationTargetException, IllegalArgumentException, NoSuchMethodException, SecurityException
     {
     this( (Class<PojoWriterFactory>) Class.forName( factoryClassName));
     }
