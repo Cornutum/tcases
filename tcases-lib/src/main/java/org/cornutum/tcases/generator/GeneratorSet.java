@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.generator;
 
-import org.cornutum.tcases.util.Cloneable;
+import org.cornutum.tcases.util.CloneableType;
 
 import org.cornutum.tcases.util.ToString;
 
@@ -21,7 +21,7 @@ import java.util.Map;
  * Defines a set of {@link ITestCaseGenerator test case generators}.
  *
  */
-public class GeneratorSet implements IGeneratorSet, Cloneable<GeneratorSet>
+public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
   {
   /**
    * Returns the test case generator for the given system function.

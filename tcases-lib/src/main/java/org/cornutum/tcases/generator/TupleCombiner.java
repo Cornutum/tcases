@@ -8,7 +8,7 @@
 package org.cornutum.tcases.generator;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.util.Cloneable;
+import org.cornutum.tcases.util.CloneableType;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.collections4.IteratorUtils;
@@ -23,7 +23,7 @@ import java.util.Set;
  * Generates a combination of values for a specific set of input variables.
  *
  */
-public class TupleCombiner implements Cloneable<TupleCombiner>
+public class TupleCombiner implements CloneableType<TupleCombiner>
   {
   /**
    * Creates a new TupleCombiner that specifies 1-tuples of values of all input variables.

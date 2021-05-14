@@ -8,9 +8,9 @@
 package org.cornutum.tcases.util;
 
 /**
- * Defines an interface for creating an object copy.
+ * Defines an interface for creating a copy of a specified type.
  */
-public interface Cloneable<T>
+public interface CloneableType<T>
   {
   /**
    * Returns a copy of this object.
