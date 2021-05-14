@@ -409,7 +409,4 @@ public class ReducerMojo extends AbstractMojo
 
   @Parameter(readonly=true,defaultValue="${basedir}")
   private File baseDir_;
-
-  @Parameter(readonly=true,defaultValue="${project.build.directory}")
-  private File targetDir_;
   }
