@@ -57,7 +57,7 @@ public class VarValueDef extends Conditional
       return valid_;
       }
 
-    private boolean valid_;
+    private final boolean valid_;
     }
 
   /**
