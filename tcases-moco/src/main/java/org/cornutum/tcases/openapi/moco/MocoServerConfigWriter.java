@@ -172,7 +172,7 @@ public class MocoServerConfigWriter implements Closeable
       JsonObjectBuilder expected = Json.createObjectBuilder();
 
       expected.add( "request", expectedRequest( requestCase));
-      expected.add( "response", expectedResponse( requestCase));
+      expected.add( "response", expectedResponse());
 
       return expected.build();
       }
@@ -343,9 +343,9 @@ public class MocoServerConfigWriter implements Closeable
     }
 
   /**
-   * Returns the JSON object that represents response expectations for the given request case.
+   * Returns the JSON object that represents response expectations for a request case.
    */
-  private JsonObject expectedResponse( RequestCase requestCase)
+  private JsonObject expectedResponse()
     {
     JsonObjectBuilder expected = Json.createObjectBuilder();
 
