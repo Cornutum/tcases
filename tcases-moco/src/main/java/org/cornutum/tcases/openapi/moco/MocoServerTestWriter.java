@@ -470,7 +470,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Base class for certificate configuration writers.
    */
-  private abstract class CertConfigWriter<C extends CertConfig>
+  private static abstract class CertConfigWriter<C extends CertConfig>
     {
     /**
      * Creates a new CertConfigWriter instance.
