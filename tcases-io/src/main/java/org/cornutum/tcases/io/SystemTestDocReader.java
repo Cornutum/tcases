@@ -786,7 +786,7 @@ public class SystemTestDocReader extends DefaultHandler implements ISystemTestSo
 
   public void close()
     {
-    IOUtils.closeQuietly( stream_);
+    IOUtils.closeQuietly( stream_, null);
     }
 
   /**

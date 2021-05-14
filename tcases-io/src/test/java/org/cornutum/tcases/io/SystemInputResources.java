@@ -49,7 +49,7 @@ public class SystemInputResources
       }
     finally
       {
-      IOUtils.closeQuietly( writer);
+      IOUtils.closeQuietly( writer, null);
       }
     }
 

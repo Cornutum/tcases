@@ -42,7 +42,7 @@ public class TestTransformFilter
     // Then...
     assertThat( "Output written", target.length() > 0, is( true));
 
-    String result = FileUtils.readFileToString( target);
+    String result = FileUtils.readFileToString( target, "UTF-8");
     assertThat
       ( "System tested=default",
         contains( result, "Tests \\{@link System-2#Function-0 Function-0\\(\\)\\}") ,
@@ -96,7 +96,7 @@ public class TestTransformFilter
     // Then...
     assertThat( "Output written", target.length() > 0, is( true));
 
-    String result = FileUtils.readFileToString( target);
+    String result = FileUtils.readFileToString( target, "UTF-8");
     assertThat
       ( "System tested=SUT",
         contains( result, "Tests \\{@link SUT#Function-0 Function-0\\(\\)\\}"),

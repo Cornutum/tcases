@@ -83,7 +83,7 @@ public class GeneratorSetJsonWriter implements Closeable
    */
   public void close()
     {
-    IOUtils.closeQuietly( getWriter());
+    IOUtils.closeQuietly( getWriter(), null);
     }
 
   /**

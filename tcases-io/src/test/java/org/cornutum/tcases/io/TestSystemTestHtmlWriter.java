@@ -84,7 +84,7 @@ public class TestSystemTestHtmlWriter
       }
     finally
       {
-      IOUtils.closeQuietly( writer);
+      IOUtils.closeQuietly( writer, null);
       }
     }
 

@@ -37,7 +37,7 @@ public abstract class MocoServerTest extends TestWriterTest
       }
     finally
       {
-      IOUtils.closeQuietly( writer);
+      IOUtils.closeQuietly( writer, null);
       }
     }
 

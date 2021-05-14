@@ -36,7 +36,7 @@ public class XmlWriterTest
       }
     finally
       {
-      IOUtils.closeQuietly(xmlWriter);
+      IOUtils.closeQuietly(xmlWriter, null);
       }
     }
   }

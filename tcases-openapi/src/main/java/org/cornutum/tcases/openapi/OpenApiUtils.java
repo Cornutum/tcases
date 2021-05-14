@@ -214,7 +214,7 @@ public final class OpenApiUtils
       {
       try
         {
-        value = IOUtils.toString( new URL( externalUrl));
+        value = IOUtils.toString( new URL( externalUrl), "UTF-8");
         }
       catch( Exception e)
         {

@@ -60,9 +60,9 @@ public class TcasesIO
       }
     finally
       {
-      IOUtils.closeQuietly( inputDefReader);
-      IOUtils.closeQuietly( genDefReader);
-      IOUtils.closeQuietly( baseDefReader);
+      IOUtils.closeQuietly( inputDefReader, null);
+      IOUtils.closeQuietly( genDefReader, null);
+      IOUtils.closeQuietly( baseDefReader, null);
       }
     }
 
