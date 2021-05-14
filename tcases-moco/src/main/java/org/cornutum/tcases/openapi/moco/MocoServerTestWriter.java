@@ -596,7 +596,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Creates a {@link CertConfigWriter} for a {@link CertConfig} instance.
    */
-  private class CertConfigWriterVisitor implements CertConfigVisitor
+  private static class CertConfigWriterVisitor implements CertConfigVisitor
     {    
     public void visit( CertConfigFile certConfig)
       {
