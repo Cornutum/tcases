@@ -538,7 +538,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Writes test definitions based on {@link CertConfigFile} configuration.
    */
-  private class CertConfigFileWriter extends CertConfigWriter<CertConfigFile>
+  private static class CertConfigFileWriter extends CertConfigWriter<CertConfigFile>
     {
     /**
      * Creates a new CertConfigFileWriter instance.
@@ -567,7 +567,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Writes test definitions based on {@link CertConfigResource} configuration.
    */
-  private class CertConfigResourceWriter extends CertConfigWriter<CertConfigResource>
+  private static class CertConfigResourceWriter extends CertConfigWriter<CertConfigResource>
     {
     /**
      * Creates a new CertConfigResourceWriter instance.
