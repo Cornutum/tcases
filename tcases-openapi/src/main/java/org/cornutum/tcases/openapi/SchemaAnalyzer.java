@@ -1168,7 +1168,7 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
     try
       {
       // Create new empty alternative schema
-      S alternative = schemaType.newInstance();
+      S alternative = schemaType.getDeclaredConstructor().newInstance();
       alternative.setType( original.getType());
       setPropertySchema( alternative, isPropertySchema( original));
 
