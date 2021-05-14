@@ -288,7 +288,7 @@ public class Tuple
     {
     return
       getClass().hashCode()
-      ^ (bindings_.hashCode());
+      ^ bindings_.hashCode();
     }
 
   public String toString()
