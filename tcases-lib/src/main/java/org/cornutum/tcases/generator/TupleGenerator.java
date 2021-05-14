@@ -463,7 +463,7 @@ public class TupleGenerator implements ITestCaseGenerator
            bindingTuples.hasNext()
              && !(
                // Compatible tuple found?
-               testCase.addCompatible( (bindingTuples.next())) != null
+               testCase.addCompatible( bindingTuples.next()) != null
 
                // Did this tuple create an infeasible combination?
                && !testCase.isInfeasible()
