@@ -142,9 +142,10 @@ process.
 
 ```bash
 # Generate TestNG tests for requests defined in 'petstore-expanded.yaml'.
-# Use a specific seed for the generation of random input values. 
+# Use a specific seed for the generation of random input values.
+# Report a failure for any test method that runs longer than 10 seconds.
 # Write results to './MyTests.java'.
-tcases-api-test -t testng -r 345589 -n org.examples.testng.MyTests -b MyBaseClass  petstore-expanded.yaml
+tcases-api-test -t testng -r 345589 -n org.examples.testng.MyTests -b MyBaseClass -u 10000 petstore-expanded.yaml
 ```
 
 You can see the difference in the `tcases-api-test.log` file:
@@ -170,7 +171,7 @@ import static org.hamcrest.Matchers.*;
 
 public class MyTests extends MyBaseClass {
 
-    @Test
+    @Test(timeOut=10000)
     public void getPets_TagsDefined_Is_Yes() {
         given()
             .queryParam( "limit", "-889243316")
