@@ -85,6 +85,7 @@ public class ApiTestMojo extends AbstractMojo
         options.setTestName( getTestName());
         options.setTestPackage( getTestPackage());
         options.setBaseClass( getBaseClass());
+        options.setTimeout( getTimeout());
         options.setMocoTestConfig( getMocoTestConfigFile());
         options.setPaths( getPaths());
         options.setOperations( getOperations());
@@ -412,6 +413,22 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
+   * Changes the test timeout (milliseconds).
+   */
+  public void setTimeout( Long millis)
+    {
+    timeout = millis;
+    }
+
+  /**
+   * Returns the test timeout (milliseconds).
+   */
+  public Long getTimeout()
+    {
+    return timeout;
+    }
+
+  /**
    * Changes the Moco server test configuration file
    */
   public void setMocoTestConfig( String mocoTestConfig)
@@ -589,6 +606,13 @@ public class ApiTestMojo extends AbstractMojo
    */
   @Parameter(property="baseClass")
   private String baseClass;
+
+  /**
+   * Defines the maximum time (in milliseconds) to complete an individual test method. A test failure occurs if a
+   * method continues past this time limit. If omitted, no time limit is enforced.
+   */
+  @Parameter(property="timeout")
+  private Long timeout;
 
   /**
    * When the <B><CODE>testType</CODE></B> is "moco", specifies the Moco server test configuration file.
