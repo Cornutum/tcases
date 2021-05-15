@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
 
 public class WhyNotTest {
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesDefined_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,1")
@@ -21,7 +21,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_VIP() {
         given()
             .queryParam( "post?[post-references]", "1,2")
@@ -33,7 +33,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_2() {
         given()
             .queryParam( "post?[post-references]", "2,1")
@@ -45,7 +45,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesDefined_Is_No() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -57,7 +57,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -70,7 +70,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesType_Is_NotObject() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -83,7 +83,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesValuePropertiesUserTypeDefined_Is_No() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -95,7 +95,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesValuePropertiesUserTypeType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -108,7 +108,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
             .queryParam( "post?[post-references]", "0,1")
@@ -121,7 +121,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_UserAttributesValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,2")
@@ -137,7 +137,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostDefined_Is_No() {
         given()
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -149,7 +149,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostType_Is_Null() {
         given()
             .queryParam( "post?", "")
@@ -162,7 +162,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostType_Is_NotObject() {
         given()
             .queryParam( "post?", "-689.9")
@@ -175,7 +175,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesDefined_Is_No() {
         given()
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -187,7 +187,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", "")
@@ -200,7 +200,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesType_Is_NotArray() {
         given()
             .queryParam( "post?[post-references]", "true")
@@ -213,7 +213,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_1() {
         given()
             .queryParam( "post?[post-references]", "0")
@@ -226,7 +226,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_3() {
         given()
             .queryParam( "post?[post-references]", "0,1,2")
@@ -239,7 +239,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_Null() {
         given()
             .queryParam( "post?[post-references]", ",1")
@@ -252,7 +252,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_NotInteger() {
         given()
             .queryParam( "post?[post-references]", ",,NU,2")
@@ -265,7 +265,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_Other() {
         given()
             .queryParam( "post?[post-references]", "518413185,0")
@@ -278,7 +278,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesPostReferencesItemsUnique_Is_No() {
         given()
             .queryParam( "post?[post-references]", "0,0")
@@ -291,7 +291,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void headPost_PostValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "post?[post-references]", "0,1")
@@ -305,7 +305,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksDefined_Is_Yes() {
         given()
             .queryParam( "Post Marks", "{X}")
@@ -316,7 +316,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsSize_Is_3() {
         given()
             .queryParam( "Post Marks", "<Y> {X} #Z")
@@ -327,7 +327,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsContainsValue_Is_Z() {
         given()
             .queryParam( "Post Marks", "#Z")
@@ -338,7 +338,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsUnique_Is_No() {
         given()
             .queryParam( "Post Marks", "{X} {X} {X}")
@@ -349,7 +349,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksDefined_Is_No() {
         given()
         .when()
@@ -360,7 +360,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksType_Is_Null() {
         given()
             .queryParam( "Post Marks", "")
@@ -372,7 +372,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksType_Is_NotArray() {
         given()
             .queryParam( "Post Marks", "+")
@@ -384,7 +384,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsSize_Is_0() {
         given()
             .queryParam( "Post Marks", "")
@@ -396,7 +396,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsSize_Is_4() {
         given()
             .queryParam( "Post Marks", "<Y> <Y> <Y> {X}")
@@ -408,7 +408,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsContainsType_Is_Null() {
         given()
             .queryParam( "Post Marks", "")
@@ -420,7 +420,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
             .queryParam( "Post Marks", "#/lL\"%`\\M,7/RPK2]eZ/b\"LtW=MB6,(")
@@ -432,7 +432,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_PostIdDefined_Is_Yes() {
         given()
             .queryParam( "postId", "0")
@@ -446,7 +446,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_PostIdValue_Is_Gt_0() {
         given()
             .queryParam( "postId", "884128300094585099.3")
@@ -460,7 +460,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_MeYou() {
         given()
             .queryParam( "postId", "0")
@@ -474,7 +474,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_PostIdDefined_Is_No() {
         given()
             .contentType( "application/x-www-form-urlencoded")
@@ -488,7 +488,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_PostIdType_Is_Null() {
         given()
             .queryParam( "postId", "")
@@ -503,7 +503,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_PostIdType_Is_NotNumber() {
         given()
             .queryParam( "postId", "%")
@@ -518,7 +518,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_PostIdValue_Is_M1() {
         given()
             .queryParam( "postId", "-1")
@@ -533,7 +533,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyDefined_Is_No() {
         given()
             .queryParam( "postId", "579110988210992054.5")
@@ -545,7 +545,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyMediaType_Is_Other() {
         given()
             .queryParam( "postId", "100055597218570470.8")
@@ -559,7 +559,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_Null() {
         given()
             .queryParam( "postId", "545768800747318227.7")
@@ -572,7 +572,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_NotObject() {
         given()
             .queryParam( "postId", "787781271506673512.7")
@@ -586,7 +586,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedDefined_Is_No() {
         given()
             .queryParam( "postId", "887390451195556957.7")
@@ -600,7 +600,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_Null() {
         given()
             .queryParam( "postId", "218911377319422868.8")
@@ -615,7 +615,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_NotBoolean() {
         given()
             .queryParam( "postId", "847512139010470218.2")
@@ -630,7 +630,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerDefined_Is_No() {
         given()
             .queryParam( "postId", "711003745143914146.9")
@@ -644,7 +644,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_Null() {
         given()
             .queryParam( "postId", "167771822150204639.4")
@@ -659,7 +659,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
             .queryParam( "postId", "886308504886987482.6")
@@ -674,7 +674,7 @@ public class WhyNotTest {
             ;
     }
 
-    @Test
+    @Test(timeOut=12345)
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesAdditional_Is_Yes() {
         given()
             .queryParam( "postId", "920816794015899048.8")

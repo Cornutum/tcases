@@ -176,6 +176,19 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-u timeout </NOBR>
+   * </TD>
+   * <TD>
+   * Defines the maximum time (in milliseconds) to complete an individual test method. A test failure occurs if a
+   * method continues past this time limit. If omitted, no time limit is enforced.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-M mocoTestConfig </NOBR>
    * </TD>
    * <TD>
@@ -445,6 +458,23 @@ public class ApiTestCommand
         setOutDir( new File( args[i]));
         }
 
+      else if( arg.equals( "-u"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwMissingValue( arg);
+          }
+        try
+          {
+          setTimeout( Long.valueOf( args[i]));
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid timeout", e);
+          }
+        }
+
       else if( arg.equals( "-M"))
         {
         i++;
@@ -629,6 +659,10 @@ public class ApiTestCommand
                "  -o outDir       If -o is defined, output is written to the specified directory. If omitted, the",
                "                  default outDir is the directory containing the apiSpec or, if reading from standard",
                "                  input, output is written to standard output.",
+               "",
+               "  -u timeout      Defines the maximum time (in milliseconds) to complete an individual test method.",
+               "                  A test failure occurs if a method continues past this time limit. If omitted, no time",
+               "                  limit is enforced.",
                "",
                "  -M mocoTestConfig When the testType is 'moco', specifies the Moco server test configuration file.",
                "",
@@ -831,6 +865,22 @@ public class ApiTestCommand
     public File getOutFile()
       {
       return outFile_;
+      }
+
+    /**
+     * Changes the test timeout (milliseconds).
+     */
+    public void setTimeout( Long millis)
+      {
+      timeout_ = millis;
+      }
+
+    /**
+     * Returns the test timeout (milliseconds).
+     */
+    public Long getTimeout()
+      {
+      return timeout_;
       }
 
     /**
@@ -1155,6 +1205,7 @@ public class ApiTestCommand
         .extending( getBaseClass())
         .toFile( getOutFile())
         .inDir( getOutDir())
+        .timeout( getTimeout())
         .build();
       }
     
@@ -1252,6 +1303,7 @@ public class ApiTestCommand
       Optional.ofNullable( getBaseClass()).ifPresent( base -> builder.append( " -b ").append( base));
       Optional.ofNullable( getOutFile()).ifPresent( file -> builder.append( " -f ").append( file.getPath()));
       Optional.ofNullable( getOutDir()).ifPresent( dir -> builder.append( " -o ").append( dir.getPath()));   
+      Optional.ofNullable( getTimeout()).ifPresent( timeout -> builder.append( " -u ").append( timeout));   
       Optional.ofNullable( getMocoTestConfig()).ifPresent( moco -> builder.append( " -M ").append( moco.getPath()));   
       Optional.ofNullable( getPaths()).ifPresent( paths -> builder.append( " -P ").append( paths.stream().collect( joining( ","))));   
       Optional.ofNullable( getOperations()).ifPresent( operations -> builder.append( " -O ").append( operations.stream().collect( joining( ","))));
@@ -1277,6 +1329,7 @@ public class ApiTestCommand
     private String baseClass_;
     private File outDir_;
     private File outFile_;
+    private Long timeout_;
     private File mocoTestConfig_;
     private Set<String> paths_;
     private Set<String> operations_;
@@ -1345,6 +1398,12 @@ public class ApiTestCommand
       public Builder outDir( File outDir)
         {
         options_.setOutDir( outDir);
+        return this;
+        }
+
+      public Builder timeout( Long timeout)
+        {
+        options_.setTimeout( timeout);
         return this;
         }
 

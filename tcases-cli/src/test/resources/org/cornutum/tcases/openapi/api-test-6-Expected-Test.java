@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
 
 public class MyTests {
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesDefined_Is_Yes() {
         given()
             .header( "X-Post-Types", "1001,2345")
@@ -21,7 +21,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsValue_Is_2345() {
         given()
             .header( "X-Post-Types", "2345,7700")
@@ -33,7 +33,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsValue_Is_7700() {
         given()
             .header( "X-Post-Types", "7700,2345")
@@ -45,7 +45,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesDefined_Is_No() {
         given()
             .header( "X-User-Id", "433704959")
@@ -57,7 +57,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesType_Is_Null() {
         given()
             .header( "X-Post-Types", "")
@@ -70,7 +70,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesType_Is_NotArray() {
         given()
             .header( "X-Post-Types", "647")
@@ -83,7 +83,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsSize_Is_1() {
         given()
             .header( "X-Post-Types", "1001")
@@ -96,7 +96,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsSize_Is_3() {
         given()
             .header( "X-Post-Types", "1001,7700,2345")
@@ -109,7 +109,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsType_Is_Null() {
         given()
             .header( "X-Post-Types", ",1001")
@@ -122,7 +122,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
             .header( "X-Post-Types", "PyCeS/;&,XTzA Y,~H|,1001")
@@ -135,7 +135,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
             .header( "X-Post-Types", "-698622611,1001")
@@ -148,7 +148,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
             .header( "X-Post-Types", "1001,1001")
@@ -161,7 +161,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XUserIdDefined_Is_No() {
         given()
             .header( "X-Post-Types", "1001,2345")
@@ -173,7 +173,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XUserIdType_Is_Null() {
         given()
             .header( "X-Post-Types", "1001,7700")
@@ -186,7 +186,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XUserIdType_Is_NotInteger() {
         given()
             .header( "X-Post-Types", "1001,2345")
@@ -199,7 +199,7 @@ public class MyTests {
             ;
     }
 
-    @Test
+    @Test(timeout=12345)
     public void optionsPosts_XUserIdValue_Is_M1() {
         given()
             .header( "X-Post-Types", "1001,7700")

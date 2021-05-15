@@ -47,6 +47,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> Absolute </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -74,6 +75,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-p", "org.cornutum.examples",
         "-b", "MyBaseClass",
         "-f", outFile.getPath(),
+        "-u", "0",
         "-O", "get",
         "-c", ",ignore",
         "-r", "12345"
@@ -103,6 +105,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Paths </TD> <TD> One </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
@@ -166,6 +169,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> Relative </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Many </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Many </TD> </TR>
@@ -225,6 +229,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -279,6 +284,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> Absolute </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> One </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
@@ -335,6 +341,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Many </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Many </TD> </TR>
@@ -400,6 +407,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> Relative </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Valid </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -427,6 +435,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-e", "restassured",
         "-f", outFile.getPath(),
         "-o", outDir.getPath(),
+        "-u", "12345",
         "-O", "options",
         "-c", ",ignore",
         "-r", "20200515"
@@ -463,6 +472,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Valid </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> One </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
@@ -489,6 +499,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-p", "org.cornutum.examples",
         "-P", "/post",
         "-m", "1234",
+        "-u", "12345",
         apiFile.getPath()
       };
     
@@ -516,6 +527,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> Absolute </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Many </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Many </TD> </TR>
@@ -573,6 +585,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
@@ -627,6 +640,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -678,6 +692,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -722,6 +737,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -773,6 +789,7 @@ public class ApiTestCommandTest extends TestWriterTest
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
    * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
    * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> Default </TD> </TR>
    * <TR><TD> Moco-Test-Config </TD> <TD> <FONT color="red"> Undefined  </FONT> </TD> </TR>
    * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
    * <TR><TD> Operations </TD> <TD> One </TD> </TR>
@@ -815,6 +832,60 @@ public class ApiTestCommandTest extends TestWriterTest
       () -> ApiTestCommand.run( new Options( args)),
       "Can't create Moco test writer",
       "No Moco server test configuration defined");
+    }
+
+  /**
+   * Tests {@link ApiTestCommand#run run()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 14. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> Test-Type </TD> <TD> testng </TD> </TR>
+   * <TR><TD> Exec-Type </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Test-Name </TD> <TD> Simple </TD> </TR>
+   * <TR><TD> Test-Package </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Base-Class </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Output-File.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
+   * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Timeout </TD> <TD> <FONT color="red">Invalid</FONT> </TD> </TR>
+   * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> Paths </TD> <TD> One </TD> </TR>
+   * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Condition-Handler.Modelling </TD> <TD> Log </TD> </TR>
+   * <TR><TD> Condition-Handler.Resolver </TD> <TD> Log </TD> </TR>
+   * <TR><TD> Read-Only-Enforced </TD> <TD> No </TD> </TR>
+   * <TR><TD> Random-Seed </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Max-Tries </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Api-Spec.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Api-Spec.Path </TD> <TD> Relative </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void run_14() throws Exception
+    {
+    // Given...
+    File apiFile = stdApiSpec( "OpenApiTest");
+    
+    String[] args =
+      {
+        "-t", "testng",
+        "-n", "Why Not?",
+        "-p", "org.cornutum.examples",
+        "-P", "/post",
+        "-m", "1234",
+        "-u", "wtf?",
+        apiFile.getPath()
+      };
+
+    assertFailure(
+      IllegalArgumentException.class,
+      () -> ApiTestCommand.run( new Options( args)),
+      "Invalid command line argument. For all command line details, use the -help option.",
+      "Invalid timeout",
+      "For input string: \"wtf?\"");
     }
 
   @Test

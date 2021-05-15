@@ -98,6 +98,22 @@ public class TestTarget
     return dir_;
     }
 
+  /**
+   * Changes the test timeout (milliseconds) for this target.
+   */
+  public void setTimeout( Long millis)
+    {
+    timeout_ = millis;
+    }
+
+  /**
+   * Returns the test timeout (milliseconds) for this target.
+   */
+  public Long getTimeout()
+    {
+    return timeout_;
+    }
+
   public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
@@ -127,6 +143,11 @@ public class TestTarget
       {
       builder.append( "STDOUT");
       }
+
+    if( getTimeout() != null)
+      {
+      builder.append( "timeout", getTimeout());
+      }
     
     return builder.toString();    
     }
@@ -143,6 +164,7 @@ public class TestTarget
   private String name_;
   private File file_;
   private File dir_;
+  private Long timeout_;
 
   /**
    * Builds a {@link TestTarget} instance.
@@ -214,6 +236,12 @@ public class TestTarget
     public T inDir( File dir)
       {
       getTestTarget().setDir( dir);
+      return (T) this;
+      }
+
+	public T timeout( Long timeout)
+      {
+      getTestTarget().setTimeout( timeout);
       return (T) this;
       }
     }
