@@ -14,6 +14,7 @@ import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.FileFilterUtils; 
 import org.apache.commons.lang3.StringUtils;
 import org.cornutum.hamcrest.ExpectedFailure.Failable;
 import static org.cornutum.hamcrest.Composites.*;
@@ -28,6 +29,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -64,6 +66,57 @@ public abstract class TestWriterTest
 
       assertTestResultsEqual( testDefName, testWriterResults, expected);
       }
+    }
+  
+  /**
+   * Verifies that the "by path" test writer results for the given test match expectations.
+   */
+  protected void verifyTestsByPath( String testName, File actualResultsDir) throws Exception
+    {
+    File expectedResultsDir = getExpectedTestResultsDir( testName);
+    if( acceptAsExpected())
+      {
+      File acceptedResultsDir = new File( saveExpectedDir_, expectedResultsDir.getName());
+      if( acceptedResultsDir.exists())
+        {
+        FileUtils.cleanDirectory( acceptedResultsDir);
+        }
+      for( File actual : listJavaFiles( actualResultsDir))
+        {
+        FileUtils.copyFileToDirectory( actual, acceptedResultsDir);
+        }
+      }
+    else
+      {
+      List<String> actuals = listJavaFiles( actualResultsDir).stream().map( File::getName).collect( toList());
+      List<String> expecteds = listJavaFiles( expectedResultsDir).stream().map( File::getName).collect( toList());
+      assertThat( testName + " results", actuals, containsMembers( expecteds));
+
+      for( String results : actuals)
+        {
+        String actual;
+        String expected;
+        try
+          {
+          actual = FileUtils.readFileToString( new File( actualResultsDir, results), "UTF-8");
+          expected = FileUtils.readFileToString( new File( expectedResultsDir, results), "UTF-8");
+          }
+        catch( Exception e)
+          {
+          throw new RuntimeException( String.format( "Can't read results for test=%s", testName), e);
+          }
+
+        assertTestResultsEqual( testName + ", " + results, actual, expected);
+        }
+      }
+    }
+
+  /**
+   * Returns the *.java files in the given directory.
+   */
+  protected Collection<File> listJavaFiles( File dir)
+    {
+    return FileUtils.listFiles( dir, FileFilterUtils.suffixFileFilter( ".java"), null);
     }
 
   /**
@@ -205,6 +258,14 @@ public abstract class TestWriterTest
     {
     return new File( getResourceDir(), testDefName + "-Expected-Test.java");
     }
+  
+  /**
+   * Returns the expected test writer results for the specified test.
+   */
+  protected File getExpectedTestResultsDir( String testName)
+    {
+    return new File( getResourceDir(), testName + "-Expected");
+    }
 
   /**
    * Runs the given Runnable and returns the results printed to standard output
@@ -277,6 +338,14 @@ public abstract class TestWriterTest
       {
       throw new RuntimeException( "Can't get resource directory path", e);
       }
+    }
+
+  /**
+   * Returns the location of a resource file subdirectory.
+   */
+  protected File getResourceDir( String subDir)
+    {
+    return new File( getResourceDir(), subDir);
     }
 
   /**

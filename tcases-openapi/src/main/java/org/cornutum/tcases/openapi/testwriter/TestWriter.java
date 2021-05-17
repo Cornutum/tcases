@@ -101,7 +101,7 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
   /**
    * Returns the test name derived from the given source and target.
    */
-  protected String getTestName( S source, T target)
+  public String getTestName( S source, T target)
     {
     return
       getTestName(

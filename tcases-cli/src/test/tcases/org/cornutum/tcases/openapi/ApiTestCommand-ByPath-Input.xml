@@ -1,0 +1,41 @@
+<System name="ApiTestCommand">
+    <Function name="run">
+        <Input>
+            <Var name="ByPath">
+                <Value name="Yes"/>
+            </Var>
+            <Var name="Test-Name">
+                <Value name="Default"/>
+                <Value name="Simple"/>
+                <Value name="Fqn" property="testNameFqn"/>
+            </Var>
+            <VarSet name="Output-File">
+                <Var name="Defined">
+                    <Value name="Yes" property="outputFile"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Path" when="outputFile">
+                    <Value name="Relative"/>
+                    <Value name="Absolute"/>
+                </Var>
+            </VarSet>
+            <VarSet name="Output-Dir">
+                <Var name="Defined">
+                    <Value name="Yes" property="outputDir"/>
+                    <Value name="No"/>                    
+                </Var>
+            </VarSet>
+            <Var name="Paths">
+                <Value name="Default"/>
+                <Value name="One"/>
+                <Value name="Many"/>
+            </Var>
+            <VarSet name="Api-Spec">
+                <Var name="Defined">
+                    <Value name="Yes" property="apiSpec"/>
+                    <Value name="No"/>                    
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
