@@ -1612,7 +1612,7 @@ public class ApiTestCommand
         testTarget.setDir( apiSpecFile.getParentFile());
         }
 
-      logger_.info( "Writing API test using {} and {}", testWriter, testCaseWriter);
+      logger_.info( "Writing API tests using {} and {}", testWriter, testCaseWriter);
       if( options.isByPath())
         {
         String testBaseName = getTestName( testWriter, testSource, testTarget);
