@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Runs tests for the {@link ApiTestMojo} plugin.
@@ -40,6 +41,32 @@ public class ApiTestMojoTest extends AbstractMojoTest
     assertThat( "Out dir", apiTestMojo.getOutDirFile(), is( expectedOutDir));
 
     List<String> expectedTests = Arrays.asList( "org/cornutum/api/MyTest.java");
+    assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
+    }
+  
+  @Test
+  public void execute_byPath() throws Exception
+    {
+    // Given...
+    File baseDirTest = getBaseDirTest( "api-test-project-byPath");
+
+    // When...
+    ApiTestMojo apiTestMojo = (ApiTestMojo) mojoHelper.lookupConfiguredMojo( baseDirTest, "api-test");
+    clean( apiTestMojo.getOutDirFile());
+    apiTestMojo.execute();
+
+    // Then...
+    File expectedInputDir = new File( baseDirTest, "src/test/tcases/openapi");
+    assertThat( "Input dir", apiTestMojo.getInputDirFile(), is( expectedInputDir));
+
+    File expectedOutDir = new File( baseDirTest, "target/generated-test-sources/java");
+    assertThat( "Out dir", apiTestMojo.getOutDirFile(), is( expectedOutDir));
+
+    List<String> expectedTests =
+      Arrays.asList( "Post", "Posts", "Users")
+      .stream()
+      .map( path -> String.format( "org/cornutum/api/OpenAPIRequestTestCases_%sTest.java", path))
+      .collect( toList());
     assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
     }
   
