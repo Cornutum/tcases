@@ -33,6 +33,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
 
@@ -207,6 +208,19 @@ public class ApiTestCommand
    * If defined, tests are generated only for the specified API resource paths. <I>paths</I> must be a comma-separated list
    * of resource paths defined in the <I>apiSpec</I>.
    * If omitted, tests are generated for all resource paths.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-S</NOBR>
+   * </TD>
+   * <TD>
+   * If specified, a separate test file is generated for each of the API resource paths specified by the <I>P</I> option,
+   * each containing tests for a single path. Otherwise, a single test file is generated containing tests for all paths.
    * </TD>
    * </TR>
    *
@@ -495,6 +509,11 @@ public class ApiTestCommand
         setPaths( Arrays.asList( args[i].split( " *, *")));
         }
 
+      else if( arg.equals( "-S"))
+        {
+        setByPath( true);
+        }
+
       else if( arg.equals( "-O"))
         {
         i++;
@@ -669,6 +688,10 @@ public class ApiTestCommand
                "  -P paths        If defined, tests are generated only for the specified API resource paths. The paths",
                "                  option must be a comma-separated list of resource paths defined in the apiSpec. If",
                "                  omitted, tests are generated for all resource paths.",
+               "",
+               "  -S              If specified, a separate test file is generated for each of the API resource paths",
+               "                  specified by the -P option, each containing tests for a single path. Otherwise, a",
+               "                  single test file is generated containing tests for all paths.",
                "",
                "  -O operations   If defined, tests are generated only for the specified HTTP methods. The operations",
                "                  option must be a comma-separated list of path operations defined in the apiSpec. If",
@@ -916,6 +939,22 @@ public class ApiTestCommand
     public Set<String> getPaths()
       {
       return paths_;
+      }
+
+    /**
+     * Returns true if generating a separate test file for each request path.
+     */
+    public void setByPath( boolean byPath)
+      {
+      byPath_ = byPath;
+      }
+
+    /**
+     * Returns true if generating a separate test file for each request path.
+     */
+    public boolean isByPath()
+      {
+      return byPath_;
       }
 
     /**
@@ -1304,7 +1343,8 @@ public class ApiTestCommand
       Optional.ofNullable( getOutFile()).ifPresent( file -> builder.append( " -f ").append( file.getPath()));
       Optional.ofNullable( getOutDir()).ifPresent( dir -> builder.append( " -o ").append( dir.getPath()));   
       Optional.ofNullable( getTimeout()).ifPresent( timeout -> builder.append( " -u ").append( timeout));   
-      Optional.ofNullable( getMocoTestConfig()).ifPresent( moco -> builder.append( " -M ").append( moco.getPath()));   
+      Optional.ofNullable( getMocoTestConfig()).ifPresent( moco -> builder.append( " -M ").append( moco.getPath()));
+      if( isByPath()) builder.append( " -S");
       Optional.ofNullable( getPaths()).ifPresent( paths -> builder.append( " -P ").append( paths.stream().collect( joining( ","))));   
       Optional.ofNullable( getOperations()).ifPresent( operations -> builder.append( " -O ").append( operations.stream().collect( joining( ","))));
       builder.append( " -c ").append( String.format( "%s,%s", getModelOptions().getConditionNotifier(), getResolverContext().getNotifier()));
@@ -1331,6 +1371,7 @@ public class ApiTestCommand
     private File outFile_;
     private Long timeout_;
     private File mocoTestConfig_;
+    private boolean byPath_;
     private Set<String> paths_;
     private Set<String> operations_;
     private String contentType_;
@@ -1416,6 +1457,17 @@ public class ApiTestCommand
       public Builder paths( String... paths)
         {
         options_.setPaths( Arrays.asList( paths));
+        return this;
+        }
+
+      public Builder byPath()
+        {
+        return byPath( true);
+        }
+
+      public Builder byPath( boolean byPath)
+        {
+        options_.setByPath( byPath);
         return this;
         }
 
@@ -1561,8 +1613,34 @@ public class ApiTestCommand
         }
 
       logger_.info( "Writing API test using {} and {}", testWriter, testCaseWriter);
-      logger_.info( "Writing API test to {}", Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
-      writeTest( testWriter, testSource, testTarget);
+      if( options.isByPath())
+        {
+        String testBaseName = getTestName( testWriter, testSource, testTarget);
+        File testBaseFile = getTestFile( testWriter, testSource, testTarget);
+
+        testTarget.setFile( (File)null);
+        testTarget.setDir(
+          Optional.ofNullable( testTarget.getDir())
+          .orElse(
+            Optional.ofNullable( testBaseFile)
+            .map( File::getParentFile)
+            .orElse( null)));
+        
+        Set<String> testPaths = Optional.ofNullable( options.getPaths()).orElse( testSource.getTestDef().getPaths());
+        for( String testPath : testPaths)
+          {
+          testSource.setPaths( singleton( testPath));
+          testTarget.setName( String.format( "%s_%s", testBaseName, testPath));
+
+          logger_.info( "Writing API tests for {} to {}", testPath, Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
+          writeTest( testWriter, testSource, testTarget);
+          }
+        }
+      else
+        {
+        logger_.info( "Writing all API tests to {}", Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
+        writeTest( testWriter, testSource, testTarget);
+        }
       }
     }
 
@@ -1597,6 +1675,39 @@ public class ApiTestCommand
       }
 
     return testFile;
+    }
+
+  /**
+   * Returns the {@link TestWriter#getTestName test name} for the given {@link TestWriter}.
+   */
+  private static String getTestName( TestWriter<?,?> testWriter, TestSource testSource, TestTarget testTarget)
+    {
+    Throwable failure = null;
+    String testName = null;
+
+    try
+      {
+      testName =
+        (String)
+        testWriter.getClass()
+        .getMethod( "getTestName", TestSource.class, TestTarget.class)
+        .invoke( testWriter, testSource, testTarget);
+      }
+    catch( InvocationTargetException ite)
+      {
+      failure = ite.getCause();
+      }
+    catch( Exception e)
+      {
+      failure = e;
+      }
+
+    if( failure != null)
+      {
+      throw new TestWriterException( String.format( "Can't get test name for %s", testWriter), failure);
+      }
+
+    return testName;
     }
 
   /**

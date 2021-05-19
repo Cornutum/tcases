@@ -87,6 +87,7 @@ public class ApiTestMojo extends AbstractMojo
         options.setBaseClass( getBaseClass());
         options.setTimeout( getTimeout());
         options.setMocoTestConfig( getMocoTestConfigFile());
+        options.setByPath( getByPath());
         options.setPaths( getPaths());
         options.setOperations( getOperations());
         options.setContentType( getContentType());
@@ -453,6 +454,24 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
+   * If true, a separate test file is generated for each of the API resource paths specified by the {@link #getPaths} option,
+   * each containing tests for a single path. Otherwise, a single test file is generated containing tests for all paths.
+   */
+  public void setByPath( boolean byPath)
+    {
+    this.byPath = byPath;
+    }
+
+  /**
+   * If true, a separate test file is generated for each of the API resource paths specified by the {@link #getPaths} option,
+   * each containing tests for a single path. Otherwise, a single test file is generated containing tests for all paths.
+   */
+  public boolean getByPath()
+    {
+    return byPath;
+    }
+
+  /**
    * Changes request paths for which tests are generated.
    */
   public void setPaths( Set<String> paths)
@@ -621,6 +640,13 @@ public class ApiTestMojo extends AbstractMojo
    */
   @Parameter(property="mocoTestConfig")
   private String mocoTestConfig;
+
+  /**
+   * If true, a separate test file is generated for each of the API resource paths specified by the <B><CODE>paths</CODE></B> option,
+   * each containing tests for a single path. Otherwise, a single test file is generated containing tests for all paths.
+   */
+  @Parameter(property="byPath",defaultValue="false")
+  private boolean byPath;
 
   /**
    * If defined, tests are generated only for the specified API resource paths. 
