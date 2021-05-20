@@ -1,5 +1,28 @@
 # Release Notes #
 
+## 3.6.0 ##
+
+This release adds new options for Tcases for OpenAPI to improve the quality of generated executable tests.
+
+  * **Test method timeout**
+
+    Each test method submits a single API request, but it's possible for a faulty request to run forever.  To handle this
+    situation, you can specify a timeout that defines the maximum time (in milliseconds) to complete an individual test
+    method. If a method continues past this time limit, a test failure occurs. When running `tcases-api-test` from the command
+    line, use the `-u` option (for details, run `tcases-api-test -help`). When using Maven to run `tcases:api-test`, use
+    the `timeout` option (for details, run `mvn tcases:help -B -Dgoal=api-test -Ddetail=true`).
+    [[171](https://github.com/Cornutum/tcases/issues/171)]
+    
+  * **Generate a separate test file for each API resource path**
+
+    By default, Tcases for OpenAPI creates a single test source file that contains the test cases generated for all resource
+    paths defined by the OpenAPI spec. But that can be unwieldy for an extensive API that defines a large number of
+    endpoints. To better deal with this situation, you have the option to generate multiple test source files, each containing
+    the test cases for a single API resource path. When running `tcases-api-test` from the command
+    line, use the `-S` option (for details, run `tcases-api-test -help`). When using Maven to run `tcases:api-test`, use
+    the `byPath` option (for details, run `mvn tcases:help -B -Dgoal=api-test -Ddetail=true`).
+    [[168](https://github.com/Cornutum/tcases/issues/168)]
+
 ## 3.5.1 ##
 
 This release provides improvements to Tcases for OpenAPI when generating API tests using the

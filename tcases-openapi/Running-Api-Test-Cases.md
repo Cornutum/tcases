@@ -8,6 +8,7 @@
     - [How does it work?](#how-does-it-work)
     - [Example: REST Assured and JUnit](#example-rest-assured-and-junit) 
     - [Example: Create a specific TestNG class](#example-create-a-specific-testng-class)
+    - [Example: Organize tests by API resource path](#example-organize-tests-by-api-resource-path)
     - [Example: Create tests from examples](#example-create-tests-from-examples)
     - [Understanding the TestWriter API](#understanding-the-testwriter-api)    
   - [Generating request inputs](#generating-request-inputs)
@@ -103,8 +104,8 @@ You can see a summary of the generation process in the `tcases-api-test.log` fil
 12:48:36.181 INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[GET_pets]: Created 6 failure test cases
 12:48:36.187 INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[GET_pets]: Completed 11 test cases
 ...
-12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
-12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing API test to src/test/java/org/examples/SwaggerPetstoreTest.java
+12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
+12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing all API tests to src/test/java/org/examples/SwaggerPetstoreTest.java
 ```
 
 And you can see the generated source code in `SwaggerPetstoreTest.java`:
@@ -155,8 +156,8 @@ You can see the difference in the `tcases-api-test.log` file:
 14:20:18.574 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
 14:20:18.905 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using random seed=345589
 ...
-14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using TestNgTestWriter[] and RestAssuredTestCaseWriter[]
-14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API test to ./MyTests.java
+14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using TestNgTestWriter[] and RestAssuredTestCaseWriter[]
+14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing all API tests to ./MyTests.java
 ```
 
 And also in the the generated source code in `MyTests.java`:
@@ -186,6 +187,29 @@ public class MyTests extends MyBaseClass {
 }
 ```
 
+### Example: Organize tests by API resource path ###
+
+By default, Tcases for OpenAPI creates a single test source file that contains the test cases generated for all
+resource paths defined by the OpenAPI spec. But that can be unwieldy for an extensive API that defines a large
+number of endpoints. To better deal with this situation, you have the option to generate multiple test source files,
+each containing the test cases for a single API resource path.
+
+```bash
+# Generate JUnit tests for requests defined by the examples in 'petstore-expanded.yaml'.
+# Write test cases for each API path to a separate test source file
+tcases-api-test -S -n org.examples.Petstore petstore-expanded.yaml
+```
+
+You can see a summary of the result in the `tcases-api-test.log` file:
+
+```
+16:51:05.341 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
+16:51:05.346 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+...
+16:51:05.955 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
+16:51:05.956 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests for /pets to ./Petstore_PetsTest.java
+16:51:06.005 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests for /pets/{id} to ./Petstore_PetsIdTest.java
+```
 ### Example: Create tests from examples  ###
 
 By default, Tcases for OpenAPI generates test cases using the schemas defined by the OpenAPI spec.
@@ -204,8 +228,8 @@ You can see a summary of the result in the `tcases-api-test.log` file:
 12:48:35.773 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
 12:48:36.114 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using API examples
 ...
-12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
-12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing API test to ./PetstoreExamplesTest.java
+12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
+12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing all API tests to ./PetstoreExamplesTest.java
 ```
 
 ### Understanding the TestWriter API ###
