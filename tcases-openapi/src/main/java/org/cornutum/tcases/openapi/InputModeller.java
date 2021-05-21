@@ -2077,9 +2077,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         exampleSchema =
           new ComposedSchema()
           .oneOf(
-            ( IntStream.range( 0, members.size())
-              .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
-              .collect( toList())));
+            IntStream.range( 0, members.size())
+            .mapToObj( i -> resultFor( String.format( "%s[%s]", oneOf? "oneOf" : "anyOf", i), () -> exampleSchemaFor( members.get(i)))) 
+            .collect( toList()));
         }
 
       else if( "array".equals( instanceType))

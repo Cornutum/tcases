@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.cornutum.tcases</groupId>
     <artifactId>tcases</artifactId>
-    <version>3.5.2-SNAPSHOT</version>
+    <version>3.6.0</version>
   </parent>
 
   <artifactId>tcases-maven-plugin</artifactId>
