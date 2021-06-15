@@ -1135,7 +1135,7 @@ public class TcasesCommand
       {
       exitCode = 1;
       }
-    catch( Exception e)
+    catch( Throwable e)
       {
       exitCode = 1;
       e.printStackTrace( System.err);
