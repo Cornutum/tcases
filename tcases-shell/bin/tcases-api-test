@@ -6,4 +6,5 @@
 #######################################################################
 
 pgm=`basename "$0"`
-exec tcases-exec $pgm org.cornutum.tcases.openapi.ApiTestCommand "$@"
+binDir=`dirname "$0"`
+exec $binDir/tcases-exec $pgm org.cornutum.tcases.openapi.ApiTestCommand "$@"
