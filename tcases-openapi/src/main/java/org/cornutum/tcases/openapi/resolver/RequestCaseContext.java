@@ -17,7 +17,7 @@ public class RequestCaseContext extends ExecutionContext<RequestCaseException>
   /**
    * Returns an exception to throw for the given failure.
    */
-  protected RequestCaseException whenFailure( Exception e)
+  protected RequestCaseException whenFailure( Throwable e)
     {
     return new RequestCaseException( getLocation(), e);
     }

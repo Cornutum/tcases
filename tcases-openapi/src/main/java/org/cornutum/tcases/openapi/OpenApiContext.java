@@ -15,7 +15,7 @@ public class OpenApiContext extends ExecutionContext<OpenApiException>
   /**
    * Returns an exception to throw for the given failure.
    */
-  protected OpenApiException whenFailure( Exception e)
+  protected OpenApiException whenFailure( Throwable e)
     {
     return
       OpenApiException.class.isAssignableFrom( e.getClass())

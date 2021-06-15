@@ -29,7 +29,7 @@ public abstract class ExecutionContext<E extends RuntimeException>
       {
       return supplier.get();
       }
-    catch( Exception e)
+    catch( Throwable e)
       {
       throw whenFailure( e);
       }
@@ -49,7 +49,7 @@ public abstract class ExecutionContext<E extends RuntimeException>
       {
       action.run();
       }
-    catch( Exception e)
+    catch( Throwable e)
       {
       throw whenFailure( e);
       }
@@ -62,7 +62,7 @@ public abstract class ExecutionContext<E extends RuntimeException>
   /**
    * Returns an exception to throw for the given failure.
    */
-  protected abstract E whenFailure( Exception e);
+  protected abstract E whenFailure( Throwable e);
 
   /**
    * Returns the path to the current context.
