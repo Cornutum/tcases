@@ -62,8 +62,7 @@ public class SchemaAnalyzerTest extends OpenApiTest
       "This schema can't be satisfied by any instance");
 
     assertWarnings(
-      "UnsatisfiableRequestBody,/request,GET,requestBody,application/json,alpha: This schema can't be satisfied by any instance of types=[number].",
-      "UnsatisfiableRequestBody,/request,GET,requestBody,application/json: This schema can't be satisfied by any instance of types=[object].");
+      "UnsatisfiableRequestBody,/request,GET,requestBody,application/json,alpha: This schema can't be satisfied by any instance of types=[number].");
     }
   
   @Test
@@ -95,8 +94,7 @@ public class SchemaAnalyzerTest extends OpenApiTest
       "This schema can't be satisfied by any instance");
 
     assertWarnings(
-      "UnsatisfiableHeader,/request,GET,200,headers,x-my-secret-header,items: This schema can't be satisfied by any instance of types=null.",
-      "UnsatisfiableHeader,/request,GET,200,headers,x-my-secret-header: This schema can't be satisfied by any instance of types=[array].");
+      "UnsatisfiableHeader,/request,GET,200,headers,x-my-secret-header,items: This schema can't be satisfied by any instance of types=null.");
     }
 
   /**

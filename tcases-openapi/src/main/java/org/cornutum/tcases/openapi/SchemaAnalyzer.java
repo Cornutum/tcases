@@ -71,8 +71,10 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
     {
     Schema<?> resolved = resolveSchema( api, schema);
 
-    if( resolved != null)
+    if( resolved != null && !hasResolvedAll( resolved))
       {
+      setResolvedAll( resolved, false);
+
       Optional.ofNullable( resolved.getNot())
         .ifPresent( not -> resolved.setNot( resultFor( "not", () -> resolve( api, not))));
       
@@ -83,6 +85,8 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
         .ifPresent( array -> resolveItems( api, array));
 
       resolveProperties( api, resolved);
+
+      setResolvedAll( resolved, true);
       }
     
     return resolved;
@@ -147,9 +151,10 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
    */
   private void analyzeValidTypes( OpenAPI api, Schema<?> schema)
     {
-    if( schema != null)
+    if( schema != null && !hasValidTypesAll( schema))
       {
       validTypes( api, schema);
+      setValidTypesAll( schema, false);
 
       Optional.ofNullable( schema.getNot())
         .ifPresent( not -> doFor( "not", () -> analyzeValidTypes( api, not)));
@@ -167,6 +172,7 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
         .filter( additional -> additional instanceof Schema)
         .ifPresent( additional -> doFor( "additionalProperties", () -> analyzeValidTypes( api, (Schema<?>) additional)));
 
+      setValidTypesAll( schema, true);
       }
     }
 
@@ -340,44 +346,6 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Analyzes the disjunctive normal form of the items schema for the given array.
-   * If the items schema is unsatisfiable, returns {@link Dnf#UNDEFINED}.
-   * Otherwise, returns {@link Dnf#NONEXISTENT}.
-   */
-  private Dnf undefinedArrayItems( ArraySchema array)
-    {
-    return
-      resultFor( "items",
-        () -> 
-        Optional.of( analyzeDnf( array.getItems()))
-        .filter( Dnf::undefined)
-        .orElse( Dnf.NONEXISTENT));
-    }
-
-  /**
-   * Analyzes the disjunctive normal form of each property schema for the given object.
-   * If any property schema is unsatisfiable, returns {@link Dnf#UNDEFINED}.
-   * Otherwise, returns {@link Dnf#NONEXISTENT}.
-   */
-  private Dnf undefinedObjectProperties( Schema<?> object)
-    {
-    return
-      allOf(
-        Optional.ofNullable( object.getProperties())
-        .flatMap(
-          properties -> properties.keySet().stream()
-          .map( p -> resultFor( p, () -> analyzeDnf( toPropertySchema( object.getProperties().get( p)))))
-          .filter( Dnf::undefined)
-          .findFirst())
-        .orElse( Dnf.NONEXISTENT),
-
-        Optional.ofNullable( additionalPropertiesSchema( object))
-        .map( ap -> resultFor( "additionalProperties", () -> analyzeDnf( toPropertySchema( ap))))
-        .filter( Dnf::undefined)
-        .orElse( Dnf.NONEXISTENT));
-    }
-
-  /**
    * Returns the disjunctive normal form for the given schema that validates the given instance types.
    */
   private Dnf dnfFor( Schema<?> schema, Set<String> validTypes)
@@ -386,14 +354,16 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
       Optional.ofNullable( getDnf( schema))
       .orElseGet( () -> {
 
-        Dnf dnf =
+        setDnf(
+          schema,
           withWarningIf(
             toDnf( schema, validTypes),
             Dnf::unsatisfiable,
-            String.format( "This schema can't be satisfied by any instance of types=%s", validTypes));
-          
-        setDnf( schema, dnf);
-        return dnf;
+            String.format( "This schema can't be satisfied by any instance of types=%s", validTypes)));
+
+        analyzeSubDnfs( schema);
+        
+        return getDnf( schema);
         });
     }
 
@@ -404,7 +374,7 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
     {
     return
       allOf(
-        withSubSchemas( schema),
+        leafDnf( schema),
 
         getNotDnf( schema, validTypes),
 
@@ -442,43 +412,59 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
       Optional.ofNullable( getDnf( schema))
       .orElseGet( () -> {
 
-        Dnf dnf =
+        setDnf(
+          schema,
           withWarningIf(
             toNotDnf( schema, validTypes),
             Dnf::unsatisfiable,
-            String.format( "This schema can't be satisfied by any instance of types=%s", validTypes));
+            String.format( "This schema can't be satisfied by any instance of types=%s", validTypes)));
+
+        analyzeSubDnfs( schema);
         
-        setDnf( schema, dnf);
-        return dnf;
+        return getDnf( schema);
         });
     }
 
   /**
-   * Returns the disjunctive normal form of the given schema, combined with results of analyzing
-   * any subschema assertions for array items and object properties.
+   * Returns the disjunctive normal form of the leaf assertions of the given schema.
    */
-  private Dnf withSubSchemas( Schema<?> schema)
+  private Dnf leafDnf( Schema<?> schema)
     {
-    Dnf undefinedArrayItems =
-      Optional.ofNullable( asArraySchema( schema))
-        .filter( array -> array.getItems() != null)
-        .map( this::undefinedArrayItems)
-      .orElse( Dnf.NONEXISTENT);
-
-    Dnf undefinedProperties =
-      Optional.ofNullable( schema.getProperties())
-        .map( p -> undefinedObjectProperties( schema))
-        .orElse(
-          Optional.ofNullable( additionalPropertiesSchema( schema))
-          .map( ap -> undefinedObjectProperties( schema))
-          .orElse( Dnf.NONEXISTENT));
-
-    Dnf leafSchema =
+    return
       Optional.ofNullable( leafSchemaOf( schema))
       .map( Dnf::of)
       .orElse( Dnf.NONEXISTENT);
-    
-    return allOf( leafSchema, undefinedArrayItems, undefinedProperties);
+    }
+
+  /**
+   * Determines the disjunctive normal form of any subschemas for array items or object properties.
+   */
+  private void analyzeSubDnfs( Schema<?> schema)
+    {
+    Optional<Dnf> undefinedArrayItems = 
+      Optional.ofNullable( asArraySchema( schema))
+      .flatMap( array -> resultFor( "items", () -> Optional.of( analyzeDnf( array.getItems())).filter( Dnf::undefined)));
+
+    Optional<Dnf> undefinedProperties =
+      Optional.ofNullable( schema.getProperties())
+      .flatMap(
+        properties -> properties.keySet().stream()
+        .map( p -> resultFor( p, () -> analyzeDnf( toPropertySchema( schema.getProperties().get( p)))))
+        .collect( toList())
+        .stream()
+        .filter( Dnf::undefined)
+        .findFirst());
+
+    Optional<Dnf> undefinedAdditionalProperties =
+      Optional.ofNullable( additionalPropertiesSchema( schema))
+      .map( ap -> resultFor( "additionalProperties", () -> analyzeDnf( toPropertySchema( ap))))
+      .filter( Dnf::undefined);
+
+    if( undefinedArrayItems.isPresent() || undefinedProperties.isPresent() || undefinedAdditionalProperties.isPresent())
+      {
+      // If any subschema is unsatisfiable, so is this schema
+      setDnf( schema, Dnf.UNDEFINED);
+      }
     }
 
   /**
@@ -488,7 +474,7 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
     {
     return
       unionOf(
-        not( withSubSchemas( schema)),
+        not( leafDnf( schema)),
 
         not( getNotDnf( schema, validTypes)),
 
