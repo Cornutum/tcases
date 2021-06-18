@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Media Types",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/examples": {
+            "post": {
+                "requestBody": {
+                        "content": {
+                            "example/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "text/* ;lang=gb": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "application/*+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "model/*+json ;lang=gb; enc=utf8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "example/json  ;lang=gb": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "text/plain+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            },
+                            "text/xml+xml;lang=gb": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Example"
+                                }
+                            }
+                        } 
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Example": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
