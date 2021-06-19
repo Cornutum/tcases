@@ -240,7 +240,7 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
                 String.format(
                   ".request().body( %s)",
                   stringLiteral(
-                    Optional.ofNullable( getConverter( mediaType))
+                    getConverter( mediaType)
                     .orElseThrow( () -> new TestWriterException( String.format( "No serializer defined for mediaType=%s", mediaType)))
                     .convert( value))));
               }

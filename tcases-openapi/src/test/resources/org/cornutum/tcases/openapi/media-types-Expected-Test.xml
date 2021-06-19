@@ -188,7 +188,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -360,7 +360,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -532,7 +532,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -962,7 +962,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -1048,7 +1048,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -1306,7 +1306,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -1392,7 +1392,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -1650,7 +1650,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -1736,7 +1736,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -2166,7 +2166,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="Other" failure="true">
-          <Has name="excluded" value="&apos;example/*&apos;,&apos;text/* ;lang=gb&apos;,&apos;application/*+json&apos;,&apos;model/*+json ;lang=gb; enc=utf8&apos;,&apos;application/json&apos;,&apos;example/json  ;lang=gb&apos;,&apos;text/plain+xml&apos;,&apos;text/xml+xml;lang=gb&apos;"/>
+          <Has name="excluded" value="&apos;example/*&apos;,&apos;text/*;lang=gb&apos;,&apos;application/*+json&apos;,&apos;model/*+json;lang=gb;enc=utf8&apos;,&apos;application/json&apos;,&apos;example/json;lang=gb&apos;,&apos;text/plain+xml&apos;,&apos;text/xml+xml;lang=gb&apos;"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -2768,7 +2768,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -2854,7 +2854,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -2940,7 +2940,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -3026,7 +3026,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -3112,7 +3112,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -3198,7 +3198,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="text-WPlangEgb">
-          <Has name="mediaType" value="text/* ;lang=gb"/>
+          <Has name="mediaType" value="text/*;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -3800,7 +3800,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -3886,7 +3886,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -3972,7 +3972,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -4058,7 +4058,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -4144,7 +4144,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -4230,7 +4230,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="model-WSjsonPlangEgbPencEutf8">
-          <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+          <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -4832,7 +4832,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -4918,7 +4918,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -5004,7 +5004,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -5090,7 +5090,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -5176,7 +5176,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>
@@ -5262,7 +5262,7 @@
       <Input type="request">
         <Var name="Body.Defined" value="Yes"/>
         <Var name="Body.Media-Type" value="example-jsonPlangEgb">
-          <Has name="mediaType" value="example/json  ;lang=gb"/>
+          <Has name="mediaType" value="example/json;lang=gb"/>
         </Var>
         <Var name="Body.example-W.Type" NA="true"/>
         <Var name="Body.example-W.Value.Property-Count" NA="true"/>

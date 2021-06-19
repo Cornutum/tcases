@@ -14,7 +14,7 @@
                                     "$ref": "#/components/schemas/Example"
                                 }
                             },
-                            "text/* ;lang=gb": {
+                            "text/*;lang=gb": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Example"
                                 }
@@ -24,7 +24,7 @@
                                     "$ref": "#/components/schemas/Example"
                                 }
                             },
-                            "model/*+json ;lang=gb; enc=utf8": {
+                            "model/*+json;lang=gb;enc=utf8": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Example"
                                 }
@@ -34,7 +34,7 @@
                                     "$ref": "#/components/schemas/Example"
                                 }
                             },
-                            "example/json  ;lang=gb": {
+                            "example/json;lang=gb": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Example"
                                 }

@@ -17,19 +17,19 @@
             <Has name="mediaType" value="example/*"/>
           </Value>
           <Value name="text-WPlangEgb" property="text-WPlangEgb">
-            <Has name="mediaType" value="text/* ;lang=gb"/>
+            <Has name="mediaType" value="text/*;lang=gb"/>
           </Value>
           <Value name="application-WSjson" property="application-WSjson">
             <Has name="mediaType" value="application/*+json"/>
           </Value>
           <Value name="model-WSjsonPlangEgbPencEutf8" property="model-WSjsonPlangEgbPencEutf8">
-            <Has name="mediaType" value="model/*+json ;lang=gb; enc=utf8"/>
+            <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
           </Value>
           <Value name="application-json" property="application-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
           <Value name="example-jsonPlangEgb" property="example-jsonPlangEgb">
-            <Has name="mediaType" value="example/json  ;lang=gb"/>
+            <Has name="mediaType" value="example/json;lang=gb"/>
           </Value>
           <Value name="text-plainSxml" property="text-plainSxml">
             <Has name="mediaType" value="text/plain+xml"/>
@@ -38,7 +38,7 @@
             <Has name="mediaType" value="text/xml+xml;lang=gb"/>
           </Value>
           <Value name="Other" failure="true">
-            <Has name="excluded" value="&apos;example/*&apos;,&apos;text/* ;lang=gb&apos;,&apos;application/*+json&apos;,&apos;model/*+json ;lang=gb; enc=utf8&apos;,&apos;application/json&apos;,&apos;example/json  ;lang=gb&apos;,&apos;text/plain+xml&apos;,&apos;text/xml+xml;lang=gb&apos;"/>
+            <Has name="excluded" value="&apos;example/*&apos;,&apos;text/*;lang=gb&apos;,&apos;application/*+json&apos;,&apos;model/*+json;lang=gb;enc=utf8&apos;,&apos;application/json&apos;,&apos;example/json;lang=gb&apos;,&apos;text/plain+xml&apos;,&apos;text/xml+xml;lang=gb&apos;"/>
           </Value>
         </Var>
         <VarSet name="example-W" when="example-W">

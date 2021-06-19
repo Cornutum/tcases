@@ -1,0 +1,45 @@
+<System name="MediaRange">
+    <Function name="Of">
+        <Input>
+            <Var name="Type">
+                <Value name="*"/>
+                <Value name="Defined"/>
+                <Value name="Missing" failure="true"/>
+            </Var>
+            <Var name="Subtype">
+                <Value name="*"/>
+                <Value name="Defined"/>
+                <Value name="Missing" failure="true"/>
+                <Value name="Incomplete-Prefix" failure="true" when="suffix"/>
+            </Var>
+            <Var name="Suffix">
+                <Value name="Undefined"/>
+                <Value name="Defined" property="suffix"/>
+                <Value name="Incomplete" failure="true"/>
+            </Var>
+            <VarSet name="Parameters">
+                <Var name="Count">
+                    <Value name="None"/>
+                    <Value name="One" property="parameters"/>
+                    <Value name="Many" property="parameters"/>
+                </Var>
+                <Var name="Separator" when="parameters">
+                    <Value name="Defined"/>
+                    <Value name="Missing" failure="true"/>
+                </Var>
+                <Var name="Name" when="parameters">
+                    <Value name="Defined"/>
+                    <Value name="Missing" failure="true"/>
+                </Var>
+                <Var name="Equals" when="parameters">
+                    <Value name="Defined"/>
+                    <Value name="Missing" failure="true"/>
+                </Var>
+                <Var name="Value" when="parameters">
+                    <Value name="Defined"/>
+                    <Value name="Missing" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

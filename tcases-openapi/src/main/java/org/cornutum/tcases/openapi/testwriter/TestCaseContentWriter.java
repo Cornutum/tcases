@@ -13,8 +13,9 @@ import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
 import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.ToString;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -48,6 +49,7 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
       .put( "text/*", textPlain)
       .put( "text/plain", textPlain)
       .put( "application/json", new DataValueJson())
+      .put( "application/*+json", new DataValueJson())
       .build();
     }
   
@@ -72,77 +74,39 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
    * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">media-range</a> with no wild cards.
    * Returns the serializer registered for the media type that most closely matches the given media type.
    */
-  public DataValueConverter<String> getConverter( String mediaType)
+  public Optional<DataValueConverter<String>> getConverter( String mediaType)
     {
-    return
-      Optional.ofNullable(
-        Optional.of( mediaType)
-        .filter( mt -> converters_.containsKey( mt))
-        .orElse( mediaTypeMatching( mediaType)))
-      .map( mt -> converters_.get( mt))
-      .orElse( null);
-    }
+    MediaRange mediaRange = MediaRange.of( mediaType);
 
+    List<String> alternatives = new ArrayList<String>();
+    alternatives.add( mediaRange.toString());
+
+    Optional.ofNullable( mediaRange.suffix())
+      .ifPresent( suffix -> {
+        alternatives.add( String.format( "%s/%s+%s", mediaRange.type(), mediaRange.subtype(), mediaRange.suffix()));
+        alternatives.add( String.format( "%s/*+%s", mediaRange.type(), mediaRange.suffix()));
+        });
+
+    alternatives.add( String.format( "%s/%s", mediaRange.type(), mediaRange.subtype()));
+    alternatives.add( String.format( "%s/*", mediaRange.type()));
+    alternatives.add( "*/*");
+
+    return
+      alternatives.stream()
+      .filter( alternative -> converters_.containsKey( alternative))
+      .map( alternative -> converters_.get( alternative))
+      .findFirst();
+    }
+  
   /**
    * Return the valid media type represented by the given string.
    */
   private String validMediaType( String mediaType)
     {
     return
-      Optional.ofNullable( mediaType)
-      .filter( mt -> mediaRangeMatcher( mt) != null)
-      .orElse( "*/*");
-    }
-
-  /**
-   * Returns the registered media type that most closely matches the given <CODE>mediaType</CODE>.
-   */
-  private String mediaTypeMatching( String mediaType)
-    {
-    Matcher mediaRange = mediaRangeMatcher( mediaType);
-    String type = type( mediaRange);
-    String subtype = subtype( mediaRange);
-    if( ANY.equals( type) || ANY.equals( subtype))
-      {
-      throw new IllegalArgumentException( String.format( "Can't match mediaType='%s' -- no wildcards allowed", mediaType));
-      }
-
-    return
-      Arrays.asList(
-        String.format( "%s/%s", type, subtype),
-        String.format( "%s/*", type),
-        "*/*")
-      .stream()
-      .filter( mt -> converters_.containsKey( mt))
-      .findFirst()
-      .orElse( null);
-    }
-
-  /**
-   * Returns the Matcher describing the given <CODE>mediaType</CODE> as a media range.
-   */
-  private Matcher mediaRangeMatcher( String mediaType)
-    {
-    return
-      Optional.of( mediaRange_.matcher( mediaType))
-      .filter( Matcher::matches)
-      .orElseThrow( () -> new IllegalArgumentException( String.format( "'%s' is not a valid media range", mediaType)));
-    }
-
-  /**
-   * Return the "type" from a "type/subtype" media range.
-   */
-  private String type( Matcher mediaRangeMatcher)
-    {
-    return mediaRangeMatcher.group(1);
-    }
-
-  /**
-   * Return the "subtype" from a "type/subtype" media range.
-   */
-  private String subtype( Matcher mediaRangeMatcher)
-    {
-    return mediaRangeMatcher.group(2);
+      mediaType == null
+      ? "*/*"
+      : MediaRange.of( mediaType).toString();
     }
 
   public String toString()
@@ -153,6 +117,84 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
     }
 
   private Map<String,DataValueConverter<String>> converters_ = new HashMap<String,DataValueConverter<String>>();
-  private static final Pattern mediaRange_ = Pattern.compile( "([^\\s/]+)/([^\\s/]+)(?:;.*)?");
-  private static final String ANY = "*";
+
+  /**
+   * Represents a <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">media range</a> definition.
+   */
+  public static class MediaRange
+    {
+    /**
+     * Creates a new MediaRange instance.
+     */
+    public static MediaRange of( String text)
+      {
+      return new MediaRange( text);
+      }
+
+    /**
+     * Creates a new MediaRange instance.
+     */
+    private MediaRange( String text)
+      {
+      Matcher matcher =
+        Optional.of( mediaRange_.matcher( text))
+        .filter( Matcher::matches)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "'%s' is not a valid media range", text)));
+
+      type_ = matcher.group(1);
+      subtype_ = matcher.group(2);
+      suffix_ = matcher.group(3);
+      parameter_ = matcher.group(4);
+      }
+    
+    /**
+     * Return the "type" from this media range.
+     */
+    public String type()
+      {
+      return type_;
+      }
+
+    /**
+     * Return the "subtype" from this media range.
+     */
+    public String subtype()
+      {
+      return subtype_;
+      }
+
+    /**
+     * Return the "suffix" from this media range.
+     */
+    public String suffix()
+      {
+      return suffix_;
+      }
+
+    /**
+     * Return the "parameter" from this media range.
+     */
+    public String parameter()
+      {
+      return parameter_;
+      }
+
+    public String toString()
+      {
+      return
+        String.format(
+          "%s/%s%s%s",
+          type_,
+          subtype_,
+          Optional.ofNullable( suffix_).map( suffix -> String.format( "+%s", suffix)).orElse( ""),
+          Optional.ofNullable( parameter_).orElse( ""));          
+      }
+    
+    private final String type_;
+    private final String subtype_;
+    private final String suffix_;
+    private final String parameter_;
+    
+    private static final Pattern mediaRange_ = Pattern.compile( "([^\\s/]+)/([^\\s+;]+)(?:\\+([^\\s;]+))?((?:;[^\\s;=]+=[^\\s;=]+)+)?");
+    }
   }
