@@ -1,5 +1,21 @@
 # Release Notes #
 
+## 3.6.1 ##
+
+This release fixes the following issues.
+
+  * **Duplicate variable/value name defined for media types** [[178](https://github.com/Cornutum/tcases/issues/178)]
+
+    This issue concerns the input model created by Tcases for OpenAPI for any `content` object in an OpenAPI document. This
+    portion of the input model defines variables for each of the media types for the `content`. The names of these variables and
+    their values must be identifiers, which are generated from the media type name. But in some cases, the same identifier could
+    be produced for two different media types.  A change to the form of the generated identifier now ensures that
+    unique values are produced for each media type.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.0.26.
+
 ## 3.6.0 ##
 
 This release adds new options for Tcases for OpenAPI to improve the quality of generated executable tests.

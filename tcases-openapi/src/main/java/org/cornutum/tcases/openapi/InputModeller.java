@@ -3079,7 +3079,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private String mediaTypeVarName( String mediaType)
     {
-    return functionPathName( mediaType);
+    return
+      Arrays.stream( mediaType.split( "/"))
+      .map( part -> {
+        return
+          toIdentifier(
+            part
+            .replace( ' ', '.')
+            .replace( '*', 'W')
+            .replace( '+', 'S')
+            .replace( ';', 'P')
+            .replace( '=', 'E'));
+        })
+      .collect( joining( "-"));
     }
 
   /**

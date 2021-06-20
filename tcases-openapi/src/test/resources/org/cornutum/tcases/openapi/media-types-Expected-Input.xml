@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<System name="Media-Types">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Media Types"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_examples">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/examples"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="example-W" property="example-W">
+            <Has name="mediaType" value="example/*"/>
+          </Value>
+          <Value name="text-WPlangEgb" property="text-WPlangEgb">
+            <Has name="mediaType" value="text/*;lang=gb"/>
+          </Value>
+          <Value name="application-WSjson" property="application-WSjson">
+            <Has name="mediaType" value="application/*+json"/>
+          </Value>
+          <Value name="model-WSjsonPlangEgbPencEutf8" property="model-WSjsonPlangEgbPencEutf8">
+            <Has name="mediaType" value="model/*+json;lang=gb;enc=utf8"/>
+          </Value>
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="example-jsonPlangEgb" property="example-jsonPlangEgb">
+            <Has name="mediaType" value="example/json;lang=gb"/>
+          </Value>
+          <Value name="text-plainSxml" property="text-plainSxml">
+            <Has name="mediaType" value="text/plain+xml"/>
+          </Value>
+          <Value name="text-xmlSxmlPlangEgb" property="text-xmlSxmlPlangEgb">
+            <Has name="mediaType" value="text/xml+xml;lang=gb"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;example/*&apos;,&apos;text/*;lang=gb&apos;,&apos;application/*+json&apos;,&apos;model/*+json;lang=gb;enc=utf8&apos;,&apos;application/json&apos;,&apos;example/json;lang=gb&apos;,&apos;text/plain+xml&apos;,&apos;text/xml+xml;lang=gb&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="example-W" when="example-W">
+          <Var name="Type">
+            <Value name="object" property="example-WValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="example-WValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="example-WProperties"/>
+              <Value name="&gt; 0" when="example-WProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="example-WName, example-WProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="example-WName">
+                  <Value name="string" property="example-WNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="example-WNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="example-WNameLengthValid, example-WNameNotEmpty"/>
+                    <Value name="0" property="example-WNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="example-WProperties, example-WValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="example-WValue">
+                  <Value name="string" property="example-WValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="example-WValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="example-WValueLengthValid, example-WValueNotEmpty"/>
+                    <Value name="0" property="example-WValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="example-WProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="text-WPlangEgb" when="text-WPlangEgb">
+          <Var name="Type">
+            <Value name="object" property="text-WPlangEgbValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="text-WPlangEgbValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="text-WPlangEgbProperties"/>
+              <Value name="&gt; 0" when="text-WPlangEgbProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="text-WPlangEgbName, text-WPlangEgbProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="text-WPlangEgbName">
+                  <Value name="string" property="text-WPlangEgbNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-WPlangEgbNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="text-WPlangEgbNameLengthValid, text-WPlangEgbNameNotEmpty"/>
+                    <Value name="0" property="text-WPlangEgbNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="text-WPlangEgbProperties, text-WPlangEgbValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="text-WPlangEgbValue">
+                  <Value name="string" property="text-WPlangEgbValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-WPlangEgbValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="text-WPlangEgbValueLengthValid, text-WPlangEgbValueNotEmpty"/>
+                    <Value name="0" property="text-WPlangEgbValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="text-WPlangEgbProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="application-WSjson" when="application-WSjson">
+          <Var name="Type">
+            <Value name="object" property="application-WSjsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-WSjsonValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-WSjsonProperties"/>
+              <Value name="&gt; 0" when="application-WSjsonProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="application-WSjsonName, application-WSjsonProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-WSjsonName">
+                  <Value name="string" property="application-WSjsonNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-WSjsonNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-WSjsonNameLengthValid, application-WSjsonNameNotEmpty"/>
+                    <Value name="0" property="application-WSjsonNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="application-WSjsonProperties, application-WSjsonValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-WSjsonValue">
+                  <Value name="string" property="application-WSjsonValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-WSjsonValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-WSjsonValueLengthValid, application-WSjsonValueNotEmpty"/>
+                    <Value name="0" property="application-WSjsonValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-WSjsonProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="model-WSjsonPlangEgbPencEutf8" when="model-WSjsonPlangEgbPencEutf8">
+          <Var name="Type">
+            <Value name="object" property="model-WSjsonPlangEgbPencEutf8Value"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="model-WSjsonPlangEgbPencEutf8Value">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="model-WSjsonPlangEgbPencEutf8Properties"/>
+              <Value name="&gt; 0" when="model-WSjsonPlangEgbPencEutf8Properties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="model-WSjsonPlangEgbPencEutf8Name, model-WSjsonPlangEgbPencEutf8Properties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="model-WSjsonPlangEgbPencEutf8Name">
+                  <Value name="string" property="model-WSjsonPlangEgbPencEutf8NameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="model-WSjsonPlangEgbPencEutf8NameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="model-WSjsonPlangEgbPencEutf8NameLengthValid, model-WSjsonPlangEgbPencEutf8NameNotEmpty"/>
+                    <Value name="0" property="model-WSjsonPlangEgbPencEutf8NameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="model-WSjsonPlangEgbPencEutf8Properties, model-WSjsonPlangEgbPencEutf8Value"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="model-WSjsonPlangEgbPencEutf8Value">
+                  <Value name="string" property="model-WSjsonPlangEgbPencEutf8ValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="model-WSjsonPlangEgbPencEutf8ValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="model-WSjsonPlangEgbPencEutf8ValueLengthValid, model-WSjsonPlangEgbPencEutf8ValueNotEmpty"/>
+                    <Value name="0" property="model-WSjsonPlangEgbPencEutf8ValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="model-WSjsonPlangEgbPencEutf8Properties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-jsonProperties"/>
+              <Value name="&gt; 0" when="application-jsonProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="application-jsonName, application-jsonProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-jsonName">
+                  <Value name="string" property="application-jsonNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-jsonNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-jsonNameLengthValid, application-jsonNameNotEmpty"/>
+                    <Value name="0" property="application-jsonNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="application-jsonProperties, application-jsonValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-jsonValue">
+                  <Value name="string" property="application-jsonValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-jsonValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-jsonValueLengthValid, application-jsonValueNotEmpty"/>
+                    <Value name="0" property="application-jsonValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-jsonProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="example-jsonPlangEgb" when="example-jsonPlangEgb">
+          <Var name="Type">
+            <Value name="object" property="example-jsonPlangEgbValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="example-jsonPlangEgbValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="example-jsonPlangEgbProperties"/>
+              <Value name="&gt; 0" when="example-jsonPlangEgbProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="example-jsonPlangEgbName, example-jsonPlangEgbProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="example-jsonPlangEgbName">
+                  <Value name="string" property="example-jsonPlangEgbNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="example-jsonPlangEgbNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="example-jsonPlangEgbNameLengthValid, example-jsonPlangEgbNameNotEmpty"/>
+                    <Value name="0" property="example-jsonPlangEgbNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="example-jsonPlangEgbProperties, example-jsonPlangEgbValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="example-jsonPlangEgbValue">
+                  <Value name="string" property="example-jsonPlangEgbValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="example-jsonPlangEgbValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="example-jsonPlangEgbValueLengthValid, example-jsonPlangEgbValueNotEmpty"/>
+                    <Value name="0" property="example-jsonPlangEgbValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="example-jsonPlangEgbProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="text-plainSxml" when="text-plainSxml">
+          <Var name="Type">
+            <Value name="object" property="text-plainSxmlValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="text-plainSxmlValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="text-plainSxmlProperties"/>
+              <Value name="&gt; 0" when="text-plainSxmlProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="text-plainSxmlName, text-plainSxmlProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="text-plainSxmlName">
+                  <Value name="string" property="text-plainSxmlNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-plainSxmlNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="text-plainSxmlNameLengthValid, text-plainSxmlNameNotEmpty"/>
+                    <Value name="0" property="text-plainSxmlNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="text-plainSxmlProperties, text-plainSxmlValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="text-plainSxmlValue">
+                  <Value name="string" property="text-plainSxmlValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-plainSxmlValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="text-plainSxmlValueLengthValid, text-plainSxmlValueNotEmpty"/>
+                    <Value name="0" property="text-plainSxmlValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="text-plainSxmlProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+        <VarSet name="text-xmlSxmlPlangEgb" when="text-xmlSxmlPlangEgb">
+          <Var name="Type">
+            <Value name="object" property="text-xmlSxmlPlangEgbValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="text-xmlSxmlPlangEgbValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="text-xmlSxmlPlangEgbProperties"/>
+              <Value name="&gt; 0" when="text-xmlSxmlPlangEgbProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="name">
+                <Var name="Defined">
+                  <Value name="Yes" property="text-xmlSxmlPlangEgbName, text-xmlSxmlPlangEgbProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="text-xmlSxmlPlangEgbName">
+                  <Value name="string" property="text-xmlSxmlPlangEgbNameValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-xmlSxmlPlangEgbNameValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="text-xmlSxmlPlangEgbNameLengthValid, text-xmlSxmlPlangEgbNameNotEmpty"/>
+                    <Value name="0" property="text-xmlSxmlPlangEgbNameLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="value">
+                <Var name="Defined">
+                  <Value name="Yes" property="text-xmlSxmlPlangEgbProperties, text-xmlSxmlPlangEgbValue"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="text-xmlSxmlPlangEgbValue">
+                  <Value name="string" property="text-xmlSxmlPlangEgbValueValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-xmlSxmlPlangEgbValueValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="text-xmlSxmlPlangEgbValueLengthValid, text-xmlSxmlPlangEgbValueNotEmpty"/>
+                    <Value name="0" property="text-xmlSxmlPlangEgbValueLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="text-xmlSxmlPlangEgbProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
