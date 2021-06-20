@@ -179,6 +179,54 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns if resolution of this schema and all of its subschemas is defined.
+   */
+  public static boolean hasResolvedAll( Schema<?> schema)
+    {
+    return hasExtension( schema, EXT_RESOLVED_ALL);
+    }
+
+  /**
+   * Returns if this schema and all of its subschemas are resolved.
+   */
+  public static Boolean getResolvedAll( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_RESOLVED_ALL);
+    }
+
+  /**
+   * Changes if this schema and all of its subschemas are resolved.
+   */
+  public static void setResolvedAll( Schema<?> schema, Boolean resolved)
+    {
+    setExtension( schema, EXT_RESOLVED_ALL, resolved);
+    }
+
+  /**
+   * Returns if valid types for this schema and all of its subschemas are defined.
+   */
+  public static boolean hasValidTypesAll( Schema<?> schema)
+    {
+    return hasExtension( schema, EXT_VALID_TYPES_ALL);
+    }
+
+  /**
+   * Returns if this schema and all of its subschemas have valid types.
+   */
+  public static Boolean getValidTypesAll( Schema<?> schema)
+    {
+    return getExtension( schema, EXT_VALID_TYPES_ALL);
+    }
+
+  /**
+   * Changes if this schema and all of its subschemas have valid types.
+   */
+  public static void setValidTypesAll( Schema<?> schema, Boolean validTypes)
+    {
+    setExtension( schema, EXT_VALID_TYPES_ALL, validTypes);
+    }
+
+  /**
    * Returns the composed set of patterns to match when validating the given string schema.
    */
   public static Set<String> getPatterns( Schema<?> schema)
@@ -538,6 +586,8 @@ public final class SchemaExtensions
   static final String EXT_NULL_CHECKED = "x-tcases-null-checked";
   static final String EXT_PATTERNS = "x-tcases-patterns";
   static final String EXT_PROPERTY_SCHEMA = "x-tcases-property-schema";
+  static final String EXT_RESOLVED_ALL = "x-tcases-resolved-all";
   static final String EXT_TYPE_CHECKED = "x-tcases-type-checked";
   static final String EXT_VALID_TYPES = "x-tcases-valid-types";
+  static final String EXT_VALID_TYPES_ALL = "x-tcases-valid-types-all";
   }
