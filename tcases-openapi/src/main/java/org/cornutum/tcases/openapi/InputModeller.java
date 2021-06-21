@@ -1218,15 +1218,29 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Stream<IVarDef> typeSchemaVars( String instanceType, String instanceVarTag, boolean instanceOptional, Schema<?> instanceSchema, boolean instanceItem)
     {
-    Stream.Builder<IVarDef> typeVars = Stream.builder();
-
-    typeVars.add( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema, instanceItem));
-    if( instanceType != null)
+    if( isModellingInput( instanceSchema))
       {
-      typeVars.add( typeValueVar( instanceType, instanceVarTag, instanceSchema, instanceItem));
+      throw new IllegalStateException( "Can't create an input model for a schema that references itself");
       }
+    
+    try
+      {
+      setModellingInput( instanceSchema, true);
+    
+      Stream.Builder<IVarDef> typeVars = Stream.builder();
 
-    return typeVars.build();
+      typeVars.add( instanceTypeVar( instanceVarTag, instanceOptional, instanceSchema, instanceItem));
+      if( instanceType != null)
+        {
+        typeVars.add( typeValueVar( instanceType, instanceVarTag, instanceSchema, instanceItem));
+        }
+
+      return typeVars.build();
+      }
+    finally
+      {
+      setModellingInput( instanceSchema, false);
+      }
     }
   
   /**

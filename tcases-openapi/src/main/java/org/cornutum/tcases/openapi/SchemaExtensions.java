@@ -227,6 +227,29 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns if currently generating an input model for this schema.
+   */
+  public static boolean isModellingInput( Schema<?> schema)
+    {
+    return hasExtension( schema, EXT_MODELLING_INPUT);
+    }
+
+  /**
+   * Changes if currently generating an input model for this schema.
+   */
+  public static void setModellingInput( Schema<?> schema, boolean modelling)
+    {
+    if( modelling)
+      {
+      setExtension( schema, EXT_MODELLING_INPUT, true);
+      }
+    else
+      {
+      removeExtension( schema, EXT_MODELLING_INPUT);
+      }
+    }
+
+  /**
    * Returns the composed set of patterns to match when validating the given string schema.
    */
   public static Set<String> getPatterns( Schema<?> schema)
@@ -578,6 +601,7 @@ public final class SchemaExtensions
 
   static final String EXT_DNF = "x-tcases-dnf";
   static final String EXT_MAX_VALUES = "x-tcases-max-values";
+  static final String EXT_MODELLING_INPUT = "x-tcases-modelling-input";
   static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
   static final String EXT_NOT_MULTIPLEOFS = "x-tcases-not-multipleOfs"; 
   static final String EXT_NOT_PATTERNS = "x-tcases-not-patterns";
