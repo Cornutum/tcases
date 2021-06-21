@@ -1118,7 +1118,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     List<Schema<?>> alternatives =
       Optional.ofNullable( instanceSchema)
       .flatMap( s -> Optional.ofNullable( getDnf( s)))
-      .map( dnf -> simplified( dnf).getAlternatives().stream().collect( toList()))
+      .map( dnf -> simplified( dnf).getAlternatives())
       .orElse( emptyList());
 
     return
@@ -3402,11 +3402,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private Dnf simplifyNullChecks( Dnf dnf)
     {
-    List<Schema<?>> alternatives = dnf.getAlternatives().stream().collect( toList());
-
     // Given the set of nullable assertions made by all alternatives...
     Set<Boolean> nullables =
-      alternatives.stream()
+      dnf.getAlternatives().stream()
       .map( Schema::getNullable)
       .filter( Objects::nonNull)
       .collect( toSet());
@@ -3419,7 +3417,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     Dnf simplified = Dnf.of( dnf.getAlternatives().stream().map( s -> { s.setNullable( nullable); return s; }));
 
     // ... designate null checking for only one of them.
-    List<Schema<?>> simplifiedAlternatives = simplified.getAlternatives().stream().collect( toList());
+    List<Schema<?>> simplifiedAlternatives = simplified.getAlternatives();
     IntStream.range( 0, simplifiedAlternatives.size())
       .forEach( i -> setNullChecked( simplifiedAlternatives.get(i), i == 0));
 

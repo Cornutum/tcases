@@ -27,21 +27,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "object",
-                    "value": {
-                        "wcjcj": {
-                            "type": "string",
-                            "value": "]%`4'D{w"
-                        },
-                        "awa": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "vehglmzhvr": {
-                            "type": "string",
-                            "value": "gUnbd:8"
-                        }
-                    }
+                    "type": "number",
+                    "value": -3910846594820435582.8
                 },
                 "valid": true
             }
@@ -100,8 +87,21 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "hlf~$]%`"
+                        },
+                        {
+                            "type": "string",
+                            "value": "'D{wM*8*"
+                        },
+                        {
+                            "type": "string",
+                            "value": "<L3%IR"
+                        }
+                    ]
                 },
                 "valid": true
             }
@@ -109,7 +109,7 @@
     },
     {
         "id": 3,
-        "name": "param1.Alternative.1.Type='number'",
+        "name": "param1.Alternative.0.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -122,39 +122,6 @@
                 "style": "form",
                 "explode": false,
                 "data": null,
-                "valid": true
-            },
-            {
-                "name": "param1",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "number",
-                    "value": -4491430691907416209.5
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "name": "param1.Alternative.1.Value.Is='0'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Empty",
-        "path": "/empty",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "boolean",
-                    "value": true
-                },
                 "valid": true
             },
             {
@@ -171,8 +138,46 @@
         ]
     },
     {
+        "id": 4,
+        "name": "param1.Alternative.0.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Empty",
+        "path": "/empty",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "C(`"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 816303347454470714.5
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
         "id": 5,
-        "name": "param1.Alternative.1.Value.Is='> 0'",
+        "name": "param1.Alternative.1.Type='boolean'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -193,8 +198,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": 234918110682953746.5
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": true
             }
@@ -215,17 +220,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "4"
-                        },
-                        {
-                            "type": "string",
-                            "value": "i+U~pW?5"
-                        }
-                    ]
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": true
             },
@@ -245,7 +241,7 @@
     },
     {
         "id": 7,
-        "name": "param1.Alternative.1.Value.Is='1'",
+        "name": "param1.Alternative.0.Value.Is='1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -258,26 +254,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "object",
-                    "value": {
-                        "wzkwgiietsyb": {
-                            "type": "number",
-                            "value": 119.1
-                        },
-                        "qgmofnigvtya": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "{<h}W\"Sk"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "%-L"
-                                }
-                            ]
-                        }
-                    }
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": true
             },
@@ -293,11 +271,11 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param1.Alternative.1.Value.Is=1"
+        "invalidInput": "param1.Alternative.0.Value.Is=1"
     },
     {
         "id": 8,
-        "name": "param1.Alternative.1.Value.Is='2'",
+        "name": "param1.Alternative.0.Value.Is='2'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -310,9 +288,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "integer",
-                    "value": 357,
-                    "format": "int32"
+                    "type": "number",
+                    "value": -502.5
                 },
                 "valid": true
             },
@@ -328,11 +305,11 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param1.Alternative.1.Value.Is=2"
+        "invalidInput": "param1.Alternative.0.Value.Is=2"
     },
     {
         "id": 9,
-        "name": "param1.Alternative.1.Value.Is='3'",
+        "name": "param1.Alternative.0.Value.Is='3'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -345,8 +322,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "string",
-                    "value": "0( "
+                    "type": "number",
+                    "value": 798.5
                 },
                 "valid": true
             },
@@ -362,11 +339,11 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param1.Alternative.1.Value.Is=3"
+        "invalidInput": "param1.Alternative.0.Value.Is=3"
     },
     {
         "id": 10,
-        "name": "param1.Alternative.2.Value='false'",
+        "name": "param1.Alternative.1.Value='false'",
         "server": "/",
         "version": "0.0.0",
         "api": "Empty",
@@ -379,9 +356,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "integer",
-                    "value": -49,
-                    "format": "int32"
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": true
             },
@@ -397,6 +373,6 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param1.Alternative.2.Value=false"
+        "invalidInput": "param1.Alternative.1.Value=false"
     }
 ]

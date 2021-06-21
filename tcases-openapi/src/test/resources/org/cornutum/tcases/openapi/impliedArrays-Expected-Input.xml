@@ -58,11 +58,7 @@
             <Value name="2" failure="true"/>
             <Value name="0" property="param1ItemsNone"/>
           </Var>
-          <VarSet name="Contains">
-            <When>
-              <Not property="param1ItemsNone">
-              </Not>
-            </When>
+          <VarSet name="Contains" whenNot="param1ItemsNone">
             <Var name="Type">
               <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param1ItemsValue"/>
@@ -91,11 +87,7 @@
             <Value name="1"/>
             <Value name="&gt; 1" property="param2ItemsMany"/>
           </Var>
-          <VarSet name="Contains">
-            <When>
-              <Not property="param2ItemsNone">
-              </Not>
-            </When>
+          <VarSet name="Contains" whenNot="param2ItemsNone">
             <Var name="Type">
               <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param2ItemsValue"/>

@@ -24,10 +24,10 @@
         <Var name="param0.Alternative.Used" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Type" value="integer">
+        <Var name="param0.Alternative.0.Type" value="number">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Is" value="42">
+        <Var name="param0.Alternative.0.Value.Is" value="1.2">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -39,13 +39,13 @@
         <Var name="param0.Alternative.2.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Is" NA="true">
+        <Var name="param0.Alternative.2.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value" NA="true">
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -80,13 +80,13 @@
         <Var name="param0.Alternative.2.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Is" NA="true">
+        <Var name="param0.Alternative.2.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value" NA="true">
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -118,16 +118,16 @@
         <Var name="param0.Alternative.1.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" value="number">
+        <Var name="param0.Alternative.2.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Is" value="1.2">
+        <Var name="param0.Alternative.2.Value" value="[-1,0,1]">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value" NA="true">
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -162,21 +162,21 @@
         <Var name="param0.Alternative.2.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Is" NA="true">
+        <Var name="param0.Alternative.2.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Type" value="array">
+        <Var name="param0.Alternative.3.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value" value="[-1,0,1]">
+        <Var name="param0.Alternative.3.Value.Is" value="42">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" name="param0.Alternative.2.Value.Is=&apos;3.4&apos;">
+    <TestCase id="4" name="param0.Alternative.0.Value.Is=&apos;3.4&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="param0,param0Alternative2,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -185,13 +185,13 @@
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
-        <Var name="param0.Alternative.Used" value="2">
+        <Var name="param0.Alternative.Used" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Type" NA="true">
+        <Var name="param0.Alternative.0.Type" value="number">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.0.Value.Is" NA="true">
+        <Var name="param0.Alternative.0.Value.Is" value="3.4">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Type" NA="true">
@@ -200,16 +200,16 @@
         <Var name="param0.Alternative.1.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Type" value="number">
+        <Var name="param0.Alternative.2.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.2.Value.Is" value="3.4">
+        <Var name="param0.Alternative.2.Value" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.3.Value" NA="true">
+        <Var name="param0.Alternative.3.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

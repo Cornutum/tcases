@@ -10,16 +10,17 @@ package org.cornutum.tcases.openapi;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import io.swagger.v3.oas.models.media.Schema;
-import org.apache.commons.collections4.multimap.AbstractSetValuedMap;
+import org.apache.commons.collections4.ListValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
-import static java.util.Collections.emptySet;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Represents the disjunctive normal form of a schema. An instance is validated by a schema
@@ -47,30 +48,30 @@ public class Dnf
   /**
    * Returns the alternatives for the given type.
    */
-  public Set<Schema<?>> getAlternatives( String type)
+  public List<Schema<?>> getAlternatives( String type)
     {
     return
       Optional.ofNullable( alternatives_.get( String.valueOf( type)))
-      .orElse( emptySet()) ;
+      .orElse( emptyList()) ;
     }
 
   /**
    * Returns the alternatives that can be combined with schemas of the given type.
    */
-  public Set<Schema<?>> getCompatibleAlternatives( String type)
+  public List<Schema<?>> getCompatibleAlternatives( String type)
     {
     return
       type == null
       ? getAlternatives()
-      : Stream.concat( getAlternatives( type).stream(), getAlternatives( null).stream()).collect( toOrderedSet());
+      : Stream.concat( getAlternatives( type).stream(), getAlternatives( null).stream()).collect( toList());
     }
 
   /**
    * Returns the alternatives of all types.
    */
-  public Set<Schema<?>> getAlternatives()
+  public List<Schema<?>> getAlternatives()
     {
-    return alternatives_.values().stream().collect( toOrderedSet());
+    return alternatives_.values().stream().collect( toList());
     }
 
   /**
@@ -114,7 +115,7 @@ public class Dnf
     }
 
   /**
-   * Returns the disjunctive normal form with a singe alternative.
+   * Returns the disjunctive normal form with the given alternatives.
    */
   public static Dnf of( Schema<?>... alternatives)
     {
@@ -179,25 +180,5 @@ public class Dnf
   public static final Dnf UNDEFINED = Dnf.of();
 
   
-  private AlternativesMap alternatives_ = new AlternativesMap();
-
-  /**
-   * Maps an instance type to the set of alternative schemas of that type.
-   */
-  private static class AlternativesMap extends AbstractSetValuedMap<String,Schema<?>>
-    {
-    /**
-     * Creates a new AlternativesMap instance.
-     */
-    public AlternativesMap()
-      {
-      super( new LinkedHashMap<String,Set<Schema<?>>>());
-      }
-
-    protected Set<Schema<?>> createCollection()
-      {
-      return new LinkedHashSet<Schema<?>>();
-      }
-    }
-
+  private ListValuedMap<String,Schema<?>> alternatives_ = new ArrayListValuedHashMap<String,Schema<?>>();
   }
