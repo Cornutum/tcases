@@ -114,7 +114,7 @@ public class Dnf
     }
 
   /**
-   * Returns the disjunctive normal form with a singe alternative.
+   * Returns the disjunctive normal form with the given alternatives.
    */
   public static Dnf of( Schema<?>... alternatives)
     {
