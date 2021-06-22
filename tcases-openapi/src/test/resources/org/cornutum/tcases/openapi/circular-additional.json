@@ -1,0 +1,59 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Circular property",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/tree": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BTree"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "$ref": "#/components/responses/success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BTree": {
+                "$ref": "#/components/schemas/Node"
+            },
+            
+            "Node": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/Node"
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

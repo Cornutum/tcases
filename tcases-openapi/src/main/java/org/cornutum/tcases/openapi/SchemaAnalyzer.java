@@ -898,7 +898,8 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
           isLeafSchema( schema)?
           getInvalidators( schema):
           
-          getDnf( schema).getAlternatives().stream()
+          Optional.ofNullable( getDnf( schema)).orElse( Dnf.UNDEFINED)
+          .getAlternatives().stream()
           .flatMap( s -> getInvalidators( s).stream())
           .collect( toList());
         });

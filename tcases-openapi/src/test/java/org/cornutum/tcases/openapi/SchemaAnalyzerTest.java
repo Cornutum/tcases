@@ -96,6 +96,58 @@ public class SchemaAnalyzerTest extends OpenApiTest
     assertWarnings(
       "UnsatisfiableHeader,/request,GET,200,headers,x-my-secret-header,items: This schema can't be satisfied by any instance of types=null.");
     }
+  
+  @Test
+  public void whenCircularProperty()
+    {
+    // Given...
+    OpenAPI api = readApi( "circular-property");
+
+    // Then...
+    assertOpenApiException(
+      () -> getRequestInputModel( api),
+      "Error processing Circular property, /tree, POST, requestBody, application/json, before",
+      "Can't create an input model for a schema that references itself");
+    }
+  
+  @Test
+  public void whenCircularAdditionalProperty()
+    {
+    // Given...
+    OpenAPI api = readApi( "circular-additional");
+
+    // Then...
+    assertOpenApiException(
+      () -> getRequestInputModel( api),
+      "Error processing Circular property, /tree, POST, requestBody, application/json, Additional",
+      "Can't create an input model for a schema that references itself");
+    }
+  
+  @Test
+  public void whenCircularArray()
+    {
+    // Given...
+    OpenAPI api = readApi( "circular-array");
+
+    // Then...
+    assertOpenApiException(
+      () -> getRequestInputModel( api),
+      "Error processing Circular array, /tree, POST, requestBody, application/json, children, items",
+      "Can't create an input model for a schema that references itself");
+    }
+  
+  @Test
+  public void whenCircularCombination()
+    {
+    // Given...
+    OpenAPI api = readApi( "circular-combination");
+
+    // Then...
+    assertOpenApiException(
+      () -> getRequestInputModel( api),
+      "Error processing Circular combination, /tree, POST, requestBody, application/json, child, child",
+      "Can't create an input model for a schema that references itself");
+    }
 
   /**
    * Returns the {@link ModelOptions} used for this test.
