@@ -26,11 +26,7 @@
             <Value name="1"/>
             <Value name="&gt; 1" property="tagsItemsMany"/>
           </Var>
-          <VarSet name="Contains">
-            <When>
-              <Not property="tagsItemsNone">
-              </Not>
-            </When>
+          <VarSet name="Contains" whenNot="tagsItemsNone">
             <Var name="Type">
               <Has name="itemType" value="string"/>
               <Value name="string" property="tagsItemsValue"/>

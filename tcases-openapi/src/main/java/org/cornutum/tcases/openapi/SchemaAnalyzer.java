@@ -593,7 +593,7 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
         Dnf.of(
           dnf1.getAlternatives().stream()
           .flatMap( a1 -> {
-            Set<Schema<?>> c2 = dnf2.getCompatibleAlternatives( a1.getType());
+            List<Schema<?>> c2 = dnf2.getCompatibleAlternatives( a1.getType());
             return
               c2.isEmpty()
               ? Stream.of( a1)

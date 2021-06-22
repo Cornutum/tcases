@@ -22,11 +22,12 @@
           </Var>
           <VarSet name="0" when="param0Alternative0">
             <Var name="Type">
-              <Value name="integer" property="param0Value"/>
+              <Value name="number" property="param0Value"/>
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Is">
-                <Value name="42"/>
+                <Value name="1.2"/>
+                <Value name="3.4"/>
               </Var>
             </VarSet>
           </VarSet>
@@ -40,22 +41,21 @@
           </VarSet>
           <VarSet name="2" when="param0Alternative2">
             <Var name="Type">
-              <Value name="number" property="param0Value"/>
-            </Var>
-            <VarSet name="Value" when="param0Value">
-              <Var name="Is">
-                <Value name="1.2"/>
-                <Value name="3.4"/>
-              </Var>
-            </VarSet>
-          </VarSet>
-          <VarSet name="3" when="param0Alternative3">
-            <Var name="Type">
               <Value name="array" property="param0Value"/>
             </Var>
             <Var name="Value" when="param0Value">
               <Value name="[-1,0,1]"/>
             </Var>
+          </VarSet>
+          <VarSet name="3" when="param0Alternative3">
+            <Var name="Type">
+              <Value name="integer" property="param0Value"/>
+            </Var>
+            <VarSet name="Value" when="param0Value">
+              <Var name="Is">
+                <Value name="42"/>
+              </Var>
+            </VarSet>
           </VarSet>
         </VarSet>
       </VarSet>
