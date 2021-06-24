@@ -1,5 +1,26 @@
 # Release Notes #
 
+## 3.6.2 ##
+
+This release resolves the following issues for Tcases for OpenAPI.
+
+  * **Circular references in schemas** [[177](https://github.com/Cornutum/tcases/issues/177)]
+
+    For any element of an OpenAPI document, a schema can be defined by a reference to another schema definition, using the
+    `$ref` keyword. Consequently, it's possible for a schema to reference itself -- either directly or indirectly -- through one
+    of its components, such as one of the `properties` of an object or the `items` of an array.  Unfortunately, an API
+    definition containing such circular references is big trouble for Tcases for OpenAPI. For an explanation of why this
+    situation is not supported, read the comments for this issue [here](https://github.com/Cornutum/tcases/issues/177).
+
+    In previous releases, when you try to generate tests for such an API definition, you enter an infinite loop that ultimately
+    leads to a StackOverflowError. But in this release, Tcases for OpenAPI reports a failure with a more helpful description of the
+    circular reference.
+
+  * **Handle when input `media-type` contains wildcards**
+
+    `tcases-api-test` (and, for Maven users, the corresponding `tcases:api-test` goal) can now generate tests for API requests
+    when input `media-type` definitions use wild cards -- for example `text/*`, `application/*+json`, etc.
+
 ## 3.6.1 ##
 
 This release fixes the following issues.
