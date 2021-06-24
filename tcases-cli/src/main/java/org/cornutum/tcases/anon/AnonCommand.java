@@ -183,6 +183,13 @@ public class AnonCommand
                "              recognized extension. If omitted, the default content type is derived from the",
                "              inputDef name.",
                "",
+               "  -l logFile  If -l is defined, log output is written to the given file. If omitted,",
+               "              log output is written to a file named tcases-anon.log in the current working",
+               "              directory. If logFile is 'stdout', log output is written to standard output.",
+               "",
+               "  -L logLevel Defines the level for log output. If omitted, the default level is INFO.",
+               "              The configuration and levels used for logging are defined by the Logback system.",
+               "",
                "  -v          Shows the current version. If this option is given, no other action is performed."
              })
         {

@@ -640,6 +640,13 @@ public class ApiCommand
                "              If the 'apiSpec' is read from standard input or does not have a recognized extension, the default",
                "              content type is 'json'.",
                "",
+               "  -l logFile  If -l is defined, log output is written to the given file. If omitted,",
+               "              log output is written to a file named tcases-api.log in the current working",
+               "              directory. If logFile is 'stdout', log output is written to standard output.",
+               "",
+               "  -L logLevel Defines the level for log output. If omitted, the default level is INFO.",
+               "              The configuration and levels used for logging are defined by the Logback system.",
+               "",
                "  -v          Prints the current command version identifier to standard output."
              })
         {

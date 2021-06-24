@@ -719,6 +719,13 @@ public class ApiTestCommand
                "  -m maxTries     Defines the maximum attempts made to resolve a request test case input value before",
                "                  reporting failure. If omitted, the default value is 10000.",
                "",
+               "  -l logFile      If -l is defined, log output is written to the given file. If omitted,",
+               "                  log output is written to a file named tcases-api-test.log in the current working",
+               "                  directory. If logFile is 'stdout', log output is written to standard output.",
+               "",
+               "  -L logLevel     Defines the level for log output. If omitted, the default level is INFO.",
+               "                  The configuration and levels used for logging are defined by the Logback system.",
+               "",
                "  -v              Prints the current command version identifier to standard output."
              })
         {
