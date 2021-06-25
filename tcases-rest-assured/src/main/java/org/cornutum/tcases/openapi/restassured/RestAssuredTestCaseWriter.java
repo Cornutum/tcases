@@ -66,13 +66,14 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
       {
       targetWriter.println( "given()");
       targetWriter.indent();
+      writeServer( testName, testServer, requestCase, targetWriter);
       writeParams( testName, requestCase, targetWriter);
       writeBody( testName, requestCase, targetWriter);
       targetWriter.unindent();
 
       targetWriter.println( ".when()");
       targetWriter.indent();
-      writeRequest( testName, testServer, requestCase, targetWriter);
+      writeRequest( testName, requestCase, targetWriter);
       targetWriter.unindent();
 
       targetWriter.println( ".then()");
@@ -186,21 +187,32 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     }
   
   /**
+   * Writes the server URI for a target test case to the given stream.
+   */
+  protected void writeServer( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
+    {
+    Optional<String> serverUri =
+      Optional.of(
+        StringUtils.stripEnd(
+          String.valueOf(
+            Optional.ofNullable( testServer)
+            .orElse( requestCase.getServer())),
+          "/"))
+      .filter( StringUtils::isNotBlank);
+
+    serverUri.ifPresent( uri -> targetWriter.println( String.format(".baseUri( %s)", stringLiteral( uri))));
+    }
+  
+  /**
    * Writes the request definition for a target test case to the given stream.
    */
-  protected void writeRequest( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
+  protected void writeRequest( String testName, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    String requestUrl =
-      String.format(
-        "%s%s",
-        StringUtils.stripEnd( String.valueOf( Optional.ofNullable( testServer).orElse( requestCase.getServer())), "/"),
-        requestCase.getPath());
-
     targetWriter.println(
       String.format(
         ".request( %s, %s)",
         stringLiteral( requestCase.getOperation().toUpperCase()),
-        stringLiteral( requestUrl)));
+        stringLiteral( requestCase.getPath())));
     }
   
   /**
