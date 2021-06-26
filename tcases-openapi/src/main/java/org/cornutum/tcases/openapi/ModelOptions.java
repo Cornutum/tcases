@@ -39,6 +39,7 @@ public class ModelOptions
     {
     setConditionNotifier( ModelConditionNotifier.log());
     setSource( Source.SCHEMAS);
+    setServerSelector( ServerSelector.atIndex(0));
     }
 
   /**
@@ -106,6 +107,22 @@ public class ModelOptions
     }
 
   /**
+   * Changes the predicate used to select the API server for API input definitions.
+   */
+  public void setServerSelector( ServerSelector serverSelector)
+    {
+    serverSelector_ = serverSelector;
+    }
+
+  /**
+   * Returns the predicate used to select the API server for API input definitions.
+   */
+  public ServerSelector getServerSelector()
+    {
+    return serverSelector_;
+    }
+
+  /**
    * Returns a new ModelOptions builder.
    */
   public static Builder builder()
@@ -129,6 +146,7 @@ public class ModelOptions
       .append( "conditionNotifier", getConditionNotifier())
       .append( "readOnlyEnforced", isReadOnlyEnforced())
       .append( "writeOnlyEnforced", isWriteOnlyEnforced())
+      .append( "serverSelector", getServerSelector())
       .toString();
     }
   
@@ -150,7 +168,8 @@ public class ModelOptions
         notifier( defaults.getConditionNotifier())
         .readOnlyEnforced( defaults.isReadOnlyEnforced())
         .writeOnlyEnforced( defaults.isWriteOnlyEnforced())
-        .source( defaults.getSource());
+        .source( defaults.getSource())
+        .serverSelector( defaults.getServerSelector());
         }
       }
 
@@ -188,6 +207,12 @@ public class ModelOptions
       return this;
       }
 
+    public Builder serverSelector( ServerSelector serverSelector)
+      {
+      modelOptions_.setServerSelector( serverSelector);
+      return this;
+      }
+
     public ModelOptions build()
       {
       return modelOptions_;
@@ -200,4 +225,5 @@ public class ModelOptions
   private boolean readOnlyEnforced_;
   private boolean writeOnlyEnforced_;
   private Source source_;
+  private ServerSelector serverSelector_;
   }
