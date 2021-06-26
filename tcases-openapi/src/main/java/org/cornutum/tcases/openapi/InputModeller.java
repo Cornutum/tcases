@@ -138,7 +138,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           SystemInputDefBuilder.with( toIdentifier( title))
           .has( "title", title)
           .has( "version", info.getVersion())
-          .hasIf( "server", selectServer( api.getServers()))
+          .hasIf( "server", serverUriUsed( api.getServers()))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestDefs( api, path.getKey(), path.getValue())))
           .build();
 
@@ -174,7 +174,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           SystemInputDefBuilder.with( toIdentifier( title))
           .has( "title", title)
           .has( "version", info.getVersion())
-          .hasIf( "server", selectServer( api.getServers()))
+          .hasIf( "server", serverUriUsed( api.getServers()))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathRequestExamples( api, path.getKey(), path.getValue())))
           .build();
 
@@ -243,8 +243,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         null :
 
         FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-        .hasIf( "server", selectServer( pathItem.getServers()))
-        .hasIf( "server", selectServer( op.getServers()))
+        .hasIf( "server", serverUriUsed( pathItem.getServers()))
+        .hasIf( "server", serverUriUsed( op.getServers()))
         .has( "path", path)
         .has( "operation", opName)
         .vars( opRequestVars( api, pathItem, op))
@@ -279,8 +279,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
           withoutFailures(         
             FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-            .hasIf( "server", selectServer( pathItem.getServers()))
-            .hasIf( "server", selectServer( op.getServers()))
+            .hasIf( "server", serverUriUsed( pathItem.getServers()))
+            .hasIf( "server", serverUriUsed( op.getServers()))
             .has( "path", path)
             .has( "operation", opName)
             .vars( opExampleVars( api, pathItem, op))
@@ -363,7 +363,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           SystemInputDefBuilder.with( toIdentifier( title))
           .has( "title", title)
           .has( "version", info.getVersion())
-          .hasIf( "server", selectServer( api.getServers()))
+          .hasIf( "server", serverUriUsed( api.getServers()))
           .functions( entriesOf( api.getPaths()).flatMap( path -> pathResponseDefs( api, path.getKey(), path.getValue())))
           .build();
 
@@ -426,8 +426,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         null :
 
         FunctionInputDefBuilder.with( String.format( "%s_%s", opName, functionPathName( path)))
-        .hasIf( "server", selectServer( pathItem.getServers()))
-        .hasIf( "server", selectServer( op.getServers()))
+        .hasIf( "server", serverUriUsed( pathItem.getServers()))
+        .hasIf( "server", serverUriUsed( op.getServers()))
         .vars( responsesVars( api, expectedValueOf( op.getResponses(), "responses")))
         .build());
     }
@@ -1020,11 +1020,18 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns the URL for the selected API server
+   * Returns the URI for the test API server.
    */
-  private Optional<String> selectServer( List<Server> servers)
+  private Optional<String> serverUriUsed( List<Server> servers)
     {
+    Optional<String> specified =
+      Optional.ofNullable( getOptions().getServerUri())
+      .map( String::valueOf);
+
     return
+      specified.isPresent()?
+      specified :
+      
       getOptions().getServerSelector().select(
         membersOf( servers)
         .map( Server::getDescription)

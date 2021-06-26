@@ -1,0 +1,61 @@
+<System name="ApiTestCommand">
+    <Function name="run">
+        <Input type="arg">
+            <VarSet name="Server-Expr">
+                <Var name="Key">
+                    <Value name="Index" property="matching,index"/>
+                    <Value name="Contains" property="matching,contains"/>
+                    <Value name="Uri" property="uri"/>
+                    <Value name="Invalid" failure="true"/>
+                </Var>
+                <Var name="Index" when="index">
+                    <Value name="Integer"/>
+                    <Value name="Non-Integer" failure="true"/>
+                </Var>
+                <Var name="Description-Contains" when="contains">
+                    <Value name="Text"/>
+                    <Value name="Blank"/>
+                    <Value name="Empty"  failure="true"/>
+                </Var>
+                <Var name="Uri" when="uri">
+                    <Value name="Valid"/>
+                    <Value name="Invalid" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+        <Input type="env">
+            <VarSet name="Api">
+                <VarSet name="Root">
+                    <Var name="Servers-Defined">
+                        <Value name="Yes" property="rootServers"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Servers-Match" when="rootServers,matching">
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Path">
+                    <Var name="Servers-Defined">
+                        <Value name="Yes" property="pathServers"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Servers-Match" when="pathServers,matching">
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Op">
+                    <Var name="Servers-Defined">
+                        <Value name="Yes" property="opServers"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Servers-Match" when="opServers,matching">
+                        <Value name="Yes"/>
+                        <Value name="No"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

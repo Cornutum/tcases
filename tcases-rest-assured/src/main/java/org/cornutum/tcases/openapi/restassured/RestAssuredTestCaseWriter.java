@@ -22,6 +22,7 @@ import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URI;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.joining;
@@ -194,9 +195,7 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     Optional<String> serverUri =
       Optional.of(
         StringUtils.stripEnd(
-          String.valueOf(
-            Optional.ofNullable( testServer)
-            .orElse( requestCase.getServer())),
+          Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
           "/"))
       .filter( StringUtils::isNotBlank);
 

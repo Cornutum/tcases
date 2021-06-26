@@ -1,0 +1,181 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Root servers undefined",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/servers/path": {
+            "servers": [
+                {
+                    "description": "My test path server",
+                    "url": "http://api.cornutum.org/test/path"
+                },
+                {
+                    "description": "My production path server  ",
+                    "url": "http://api.cornutum.org/prod/path"
+                },
+                {
+                    "description": "My local path server   ",
+                    "url": "http://api.cornutum.org/local/path"
+                }
+            ],
+            "get": {
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/servers/op": {
+            "get": {
+                "servers": [
+                    {
+                        "description": "My test op server",
+                        "url": "http://api.cornutum.org/test/op"
+                    },
+                    {
+                        "description": "My production op server  ",
+                        "url": "http://api.cornutum.org/prod/op"
+                    },
+                    {
+                        "description": "My local op server   ",
+                        "url": "http://api.cornutum.org/local/op"
+                    },
+                    {
+                        "description": "My beta op server    ",
+                        "url": "http://api.cornutum.org/beta/op"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/servers/op/path": {
+            "servers": [
+                {
+                    "description": "My test path server",
+                    "url": "http://api.cornutum.org/test/path"
+                },
+                {
+                    "description": "My production path server  ",
+                    "url": "http://api.cornutum.org/prod/path"
+                },
+                {
+                    "description": "My local path server   ",
+                    "url": "http://api.cornutum.org/local/path"
+                }
+            ],
+            "get": {
+                "servers": [
+                    {
+                        "description": "My test op server",
+                        "url": "http://api.cornutum.org/test/op"
+                    },
+                    {
+                        "description": "My production op server  ",
+                        "url": "http://api.cornutum.org/prod/op"
+                    },
+                    {
+                        "description": "My local op server   ",
+                        "url": "http://api.cornutum.org/local/op"
+                    },
+                    {
+                        "description": "My beta op server    ",
+                        "url": "http://api.cornutum.org/beta/op"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            "delete": {
+                "servers": [
+                    {
+                        "description": "My delete op server",
+                        "url": "http://api.cornutum.org/test/op"
+                    }
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "id": {
+                "name": "id",
+                "in": "query",
+                "schema": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

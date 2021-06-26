@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.util.ToString;
 
+import java.net.URI;
 import java.util.Optional;
 
 /**
@@ -107,7 +108,23 @@ public class ModelOptions
     }
 
   /**
-   * Changes the predicate used to select the API server for API input definitions.
+   * Changes the URI specifed for the API server.
+   */
+  public void setServerUri( URI uri)
+    {
+    serverUri_ = uri;
+    }
+
+  /**
+   * Returns the URI specifed for the API server.
+   */
+  public URI getServerUri()
+    {
+    return serverUri_;
+    }
+
+  /**
+   * Changes the {@link ServerSelector} used to select the API server for API input definitions.
    */
   public void setServerSelector( ServerSelector serverSelector)
     {
@@ -115,7 +132,7 @@ public class ModelOptions
     }
 
   /**
-   * Returns the predicate used to select the API server for API input definitions.
+   * Returns the {@link ServerSelector} used to select the API server for API input definitions.
    */
   public ServerSelector getServerSelector()
     {
@@ -146,7 +163,7 @@ public class ModelOptions
       .append( "conditionNotifier", getConditionNotifier())
       .append( "readOnlyEnforced", isReadOnlyEnforced())
       .append( "writeOnlyEnforced", isWriteOnlyEnforced())
-      .append( "serverSelector", getServerSelector())
+      .append( "server", Optional.ofNullable( String.valueOf( getServerUri())).orElse( String.valueOf( getServerSelector())))
       .toString();
     }
   
@@ -169,6 +186,7 @@ public class ModelOptions
         .readOnlyEnforced( defaults.isReadOnlyEnforced())
         .writeOnlyEnforced( defaults.isWriteOnlyEnforced())
         .source( defaults.getSource())
+        .serverUri( defaults.getServerUri())
         .serverSelector( defaults.getServerSelector());
         }
       }
@@ -207,6 +225,12 @@ public class ModelOptions
       return this;
       }
 
+    public Builder serverUri( URI uri)
+      {
+      modelOptions_.setServerUri( uri);
+      return this;
+      }
+
     public Builder serverSelector( ServerSelector serverSelector)
       {
       modelOptions_.setServerSelector( serverSelector);
@@ -225,5 +249,6 @@ public class ModelOptions
   private boolean readOnlyEnforced_;
   private boolean writeOnlyEnforced_;
   private Source source_;
+  private URI serverUri_;
   private ServerSelector serverSelector_;
   }
