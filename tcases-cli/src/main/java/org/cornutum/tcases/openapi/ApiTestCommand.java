@@ -1050,7 +1050,7 @@ public class ApiTestCommand
       }
 
     /**
-     * Changes the URI for the API server used by generated tests.
+     * Changes the expression that identifies the API server URI used by generated tests.
      */
     public void setServerUri( String serverExpr) throws Exception
       {

@@ -25,6 +25,7 @@
                 <path>/posts</path>
                 <path>/users</path>
             </paths>
+            <baseUri>uri=http://myhost.api.com</baseUri>
         </configuration>
       </plugin>
     </plugins>
