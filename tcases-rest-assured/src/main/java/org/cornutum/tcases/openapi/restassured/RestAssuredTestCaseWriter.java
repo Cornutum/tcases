@@ -22,6 +22,7 @@ import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URI;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.joining;
@@ -66,13 +67,14 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
       {
       targetWriter.println( "given()");
       targetWriter.indent();
+      writeServer( testName, testServer, requestCase, targetWriter);
       writeParams( testName, requestCase, targetWriter);
       writeBody( testName, requestCase, targetWriter);
       targetWriter.unindent();
 
       targetWriter.println( ".when()");
       targetWriter.indent();
-      writeRequest( testName, testServer, requestCase, targetWriter);
+      writeRequest( testName, requestCase, targetWriter);
       targetWriter.unindent();
 
       targetWriter.println( ".then()");
@@ -102,6 +104,31 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     targetWriter.println( "private Matcher<Integer> isBadRequest() {");
     targetWriter.indent();
     targetWriter.println( "return allOf( greaterThanOrEqualTo(400), lessThan(500));");
+    targetWriter.unindent();
+    targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private String forTestServer() {");
+    targetWriter.indent();
+    targetWriter.println( "return forTestServer( null);");
+    targetWriter.unindent();
+    targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private String forTestServer( String defaultUri) {");
+    targetWriter.indent();
+    targetWriter.println( "String testServer = tcasesApiServer();");
+    targetWriter.println( "return");
+    targetWriter.indent();
+    targetWriter.println( "defaultUri == null || !testServer.isEmpty()");
+    targetWriter.println( "? testServer");
+    targetWriter.println( ": defaultUri;");
+    targetWriter.unindent();
+    targetWriter.unindent();
+    targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private String tcasesApiServer() {");
+    targetWriter.indent();
+    targetWriter.println( "String uri = System.getProperty( \"tcasesApiServer\");");
+    targetWriter.println( "return uri == null? \"\" : uri.trim();");
     targetWriter.unindent();
     targetWriter.println( "}");
     }
@@ -186,21 +213,34 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     }
   
   /**
+   * Writes the server URI for a target test case to the given stream.
+   */
+  protected void writeServer( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
+    {
+    String serverUri =
+      StringUtils.stripEnd(
+        Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
+        "/");
+
+    targetWriter.println
+      ( String.format(
+        ".baseUri( forTestServer(%s))",
+        Optional.of( serverUri)
+        .filter( StringUtils::isNotBlank)
+        .map( uri -> String.format( " %s", stringLiteral( uri)))
+        .orElse( "")));
+    }
+  
+  /**
    * Writes the request definition for a target test case to the given stream.
    */
-  protected void writeRequest( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
+  protected void writeRequest( String testName, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    String requestUrl =
-      String.format(
-        "%s%s",
-        StringUtils.stripEnd( String.valueOf( Optional.ofNullable( testServer).orElse( requestCase.getServer())), "/"),
-        requestCase.getPath());
-
     targetWriter.println(
       String.format(
         ".request( %s, %s)",
         stringLiteral( requestCase.getOperation().toUpperCase()),
-        stringLiteral( requestUrl)));
+        stringLiteral( requestCase.getPath())));
     }
   
   /**

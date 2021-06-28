@@ -12,6 +12,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".0")
         .when()
@@ -24,6 +25,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdValue_Is_1000() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".1")
             .pathParam( "userId", ".1000")
         .when()
@@ -36,6 +38,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", "")
         .when()
@@ -49,6 +52,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".")
         .when()
@@ -62,6 +66,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".248.1")
         .when()
@@ -75,6 +80,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".-1")
         .when()
@@ -88,6 +94,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_UserIdValue_Is_1001() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".1001")
         .when()
@@ -101,6 +108,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_ApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
@@ -114,6 +122,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".")
             .pathParam( "userId", ".0")
         .when()
@@ -127,6 +136,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_ApprovedType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".")
             .pathParam( "userId", ".0")
         .when()
@@ -140,6 +150,7 @@ public class MySimpleTest_PostUseridApprovedTest {
     @Test
     public void deletePostUserIdApproved_ApprovedValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".925787165")
             .pathParam( "userId", ".0")
         .when()
@@ -156,5 +167,22 @@ public class MySimpleTest_PostUseridApprovedTest {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

@@ -12,6 +12,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0")
         .when()
             .request( "GET", "/posts")
@@ -23,6 +24,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsSize_Is_4() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "100|35|31|12")
         .when()
             .request( "GET", "/posts")
@@ -34,6 +36,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/posts")
         .then()
@@ -45,6 +48,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -57,6 +61,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "-6")
         .when()
             .request( "GET", "/posts")
@@ -69,6 +74,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsSize_Is_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -81,6 +87,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsSize_Is_5() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0|80|63|32|91")
         .when()
             .request( "GET", "/posts")
@@ -93,6 +100,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -105,6 +113,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -117,6 +126,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsContainsValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "-1")
         .when()
             .request( "GET", "/posts")
@@ -129,6 +139,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsContainsValue_Is_101() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "101")
         .when()
             .request( "GET", "/posts")
@@ -141,6 +152,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void getPosts_IdsItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0|33|92|92")
         .when()
             .request( "GET", "/posts")
@@ -153,6 +165,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "0")
         .when()
@@ -165,6 +178,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_2345() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "2345,7700")
             .header( "X-User-Id", "46782787")
         .when()
@@ -177,6 +191,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_7700() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "7700,2345")
             .header( "X-User-Id", "0")
         .when()
@@ -189,6 +204,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-User-Id", "1002717876")
         .when()
             .request( "OPTIONS", "/posts")
@@ -201,6 +217,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "")
             .header( "X-User-Id", "295907700")
         .when()
@@ -214,6 +231,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "")
             .header( "X-User-Id", "940566730")
         .when()
@@ -227,6 +245,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsSize_Is_1() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001")
             .header( "X-User-Id", "995957995")
         .when()
@@ -240,6 +259,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345,7700")
             .header( "X-User-Id", "543574415")
         .when()
@@ -253,6 +273,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", ",7700")
             .header( "X-User-Id", "324488672")
         .when()
@@ -266,6 +287,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "_0>6l,1001")
             .header( "X-User-Id", "156012952")
         .when()
@@ -279,6 +301,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "260738342,1001")
             .header( "X-User-Id", "330205658")
         .when()
@@ -292,6 +315,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,1001")
             .header( "X-User-Id", "287469117")
         .when()
@@ -305,6 +329,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XUserIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
         .when()
             .request( "OPTIONS", "/posts")
@@ -317,6 +342,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XUserIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "")
         .when()
@@ -330,6 +356,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XUserIdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", ";UA")
         .when()
@@ -343,6 +370,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void optionsPosts_XUserIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "-1")
         .when()
@@ -356,6 +384,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_ApprovedDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "true")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"m@W.com\"}")
@@ -369,6 +398,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_ApprovedValue_Is_False() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
         .when()
             .request( "POST", "/posts")
@@ -380,6 +410,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_32() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "true")
             .contentType( "application/json")
             .request().body( "{\"text\":\"ezMe2&I.\\\"aMq>yn}=%E|qk,BL`=d\\\\',p6z*[3:hJZwGvOPrjzu61{$ek@KVCB]|8\",\"email\":\"2.6.=.&.?.K.I.s.!@7sq9.96wcX.edu\"}")
@@ -393,6 +424,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_ApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "POST", "/posts")
         .then()
@@ -404,6 +436,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_ApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "")
         .when()
             .request( "POST", "/posts")
@@ -416,6 +449,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_ApprovedType_Is_NotBoolean() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "g<h[(2")
         .when()
             .request( "POST", "/posts")
@@ -428,6 +462,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyMediaType_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/xml")
             .request().body( "{\"yqjvfkkbpw\":-423.0,\"lnyiywnpwriprxz\":-902}")
@@ -442,6 +477,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "null")
@@ -456,6 +492,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "709.7")
@@ -470,6 +507,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\"}")
@@ -484,6 +522,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":null}")
@@ -498,6 +537,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailType_Is_NotString() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":37.6}")
@@ -512,6 +552,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_6() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"Jm.gov\"}")
@@ -526,6 +567,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_33() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"QLv?Bb963Fs.YrQLFE;nR~eE@6w6O.org\"}")
@@ -540,6 +582,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"email\":\"2@N.org\"}")
@@ -554,6 +597,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":null,\"email\":\"+@A.com\"}")
@@ -568,6 +612,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextType_Is_NotString() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":true,\"email\":\"r@S.edu\"}")
@@ -582,6 +627,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextValueLength_Is_65() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\",XM8YB6+me$jhjpa5B#QsXRRyK4s=zT)f_fpwYXqdu21?A] 5t8uZe7$5NG0Wed b\",\"email\":\"z@I.net\"}")
@@ -596,6 +642,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"o@g.gov\",\"oychp\":-638.3,\"iimkfycd\":[],\"kuhhctjnrda\":805}")
@@ -610,6 +657,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "I")
             .cookie( "region", "W")
             .contentType( "text/plain")
@@ -624,6 +672,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_16() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", ":IEt|~VjQA_R}TA(")
             .cookie( "region", "#:iPPHOumVFtB^@r")
             .contentType( "text/plain")
@@ -638,6 +687,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"R@L.net\"}")
         .when()
@@ -651,6 +701,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"B@N.org\"}")
@@ -665,6 +716,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "true")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"r@i.net\"}")
@@ -679,6 +731,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "region", "h")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"*@3.net\"}")
@@ -693,6 +746,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "")
             .cookie( "region", "k")
             .contentType( "text/plain")
@@ -708,6 +762,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "GF:-Al}%h'$N)k5Nn")
             .cookie( "region", "#")
             .contentType( "text/plain")
@@ -723,6 +778,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "b")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"{@V.gov\"}")
@@ -737,6 +793,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "[")
             .cookie( "region", "")
             .contentType( "text/plain")
@@ -752,6 +809,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionValueLength_Is_17() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", ".")
             .cookie( "region", ")dzW[S-YC=k7?yx?K")
             .contentType( "text/plain")
@@ -767,6 +825,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_PostIdValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "%")
             .cookie( "region", "T")
             .cookie( "fvwfwnxkmrev", "true")
@@ -783,6 +842,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "c")
             .cookie( "region", "t")
         .when()
@@ -796,6 +856,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyMediaType_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "I")
             .cookie( "region", "~")
             .contentType( "application/x-www-form-urlencoded")
@@ -811,6 +872,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "O")
             .cookie( "region", "+")
             .contentType( "text/plain")
@@ -826,6 +888,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "?")
             .cookie( "region", "@")
             .contentType( "text/plain")
@@ -841,6 +904,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "w")
             .cookie( "region", "{")
             .contentType( "text/plain")
@@ -856,6 +920,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "[")
             .cookie( "region", "?")
             .contentType( "text/plain")
@@ -871,6 +936,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "@")
             .cookie( "region", "x")
             .contentType( "text/plain")
@@ -886,6 +952,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_33() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "$")
             .cookie( "region", "l")
             .contentType( "text/plain")
@@ -901,6 +968,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "D")
             .cookie( "region", "s")
             .contentType( "text/plain")
@@ -916,6 +984,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "s")
             .cookie( "region", "n")
             .contentType( "text/plain")
@@ -931,6 +1000,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextValueLength_Is_65() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "Y")
             .cookie( "region", "{")
             .contentType( "text/plain")
@@ -946,6 +1016,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "h")
             .cookie( "region", "{")
             .contentType( "text/plain")
@@ -961,6 +1032,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "A")
         .when()
             .request( "TRACE", "/posts")
@@ -972,6 +1044,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_2() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "B|C")
         .when()
             .request( "TRACE", "/posts")
@@ -983,6 +1056,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_C() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "C")
         .when()
             .request( "TRACE", "/posts")
@@ -994,6 +1068,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1005,6 +1080,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "")
         .when()
             .request( "TRACE", "/posts")
@@ -1017,6 +1093,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "true")
         .when()
             .request( "TRACE", "/posts")
@@ -1029,6 +1106,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_0() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "")
         .when()
             .request( "TRACE", "/posts")
@@ -1041,6 +1119,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "A|C|B")
         .when()
             .request( "TRACE", "/posts")
@@ -1053,6 +1132,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "|B")
         .when()
             .request( "TRACE", "/posts")
@@ -1065,6 +1145,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "3=rI:rH7jvN+>LNx0M#eAmB3|C")
         .when()
             .request( "TRACE", "/posts")
@@ -1077,6 +1158,7 @@ public class MySimpleTest_PostsTest {
     @Test
     public void tracePosts_PostIdItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "A|A")
         .when()
             .request( "TRACE", "/posts")
@@ -1092,5 +1174,22 @@ public class MySimpleTest_PostsTest {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

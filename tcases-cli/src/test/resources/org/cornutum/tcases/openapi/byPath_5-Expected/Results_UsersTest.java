@@ -12,6 +12,7 @@ public class Results_UsersTest {
     @Test
     public void getUsers() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/users")
         .then()
@@ -25,5 +26,22 @@ public class Results_UsersTest {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

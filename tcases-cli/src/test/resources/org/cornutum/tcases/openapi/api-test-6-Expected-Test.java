@@ -12,6 +12,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "0")
         .when()
@@ -24,6 +25,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsValue_Is_2345() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "2345,7700")
             .header( "X-User-Id", "761295545")
         .when()
@@ -36,6 +38,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsValue_Is_7700() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "7700,2345")
             .header( "X-User-Id", "0")
         .when()
@@ -48,6 +51,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-User-Id", "433704959")
         .when()
             .request( "OPTIONS", "/posts")
@@ -60,6 +64,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "")
             .header( "X-User-Id", "791204254")
         .when()
@@ -73,6 +78,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "647")
             .header( "X-User-Id", "249283126")
         .when()
@@ -86,6 +92,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsSize_Is_1() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001")
             .header( "X-User-Id", "796819282")
         .when()
@@ -99,6 +106,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700,2345")
             .header( "X-User-Id", "837031824")
         .when()
@@ -112,6 +120,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", ",1001")
             .header( "X-User-Id", "1012855669")
         .when()
@@ -125,6 +134,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "PyCeS/;&,XTzA Y,~H|,1001")
             .header( "X-User-Id", "944060091")
         .when()
@@ -138,6 +148,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "-698622611,1001")
             .header( "X-User-Id", "633311474")
         .when()
@@ -151,6 +162,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,1001")
             .header( "X-User-Id", "57695003")
         .when()
@@ -164,6 +176,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XUserIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
         .when()
             .request( "OPTIONS", "/posts")
@@ -176,6 +189,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XUserIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "")
         .when()
@@ -189,6 +203,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XUserIdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "=6^")
         .when()
@@ -202,6 +217,7 @@ public class MyTests {
     @Test(timeout=12345)
     public void optionsPosts_XUserIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "-1")
         .when()
@@ -218,5 +234,22 @@ public class MyTests {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

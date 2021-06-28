@@ -27,12 +27,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
@@ -235,6 +238,39 @@ public class ApiTestCommand
    * If defined, tests are generated only for the specified HTTP methods. <I>operations</I> must be a comma-separated list
    * of path operations defined in the <I>apiSpec</I>.
    * If omitted, tests are generated for all operations.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-B <I>server</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If defined, specifies the base URI for the API server used by the generated tests.
+   * The <I>server</I> expression has one of the following forms.
+   * If omitted, the default is <I>index=0</I>.
+   * <P/>
+   * <UL>
+   * <LI> <I>index</I>=<I>&lt;integer&gt;</I>
+   * <P>
+   * From the servers array defined in the <I>apiSpec</I>, use the URI of the given element.
+   * </P>
+   * </LI>
+   * <LI> <I>contains</I>=<I>&lt;text&gt;</I>
+   * <P>
+   * From the servers array defined in the <I>apiSpec</I>, use the URI of the first element with a description
+   * containing the given text.
+   * </P>
+   * </LI>
+   * <LI> <I>uri</I>=<I>&lt;uri&gt;</I>
+   * <P>
+   * Use the specified <I>&lt;uri&gt;</I>.
+   * </P>
+   * </LI>
+   * </UL>
    * </TD>
    * </TR>
    *
@@ -524,6 +560,23 @@ public class ApiTestCommand
         setOperations( Arrays.asList( args[i].split( " *, *")));
         }
 
+      else if( arg.equals( "-B"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwMissingValue( arg);
+          }
+        try
+          {
+          setServerUri( args[i]);
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid base URI", e);
+          }
+        }
+
       else if( arg.equals( "-c"))
         {
         i++;
@@ -696,6 +749,19 @@ public class ApiTestCommand
                "  -O operations   If defined, tests are generated only for the specified HTTP methods. The operations",
                "                  option must be a comma-separated list of path operations defined in the apiSpec. If",
                "                  omitted, tests are generated for all operations.",
+               "",
+               "-B server         If defined, specifies the base URI for the API server used by the generated tests.",
+               "                  The server expression has one of the following forms. If omitted, the default is index=0.",
+               "",
+               "                  index=<integer>",
+               "                       From the servers array defined in the apiSpec, use the URI of the given element.",
+               "",
+               "                  contains=<text>",
+               "                       From the servers array defined in the apiSpec, use the URI of the first element",
+               "                       with a description containing the given text.",
+               "",
+               "                   uri=<uri>",
+               "                       Use the specified <uri>.",
                "",
                "  -T contentType  Defines the content type of the OpenApi specification. The contentType must be one",
                "                  of 'json', 'yaml', or 'yml'. If omitted, the default content type is derived from the",
@@ -981,6 +1047,36 @@ public class ApiTestCommand
     public Set<String> getOperations()
       {
       return operations_;
+      }
+
+    /**
+     * Changes the expression that identifies the API server URI used by generated tests.
+     */
+    public void setServerUri( String serverExpr) throws Exception
+      {
+      if( StringUtils.isNotBlank( serverExpr))
+        {
+        Matcher serverMatcher = serverExprPattern_.matcher( serverExpr);
+        if( !serverMatcher.matches())
+          {
+          throw new IllegalArgumentException( String.format( "'%s' is not a valid server expression", serverExpr));
+          }
+
+        String key = serverMatcher.group(1);
+        String value = serverMatcher.group(2);
+        if( "index".equals( key))
+          {
+          getModelOptions().setServerSelector( ServerSelector.atIndex( Integer.valueOf( value)));
+          }
+        else if( "contains".equals( key))
+          {
+          getModelOptions().setServerSelector( ServerSelector.containing( value));
+          }
+        else
+          {
+          getModelOptions().setServerUri( new URI( value));
+          }
+        }
       }
 
     /**
@@ -1388,6 +1484,8 @@ public class ApiTestCommand
     private boolean showVersion_;
     private Long randomSeed_;
 
+    private static final Pattern serverExprPattern_ = Pattern.compile( "(index|contains|uri)=(.+)");
+      
     public static class Builder
       {
       public Builder()
@@ -1481,6 +1579,12 @@ public class ApiTestCommand
       public Builder operations( String... operations)
         {
         options_.setOperations( Arrays.asList( operations));
+        return this;
+        }
+
+      public Builder serverUri( String serverExpr) throws Exception
+        {
+        options_.setServerUri( serverExpr);
         return this;
         }
 
