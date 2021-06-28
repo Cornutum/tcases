@@ -12,6 +12,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "Typical User")
         .when()
@@ -24,6 +25,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_VIP() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "1,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -36,6 +38,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_2() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "2,1")
             .queryParam( "user attributes[user-type]", "Typical User")
         .when()
@@ -48,6 +51,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
         .when()
             .request( "HEAD", "/post")
@@ -60,6 +64,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes", "")
         .when()
@@ -73,6 +78,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes", "Cm-4uM")
         .when()
@@ -86,6 +92,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
         .when()
             .request( "HEAD", "/post")
@@ -98,6 +105,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "")
         .when()
@@ -111,6 +119,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "user attributes[user-type]", "\">gb//V~cOamLd\"guT=(|fwcJYu&H7cwat!)7U*9%m#/E\\xaR C3L$L!7CuE^D`zivT 8KY2G\"'?FjW?la&:<{E&>9t6sxMPPkU\"t6BzKl0n)<r-5ca7J,/U#OG;;,p-jforEO=_lZy\"U R~*T(\"i,Z%$ 3uJ6g}6@[TS7&oeK>57gl+z:q8#s'sYn  /FfzE.buMUx!dsHyzc~1x")
         .when()
@@ -124,6 +133,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_UserAttributesValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,2")
             .queryParam( "user attributes[user-type]", "VIP!")
             .queryParam( "user attributes[larulaaxjyqkr]", "1wWIn")
@@ -138,6 +148,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -150,6 +161,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?", "")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -163,6 +175,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?", "247")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -176,6 +189,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -188,6 +202,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -201,6 +216,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "-65")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -214,6 +230,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -227,6 +244,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -240,6 +258,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", ",1")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -253,6 +272,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "eb,true,2")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -266,6 +286,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "-454253172,0")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -279,6 +300,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesPostReferencesItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,0")
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
@@ -292,6 +314,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void headPost_PostValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
             .queryParam( "post?[ahujej]", "-923")
             .queryParam( "user attributes[user-type]", "VIP!")
@@ -306,6 +329,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "{X}")
         .when()
             .request( "PATCH", "/post")
@@ -317,6 +341,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "<Y> #Z {X}")
         .when()
             .request( "PATCH", "/post")
@@ -328,6 +353,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Z() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "#Z")
         .when()
             .request( "PATCH", "/post")
@@ -339,6 +365,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "{X} {X} {X}")
         .when()
             .request( "PATCH", "/post")
@@ -350,6 +377,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -361,6 +389,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "")
         .when()
             .request( "PATCH", "/post")
@@ -373,6 +402,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "-726")
         .when()
             .request( "PATCH", "/post")
@@ -385,6 +415,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsSize_Is_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "")
         .when()
             .request( "PATCH", "/post")
@@ -397,6 +428,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "<Y> {X} {X} {X}")
         .when()
             .request( "PATCH", "/post")
@@ -409,6 +441,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "")
         .when()
             .request( "PATCH", "/post")
@@ -421,6 +454,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "Post Marks", "v<O`")
         .when()
             .request( "PATCH", "/post")
@@ -433,6 +467,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "0")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "true")
@@ -447,6 +482,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdValue_Is_Gt_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "475916517641722120.2")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -461,6 +497,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_MeYou() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "0")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "true")
@@ -475,6 +512,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -489,6 +527,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -504,6 +543,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdType_Is_NotNumber() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -519,6 +559,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_PostIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "-1")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -534,6 +575,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "605865143995980997.5")
         .when()
             .request( "PUT", "/post")
@@ -546,6 +588,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyMediaType_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "704226969094570698.1")
             .contentType( "application/json")
             .request().body( "[\"oq8$f6\",\"Zzg\",\"R7&,\"]")
@@ -560,6 +603,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "717516071707418917.7")
             .contentType( "application/x-www-form-urlencoded")
         .when()
@@ -573,6 +617,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "321628010121646716.6")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "number", "815.7")
@@ -587,6 +632,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "455879347664227151.2")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "reviewer", "Larry Moe")
@@ -601,6 +647,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "588727425155782203.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "")
@@ -616,6 +663,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesApprovedType_Is_NotBoolean() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "781577041014836317.1")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "OO")
@@ -631,6 +679,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "318391597246017975.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -645,6 +694,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "110822385164496122.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -660,6 +710,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "709336837994542699.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -675,6 +726,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "postId", "34427969928977086.3")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
@@ -691,6 +743,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".0")
         .when()
@@ -703,6 +756,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdValue_Is_1000() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".1")
             .pathParam( "userId", ".1000")
         .when()
@@ -715,6 +769,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", "")
         .when()
@@ -728,6 +783,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".")
         .when()
@@ -741,6 +797,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".true")
         .when()
@@ -754,6 +811,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".-1")
         .when()
@@ -767,6 +825,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_UserIdValue_Is_1001() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".0")
             .pathParam( "userId", ".1001")
         .when()
@@ -780,6 +839,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_ApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
@@ -793,6 +853,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".")
             .pathParam( "userId", ".0")
         .when()
@@ -806,6 +867,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_ApprovedType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".true")
             .pathParam( "userId", ".0")
         .when()
@@ -819,6 +881,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostUserIdApproved_ApprovedValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "approved", ".-184521552")
             .pathParam( "userId", ".0")
         .when()
@@ -832,6 +895,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0")
         .when()
             .request( "GET", "/posts")
@@ -843,6 +907,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsSize_Is_4() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "100|53|52|11")
         .when()
             .request( "GET", "/posts")
@@ -854,6 +919,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/posts")
         .then()
@@ -865,6 +931,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -877,6 +944,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "E$z\\y-I")
         .when()
             .request( "GET", "/posts")
@@ -889,6 +957,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsSize_Is_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -901,6 +970,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsSize_Is_5() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0|40|64|96|85")
         .when()
             .request( "GET", "/posts")
@@ -913,6 +983,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -925,6 +996,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "true")
         .when()
             .request( "GET", "/posts")
@@ -937,6 +1009,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsContainsValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "-1")
         .when()
             .request( "GET", "/posts")
@@ -949,6 +1022,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsContainsValue_Is_101() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "101")
         .when()
             .request( "GET", "/posts")
@@ -961,6 +1035,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getPosts_IdsItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0|0|91|44")
         .when()
             .request( "GET", "/posts")
@@ -973,6 +1048,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "0")
         .when()
@@ -985,6 +1061,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_2345() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "2345,7700")
             .header( "X-User-Id", "304086962")
         .when()
@@ -997,6 +1074,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_7700() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "7700,2345")
             .header( "X-User-Id", "0")
         .when()
@@ -1009,6 +1087,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-User-Id", "776767066")
         .when()
             .request( "OPTIONS", "/posts")
@@ -1021,6 +1100,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "")
             .header( "X-User-Id", "623701463")
         .when()
@@ -1034,6 +1114,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "-963.4")
             .header( "X-User-Id", "1032704551")
         .when()
@@ -1047,6 +1128,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsSize_Is_1() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001")
             .header( "X-User-Id", "533873321")
         .when()
@@ -1060,6 +1142,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345,7700")
             .header( "X-User-Id", "181167995")
         .when()
@@ -1073,6 +1156,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", ",2345")
             .header( "X-User-Id", "354736")
         .when()
@@ -1086,6 +1170,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "SP_KH,5,MWxCd,7700")
             .header( "X-User-Id", "118523476")
         .when()
@@ -1099,6 +1184,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "-378304222,1001")
             .header( "X-User-Id", "348369597")
         .when()
@@ -1112,6 +1198,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XPostTypesItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,1001")
             .header( "X-User-Id", "1008527334")
         .when()
@@ -1125,6 +1212,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XUserIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
         .when()
             .request( "OPTIONS", "/posts")
@@ -1137,6 +1225,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XUserIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,2345")
             .header( "X-User-Id", "")
         .when()
@@ -1150,6 +1239,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XUserIdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "yjxdckmlmkupo,mh-3,")
         .when()
@@ -1163,6 +1253,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void optionsPosts_XUserIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .header( "X-Post-Types", "1001,7700")
             .header( "X-User-Id", "-1")
         .when()
@@ -1176,6 +1267,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_ApprovedDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "true")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"y@9.org\"}")
@@ -1189,6 +1281,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_ApprovedValue_Is_False() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
         .when()
             .request( "POST", "/posts")
@@ -1200,6 +1293,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_32() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "true")
             .contentType( "application/json")
             .request().body( "{\"text\":\")`uM;l J8CC`5,YnP]d,C#\\\\8J+8{zQ\\\"dSJFz^Cn\\\\R0hO3(BG;K\\\\Z+],z=:IHT]dJ\",\"email\":\"L.6**.t4X@Lc2.jA.6m.Bj.wz.2L.edu\"}")
@@ -1213,6 +1307,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_ApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1224,6 +1319,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_ApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "")
         .when()
             .request( "POST", "/posts")
@@ -1236,6 +1332,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_ApprovedType_Is_NotBoolean() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "220")
         .when()
             .request( "POST", "/posts")
@@ -1248,6 +1345,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyMediaType_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/xml")
             .request().body( "-1012.7")
@@ -1262,6 +1360,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "null")
@@ -1276,6 +1375,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "true")
@@ -1290,6 +1390,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\"}")
@@ -1304,6 +1405,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":null}")
@@ -1318,6 +1420,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailType_Is_NotString() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":674.0}")
@@ -1332,6 +1435,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_6() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"9S.edu\"}")
@@ -1346,6 +1450,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesEmailValueLength_Is_33() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"w_9j!u/En;$_LuJD+Lq73VUiT1@VD.edu\"}")
@@ -1360,6 +1465,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"email\":\"G@M.org\"}")
@@ -1374,6 +1480,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":null,\"email\":\"K@x.net\"}")
@@ -1388,6 +1495,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextType_Is_NotString() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":907,\"email\":\"#@X.net\"}")
@@ -1402,6 +1510,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesTextValueLength_Is_65() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"QTc!FO\\\\TOZ9\\\"QK@+$br\\\\%w}2O)lmlw#Q(SL6gy6*(`.$Fmkz{P>=HQy>ILCo`w?;e\",\"email\":\"_@J.org\"}")
@@ -1416,6 +1525,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void postPosts_BodyApplicationJsonValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "approved", "false")
             .contentType( "application/json")
             .request().body( "{\"text\":\"\",\"email\":\"C@D.edu\",\"jfqdxwtpqqm\":\" b{8R\",\"wyxzvaqalrv\":545}")
@@ -1430,6 +1540,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "#")
             .cookie( "region", "s")
             .contentType( "text/plain")
@@ -1444,6 +1555,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_16() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "o03M8u3l]Yytb?%N")
             .cookie( "region", "d4U#f[?E>gU'=4X#")
             .contentType( "text/plain")
@@ -1458,6 +1570,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"N@Y.com\"}")
         .when()
@@ -1471,6 +1584,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"S@H.com\"}")
@@ -1485,6 +1599,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "e|t")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"5@E.gov\"}")
@@ -1499,6 +1614,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "region", ".")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"m@R.com\"}")
@@ -1513,6 +1629,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "")
             .cookie( "region", "M")
             .contentType( "text/plain")
@@ -1528,6 +1645,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", ">0H]#cggQ}Wa*>u<c")
             .cookie( "region", "7")
             .contentType( "text/plain")
@@ -1543,6 +1661,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "s")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"^@7.com\"}")
@@ -1557,6 +1676,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "/")
             .cookie( "region", "")
             .contentType( "text/plain")
@@ -1572,6 +1692,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesRegionValueLength_Is_17() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "&")
             .cookie( "region", "B[6|E|2JcPzw*R(04")
             .contentType( "text/plain")
@@ -1587,6 +1708,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_PostIdValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "0")
             .cookie( "region", "-")
             .cookie( "xgwtqoghbxd", "true")
@@ -1604,6 +1726,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "/")
             .cookie( "region", ":")
         .when()
@@ -1617,6 +1740,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyMediaType_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "&")
             .cookie( "region", "1")
             .contentType( "application/json")
@@ -1632,6 +1756,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "|")
             .cookie( "region", "E")
             .contentType( "text/plain")
@@ -1647,6 +1772,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "-")
             .cookie( "region", "T")
             .contentType( "text/plain")
@@ -1662,6 +1788,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "A")
             .cookie( "region", "`")
             .contentType( "text/plain")
@@ -1677,6 +1804,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "j")
             .cookie( "region", ">")
             .contentType( "text/plain")
@@ -1692,6 +1820,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "*")
             .cookie( "region", "R")
             .contentType( "text/plain")
@@ -1707,6 +1836,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_33() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "Z")
             .cookie( "region", "?")
             .contentType( "text/plain")
@@ -1722,6 +1852,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "l")
             .cookie( "region", "m")
             .contentType( "text/plain")
@@ -1737,6 +1868,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "0")
             .cookie( "region", "*")
             .contentType( "text/plain")
@@ -1752,6 +1884,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesTextValueLength_Is_65() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "W")
             .cookie( "region", "e")
             .contentType( "text/plain")
@@ -1767,6 +1900,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void putPosts_BodyTextPlainValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "country", "P")
             .cookie( "region", "K")
             .contentType( "text/plain")
@@ -1782,6 +1916,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "A")
         .when()
             .request( "TRACE", "/posts")
@@ -1793,6 +1928,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_2() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "B|A")
         .when()
             .request( "TRACE", "/posts")
@@ -1804,6 +1940,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_C() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "C")
         .when()
             .request( "TRACE", "/posts")
@@ -1815,6 +1952,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1826,6 +1964,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "")
         .when()
             .request( "TRACE", "/posts")
@@ -1838,6 +1977,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "-297.0")
         .when()
             .request( "TRACE", "/posts")
@@ -1850,6 +1990,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_0() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "")
         .when()
             .request( "TRACE", "/posts")
@@ -1862,6 +2003,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsSize_Is_3() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "A|B|C")
         .when()
             .request( "TRACE", "/posts")
@@ -1874,6 +2016,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "|C")
         .when()
             .request( "TRACE", "/posts")
@@ -1886,6 +2029,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "-kQr{oH&F5t6_4R7i4.d@-gs5gZFdIi6B#N?xOsn]1Q}yh*NC[l}>wH*NzR^O<Wmc3Ki*cX*|C")
         .when()
             .request( "TRACE", "/posts")
@@ -1898,6 +2042,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePosts_PostIdItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .cookie( "postId", "A|A")
         .when()
             .request( "TRACE", "/posts")
@@ -1910,6 +2055,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=true;subject=A Day In Hell;likes=0")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1921,6 +2067,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=968584127")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1932,6 +2079,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_WhatMeWorry() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=true;subject=What? Me, worry?;likes=0")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1943,6 +2091,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", "")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1955,6 +2104,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";attributes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1967,6 +2117,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";attributes=217")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1979,6 +2130,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";likes=354355398")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -1991,6 +2143,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=;likes=703703613")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2003,6 +2156,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=;likes=89711824")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2015,6 +2169,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2027,6 +2182,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2039,6 +2195,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=true")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2051,6 +2208,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=-1")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2063,6 +2221,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;subject=;likes=369139405")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2075,6 +2234,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;subject==EOonKR3%i@(h,kXwv]bDcPjC*8 }PXp1CcGRBK_I_r 9T@f'vtYf!`G`PCGAn5mQS8DuqLn?NE;likes=372852380")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2087,6 +2247,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=509855036;ar=725")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -2099,6 +2260,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_UserIdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true,likes=0")
             .pathParam( "userId", "0")
         .when()
@@ -2111,6 +2273,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_UserIdValue_Is_Gt_0() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=false")
             .pathParam( "userId", "363198115")
         .when()
@@ -2123,6 +2286,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "likes=744505988")
             .pathParam( "userId", "0")
         .when()
@@ -2135,6 +2299,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_UserIdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "")
         .when()
@@ -2148,6 +2313,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_UserIdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "true")
         .when()
@@ -2161,6 +2327,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_UserIdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true")
             .pathParam( "userId", "-1")
         .when()
@@ -2174,6 +2341,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "")
             .pathParam( "userId", "381255829")
         .when()
@@ -2187,6 +2355,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "|")
             .pathParam( "userId", "129395836")
         .when()
@@ -2200,6 +2369,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertyCount_Is_Lt_1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "")
             .pathParam( "userId", "841917001")
         .when()
@@ -2213,6 +2383,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=")
             .pathParam( "userId", "468903080")
         .when()
@@ -2226,6 +2397,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=")
             .pathParam( "userId", "365462155")
         .when()
@@ -2239,6 +2411,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true,likes=")
             .pathParam( "userId", "873203121")
         .when()
@@ -2252,6 +2425,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true,likes=h'sx_E7")
             .pathParam( "userId", "1023834291")
         .when()
@@ -2265,6 +2439,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesLikesValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true,likes=-1")
             .pathParam( "userId", "535291287")
         .when()
@@ -2278,6 +2453,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "[attributes]", "approved=true,shhelptr=54,avuhxdkoidtkij=-85")
             .pathParam( "userId", "196324320")
         .when()
@@ -2291,6 +2467,7 @@ public class OpenAPIRequestTestCasesTest {
     @Test
     public void getUsers() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/users")
         .then()
@@ -2304,5 +2481,22 @@ public class OpenAPIRequestTestCasesTest {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

@@ -12,6 +12,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=true;subject=A Day In Hell;likes=0")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -23,6 +24,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedValue_Is_False() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=597033979")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -34,6 +36,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_WhatMeWorry() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=true;subject=What? Me, worry?;likes=0")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -45,6 +48,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", "")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -57,6 +61,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";attributes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -69,6 +74,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";attributes=-441")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -81,6 +87,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";likes=1035843385")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -93,6 +100,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=;likes=127128009")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -105,6 +113,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=\"+DZYOH4;likes=222686173")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -117,6 +126,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -129,6 +139,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -141,6 +152,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=true")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -153,6 +165,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesLikesValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=-1")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -165,6 +178,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;subject=;likes=279878075")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -177,6 +191,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;subject=~+:.-g:o)lz~^hL-;. o1\\Vc64a#.Sm!*Y`|qrPD^$*wXi2.a22Qkgt|f8T;#g33QP&F3Sq{<43[l#SP:C>1C~NW?G\\a _%Jkm?u2\"l\"H7*]q:f9@re;likes=859073676")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -189,6 +204,7 @@ public class AllPaths_PostsAttributesTest {
     @Test
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .pathParam( "attributes", ";approved=false;likes=776704486;wuf=")
         .when()
             .request( "TRACE", "/posts/{attributes}")
@@ -204,5 +220,22 @@ public class AllPaths_PostsAttributesTest {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

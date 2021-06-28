@@ -106,6 +106,31 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     targetWriter.println( "return allOf( greaterThanOrEqualTo(400), lessThan(500));");
     targetWriter.unindent();
     targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private String forTestServer() {");
+    targetWriter.indent();
+    targetWriter.println( "return forTestServer( null);");
+    targetWriter.unindent();
+    targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private String forTestServer( String defaultUri) {");
+    targetWriter.indent();
+    targetWriter.println( "String testServer = tcasesApiServer();");
+    targetWriter.println( "return");
+    targetWriter.indent();
+    targetWriter.println( "defaultUri == null || !testServer.isEmpty()");
+    targetWriter.println( "? testServer");
+    targetWriter.println( ": defaultUri;");
+    targetWriter.unindent();
+    targetWriter.unindent();
+    targetWriter.println( "}");
+    targetWriter.println();
+    targetWriter.println( "private String tcasesApiServer() {");
+    targetWriter.indent();
+    targetWriter.println( "String uri = System.getProperty( \"tcasesApiServer\");");
+    targetWriter.println( "return uri == null? \"\" : uri.trim();");
+    targetWriter.unindent();
+    targetWriter.println( "}");
     }
   
   /**
@@ -192,14 +217,18 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
    */
   protected void writeServer( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    Optional<String> serverUri =
-      Optional.of(
-        StringUtils.stripEnd(
-          Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
-          "/"))
-      .filter( StringUtils::isNotBlank);
+    String serverUri =
+      StringUtils.stripEnd(
+        Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
+        "/");
 
-    serverUri.ifPresent( uri -> targetWriter.println( String.format(".baseUri( %s)", stringLiteral( uri))));
+    targetWriter.println
+      ( String.format(
+        ".baseUri( forTestServer(%s))",
+        Optional.of( serverUri)
+        .filter( StringUtils::isNotBlank)
+        .map( uri -> String.format( " %s", stringLiteral( uri)))
+        .orElse( "")));
     }
   
   /**

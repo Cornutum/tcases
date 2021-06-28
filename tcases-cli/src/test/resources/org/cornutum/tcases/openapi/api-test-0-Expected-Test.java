@@ -12,6 +12,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0")
         .when()
             .request( "GET", "/posts")
@@ -23,6 +24,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsSize_Is_4() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "100|16|9|34")
         .when()
             .request( "GET", "/posts")
@@ -34,6 +36,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/posts")
         .then()
@@ -45,6 +48,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -57,6 +61,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsType_Is_NotArray() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "n,-879,b,-720,kmfrupntmmanfxx,Y;;")
         .when()
             .request( "GET", "/posts")
@@ -69,6 +74,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsSize_Is_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -81,6 +87,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsSize_Is_5() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0|96|12|81|77")
         .when()
             .request( "GET", "/posts")
@@ -93,6 +100,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsContainsType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -105,6 +113,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsContainsType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "")
         .when()
             .request( "GET", "/posts")
@@ -117,6 +126,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsContainsValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "-1")
         .when()
             .request( "GET", "/posts")
@@ -129,6 +139,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsContainsValue_Is_101() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "101")
         .when()
             .request( "GET", "/posts")
@@ -141,6 +152,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getPosts_IdsItemsUnique_Is_No() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "ids", "0|20|50|50")
         .when()
             .request( "GET", "/posts")
@@ -153,6 +165,7 @@ public class MyTest extends MyBaseClass {
     @Test
     public void getUsers() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/users")
         .then()
@@ -166,5 +179,22 @@ public class MyTest extends MyBaseClass {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }

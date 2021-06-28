@@ -12,6 +12,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServers_IdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "0")
         .when()
             .request( "GET", "/servers")
@@ -23,6 +24,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServers_IdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "GET", "/servers")
         .then()
@@ -33,6 +35,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServers_IdValue_Is_Gt_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "175329731")
         .when()
             .request( "GET", "/servers")
@@ -44,6 +47,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServers_IdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "")
         .when()
             .request( "GET", "/servers")
@@ -56,6 +60,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServers_IdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "Wi")
         .when()
             .request( "GET", "/servers")
@@ -68,6 +73,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServers_IdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "-1")
         .when()
             .request( "GET", "/servers")
@@ -80,6 +86,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void deleteServersOp_IdDefined_Is_Yes() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "0")
         .when()
             .request( "DELETE", "/servers/op")
@@ -91,6 +98,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void deleteServersOp_IdDefined_Is_No() {
         given()
+            .baseUri( forTestServer())
         .when()
             .request( "DELETE", "/servers/op")
         .then()
@@ -101,6 +109,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void deleteServersOp_IdValue_Is_Gt_0() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "564115328")
         .when()
             .request( "DELETE", "/servers/op")
@@ -112,6 +121,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void deleteServersOp_IdType_Is_Null() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "")
         .when()
             .request( "DELETE", "/servers/op")
@@ -124,6 +134,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void deleteServersOp_IdType_Is_NotInteger() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "true")
         .when()
             .request( "DELETE", "/servers/op")
@@ -136,6 +147,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void deleteServersOp_IdValue_Is_M1() {
         given()
+            .baseUri( forTestServer())
             .queryParam( "id", "-1")
         .when()
             .request( "DELETE", "/servers/op")
@@ -148,7 +160,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOp_IdDefined_Is_Yes() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "0")
         .when()
             .request( "GET", "/servers/op")
@@ -160,7 +172,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOp_IdDefined_Is_No() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
         .when()
             .request( "GET", "/servers/op")
         .then()
@@ -171,7 +183,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOp_IdValue_Is_Gt_0() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "679410555")
         .when()
             .request( "GET", "/servers/op")
@@ -183,7 +195,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOp_IdType_Is_Null() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "")
         .when()
             .request( "GET", "/servers/op")
@@ -196,7 +208,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOp_IdType_Is_NotInteger() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "-374.6")
         .when()
             .request( "GET", "/servers/op")
@@ -209,7 +221,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOp_IdValue_Is_M1() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "-1")
         .when()
             .request( "GET", "/servers/op")
@@ -222,7 +234,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOpPath_IdDefined_Is_Yes() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "0")
         .when()
             .request( "GET", "/servers/op/path")
@@ -234,7 +246,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOpPath_IdDefined_Is_No() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
         .when()
             .request( "GET", "/servers/op/path")
         .then()
@@ -245,7 +257,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOpPath_IdValue_Is_Gt_0() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "753657235")
         .when()
             .request( "GET", "/servers/op/path")
@@ -257,7 +269,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOpPath_IdType_Is_Null() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "")
         .when()
             .request( "GET", "/servers/op/path")
@@ -270,7 +282,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOpPath_IdType_Is_NotInteger() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", ";M:kf3")
         .when()
             .request( "GET", "/servers/op/path")
@@ -283,7 +295,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersOpPath_IdValue_Is_M1() {
         given()
-            .baseUri( "http://api.cornutum.org/local/op")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/op"))
             .queryParam( "id", "-1")
         .when()
             .request( "GET", "/servers/op/path")
@@ -296,7 +308,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersPath_IdDefined_Is_Yes() {
         given()
-            .baseUri( "http://api.cornutum.org/local/path")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/path"))
             .queryParam( "id", "0")
         .when()
             .request( "GET", "/servers/path")
@@ -308,7 +320,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersPath_IdDefined_Is_No() {
         given()
-            .baseUri( "http://api.cornutum.org/local/path")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/path"))
         .when()
             .request( "GET", "/servers/path")
         .then()
@@ -319,7 +331,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersPath_IdValue_Is_Gt_0() {
         given()
-            .baseUri( "http://api.cornutum.org/local/path")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/path"))
             .queryParam( "id", "243439280")
         .when()
             .request( "GET", "/servers/path")
@@ -331,7 +343,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersPath_IdType_Is_Null() {
         given()
-            .baseUri( "http://api.cornutum.org/local/path")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/path"))
             .queryParam( "id", "")
         .when()
             .request( "GET", "/servers/path")
@@ -344,7 +356,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersPath_IdType_Is_NotInteger() {
         given()
-            .baseUri( "http://api.cornutum.org/local/path")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/path"))
             .queryParam( "id", "")
         .when()
             .request( "GET", "/servers/path")
@@ -357,7 +369,7 @@ public class ApiTestServers_8_Test {
     @Test
     public void getServersPath_IdValue_Is_M1() {
         given()
-            .baseUri( "http://api.cornutum.org/local/path")
+            .baseUri( forTestServer( "http://api.cornutum.org/local/path"))
             .queryParam( "id", "-1")
         .when()
             .request( "GET", "/servers/path")
@@ -373,5 +385,22 @@ public class ApiTestServers_8_Test {
 
     private Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private String forTestServer() {
+        return forTestServer( null);
+    }
+
+    private String forTestServer( String defaultUri) {
+        String testServer = tcasesApiServer();
+        return
+            defaultUri == null || !testServer.isEmpty()
+            ? testServer
+            : defaultUri;
+    }
+
+    private String tcasesApiServer() {
+        String uri = System.getProperty( "tcasesApiServer");
+        return uri == null? "" : uri.trim();
     }
 }
