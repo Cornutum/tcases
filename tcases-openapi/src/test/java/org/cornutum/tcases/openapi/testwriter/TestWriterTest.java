@@ -401,7 +401,7 @@ public abstract class TestWriterTest
       }
 
     /**
-     * Writes the closing for target test cases the given stream.
+     * Writes the closing for target test cases to the given stream.
      */
     public void writeClosing( String testName, IndentedWriter targetWriter)
       {

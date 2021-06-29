@@ -34,7 +34,7 @@ public interface TestCaseWriter
   public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter);
 
   /**
-   * Writes the closing for target test cases the given stream.
+   * Writes the closing for target test cases to the given stream.
    */
   public void writeClosing( String testName, IndentedWriter targetWriter);
   }

@@ -16,8 +16,8 @@ import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
-
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
+import static org.cornutum.tcases.openapi.testwriter.java.TestCaseWriterUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -90,47 +90,12 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     }
 
   /**
-   * Writes the closing for target test cases the given stream.
+   * Writes the closing for target test cases to the given stream.
    */
   public void writeClosing( String testName, IndentedWriter targetWriter)
     {
-    targetWriter.println();
-    targetWriter.println( "private Matcher<Integer> isSuccess() {");
-    targetWriter.indent();
-    targetWriter.println( "return allOf( greaterThanOrEqualTo(200), lessThan(300));");
-    targetWriter.unindent();
-    targetWriter.println( "}");
-    targetWriter.println();
-    targetWriter.println( "private Matcher<Integer> isBadRequest() {");
-    targetWriter.indent();
-    targetWriter.println( "return allOf( greaterThanOrEqualTo(400), lessThan(500));");
-    targetWriter.unindent();
-    targetWriter.println( "}");
-    targetWriter.println();
-    targetWriter.println( "private String forTestServer() {");
-    targetWriter.indent();
-    targetWriter.println( "return forTestServer( null);");
-    targetWriter.unindent();
-    targetWriter.println( "}");
-    targetWriter.println();
-    targetWriter.println( "private String forTestServer( String defaultUri) {");
-    targetWriter.indent();
-    targetWriter.println( "String testServer = tcasesApiServer();");
-    targetWriter.println( "return");
-    targetWriter.indent();
-    targetWriter.println( "defaultUri == null || !testServer.isEmpty()");
-    targetWriter.println( "? testServer");
-    targetWriter.println( ": defaultUri;");
-    targetWriter.unindent();
-    targetWriter.unindent();
-    targetWriter.println( "}");
-    targetWriter.println();
-    targetWriter.println( "private String tcasesApiServer() {");
-    targetWriter.indent();
-    targetWriter.println( "String uri = System.getProperty( \"tcasesApiServer\");");
-    targetWriter.println( "return uri == null? \"\" : uri.trim();");
-    targetWriter.unindent();
-    targetWriter.println( "}");
+    writeStatusCodeMatcherDef( testName, targetWriter);
+    writeTestServerDef( testName, targetWriter);
     }
   
   /**

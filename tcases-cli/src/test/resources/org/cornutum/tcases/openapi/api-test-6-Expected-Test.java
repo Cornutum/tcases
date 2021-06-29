@@ -228,19 +228,19 @@ public class MyTests {
             ;
     }
 
-    private Matcher<Integer> isSuccess() {
+    private static Matcher<Integer> isSuccess() {
         return allOf( greaterThanOrEqualTo(200), lessThan(300));
     }
 
-    private Matcher<Integer> isBadRequest() {
+    private static Matcher<Integer> isBadRequest() {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 
-    private String forTestServer() {
+    private static String forTestServer() {
         return forTestServer( null);
     }
 
-    private String forTestServer( String defaultUri) {
+    private static String forTestServer( String defaultUri) {
         String testServer = tcasesApiServer();
         return
             defaultUri == null || !testServer.isEmpty()
@@ -248,7 +248,7 @@ public class MyTests {
             : defaultUri;
     }
 
-    private String tcasesApiServer() {
+    private static String tcasesApiServer() {
         String uri = System.getProperty( "tcasesApiServer");
         return uri == null? "" : uri.trim();
     }
