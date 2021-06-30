@@ -12,7 +12,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 
 /**
  * Creates a {@link SystemInputDef system input definition} for the API responses defined by the given
- * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+ * OpenAPI definition. Returns null if the given definition defines no API responses to model.
  * <P/>
  * OpenAPI models must conform to <U>OAS version 3</U>. See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
@@ -36,7 +36,7 @@ public class ResponseInputModeller extends InputModeller
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public SystemInputDef getResponseInputModel( OpenAPI api)
     {

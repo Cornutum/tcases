@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 /**
  * Runs tests for {@link TcasesOpenApi#getRequestExamplesModel getRequestExamplesModel} using
- * variations of the basic properties of an API spec.
+ * variations of the basic properties of an API definition.
  */
 public class RequestExamplesTest extends OpenApiTest
   {

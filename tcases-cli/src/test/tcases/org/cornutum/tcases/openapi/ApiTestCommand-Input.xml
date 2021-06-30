@@ -80,7 +80,7 @@
             </Var>
             <Var name="Random-Seed">
                 <Value name="Defined"/>
-                <Value name="Default" when="apiSpec"/>
+                <Value name="Default" when="apiDef"/>
             </Var>
             <Var name="Max-Tries">
                 <Value name="Defined"/>
@@ -88,10 +88,10 @@
             </Var>
             <VarSet name="Api-Spec">
                 <Var name="Defined">
-                    <Value name="Yes" property="apiSpec"/>
+                    <Value name="Yes" property="apiDef"/>
                     <Value name="No"/>                    
                 </Var>
-                <Var name="Path" when="apiSpec">
+                <Var name="Path" when="apiDef">
                     <Value name="Relative"/>
                     <Value name="Absolute"/>
                 </Var>

@@ -27,7 +27,7 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( OpenAPI api)
     {
@@ -36,7 +36,7 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( OpenAPI api, ModelOptions options)
     {
@@ -46,7 +46,7 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( OpenAPI api)
     {
@@ -55,7 +55,7 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( OpenAPI api, ModelOptions options)
     {
@@ -65,7 +65,7 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined examples in the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestExamplesModel( OpenAPI api)
     {
@@ -74,7 +74,7 @@ public final class TcasesOpenApi
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined examples in the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestExamplesModel( OpenAPI api, ModelOptions options)
     {

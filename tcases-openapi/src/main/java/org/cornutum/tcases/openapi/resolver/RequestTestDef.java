@@ -24,7 +24,7 @@ import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toSet;
 
 /**
- * Describes executable test cases for the API requests defined by an OpenAPI spec.
+ * Describes executable test cases for the API requests defined by an OpenAPI definition.
  */
 public class RequestTestDef
   {

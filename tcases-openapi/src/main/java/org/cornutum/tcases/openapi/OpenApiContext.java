@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi;
 
 /**
- * Provides a context for exceptions that occur when processing an OpenAPI specification
+ * Provides a context for exceptions that occur when processing an OpenAPI definition
  */
 public class OpenApiContext extends ExecutionContext<OpenApiException>
   {

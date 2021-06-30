@@ -31,7 +31,7 @@ Consider that any such test program must combine all of the following elements.
   1. :x: The expected response outputs
 
 One of the most complicated parts is #3. But Tcases for OpenAPI can automatically generate random request input values,
-including valid values that satisfy the requirements of the OpenAPI spec as well as invalid values that test API error
+including valid values that satisfy the requirements of the OpenAPI definition as well as invalid values that test API error
 handling. To learn how this works, see [*Generating request inputs*](#generating-request-inputs) below.
 
 For parts #1 and #2, there are lots of choices to make. There are many different ways to construct an executable test
@@ -68,7 +68,7 @@ To do this, Tcases for OpenAPI uses the [TestWriter API](#understanding-the-test
 three elements:
 
   * A [request test definition](Request-Test-Definition.md) that defines the inputs for request test cases (and that is created
-    automatically from an OpenAPI spec via [input resolution](#get-actual-input-values)),
+    automatically from an OpenAPI definition via [input resolution](#get-actual-input-values)),
   
   * a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
     responsible for producing the code required for a specific [test framework](#test-framework),
@@ -80,7 +80,7 @@ three elements:
 ### Example: REST Assured and JUnit  ###
 
 By default, Tcases for OpenAPI generates a JUnit test class that uses [REST Assured](https://github.com/rest-assured/rest-assured)
-to execute requests.  The name of the test class, by default, is derived from the `title` of the OpenAPI spec.  The package
+to execute requests.  The name of the test class, by default, is derived from the `title` of the OpenAPI definition.  The package
 containing the test class can also be determined automatically from the destination directory if it follows Maven project
 conventions.
 
@@ -94,7 +94,7 @@ You can see a summary of the generation process in the `tcases-api-test.log` fil
 
 ```
 12:48:35.769 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
-12:48:35.773 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+12:48:35.773 INFO  o.c.t.openapi.ApiTestCommand - Reading API definition from ./petstore-expanded.yaml
 12:48:36.114 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using random seed=275678033
 12:48:36.119 INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[GET_pets]: Preparing constraint info
 12:48:36.130 INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[GET_pets]: Generating test cases
@@ -153,7 +153,7 @@ You can see the difference in the `tcases-api-test.log` file:
 
 ```
 14:20:18.570 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
-14:20:18.574 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+14:20:18.574 INFO  o.c.t.openapi.ApiTestCommand - Reading API definition from ./petstore-expanded.yaml
 14:20:18.905 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using random seed=345589
 ...
 14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using TestNgTestWriter[] and RestAssuredTestCaseWriter[]
@@ -190,7 +190,7 @@ public class MyTests extends MyBaseClass {
 ### Example: Organize tests by API resource path ###
 
 By default, Tcases for OpenAPI creates a single test source file that contains the test cases generated for all
-resource paths defined by the OpenAPI spec. But that can be unwieldy for an extensive API that defines a large
+resource paths defined by the OpenAPI definition. But that can be unwieldy for an extensive API that defines a large
 number of endpoints. To better deal with this situation, you have the option to generate multiple test source files,
 each containing the test cases for a single API resource path.
 
@@ -204,7 +204,7 @@ You can see a summary of the result in the `tcases-api-test.log` file:
 
 ```
 16:51:05.341 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
-16:51:05.346 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+16:51:05.346 INFO  o.c.t.openapi.ApiTestCommand - Reading API definition from ./petstore-expanded.yaml
 ...
 16:51:05.955 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
 16:51:05.956 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests for /pets to ./Petstore_PetsTest.java
@@ -212,7 +212,7 @@ You can see a summary of the result in the `tcases-api-test.log` file:
 ```
 ### Example: Create tests from examples  ###
 
-By default, Tcases for OpenAPI generates test cases using the schemas defined by the OpenAPI spec.
+By default, Tcases for OpenAPI generates test cases using the schemas defined by the OpenAPI definition.
 But you can also create executable tests using the [examples](./README.md#how-does-it-work) defined for the API.
 
 ```bash
@@ -225,7 +225,7 @@ You can see a summary of the result in the `tcases-api-test.log` file:
 
 ```
 12:48:35.769 INFO  o.c.t.openapi.ApiTestCommand - M.N.P (YYYY-MM-DD)
-12:48:35.773 INFO  o.c.t.openapi.ApiTestCommand - Reading API spec from ./petstore-expanded.yaml
+12:48:35.773 INFO  o.c.t.openapi.ApiTestCommand - Reading API definition from ./petstore-expanded.yaml
 12:48:36.114 INFO  o.c.t.openapi.ApiTestCommand - Generating request test cases using API examples
 ...
 12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
@@ -262,12 +262,12 @@ Several [helpful utilties](#some-helpful-utilities) are available to make this e
 
 #### Creating an API test, step-by-step ####
 
-Here's a step-by-step outline of how to use the TestWriter API to convert an OpenAPI spec into an executable test.
+Here's a step-by-step outline of how to use the TestWriter API to convert an OpenAPI definition into an executable test.
 
   1. Create a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) instance.
   1. Create a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) instance that uses this `TestCaseWriter`.
-  1. Generate a request test definition for an OpenAPI spec.
-     * Generate a Tcases system test definition for an OpenAPI spec using one of the `getRequestTests()` methods of
+  1. Generate a request test definition for an OpenAPI definition.
+     * Generate a Tcases system test definition for an OpenAPI definition using one of the `getRequestTests()` methods of
        the [`TcasesOpenApiIO`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/io/TcasesOpenApiIO.html)
        class.
      * Generate a request test definition using [`getRequestCases`()](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestCases.html#getRequestCases-org.cornutum.tcases.SystemTestDef-org.cornutum.tcases.openapi.resolver.ResolverContext-).
@@ -279,14 +279,14 @@ Here's a step-by-step outline of how to use the TestWriter API to convert an Ope
 
 #### Some helpful utilities ####
 
-  - **To serialize a request parameter** according to the `style` and `explode` properties specified in the OpenAPI spec, use the public methods
+  - **To serialize a request parameter** according to the `style` and `explode` properties specified in the OpenAPI definition, use the public methods
     of the [`TestWriterUtils`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html) class,
     such as [`getQueryParameters()`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html#getQueryParameters-org.cornutum.tcases.openapi.resolver.ParamData-).
 
   - **To serialize form data** using the `application/x-www-form-urlencoded` media type, use the
     [`FormUrlEncoder`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/FormUrlEncoder.html).
 
-  - **To serialize request body data** using another media type specified in the OpenAPI spec, use a
+  - **To serialize request body data** using another media type specified in the OpenAPI definition, use a
     [`DataValueConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/DataValueConverter.html).
     The `TestCaseContentWriter` class automatically registers converters for many common media types. Alternatively, create and register your own
     implementation.
@@ -434,12 +434,12 @@ described below.
 
 Typically, it's important for the results of `tcases-api -D` to be repeatable. So Tcases for OpenAPI uses a random number
 generator with a consistent definition of its initial seed value. By default, the random seed value is a hash of the
-[name](https://docs.oracle.com/javase/8/docs/api/java/io/File.html#getName--) of the file containing your OpenAPI specification.
+[name](https://docs.oracle.com/javase/8/docs/api/java/io/File.html#getName--) of the file containing your OpenAPI definition.
 
 If you need more control over the random seed, use the `-r seed` option (or, when using
 [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html), `-Drandom=seed`). See example below.
 
-But what happens when `tcases-api -D` reads the OpenAPI specification from standard input? In this case, no file name is given,
+But what happens when `tcases-api -D` reads the OpenAPI definition from standard input? In this case, no file name is given,
 so Tcases for OpenAPI chooses a random seed for you. This can be useful if you want to see the result of using different seed values.
 
 In any case, the random seed value used for resolution is always shown in the `tcases-api.log` file. See example below.
@@ -448,7 +448,7 @@ In any case, the random seed value used for resolution is always shown in the `t
 # Define a specific random seed
 tcases-api -l stdout -D -r 1234567890 petstore-expanded.yaml
 ...
-12:59:00.009 INFO  o.c.tcases.openapi.ApiCommand - Reading API spec from ./petstore-expanded.yaml
+12:59:00.009 INFO  o.c.tcases.openapi.ApiCommand - Reading API definition from ./petstore-expanded.yaml
 12:59:00.447 INFO  o.c.tcases.openapi.ApiCommand - Writing results to ./petstore-expanded-Request-Cases.json
 12:59:00.448 INFO  o.c.tcases.openapi.ApiCommand - Generating request test cases using random seed=1234567890
 ...
@@ -459,7 +459,7 @@ tcases-api -l stdout -D -r 1234567890 petstore-expanded.yaml
 When a test case describes complex constraints on an input variable, resolving a satisfying value may require multiple
 iterations. To prevent an infinite fruitless search, Tcases for OpenAPI places a limit on the maximum number of resolution
 attempts made before giving up and reporting an error condition. By default, the limit on resolution attempts is 10000. But that limit is
-arbitrary and there is no guarantee that it will be sufficient for your API spec. You can choose a different limit by using the `-m
+arbitrary and there is no guarantee that it will be sufficient for your API definition. You can choose a different limit by using the `-m
 limit` option (or, when using [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html),
 `-DmaxTries=limit`). See example below.
 
@@ -468,7 +468,7 @@ limit` option (or, when using [Maven](http://www.cornutum.org/tcases/docs/tcases
 tcases-api -D -m 999999 petstore-expanded.yaml
 ```
 
-Tcases for OpenAPI reports conditions in the OpenAPI spec or its corresponding test model that affect how input values are
+Tcases for OpenAPI reports conditions in the OpenAPI definition or its corresponding test model that affect how input values are
 resolved.  Warning conditions are reported with an explanation of the situation. Error conditions report input values that could
 not be resolved. By default, conditions are reported by writing log messages. But you can choose to report resolution conditions by
 throwing an exception (`fail`) or by ignoring them altogether (`ignore`). For `tcases-api`, use the `-c` option, which also

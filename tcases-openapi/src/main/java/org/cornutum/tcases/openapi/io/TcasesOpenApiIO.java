@@ -23,9 +23,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Defines methods for generating Tcases documents from OpenAPI documents.
+ * Defines methods for generating Tcases documents from OpenAPI definitions.
  * <P/>
- * OpenAPI documents must conform to <U>OAS version 3</U>. See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
+ * OpenAPI definitions must conform to <U>OAS version 3</U>. See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
 public final class TcasesOpenApiIO
   {
@@ -39,7 +39,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( InputStream api)
     {
@@ -48,7 +48,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( InputStream api, ModelOptions options)
     {
@@ -57,7 +57,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( InputStream api, String docType, ModelOptions options)
     {
@@ -69,7 +69,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( File api)
     {
@@ -78,7 +78,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( File api, ModelOptions options)
     {
@@ -87,7 +87,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemInputDef getRequestInputModel( File api, String defaultDocType, ModelOptions options)
     {
@@ -99,7 +99,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemTestDef getRequestTests( InputStream api)
     {
@@ -108,7 +108,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemTestDef getRequestTests( InputStream api, ModelOptions options)
     {
@@ -117,7 +117,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemTestDef getRequestTests( InputStream api, String docType, ModelOptions options)
     {
@@ -126,7 +126,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemTestDef getRequestTests( File api)
     {
@@ -135,7 +135,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API requests to model.
    */
   public static SystemTestDef getRequestTests( File api, ModelOptions options)
     {
@@ -144,7 +144,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   public static SystemTestDef getRequestTests( File api, String defaultDocType, ModelOptions options)
     {
@@ -153,7 +153,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( InputStream api)
     {
@@ -162,7 +162,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( InputStream api, ModelOptions options)
     {
@@ -171,7 +171,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( InputStream api, String docType, ModelOptions options)
     {
@@ -183,7 +183,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( File api)
     {
@@ -192,7 +192,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( File api, ModelOptions options)
     {
@@ -201,7 +201,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemInputDef getResponseInputModel( File api, String defaultDocType, ModelOptions options)
     {
@@ -213,7 +213,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API responses defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemTestDef getResponseTests( InputStream api)
     {
@@ -222,7 +222,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API responses defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemTestDef getResponseTests( InputStream api, ModelOptions options)
     {
@@ -231,7 +231,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemTestDef getResponseTests( InputStream api, String docType, ModelOptions options)
     {
@@ -240,7 +240,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API responses defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemTestDef getResponseTests( File api)
     {
@@ -249,7 +249,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API responses defined by the 
-   * OpenAPI specification in the given JSON document. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition in the given JSON document. Returns null if the given definition defines no API responses to model.
    */
   public static SystemTestDef getResponseTests( File api, ModelOptions options)
     {
@@ -258,7 +258,7 @@ public final class TcasesOpenApiIO
 
   /**
    * Returns a {@link SystemTestDef system test definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   public static SystemTestDef getResponseTests( File api, String defaultDocType, ModelOptions options)
     {

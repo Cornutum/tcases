@@ -35,7 +35,7 @@ import java.util.Optional;
 import java.util.Random;
 
 /**
- * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec.
+ * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API definition.
  */
 public class ApiCommand
   {
@@ -50,7 +50,7 @@ public class ApiCommand
    * <TR valign="top">
    * <TD colspan="3">
    * <NOBR>
-   * [<I>option</I>...] [<I>apiSpec</I>]
+   * [<I>option</I>...] [<I>apiDef</I>]
    * </NOBR>
    * </TD>
    * </TR>
@@ -84,7 +84,7 @@ public class ApiCommand
    * <NOBR>-X</NOBR>
    * </TD>
    * <TD>
-   * If specified, test models are generated based on the examples specified in the <I>apiSpec</I>.
+   * If specified, test models are generated based on the examples specified in the <I>apiDef</I>.
    * Otherwise, by default, test models are created by generating random input values.
    * </TD>
    * </TR>
@@ -129,7 +129,7 @@ public class ApiCommand
    * </TD>
    * <TD>
    * If <I>-f</I> is defined, output is written to the specified <I>outFile</I>, relative to the given <I>outDir</I>.
-   * If omitted, the default <I>outFile</I> is derived from the <I>apiSpec</I>.
+   * If omitted, the default <I>outFile</I> is derived from the <I>apiDef</I>.
    * </TD>
    * </TR>
    *
@@ -142,7 +142,7 @@ public class ApiCommand
    * </TD>
    * <TD>
    * If <I>-o</I> is defined, output is written to the specified directory.
-   * If omitted, the default <I>outDir</I> is the directory containing the <I>apiSpec</I> or,
+   * If omitted, the default <I>outDir</I> is the directory containing the <I>apiDef</I> or,
    * if reading from standard input, the current working directory. If an output path cannot be
    * derived, output is written to standard output.
    * </TD>
@@ -211,7 +211,7 @@ public class ApiCommand
    * <TD>
    * If <I>-x</I> is defined, test definition output is transformed according to the XSLT transform defined
    * by the <I>transformDef</I> file. If relative, the <I>transformDef</I> path is assumed to be relative to the
-   * directory containing the <I>apiSpec</I>.
+   * directory containing the <I>apiDef</I>.
    * </TD>
    * </TR>
    *
@@ -237,7 +237,7 @@ public class ApiCommand
    * </TD>
    * <TD>
    * When <I>-D</I> is specified, use the given random number seed to generate request test case input values. 
-   * If omitted, the default random number seed is derived from the <I>apiSpec</I> name.
+   * If omitted, the default random number seed is derived from the <I>apiDef</I> name.
    * </TD>
    * </TR>
    *
@@ -262,8 +262,8 @@ public class ApiCommand
    * <NOBR>-T <I>contentType</I> </NOBR>
    * </TD>
    * <TD>
-   * Defines the content type of the OpenApi specification. The <I>contentType</I> must be one of "json", "yaml", or "yml".
-   * If omitted, the default content type is derived from the <I>apiSpec</I> name. If the <I>apiSpec</I> is read from standard
+   * Defines the content type of the OpenApi definition. The <I>contentType</I> must be one of "json", "yaml", or "yml".
+   * If omitted, the default content type is derived from the <I>apiDef</I> name. If the <I>apiDef</I> is read from standard
    * input or does not have a recognized extension, the default content type is "json".
    * </TD>
    * </TR>
@@ -285,14 +285,14 @@ public class ApiCommand
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR><I>apiSpec</I> </NOBR>
+   * <NOBR><I>apiDef</I> </NOBR>
    * </TD>
    * <TD>
-   * An OpenAPI v3 API spec is read from the given <I>apiSpec</I> file. If omitted, the API spec is
+   * An OpenAPI v3 API definition is read from the given <I>apiDef</I> file. If omitted, the API definition is
    * read from standard input. If no <I>outFile</I> is specified, output is written to a default file
-   * derived from the <I>apiSpec</I> or, if no <I>apiSpec</I> is given, to standard output.
+   * derived from the <I>apiDef</I> or, if no <I>apiDef</I> is given, to standard output.
    * <P/>
-   * Suppose that the base name of <I>apiSpec</I> (less any extension) is <I>B</I>. Then, assuming
+   * Suppose that the base name of <I>apiDef</I> (less any extension) is <I>B</I>. Then, assuming
    * defaults for all options, output will be a test definition for API requests written to a file
    * named "<I>B</I>-Requests-Test.json". If <I>-C</I> is specified, output will be a test
    * definition for API responses written to a file named "<I>B</I>-Responses-Test.json".
@@ -549,7 +549,7 @@ public class ApiCommand
 
       if( nargs > 0)
         {
-        setApiSpec( new File( args[i]));
+        setApiDef( new File( args[i]));
         }
       }
 
@@ -569,15 +569,15 @@ public class ApiCommand
       {
       for( String line :
              new String[] {
-               "Usage: tcases-api [option...] [apiSpec]",
+               "Usage: tcases-api [option...] [apiDef]",
                "",
-               "Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec.",
+               "Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API definition.",
                "",
-               "An OpenApi v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from standard input.",
-               "If no outFile is specified, output is written to a default file derived from the apiSpec or, if no apiSpec is",
+               "An OpenApi v3 API definition is read from the given apiDef file. If omitted, the API definition is read from standard input.",
+               "If no outFile is specified, output is written to a default file derived from the apiDef or, if no apiDef is",
                "given, to standard output.",
                "",
-               "Suppose that the base name of apiSpec (less any extension) is B. Then, assuming defaults for all options, output",
+               "Suppose that the base name of apiDef (less any extension) is B. Then, assuming defaults for all options, output",
                "will be a test definition for API requests written to a file named 'B-Requests-Test.json'. If -C is specified,",
                "output will be a test definition for API responses written to a file named 'B-Responses-Test.json'. If -D is",
                "specified, output will be a list of request test cases written to a file named 'B-Request-Cases.json'. If -I is",
@@ -590,7 +590,7 @@ public class ApiCommand
                "              produce results to test inputs to an API server, i.e. API requests. If -D is given, produce request",
                "              test cases for an API server, i.e. API request tests. If none of these is given, the default is -S.",
                "",
-               "  -X          If specified, test models are generated based on the examples specified in the apiSpec. Otherwise,",
+               "  -X          If specified, test models are generated based on the examples specified in the apiDef. Otherwise,",
                "              by default, test models are created by generating random input values.",
                "",
                "  -I          Produce an input definition file for either an API client (-C) or an API server (-S). If omitted,",
@@ -609,10 +609,10 @@ public class ApiCommand
                "              'log,log'.",
                "",
                "  -f outFile  If -f is defined, output is written to the specified outFile, relative to the given outDir.",
-               "              If omitted, the default outFile is derived from the apiSpec.",
+               "              If omitted, the default outFile is derived from the apiDef.",
                "",
                "  -o outDir   If -o is defined, output is written to the specified directory. If omitted, the default outDir is",
-               "              the directory containing the apiSpec or, if reading from standard input, the current working directory.",
+               "              the directory containing the apiDef or, if reading from standard input, the current working directory.",
                "              If an output path cannot be derived, output is written to standard output.",
                "",
                "  -J          If -J is defined, test definition output is transformed into Java source",
@@ -624,20 +624,20 @@ public class ApiCommand
                "",
                "  -x xsltDef  If -x is defined, test definition output is transformed according to the",
                "              XSLT transform defined by the xsltDef file. If relative, the xsltDef path is",
-               "              assumed to be relative to the directory containing the apiSpec.",
+               "              assumed to be relative to the directory containing the apiDef.",
                "",
                "  -p name=value  Defines the value of a transform parameter. Any number of -p options",
                "              may be specified. This option is meaningful only if the -x or -J option is given.",
                "",
                "  -r seed     When -D is specified, use the given random number seed to generate request test case",
-               "              input values. If omitted, the default random number seed is derived from the 'apiSpec' name.",
+               "              input values. If omitted, the default random number seed is derived from the 'apiDef' name.",
                "",
                "  -m maxTries When -D is specified, defines the maximum attempts made to resolve a request test case input",
                "              value before reporting failure. If omitted, the default value is 10000.",
                "",
-               "  -T docType  Defines the content type of the OpenApi specification. The 'docType' must be one of 'json', 'yaml',",
-               "              or 'yml'. If omitted, the default content type is derived from the 'apiSpec' name. ",
-               "              If the 'apiSpec' is read from standard input or does not have a recognized extension, the default",
+               "  -T docType  Defines the content type of the OpenApi definition. The 'docType' must be one of 'json', 'yaml',",
+               "              or 'yml'. If omitted, the default content type is derived from the 'apiDef' name. ",
+               "              If the 'apiDef' is read from standard input or does not have a recognized extension, the default",
                "              content type is 'json'.",
                "",
                "  -l logFile  If -l is defined, log output is written to the given file. If omitted,",
@@ -816,7 +816,7 @@ public class ApiCommand
       }
 
     /**
-     * Changes the OpenApi spec file content type.
+     * Changes the OpenApi definition file content type.
      */
     public void setContentType( String option)
       {
@@ -835,7 +835,7 @@ public class ApiCommand
       }
 
     /**
-     * Returns the OpenApi spec file content type.
+     * Returns the OpenApi definition file content type.
      */
     public String getContentType()
       {
@@ -900,8 +900,8 @@ public class ApiCommand
     public Long getDefaultRandomSeed()
       {
       return
-        Optional.ofNullable( getApiSpec())
-        .map( spec -> (long) spec.getName().hashCode())
+        Optional.ofNullable( getApiDef())
+        .map( def -> (long) def.getName().hashCode())
         .orElse( new Random().nextLong());
       }
 
@@ -1005,19 +1005,19 @@ public class ApiCommand
       }
 
     /**
-     * Changes the Open API v3 API spec file
+     * Changes the Open API v3 API definition file
      */
-    public void setApiSpec( File apiSpec)
+    public void setApiDef( File apiDef)
       {
-      apiSpec_ = apiSpec;
+      apiDef_ = apiDef;
       }
 
     /**
-     * Returns the Open API v3 API spec file
+     * Returns the Open API v3 API definition file
      */
-    public File getApiSpec()
+    public File getApiDef()
       {
-      return apiSpec_;
+      return apiDef_;
       }
 
     /**
@@ -1156,7 +1156,7 @@ public class ApiCommand
       return builder.toString();
       }
 
-    private File apiSpec_;
+    private File apiDef_;
     private File outDir_;
     private File outFile_;
     private boolean serverTest_;
@@ -1179,9 +1179,9 @@ public class ApiCommand
         options_ = new Options();
         }
 
-      public Builder apiSpec( File apiSpec)
+      public Builder apiDef( File apiDef)
         {
-        options_.setApiSpec( apiSpec);
+        options_.setApiDef( apiDef);
         return this;
         }
 
@@ -1320,7 +1320,7 @@ public class ApiCommand
     }
 
   /**
-   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec,
+   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API definition,
    * using the given {@link Options command line options}.
    */
   public static void main( String[] args)
@@ -1346,7 +1346,7 @@ public class ApiCommand
     }
 
   /**
-   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec,
+   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API definition,
    * using the given {@link Options command line options}.
    */
   public static void run( Options options) throws Exception
@@ -1358,25 +1358,25 @@ public class ApiCommand
       }
     logger_.info( "{}", getVersion());
 
-    // Identify the API spec file
-    File apiSpecFile = options.getApiSpec();
-    if( apiSpecFile != null && !apiSpecFile.isAbsolute())
+    // Identify the API definition file
+    File apiDefFile = options.getApiDef();
+    if( apiDefFile != null && !apiDefFile.isAbsolute())
       {
-      apiSpecFile = new File( options.getWorkingDir(), apiSpecFile.getPath());
+      apiDefFile = new File( options.getWorkingDir(), apiDefFile.getPath());
       }
 
     File inputDir =
-      apiSpecFile==null
+      apiDefFile==null
       ? options.getWorkingDir()
-      : apiSpecFile.getParentFile();
+      : apiDefFile.getParentFile();
     
     // Generate requested input definition
-    logger_.info( "Reading API spec from {}", apiSpecFile==null? "standard input" : apiSpecFile);
+    logger_.info( "Reading API definition from {}", apiDefFile==null? "standard input" : apiDefFile);
     logger_.info( "Generating an input model based on API {}", options.getModelOptions().getSource().equals( ModelOptions.Source.EXAMPLES)? "examples" : "schemas");
     SystemInputDef inputDef =
       options.isServerTest()
-      ? TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getContentType(), options.getModelOptions())
-      : TcasesOpenApiIO.getResponseInputModel( apiSpecFile, options.getContentType(), options.getModelOptions());
+      ? TcasesOpenApiIO.getRequestInputModel( apiDefFile, options.getContentType(), options.getModelOptions())
+      : TcasesOpenApiIO.getResponseInputModel( apiDefFile, options.getContentType(), options.getModelOptions());
 
     if( inputDef == null)
       {
@@ -1387,7 +1387,7 @@ public class ApiCommand
       // Output file defined?
       File outputDir = options.getOutDir();
       File outputFile = options.getOutFile();
-      if( outputFile == null && apiSpecFile != null)
+      if( outputFile == null && apiDefFile != null)
         {
         // No, use default name
         boolean requestTestCases = options.isTests() && options.isRequestCases();
@@ -1395,8 +1395,8 @@ public class ApiCommand
           new File(
             String.format(
               "%s%s-%s-%s.json",
-              Optional.ofNullable( apiSpecFile.getParent()).map( p -> p + "/").orElse( ""),
-              getBaseName( apiSpecFile.getName()),
+              Optional.ofNullable( apiDefFile.getParent()).map( p -> p + "/").orElse( ""),
+              getBaseName( apiDefFile.getName()),
               requestTestCases? "Request" : options.isServerTest()? "Requests" : "Responses",
               requestTestCases? "Cases" : options.isTests()? "Test" : "Input"));
         }

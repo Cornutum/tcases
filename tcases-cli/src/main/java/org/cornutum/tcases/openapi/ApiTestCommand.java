@@ -41,7 +41,7 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
 
 /**
- * Generates executable test code for API servers, based on an OpenAPI v3 compliant API spec.
+ * Generates executable test code for API servers, based on an OpenAPI v3 compliant API definition.
  */
 public class ApiTestCommand
   {
@@ -56,7 +56,7 @@ public class ApiTestCommand
    * <TR valign="top">
    * <TD colspan="3">
    * <NOBR>
-   * [<I>option</I>...] [<I>apiSpec</I>]
+   * [<I>option</I>...] [<I>apiDef</I>]
    * </NOBR>
    * </TD>
    * </TR>
@@ -75,7 +75,7 @@ public class ApiTestCommand
    * <NOBR>-X</NOBR>
    * </TD>
    * <TD>
-   * If specified, test cases are generated based on the examples specified in the <I>apiSpec</I>.
+   * If specified, test cases are generated based on the examples specified in the <I>apiDef</I>.
    * Otherwise, by default, test cases are created by generating random request input values.
    * </TD>
    * </TR>
@@ -118,7 +118,7 @@ public class ApiTestCommand
    * </TD>
    * <TD>
    * Defines the name of the test class that is generated. This can be either a fully-qualified class name
-   * or a simple class name. If omitted, the default is based on the title of the <I>apiSpec</I>.
+   * or a simple class name. If omitted, the default is based on the title of the <I>apiDef</I>.
    * </TD>
    * </TR>
    *
@@ -170,7 +170,7 @@ public class ApiTestCommand
    * </TD>
    * <TD>
    * If <I>-o</I> is defined, output is written to the specified directory.
-   * If omitted, the default <I>outDir</I> is the directory containing the <I>apiSpec</I> or,
+   * If omitted, the default <I>outDir</I> is the directory containing the <I>apiDef</I> or,
    * if reading from standard input, output is written to standard output.
    * </TD>
    * </TR>
@@ -209,7 +209,7 @@ public class ApiTestCommand
    * </TD>
    * <TD>
    * If defined, tests are generated only for the specified API resource paths. <I>paths</I> must be a comma-separated list
-   * of resource paths defined in the <I>apiSpec</I>.
+   * of resource paths defined in the <I>apiDef</I>.
    * If omitted, tests are generated for all resource paths.
    * </TD>
    * </TR>
@@ -236,7 +236,7 @@ public class ApiTestCommand
    * </TD>
    * <TD>
    * If defined, tests are generated only for the specified HTTP methods. <I>operations</I> must be a comma-separated list
-   * of path operations defined in the <I>apiSpec</I>.
+   * of path operations defined in the <I>apiDef</I>.
    * If omitted, tests are generated for all operations.
    * </TD>
    * </TR>
@@ -256,12 +256,12 @@ public class ApiTestCommand
    * <UL>
    * <LI> <I>index</I>=<I>&lt;integer&gt;</I>
    * <P>
-   * From the servers array defined in the <I>apiSpec</I>, use the URI of the given element.
+   * From the servers array defined in the <I>apiDef</I>, use the URI of the given element.
    * </P>
    * </LI>
    * <LI> <I>contains</I>=<I>&lt;text&gt;</I>
    * <P>
-   * From the servers array defined in the <I>apiSpec</I>, use the URI of the first element with a description
+   * From the servers array defined in the <I>apiDef</I>, use the URI of the first element with a description
    * containing the given text.
    * </P>
    * </LI>
@@ -282,8 +282,8 @@ public class ApiTestCommand
    * <NOBR>-T <I>contentType</I> </NOBR>
    * </TD>
    * <TD>
-   * Defines the content type of the OpenApi specification. The <I>contentType</I> must be one of "json", "yaml", or "yml".
-   * If omitted, the default content type is derived from the <I>apiSpec</I> name. If the <I>apiSpec</I> is read from standard
+   * Defines the content type of the OpenApi definition. The <I>contentType</I> must be one of "json", "yaml", or "yml".
+   * If omitted, the default content type is derived from the <I>apiDef</I> name. If the <I>apiDef</I> is read from standard
    * input or does not have a recognized extension, the default content type is "json".
    * </TD>
    * </TR>
@@ -326,7 +326,7 @@ public class ApiTestCommand
    * </TD>
    * <TD>
    * If defined, use the given random number seed to generate request test case input values. 
-   * If omitted, the default random number seed is derived from the <I>apiSpec</I> name.
+   * If omitted, the default random number seed is derived from the <I>apiDef</I> name.
    * </TD>
    * </TR>
    *
@@ -360,12 +360,12 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
-   * <NOBR><I>apiSpec</I> </NOBR>
+   * <NOBR><I>apiDef</I> </NOBR>
    * </TD>
    * <TD>
-   * An OpenAPI v3 API spec is read from the given <I>apiSpec</I> file. If omitted, the API spec is
+   * An OpenAPI v3 API definition is read from the given <I>apiDef</I> file. If omitted, the API definition is
    * read from standard input. If no <I>outFile</I> is specified, output is written to a default file
-   * derived from the <I>apiSpec</I> or, if no <I>apiSpec</I> is given, to standard output.
+   * derived from the <I>apiDef</I> or, if no <I>apiDef</I> is given, to standard output.
    * </TD>
    * </TR>
    *
@@ -670,7 +670,7 @@ public class ApiTestCommand
 
       if( nargs > 0)
         {
-        setApiSpec( new File( args[i]));
+        setApiDef( new File( args[i]));
         }
       }
 
@@ -690,18 +690,18 @@ public class ApiTestCommand
       {
       for( String line :
              new String[] {
-               "Usage: tcases-api-test [option...] [apiSpec]",
+               "Usage: tcases-api-test [option...] [apiDef]",
                "",
-               "Generates executable test code for API servers, based on an OpenAPI v3 compliant API spec.",
+               "Generates executable test code for API servers, based on an OpenAPI v3 compliant API definition.",
                "",
-               "An OpenAPI v3 API spec is read from the given apiSpec file. If omitted, the API spec is read from",
+               "An OpenAPI v3 API definition is read from the given apiDef file. If omitted, the API definition is read from",
                "standard input. If no outFile is specified, output is written to a default file derived from the",
-               "apiSpec or, if no apiSpec is given, to standard output.",
+               "apiDef or, if no apiDef is given, to standard output.",
                "",
                "Each option is one of the following:",
                "",
                "  -X              If specified, test cases are generated based on the examples specified in the",
-               "                  apiSpec. Otherwise, by default, test cases are created by generating random",
+               "                  apiDef. Otherwise, by default, test cases are created by generating random",
                "                  request input values.",
                "",
                "  -t testType     Defines the test framework used to run API tests. Valid values are 'junit', 'testng',",
@@ -715,7 +715,7 @@ public class ApiTestCommand
                "",
                "  -n testName     Defines the name of the test class that is generated. This can be either a fully-",
                "                  qualified class name or a simple class name. If omitted, the default is based on",
-               "                  the title of the apiSpec.",
+               "                  the title of the apiDef.",
                "",
                "  -p testPackage  Defines the package for the test class that is generated. This can be omitted if",
                "                  the testName is a fully-qualified class name or if the package can be determined",
@@ -729,7 +729,7 @@ public class ApiTestCommand
                "                  If omitted, the default outFile is derived from the testName.",
                "",
                "  -o outDir       If -o is defined, output is written to the specified directory. If omitted, the",
-               "                  default outDir is the directory containing the apiSpec or, if reading from standard",
+               "                  default outDir is the directory containing the apiDef or, if reading from standard",
                "                  input, output is written to standard output.",
                "",
                "  -u timeout      Defines the maximum time (in milliseconds) to complete an individual test method.",
@@ -739,7 +739,7 @@ public class ApiTestCommand
                "  -M mocoTestConfig When the testType is 'moco', specifies the Moco server test configuration file.",
                "",
                "  -P paths        If defined, tests are generated only for the specified API resource paths. The paths",
-               "                  option must be a comma-separated list of resource paths defined in the apiSpec. If",
+               "                  option must be a comma-separated list of resource paths defined in the apiDef. If",
                "                  omitted, tests are generated for all resource paths.",
                "",
                "  -S              If specified, a separate test file is generated for each of the API resource paths",
@@ -747,25 +747,25 @@ public class ApiTestCommand
                "                  single test file is generated containing tests for all paths.",
                "",
                "  -O operations   If defined, tests are generated only for the specified HTTP methods. The operations",
-               "                  option must be a comma-separated list of path operations defined in the apiSpec. If",
+               "                  option must be a comma-separated list of path operations defined in the apiDef. If",
                "                  omitted, tests are generated for all operations.",
                "",
                "-B server         If defined, specifies the base URI for the API server used by the generated tests.",
                "                  The server expression has one of the following forms. If omitted, the default is index=0.",
                "",
                "                  index=<integer>",
-               "                       From the servers array defined in the apiSpec, use the URI of the given element.",
+               "                       From the servers array defined in the apiDef, use the URI of the given element.",
                "",
                "                  contains=<text>",
-               "                       From the servers array defined in the apiSpec, use the URI of the first element",
+               "                       From the servers array defined in the apiDef, use the URI of the first element",
                "                       with a description containing the given text.",
                "",
                "                   uri=<uri>",
                "                       Use the specified <uri>.",
                "",
-               "  -T contentType  Defines the content type of the OpenApi specification. The contentType must be one",
+               "  -T contentType  Defines the content type of the OpenApi definition. The contentType must be one",
                "                  of 'json', 'yaml', or 'yml'. If omitted, the default content type is derived from the",
-               "                  apiSpec name. If the apiSpec is read from standard input or does not have a recognized",
+               "                  apiDef name. If the apiDef is read from standard input or does not have a recognized",
                "                  extension, the default content type is 'json'.",
                "",
                "  -c M[,R]        Defines how input modelling and request case resolution conditions are reported.",
@@ -780,7 +780,7 @@ public class ApiTestCommand
                "                  enforcement is assumed.",
                "",
                "  -r seed         If defined, use the given random number seed to generate request test case input",
-               "                  values. If omitted, the default random number seed is derived from the apiSpec name.",
+               "                  values. If omitted, the default random number seed is derived from the apiDef name.",
                "",
                "  -m maxTries     Defines the maximum attempts made to resolve a request test case input value before",
                "                  reporting failure. If omitted, the default value is 10000.",
@@ -1080,7 +1080,7 @@ public class ApiTestCommand
       }
 
     /**
-     * Changes the OpenApi spec file content type.
+     * Changes the OpenApi definition file content type.
      */
     public void setContentType( String option)
       {
@@ -1099,7 +1099,7 @@ public class ApiTestCommand
       }
 
     /**
-     * Returns the OpenApi spec file content type.
+     * Returns the OpenApi definition file content type.
      */
     public String getContentType()
       {
@@ -1164,8 +1164,8 @@ public class ApiTestCommand
     public Long getDefaultRandomSeed()
       {
       return
-        Optional.ofNullable( getApiSpec())
-        .map( spec -> (long) spec.getName().hashCode())
+        Optional.ofNullable( getApiDef())
+        .map( def -> (long) def.getName().hashCode())
         .orElse( new Random().nextLong());
       }
 
@@ -1250,19 +1250,19 @@ public class ApiTestCommand
       }
 
     /**
-     * Changes the Open API v3 API spec file
+     * Changes the Open API v3 API definition file
      */
-    public void setApiSpec( File apiSpec)
+    public void setApiDef( File apiDef)
       {
-      apiSpec_ = apiSpec;
+      apiDef_ = apiDef;
       }
 
     /**
-     * Returns the Open API v3 API spec file
+     * Returns the Open API v3 API definition file
      */
-    public File getApiSpec()
+    public File getApiDef()
       {
-      return apiSpec_;
+      return apiDef_;
       }
 
     /**
@@ -1464,7 +1464,7 @@ public class ApiTestCommand
       return builder.toString();
       }
 
-    private File apiSpec_;
+    private File apiDef_;
     private TestType testType_;
     private ExecType execType_;
     private String testName_;
@@ -1493,9 +1493,9 @@ public class ApiTestCommand
         options_ = new Options();
         }
 
-      public Builder apiSpec( File apiSpec)
+      public Builder apiDef( File apiDef)
         {
-        options_.setApiSpec( apiSpec);
+        options_.setApiDef( apiDef);
         return this;
         }
 
@@ -1642,7 +1642,7 @@ public class ApiTestCommand
     }
 
   /**
-   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec,
+   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API definition,
    * using the given {@link Options command line options}.
    */
   public static void main( String[] args)
@@ -1668,7 +1668,7 @@ public class ApiTestCommand
     }
 
   /**
-   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API spec,
+   * Generates input models and test models for API clients and servers, based on an OpenAPI v3 compliant API definition,
    * using the given {@link Options command line options}.
    */
   public static void run( Options options) throws Exception
@@ -1680,16 +1680,16 @@ public class ApiTestCommand
       }
     logger_.info( "{}", getVersion());
 
-    // Identify the API spec file
-    File apiSpecFile = options.getApiSpec();
-    if( apiSpecFile != null && !apiSpecFile.isAbsolute())
+    // Identify the API definition file
+    File apiDefFile = options.getApiDef();
+    if( apiDefFile != null && !apiDefFile.isAbsolute())
       {
-      apiSpecFile = new File( options.getWorkingDir(), apiSpecFile.getPath());
+      apiDefFile = new File( options.getWorkingDir(), apiDefFile.getPath());
       }
 
     // Generate requested input definition
-    logger_.info( "Reading API spec from {}", Objects.toString( apiSpecFile,  "standard input"));
-    SystemInputDef inputDef = TcasesOpenApiIO.getRequestInputModel( apiSpecFile, options.getContentType(), options.getModelOptions());
+    logger_.info( "Reading API definition from {}", Objects.toString( apiDefFile,  "standard input"));
+    SystemInputDef inputDef = TcasesOpenApiIO.getRequestInputModel( apiDefFile, options.getContentType(), options.getModelOptions());
     if( inputDef == null)
       {
       logger_.warn( "No requests defined");
@@ -1718,9 +1718,9 @@ public class ApiTestCommand
       TestWriter<?,?> testWriter = options.getTestWriter( testCaseWriter);
 
       TestTarget testTarget = options.getTestTarget();
-      if( getTestFile( testWriter, testSource, testTarget) == null && apiSpecFile != null)
+      if( getTestFile( testWriter, testSource, testTarget) == null && apiDefFile != null)
         {
-        testTarget.setDir( apiSpecFile.getParentFile());
+        testTarget.setDir( apiDefFile.getParentFile());
         }
 
       logger_.info( "Writing API tests using {} and {}", testWriter, testCaseWriter);

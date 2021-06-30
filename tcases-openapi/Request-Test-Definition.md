@@ -1,8 +1,8 @@
 # Request Test Definition Guide #
 
 This guide explains the elements of a JSON document representing a *request test definition*. A request test definition lists
-test case inputs for all of the API requests defined in an OpenAPI v3 specification. You can generate the request test
-definition for an OpenAPI specification by running Tcases for OpenAPI with [options for input
+test case inputs for all of the API requests defined in an OpenAPI v3 definition. You can generate the request test
+definition for an OpenAPI definition by running Tcases for OpenAPI with [options for input
 resolution](Running-Api-Test-Cases.md#generating-request-inputs).
 
 The JSON schema for a request test definition document is located at
@@ -26,7 +26,7 @@ A `RequestCase` object defines the inputs for a test case that invokes a specifi
 | api           | string | :registered:     | The title of the API that defines this request |
 | name          | string |                  | A descriptive name for this test case |
 | server        | string |                  | The API server URL |
-| version       | string |                  | The version of the OpenAPI spec that defines this request |
+| version       | string |                  | The version of the OpenAPI definition that defines this request |
 | parameters    | \[[`ParamData`](#paramdata)\] |     | The parameter values for this request |
 | body          | [`MessageData`](#messagedata) |   | The body value for this request |
 | invalidInput  | string |                  | If defined, a failure response is expected for this request and this string describes the invalid input |

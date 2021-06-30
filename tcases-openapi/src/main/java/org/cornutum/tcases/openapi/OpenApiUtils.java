@@ -27,7 +27,7 @@ import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Defines methods for accessing an OpenAPI specification.
+ * Defines methods for accessing an OpenAPI definition.
  */
 public final class OpenApiUtils
   {

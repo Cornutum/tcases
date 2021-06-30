@@ -10,7 +10,7 @@ Usage
 
   * {{{Reducing_Test_Cases}Reduce the number of test cases}} needed for specified level of coverage
 
-  * {{{Running_Tcases_For_OpenAPI}Generate API test cases}} based on an OpenAPI v3 specification
+  * {{{Running_Tcases_For_OpenAPI}Generate API test cases}} based on an OpenAPI v3 definition
   
 * {Running Tcases}
 
@@ -520,15 +520,15 @@ mvn tcases:tcases -DdefaultTupleSize=2
 * {Running Tcases For OpenAPI}
 
   {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful}Tcases for OpenAPI}}
-  generates test cases for your API directly from an OpenAPI v3 specification. To
+  generates test cases for your API directly from an OpenAPI v3 definition. To
   run it, use the {{{./api-mojo.html}tcases:api}} goal.
 
-  You can even translate an OpenAPI v3 specification directly into an {{{Generating_Executable_API_Tests} executable test program}},
+  You can even translate an OpenAPI v3 definition directly into an {{{Generating_Executable_API_Tests} executable test program}},
   using the {{{./api-test-mojo.html}tcases:api-test}} goal.
 
 ** {Generating API Test Cases}
 
-  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI spec
+  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI definition
   named <<<$\{basedir\}/src/test/tcases/openapi/org/myapp/My-API.yaml>>> 
 
   What happens when you run the following command?
@@ -551,8 +551,8 @@ mvn tcases:api
   {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#is-your-openapi-spec-an-input-model-no-its-two}two sides to the input space}}
   for your API.
 
-  This simple command will actually run Tcases for OpenAPI on all OpenAPI specs (i.e. any <<<*.json>>> or <<<*.yaml>>> file) in the default
-  <<<inputDir>>>. You can use the <<<apiDefs>>>, <<<apiDef>>>, or <<<project>>> parameters to process only specific API specs. For example
+  This simple command will actually run Tcases for OpenAPI on all OpenAPI definitions (i.e. any <<<*.json>>> or <<<*.yaml>>> file) in the default
+  <<<inputDir>>>. You can use the <<<apiDefs>>>, <<<apiDef>>>, or <<<project>>> parameters to process only specific API definitions. For example
   the following command will run Tcases for OpenAPI only on the spec(s) named <<<My-API.json>>> or <<<My-API.yaml>>>.
 
 +--------
@@ -561,7 +561,7 @@ mvn tcases:api -Dproject=My-API
 
 ** {Generating Executable API Tests}
 
-  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI spec
+  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI definition
   named <<<$\{basedir\}/src/test/tcases/openapi/org/myapp/My-API.yaml>>> 
 
   What happens when you run the following command, this time using the {{{./api-test-mojo.html}api-test}} goal
@@ -579,7 +579,7 @@ mvn tcases:api-test -Dproject=My-API
 
 ** {Generating Request Inputs}
 
-  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI spec
+  Let's assume you are using the default configuration for <<<tcases:api>>>. Suppose you have an OpenAPI definition
   named <<<$\{basedir\}/src/test/tcases/openapi/org/myapp/My-API.yaml>>> 
 
   What happens when you run the following command?
@@ -601,14 +601,14 @@ mvn tcases:api -Dproject=My-API -DrequestCases=true
 ** {Handling API Input Modelling Conditions}
 
   Tcases for OpenAPI reports
-  {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#semantic-linting-with-tcases-for-openapi}conditions in your OpenAPI spec}}
+  {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#semantic-linting-with-tcases-for-openapi}conditions in your OpenAPI definition}}
   that will affect how test cases are generated. Warning conditions are
-  reported with an explanation of the situation. Error conditions report elements in your spec that
+  reported with an explanation of the situation. Error conditions report elements in your definition that
   may need to be changed to generate tests correctly. By default, conditions are reported by writing
   log messages. But you can use the <<<onModellingCondition>>> parameter to request different handling of
   such conditions.
 
-  For example, when you run the following command, any input modelling condition in your specs will cause <<<tcases:api>>> to report a failure.
+  For example, when you run the following command, any input modelling condition in your definitions will cause <<<tcases:api>>> to report a failure.
 
 +--------
 mvn tcases:api -DonModellingCondition=fail
@@ -616,14 +616,14 @@ mvn tcases:api -DonModellingCondition=fail
 
 ** {What is the API Input Space?}
 
-  Tcases for OpenAPI generates tests cases from the API "input space" models that it automatically derives from your OpenAPI specification.
+  Tcases for OpenAPI generates tests cases from the API "input space" models that it automatically derives from your OpenAPI definition.
   But what are they? To find out, run the following command.
 
 +--------
 mvn tcases:api -DinputModels=true
 +--------
 
-  Again, assuming the default configuration for <<<tcases:api>>> and an OpenAPI spec
+  Again, assuming the default configuration for <<<tcases:api>>> and an OpenAPI definition
   named <<<$\{basedir\}/src/test/tcases/openapi/org/myapp/My-API.yaml>>>,
   the result will be two new files named <<<My-API-Requests-Input.json>>> and
   <<<My-API-Responses-Input.json>>>. Each file is an example of

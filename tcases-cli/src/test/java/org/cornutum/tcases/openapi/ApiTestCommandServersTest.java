@@ -140,7 +140,7 @@ public class ApiTestCommandServersTest extends TestWriterTest
   private void verifyServer( String apiName, int testId, String serverExpr) throws Exception
     {
     // Given...
-    File apiFile = apiSpecFor( getResourceClass(), apiName);
+    File apiFile = apiDefFor( getResourceClass(), apiName);
     String testName = String.format( "ApiTestServers_%s_Test", testId);
     
     String[] args =

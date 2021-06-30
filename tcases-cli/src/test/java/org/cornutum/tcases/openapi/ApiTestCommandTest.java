@@ -65,7 +65,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_0() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( getResourceDir(), "ActualTestClass");
     
     String[] args =
@@ -123,7 +123,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_1() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
 
     File testConfigFile = new File( getResourceDir(), "mocoRestServer.json");
@@ -187,7 +187,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_2() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( "examples/myTestCase");
     File outDir = new File( getResourceDir(), "java/org/cornutum");
     
@@ -247,7 +247,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_3() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args =
       {
@@ -302,7 +302,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_4() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( getResourceDir(), "ActualName");
     
     String[] args =
@@ -359,7 +359,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_5() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
 
     File testConfigFile = new File( getResourceDir(), "mocoHttpsServer.json");
@@ -425,7 +425,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_6() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( "MyTests");
     File outDir = new File( getResourceDir(), "java/org/cornutum/examples/tests");
     
@@ -490,7 +490,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_7() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args =
       {
@@ -545,7 +545,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_8() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( getResourceDir(), "ActualTest");
     
     String[] args =
@@ -603,7 +603,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_9() throws Exception
     {
     // Given...
-    File apiFile = apiSpecFor( getResourceClass(), "read-only-enforced");
+    File apiFile = apiDefFor( getResourceClass(), "read-only-enforced");
     File outDir = new File( getResourceDir(), "java/org/cornutum/readonly");
     
     String[] args =
@@ -658,7 +658,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_10() throws Exception
     {
     // Given...
-    File apiFile = apiSpecFor( getResourceClass(), "modelling-condition");
+    File apiFile = apiDefFor( getResourceClass(), "modelling-condition");
     File outDir = new File( getResourceDir(), "conditions");
     
     String[] args =
@@ -710,7 +710,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_11() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args = new String[0];
 
@@ -755,7 +755,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_12() throws Exception
     {
     // Given...
-    File apiFile = apiSpecFor( getResourceClass(), "resolver-condition");
+    File apiFile = apiDefFor( getResourceClass(), "resolver-condition");
     File outFile = new File( getResourceDir(), "java/org/cornutum/MyTest.java");
     
     String[] args =
@@ -807,7 +807,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_13() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
 
     File testConfigFile = new File( getResourceDir(), "mocoHttpServer.json");
@@ -867,7 +867,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void run_14() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args =
       {
@@ -892,7 +892,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void whenPrintToStdout() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args =
       {
@@ -913,7 +913,7 @@ public class ApiTestCommandTest extends TestWriterTest
   public void whenSourceExamples() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args =
       {

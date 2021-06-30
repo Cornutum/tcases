@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines methods for generating {@link RequestCase request test cases} from the {@link SystemTestDef test definitions} for
- * requests defined by an OpenAPI specification.
+ * requests defined by an OpenAPI definition.
  */
 public final class RequestCases
   {

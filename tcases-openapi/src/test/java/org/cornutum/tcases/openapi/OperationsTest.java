@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  * Runs tests for {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} using
- * variations of the basic properties of an API spec.
+ * variations of the basic properties of an API definition.
  */
 public class OperationsTest extends OpenApiTest
   {
@@ -652,7 +652,7 @@ public class OperationsTest extends OpenApiTest
     {
     assertRequestInputModelFailure(
       "operations-11",
-      "Invalid API spec",
+      "Invalid API definition",
       "API title is not defined");
     }
   }

@@ -38,7 +38,7 @@ import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Base class for tests that verify Tcases models derived from Open API documents.
+ * Base class for tests that verify Tcases models derived from Open API definitions.
  */
 public abstract class OpenApiTest
   {
@@ -203,7 +203,7 @@ public abstract class OpenApiTest
       url = getClass().getResource( resourceFile);
       document = getClass().getResourceAsStream( resourceFile);
       }
-    assertThat( "OpenAPI spec for resource=" + resource, document, is( notNullValue()));
+    assertThat( "OpenAPI definition for resource=" + resource, document, is( notNullValue()));
     
     try( OpenApiReader reader = new OpenApiReader( document, url))
       {
@@ -300,7 +300,7 @@ public abstract class OpenApiTest
     }
 
   /**
-   * Verifies that the given API spec contains the specified Open API conformance errors.
+   * Verifies that the given API definition contains the specified Open API conformance errors.
    */
   protected void assertOpenApiFailure( String apiName, String... expected)
     {
@@ -315,7 +315,7 @@ public abstract class OpenApiTest
     }
 
   /**
-   * Verifies that a valid input model can't be created for the given API spec for the specified reasons.
+   * Verifies that a valid input model can't be created for the given API definition for the specified reasons.
    */
   protected void assertRequestInputModelFailure( String apiName, String... expected)
     {
@@ -325,7 +325,7 @@ public abstract class OpenApiTest
     }
 
   /**
-   * Verifies that a valid examples input model can't be created for the given API spec for the specified reasons.
+   * Verifies that a valid examples input model can't be created for the given API definition for the specified reasons.
    */
   protected void assertRequestExamplesModelFailure( String apiName, String... expected)
     {
