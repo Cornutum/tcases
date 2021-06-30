@@ -103,7 +103,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   protected SystemInputDef requestInputModel( OpenAPI api)
     {
@@ -115,7 +115,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by schemas in the given
-   * OpenAPI specification. Returns null if the given spec defines no API requests to model.
+   * OpenAPI definition. Returns null if the given definition defines no API requests to model.
    */
   private SystemInputDef requestSchemasModel( OpenAPI api)
     {
@@ -128,7 +128,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
     catch( Exception e)
       {
-      throw new OpenApiException( "Invalid API spec", e);
+      throw new OpenApiException( "Invalid API definition", e);
       }
 
     return
@@ -151,7 +151,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API requests defined by examples in the given
-   * OpenAPI specification. Returns null if the given spec defines no API request examples to model.
+   * OpenAPI definition. Returns null if the given definition defines no API request examples to model.
    */
   private SystemInputDef requestExamplesModel( OpenAPI api)
     {
@@ -164,7 +164,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
     catch( Exception e)
       {
-      throw new OpenApiException( "Invalid API spec", e);
+      throw new OpenApiException( "Invalid API definition", e);
       }
 
     return
@@ -340,7 +340,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
   /**
    * Returns a {@link SystemInputDef system input definition} for the API responses defined by the given
-   * OpenAPI specification. Returns null if the given spec defines no API responses to model.
+   * OpenAPI definition. Returns null if the given definition defines no API responses to model.
    */
   protected SystemInputDef responseInputModel( OpenAPI api)
     {
@@ -353,7 +353,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
     catch( Exception e)
       {
-      throw new OpenApiException( "Invalid API spec", e);
+      throw new OpenApiException( "Invalid API definition", e);
       }
 
     return

@@ -8,7 +8,7 @@ Tcases Plugin
   of the input space for your system-under-test and a model of the coverage that you want. Then
   Tcases generates a minimal set of test cases that meets your requirements. For REST-ful API developers,
   the plugin can also {{{./usage.html#Running_Tcases_For_OpenAPI}automatically generate the API input space and test cases}}
-  directly from an OpenAPI v3 specification.
+  directly from an OpenAPI v3 definition.
 
   What is the "input space" of the system? The simplest way to look at it is this: the set of all
   (combinations of) input values that could possibly be applied. Easy to say, but hard to do! For

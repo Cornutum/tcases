@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  * Runs tests for {@link TcasesOpenApi#getResponseInputModel getResponseInputModel} using
- * variations of the basic properties of an API spec.
+ * variations of the basic properties of an API definition.
  */
 public class ResponsesTest extends OpenApiTest
   {

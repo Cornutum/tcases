@@ -37,7 +37,7 @@ public class OpenApiParserTest extends OpenApiTest
         }
 
       // Then...
-      assertThat( "OpenAPI spec valid", api != null, is( !failureExpected_));
+      assertThat( "OpenAPI definition valid", api != null, is( !failureExpected_));
       }
     }
 

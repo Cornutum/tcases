@@ -32,7 +32,7 @@
             </Var>
             <VarSet name="Api-Spec">
                 <Var name="Defined">
-                    <Value name="Yes" property="apiSpec"/>
+                    <Value name="Yes" property="apiDef"/>
                     <Value name="No"/>                    
                 </Var>
             </VarSet>

@@ -219,36 +219,36 @@ public abstract class TestWriterTest
     }
 
   /**
-   * Returns the path to the OpenAPI spec represented by the given document resource.
+   * Returns the path to the OpenAPI definition represented by the given document resource.
    */
-  protected File apiSpecFor( Class<?> resourceClass, String apiName)
+  protected File apiDefFor( Class<?> resourceClass, String apiName)
     {
-    String apiSpecFilename = String.format( "%s.json", apiName);
-    InputStream document = resourceClass.getResourceAsStream( apiSpecFilename);
-    assertThat( "OpenAPI spec for resource=" + apiName, document, is( notNullValue()));
+    String apiDefFilename = String.format( "%s.json", apiName);
+    InputStream document = resourceClass.getResourceAsStream( apiDefFilename);
+    assertThat( "OpenAPI definition for resource=" + apiName, document, is( notNullValue()));
 
-    File apiSpecFile = new File( getResourceDir(), apiSpecFilename);
+    File apiDefFile = new File( getResourceDir(), apiDefFilename);
     if( !resourceClass.equals( getResourceClass()))
       {
       try
         {
-        FileUtils.copyInputStreamToFile( document, apiSpecFile);
+        FileUtils.copyInputStreamToFile( document, apiDefFile);
         }
       catch( Exception e)
         {
-        throw new IllegalStateException( String.format( "Can't copy %s to %s", apiSpecFilename, getResourceDir()), e);
+        throw new IllegalStateException( String.format( "Can't copy %s to %s", apiDefFilename, getResourceDir()), e);
         }
       }
     
-    return apiSpecFile;
+    return apiDefFile;
     }
 
   /**
-   * Returns the path to the OpenAPI spec represented by the given document resource.
+   * Returns the path to the OpenAPI definition represented by the given document resource.
    */
-  protected File stdApiSpec( String apiName)
+  protected File stdApiDef( String apiName)
     {
-    return apiSpecFor( TestWriterTest.class, apiName);
+    return apiDefFor( TestWriterTest.class, apiName);
     }
   
   /**

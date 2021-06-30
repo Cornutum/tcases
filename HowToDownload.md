@@ -53,7 +53,7 @@ The core models for Tcases objects. For the current version, see the [release no
 ```
 
 #### tcases-openapi
-(Since 3.1.0) Converts an OpenAPI v3 specification into test cases for a REST-ful API. For the current version, see the [release notes](ReleaseNotes.md).
+(Since 3.1.0) Converts an OpenAPI v3 definition into test cases for a REST-ful API. For the current version, see the [release notes](ReleaseNotes.md).
 
 ```xml
 <dependency>

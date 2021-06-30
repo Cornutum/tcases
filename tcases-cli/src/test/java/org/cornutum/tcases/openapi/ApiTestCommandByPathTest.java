@@ -45,7 +45,7 @@ public class ApiTestCommandByPathTest extends TestWriterTest
   public void byPath_0() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( getResourceDir( "byPath_0"), "ActualTestClass");
     
     String[] args =
@@ -121,7 +121,7 @@ public class ApiTestCommandByPathTest extends TestWriterTest
   public void byPath_2() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outDir = getResourceDir( "byPath_2");
     
     String[] args =
@@ -161,7 +161,7 @@ public class ApiTestCommandByPathTest extends TestWriterTest
   public void byPath_3() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outDir = getResourceDir( "byPath_3");
 
     String[] args =
@@ -200,7 +200,7 @@ public class ApiTestCommandByPathTest extends TestWriterTest
   public void byPath_4() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outDir = getResourceDir( "byPath_4");
     
     String[] args =
@@ -239,7 +239,7 @@ public class ApiTestCommandByPathTest extends TestWriterTest
   public void byPath_5() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     File outFile = new File( getResourceDir( "byPath_5"), "Results");
 
     String[] args =
@@ -278,7 +278,7 @@ public class ApiTestCommandByPathTest extends TestWriterTest
   public void byPath_6() throws Exception
     {
     // Given...
-    File apiFile = stdApiSpec( "OpenApiTest");
+    File apiFile = stdApiDef( "OpenApiTest");
     
     String[] args =
       {

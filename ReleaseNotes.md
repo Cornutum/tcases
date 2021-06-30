@@ -6,7 +6,7 @@ This release resolves the following issues for Tcases for OpenAPI.
 
   * **Circular references in schemas** [[177](https://github.com/Cornutum/tcases/issues/177)]
 
-    For any element of an OpenAPI document, a schema can be defined by a reference to another schema definition, using the
+    For any element of an OpenAPI definition, a schema can be defined by a reference to another schema definition, using the
     `$ref` keyword. Consequently, it's possible for a schema to reference itself -- either directly or indirectly -- through one
     of its components, such as one of the `properties` of an object or the `items` of an array.  Unfortunately, an API
     definition containing such circular references is big trouble for Tcases for OpenAPI. For an explanation of why this
@@ -27,7 +27,7 @@ This release fixes the following issues.
 
   * **Duplicate variable/value name defined for media types** [[178](https://github.com/Cornutum/tcases/issues/178)]
 
-    This issue concerns the input model created by Tcases for OpenAPI for any `content` object in an OpenAPI document. This
+    This issue concerns the input model created by Tcases for OpenAPI for any `content` object in an OpenAPI definition. This
     portion of the input model defines variables for each of the media types for the `content`. The names of these variables and
     their values must be identifiers, which are generated from the media type name. But in some cases, the same identifier could
     be produced for two different media types.  A change to the form of the generated identifier now ensures that
@@ -52,7 +52,7 @@ This release adds new options for Tcases for OpenAPI to improve the quality of g
   * **Generate a separate test file for each API resource path** [[168](https://github.com/Cornutum/tcases/issues/168)]
 
     By default, Tcases for OpenAPI creates a single test source file that contains the test cases generated for all resource
-    paths defined by the OpenAPI spec. But that can be unwieldy for an extensive API that defines a large number of
+    paths defined by the OpenAPI definition. But that can be unwieldy for an extensive API that defines a large number of
     endpoints. To better deal with this situation, you have the option to generate multiple test source files, each containing
     the test cases for a single API resource path. When running `tcases-api-test` from the command
     line, use the `-S` option (for details, run `tcases-api-test -help`). When using Maven to run `tcases:api-test`, use
@@ -61,14 +61,14 @@ This release adds new options for Tcases for OpenAPI to improve the quality of g
 ## 3.5.1 ##
 
 This release provides improvements to Tcases for OpenAPI when generating API tests using the
-[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 spec.  Specifically, request test cases are
+[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 definition.  Specifically, request test cases are
 generated even if example data is not defined for some request input data items. When example data is not available,
 request inputs are generated using the default input model source (i.e. based on schema definitions).
 
 ## 3.5.0 ##
 
 This release introduces a new capability to Tcases for OpenAPI: generating API tests using the
-[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 spec.  You can do this from the command line,
+[examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 definition.  You can do this from the command line,
 using the `-X` option, or with the [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/), using the
 `-Dsource=examples` option.
 
@@ -163,7 +163,7 @@ This is a patch release to fix the following problems.
 
 ## 3.4.0 ##
 
-This release introduces an important new capability for Tcases for OpenAPI: generating an executable test directly from an OpenAPI v3 spec.
+This release introduces an important new capability for Tcases for OpenAPI: generating an executable test directly from an OpenAPI v3 definition.
 You can do this from the command line, using the new `tcases-api-test` command, or with the
 [Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/), using the new `tcases:api-test` goal. For this release,
 these commands can automatically create Java tests, runnable with either JUnit or TestNG, that execute all requests using the REST Assured DSL.
@@ -180,7 +180,7 @@ Other improvements:
 
     * Input resolution now correctly handles failure test cases for invalid `readOnly` properties in request inputs.
     
-    * A new number format is used in generated identifiers. Some values in an OpenAPI spec must be converted into identifiers -- for example,
+    * A new number format is used in generated identifiers. Some values in an OpenAPI definition must be converted into identifiers -- for example,
       to designate input variables in the generated input model or Java methods in generated test code. In the new identifier format,
       numeric values are converted by replacing '-' with 'm' and replacing '.' with 'd'. For example, converting "-123.45" will
       now produce the identifier "m123d45".
@@ -234,7 +234,7 @@ XSLT](tcases-openapi/README.md#transforming-generated-test-cases), using the sam
 
 ## 3.1.2 ##
 
-  * **[Tcases for OpenAPI](tcases-openapi/README.md)**: For more reliable translation of OpenAPI specs, upgraded to use
+  * **[Tcases for OpenAPI](tcases-openapi/README.md)**: For more reliable translation of OpenAPI definitions, upgraded to use
   [`swagger-parser`](https://github.com/swagger-api/swagger-parser) version 2.0.14.
   
 ## 3.1.1 ##
@@ -264,7 +264,7 @@ This release add two new capabilities to Tcases.
   how many times a certain property appears in a test case.
 
   * **[Tcases for OpenAPI](tcases-openapi/README.md)**: Use Tcases to automatically generate test cases for your REST-ful API,
-  based on an OpenAPI v3 specification.
+  based on an OpenAPI v3 definition.
 
 Also included in this release:
 

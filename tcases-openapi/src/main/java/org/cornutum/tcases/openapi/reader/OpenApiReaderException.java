@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 
 /**
- * Reports an error reading an OpenAPI document.
+ * Reports an error reading an OpenAPI definition.
  */
 public class OpenApiReaderException extends OpenApiException
   {  
@@ -53,7 +53,7 @@ public class OpenApiReaderException extends OpenApiException
    */
   private static String basicReasonFor( URL location)
     {
-    return String.format( "Can't read Open API document%s", locationId( location));
+    return String.format( "Can't read Open API definition%s", locationId( location));
     }
 
   /**
@@ -63,7 +63,7 @@ public class OpenApiReaderException extends OpenApiException
     {
     return
       Stream.concat(
-        Stream.of( String.format( "%s conformance problem(s) found in Open API document%s", errors.size(), locationId( location))),
+        Stream.of( String.format( "%s conformance problem(s) found in Open API definition%s", errors.size(), locationId( location))),
         IntStream.range( 0, errors.size()).mapToObj( i -> String.format( "[%s] %s", i, errors.get(i))))
       .collect( joining( "\n"));
     }

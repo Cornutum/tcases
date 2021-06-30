@@ -78,7 +78,7 @@ public class ApiTestMojo extends AbstractMojo
 
         // Set generator options for this API definition.
         Options options = new Options();
-        options.setApiSpec( apiDef);
+        options.setApiDef( apiDef);
         options.setSource( getSource());
         options.setTestType( getTestType());
         options.setExecType( getExecType());
