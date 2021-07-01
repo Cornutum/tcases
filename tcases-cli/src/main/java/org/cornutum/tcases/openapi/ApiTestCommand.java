@@ -750,7 +750,7 @@ public class ApiTestCommand
                "                  option must be a comma-separated list of path operations defined in the apiDef. If",
                "                  omitted, tests are generated for all operations.",
                "",
-               "-B server         If defined, specifies the base URI for the API server used by the generated tests.",
+               "  -B server       If defined, specifies the base URI for the API server used by the generated tests.",
                "                  The server expression has one of the following forms. If omitted, the default is index=0.",
                "",
                "                  index=<integer>",
