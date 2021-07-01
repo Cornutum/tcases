@@ -703,7 +703,7 @@ public class ApiTestMojo extends AbstractMojo
    * </LI>
    * </UL>
    */
-  @Parameter(property="baseUri")
+  @Parameter(property="baseUri",defaultValue="index=0")
   private String baseUri;
 
   @Parameter(readonly=true,defaultValue="${basedir}")
