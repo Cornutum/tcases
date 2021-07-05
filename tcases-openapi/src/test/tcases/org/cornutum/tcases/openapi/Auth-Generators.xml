@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Auth" seed="5493859039813336064" tuples="1">
+    <Combine tuples="2">
+      <Include var="OpenAPI.Security.Defined"/>
+      <Include var="Operation.Security.Defined"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

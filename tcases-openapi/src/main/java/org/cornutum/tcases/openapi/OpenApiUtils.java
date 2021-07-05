@@ -18,6 +18,8 @@ import io.swagger.v3.oas.models.parameters.Parameter.StyleEnum;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+
 import org.apache.commons.io.IOUtils;
 import static io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.*;
 
@@ -308,6 +310,24 @@ public final class OpenApiUtils
   public static String componentName( String refType, String ref)
     {
     return ref.startsWith( refType)? ref.substring( refType.length()) : null;
+    }
+
+  /**
+   * Returns the given security scheme
+   */
+  public static SecurityScheme getSecurityScheme( OpenAPI api, String scheme)
+    {
+    return
+      Optional.ofNullable( scheme)
+      .flatMap( name -> {
+        return
+          Optional.ofNullable(
+            expectedValueOf(
+              expectedValueOf( api.getComponents(), "Components").getSecuritySchemes(),
+              "Component security schemes")
+            .get( name));
+        })
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't find security scheme=%s", scheme)));
     }
 
   /**

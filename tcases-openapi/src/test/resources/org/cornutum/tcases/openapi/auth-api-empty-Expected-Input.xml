@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<System name="Authenticated">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Authenticated"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_resource">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/resource"/>
+    <Input type="security">
+      <VarSet name="Auth">
+        <VarSet name="opKeyHeader">
+          <Var name="Defined">
+            <Value name="Yes" property="secRecOpKeyHeader"/>
+            <Value name="No" failure="true">
+              <Has name="authFailure" value="true"/>
+            </Value>
+          </Var>
+          <Var name="Type" when="secRecOpKeyHeader">
+            <Value name="apiKey"/>
+          </Var>
+          <Var name="Location" when="secRecOpKeyHeader">
+            <Value name="header"/>
+          </Var>
+          <Var name="Name" when="secRecOpKeyHeader">
+            <Value name="X-Op-Key"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

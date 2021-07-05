@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<System name="Authenticated">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Authenticated"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_resource">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/resource"/>
+    <Input type="security">
+      <VarSet name="Auth">
+        <VarSet name="apiHttpBearer">
+          <Var name="Defined">
+            <Value name="Yes" property="secRecApiHttpBearer"/>
+            <Value name="No" failure="true">
+              <Has name="authFailure" value="true"/>
+            </Value>
+          </Var>
+          <Var name="Type" when="secRecApiHttpBearer">
+            <Value name="http"/>
+          </Var>
+          <Var name="Scheme" when="secRecApiHttpBearer">
+            <Value name="bearer"/>
+          </Var>
+        </VarSet>
+        <VarSet name="apiKeyQuery">
+          <Var name="Defined">
+            <Value name="Yes" property="secRecApiKeyQuery"/>
+            <Value name="No" failure="true">
+              <Has name="authFailure" value="true"/>
+            </Value>
+          </Var>
+          <Var name="Type" when="secRecApiKeyQuery">
+            <Value name="apiKey"/>
+          </Var>
+          <Var name="Location" when="secRecApiKeyQuery">
+            <Value name="query"/>
+          </Var>
+          <Var name="Name" when="secRecApiKeyQuery">
+            <Value name="apiKey"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
