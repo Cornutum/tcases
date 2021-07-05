@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<TestCases system="Authenticated">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Authenticated"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_resource">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/resource"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Authenticated"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="None.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/resource"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="implicit">
+        <Var name="None.Defined" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="DELETE_resource">
+    <Has name="operation" value="DELETE"/>
+    <Has name="path" value="/resource"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Authenticated"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="Auth.Satisfied=&apos;Yes&apos;">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/resource"/>
+      <Has name="properties" value="secRec,secRec0"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.Satisfied" value="Yes"/>
+        <Var name="Auth.0.Defined" value="Yes"/>
+        <Var name="Auth.0.apiHttpBasic.Type" value="http"/>
+        <Var name="Auth.0.apiHttpBasic.Scheme" value="basic"/>
+        <Var name="Auth.1.Defined" value="No"/>
+        <Var name="Auth.1.apiHttpBearer.Defined" NA="true"/>
+        <Var name="Auth.1.apiHttpBearer.Type" NA="true"/>
+        <Var name="Auth.1.apiHttpBearer.Scheme" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Defined" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Type" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Location" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Name" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="Auth.0.Defined=&apos;No&apos;">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/resource"/>
+      <Has name="properties" value="secRec,secRec1,secRec1ApiHttpBearer,secRec1ApiKeyCookie"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.Satisfied" value="Yes"/>
+        <Var name="Auth.0.Defined" value="No"/>
+        <Var name="Auth.0.apiHttpBasic.Type" NA="true"/>
+        <Var name="Auth.0.apiHttpBasic.Scheme" NA="true"/>
+        <Var name="Auth.1.Defined" value="Yes"/>
+        <Var name="Auth.1.apiHttpBearer.Defined" value="Yes"/>
+        <Var name="Auth.1.apiHttpBearer.Type" value="http"/>
+        <Var name="Auth.1.apiHttpBearer.Scheme" value="bearer"/>
+        <Var name="Auth.1.apiKeyCookie.Defined" value="Yes"/>
+        <Var name="Auth.1.apiKeyCookie.Type" value="apiKey"/>
+        <Var name="Auth.1.apiKeyCookie.Location" value="cookie"/>
+        <Var name="Auth.1.apiKeyCookie.Name" value="apiKey"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2" failure="true" name="Auth.Satisfied=&apos;No&apos;">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/resource"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.Satisfied" value="No" failure="true">
+          <Has name="authFailure" value="true"/>
+        </Var>
+        <Var name="Auth.0.Defined" value="No"/>
+        <Var name="Auth.0.apiHttpBasic.Type" NA="true"/>
+        <Var name="Auth.0.apiHttpBasic.Scheme" NA="true"/>
+        <Var name="Auth.1.Defined" value="No"/>
+        <Var name="Auth.1.apiHttpBearer.Defined" NA="true"/>
+        <Var name="Auth.1.apiHttpBearer.Type" NA="true"/>
+        <Var name="Auth.1.apiHttpBearer.Scheme" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Defined" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Type" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Location" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Name" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="Auth.1.apiHttpBearer.Defined=&apos;No&apos;">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/resource"/>
+      <Has name="properties" value="secRec,secRec1,secRec1ApiKeyCookie"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.Satisfied" value="Yes"/>
+        <Var name="Auth.0.Defined" value="No"/>
+        <Var name="Auth.0.apiHttpBasic.Type" NA="true"/>
+        <Var name="Auth.0.apiHttpBasic.Scheme" NA="true"/>
+        <Var name="Auth.1.Defined" value="Yes"/>
+        <Var name="Auth.1.apiHttpBearer.Defined" value="No" failure="true">
+          <Has name="authFailure" value="true"/>
+        </Var>
+        <Var name="Auth.1.apiHttpBearer.Type" NA="true"/>
+        <Var name="Auth.1.apiHttpBearer.Scheme" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Defined" value="Yes"/>
+        <Var name="Auth.1.apiKeyCookie.Type" value="apiKey"/>
+        <Var name="Auth.1.apiKeyCookie.Location" value="cookie"/>
+        <Var name="Auth.1.apiKeyCookie.Name" value="apiKey"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="Auth.1.apiKeyCookie.Defined=&apos;No&apos;">
+      <Has name="operation" value="DELETE"/>
+      <Has name="path" value="/resource"/>
+      <Has name="properties" value="secRec,secRec1,secRec1ApiHttpBearer"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.Satisfied" value="Yes"/>
+        <Var name="Auth.0.Defined" value="No"/>
+        <Var name="Auth.0.apiHttpBasic.Type" NA="true"/>
+        <Var name="Auth.0.apiHttpBasic.Scheme" NA="true"/>
+        <Var name="Auth.1.Defined" value="Yes"/>
+        <Var name="Auth.1.apiHttpBearer.Defined" value="Yes"/>
+        <Var name="Auth.1.apiHttpBearer.Type" value="http"/>
+        <Var name="Auth.1.apiHttpBearer.Scheme" value="bearer"/>
+        <Var name="Auth.1.apiKeyCookie.Defined" value="No" failure="true">
+          <Has name="authFailure" value="true"/>
+        </Var>
+        <Var name="Auth.1.apiKeyCookie.Type" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Location" NA="true"/>
+        <Var name="Auth.1.apiKeyCookie.Name" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="HEAD_resource">
+    <Has name="operation" value="HEAD"/>
+    <Has name="path" value="/resource"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Authenticated"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="Auth.opKeyQuery.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/resource"/>
+      <Has name="properties" value="secRecOpKeyQuery"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.opKeyQuery.Defined" value="Yes"/>
+        <Var name="Auth.opKeyQuery.Type" value="apiKey"/>
+        <Var name="Auth.opKeyQuery.Location" value="query"/>
+        <Var name="Auth.opKeyQuery.Name" value="opKey"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" failure="true" name="Auth.opKeyQuery.Defined=&apos;No&apos;">
+      <Has name="operation" value="HEAD"/>
+      <Has name="path" value="/resource"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Authenticated"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="security">
+        <Var name="Auth.opKeyQuery.Defined" value="No" failure="true">
+          <Has name="authFailure" value="true"/>
+        </Var>
+        <Var name="Auth.opKeyQuery.Type" NA="true"/>
+        <Var name="Auth.opKeyQuery.Location" NA="true"/>
+        <Var name="Auth.opKeyQuery.Name" NA="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

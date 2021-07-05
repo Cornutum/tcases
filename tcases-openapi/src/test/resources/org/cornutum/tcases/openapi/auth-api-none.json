@@ -1,0 +1,112 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Authenticated",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/resource": {
+            "get": {
+                "security": [
+                    {
+                        "opHttpBasic": []
+                    },
+                    {
+                        "opKeyCookie": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+
+            "delete": {
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiKeyCookie": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "apiKey"
+            },
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-Api-Key"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "in": "query",
+                "name": "apiKey"
+            },
+            "apiHttpBasic": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "apiHttpBearer": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "opKeyCookie": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "opKey"
+            },
+            "opKeyHeader": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-Op-Key"
+            },
+            "opKeyQuery": {
+                "type": "apiKey",
+                "in": "query",
+                "name": "opKey"
+            },
+            "opHttpBasic": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "opHttpBearer": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

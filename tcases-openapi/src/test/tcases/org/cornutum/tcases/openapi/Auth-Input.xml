@@ -1,0 +1,70 @@
+<System name="Request">
+    <Function name="Auth">
+        <Input>
+            <VarSet name="OpenAPI">
+                <VarSet name="Security">
+                    <Var name="Defined">
+                        <Value name="Yes" property="apiSec"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Requirements" when="apiSec">
+                        <Value name="None"/>
+                        <Value name="One" property="seqReq"/>
+                        <Value name="Many" property="seqReq"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+            <VarSet name="Operation">
+                <VarSet name="Security">
+                    <Var name="Defined">
+                        <Value name="Yes" property="opSec"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Requirements" when="opSec">
+                        <Value name="None"/>
+                        <Value name="One" property="seqReq"/>
+                        <Value name="Many" property="seqReq"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+            <VarSet name="Schemes" when="seqReq">
+                <Var name="Count">
+                    <Value name="One">
+                        <When>
+                            <Equals property="scheme" count="1"/>
+                        </When>
+                    </Value>
+                    <Value name="Many">
+                        <When>
+                            <Equals property="scheme" count="2"/>
+                        </When>                        
+                    </Value>
+                </Var>
+                <VarSet name="Http">
+                    <Var name="Defined">
+                        <Value name="Yes" property="scheme,typeHttp"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Scheme" when="typeHttp">
+                        <Value name="basic"/>
+                        <Value name="bearer"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="ApiKey">
+                    <Var name="Defined">
+                        <Value name="Yes" property="scheme,typeApiKey"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Location" when="typeApiKey">
+                        <Value name="cookie"/>
+                        <Value name="header"/>
+                        <Value name="query"/>
+                    </Var>
+                    <Var name="Name" when="typeApiKey">
+                        <Value name="Defined"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

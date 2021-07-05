@@ -36,6 +36,8 @@ import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.servers.ServerVariable;
 
@@ -257,11 +259,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Stream<IVarDef> opRequestVars( OpenAPI api, PathItem pathItem, Operation op)
     {
     return
-      hasInputs( pathItem, op)?
+      hasInputs( api, pathItem, op)?
 
       Stream.concat(
         opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))),
-        requestBodyVarDef( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty())) :
+        Stream.concat(
+          requestBodyVarDef( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty()),
+          authVarDef( api, op.getSecurity()).map( Stream::of).orElse( Stream.empty()))) :
 
       Stream.of( noInputs());
     }
@@ -294,11 +298,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Stream<IVarDef> opExampleVars( OpenAPI api, PathItem pathItem, Operation op)
     {
     return
-      hasInputs( pathItem, op)?
+      hasInputs( api, pathItem, op)?
 
       Stream.concat(
         opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))),
-        requestBodyExamples( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty())) :
+        Stream.concat(
+          requestBodyExamples( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty()),
+          authVarDef( api, op.getSecurity()).map( Stream::of).orElse( Stream.empty()))) :
 
       Stream.of( noInputs());
     }
@@ -306,11 +312,17 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns true if at least one input is defined for the given request.
    */
-  private boolean hasInputs( PathItem pathItem, Operation op)
+  private boolean hasInputs( OpenAPI api, PathItem pathItem, Operation op)
     {
     return
       opParameters( pathItem, op).findAny().isPresent()
-      || op.getRequestBody() != null;
+      ||
+      op.getRequestBody() != null
+      ||
+      Optional.ofNullable( op.getSecurity())
+      .map( secReqs -> !secReqs.isEmpty())
+      .orElse( Optional.ofNullable( api.getSecurity()).filter( secReqs -> !secReqs.isEmpty()).isPresent())
+      ;
     }
 
   /**
@@ -596,6 +608,216 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         mediaType.getExample(),
         mediaType.getExamples(),
         mediaTypeSchema);
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definition} for the given security requirements.
+   */
+  private Optional<IVarDef> authVarDef( OpenAPI api, List<SecurityRequirement> opSecurity)
+    {
+    return
+      resultFor( "auth", () -> {
+        List<SecurityRequirement> security =
+          Optional.ofNullable( opSecurity)
+          .orElse(
+            Optional.ofNullable( api.getSecurity())
+            .orElse( emptyList()));
+        
+        return
+          security.isEmpty()?
+          Optional.empty() :
+
+          Optional.of(
+            VarSetBuilder.with( "Auth")
+            .type( "security")
+            .members(
+              security.size() == 1
+              ? authReqVars( api, security.get(0))
+              : authReqVars( api, security))
+            .build());
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given security requirement.
+   */
+  private Stream<IVarDef> authReqVars( OpenAPI api, SecurityRequirement secReq)
+    {
+    return authReqVars( api, null, secReq);
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given security requirement.
+   */
+  private Stream<IVarDef> authReqVars( OpenAPI api, String secReqTag, SecurityRequirement secReq)
+    {
+    boolean schemesMany = secReq.size() > 1;
+    boolean seqReqMany = secReqTag != null;
+    boolean hasDefined = schemesMany || !seqReqMany;
+    
+    return
+      secReq.keySet().stream()
+      .map( name -> {
+        return
+          resultFor(
+            name,
+            () -> {
+
+            Optional<IVarDef> defined =
+              hasDefined?
+
+              Optional.of(
+                VarDefBuilder.with( "Defined")
+                .values(
+                  VarValueDefBuilder.with( "Yes")
+                  .properties( secSchemeProperty( secReqTag, name))
+                  .build(),
+                  VarValueDefBuilder.with( "No")
+                  .type( VarValueDef.Type.FAILURE)
+                  .has( "authFailure", true)
+                  .build())
+                .build()) :
+
+              Optional.empty();
+
+            Optional<ICondition> isDefined =
+              hasDefined
+              ? Optional.of( has( secSchemeProperty( secReqTag, name)))
+              : Optional.empty();
+            
+            return
+              VarSetBuilder.with( name)
+              .when( Optional.ofNullable( secReqTag).map( srt -> has( secReqProperty( secReqTag))))
+              .members( streamOf( defined))
+              .members( authSchemeVars( isDefined, getSecurityScheme( api, name)))
+              .build();
+            });
+        });
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given security scheme.
+   */
+  private Stream<IVarDef> authSchemeVars( Optional<ICondition> isDefined, SecurityScheme secScheme)
+    {
+    Stream.Builder<IVarDef> vars = Stream.builder();
+
+    switch( secScheme.getType())
+      {
+      case APIKEY:
+        {
+        vars.add(
+          VarDefBuilder.with( "Type")
+          .when( isDefined)
+          .values( VarValueDefBuilder.with( secScheme.getType()).build())
+          .build());
+
+        vars.add(
+          VarDefBuilder.with( "Location")
+          .when( isDefined)
+          .values( VarValueDefBuilder.with( secScheme.getIn()).build())
+          .build());
+
+        vars.add(
+          VarDefBuilder.with( "Name")
+          .when( isDefined)
+          .values( VarValueDefBuilder.with( secScheme.getName()).build())
+          .build());
+        
+        break;
+        }
+        
+      case HTTP:
+        {
+        if( "basic".equalsIgnoreCase( secScheme.getScheme()) | "bearer".equalsIgnoreCase( secScheme.getScheme()))
+          {
+          vars.add(
+            VarDefBuilder.with( "Type")
+            .when( isDefined)
+            .values( VarValueDefBuilder.with( secScheme.getType()).build())
+            .build());
+
+          vars.add(
+            VarDefBuilder.with( "Scheme")
+            .when( isDefined)
+            .values( VarValueDefBuilder.with( secScheme.getScheme().toLowerCase()).build())
+            .build());
+            }
+        else
+          {
+          notifyError(
+            String.format( "HTTP authentication scheme=% is not supported in this version", secScheme.getScheme()),
+            "Generated tests will not provide this type of authentication");
+            }
+
+        break;
+        }
+        
+      default:
+        {
+        notifyError(
+          String.format( "Security type=% is not supported in this version", secScheme.getType()),
+          "Generated tests will not provide this type of authentication");
+        break;
+        }
+      }
+    
+    return vars.build();
+    }
+
+  /**
+   * Returns the {@link IVarDef input variable definitions} for the given security requirements.
+   */
+  private Stream<IVarDef> authReqVars( OpenAPI api, List<SecurityRequirement> security)
+    {
+    IVarDef satisfied =
+      VarDefBuilder.with( "Satisfied")
+      .values(
+        VarValueDefBuilder.with( "Yes")
+        .when( equalTo( secReqProperty(), 1))
+        .build(),
+
+        VarValueDefBuilder.with( "No")
+        .type( VarValueDef.Type.FAILURE)
+        .has( "authFailure", true)
+        .when( equalTo( secReqProperty(), 0))
+        .build())
+      .build();
+      
+    return
+      Stream.concat(
+        Stream.of( satisfied),
+
+        IntStream.range( 0, security.size())
+        .mapToObj( i -> {
+
+          String secReqTag = String.valueOf( i);
+
+          return
+            resultFor(
+              secReqTag,
+              () -> {
+
+              IVarDef defined = 
+                VarDefBuilder.with( "Defined")
+                .values(
+                  VarValueDefBuilder.with( "Yes")
+                  .properties( secReqProperty(), secReqProperty( secReqTag))
+                  .build(),
+
+                  VarValueDefBuilder.with( "No")
+                  .build())
+                .build();
+              
+              return
+                VarSetBuilder.with( secReqTag)
+                .members(
+                  Stream.concat(
+                    Stream.of( defined),
+                    authReqVars( api, secReqTag, security.get(i))))
+                .build();
+              });                       
+          }));
     }
   
   /**
@@ -3262,6 +3484,30 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private String alternativeProperty( String instanceTag, int i)
     {
     return instanceTag + "Alternative" + i;
+    }
+
+  /**
+   * Returns the "security requirement defined" property.
+   */
+  private String secReqProperty()
+    {
+    return secReqProperty( null);
+    }
+
+  /**
+   * Returns the "defined" property for the given security requirement.
+   */
+  private String secReqProperty( String secReqTag)
+    {
+    return "secRec" + Optional.ofNullable( secReqTag).orElse( "");
+    }
+
+  /**
+   * Returns the "defined" property for the given security scheme.
+   */
+  private String secSchemeProperty( String secReqTag, String scheme)
+    {
+    return secReqProperty( secReqTag) + StringUtils.capitalize( scheme);
     }
 
   /**
