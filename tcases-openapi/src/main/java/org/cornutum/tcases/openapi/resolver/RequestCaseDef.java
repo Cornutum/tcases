@@ -28,6 +28,7 @@ public class RequestCaseDef
     {
     id_ = id;
     setParams( null);
+    setAuthDefs( null);
     }
 
   /**
@@ -177,6 +178,32 @@ public class RequestCaseDef
     }
 
   /**
+   * Changes the authentication definitions for this request.
+   */
+  public void setAuthDefs( Iterable<AuthDef> authDefs)
+    {
+    authDefs_ =
+      toStream( Optional.ofNullable( authDefs).orElse( Collections.emptyList()))
+      .collect( toList());
+    }
+
+  /**
+   * Returns the authentication definitions for this request.
+   */
+  public Iterable<AuthDef> getAuthDefs()
+    {
+    return authDefs_;
+    }
+
+  /**
+   * Adds an authentication definition for this request.
+   */
+  public void addAuthDef( AuthDef authDef)
+    {
+    authDefs_.add( authDef);
+    }
+
+  /**
    * Changes the description of the invalid input for this request.
    */
   public void setInvalidInput( String invalidInput)
@@ -200,6 +227,22 @@ public class RequestCaseDef
     return getInvalidInput() != null;
     }
 
+  /**
+   * Changes if this request has invalid authentication.
+   */
+  public void setAuthFailure( boolean authFailure)
+    {
+    authFailure_ = authFailure;
+    }
+
+  /**
+   * Returns if this request has invalid authentication.
+   */
+  public boolean isAuthFailure()
+    {
+    return authFailure_;
+    }
+
   public String toString()
     {
     return
@@ -221,5 +264,7 @@ public class RequestCaseDef
   private String op_;
   private List<ParamDef> params_;
   private ValueDef<?> body_;
+  private List<AuthDef> authDefs_;
   private String invalidInput_;
+  private boolean authFailure_;
   }

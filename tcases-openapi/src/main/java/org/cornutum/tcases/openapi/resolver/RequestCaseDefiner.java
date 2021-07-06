@@ -10,6 +10,8 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.OpenApiUtils;
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+
 import static org.cornutum.tcases.openapi.resolver.VarProperties.*;
 import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
@@ -90,6 +92,11 @@ public class RequestCaseDefiner
           .map( binding -> String.format( "%s=%s", binding.getVar(), binding.getValue()))
           .orElse( null));
 
+        requestCaseDef.setAuthFailure(
+          Optional.ofNullable( testCase.getInvalidValue())
+          .map( binding -> binding.getAnnotation( "authFailure") != null)
+          .orElse( false));
+
         paramProperties( testCase)
           .forEach( (paramName, paramProperties) -> requestCaseDef.addParam( toParamDef( paramName, paramProperties)));
 
@@ -97,6 +104,9 @@ public class RequestCaseDefiner
           bodyValues( testCase)
           .map( this::toBodyDef)
           .orElse( null));
+
+        authProperties( testCase)
+          .forEach( authProperties -> requestCaseDef.addAuthDef( toAuthDef( authProperties)));
         }
 
       return requestCaseDef;
@@ -115,13 +125,21 @@ public class RequestCaseDefiner
     {
     return
       toStream( testCase.getVarBindings())
-      .filter( binding -> !("request".equals( binding.getType()) || "implicit".equals( binding.getType())))
+      .filter( binding -> isParamInputType( binding.getType()))
       .collect( groupingBy( this::getInputName))
       .entrySet().stream()
       .collect(
         toMap(
           paramBindings -> getParamName( paramBindings.getValue()),
           paramBindings -> getPropertyValues( paramBindings.getValue())));
+    }
+
+  /**
+   * Returns if the given input type designates a request parameter.
+   */
+  private boolean isParamInputType( String inputType)
+    {
+    return !("request".equals( inputType) || "implicit".equals( inputType) || "security".equals( inputType));
     }
 
   /**
@@ -137,6 +155,47 @@ public class RequestCaseDefiner
       .entrySet().stream()
       .findFirst()
       .map( bodyBindings -> getPropertyValues( bodyBindings.getValue()));
+    }
+
+  /**
+   * Returns the properties of each authentication input defined by the given test case.
+   */
+  private Stream<Map<String,Object>> authProperties( TestCase testCase)
+    {
+    Stream.Builder<Map<String,Object>> authProperties = Stream.builder();
+
+    toStream( testCase.getVarBindings())
+      .filter( binding -> "security".equals( binding.getType()))
+      .collect( groupingBy( this::getInputName))
+      .entrySet().stream()
+      .findFirst()
+      .map( secBindings -> getPropertyValues( secBindings.getValue()))
+      .ifPresent( secProperties -> getAuthProperties( secProperties, authProperties));
+    
+    return authProperties.build();
+    }
+
+  /**
+   * Returns the properties of each authentication input defined by the given test case.
+   */
+  private void getAuthProperties( Map<String,Object> secProperties, Stream.Builder<Map<String,Object>> authProperties)
+    {
+    for( String property : secProperties.keySet())
+      {
+      Optional<VarBinding> authType =
+        Optional.ofNullable( getIfVarBinding( secProperties, property))
+        .filter( binding -> "Type".equals( property) && !binding.isValueNA());
+
+      if( authType.isPresent())
+        {
+        authProperties.add( secProperties);
+        }
+      else
+        {
+        Optional.ofNullable( getIfPropertyValues( secProperties, property))
+          .ifPresent( memberProperties -> getAuthProperties( memberProperties, authProperties));
+        }
+      }
     }
 
   /**
@@ -192,6 +251,45 @@ public class RequestCaseDefiner
     Map<String,Object> contentValues = getPropertyValues( bodyValues, String.valueOf( mediaType.getValue()));
     
     return toValueDef( contentDefined, mediaType, contentValues, Characters.ANY);
+    }
+
+  /**
+   * Returns the authentication definition specified by the given properties.
+   */
+  private AuthDef toAuthDef( Map<String,Object> authValues)
+    {
+    AuthDef authDef;
+    
+    String type = String.valueOf( expectVarBinding( authValues, "Type").getValue());
+    if( "apiKey".equals( type))
+      {
+      authDef =
+        new ApiKeyDef(
+          Location.valueOf( String.valueOf( expectVarBinding( authValues, "Location").getValue()).toUpperCase()),
+          String.valueOf( expectVarBinding( authValues, "Name").getValue()));
+      }
+    else if( "http".equals( type))
+      {
+      String scheme = String.valueOf( expectVarBinding( authValues, "Scheme").getValue());
+      if( "basic".equals( scheme))
+        {
+        authDef = new HttpBasicDef();
+        }
+      else if( "bearer".equals( scheme))
+        {
+        authDef = new HttpBearerDef();
+        }
+      else
+        {
+        throw new IllegalStateException( String.format( "HTTP authentication scheme=%s is not supported", scheme));
+        }
+      }
+    else
+      {
+      throw new IllegalStateException( String.format( "Authentication type=%s is not supported", type));
+      }
+    
+    return authDef;
     }
 
   /**
