@@ -10,6 +10,8 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.util.ToString;
 
+import java.util.Objects;
+
 /**
  * Describes an API key authentication input.
  */
@@ -31,6 +33,14 @@ public class ApiKeyDef extends AuthDef
     {
     return name_;
     }
+  
+  /**
+   * Implements the Visitor pattern for this authentication input.
+   */
+  public void accept( AuthDefVisitor visitor)
+    {
+    visitor.visit( this);
+    }
 
   public String toString()
     {
@@ -41,5 +51,26 @@ public class ApiKeyDef extends AuthDef
       .toString();
     }
 
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getLocation())
+      ^ Objects.hashCode( getName());
+    }
+
+  public boolean equals( Object object)
+    {
+    ApiKeyDef other =
+      object != null && object.getClass().equals( getClass())
+      ? (ApiKeyDef) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.getLocation(), getLocation())
+      && Objects.equals( other.getName(), getName());
+    }
+  
   private final String name_;
   }

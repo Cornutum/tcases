@@ -15,8 +15,26 @@ public class HttpBasicDef extends HttpAuthDef
   /**
    * Creates a new HttpBasicDef instance.
    */
-  protected HttpBasicDef()
+  public HttpBasicDef()
     {
     super();
+    }
+  
+  /**
+   * Implements the Visitor pattern for this authentication input.
+   */
+  public void accept( AuthDefVisitor visitor)
+    {
+    visitor.visit( this);
+    }
+
+  public int hashCode()
+    {
+    return getClass().hashCode();
+    }
+
+  public boolean equals( Object object)
+    {
+    return object != null && object.getClass().equals( getClass());
     }
   }

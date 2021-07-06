@@ -1,0 +1,472 @@
+
+[
+    {
+        "id": 0,
+        "name": "None.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET"
+    },
+    {
+        "id": 0,
+        "name": "Body.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": 0,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Body.application-json.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": 787253919,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Body.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "data": null,
+            "valid": false
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ],
+        "invalidInput": "Body.Defined=No"
+    },
+    {
+        "id": 3,
+        "name": "Body.Media-Type='Other'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "text/xml",
+            "data": {
+                "type": "integer",
+                "value": -360,
+                "format": "int32"
+            },
+            "valid": false
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ],
+        "invalidInput": "Body.Media-Type=Other"
+    },
+    {
+        "id": 4,
+        "name": "Body.application-json.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "null",
+                "value": null
+            },
+            "valid": false
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ],
+        "invalidInput": "Body.application-json.Type=null"
+    },
+    {
+        "id": 5,
+        "name": "Body.application-json.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "string",
+                "value": "hlf~$]%`"
+            },
+            "valid": false
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ],
+        "invalidInput": "Body.application-json.Type=Not integer"
+    },
+    {
+        "id": 6,
+        "name": "Body.application-json.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": -1,
+                "format": "int32"
+            },
+            "valid": false
+        },
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "opKey"
+            }
+        ],
+        "invalidInput": "Body.application-json.Value.Is=-1"
+    },
+    {
+        "id": 7,
+        "name": "Auth.opKeyQuery.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "POST",
+        "body": {
+            "mediaType": "application/json",
+            "data": {
+                "type": "integer",
+                "value": 0,
+                "format": "int32"
+            },
+            "valid": true
+        },
+        "invalidInput": "Auth.opKeyQuery.Defined=No",
+        "authFailure": true
+    },
+    {
+        "id": 0,
+        "name": "id.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "basic"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "id.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            {
+                "type": "apiKey",
+                "location": "cookie",
+                "name": "apiKey"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "id.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 95661981,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "basic"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "id.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            {
+                "type": "apiKey",
+                "location": "cookie",
+                "name": "apiKey"
+            }
+        ],
+        "invalidInput": "id.Type=null"
+    },
+    {
+        "id": 4,
+        "name": "id.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 478.5
+                },
+                "valid": false
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            {
+                "type": "apiKey",
+                "location": "cookie",
+                "name": "apiKey"
+            }
+        ],
+        "invalidInput": "id.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "name": "id.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -1,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            {
+                "type": "apiKey",
+                "location": "cookie",
+                "name": "apiKey"
+            }
+        ],
+        "invalidInput": "id.Value.Is=-1"
+    },
+    {
+        "id": 6,
+        "name": "Auth.Satisfied='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "invalidInput": "Auth.Satisfied=No",
+        "authFailure": true
+    },
+    {
+        "id": 7,
+        "name": "Auth.1.apiHttpBearer.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "cookie",
+                "name": "apiKey"
+            }
+        ],
+        "invalidInput": "Auth.1.apiHttpBearer.Defined=No",
+        "authFailure": true
+    },
+    {
+        "id": 8,
+        "name": "Auth.1.apiKeyCookie.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ],
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        ],
+        "invalidInput": "Auth.1.apiKeyCookie.Defined=No",
+        "authFailure": true
+    }
+]

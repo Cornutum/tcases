@@ -52,6 +52,9 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
         requestCase.setOperation( requestCaseDef.getOperation());
         requestCase.setInvalidInput( requestCaseDef.getInvalidInput());
 
+        requestCase.setAuthDefs( requestCaseDef.getAuthDefs());
+        requestCase.setAuthFailure( requestCaseDef.isAuthFailure());
+
         requestCase.setParams(
           toStream( requestCaseDef.getParams())
           .map( paramDef -> resolveParamData( paramDef))

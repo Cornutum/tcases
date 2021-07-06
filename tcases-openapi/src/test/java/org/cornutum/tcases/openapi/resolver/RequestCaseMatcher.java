@@ -32,5 +32,7 @@ public class RequestCaseMatcher extends BaseCompositeMatcher<RequestCase>
     expectThat( valueOf( "params", RequestCase::getParams).matches( containsMembersMatching( ParamDataMatcher::new)));
     expectThat( valueOf( "body", RequestCase::getBody).matches( MessageDataMatcher::new));
     expectThat( valueOf( "invalidInput", RequestCase::getInvalidInput).matches( Matchers::equalTo));
+    expectThat( valueOf( "auth", RequestCase::getAuthDefs).matches( containsMembersMatching( AuthDefMatcher::new)));
+    expectThat( valueOf( "authFailure", RequestCase::isAuthFailure).matches( Matchers::equalTo));
     }
   }

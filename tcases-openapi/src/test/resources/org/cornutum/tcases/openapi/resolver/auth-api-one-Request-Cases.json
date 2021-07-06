@@ -1,0 +1,58 @@
+
+[
+    {
+        "id": 0,
+        "name": "Auth.apiHttpBearer.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "apiKey"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Auth.apiHttpBearer.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "query",
+                "name": "apiKey"
+            }
+        ],
+        "invalidInput": "Auth.apiHttpBearer.Defined=No",
+        "authFailure": true
+    },
+    {
+        "id": 2,
+        "name": "Auth.apiKeyQuery.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        ],
+        "invalidInput": "Auth.apiKeyQuery.Defined=No",
+        "authFailure": true
+    }
+]

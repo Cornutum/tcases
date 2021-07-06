@@ -1,0 +1,30 @@
+
+[
+    {
+        "id": 0,
+        "name": "Auth.opKeyHeader.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "header",
+                "name": "X-Op-Key"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Auth.opKeyHeader.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "invalidInput": "Auth.opKeyHeader.Defined=No",
+        "authFailure": true
+    }
+]
