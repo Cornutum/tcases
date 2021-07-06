@@ -137,6 +137,7 @@ public class RequestCaseTest
     "allOf",
     "anyOf",
     "array",
+    "auth",
     "emptySchema",
     "integer",
     "not",
