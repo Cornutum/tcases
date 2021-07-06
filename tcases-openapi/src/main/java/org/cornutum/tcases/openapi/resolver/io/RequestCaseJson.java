@@ -77,7 +77,20 @@ public final class RequestCaseJson
       }
     
     Optional.ofNullable( requestCase.getBody()).ifPresent( body -> builder.add( BODY, toJson( body)));
+
+    JsonArrayBuilder authBuilder = Json.createArrayBuilder();
+    toStream( requestCase.getAuthDefs()).forEach( authDef -> authBuilder.add( AuthDefJson.toJson( authDef)));
+    JsonArray authDefs = authBuilder.build();
+    if( !authDefs.isEmpty())
+      {
+      builder.add( AUTH, authDefs);
+      }
+    
     Optional.ofNullable( requestCase.getInvalidInput()).ifPresent( invalidInput -> builder.add( INVALID_INPUT, invalidInput));
+    if( requestCase.isAuthFailure())
+      {
+      builder.add( AUTH_FAILURE, true);
+      }
     
     return builder.build();
     }
@@ -176,6 +189,13 @@ public final class RequestCaseJson
           Optional.ofNullable( json.getJsonObject( BODY))
             .ifPresent( body -> requestCase.setBody( asMessageData( context, body)));
           });
+
+        context.doFor( AUTH, () -> {
+          Optional.ofNullable( json.getJsonArray( AUTH))
+            .map( array -> array.getValuesAs( JsonObject.class))
+            .ifPresent( authDefs -> authDefs.stream().forEach( authDef -> requestCase.addAuthDef( asAuthDef( context, authDef))));
+          });
+        requestCase.setAuthFailure( context.resultFor( AUTH_FAILURE, () -> json.getBoolean( AUTH_FAILURE, false)));
 
         return requestCase;
         });
@@ -324,6 +344,45 @@ public final class RequestCaseJson
     }
 
   /**
+   * Returns the AuthDef represented by the given JSON object.
+   */
+  private static AuthDef asAuthDef( RequestCaseContext context, JsonObject json)
+    {
+    AuthDef authDef;
+    
+    String type = json.getString( TYPE);
+    if( "apiKey".equals( type))
+      {
+      authDef =
+        new ApiKeyDef(
+          Location.valueOf( json.getString( LOCATION).toUpperCase()),
+          json.getString( NAME));
+      }
+    else if( "http".equals( type))
+      {
+      String scheme = json.getString( SCHEME);
+      if( "basic".equals( scheme))
+        {
+        authDef = new HttpBasicDef();
+        }
+      else if( "bearer".equals( scheme))
+        {
+        authDef = new HttpBearerDef();
+        }
+      else
+        {
+        throw new RequestCaseException( String.format( "HTTP authentication scheme=%s is not supported", scheme));
+        }
+      }
+    else
+      {
+      throw new RequestCaseException( String.format( "Authentication type=%s is not supported", type));
+      }
+    
+    return authDef;
+    }
+
+  /**
    * Creates the JSON representation of a {@link DataValue}.
    */
   private static class DataValueJson implements DataValueVisitor
@@ -419,7 +478,68 @@ public final class RequestCaseJson
     private JsonValue json_;
     }
 
+  /**
+   * Creates the JSON representation of a {@link AuthDef}.
+   */
+  private static class AuthDefJson implements AuthDefVisitor
+    {
+    /**
+     * Returns the JSON representation of the given {@link AuthDef}.
+     */
+    public static JsonValue toJson( AuthDef authDef)
+      {
+      return new AuthDefJson( authDef).toJson();
+      }
+
+    /**
+     * Creates a new AuthDefJson instance.
+     */
+    private AuthDefJson( AuthDef authDef)
+      {
+      authDef_ = authDef;
+      }
+    
+    /**
+     * Returns the JSON representation of this {@link AuthDef}
+     */
+    private JsonValue toJson()
+      {
+      authDef_.accept( this);
+      return json_;
+      }
+
+    public void visit( ApiKeyDef authDef)
+      {
+      JsonObjectBuilder builder = Json.createObjectBuilder();
+      builder.add( TYPE, "apiKey");
+      builder.add( LOCATION, String.valueOf( authDef.getLocation()).toLowerCase());
+      builder.add( NAME, authDef.getName());
+      json_ = builder.build();
+      }
+
+    public void visit( HttpBasicDef authDef)
+      {
+      JsonObjectBuilder builder = Json.createObjectBuilder();
+      builder.add( TYPE, "http");
+      builder.add( SCHEME, "basic");
+      json_ = builder.build();
+      }
+
+    public void visit( HttpBearerDef authDef)
+      {
+      JsonObjectBuilder builder = Json.createObjectBuilder();
+      builder.add( TYPE, "http");
+      builder.add( SCHEME, "bearer");
+      json_ = builder.build();
+      }
+
+    private final AuthDef authDef_;
+    private JsonValue json_;
+    }
+
   private static final String API = "api";
+  private static final String AUTH = "auth";
+  private static final String AUTH_FAILURE = "authFailure";
   private static final String BODY = "body";
   private static final String DATA = "data";
   private static final String EXPLODE = "explode";
@@ -427,11 +547,13 @@ public final class RequestCaseJson
   private static final String ID = "id";
   private static final String IN = "in";
   private static final String INVALID_INPUT = "invalidInput";
+  private static final String LOCATION = "location";
   private static final String MEDIA_TYPE = "mediaType";
   private static final String NAME = "name";
   private static final String OPERATION = "operation";
   private static final String PARAMETERS = "parameters";
   private static final String PATH = "path";
+  private static final String SCHEME = "scheme";
   private static final String SERVER = "server";
   private static final String STYLE = "style";
   private static final String TYPE = "type";

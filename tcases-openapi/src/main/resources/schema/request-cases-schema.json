@@ -53,6 +53,15 @@
                 "invalidInput": {
                     "type": "string",
                     "minLength": 1
+                },
+                "auth": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/authDef"
+                    }
+                },
+                "authFailure": {
+                    "type": "boolean"
                 }
             },
             "required": [ "id", "api", "path", "operation" ],
@@ -247,6 +256,59 @@
                 }
             ],
             "required": [ "type", "value" ]
+        },
+
+        "authDef": {
+            "description": "Defines an authentication input",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "apiKey"
+                        },
+                        "location": {
+                            "type": "string",
+                            "enum": [ "cookie", "header", "query" ]
+                        },
+                        "name": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "http"
+                        },
+                        "scheme": {
+                            "type": "string",
+                            "const": "basic"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "http"
+                        },
+                        "scheme": {
+                            "type": "string",
+                            "const": "bearer"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            ],
+            "required": [ "type" ]
         }
     }
 }

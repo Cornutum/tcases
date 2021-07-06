@@ -36,6 +36,11 @@ public abstract class AuthDef
    */
   public abstract String getName();
 
+  /**
+   * Implements the Visitor pattern for this authentication input.
+   */
+  public abstract void accept( AuthDefVisitor visitor);
+
   public String toString()
     {
     return

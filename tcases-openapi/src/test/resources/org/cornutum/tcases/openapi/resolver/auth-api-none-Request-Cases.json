@@ -1,0 +1,54 @@
+
+[
+    {
+        "id": 0,
+        "name": "Auth.Satisfied='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "basic"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Auth.0.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "apiKey",
+                "location": "cookie",
+                "name": "opKey"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Auth.Satisfied='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "invalidInput": "Auth.Satisfied=No",
+        "authFailure": true
+    },
+    {
+        "id": 0,
+        "name": "None.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE"
+    }
+]
