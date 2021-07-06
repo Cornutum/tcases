@@ -14,9 +14,86 @@
       </VarSet>
     </Input>
   </Function>
+  <Function name="POST_resource">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/resource"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/json&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="integer" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not integer" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <Var name="Is">
+              <Value name="-1" failure="true"/>
+              <Value name="0"/>
+              <Value name="&gt; 0"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="security">
+      <VarSet name="Auth">
+        <VarSet name="opKeyQuery">
+          <Var name="Defined">
+            <Value name="Yes" property="secRecOpKeyQuery"/>
+            <Value name="No" failure="true">
+              <Has name="authFailure" value="true"/>
+            </Value>
+          </Var>
+          <Var name="Type" when="secRecOpKeyQuery">
+            <Value name="apiKey"/>
+          </Var>
+          <Var name="Location" when="secRecOpKeyQuery">
+            <Value name="query"/>
+          </Var>
+          <Var name="Name" when="secRecOpKeyQuery">
+            <Value name="opKey"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
   <Function name="DELETE_resource">
     <Has name="operation" value="DELETE"/>
     <Has name="path" value="/resource"/>
+    <Input type="query">
+      <VarSet name="id">
+        <Has name="paramName" value="id"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="id"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="id">
+          <Value name="integer" property="idValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="idValue">
+          <Var name="Is">
+            <Value name="-1" failure="true"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
     <Input type="security">
       <VarSet name="Auth">
         <Var name="Satisfied">
@@ -82,31 +159,6 @@
               <Value name="apiKey"/>
             </Var>
           </VarSet>
-        </VarSet>
-      </VarSet>
-    </Input>
-  </Function>
-  <Function name="HEAD_resource">
-    <Has name="operation" value="HEAD"/>
-    <Has name="path" value="/resource"/>
-    <Input type="security">
-      <VarSet name="Auth">
-        <VarSet name="opKeyQuery">
-          <Var name="Defined">
-            <Value name="Yes" property="secRecOpKeyQuery"/>
-            <Value name="No" failure="true">
-              <Has name="authFailure" value="true"/>
-            </Value>
-          </Var>
-          <Var name="Type" when="secRecOpKeyQuery">
-            <Value name="apiKey"/>
-          </Var>
-          <Var name="Location" when="secRecOpKeyQuery">
-            <Value name="query"/>
-          </Var>
-          <Var name="Name" when="secRecOpKeyQuery">
-            <Value name="opKey"/>
-          </Var>
         </VarSet>
       </VarSet>
     </Input>
