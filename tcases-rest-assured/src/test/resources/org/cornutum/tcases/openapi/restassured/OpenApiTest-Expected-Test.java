@@ -2686,10 +2686,6 @@ public class OpenApiTest {
         return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 
-    private static String forTestServer() {
-        return forTestServer( null);
-    }
-
     private static String forTestServer( String defaultUri) {
         String testServer = tcasesApiServer();
         return

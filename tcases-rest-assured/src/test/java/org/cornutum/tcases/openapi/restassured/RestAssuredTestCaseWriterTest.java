@@ -12,6 +12,7 @@ import org.cornutum.tcases.openapi.moco.MocoServerConfig;
 import org.cornutum.tcases.openapi.moco.MocoServerTest;
 import org.cornutum.tcases.openapi.moco.MocoServerTestWriter;
 import org.cornutum.tcases.openapi.moco.RestServerTestWriter;
+import org.cornutum.tcases.openapi.testwriter.JUnitTestWriter;
 import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueJson;
@@ -26,7 +27,7 @@ import static org.junit.Assert.*;
 public class RestAssuredTestCaseWriterTest extends MocoServerTest
   {
   @Test
-  public void writeTest_0() throws Exception
+  public void writeOpenApiTest() throws Exception
     {
     // Given...
     String testDefName = "OpenApiTest";
@@ -44,6 +45,31 @@ public class RestAssuredTestCaseWriterTest extends MocoServerTest
     MocoServerConfig serverConfig = MocoServerConfig.resource( stdMocoServerConfig( testDefName)).build();
 
     MocoServerTestWriter testWriter = new RestServerTestWriter( serverConfig, new RestAssuredTestCaseWriter());
+    
+    // When...
+    testWriter.writeTest( source, target);
+
+    // Then
+    verifyTest( testDefName, FileUtils.readFileToString( testWriter.getTestFile( source, target), "UTF-8"));
+    }
+  
+  @Test
+  public void writeOpenApiAuth() throws Exception
+    {
+    // Given...
+    String testDefName = "OpenApiAuth";
+    
+    TestSource source =
+      TestSource.from( stdRequestTestDef( testDefName))
+      .build();
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( testDefName)
+      .inDir( getGeneratedTestDir())
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new RestAssuredTestCaseWriter());
     
     // When...
     testWriter.writeTest( source, target);
