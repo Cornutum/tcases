@@ -8,8 +8,13 @@
 package org.cornutum.tcases.openapi.restassured;
 
 import org.cornutum.tcases.io.IndentedWriter;
+import org.cornutum.tcases.openapi.resolver.ApiKeyDef;
+import org.cornutum.tcases.openapi.resolver.AuthDef;
+import org.cornutum.tcases.openapi.resolver.AuthDefVisitor;
 import org.cornutum.tcases.openapi.resolver.BinaryValue;
 import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
+import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
@@ -48,6 +53,8 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     targetWriter.println( "import org.hamcrest.Matcher;");
     targetWriter.println( "import static io.restassured.RestAssured.*;");
     targetWriter.println( "import static org.hamcrest.Matchers.*;");
+
+    depends_ = new Depends();
     }
 
   /**
@@ -68,6 +75,7 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
       targetWriter.println( "given()");
       targetWriter.indent();
       writeServer( testName, testServer, requestCase, targetWriter);
+      writeAuthDefs( testName, requestCase, targetWriter);
       writeParams( testName, requestCase, targetWriter);
       writeBody( testName, requestCase, targetWriter);
       targetWriter.unindent();
@@ -94,8 +102,9 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
    */
   public void writeClosing( String testName, IndentedWriter targetWriter)
     {
-    writeStatusCodeMatcherDef( testName, targetWriter);
-    writeTestServerDef( testName, targetWriter);
+    writeStatusCodeMatcherDef( testName, targetWriter, depends_);
+    writeTestServerDef( testName, targetWriter, depends_);
+    writeAuthCredentialsDef( testName, targetWriter, depends_);
     }
   
   /**
@@ -178,22 +187,71 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     }
   
   /**
+   * Writes request authentication definitions for a target test case to the given stream.
+   */
+  protected void writeAuthDefs( String testName, RequestCase requestCase, IndentedWriter targetWriter)
+    {
+    for( AuthDef authDef : requestCase.getAuthDefs())
+      {
+      writeAuthDef( testName, authDef, targetWriter);
+      }
+    }
+  
+  /**
+   * Writes a request authentication definition for a target test case to the given stream.
+   */
+  protected void writeAuthDef( String testName, AuthDef authDef, IndentedWriter targetWriter)
+    {
+    switch( authDef.getLocation())
+      {
+      case QUERY:
+        {
+        targetWriter.println( String.format( ".queryParam( %s, %s)", stringLiteral( authDef.getName()), "tcasesApiKey()"));
+        break;
+        }
+      
+      case HEADER:
+        {
+        targetWriter.println( String.format( ".header( %s, %s)", stringLiteral( authDef.getName()), headerValueOf( authDef)));
+        break;
+        }
+      
+      case COOKIE:
+        {
+        targetWriter.println( String.format( ".cookie( %s, %s)", stringLiteral( authDef.getName()), "tcasesApiKey()"));
+        break;
+        }
+
+      default:
+        {
+        throw new IllegalStateException( String.format( "Invalid location for authentication value=%s", authDef));
+        }
+      }
+
+    authDef.accept( authDependsVisitor_);
+    }
+  
+  /**
    * Writes the server URI for a target test case to the given stream.
    */
   protected void writeServer( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    String serverUri =
-      StringUtils.stripEnd(
+    Optional<String> serverUri =
+      Optional.of(
+        StringUtils.stripEnd(
         Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
-        "/");
+        "/"))
+      .filter( StringUtils::isNotBlank);
 
     targetWriter.println
       ( String.format(
         ".baseUri( forTestServer(%s))",
-        Optional.of( serverUri)
-        .filter( StringUtils::isNotBlank)
-        .map( uri -> String.format( " %s", stringLiteral( uri)))
-        .orElse( "")));
+        serverUri.map( uri -> String.format( " %s", stringLiteral( uri))) .orElse( "")));
+
+    if( !serverUri.isPresent())
+      {
+      depends_.setDependsServer();
+      }
     }
   
   /**
@@ -321,11 +379,37 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     if( requestCase.isFailure())
       {
       targetWriter.println( String.format( "// %s", requestCase.getInvalidInput()));
-      targetWriter.println( ".statusCode( isBadRequest())");
+      targetWriter.println( String.format( ".statusCode( %s)", requestCase.isAuthFailure()? "isUnauthorized()" : "isBadRequest()"));
       }
     else
       {
       targetWriter.println( ".statusCode( isSuccess())");
       }
     }
+
+  private Depends depends_;
+  private AuthDependsVisitor authDependsVisitor_ = new AuthDependsVisitor();
+
+  /**
+   * Records compile-time dependencies for an authentication definition.
+   */
+  private class AuthDependsVisitor implements AuthDefVisitor
+    {
+
+    public void visit( ApiKeyDef authDef)
+      {
+      depends_.setDependsApiKey();
+      }
+
+    public void visit( HttpBasicDef authDef)
+      {
+      depends_.setDependsHttpBasic();
+      }
+
+    public void visit( HttpBearerDef authDef)
+      {
+      depends_.setDependsHttpBearer();
+      }
+    }
+
   }

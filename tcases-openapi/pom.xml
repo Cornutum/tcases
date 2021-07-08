@@ -137,6 +137,8 @@
                                 <include>org/cornutum/tcases/openapi/testwriter/TestWriterTest*.class</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiTest.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiTest-Request-Cases.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/OpenApiAuth.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/OpenApiAuth-Request-Cases.json</include>
                             </includes>
                         </configuration>
                     </execution>
