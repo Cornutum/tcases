@@ -166,7 +166,7 @@ execute all API requests against an actual API server, applying a comprehensive 
 the expected responses. Bam! Job done!
 
 But is this even possible? Yes, it is -- mostly.
-For details, see [*Running API Test Cases*](Running-Api-Test-Cases.md).
+For details, see [*Running API Test Cases*](Running-Api-Test-Cases.md#running-api-test-cases).
 
 
 ## Why Tcases for OpenAPI? ##
@@ -438,7 +438,13 @@ for Tcases for OpenAPI.
 
 To use Tcases for OpenAPI effectively, there are some things to keep in mind when you're building your OpenAPI definition.
 
-  1. **Use Version 3.** Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](https://swagger.io/specification/). Earlier Version 2.X specs are not supported.
+  1. **Use Version 3.** Tcases for OpenAPI is based on the specification for [OpenAPI Version 3.0.2](https://spec.openapis.org/oas/v3.0.2). Earlier Version 2.X specs are not supported.
+
+  1. **Some security schemes not supported.** Tcases for OpenAPI currently supports the following request [security schemes](https://spec.openapis.org/oas/v3.0.2#security-scheme-object) -- other schemes are ignored.
+
+     * API key
+     * HTTP Basic authentication
+     * HTTP Bearer authentication
 
   1. **Avoid type-ambiguous schemas.** A schema that does not define a `type` keyword can validate multiple types of instances. But Tcases for OpenAPI expects you to be more explicit about which instance types are valid. Here's how to do that.
 
