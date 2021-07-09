@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Authenticated",
+        "version": "0.0.0"
+    },
+    "security": [
+        {
+            "apiHttpBasic": []
+        },
+        {
+            "apiHttpDigest": []
+        }
+    ],
+    "paths": {
+        "/resource": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            },
+            
+            "delete": {
+                "security": [
+                    {
+                        "opOauth2": [ "delete:resource" ]
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiHttpBasic": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "apiHttpDigest": {
+                "type": "http",
+                "scheme": "digest"
+            },
+            "opOauth2": {
+                "type": "oauth2",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "https://example.com/api/oauth/dialog",
+                        "scopes": {
+                            "delete:resource": "Delete this resource"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

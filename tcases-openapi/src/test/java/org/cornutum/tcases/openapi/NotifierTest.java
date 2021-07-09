@@ -185,6 +185,19 @@ public class NotifierTest extends OpenApiTest
     }
   
   @Test
+  public void errorWhenAuthUnsupported()
+    {
+    // When...
+    getTests( getRequestInputModel( "auth-api-unsupported"));
+    
+    // Then...
+    assertErrors(
+      "Authenticated,/resource,GET,security,apiHttpDigest: HTTP authentication scheme=digest is not supported in this version. Generated tests will not provide this type of authentication.",
+      "Authenticated,/resource,DELETE,security,opOauth2: Security type=oauth2 is not supported in this version. Generated tests will not provide this type of authentication."
+);
+    }
+  
+  @Test
   public void failureWhenInvalidParamName()
     {
     assertOpenApiException(

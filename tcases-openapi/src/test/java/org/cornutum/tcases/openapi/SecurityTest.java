@@ -37,4 +37,10 @@ public class SecurityTest extends OpenApiTest
     {
     verifyRequestInputModel( "auth-api-many");
     }
+  
+  @Test
+  public void whenApiReqsUnsupported()
+    {
+    verifyRequestInputModel( "auth-api-unsupported");
+    }
   }
