@@ -1,0 +1,164 @@
+
+[
+    {
+        "id": 0,
+        "name": "Auth.apiHttpBasic.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "auth": [
+            {
+                "type": "http",
+                "scheme": "basic"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Auth.apiHttpBasic.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "GET",
+        "invalidInput": "Auth.apiHttpBasic.Defined=No",
+        "authFailure": true
+    },
+    {
+        "id": 0,
+        "name": "id.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 0,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "id.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "id.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 787253919,
+                    "format": "int32"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "id.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "id.Type=null"
+    },
+    {
+        "id": 4,
+        "name": "id.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "id.Type=Not integer"
+    },
+    {
+        "id": 5,
+        "name": "id.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Authenticated",
+        "path": "/resource",
+        "operation": "DELETE",
+        "parameters": [
+            {
+                "name": "id",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -1,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "id.Value.Is=-1"
+    }
+]

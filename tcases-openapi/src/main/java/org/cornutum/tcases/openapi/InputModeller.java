@@ -616,12 +616,15 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Optional<IVarDef> authVarDef( OpenAPI api, List<SecurityRequirement> opSecurity)
     {
     return
-      resultFor( "auth", () -> {
+      resultFor( "security", () -> {
         List<SecurityRequirement> security =
-          Optional.ofNullable( opSecurity)
-          .orElse(
-            Optional.ofNullable( api.getSecurity())
-            .orElse( emptyList()));
+          secReqsSupported(
+            api,
+            
+            Optional.ofNullable( opSecurity)
+            .orElse(
+              Optional.ofNullable( api.getSecurity())
+              .orElse( emptyList())));
         
         return
           security.isEmpty()?
@@ -729,36 +732,24 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         
       case HTTP:
         {
-        if( "basic".equalsIgnoreCase( secScheme.getScheme()) | "bearer".equalsIgnoreCase( secScheme.getScheme()))
-          {
-          vars.add(
-            VarDefBuilder.with( "Type")
-            .when( isDefined)
-            .values( VarValueDefBuilder.with( secScheme.getType()).build())
-            .build());
+        vars.add(
+          VarDefBuilder.with( "Type")
+          .when( isDefined)
+          .values( VarValueDefBuilder.with( secScheme.getType()).build())
+          .build());
 
-          vars.add(
-            VarDefBuilder.with( "Scheme")
-            .when( isDefined)
-            .values( VarValueDefBuilder.with( secScheme.getScheme().toLowerCase()).build())
-            .build());
-            }
-        else
-          {
-          notifyError(
-            String.format( "HTTP authentication scheme=% is not supported in this version", secScheme.getScheme()),
-            "Generated tests will not provide this type of authentication");
-            }
-
+        vars.add(
+          VarDefBuilder.with( "Scheme")
+          .when( isDefined)
+          .values( VarValueDefBuilder.with( secScheme.getScheme().toLowerCase()).build())
+          .build());
+            
         break;
         }
         
       default:
         {
-        notifyError(
-          String.format( "Security type=% is not supported in this version", secScheme.getType()),
-          "Generated tests will not provide this type of authentication");
-        break;
+        throw new IllegalStateException( String.format( "Security type=%s is not supported in this version", secScheme.getType()));
         }
       }
     
@@ -818,6 +809,71 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
                 .build();
               });                       
           }));
+    }
+
+  /**
+   * Returns the members of the given set of security requirements, excluding any unsupported security schemes.
+   */
+  private List<SecurityRequirement> secReqsSupported( OpenAPI api, List<SecurityRequirement> secReqs)
+    {
+    return
+      secReqs.stream()
+      
+      .map( secRec -> {
+        List<String> schemesSupported =
+          secRec.keySet().stream()
+          .filter( name -> {
+            return
+              resultFor(
+                name,
+                () -> {
+                  SecurityScheme scheme = getSecurityScheme( api, name);
+                  boolean supported;
+                  switch( scheme.getType())
+                    {
+                    case APIKEY:
+                      {
+                      supported = true;
+                      break;
+                      }
+        
+                    case HTTP:
+                      {
+                      supported = "basic".equalsIgnoreCase( scheme.getScheme()) || "bearer".equalsIgnoreCase( scheme.getScheme());
+                      if( !supported)
+                        {
+                        notifyError(
+                          String.format( "HTTP authentication scheme=%s is not supported in this version", scheme.getScheme()),
+                          "Generated tests will not provide this type of authentication");
+                        }
+                      break;
+                      }
+        
+                    default:
+                      {
+                      supported = false;
+                      notifyError(
+                        String.format( "Security type=%s is not supported in this version", scheme.getType()),
+                        "Generated tests will not provide this type of authentication");
+                      break;
+                      }
+                    }
+
+                  return supported;
+                });
+            })
+          .collect( toList());
+
+        SecurityRequirement supported = new SecurityRequirement();
+        for( String scheme : schemesSupported)
+          {
+          supported.addList( scheme, secRec.get( scheme));
+          }
+        return supported;
+        })
+      
+      .filter( secReq -> !secReq.isEmpty())
+      .collect( toList());
     }
   
   /**
