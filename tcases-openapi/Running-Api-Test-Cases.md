@@ -13,7 +13,8 @@
     - [Example: Create tests from examples](#example-create-tests-from-examples)
     - [Understanding the TestWriter API](#understanding-the-testwriter-api)    
   - [Running generated tests](#running-generated-tests)
-    - [Override the default API server](#override-the-default-api-server)    
+    - [Override the default API server](#override-the-default-api-server)
+    - [Define credentials for request authorization](#define-credentials-for-request-authorization)
   - [Generating request inputs](#generating-request-inputs)
     - [Instead of input descriptions...](#instead-of-input-descriptions)
     - [Get actual input values...](#get-actual-input-values)
@@ -343,6 +344,37 @@ be defined in the `mvn` command. This setting overrides any API server specified
 mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiServer=http://localhost
 ```
 
+### Define credentials for request authorization ###
+
+Execution of API requests may be subject to security requirements specified in the OpenAPI definition. To satisfy such requirements, you
+must define the necessary authorization credentials when you run the tests.
+
+For Java tests, authorization credentials are defined using Java system properties. These settings can
+be defined in the `java` command that you run, either directly or via your IDE. Similarly, if you run tests using Maven, these settings can
+be defined in the `mvn` command.
+
+Depending on the security scheme, different settings are required. The following security schemes are supported.
+
+  * API key
+
+    ```
+    # Run the 'SwaggerPetstoreTest', using an API key to authenticate test requests.
+    mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiKey=F81D4FAE-7DEC-11D0-A765-00A0C91E6BF6
+    ```
+
+  * HTTP Basic authentication
+
+    ```
+    # Run the 'SwaggerPetstoreTest', using a user id and password to authenticate test requests.
+    mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiUser=myUserId -DtcasesApiPassword=myLittleSecret
+    ```
+
+  * HTTP Bearer authentication
+
+    ```
+    # Run the 'SwaggerPetstoreTest', using a bearer token to authenticate test requests.
+    mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiBearer=eyJ0eXAi.eyJtZXNz.-yIVBD5b
+    ```
 
 ## Generating request inputs ##
 

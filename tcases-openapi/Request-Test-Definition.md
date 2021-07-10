@@ -29,7 +29,9 @@ A `RequestCase` object defines the inputs for a test case that invokes a specifi
 | version       | string |                  | The version of the OpenAPI definition that defines this request |
 | parameters    | \[[`ParamData`](#paramdata)\] |     | The parameter values for this request |
 | body          | [`MessageData`](#messagedata) |   | The body value for this request |
+| auth          |\[[`AuthDef`](#authDef)\] |   | The authentication inputs required to authorize this request |
 | invalidInput  | string |                  | If defined, a failure response is expected for this request and this string describes the invalid input |
+| authFailure   | boolean |                 | If true, an authorization failure is expected for this request |
 
 ## `ParamData` ##
 
@@ -62,3 +64,35 @@ A `DataValue` object specifies the type, format, and value of a request input da
 | type          | string  | :registered:    | The type of this data value |
 | value         | JSON value | :registered: | The JSON representation of this data value |
 | format        | string |                  | The format of this data value |
+
+## `AuthDef` ##
+
+An `AuthDef` object describes a required authentication input: one of [`ApiKeyDef`](#apiKeyDef), [`HttpBasicDef`](#httpBasicDef), or [`HttpBearerDef`](#httpBearerDef).
+
+## `ApiKeyDef` ##
+
+An `ApiKeyDef` object specifies that an API key is required to authorize the request.
+
+| Field         | Type |                            | Description |
+| ---           | ---  | ---                        | ---         |
+| type          | string  | :registered:            | "apiKey" |
+| location      | string | :registered:             | The location of the key value |
+| name          | string | :registered:             | The name of this key value |
+
+## `HttpBasicDef` ##
+
+An `HttpBasicDef` object specifies that an HTTP Basic authorization header is required.
+
+| Field         | Type |                            | Description |
+| ---           | ---  | ---                        | ---         |
+| type          | string | :registered:             | "http" |
+| scheme        | string | :registered:             | "basic" |
+
+## `HttpBearerDef` ##
+
+An `HttpBearerDef` object specifies that an HTTP Bearer authorization header is required.
+
+| Field         | Type |                            | Description |
+| ---           | ---  | ---                        | ---         |
+| type          | string | :registered:             | "http" |
+| scheme        | string | :registered:             | "bearer" |

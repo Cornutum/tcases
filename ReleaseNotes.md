@@ -1,5 +1,21 @@
 # Release Notes #
 
+## 3.7.0 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Generated tests support request authorization** [[115](https://github.com/Cornutum/tcases/issues/115)]
+
+    Tcases for OpenAPI now handles information in OpenAPI definitions about the [security
+    schemes](https://spec.openapis.org/oas/v3.0.2#security-scheme-object) required by API requests. Some types of security
+    schemes are not yet supported -- see [*OpenAPI tips*](tcases-openapi/README.md#openapi-tips) for details.
+
+    Because security requirements are now included in generated input models and request test definitions, the
+    `RestAssuredTestCaseWriter` can create tests that apply the required authorization credentials to request invocations. Note
+    that values for authorization credentials do not appear in the OpenAPI definition and must be injected at runtime when
+    generated tests execute. See [*Define credentials for request authorization*](tcases-openapi/Running-Api-Test-Cases.md#define-credentials-for-request-authorization)
+    for details.
+
 ## 3.6.3 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
