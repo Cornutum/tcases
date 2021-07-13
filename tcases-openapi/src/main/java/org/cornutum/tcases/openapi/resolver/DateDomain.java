@@ -39,7 +39,8 @@ public class DateDomain extends TimeDomain
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new DateValue( value);
     }
@@ -47,7 +48,8 @@ public class DateDomain extends TimeDomain
   /**
    * Defines the initial length range for values in this domain.
    */
-  protected void initLengthRange()
+  @Override
+protected void initLengthRange()
     {
     setLengthRange( 10);
     }
@@ -55,7 +57,8 @@ public class DateDomain extends TimeDomain
   /**
    * Returns a random sequence of time values from this domain.
    */
-  protected Stream<Date> timeValues( ResolverContext context)
+  @Override
+protected Stream<Date> timeValues( ResolverContext context)
     {
     Calendar minDate =
       new Calendar.Builder()
@@ -99,7 +102,8 @@ public class DateDomain extends TimeDomain
   /**
    * Reports a failure if the given value is not a valid time string. Otherwise, returns the given value.
    */
-  protected String assertValidTime( String value)
+  @Override
+protected String assertValidTime( String value)
     {
     return assertDate( value);
     }
@@ -107,7 +111,8 @@ public class DateDomain extends TimeDomain
   /**
    * Returns true if the given value is a valid time string.
    */
-  protected boolean isValidTime( String value)
+  @Override
+protected boolean isValidTime( String value)
     {
     return isDate( value);
     }
@@ -115,7 +120,8 @@ public class DateDomain extends TimeDomain
   /**
    * Returns the string representation of the given time.
    */
-  protected String format( Date time)
+  @Override
+protected String format( Date time)
     {
     return FormattedString.getDateFormat().format( time);
     }

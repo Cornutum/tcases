@@ -43,7 +43,8 @@ public class StringEnum extends EnumDomain<String>
   /**
    * Returns the value represented by the given string.
    */
-  protected String valueOf( String value)
+  @Override
+protected String valueOf( String value)
     {
     return value;
     }
@@ -51,7 +52,8 @@ public class StringEnum extends EnumDomain<String>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new StringValue( value, format_);
     }

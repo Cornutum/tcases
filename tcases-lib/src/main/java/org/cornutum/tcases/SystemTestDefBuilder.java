@@ -123,7 +123,8 @@ public class SystemTestDefBuilder extends AnnotatedBuilder<SystemTestDefBuilder>
   /**
    * Returns the {@link Annotated} instance for this builder.
    */
-  protected Annotated getAnnotated()
+  @Override
+protected Annotated getAnnotated()
     {
     return systemTestDef_;
     }

@@ -41,6 +41,7 @@ public abstract class AbstractFilter implements Runnable
       super( source);
       }
 
+    @Override
     public void close() throws IOException
       {
       super.close();
@@ -216,7 +217,8 @@ public abstract class AbstractFilter implements Runnable
       }
     }  
 
-  public void run()
+  @Override
+public void run()
     {
     logger_.debug( "Starting, thread={}", thread_);
     

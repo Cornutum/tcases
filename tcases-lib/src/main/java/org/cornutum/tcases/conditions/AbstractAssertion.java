@@ -48,7 +48,8 @@ public abstract class AbstractAssertion implements IAssertion
   /**
    * Returns the property asserted.
    */
-  public String getProperty()
+  @Override
+public String getProperty()
     {
     return property_;
     }
@@ -56,7 +57,8 @@ public abstract class AbstractAssertion implements IAssertion
   /**
    * Returns the assertions for this disjunction.
    */
-  public Iterator<IAssertion> getAssertions()
+  @Override
+public Iterator<IAssertion> getAssertions()
     {
     return new SingletonIterator<IAssertion>( this);
     }
@@ -64,7 +66,8 @@ public abstract class AbstractAssertion implements IAssertion
   /**
    * Returns true if the given assertion is a member of this disjunction.
    */
-  public boolean contains( IAssertion assertion)
+  @Override
+public boolean contains( IAssertion assertion)
     {
     return equals( assertion);
     }
@@ -72,7 +75,8 @@ public abstract class AbstractAssertion implements IAssertion
   /**
    * Returns the number of assertions for this disjunction.
    */
-  public int getAssertionCount()
+  @Override
+public int getAssertionCount()
     {
     return 1;
     }
@@ -80,7 +84,8 @@ public abstract class AbstractAssertion implements IAssertion
   /**
    * Returns the disjuncts in this conjunction.
    */
-  public Iterator<IDisjunct> getDisjuncts()
+  @Override
+public Iterator<IDisjunct> getDisjuncts()
     {
     return new SingletonIterator<IDisjunct>( this);
     }
@@ -88,7 +93,8 @@ public abstract class AbstractAssertion implements IAssertion
   /**
    * Returns the number of disjunctions for this conjunction.
    */
-  public int getDisjunctCount()
+  @Override
+public int getDisjunctCount()
     {
     return 1;
     }
@@ -98,12 +104,14 @@ public abstract class AbstractAssertion implements IAssertion
    * A condition is <em>"compatible"</em> with these properties if it is already satisfied
    * or if it could be satisfied with the addition of more properties.
    */
-  public boolean compatible( PropertySet properties)
+  @Override
+public boolean compatible( PropertySet properties)
     {
     return completable() || satisfied( properties);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -111,14 +119,16 @@ public abstract class AbstractAssertion implements IAssertion
       .toString();
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ Objects.hashCode( property_);
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     return
       object != null

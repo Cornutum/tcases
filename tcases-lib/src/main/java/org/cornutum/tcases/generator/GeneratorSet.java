@@ -26,7 +26,8 @@ public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
   /**
    * Returns the test case generator for the given system function.
    */
-  public ITestCaseGenerator getGenerator( String functionName)
+  @Override
+public ITestCaseGenerator getGenerator( String functionName)
     {
     ITestCaseGenerator generator = generators_.get( getFunctionKey( functionName));
     return generator==null? generators_.get( ALL) : generator;
@@ -36,7 +37,8 @@ public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
    * Returns the set of system function names associated with generators in
    * this set.
    */
-  public String[] getGeneratorFunctions()
+  @Override
+public String[] getGeneratorFunctions()
     {
     String[] functions = new String[ generators_.size()];
     generators_.keySet().toArray( functions);
@@ -46,7 +48,8 @@ public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
   /**
    * Returns all test case generators in this set.
    */
-  public Iterator<ITestCaseGenerator> getGenerators()
+  @Override
+public Iterator<ITestCaseGenerator> getGenerators()
     {
     return generators_.values().iterator();
     }
@@ -103,21 +106,24 @@ public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
     return functionName==null? ALL : functionName;
     }
 
-  public GeneratorSet cloneOf()
+  @Override
+public GeneratorSet cloneOf()
     {
     GeneratorSet clone = new GeneratorSet();
     generators_.forEach( (f, g) -> clone.setGenerator( f, g.cloneOf()));
     return clone;
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ generators_.hashCode();
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     GeneratorSet other =
       object != null && object.getClass().equals( getClass())
@@ -129,7 +135,8 @@ public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
       && other.generators_.equals( generators_);
     }
   
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

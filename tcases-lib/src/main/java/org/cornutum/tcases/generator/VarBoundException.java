@@ -41,7 +41,8 @@ public class VarBoundException extends BindingException
     return value_;
     }
 
-  public String getMessage()
+  @Override
+public String getMessage()
     {
     return
       new StringBuilder()

@@ -123,7 +123,8 @@ public class SystemInputDefBuilder extends AnnotatedBuilder<SystemInputDefBuilde
   /**
    * Returns the {@link Annotated} instance for this builder.
    */
-  protected Annotated getAnnotated()
+  @Override
+protected Annotated getAnnotated()
     {
     return systemInputDef_;
     }

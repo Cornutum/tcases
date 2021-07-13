@@ -117,46 +117,55 @@ public class FormUrlEncoder implements DataValueVisitor
       }
     }
   
-  public void visit( ArrayValue<?> data)
+  @Override
+public void visit( ArrayValue<?> data)
     {
     IntStream.range( 0, data.getValue().size()).forEach( i -> bind( String.valueOf(i), SimpleValueEncoder.encode( data.getValue().get(i), Component.NONE)));
     }
 
-  public void visit( BinaryValue data)
+  @Override
+public void visit( BinaryValue data)
     {
     bind( "bytes", Base64Domain.encoded( data.getValue()));
     }
 
-  public void visit( BooleanValue data)
+  @Override
+public void visit( BooleanValue data)
     {
     bind( "boolean", data);
     }
 
-  public void visit( DecimalValue data)
+  @Override
+public void visit( DecimalValue data)
     {
     bind( "number", data);
     }
 
-  public void visit( IntegerValue data)
+  @Override
+public void visit( IntegerValue data)
     {
     bind( "integer", data);
     }
 
-  public void visit( LongValue data)
+  @Override
+public void visit( LongValue data)
     {
     bind( "integer", data);
     }
 
-  public void visit( NullValue data)
+  @Override
+public void visit( NullValue data)
     {
     }
 
-  public void visit( ObjectValue data)
+  @Override
+public void visit( ObjectValue data)
     {
     data.getValue().forEach( (property,value) -> bind( property, SimpleValueEncoder.encode( value, Component.NONE)));
     }
 
-  public void visit( StringValue data)
+  @Override
+public void visit( StringValue data)
     {
     bind( "string", data);
     }

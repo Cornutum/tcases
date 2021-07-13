@@ -42,7 +42,8 @@ public class ValueNotApplicableException extends BindingException
     return var_;
     }
 
-  public String getMessage()
+  @Override
+public String getMessage()
     {
     return
       new StringBuilder()

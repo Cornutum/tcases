@@ -193,16 +193,19 @@ public final class TestCaseWriterUtils
       return visitor.value_;
       }
 
+    @Override
     public void visit( ApiKeyDef authDef)
       {
       value_ = "tcasesApiKey()";
       }
 
+    @Override
     public void visit( HttpBasicDef authDef)
       {
       value_ = "tcasesApiBasicCredentials()";
       }
 
+    @Override
     public void visit( HttpBearerDef authDef)
       {
       value_ = "tcasesApiBearerCredentials()";

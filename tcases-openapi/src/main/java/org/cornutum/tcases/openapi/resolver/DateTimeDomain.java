@@ -37,7 +37,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new DateTimeValue( value);
     }
@@ -45,7 +46,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Defines the initial length range for values in this domain.
    */
-  protected void initLengthRange()
+  @Override
+protected void initLengthRange()
     {
     setLengthRange( 29);
     }
@@ -53,7 +55,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns true if the given values are equal.
    */
-  protected boolean valuesEqual( String value1, String value2)
+  @Override
+protected boolean valuesEqual( String value1, String value2)
     {
     return toTime( value1).equals( toTime( value2));
     }
@@ -61,7 +64,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns a random sequence of time values from this domain.
    */
-  protected Stream<Date> timeValues( ResolverContext context)
+  @Override
+protected Stream<Date> timeValues( ResolverContext context)
     {
     long minTime = getMinDate().getTime();
     long maxTime = getMaxDate().getTime();
@@ -82,7 +86,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Reports a failure if the given value is not a valid time string. Otherwise, returns the given value.
    */
-  protected String assertValidTime( String value)
+  @Override
+protected String assertValidTime( String value)
     {
     return assertDateTime( value);
     }
@@ -90,7 +95,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns true if the given value is a valid time string.
    */
-  protected boolean isValidTime( String value)
+  @Override
+protected boolean isValidTime( String value)
     {
     return isDateTime( value);
     }
@@ -98,7 +104,8 @@ public class DateTimeDomain extends TimeDomain
   /**
    * Returns the string representation of the given time.
    */
-  protected String format( Date time)
+  @Override
+protected String format( Date time)
     {
     return FormattedString.getDateTimeFormat().format( time);
     }

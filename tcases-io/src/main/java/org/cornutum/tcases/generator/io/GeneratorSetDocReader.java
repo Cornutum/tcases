@@ -200,11 +200,13 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Returns true if the given element is a valid member of this element.
      */
+    @Override
     public boolean isMember( String memberQname)
       {
       return TUPLEGENERATOR_TAG.equals( memberQname);
       }
     
+    @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       setGeneratorSet( new GeneratorSet());
@@ -236,11 +238,13 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Returns true if the given element is a valid member of this element.
      */
+    @Override
     public boolean isMember( String memberQname)
       {
       return COMBINE_TAG.equals( memberQname);
       }
     
+    @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       TupleGenerator tupleGenerator = new TupleGenerator();
@@ -300,6 +304,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Adds the valid attributes for this element.
      */
+    @Override
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), SEED_ATR, TUPLES_ATR, FUNCTION_ATR);
@@ -317,6 +322,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Returns true if the given element is a valid member of this element.
      */
+    @Override
     public boolean isMember( String memberQname)
       {
       return
@@ -325,6 +331,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
         || ONCE_TAG.equals( memberQname);
       }
     
+    @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       TupleCombiner tupleCombiner = new TupleCombiner();
@@ -339,6 +346,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       tupleCombiner.setTupleSize( tupleSize.intValue());
       }
 
+    @Override
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
       TupleGeneratorHandler parent = (TupleGeneratorHandler) getParent();
@@ -364,6 +372,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Adds the valid attributes for this element.
      */
+    @Override
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), TUPLES_ATR);
@@ -378,6 +387,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    */
   protected class IncludeHandler extends ElementHandler
     {
+    @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       CombineHandler parent = (CombineHandler) getParent();
@@ -394,6 +404,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Adds the valid attributes for this element.
      */
+    @Override
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), VAR_ATR);
@@ -406,6 +417,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    */
   protected class ExcludeHandler extends ElementHandler
     {
+    @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       CombineHandler parent = (CombineHandler) getParent();
@@ -422,6 +434,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Adds the valid attributes for this element.
      */
+    @Override
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), VAR_ATR);
@@ -434,6 +447,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    */
   protected abstract class TupleHandler extends ElementHandler
     {
+    @Override
     public void endElement( String uri, String localName, String qName) throws SAXException
       {
       addTuple( getTuple());
@@ -461,11 +475,13 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Returns true if the given element is a valid member of this element.
      */
+    @Override
     public boolean isMember( String memberQname)
       {
       return VAR_TAG.equals( memberQname);
       }
     
+    @Override
     protected void addTuple( TupleRef tuple) throws SAXParseException
       {
       CombineHandler parent = (CombineHandler) getParent();
@@ -486,6 +502,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    */
   protected class VarHandler extends ElementHandler
     {
+    @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
       TupleHandler parent = (TupleHandler) getParent();
@@ -506,6 +523,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     /**
      * Adds the valid attributes for this element.
      */
+    @Override
     protected Set<String> addAttributes( Set<String> attributes)
       {
       return addAttributeList( super.addAttributes( attributes), NAME_ATR, VALUE_ATR);
@@ -531,7 +549,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
   /**
    * Returns a {@link GeneratorSet} instance.
    */
-  public IGeneratorSet getGeneratorSet()
+  @Override
+public IGeneratorSet getGeneratorSet()
     {
     SAXParser parser;
     try
@@ -581,7 +600,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       : stream_;
     }
 
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( stream_, null);
     }
@@ -610,7 +630,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     return elementHandlers_.size() > 0? elementHandlers_.get( 0) : null;
     }
     
-  public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+  @Override
+public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
     ElementHandler handler =
       qName.equals( COMBINE_TAG)?         (ElementHandler) new CombineHandler() :
@@ -641,7 +662,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     handler.startElement( uri, localName, qName, attributes);
     }
 
-  public void endElement( String uri, String localName, String qName) throws SAXException
+  @Override
+public void endElement( String uri, String localName, String qName) throws SAXException
     {
     ElementHandler handler = getCurrentElementHandler();
     if( handler != null)
@@ -651,7 +673,8 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
       }
     }
 
-  public void setDocumentLocator( Locator locator)
+  @Override
+public void setDocumentLocator( Locator locator)
     {
     locator_ = locator;
     }
@@ -661,11 +684,13 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
     return locator_;
     }
     
-  public void warning( SAXParseException e) throws SAXException
+  @Override
+public void warning( SAXParseException e) throws SAXException
     {
     }
 
-  public void error( SAXParseException e) throws SAXException
+  @Override
+public void error( SAXParseException e) throws SAXException
     {
     throw e;
     }

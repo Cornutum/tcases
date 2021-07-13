@@ -54,7 +54,8 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
   /**
    * Writes the given system test definition the form of an XML document.
    */
-  public void write( SystemInputDef systemInput)
+  @Override
+public void write( SystemInputDef systemInput)
     {
     xmlWriter_.writeDeclaration();
 
@@ -196,7 +197,8 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
   /**
    * Flushes the writer.
    */
-  public void flush()
+  @Override
+public void flush()
     {
     getXmlWriter().flush();
     }
@@ -204,7 +206,8 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
   /**
    * Closes the writer.
    */
-  public void close() throws IOException
+  @Override
+public void close() throws IOException
     {
     getXmlWriter().close();
     }
@@ -212,7 +215,8 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
   /**
    * Changes the output stream for this writer.
    */
-  protected void setWriter( Writer writer)
+  @Override
+protected void setWriter( Writer writer)
     {
     setXmlWriter( new XmlWriter( writer));
     }
@@ -282,6 +286,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         : Optional.empty();
       }
     
+    @Override
     public void visit( AllOf condition)
       {
       xmlWriter_
@@ -292,6 +297,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
   
+    @Override
     public void visit( AnyOf condition)
       {
       xmlWriter_
@@ -302,6 +308,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
   
+    @Override
     public void visit( ContainsAll condition)
       {
       xmlWriter_
@@ -310,6 +317,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
   
+    @Override
     public void visit( ContainsAny condition)
       {
       xmlWriter_
@@ -318,11 +326,13 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
   
+    @Override
     public void visit( IConjunct condition)
       {
       throw new UnsupportedOperationException( "Unexpected IConjunct in SystemInputDef");
       }
   
+    @Override
     public void visit( Not condition)
       {
       xmlWriter_
@@ -333,6 +343,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
 
+    @Override
     public void visit( AssertLess condition)
       {
       xmlWriter_
@@ -342,6 +353,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
 
+    @Override
     public void visit( AssertMore condition)
       {
       xmlWriter_
@@ -351,6 +363,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
 
+    @Override
     public void visit( AssertNotLess condition)
       {
       xmlWriter_
@@ -360,6 +373,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
 
+    @Override
     public void visit( AssertNotMore condition)
       {
       xmlWriter_
@@ -369,6 +383,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
 
+    @Override
     public void visit( Between condition)
       {
       BoundedAssertion min = condition.getMin();
@@ -382,6 +397,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
         .write();
       }
 
+    @Override
     public void visit( Equals condition)
       {
       BoundedAssertion min = condition.getMin();

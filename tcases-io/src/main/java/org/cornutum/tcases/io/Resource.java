@@ -134,7 +134,8 @@ public abstract class Resource implements Closeable
       }
     }
 
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( stream_, null);
     }
@@ -181,7 +182,8 @@ public abstract class Resource implements Closeable
       : file;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

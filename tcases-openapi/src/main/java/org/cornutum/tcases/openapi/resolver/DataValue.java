@@ -19,8 +19,8 @@ import java.util.Optional;
 public class DataValue<T>
   {
   public static enum Type
-	{
-	ARRAY, BOOLEAN, INTEGER, NULL, NUMBER, OBJECT, STRING;
+    {
+    ARRAY, BOOLEAN, INTEGER, NULL, NUMBER, OBJECT, STRING;
 
     /**
      * Returns true if this type designates a composite value
@@ -30,37 +30,37 @@ public class DataValue<T>
       return this == ARRAY || this == OBJECT;
       }
 
-	/**
-	 * Returns the set containing only the specified type.
-	 */
-	public static Type[] only( Type type)
-	  {
-	  return new Type[]{ type };
-	  }
-	
-	/**
-	 * Returns the set of all non-null types except for the specified excluded type.
-	 */
-	public static Type[] not( Type... excluded)
-	  {
-	  return
-	    Arrays.stream( Type.values())
-	    .filter( type -> {
-	      return
-	        !type.equals( NULL)
-	        && Arrays.stream( excluded).noneMatch( e -> type.equals( e) || (type.equals( INTEGER) && e == NUMBER));
-	      })
-	    .toArray( Type[]::new);
-	  }
-	
-	/**
-	 * Returns the set of all non-null types.
-	 */
-	public static Type[] any()
-	  {
-	  return not( NULL);
-	  }
-	}
+    /**
+     * Returns the set containing only the specified type.
+     */
+    public static Type[] only( Type type)
+      {
+      return new Type[]{ type };
+      }
+    
+    /**
+     * Returns the set of all non-null types except for the specified excluded type.
+     */
+    public static Type[] not( Type... excluded)
+      {
+      return
+        Arrays.stream( Type.values())
+        .filter( type -> {
+          return
+            !type.equals( NULL)
+            && Arrays.stream( excluded).noneMatch( e -> type.equals( e) || (type.equals( INTEGER) && e == NUMBER));
+          })
+        .toArray( Type[]::new);
+      }
+    
+    /**
+     * Returns the set of all non-null types.
+     */
+    public static Type[] any()
+      {
+      return not( NULL);
+      }
+    }
 
   /**
    * Creates a new DataValue instance.
@@ -112,7 +112,8 @@ public class DataValue<T>
     throw new UnsupportedOperationException( "Can't visit a generic DataValue");
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -120,10 +121,11 @@ public class DataValue<T>
       .toString();
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     @SuppressWarnings("unchecked")
-	DataValue<T> other =
+    DataValue<T> other =
       Optional.ofNullable( object)
       .map( Object::getClass)
       .filter( otherClass -> getClass().isAssignableFrom( otherClass))
@@ -137,7 +139,8 @@ public class DataValue<T>
       && Objects.equals( other.getFormat(), getFormat());
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       DataValue.class.hashCode()

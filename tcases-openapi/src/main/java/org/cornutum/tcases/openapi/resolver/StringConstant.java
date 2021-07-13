@@ -56,7 +56,8 @@ public class StringConstant extends ConstantDomain<String>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new StringValue( value, format_);
     }

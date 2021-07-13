@@ -43,6 +43,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
       path_ = ArrayUtils.add( parentPosition, seqNum);
       }
 
+    @Override
     public int compareTo( IVarDef.Position other)
       {
       Position position = toPosition( other);
@@ -111,7 +112,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Returns the variable name.
    */
-  public String getName()
+  @Override
+public String getName()
     {
     return name_;
     }
@@ -119,7 +121,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Returns the hierarchical path name of this variable.
    */
-  public String getPathName()
+  @Override
+public String getPathName()
     {
     if( pathName_ == null)
       {
@@ -157,7 +160,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Returns the type identifier for this variable.
    */
-  public String getType()
+  @Override
+public String getType()
     {
     IVarDef parent = getParent();
     return parent==null? type_ : parent.getType();
@@ -166,7 +170,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Changes the parent of this variable.
    */
-  public void setParent( IVarDef parent)
+  @Override
+public void setParent( IVarDef parent)
     {
     parent_ = parent;
     pathName_ = null;
@@ -177,7 +182,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * If this is member of another variable, returns the parent variable. Otherwise, returns null.
    */
-  public IVarDef getParent()
+  @Override
+public IVarDef getParent()
     {
     return parent_;
     }
@@ -186,7 +192,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * Returns the effective condition that defines when this variable is applicable,
    * based on the conditions for this variable and all of its ancestors.
    */
-  public ICondition getEffectiveCondition()
+  @Override
+public ICondition getEffectiveCondition()
     {
     if( effCondition_ == null)
       {
@@ -211,7 +218,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Changes the condition that defines when this element is applicable.
    */
-  public void setCondition( ICondition condition)
+  @Override
+public void setCondition( ICondition condition)
     {
     super.setCondition( condition);
     effCondition_ = null;
@@ -228,7 +236,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Returns the position of this variable definition.
    */
-  public IVarDef.Position getPosition()
+  @Override
+public IVarDef.Position getPosition()
     {
     if( position_ == null)
       {
@@ -241,7 +250,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Changes the sequence number of this variable.
    */
-  public void setSeqNum( int seqNum)
+  @Override
+public void setSeqNum( int seqNum)
     {
     seqNum_ = seqNum;
     }
@@ -249,7 +259,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   /**
    * Returns the sequence number of this variable.
    */
-  public int getSeqNum()
+  @Override
+public int getSeqNum()
     {
     return seqNum_;
     }
@@ -266,20 +277,24 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * If this variable has member variables, returns an iterator for the member variable list.
    * Otherwise, returns null.
    */
-  abstract public Iterator<IVarDef> getMembers();
+  @Override
+abstract public Iterator<IVarDef> getMembers();
 
   /**
    * If this variable defines a value set, returns an iterator for the value set.
    * Otherwise, returns null.
    */
-  abstract public Iterator<VarValueDef> getValues();
+  @Override
+abstract public Iterator<VarValueDef> getValues();
 
   /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
-  abstract public IVarDef find( String... path);
+  @Override
+abstract public IVarDef find( String... path);
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -287,7 +302,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
       .toString();
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     AbstractVarDef other =
       object != null && object.getClass().equals( getClass())
@@ -299,7 +315,8 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
       && Objects.equals( other.getPathName(), getPathName());
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()

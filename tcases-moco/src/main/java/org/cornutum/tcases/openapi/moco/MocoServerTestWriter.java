@@ -39,7 +39,8 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
    * Returns a URI for the API server used by the given test case. If non-null, this supersedes
    * the server URI defined by this {@link RequestCase request case}.
    */
-  protected URI getTestServer( RequestCase requestCase)
+  @Override
+protected URI getTestServer( RequestCase requestCase)
     {
     return getConfigWriter().getTestServer( requestCase);
     }
@@ -87,7 +88,8 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Writes the target test dependencies to the given stream.
    */
-  protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     super.writeDependencies( target, testName, targetWriter);
 
@@ -106,7 +108,8 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
   /**
    * Writes the target test declarations to the given stream.
    */
-  protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     super.writeDeclarations( target, testName, targetWriter);
 
@@ -158,7 +161,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     {
     ConfigWriterVisitor visitor = new ConfigWriterVisitor();
     config.accept( visitor);
-    return visitor.configWriter_;
+    return visitor.writerFor_;
     }
   
   private Optional<CertConfigWriter<?>> writerFor( CertConfig certConfig)
@@ -172,7 +175,8 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
         });
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -316,6 +320,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory method for this server configuration.
      */
+    @Override
     protected String getRunnerFactoryConfig()
       {
       return
@@ -328,6 +333,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
+    @Override
     public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
@@ -358,6 +364,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory method for this server configuration.
      */
+    @Override
     protected String getRunnerFactoryConfig()
       {
       return
@@ -370,6 +377,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
+    @Override
     public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
@@ -400,6 +408,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the MocoJunitRunner factory arguments for server configuration.
      */
+    @Override
     public List<String> getRunnerFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
@@ -409,6 +418,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes server configuration dependencies to the given stream.
      */
+    @Override
     public void writeConfigDependencies( IndentedWriter targetWriter)
       {
       super.writeConfigDependencies( targetWriter);
@@ -418,6 +428,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Writes server configuration initializations to the given stream.
      */
+    @Override
     public void writeConfigInit( IndentedWriter targetWriter)
       {
       super.writeConfigInit( targetWriter);
@@ -449,22 +460,25 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
    */
   private class ConfigWriterVisitor implements ConfigVisitor
     {    
+    @Override
     public void visit( MocoServerConfigFile config)
       {
-      configWriter_ = new ConfigFileWriter( config);
+      writerFor_ = new ConfigFileWriter( config);
       }
 
+    @Override
     public void visit( MocoServerConfigResource config)
       {
-      configWriter_ = new ConfigResourceWriter( config);
+      writerFor_ = new ConfigResourceWriter( config);
       }
   
+    @Override
     public void visit( MocoServerConfigPojo config)
       {
-      configWriter_ = new ConfigPojoWriter( config);
+      writerFor_ = new ConfigPojoWriter( config);
       }
 
-    private ConfigWriter<?> configWriter_;
+    private ConfigWriter<?> writerFor_;
     }
 
   /**
@@ -551,6 +565,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the certificate factory arguments for this certificate configuration.
      */
+    @Override
     protected List<String> getCertFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
@@ -580,6 +595,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
     /**
      * Returns the certificate factory arguments for this certificate configuration.
      */
+    @Override
     protected List<String> getCertFactoryConfigArgs()
       {
       ListBuilder<String> args = ListBuilder.to();
@@ -598,11 +614,13 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
    */
   private static class CertConfigWriterVisitor implements CertConfigVisitor
     {    
+    @Override
     public void visit( CertConfigFile certConfig)
       {
       certConfigWriter_ = new CertConfigFileWriter( certConfig);
       }
 
+    @Override
     public void visit( CertConfigResource certConfig)
       {
       certConfigWriter_ = new CertConfigResourceWriter( certConfig);

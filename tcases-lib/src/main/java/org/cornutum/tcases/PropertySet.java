@@ -187,7 +187,8 @@ public class PropertySet implements Iterable<String>
   /**
    * Returns an iterator that visits every instance of each property in this set.
    */
-  public Iterator<String> iterator()
+  @Override
+public Iterator<String> iterator()
     {
     return properties_.iterator();
     }
@@ -216,7 +217,8 @@ public class PropertySet implements Iterable<String>
     return properties_.isEmpty();
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

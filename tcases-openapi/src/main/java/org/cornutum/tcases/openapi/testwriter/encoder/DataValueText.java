@@ -32,7 +32,8 @@ public class DataValueText implements DataValueConverter<String>
   /**
    * Returns the converted form of the given {@link DataValue}.
    */
-  public String convert( DataValue<?> value)
+  @Override
+public String convert( DataValue<?> value)
     {
     JsonValue jsonValue = convertJsonValue_.convert( value);
     ValueType type = Optional.ofNullable( jsonValue).map( JsonValue::getValueType).orElse( null);

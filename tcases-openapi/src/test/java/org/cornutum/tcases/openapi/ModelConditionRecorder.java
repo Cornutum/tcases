@@ -17,12 +17,14 @@ import java.util.List;
  */
 public class ModelConditionRecorder implements ModelConditionNotifier
   {
-  public void warn( String[] location, String reason)
+  @Override
+public void warn( String[] location, String reason)
     {
     conditions_.put( "warn", messageFor( location, reason, null));
     }
 
-  public void error( String[] location, String reason, String resolution)
+  @Override
+public void error( String[] location, String reason, String resolution)
     {
     conditions_.put( "error", messageFor( location, reason, resolution));
     }

@@ -29,7 +29,8 @@ import java.util.Set;
 @Mojo(name="tcases",defaultPhase=LifecyclePhase.GENERATE_TEST_RESOURCES)
 public class TcasesMojo extends AbstractMojo
   {
-  public void execute() throws MojoExecutionException
+  @Override
+public void execute() throws MojoExecutionException
     {
     try
       {

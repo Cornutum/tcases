@@ -80,7 +80,8 @@ public class RequestTestDefWriter implements Closeable
   /**
    * Closes the writer.
    */
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( getWriter(), null);
     }

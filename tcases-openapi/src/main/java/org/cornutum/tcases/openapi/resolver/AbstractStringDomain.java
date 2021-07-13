@@ -54,7 +54,8 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Changes the values excluded from this domain.
    */
-  public void setExcludedStrings( Set<String> excluded)
+  @Override
+public void setExcludedStrings( Set<String> excluded)
     {
     setExcluded( excluded);
     }
@@ -62,7 +63,8 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Returns the length of the given value.
    */
-  protected int getLength( String value)
+  @Override
+protected int getLength( String value)
     {
     return value.length();
     }
@@ -118,7 +120,8 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new StringValue( value);
     }
@@ -162,7 +165,8 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( ResolverContext context)
+  @Override
+protected Stream<String> candidates( ResolverContext context)
     {
     PatternResolver patternResolver = new PatternResolver( context);
     patternResolver.patternInfeasible( getLengthRange())
@@ -187,7 +191,8 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( String value)
+  @Override
+public boolean contains( String value)
     {
     return
       super.contains( value)
@@ -244,16 +249,16 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
         {
         generatedBy_ = matching.get( generatedBy.get());
         filtering_ = toPatterns( context, restOf( matching, generatedBy.get()));
-        matching_ = toPatterns( null, matching);
+        matchingPatterns_ = toPatterns( null, matching);
         }
       else
         {
         generatedBy_ = matching.stream().findFirst().orElse( null);
         filtering_ = emptyList();
-        matching_ = toPatterns( context, matching);
+        matchingPatterns_ = toPatterns( context, matching);
         }
 
-      notMatching_ = toPatterns( context, notMatching);
+      notMatchingPatterns_ = toPatterns( context, notMatching);
       }
 
     /**
@@ -261,7 +266,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
      */
     public boolean matchesAll( String value)
       {
-      return matches( value, matching_, notMatching_);
+      return matches( value, matchingPatterns_, notMatchingPatterns_);
       }
 
     /**
@@ -269,7 +274,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
      */
     public boolean matchesRemaining( String match)
       {
-      return matches( match, filtering_, notMatching_);
+      return matches( match, filtering_, notMatchingPatterns_);
       }
 
     /**
@@ -387,8 +392,8 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
 
     private final ResolverContext context_;
     private final List<RegExpGen> generators_;
-    private final List<Pattern> matching_;
-    private final List<Pattern> notMatching_;
+    private final List<Pattern> matchingPatterns_;
+    private final List<Pattern> notMatchingPatterns_;
     private final List<Pattern> filtering_;
     private String generatedBy_;
     private RegExpGen generator_;

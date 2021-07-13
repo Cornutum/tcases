@@ -44,7 +44,8 @@ public class GeneratorSetJsonReader implements IGeneratorSetSource, Closeable
   /**
    * Returns a {@link IGeneratorSet} instance.
    */
-  public IGeneratorSet getGeneratorSet()
+  @Override
+public IGeneratorSet getGeneratorSet()
     {
     JsonValidationService service = JsonValidationService.newInstance();
     JsonSchema schema = service.readSchema( getClass().getResourceAsStream( "/schema/generators-schema.json"));
@@ -84,7 +85,8 @@ public class GeneratorSetJsonReader implements IGeneratorSetSource, Closeable
     return stream_;
     }
 
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( getInputStream(), null);
     }

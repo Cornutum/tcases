@@ -47,7 +47,8 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   /**
    * Writes the dependencies for target test cases to the given stream.
    */
-  public void writeDependencies( String testName, IndentedWriter targetWriter)
+  @Override
+public void writeDependencies( String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
     targetWriter.println( "import org.hamcrest.Matcher;");
@@ -60,7 +61,8 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   /**
    * Writes the declarations for target test cases to the given stream.
    */
-  public void writeDeclarations( String testName, IndentedWriter targetWriter)
+  @Override
+public void writeDeclarations( String testName, IndentedWriter targetWriter)
     {
     // By default, none
     }
@@ -68,7 +70,8 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   /**
    * Writes a target test case to the given stream.
    */
-  public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
+  @Override
+public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
     try
       {
@@ -100,7 +103,8 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   /**
    * Writes the closing for target test cases to the given stream.
    */
-  public void writeClosing( String testName, IndentedWriter targetWriter)
+  @Override
+public void writeClosing( String testName, IndentedWriter targetWriter)
     {
     writeStatusCodeMatcherDef( testName, targetWriter, depends_);
     writeTestServerDef( testName, targetWriter, depends_);
@@ -396,16 +400,19 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   private class AuthDependsVisitor implements AuthDefVisitor
     {
 
+    @Override
     public void visit( ApiKeyDef authDef)
       {
       depends_.setDependsApiKey();
       }
 
+    @Override
     public void visit( HttpBasicDef authDef)
       {
       depends_.setDependsHttpBasic();
       }
 
+    @Override
     public void visit( HttpBearerDef authDef)
       {
       depends_.setDependsHttpBearer();

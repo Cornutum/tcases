@@ -53,7 +53,8 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
   /**
    * Returns a random sequence of values from this domain.
    */
-  @SuppressWarnings("unchecked")
+  @Override
+@SuppressWarnings("unchecked")
   public Stream<DataValue<Object>> values( ResolverContext context)
     {
     return
@@ -67,7 +68,8 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<Object> dataValueOf( Object value)
+  @Override
+protected DataValue<Object> dataValueOf( Object value)
     {
     throw new UnsupportedOperationException();
     }
@@ -75,7 +77,8 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( Object value)
+  @Override
+public boolean contains( Object value)
     {
     return typeDomains_.stream().anyMatch( domain -> domain.containsObject( value));
     }
@@ -83,7 +86,8 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
   /**
    * Return the type(s) of values that belong to this domain.
    */
-  public Type[] getTypes()
+  @Override
+public Type[] getTypes()
     {
     return
       typeDomains_.stream()
@@ -170,7 +174,8 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
     return new AsciiStringDomain( 8, getCharacters());
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

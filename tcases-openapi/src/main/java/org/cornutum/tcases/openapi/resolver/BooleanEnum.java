@@ -35,7 +35,8 @@ public class BooleanEnum extends EnumDomain<Boolean>
   /**
    * Returns the value represented by the given string.
    */
-  protected Boolean valueOf( String value)
+  @Override
+protected Boolean valueOf( String value)
     {
     return Boolean.valueOf( value);
     }
@@ -43,7 +44,8 @@ public class BooleanEnum extends EnumDomain<Boolean>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<Boolean> dataValueOf( Boolean value)
+  @Override
+protected DataValue<Boolean> dataValueOf( Boolean value)
     {
     return new BooleanValue( value);
     }

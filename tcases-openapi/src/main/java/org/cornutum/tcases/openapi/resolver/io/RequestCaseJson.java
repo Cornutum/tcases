@@ -412,6 +412,7 @@ public final class RequestCaseJson
       return json_;
       }
 
+    @Override
     public void visit( ArrayValue<?> data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -419,6 +420,7 @@ public final class RequestCaseJson
       json_ = builder.build();
       }
 
+    @Override
     public void visit( BinaryValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -426,6 +428,7 @@ public final class RequestCaseJson
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( BooleanValue data)
       {
       json_ =
@@ -434,6 +437,7 @@ public final class RequestCaseJson
         : JsonValue.FALSE;
       }
 
+    @Override
     public void visit( DecimalValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -441,6 +445,7 @@ public final class RequestCaseJson
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( IntegerValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -448,6 +453,7 @@ public final class RequestCaseJson
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( LongValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -455,11 +461,13 @@ public final class RequestCaseJson
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( NullValue data)
       {
       json_ = JsonValue.NULL;
       }
 
+    @Override
     public void visit( ObjectValue data)
       {
       JsonObjectBuilder builder = Json.createObjectBuilder();
@@ -467,6 +475,7 @@ public final class RequestCaseJson
       json_ = builder.build();
       }
 
+    @Override
     public void visit( StringValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -508,6 +517,7 @@ public final class RequestCaseJson
       return json_;
       }
 
+    @Override
     public void visit( ApiKeyDef authDef)
       {
       JsonObjectBuilder builder = Json.createObjectBuilder();
@@ -517,6 +527,7 @@ public final class RequestCaseJson
       json_ = builder.build();
       }
 
+    @Override
     public void visit( HttpBasicDef authDef)
       {
       JsonObjectBuilder builder = Json.createObjectBuilder();
@@ -525,6 +536,7 @@ public final class RequestCaseJson
       json_ = builder.build();
       }
 
+    @Override
     public void visit( HttpBearerDef authDef)
       {
       JsonObjectBuilder builder = Json.createObjectBuilder();

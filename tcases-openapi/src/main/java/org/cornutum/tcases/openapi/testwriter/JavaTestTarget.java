@@ -167,7 +167,8 @@ public class JavaTestTarget extends TestTarget
     return elements;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -203,6 +204,7 @@ public class JavaTestTarget extends TestTarget
     /**
      * Returns the {@link TestTarget} instance for this builder.
      */
+    @Override
     protected TestTarget getTestTarget()
       {
       return target_;

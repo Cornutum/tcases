@@ -36,7 +36,8 @@ public class SystemInputResource extends Resource implements ISystemInputSource
   /**
    * Returns a {@link SystemInputDef} instance.
    */
-  public SystemInputDef getSystemInputDef()
+  @Override
+public SystemInputDef getSystemInputDef()
     {
     return
       getType() == JSON?

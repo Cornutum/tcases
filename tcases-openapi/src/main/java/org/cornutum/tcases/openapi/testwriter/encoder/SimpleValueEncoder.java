@@ -72,7 +72,8 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     return uriEncoded( Objects.toString( value.getValue(), ""));
     }
     
-  public void visit( ArrayValue<?> data)
+  @Override
+public void visit( ArrayValue<?> data)
     {
     encoded_ =
       data.getValue().stream()
@@ -80,37 +81,44 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
       .collect( joining( ","));
     }
 
-  public void visit( BinaryValue data)
+  @Override
+public void visit( BinaryValue data)
     {
     encoded_ = Base64Domain.encoded( data.getValue());
     }
 
-  public void visit( BooleanValue data)
+  @Override
+public void visit( BooleanValue data)
     {
     encoded_ = stringOf( data);
     }
 
-  public void visit( DecimalValue data)
+  @Override
+public void visit( DecimalValue data)
     {
     encoded_ = stringOf( data);
     }
 
-  public void visit( IntegerValue data)
+  @Override
+public void visit( IntegerValue data)
     {
     encoded_ = stringOf( data);
     }
 
-  public void visit( LongValue data)
+  @Override
+public void visit( LongValue data)
     {
     encoded_ = stringOf( data);
     }
 
-  public void visit( NullValue data)
+  @Override
+public void visit( NullValue data)
     {
     encoded_ = stringOf( data);
     }
 
-  public void visit( ObjectValue data)
+  @Override
+public void visit( ObjectValue data)
     {
     if( exploded_)
       {
@@ -128,7 +136,8 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
       }
     }
 
-  public void visit( StringValue data)
+  @Override
+public void visit( StringValue data)
     {
     encoded_ = stringOf( data);
     }

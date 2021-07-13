@@ -24,22 +24,26 @@ public class AuthDefMatcher extends BaseMatcher<AuthDef>
     delegate_ = MatcherFactory.matcherFor( expected);
     }
 
-  public boolean matches( Object item)
+  @Override
+public boolean matches( Object item)
     {
     return delegate_.matches( item);
     }
 
-  public void describeMismatch( Object item, Description mismatchDescription)
+  @Override
+public void describeMismatch( Object item, Description mismatchDescription)
     {
     delegate_.describeMismatch( item, mismatchDescription);
     }
 
-  public void describeTo( Description mismatchDescription)
+  @Override
+public void describeTo( Description mismatchDescription)
     {
     delegate_.describeTo( mismatchDescription);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return delegate_.toString();
     }
@@ -61,16 +65,19 @@ public class AuthDefMatcher extends BaseMatcher<AuthDef>
         return factory.matcher_;
       }
     
+    @Override
     public void visit( ApiKeyDef authDef)
       {
       matcher_ = new ApiKeyDefMatcher( authDef);
       }
     
+    @Override
     public void visit( HttpBasicDef authDef)
       {
       matcher_ = new HttpBasicDefMatcher( authDef);
       }
     
+    @Override
     public void visit( HttpBearerDef authDef)
       {
       matcher_ = new HttpBearerDefMatcher( authDef);

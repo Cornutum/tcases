@@ -57,7 +57,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Defines the value range for this domain.
    */
-  public void setRange( Range range)
+  @Override
+public void setRange( Range range)
     {
     Optional<Range> ifRange = Optional.ofNullable( range);
 
@@ -82,7 +83,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Defines the value range for this domain.
    */
-  public void setRange( Long min, Long max)
+  @Override
+public void setRange( Long min, Long max)
     {
     if( Long.signum( min) != Long.signum( max) && -Math.max( min, -Long.MAX_VALUE) > Long.MAX_VALUE - max)
       {
@@ -94,7 +96,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * If non-null, all values in this domain are a multiple of the given value.
    */
-  public void setMultipleOf( String multipleOf)
+  @Override
+public void setMultipleOf( String multipleOf)
     {
     setMultipleOf( Optional.ofNullable( multipleOf).map( Long::valueOf).orElse( (Long) null));
     }
@@ -102,7 +105,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Changes the factors not allowed for any values in this domain.
    */
-  public void setNotMultipleOfs( String[] notMultipleOfs)
+  @Override
+public void setNotMultipleOfs( String[] notMultipleOfs)
     {
     setNotMultipleOfs(
       Arrays.stream( notMultipleOfs)
@@ -113,7 +117,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Returns true if <CODE>value</CODE> is a multiple of <CODE>multiple</CODE>.
    */
-  protected boolean isMultipleOf( Long value, Long multiple)
+  @Override
+protected boolean isMultipleOf( Long value, Long multiple)
     {
     return value.longValue() % multiple.longValue() == 0;
     }
@@ -121,7 +126,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<Long>> values( ResolverContext context)
+  @Override
+public Stream<DataValue<Long>> values( ResolverContext context)
     {
     // Find smallest and largest multiples in range
     long multiple = Optional.ofNullable( getMultipleOf()).orElse( 1L);
@@ -168,7 +174,8 @@ public class LongDomain extends NumberDomain<Long>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<Long> dataValueOf( Long value)
+  @Override
+protected DataValue<Long> dataValueOf( Long value)
     {
     return new LongValue( value);
     }

@@ -42,7 +42,8 @@ public class ValueInconsistentException extends BindingException
     return properties_;
     }
 
-  public String getMessage()
+  @Override
+public String getMessage()
     {
     return
       new StringBuilder()

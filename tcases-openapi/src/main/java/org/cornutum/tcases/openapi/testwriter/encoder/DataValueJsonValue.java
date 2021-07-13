@@ -42,7 +42,8 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
   /**
    * Returns the converted form of the given {@link DataValue}.
    */
-  public JsonValue convert( DataValue<?> value)
+  @Override
+public JsonValue convert( DataValue<?> value)
     {
     return
       Optional.ofNullable( value)
@@ -72,6 +73,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       return json_;
       }
 
+    @Override
     public void visit( ArrayValue<?> data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -79,6 +81,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       json_ = builder.build();
       }
 
+    @Override
     public void visit( BinaryValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -86,6 +89,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( BooleanValue data)
       {
       json_ =
@@ -94,6 +98,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
         : JsonValue.FALSE;
       }
 
+    @Override
     public void visit( DecimalValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -101,6 +106,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( IntegerValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -108,6 +114,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( LongValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();
@@ -115,11 +122,13 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       json_ = builder.build().get(0);
       }
 
+    @Override
     public void visit( NullValue data)
       {
       json_ = JsonValue.NULL;
       }
 
+    @Override
     public void visit( ObjectValue data)
       {
       JsonObjectBuilder builder = Json.createObjectBuilder();
@@ -127,6 +136,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
       json_ = builder.build();
       }
 
+    @Override
     public void visit( StringValue data)
       {
       JsonArrayBuilder builder = Json.createArrayBuilder();

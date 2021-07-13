@@ -276,7 +276,8 @@ public class VarTupleSet
       : null;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -292,7 +293,8 @@ public class VarTupleSet
   private static final Comparator<Tuple> tupleSizeDescending_ =
     new Comparator<Tuple>()
     {
-      public int compare( Tuple tuple1, Tuple tuple2)
+      @Override
+    public int compare( Tuple tuple1, Tuple tuple2)
         {
          return tuple2.size() - tuple1.size();
         }

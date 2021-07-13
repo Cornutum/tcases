@@ -155,7 +155,8 @@ public class ModelOptions
     return new Builder( defaults);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

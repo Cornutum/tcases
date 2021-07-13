@@ -35,6 +35,7 @@ public abstract class Cnf
       return refactor( conjunct_);
       }
     
+    @Override
     public void visit( AllOf condition)
       {
       Conjunction conjunction = new Conjunction();
@@ -55,6 +56,7 @@ public abstract class Cnf
       conjunct_ = simplify( conjunction);
       }
   
+    @Override
     public void visit( AnyOf condition)
       {
       IConjunct conjunct = new Conjunction();
@@ -65,6 +67,7 @@ public abstract class Cnf
       conjunct_ = simplify( conjunct);
       }
   
+    @Override
     public void visit( ContainsAll condition)
       {
       Conjunction conjunction = new Conjunction();
@@ -77,6 +80,7 @@ public abstract class Cnf
       conjunct_ = simplify( conjunction);
       }
   
+    @Override
     public void visit( ContainsAny condition)
       {
       Disjunction disjunction = new Disjunction();
@@ -89,11 +93,13 @@ public abstract class Cnf
       conjunct_ = simplify( disjunction);
       }
   
+    @Override
     public void visit( IConjunct condition)
       {
       conjunct_ = condition;
       }
   
+    @Override
     public void visit( Not condition)
       {
       Conjunction conjunction = new Conjunction();
@@ -115,31 +121,37 @@ public abstract class Cnf
       conjunct_ = simplify( conjunction);
       }
 
+    @Override
     public void visit( AssertLess condition)
       {
       conjunct_ = condition;
       }
 
+    @Override
     public void visit( AssertMore condition)
       {
       conjunct_ = condition;
       }
 
+    @Override
     public void visit( AssertNotLess condition)
       {
       conjunct_ = condition;
       }
 
+    @Override
     public void visit( AssertNotMore condition)
       {
       conjunct_ = condition;
       }
 
+    @Override
     public void visit( Between condition)
       {
       visit( (AllOf) condition);
       }
 
+    @Override
     public void visit( Equals condition)
       {
       visit( (AllOf) condition);

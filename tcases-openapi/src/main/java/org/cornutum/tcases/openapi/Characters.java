@@ -67,6 +67,7 @@ public interface Characters
     return
       new Base()
         {
+        @Override
         public String getName()
           {
           return
@@ -76,6 +77,7 @@ public interface Characters
               Character.getName( Character.codePointAt( new char[]{delimiter}, 0)));
           }
         
+        @Override
         public boolean allowed( char c)
           {
           return chars.allowed( c) && c != delimiter;
@@ -93,6 +95,7 @@ public interface Characters
    */
   public abstract class Base implements Characters
     {
+    @Override
     public String toString()
       {
       return String.format( "Characters[%s]", getName());
@@ -107,6 +110,7 @@ public interface Characters
     /**
      * Return the name of this set of characters.
      */
+    @Override
     public String getName()
       {
       return "ANY";
@@ -115,6 +119,7 @@ public interface Characters
     /**
      * Returns true if and only if the given character is allowed.
      */
+    @Override
     public boolean allowed( char c)
       {
       return isPrintable( c);
@@ -155,6 +160,7 @@ public interface Characters
     /**
      * Return the name of this set of characters.
      */
+    @Override
     public String getName()
       {
       return "ASCII";
@@ -163,6 +169,7 @@ public interface Characters
     /**
      * Returns true if and only if the given character is allowed.
      */
+    @Override
     public boolean allowed( char c)
       {
       return ascii_.indexOf( c) >= 0;
@@ -194,6 +201,7 @@ public interface Characters
     /**
      * Return the name of this set of characters.
      */
+    @Override
     public String getName()
       {
       return "COOKIE_VALUE";
@@ -202,6 +210,7 @@ public interface Characters
     /**
      * Returns true if and only if the given character is allowed.
      */
+    @Override
     public boolean allowed( char c)
       {
       return cookieValue_.indexOf( c) >= 0;
@@ -230,6 +239,7 @@ public interface Characters
     /**
      * Return the name of this set of characters.
      */
+    @Override
     public String getName()
       {
       return "TOKEN";
@@ -238,6 +248,7 @@ public interface Characters
     /**
      * Returns true if and only if the given character is allowed.
      */
+    @Override
     public boolean allowed( char c)
       {
       return token_.indexOf( c) >= 0;

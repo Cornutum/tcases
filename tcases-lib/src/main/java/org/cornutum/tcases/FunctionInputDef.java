@@ -163,14 +163,16 @@ public class FunctionInputDef extends Annotated
       : null;
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ Objects.hashCode( getName());
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     FunctionInputDef other =
       object != null && object.getClass().equals( getClass())
@@ -182,7 +184,8 @@ public class FunctionInputDef extends Annotated
       && Objects.equals( getName(), other.getName());
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

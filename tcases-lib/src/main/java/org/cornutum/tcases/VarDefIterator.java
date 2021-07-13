@@ -43,12 +43,14 @@ public class VarDefIterator implements Iterator<VarDef>
     this( new SingletonIterator<IVarDef>( varDef));
     }
 
-  public boolean hasNext()
+  @Override
+public boolean hasNext()
     {
     return getNextVarDef() != null;
     }
 
-  public VarDef next()
+  @Override
+public VarDef next()
     {
     if( !hasNext())
       {
@@ -61,7 +63,8 @@ public class VarDefIterator implements Iterator<VarDef>
     return nextVarDef;
     }
 
-  public void remove()
+  @Override
+public void remove()
     {
     throw new UnsupportedOperationException();
     }

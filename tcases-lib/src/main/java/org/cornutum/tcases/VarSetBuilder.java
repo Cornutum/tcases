@@ -224,7 +224,8 @@ public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
   /**
    * Returns the {@link Annotated} instance for this builder.
    */
-  protected Annotated getAnnotated()
+  @Override
+protected Annotated getAnnotated()
     {
     return varSet_;
     }

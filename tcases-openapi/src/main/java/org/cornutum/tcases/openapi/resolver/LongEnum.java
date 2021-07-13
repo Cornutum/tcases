@@ -35,7 +35,8 @@ public class LongEnum extends EnumDomain<Long>
   /**
    * Returns the value represented by the given string.
    */
-  protected Long valueOf( String value)
+  @Override
+protected Long valueOf( String value)
     {
     try
       {
@@ -50,7 +51,8 @@ public class LongEnum extends EnumDomain<Long>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<Long> dataValueOf( Long value)
+  @Override
+protected DataValue<Long> dataValueOf( Long value)
     {
     return new LongValue( value);
     }

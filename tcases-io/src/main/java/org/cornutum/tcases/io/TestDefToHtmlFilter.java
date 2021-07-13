@@ -96,7 +96,8 @@ public class TestDefToHtmlFilter extends AbstractFilter
    * Reads data to be transformed from the {@link #getFilterInput filter input stream} and
    * write transformed data to the {@link #getFilterOutput filter output stream}.
    */
-  @SuppressWarnings("resource")
+  @Override
+@SuppressWarnings("resource")
   protected void applyFilter() throws Exception
     {
     SystemTestHtmlWriter htmlWriter = new SystemTestHtmlWriter( getFilterOutput());
@@ -110,7 +111,8 @@ public class TestDefToHtmlFilter extends AbstractFilter
     htmlWriter.flush();
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

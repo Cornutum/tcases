@@ -25,7 +25,8 @@ public class IntegerConstant extends ConstantDomain<Integer>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<Integer> dataValueOf( Integer value)
+  @Override
+protected DataValue<Integer> dataValueOf( Integer value)
     {
     return new IntegerValue( value);
     }

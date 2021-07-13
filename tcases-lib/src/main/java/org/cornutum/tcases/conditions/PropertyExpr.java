@@ -80,14 +80,16 @@ public abstract class PropertyExpr
     return properties_.iterator();
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ Objects.hashCode( properties_);
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     PropertyExpr other =
       object != null && object.getClass().equals( getClass())
@@ -99,7 +101,8 @@ public abstract class PropertyExpr
       && Objects.equals( other.properties_, properties_);
     }
   
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

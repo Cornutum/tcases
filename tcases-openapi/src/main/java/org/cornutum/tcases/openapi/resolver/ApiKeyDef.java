@@ -29,7 +29,8 @@ public class ApiKeyDef extends AuthDef
   /**
    * Returns the name of this authentication input.
    */
-  public String getName()
+  @Override
+public String getName()
     {
     return name_;
     }
@@ -37,12 +38,14 @@ public class ApiKeyDef extends AuthDef
   /**
    * Implements the Visitor pattern for this authentication input.
    */
-  public void accept( AuthDefVisitor visitor)
+  @Override
+public void accept( AuthDefVisitor visitor)
     {
     visitor.visit( this);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -51,7 +54,8 @@ public class ApiKeyDef extends AuthDef
       .toString();
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
@@ -59,7 +63,8 @@ public class ApiKeyDef extends AuthDef
       ^ Objects.hashCode( getName());
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     ApiKeyDef other =
       object != null && object.getClass().equals( getClass())
