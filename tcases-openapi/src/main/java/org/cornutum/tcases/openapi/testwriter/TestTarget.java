@@ -114,7 +114,8 @@ public class TestTarget
     return timeout_;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 
@@ -182,6 +183,7 @@ public class TestTarget
     /**
      * Returns the {@link TestTarget} instance for this builder.
      */
+    @Override
     protected TestTarget getTestTarget()
       {
       return target_;
@@ -209,7 +211,7 @@ public class TestTarget
      */
     protected abstract TestTarget getTestTarget();
 
-	public T named( String name)
+    public T named( String name)
       {
       getTestTarget().setName( name);
       return (T) this;
@@ -239,7 +241,7 @@ public class TestTarget
       return (T) this;
       }
 
-	public T timeout( Long timeout)
+    public T timeout( Long timeout)
       {
       getTestTarget().setTimeout( timeout);
       return (T) this;

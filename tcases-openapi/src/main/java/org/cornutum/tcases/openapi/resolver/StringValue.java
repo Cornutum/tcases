@@ -37,12 +37,14 @@ public class StringValue extends DataValue<String>
   /**
    * Implements the Visitor pattern for this data value.
    */
-  public void accept( DataValueVisitor visitor)
+  @Override
+public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     ToStringBuilder builder =
       ToString.getBuilder( this)

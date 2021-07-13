@@ -1063,6 +1063,7 @@ public class ApiCommand
       return new Builder();
       }
 
+    @Override
     public String toString()
       {
       StringBuilder builder = new StringBuilder();

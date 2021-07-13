@@ -49,7 +49,8 @@ public class Disjunction implements IDisjunct
   /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
-  public boolean satisfied( PropertySet properties)
+  @Override
+public boolean satisfied( PropertySet properties)
     {
     boolean isSatisfied;
     Iterator<IAssertion> assertions;
@@ -70,7 +71,8 @@ public class Disjunction implements IDisjunct
    * A condition is <em>"compatible"</em> with these properties if it is already satisfied
    * or if it could be satisfied with the addition of more properties.
    */
-  public boolean compatible( PropertySet properties)
+  @Override
+public boolean compatible( PropertySet properties)
     {
     boolean isCompatible;
     Iterator<IAssertion> assertions;
@@ -89,7 +91,8 @@ public class Disjunction implements IDisjunct
   /**
    * Implements the Visitor pattern for this condition.
    */
-  public void accept( IConditionVisitor visitor)
+  @Override
+public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }
@@ -128,7 +131,8 @@ public class Disjunction implements IDisjunct
   /**
    * Returns the assertions in this disjunction.
    */
-  public Iterator<IAssertion> getAssertions()
+  @Override
+public Iterator<IAssertion> getAssertions()
     {
     return assertions_.iterator();
     }
@@ -136,7 +140,8 @@ public class Disjunction implements IDisjunct
   /**
    * Returns true if the given assertion is a member of this disjunction.
    */
-  public boolean contains( IAssertion assertion)
+  @Override
+public boolean contains( IAssertion assertion)
     {
     return assertions_.contains( assertion);
     }
@@ -144,7 +149,8 @@ public class Disjunction implements IDisjunct
   /**
    * Returns the number of assertions for this disjunction.
    */
-  public int getAssertionCount()
+  @Override
+public int getAssertionCount()
     {
     return assertions_.size();
     }
@@ -152,7 +158,8 @@ public class Disjunction implements IDisjunct
   /**
    * Returns the disjuncts in this conjunction.
    */
-  public Iterator<IDisjunct> getDisjuncts()
+  @Override
+public Iterator<IDisjunct> getDisjuncts()
     {
     return new SingletonIterator<IDisjunct>( this);
     }
@@ -160,12 +167,14 @@ public class Disjunction implements IDisjunct
   /**
    * Returns the number of disjunctions for this conjunction.
    */
-  public int getDisjunctCount()
+  @Override
+public int getDisjunctCount()
     {
     return 1;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -173,12 +182,14 @@ public class Disjunction implements IDisjunct
       .toString();
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return assertions_.hashCode();
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     IDisjunct other =
       object != null && object instanceof IDisjunct

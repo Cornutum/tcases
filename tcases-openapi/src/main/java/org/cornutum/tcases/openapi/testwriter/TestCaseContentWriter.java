@@ -109,7 +109,8 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
       : MediaRange.of( mediaType).toString();
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -179,6 +180,7 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
       return parameter_;
       }
 
+    @Override
     public String toString()
       {
       return

@@ -28,7 +28,8 @@ public class JUnitTestWriter extends AnnotatedJavaTestWriter
   /**
    * Writes the target test annotation dependencies to the given stream.
    */
-  protected void writeTestAnnotationDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeTestAnnotationDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.println( "import org.junit.Test;");
     }
@@ -36,7 +37,8 @@ public class JUnitTestWriter extends AnnotatedJavaTestWriter
   /**
    * Writes the annotation for a target test case to the given stream.
    */
-  protected void writeTestAnnotation( JavaTestTarget target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
+  @Override
+protected void writeTestAnnotation( JavaTestTarget target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
     {
     targetWriter.println(
       String.format(

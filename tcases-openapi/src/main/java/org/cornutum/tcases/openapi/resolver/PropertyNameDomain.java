@@ -50,7 +50,8 @@ public class PropertyNameDomain extends AbstractStringDomain
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( String value)
+  @Override
+public boolean contains( String value)
     {
     return
       super.contains( value)
@@ -60,7 +61,8 @@ public class PropertyNameDomain extends AbstractStringDomain
   /**
    * Returns a new random string of the given length for this domain.
    */
-  protected String newValue( ResolverContext context, int length)
+  @Override
+protected String newValue( ResolverContext context, int length)
     {
     StringBuilder value = new StringBuilder();
     for( int i = 0; i < length; i++)
@@ -92,6 +94,7 @@ public class PropertyNameDomain extends AbstractStringDomain
     /**
      * Return the name of this set of characters.
      */
+    @Override
     public String getName()
       {
       return "PROPERTY_NAME";
@@ -116,6 +119,7 @@ public class PropertyNameDomain extends AbstractStringDomain
     /**
      * Returns true if and only if the given character is allowed.
      */
+    @Override
     public boolean allowed( char c)
       {
       return getNameChars().indexOf( c) >= 0;

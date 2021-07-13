@@ -534,20 +534,23 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       .sorted( String.CASE_INSENSITIVE_ORDER);
     }
 
-  public int compareTo( TestCaseDef other)
+  @Override
+public int compareTo( TestCaseDef other)
     {
     int id = getId()==null? Integer.MAX_VALUE : getId();
     int otherId  = other.getId()==null? Integer.MAX_VALUE : other.getId();
     return id - otherId;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     ArrayList<VarDef> vars = new ArrayList<VarDef>( bindings_.keySet());
     Collections.sort
       ( vars,
         new Comparator<VarDef>()
         {
+        @Override
         public int compare( VarDef v1, VarDef v2)
           {
           return v1.getPosition().compareTo( v2.getPosition());

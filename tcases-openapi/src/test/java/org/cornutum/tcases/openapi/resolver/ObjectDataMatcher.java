@@ -50,6 +50,7 @@ public static class PropertyAccessor implements Function<Map<String,DataValue<?>
       key_ = key;
       }
 
+    @Override
     public DataValue apply( Map<String,DataValue<?>> data)
       {
       return data.get( key_);

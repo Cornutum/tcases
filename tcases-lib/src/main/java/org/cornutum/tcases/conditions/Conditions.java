@@ -196,61 +196,73 @@ public final class Conditions
     {
     private Stream.Builder<String> refBuilder_ = Stream.builder();
 
+    @Override
     public void visit( AllOf condition)
       {
       toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
       }
   
+    @Override
     public void visit( AnyOf condition)
       {
       toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
       }
   
+    @Override
     public void visit( ContainsAll condition)
       {
       toStream( condition.getProperties()).forEach( p -> refBuilder_.add( p));
       }
   
+    @Override
     public void visit( ContainsAny condition)
       {
       toStream( condition.getProperties()).forEach( p -> refBuilder_.add( p));
       }
   
+    @Override
     public void visit( IConjunct condition)
       {
       // NA
       }
   
+    @Override
     public void visit( Not condition)
       {
       toStream( condition.getConditions()).flatMap( c -> propertiesReferenced( c)).forEach( p -> refBuilder_.add( p));
       }
 
+    @Override
     public void visit( AssertLess condition)
       {
       visitBoundedAssertion( condition);
       }
 
+    @Override
     public void visit( AssertMore condition)
       {
       visitBoundedAssertion( condition);
       }
 
+    @Override
     public void visit( AssertNotLess condition)
       {
       visitBoundedAssertion( condition);
       }
 
+    @Override
     public void visit( AssertNotMore condition)
       {
       visitBoundedAssertion( condition);
       }
 
+    @Override
     public void visit( Between condition)
       {
       visit( (AllOf) condition);
       }
 
+    @Override
     public void visit( Equals condition)
       {
       visit( (AllOf) condition);

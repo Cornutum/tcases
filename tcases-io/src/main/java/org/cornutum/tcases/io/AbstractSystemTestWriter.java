@@ -61,7 +61,8 @@ public abstract class AbstractSystemTestWriter implements Closeable
   /**
    * Closes the writer.
    */
-  public void close() throws IOException
+  @Override
+public void close() throws IOException
     {
     getWriter().close();
     }

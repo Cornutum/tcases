@@ -272,7 +272,8 @@ public class Tuple
     return compatible;
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     Tuple other =
       object != null && object.getClass().equals( getClass())
@@ -284,14 +285,16 @@ public class Tuple
       && Objects.equals( other.bindings_, bindings_);
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ bindings_.hashCode();
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
     if( !bindings_.isEmpty())

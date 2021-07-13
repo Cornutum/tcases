@@ -36,7 +36,8 @@ public class Conjunction implements IConjunct
   /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
-  public boolean satisfied( PropertySet properties)
+  @Override
+public boolean satisfied( PropertySet properties)
     {
     boolean isSatisfied;
     Iterator<IDisjunct> disjuncts;
@@ -58,7 +59,8 @@ public class Conjunction implements IConjunct
    * A condition is <em>"compatible"</em> with these properties if it is already satisfied
    * or if it could be satisfied with the addition of more properties.
    */
-  public boolean compatible( PropertySet properties)
+  @Override
+public boolean compatible( PropertySet properties)
     {
     boolean isCompatible;
     Iterator<IDisjunct> disjuncts;
@@ -78,7 +80,8 @@ public class Conjunction implements IConjunct
   /**
    * Implements the Visitor pattern for this condition.
    */
-  public void accept( IConditionVisitor visitor)
+  @Override
+public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }
@@ -118,7 +121,8 @@ public class Conjunction implements IConjunct
   /**
    * Returns the disjuncts in this conjunction.
    */
-  public Iterator<IDisjunct> getDisjuncts()
+  @Override
+public Iterator<IDisjunct> getDisjuncts()
     {
     return disjuncts_.iterator();
     }
@@ -126,12 +130,14 @@ public class Conjunction implements IConjunct
   /**
    * Returns the number of disjunctions for this conjunction.
    */
-  public int getDisjunctCount()
+  @Override
+public int getDisjunctCount()
     {
     return disjuncts_.size();
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -139,12 +145,14 @@ public class Conjunction implements IConjunct
       .toString();
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return disjuncts_.hashCode();
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     IConjunct other =
       object != null && object instanceof IConjunct

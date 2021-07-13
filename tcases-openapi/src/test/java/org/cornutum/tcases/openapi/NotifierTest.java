@@ -242,7 +242,8 @@ public class NotifierTest extends OpenApiTest
   /**
    * Returns the {@link ModelOptions} used for this test.
    */
-  protected ModelOptions getModelOptions()
+  @Override
+protected ModelOptions getModelOptions()
     {
     return withConditionRecorder();
     }

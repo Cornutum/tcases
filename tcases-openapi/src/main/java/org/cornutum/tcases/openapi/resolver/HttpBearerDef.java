@@ -23,17 +23,20 @@ public class HttpBearerDef extends HttpAuthDef
   /**
    * Implements the Visitor pattern for this authentication input.
    */
-  public void accept( AuthDefVisitor visitor)
+  @Override
+public void accept( AuthDefVisitor visitor)
     {
     visitor.visit( this);
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return getClass().hashCode();
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     return object != null && object.getClass().equals( getClass());
     }

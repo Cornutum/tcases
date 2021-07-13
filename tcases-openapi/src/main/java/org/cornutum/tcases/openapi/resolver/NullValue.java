@@ -25,12 +25,14 @@ public class NullValue extends DataValue<Object>
   /**
    * Implements the Visitor pattern for this data value.
    */
-  public void accept( DataValueVisitor visitor)
+  @Override
+public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

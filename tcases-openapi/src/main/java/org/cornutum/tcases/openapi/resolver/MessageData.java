@@ -60,7 +60,8 @@ public class MessageData
     return mediaType_;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 

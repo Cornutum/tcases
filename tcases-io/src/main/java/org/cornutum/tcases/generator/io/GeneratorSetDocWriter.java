@@ -190,7 +190,8 @@ public class GeneratorSetDocWriter implements Closeable
   /**
    * Closes the writer.
    */
-  public void close() throws IOException
+  @Override
+public void close() throws IOException
     {
     writer_.close();
     }

@@ -34,7 +34,8 @@ public class AssertNotLess extends BoundedAssertion
   /**
    * Returns true is the bound is exclusive.
    */
-  public boolean isExclusive()
+  @Override
+public boolean isExclusive()
     {
     return false;
     }
@@ -42,7 +43,8 @@ public class AssertNotLess extends BoundedAssertion
   /**
    * Returns true if this condition is satisfied by the given test case properties.
    */
-  public boolean satisfied( PropertySet properties)
+  @Override
+public boolean satisfied( PropertySet properties)
     {
     return properties.getCount( getProperty()) >= getBound();
     }
@@ -50,7 +52,8 @@ public class AssertNotLess extends BoundedAssertion
   /**
    * Returns an assertion that negates this assertion.
    */
-  public IAssertion negate()
+  @Override
+public IAssertion negate()
     {
     return new AssertLess( getProperty(), getBound());
     }
@@ -58,7 +61,8 @@ public class AssertNotLess extends BoundedAssertion
   /**
    * Returns true if this assertion negates the other.
    */
-  public boolean negates( IAssertion other)
+  @Override
+public boolean negates( IAssertion other)
     {
     AssertLess assertion =
       other != null && other.getClass().equals( AssertLess.class)
@@ -75,7 +79,8 @@ public class AssertNotLess extends BoundedAssertion
    * Returns true if any property set that does NOT satisfy this assertion can be made to satisfy this assertion by
    * the addition of another (instance of a) property.
    */
-  public boolean completable()
+  @Override
+public boolean completable()
     {
     return true;
     }
@@ -83,7 +88,8 @@ public class AssertNotLess extends BoundedAssertion
   /**
    * Implements the Visitor pattern for this condition.
    */
-  public void accept( IConditionVisitor visitor)
+  @Override
+public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }

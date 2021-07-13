@@ -140,7 +140,8 @@ public class Dnf
     return dnf;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     StringBuilder builder = new StringBuilder();
 

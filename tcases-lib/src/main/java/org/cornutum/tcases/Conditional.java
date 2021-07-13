@@ -30,7 +30,8 @@ public abstract class Conditional extends Annotated implements IConditional
   /**
    * Returns the condition that defines when this element is applicable.
    */
-  public ICondition getCondition()
+  @Override
+public ICondition getCondition()
     {
     return condition_;
     }

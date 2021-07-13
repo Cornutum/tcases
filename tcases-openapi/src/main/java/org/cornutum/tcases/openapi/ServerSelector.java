@@ -66,11 +66,13 @@ public abstract class ServerSelector
       index_ = index;
       }
 
+    @Override
     protected boolean matches( Integer index, String description)
       {
       return index == index_;
       }
 
+    @Override
     public String toString()
       {
       return
@@ -95,6 +97,7 @@ public abstract class ServerSelector
       text_ = text;
       }
 
+    @Override
     protected boolean matches( Integer index, String description)
       {
       return
@@ -103,6 +106,7 @@ public abstract class ServerSelector
         .orElse( false);
       }
 
+    @Override
     public String toString()
       {
       return

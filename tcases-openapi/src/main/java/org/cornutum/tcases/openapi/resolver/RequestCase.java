@@ -270,7 +270,8 @@ public class RequestCase implements Comparable<RequestCase>
     return authFailure_;
     }
 
-  public int compareTo( RequestCase other)
+  @Override
+public int compareTo( RequestCase other)
     {
     return
       Comparator.comparing( RequestCase::getApi)
@@ -280,7 +281,8 @@ public class RequestCase implements Comparable<RequestCase>
       .compare( this, other);
     }
   
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     RequestCase other =
       object instanceof RequestCase
@@ -296,7 +298,8 @@ public class RequestCase implements Comparable<RequestCase>
       ;
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
@@ -307,7 +310,8 @@ public class RequestCase implements Comparable<RequestCase>
       ;
     }
   
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -380,42 +384,50 @@ public class RequestCase implements Comparable<RequestCase>
       return param_;
       }
 
+    @Override
     public void visit( ArrayValue<?> data)
       {
       IntStream.range( 0, data.getValue().size())
         .forEach( i -> doFor( String.format( "item[%s]", i), () -> data.getValue().get(i).accept( this)));
       }
 
+    @Override
     public void visit( BinaryValue data)
       {
       // Non-text value
       }
 
+    @Override
     public void visit( BooleanValue data)
       {
       // Non-text value
       }
 
+    @Override
     public void visit( DecimalValue data)
       {
       // Non-text value
       }
 
+    @Override
     public void visit( IntegerValue data)
       {
       // Non-text value
       }
 
+    @Override
     public void visit( LongValue data)
       {
       // Non-text value
       }
 
+    @Override
     public void visit( NullValue data)
       {
       // Non-text value
       }
 
+    @Override
     public void visit( ObjectValue data)
       {
       doFor( "properties", () -> {
@@ -430,6 +442,7 @@ public class RequestCase implements Comparable<RequestCase>
         });
       }
     
+    @Override
     public void visit( StringValue data)
       {
       if( !chars_.allowed( data.getValue()))

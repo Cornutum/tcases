@@ -41,7 +41,8 @@ public class VarSet extends AbstractVarDef
    * If this variable has member variables, returns an iterator for the member variable list.
    * Otherwise, returns null.
    */
-  public Iterator<IVarDef> getMembers()
+  @Override
+public Iterator<IVarDef> getMembers()
     {
     return members_.iterator();
     }
@@ -50,7 +51,8 @@ public class VarSet extends AbstractVarDef
    * If this variable defines a value set, returns an iterator for the value set.
    * Otherwise, returns null.
    */
-  public Iterator<VarValueDef> getValues()
+  @Override
+public Iterator<VarValueDef> getValues()
     {
     return null;
     }
@@ -58,7 +60,8 @@ public class VarSet extends AbstractVarDef
   /**
    * Changes the parent of this variable.
    */
-  public void setParent( IVarDef parent)
+  @Override
+public void setParent( IVarDef parent)
     {
     super.setParent( parent);
 
@@ -75,7 +78,8 @@ public class VarSet extends AbstractVarDef
   /**
    * Changes the condition that defines when this element is applicable.
    */
-  public void setCondition( ICondition condition)
+  @Override
+public void setCondition( ICondition condition)
     {
     super.setCondition( condition);
 
@@ -92,7 +96,8 @@ public class VarSet extends AbstractVarDef
   /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
-  public IVarDef find( String... path)
+  @Override
+public IVarDef find( String... path)
     {
     return
        path == null || path.length == 0

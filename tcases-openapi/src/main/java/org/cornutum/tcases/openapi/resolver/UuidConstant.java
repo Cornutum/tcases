@@ -25,7 +25,8 @@ public class UuidConstant extends StringConstant
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new UuidValue( value);
     }

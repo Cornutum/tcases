@@ -201,7 +201,8 @@ public class TestCase extends Annotated implements Comparable<TestCase>
     return types;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     VarBinding[] bindings = new VarBinding[ varBindings_.size()];
     Arrays.sort( varBindings_.toArray( bindings));
@@ -215,19 +216,22 @@ public class TestCase extends Annotated implements Comparable<TestCase>
       .toString();
     }
 
-  public int compareTo( TestCase other)
+  @Override
+public int compareTo( TestCase other)
     {
     return getId() - other.getId();
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ id_;
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     TestCase other =
       object != null && object.getClass().equals( getClass())

@@ -23,7 +23,8 @@ public class IntegerValue extends DataValue<Integer>
   /**
    * Implements the Visitor pattern for this data value.
    */
-  public void accept( DataValueVisitor visitor)
+  @Override
+public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }

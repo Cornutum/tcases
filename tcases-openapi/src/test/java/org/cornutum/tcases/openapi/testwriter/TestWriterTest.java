@@ -377,6 +377,7 @@ public abstract class TestWriterTest
     /**
      * Writes the dependencies for target test cases to the given stream.
      */
+    @Override
     public void writeDependencies( String testName, IndentedWriter targetWriter)
       {
       targetWriter.println( "// Test case dependencies");
@@ -385,6 +386,7 @@ public abstract class TestWriterTest
     /**
      * Writes the declarations for target test cases to the given stream.
      */
+    @Override
     public void writeDeclarations( String testName, IndentedWriter targetWriter)
       {
       targetWriter.println( "// Test case declarations");
@@ -393,6 +395,7 @@ public abstract class TestWriterTest
     /**
      * Writes a target test case to the given stream.
      */
+    @Override
     public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
       {
       targetWriter.println( "// Given...");
@@ -403,6 +406,7 @@ public abstract class TestWriterTest
     /**
      * Writes the closing for target test cases to the given stream.
      */
+    @Override
     public void writeClosing( String testName, IndentedWriter targetWriter)
       {
       targetWriter.println( "// Test case closing");

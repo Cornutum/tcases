@@ -72,7 +72,8 @@ public class LabelValueEncoder extends UriEncoder implements DataValueVisitor
     return String.format( ".%s", value);
     }
     
-  public void visit( ArrayValue<?> data)
+  @Override
+public void visit( ArrayValue<?> data)
     {
     encoded_ =
       data.getValue().stream()
@@ -81,37 +82,44 @@ public class LabelValueEncoder extends UriEncoder implements DataValueVisitor
       .collect( joining());
     }
 
-  public void visit( BinaryValue data)
+  @Override
+public void visit( BinaryValue data)
     {
     encoded_ = labelOf( Base64Domain.encoded( data.getValue()));
     }
 
-  public void visit( BooleanValue data)
+  @Override
+public void visit( BooleanValue data)
     {
     encoded_ = labelOf( data);
     }
 
-  public void visit( DecimalValue data)
+  @Override
+public void visit( DecimalValue data)
     {
     encoded_ = labelOf( data);
     }
 
-  public void visit( IntegerValue data)
+  @Override
+public void visit( IntegerValue data)
     {
     encoded_ = labelOf( data);
     }
 
-  public void visit( LongValue data)
+  @Override
+public void visit( LongValue data)
     {
     encoded_ = labelOf( data);
     }
 
-  public void visit( NullValue data)
+  @Override
+public void visit( NullValue data)
     {
     encoded_ = labelOf( data);
     }
 
-  public void visit( ObjectValue data)
+  @Override
+public void visit( ObjectValue data)
     {
     if( exploded_)
       {
@@ -130,7 +138,8 @@ public class LabelValueEncoder extends UriEncoder implements DataValueVisitor
       }
     }
 
-  public void visit( StringValue data)
+  @Override
+public void visit( StringValue data)
     {
     encoded_ = labelOf( data);
     }

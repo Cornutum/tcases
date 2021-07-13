@@ -1338,6 +1338,7 @@ public class ApiTestCommand
     /**
      * Creates a new {@link TestTarget} instance.
      */
+    @Override
     public TestTarget createTestTarget()
       {
       return
@@ -1354,6 +1355,7 @@ public class ApiTestCommand
     /**
      * Creates a new {@link TestWriter} instance.
      */
+    @Override
     public TestWriter<?,?> createTestWriter( TestCaseWriter testCaseWriter)
       {
       TestWriter<?,?> testWriter;
@@ -1420,6 +1422,7 @@ public class ApiTestCommand
     /**
      * Creates a new {@link TestCaseWriter} instance.
      */
+    @Override
     public TestCaseWriter createTestCaseWriter()
       {
       return new RestAssuredTestCaseWriter();
@@ -1433,6 +1436,7 @@ public class ApiTestCommand
       return new Builder();
       }
 
+    @Override
     public String toString()
       {
       StringBuilder builder = new StringBuilder();

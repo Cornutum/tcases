@@ -159,7 +159,8 @@ public class VarNamePattern
       : isApplicable( members);
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     return
       object != null
@@ -167,7 +168,8 @@ public class VarNamePattern
       && Arrays.equals( varNamePath_, ((VarNamePattern) object).varNamePath_);
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     int code = getClass().hashCode();
     int pathSize = varNamePath_==null? 0 : varNamePath_.length;
@@ -179,7 +181,8 @@ public class VarNamePattern
     return code;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return StringUtils.join( varNamePath_, '.');
     }

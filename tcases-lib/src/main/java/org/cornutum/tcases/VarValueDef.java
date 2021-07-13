@@ -211,7 +211,8 @@ public class VarValueDef extends Conditional
     return removeProperties( Arrays.asList( properties));
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     VarValueDef other =
       object != null && object.getClass().equals( getClass())
@@ -224,7 +225,8 @@ public class VarValueDef extends Conditional
       && Objects.equals( other.getType(), getType());
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
@@ -232,7 +234,8 @@ public class VarValueDef extends Conditional
       ^ Objects.hashCode( getType());
     }
   
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

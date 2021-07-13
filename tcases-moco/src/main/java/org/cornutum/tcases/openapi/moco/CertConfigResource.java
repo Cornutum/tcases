@@ -44,12 +44,14 @@ public class CertConfigResource extends CertConfig
   /**
    * Implements the Visitor pattern for this certificate configuration.
    */
-  public void accept( CertConfigVisitor visitor)
+  @Override
+public void accept( CertConfigVisitor visitor)
     {
     visitor.visit( this);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

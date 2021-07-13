@@ -243,6 +243,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
       return value_;
       }
 
+    @Override
     public int hashCode()
       {
       return
@@ -250,6 +251,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
         ^ Objects.hashCode( name_);
       }
 
+    @Override
     public boolean equals( Object object)
       {
       Property other =
@@ -262,6 +264,7 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
         && Objects.equals( other.getName(), getName());
       }
 
+    @Override
     public String toString()
       {
       return

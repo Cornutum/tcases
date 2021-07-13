@@ -26,7 +26,8 @@ public class DataValueBinary implements DataValueConverter<byte[]>
   /**
    * Returns the converted form of the given {@link DataValue}.
    */
-  public byte[] convert( DataValue<?> value)
+  @Override
+public byte[] convert( DataValue<?> value)
     {
     try
       {

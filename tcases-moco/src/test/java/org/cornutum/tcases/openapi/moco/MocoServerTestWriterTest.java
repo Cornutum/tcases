@@ -581,12 +581,14 @@ public class MocoServerTestWriterTest extends MocoServerTest
   
   public static class MockPojoWriterFactory implements PojoWriterFactory
     {
+    @Override
     public PojoWriter createPojoWriter()
       {
       return
         new PojoWriter()
           {
-          public void writePojo( String serverName, IndentedWriter targetWriter)
+          @Override
+        public void writePojo( String serverName, IndentedWriter targetWriter)
             {
             targetWriter.println( String.format( "%s.response( \"Your request has been received.\");", serverName));
             }
@@ -596,6 +598,7 @@ public class MocoServerTestWriterTest extends MocoServerTest
   
   public static class NullPojoWriterFactory implements PojoWriterFactory
     {
+    @Override
     public PojoWriter createPojoWriter()
       {
       return null;

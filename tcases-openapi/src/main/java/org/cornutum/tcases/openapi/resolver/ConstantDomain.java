@@ -38,7 +38,8 @@ public abstract class ConstantDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns a random sequence of values from this domain.
    */
-  public Stream<DataValue<T>> values( ResolverContext context)
+  @Override
+public Stream<DataValue<T>> values( ResolverContext context)
     {
     return Stream.of( dataValueOf( value_));
     }
@@ -46,7 +47,8 @@ public abstract class ConstantDomain<T> extends AbstractValueDomain<T>
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( T value)
+  @Override
+public boolean contains( T value)
     {
     return Objects.equals( value, value_);
     }
@@ -54,12 +56,14 @@ public abstract class ConstantDomain<T> extends AbstractValueDomain<T>
   /**
    * Return the type(s) of values that belong to this domain.
    */
-  public Type[] getTypes()
+  @Override
+public Type[] getTypes()
     {
     return Type.only( type_);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

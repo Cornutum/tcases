@@ -243,7 +243,8 @@ public class RequestCaseDef
     return authFailure_;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

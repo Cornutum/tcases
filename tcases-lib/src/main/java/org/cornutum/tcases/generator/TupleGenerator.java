@@ -107,7 +107,8 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Changes the random number sequence seed for this generator.
    */
-  public void setRandomSeed( Long seed)
+  @Override
+public void setRandomSeed( Long seed)
     {
     seed_ = seed;
     }
@@ -125,7 +126,8 @@ public class TupleGenerator implements ITestCaseGenerator
    * If the given base test definition is non-null, returns a set of new test cases
    * that extend the base tests.
    */
-  public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
+  @Override
+public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
     try
       {
@@ -783,7 +785,8 @@ public class TupleGenerator implements ITestCaseGenerator
     return bindings;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -801,6 +804,7 @@ public class TupleGenerator implements ITestCaseGenerator
     return
       new Comparator<VarBindingDef>()
         {
+        @Override
         public int compare( VarBindingDef binding1, VarBindingDef binding2)
           {
           // Compare by usage score: higher score is preferred.
@@ -836,7 +840,8 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns a copy of this object.
    */
-  public ITestCaseGenerator cloneOf()
+  @Override
+public ITestCaseGenerator cloneOf()
     {
     TupleGenerator other = new TupleGenerator();
     other.setRandomSeed( getRandomSeed());
@@ -845,7 +850,8 @@ public class TupleGenerator implements ITestCaseGenerator
     return other;
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     TupleGenerator other =
       object != null && object.getClass().equals( getClass())
@@ -859,7 +865,8 @@ public class TupleGenerator implements ITestCaseGenerator
       && other.getCombiners().equals( getCombiners()); 
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
@@ -878,7 +885,8 @@ public class TupleGenerator implements ITestCaseGenerator
   private static final Comparator<VarBindingDef> varBindingDefSorter_ =
     new Comparator<VarBindingDef>()
       {
-      public int compare( VarBindingDef binding1, VarBindingDef binding2)
+      @Override
+    public int compare( VarBindingDef binding1, VarBindingDef binding2)
         {
         String var1 = binding1.getVarDef().getPathName();
         String var2 = binding2.getVarDef().getPathName();
@@ -897,7 +905,8 @@ public class TupleGenerator implements ITestCaseGenerator
   private static final Comparator<Set<VarBindingDef>> varBindingSetSorter_ =
     new Comparator<Set<VarBindingDef>>()
       {
-      public int compare( Set<VarBindingDef> bindingSet1, Set<VarBindingDef> bindingSet2)
+      @Override
+    public int compare( Set<VarBindingDef> bindingSet1, Set<VarBindingDef> bindingSet2)
         {
         int result = bindingSet1.size() - bindingSet2.size();
         if( result == 0)
@@ -919,7 +928,8 @@ public class TupleGenerator implements ITestCaseGenerator
   private static final Comparator<TupleCombiner> byTupleSize_ =
     new Comparator<TupleCombiner>()
       {
-      public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
+      @Override
+    public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
         {
         return
           effectiveTupleSize( combiner2.getTupleSize())

@@ -39,7 +39,8 @@ public class VarNaDef extends VarValueDef
   /**
    * Changes the type of this value.
    */
-  public void setType( Type type)
+  @Override
+public void setType( Type type)
     {
     if( type != Type.VALID)
       {
@@ -50,7 +51,8 @@ public class VarNaDef extends VarValueDef
   /**
    * Returns if this value is a valid member of the variable input domain.
    */
-  public boolean isValid()
+  @Override
+public boolean isValid()
     {
     return true;
     }
@@ -58,7 +60,8 @@ public class VarNaDef extends VarValueDef
   /**
    * Adds to the set of test case properties contributed by this value.
    */
-  public VarValueDef addProperties( Collection<String> properties)
+  @Override
+public VarValueDef addProperties( Collection<String> properties)
     {
     if( properties != null)
       {
@@ -68,17 +71,20 @@ public class VarNaDef extends VarValueDef
     return this;
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     return object != null && object.getClass().equals( getClass());
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return getClass().hashCode();
     }
   
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -88,7 +94,8 @@ public class VarNaDef extends VarValueDef
   /**
    * Returns true if this value indicates a "not applicable" condition for an optional variable.
    */
-  public boolean isNA()
+  @Override
+public boolean isNA()
     {
     return true;
     }

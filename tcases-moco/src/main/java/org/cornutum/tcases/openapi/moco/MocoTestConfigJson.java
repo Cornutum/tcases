@@ -245,6 +245,7 @@ public class MocoTestConfigJson
       return json_;
       }
     
+    @Override
     public void visit( MocoServerConfigFile config)
       {
       json_ =
@@ -253,6 +254,7 @@ public class MocoTestConfigJson
         .build();
       }
 
+    @Override
     public void visit( MocoServerConfigResource config)
       {
       json_ =
@@ -261,6 +263,7 @@ public class MocoTestConfigJson
         .build();
       }
   
+    @Override
     public void visit( MocoServerConfigPojo config)
       {
       JsonObjectBuilder builder = Json.createObjectBuilder();
@@ -309,6 +312,7 @@ public class MocoTestConfigJson
       return json_;
       }
     
+    @Override
     public void visit( CertConfigFile config)
       {
       json_ =
@@ -317,6 +321,7 @@ public class MocoTestConfigJson
         .build();
       }
 
+    @Override
     public void visit( CertConfigResource config)
       {
       json_ =

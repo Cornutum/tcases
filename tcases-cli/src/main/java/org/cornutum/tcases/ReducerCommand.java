@@ -586,6 +586,7 @@ public class ReducerCommand extends Reducer
       return new Builder();
       }
 
+    @Override
     public String toString()
       {
       StringBuilder builder = new StringBuilder();

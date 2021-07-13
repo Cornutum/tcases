@@ -62,12 +62,14 @@ public class CartesianProduct<T> implements Iterator<List<T>>
       : sets.subList( 1, setCount);
     }
 
-  public boolean hasNext()
+  @Override
+public boolean hasNext()
     {
     return getNext() != null;
     }
 
-  public List<T> next()
+  @Override
+public List<T> next()
     {
     List<T> next = getNext();
     if( next == null)
@@ -79,7 +81,8 @@ public class CartesianProduct<T> implements Iterator<List<T>>
     return next;
     }
 
-  public void remove()
+  @Override
+public void remove()
     {
     throw new UnsupportedOperationException();
     }

@@ -72,7 +72,8 @@ public abstract class ExecutionContext<E extends RuntimeException>
     return toStream( context_.iterator()).toArray( String[]::new);
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

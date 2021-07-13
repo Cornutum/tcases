@@ -53,7 +53,8 @@ public abstract class AnnotatedJavaTestWriter extends JavaTestWriter
   /**
    * Writes the target test dependencies to the given stream.
    */
-  protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     super.writeDependencies( target, testName, targetWriter);
 
@@ -64,7 +65,8 @@ public abstract class AnnotatedJavaTestWriter extends JavaTestWriter
   /**
    * Writes a target test case to the given stream.
    */
-  protected void writeTestCase( JavaTestTarget target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
+  @Override
+protected void writeTestCase( JavaTestTarget target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
     {
     targetWriter.println();
     writeTestAnnotation( target, testName, requestCase, targetWriter);
@@ -80,7 +82,8 @@ public abstract class AnnotatedJavaTestWriter extends JavaTestWriter
   /**
    * Returns the target file defined by the given target.
    */
-  protected File getTargetFile( JavaTestTarget target, String testName)
+  @Override
+protected File getTargetFile( JavaTestTarget target, String testName)
     {
     File targetFile = super.getTargetFile( target, testName);
 
@@ -93,7 +96,8 @@ public abstract class AnnotatedJavaTestWriter extends JavaTestWriter
   /**
    * Returns the test class name derived from the given test name.
    */
-  protected String getClassName( String testName)
+  @Override
+protected String getClassName( String testName)
     {
     boolean isStandardTestClass =
       testName.startsWith( "Test")

@@ -36,7 +36,8 @@ public class SystemTestResource extends Resource implements ISystemTestSource
   /**
    * Returns a {@link SystemTestDef} instance.
    */
-  public SystemTestDef getSystemTestDef()
+  @Override
+public SystemTestDef getSystemTestDef()
     {
     return
       getType() == JSON?

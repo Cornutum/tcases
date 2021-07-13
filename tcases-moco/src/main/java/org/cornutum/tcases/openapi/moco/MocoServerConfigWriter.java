@@ -124,7 +124,8 @@ public class MocoServerConfigWriter implements Closeable
   /**
    * Closes the writer.
    */
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( getWriter(), null);
     }
@@ -467,6 +468,7 @@ public class MocoServerConfigWriter implements Closeable
       return jsonPath.toString();
       }
     
+    @Override
     public void visit( ArrayValue<?> data)
       {
       int length = data.getValue().size();
@@ -474,41 +476,49 @@ public class MocoServerConfigWriter implements Closeable
       IntStream.range( 0, length).forEach( i -> forMember( i, () -> data.getValue().get(i).accept( this)));
       }
 
+    @Override
     public void visit( BinaryValue data)
       {
       expect( Base64Domain.encoded( data.getValue()));
       }
 
+    @Override
     public void visit( BooleanValue data)
       {
       expect( data);
       }
 
+    @Override
     public void visit( DecimalValue data)
       {
       expect( data);
       }
 
+    @Override
     public void visit( IntegerValue data)
       {
       expect( data);
       }
 
+    @Override
     public void visit( LongValue data)
       {
       expect( data);
       }
 
+    @Override
     public void visit( NullValue data)
       {
       expect( data);
       }
 
+    @Override
     public void visit( ObjectValue data)
       {
       data.getValue().forEach( (member,value) -> forMember( member, () -> value.accept( this)));
       }
 
+    @Override
     public void visit( StringValue data)
       {
       expect( data);

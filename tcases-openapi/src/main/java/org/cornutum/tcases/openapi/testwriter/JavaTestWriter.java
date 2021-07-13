@@ -36,7 +36,8 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
   /**
    * Returns the test name derived from the given base name.
    */
-  protected String getTestName( String baseName)
+  @Override
+protected String getTestName( String baseName)
     {
     String[] words = baseName.split( "\\W+");
 
@@ -54,7 +55,8 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
   /**
    * Writes the target test opening to the given stream.
    */
-  protected void writeOpening( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeOpening( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.println(
       String.format(
@@ -66,7 +68,8 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
   /**
    * Writes the target test dependencies to the given stream.
    */
-  protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
     
@@ -78,7 +81,8 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
   /**
    * Writes the target test declarations to the given stream.
    */
-  protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     StringBuilder classDecl = new StringBuilder() .append( "public class ") .append( getClassName( testName));
 
@@ -95,7 +99,8 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
   /**
    * Writes the target test closing to the given stream.
    */
-  protected void writeClosing( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  @Override
+protected void writeClosing( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.unindent();
     targetWriter.println( "}");
@@ -104,7 +109,8 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
   /**
    * Returns the target file defined by the given target.
    */
-  protected File getTargetFile( JavaTestTarget target, String testName)
+  @Override
+protected File getTargetFile( JavaTestTarget target, String testName)
     {
     File targetFile = super.getTargetFile( target, testName);
 

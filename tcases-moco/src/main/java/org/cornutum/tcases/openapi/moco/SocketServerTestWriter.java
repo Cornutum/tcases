@@ -26,7 +26,8 @@ public class SocketServerTestWriter extends MocoServerTestWriter
   /**
    * Returns the Moco server class name for this test writer.
    */
-  protected String getServerClass()
+  @Override
+protected String getServerClass()
     {
     return "SocketServer";
     }
@@ -34,7 +35,8 @@ public class SocketServerTestWriter extends MocoServerTestWriter
   /**
    * Returns the Moco server factory method for this test writer.
    */
-  protected String getServerFactory()
+  @Override
+protected String getServerFactory()
     {
     return "socketServer";
     }
@@ -42,7 +44,8 @@ public class SocketServerTestWriter extends MocoServerTestWriter
   /**
    * Returns the MocoJunitRunner factory method for this test writer.
    */
-  protected String getRunnerFactory()
+  @Override
+protected String getRunnerFactory()
     {
     return "socketRunner";
     }    
@@ -50,7 +53,8 @@ public class SocketServerTestWriter extends MocoServerTestWriter
   /**
    * Writes the target test dependencies for the POJO server configuration to the given stream.
    */
-  protected void writePojoDependencies( IndentedWriter targetWriter)
+  @Override
+protected void writePojoDependencies( IndentedWriter targetWriter)
     {
     targetWriter.println( "import com.github.dreamhead.moco.SocketServer;");
     }

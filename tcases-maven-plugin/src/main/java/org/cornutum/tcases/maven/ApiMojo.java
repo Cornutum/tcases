@@ -28,7 +28,8 @@ import java.util.Set;
 @Mojo(name="api")
 public class ApiMojo extends AbstractMojo
   {
-  public void execute() throws MojoExecutionException
+  @Override
+public void execute() throws MojoExecutionException
     {
     try
       {

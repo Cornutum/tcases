@@ -51,7 +51,8 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
   /**
    * Writes the given system test definition the form of an XML document.
    */
-  public void write( SystemTestDef systemTest)
+  @Override
+public void write( SystemTestDef systemTest)
     {
     xmlWriter_.writeDeclaration();
 
@@ -153,7 +154,8 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
   /**
    * Flushes the writer.
    */
-  public void flush()
+  @Override
+public void flush()
     {
     getXmlWriter().flush();
     }
@@ -161,7 +163,8 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
   /**
    * Closes the writer.
    */
-  public void close() throws IOException
+  @Override
+public void close() throws IOException
     {
     getXmlWriter().close();
     }
@@ -169,7 +172,8 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
   /**
    * Changes the output stream for this writer.
    */
-  protected void setWriter( Writer writer)
+  @Override
+protected void setWriter( Writer writer)
     {
     setXmlWriter( new XmlWriter( writer));
     }

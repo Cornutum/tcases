@@ -44,7 +44,8 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
   /**
    * Returns a {@link SystemInputDef} instance.
    */
-  public SystemInputDef getSystemInputDef()
+  @Override
+public SystemInputDef getSystemInputDef()
     {
     JsonValidationService service = JsonValidationService.newInstance();
     JsonSchema schema = service.readSchema( getClass().getResourceAsStream( "/schema/system-input-schema.json"));
@@ -84,7 +85,8 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
     return stream_;
     }
 
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( getInputStream(), null);
     }

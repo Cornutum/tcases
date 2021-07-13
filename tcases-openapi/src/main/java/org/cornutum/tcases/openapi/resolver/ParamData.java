@@ -90,7 +90,8 @@ public class ParamData extends MessageData
     return exploded_;
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     ParamData other =
       object instanceof ParamData
@@ -102,14 +103,16 @@ public class ParamData extends MessageData
       && Objects.equals( other.getName(), getName());
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ Objects.hashCode( getName());
     }
   
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)

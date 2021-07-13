@@ -40,7 +40,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<String> dataValueOf( String value)
+  @Override
+protected DataValue<String> dataValueOf( String value)
     {
     return new Base64Value( value);
     }
@@ -48,7 +49,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Changes the values excluded from this domain.
    */
-  public void setExcludedStrings( Set<String> excluded)
+  @Override
+public void setExcludedStrings( Set<String> excluded)
     {
     setExcluded( excluded);
     }
@@ -56,7 +58,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns the length of the given value.
    */
-  protected int getLength( String value)
+  @Override
+protected int getLength( String value)
     {
     return decoded( value).length;
     }
@@ -64,7 +67,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Defines a constant length range for values in this domain.
    */
-  public void setLengthRange( Integer length)
+  @Override
+public void setLengthRange( Integer length)
     {
     getBytes().setLengthRange( length);
     }
@@ -72,7 +76,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Defines the length range for values in this domain.
    */
-  public void setLengthRange( Integer min, Integer max)
+  @Override
+public void setLengthRange( Integer min, Integer max)
     {
     getBytes().setLengthRange( min, max);
     }
@@ -80,7 +85,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Defines the length range for values in this domain.
    */
-  public void setLengthRange( Range range)
+  @Override
+public void setLengthRange( Range range)
     {
     getBytes().setLengthRange( range);
     }
@@ -88,7 +94,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns the length range for values in this domain.
    */
-  protected LengthDomain getLengthRange()
+  @Override
+protected LengthDomain getLengthRange()
     {
     return getBytes().getLengthRange();
     }
@@ -96,7 +103,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Changes the values excluded from this domain.
    */
-  public void setExcluded( Set<String> excluded)
+  @Override
+public void setExcluded( Set<String> excluded)
     {
     getBytes().setExcluded(
       Optional.ofNullable( excluded).orElse( emptySet())
@@ -108,7 +116,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns the values excluded from this domain.
    */
-  public Set<String> getExcluded()
+  @Override
+public Set<String> getExcluded()
     {
     return
       getBytes().getExcluded().stream()
@@ -148,7 +157,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns true if the given value belongs to this domain.
    */
-  public boolean contains( String value)
+  @Override
+public boolean contains( String value)
     {
     try
       {
@@ -163,7 +173,8 @@ public class Base64Domain extends SequenceDomain<String>
   /**
    * Returns a random sequence of possible members of this domain.
    */
-  protected Stream<String> candidates( ResolverContext context)
+  @Override
+protected Stream<String> candidates( ResolverContext context)
     {
     return
       getBytes().values( context)

@@ -171,7 +171,8 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     return varDef_;
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 
@@ -190,7 +191,8 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     return builder.toString();
     }
 
-  public int compareTo( VarBinding other)
+  @Override
+public int compareTo( VarBinding other)
     {
     IVarDef varDef = getVarDef();
     IVarDef otherVarDef = other.getVarDef();
@@ -207,14 +209,16 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
       getVar().compareTo( other.getVar());
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ Objects.hashCode( getVar());
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     VarBinding other =
       object != null && object.getClass().equals( getClass())

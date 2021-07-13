@@ -60,7 +60,8 @@ public abstract class FormattedString
       .collect( toList());
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return formatted();
     }
@@ -82,6 +83,7 @@ public abstract class FormattedString
       {
       }
 
+    @Override
     public String formatted()
       {
       return null;
@@ -101,6 +103,7 @@ public abstract class FormattedString
       object_ = object;
       }
 
+    @Override
     public String formatted()
       {
       return object_.toString();
@@ -129,6 +132,7 @@ public abstract class FormattedString
         }
       }
 
+    @Override
     public String formatted()
       {
       return java.util.Base64.getEncoder().encodeToString( object_);
@@ -157,6 +161,7 @@ public abstract class FormattedString
         }
       }
 
+    @Override
     public String formatted()
       {
       return getDateFormat().format( object_);
@@ -185,6 +190,7 @@ public abstract class FormattedString
         }
       }
 
+    @Override
     public String formatted()
       {
       return getDateTimeFormat().format( object_);
@@ -213,6 +219,7 @@ public abstract class FormattedString
         }
       }
 
+    @Override
     public String formatted()
       {
       return object_.toString();

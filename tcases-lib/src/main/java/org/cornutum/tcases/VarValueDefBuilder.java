@@ -148,7 +148,8 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
   /**
    * Returns the {@link Annotated} instance for this builder.
    */
-  protected Annotated getAnnotated()
+  @Override
+protected Annotated getAnnotated()
     {
     return varValueDef_;
     }

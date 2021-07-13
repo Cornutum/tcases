@@ -82,7 +82,8 @@ public class MocoTestConfigReader implements Closeable
     return stream_;
     }
 
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( getInputStream(), null);
     }

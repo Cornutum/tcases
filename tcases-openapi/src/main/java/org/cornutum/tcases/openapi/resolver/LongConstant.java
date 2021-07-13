@@ -25,7 +25,8 @@ public class LongConstant extends ConstantDomain<Long>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<Long> dataValueOf( Long value)
+  @Override
+protected DataValue<Long> dataValueOf( Long value)
     {
     return new LongValue( value);
     }

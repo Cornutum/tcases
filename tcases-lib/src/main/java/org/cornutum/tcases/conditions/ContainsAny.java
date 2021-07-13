@@ -65,7 +65,8 @@ public class ContainsAny extends PropertyExpr implements ICondition
   /**
    * Returns true if this condition is satisfied by the given test case contains.
    */
-  public boolean satisfied( PropertySet propertySet)
+  @Override
+public boolean satisfied( PropertySet propertySet)
     {
     boolean isSatisfied;
     Iterator<String> properties;
@@ -86,7 +87,8 @@ public class ContainsAny extends PropertyExpr implements ICondition
    * A condition is <em>"compatible"</em> with these properties if it is already satisfied
    * or if it could be satisfied with the addition of more properties.
    */
-  public boolean compatible( PropertySet properties)
+  @Override
+public boolean compatible( PropertySet properties)
     {
     return true;
     }
@@ -94,7 +96,8 @@ public class ContainsAny extends PropertyExpr implements ICondition
   /**
    * Implements the Visitor pattern for this condition.
    */
-  public void accept( IConditionVisitor visitor)
+  @Override
+public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }

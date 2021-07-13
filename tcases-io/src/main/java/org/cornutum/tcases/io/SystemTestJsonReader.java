@@ -44,7 +44,8 @@ public class SystemTestJsonReader implements ISystemTestSource, Closeable
   /**
    * Returns a {@link SystemTestDef} instance.
    */
-  public SystemTestDef getSystemTestDef()
+  @Override
+public SystemTestDef getSystemTestDef()
     {
     JsonValidationService service = JsonValidationService.newInstance();
     JsonSchema schema = service.readSchema( getClass().getResourceAsStream( "/schema/system-test-schema.json"));
@@ -84,7 +85,8 @@ public class SystemTestJsonReader implements ISystemTestSource, Closeable
     return stream_;
     }
 
-  public void close()
+  @Override
+public void close()
     {
     IOUtils.closeQuietly( getInputStream(), null);
     }

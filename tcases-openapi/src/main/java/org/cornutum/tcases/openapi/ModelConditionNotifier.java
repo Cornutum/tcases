@@ -23,8 +23,11 @@ public interface ModelConditionNotifier extends Notifier
     return
       new ModelConditionNotifier()
         {
+        @Override
         public void warn( String[] location, String reason) {}
+        @Override
         public void error( String[] location, String reason, String resolution) {}
+        @Override
         public String toString() {return "IGNORE";}
         };
     }
@@ -37,16 +40,19 @@ public interface ModelConditionNotifier extends Notifier
     return
       new ModelConditionNotifier()
         {
+        @Override
         public void warn( String[] location, String reason)
           {
           logger.warn( messageFor( location, reason, null));
           }
         
+        @Override
         public void error( String[] location, String reason, String resolution)
           {
           logger.error( messageFor( location, reason, resolution));
           }
 
+        @Override
         public String toString()
           {
           return "LOG";
@@ -70,16 +76,19 @@ public interface ModelConditionNotifier extends Notifier
     return
       new ModelConditionNotifier()
         {
+        @Override
         public void warn( String[] location, String reason)
           {
           throw new OpenApiException( location, new OpenApiException( reason));
           }
         
+        @Override
         public void error( String[] location, String reason, String resolution)
           {
           throw new OpenApiException( location, new OpenApiException( reason));
           }
 
+        @Override
         public String toString()
           {
           return "FAIL";

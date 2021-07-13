@@ -38,7 +38,8 @@ public class DecimalEnum extends EnumDomain<BigDecimal>
   /**
    * Returns the value represented by the given string.
    */
-  protected BigDecimal valueOf( String value)
+  @Override
+protected BigDecimal valueOf( String value)
     {
     try
       {
@@ -53,7 +54,8 @@ public class DecimalEnum extends EnumDomain<BigDecimal>
   /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
-  protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
+  @Override
+protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
     {
     return new DecimalValue( value, format_);
     }

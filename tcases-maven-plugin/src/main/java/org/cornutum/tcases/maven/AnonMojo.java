@@ -24,7 +24,8 @@ import java.util.Set;
 @Mojo(name="anon")
 public class AnonMojo extends AbstractMojo
   {
-  public void execute() throws MojoExecutionException
+  @Override
+public void execute() throws MojoExecutionException
     {
     try
       {

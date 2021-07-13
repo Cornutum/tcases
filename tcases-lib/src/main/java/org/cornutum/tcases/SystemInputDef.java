@@ -113,14 +113,16 @@ public class SystemInputDef extends Annotated
     return i < functionCount? i : -1;
     }
 
-  public int hashCode()
+  @Override
+public int hashCode()
     {
     return
       getClass().hashCode()
       ^ Objects.hashCode( getName());
     }
 
-  public boolean equals( Object object)
+  @Override
+public boolean equals( Object object)
     {
     SystemInputDef other =
       object != null && object.getClass().equals( getClass())
@@ -132,7 +134,8 @@ public class SystemInputDef extends Annotated
       && Objects.equals( getName(), other.getName());
     }
 
-  public String toString()
+  @Override
+public String toString()
     {
     return
       ToString.getBuilder( this)
