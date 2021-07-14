@@ -12,7 +12,7 @@
 
   * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 
-  * Subscribe to the [Tcases Forum](https://groups.google.com/d/forum/tcases) group to get notifications and share experiences with other Tcases users.
+  * Got a question? Need some guidance? Start a [discussion](https://github.com/Cornutum/tcases/discussions).
 
 ## What Does It Do? ##
 

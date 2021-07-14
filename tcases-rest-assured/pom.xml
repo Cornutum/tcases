@@ -50,15 +50,6 @@
         <url>https://github.com/Cornutum/tcases/issues</url>
     </issueManagement>
 
-    <mailingLists>
-        <mailingList>
-            <name>Tcases Forum</name>
-            <subscribe>https://groups.google.com/d/forum/tcases</subscribe>
-            <unsubscribe>https://groups.google.com/d/forum/tcases</unsubscribe>
-            <post>https://groups.google.com/d/forum/tcases</post>
-        </mailingList>
-    </mailingLists>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.date>${maven.build.timestamp}</project.build.date>
