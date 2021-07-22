@@ -13,7 +13,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -40,7 +40,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": null,
                 "valid": true
             }
@@ -59,7 +59,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -86,7 +86,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "null",
                     "value": null
@@ -109,7 +109,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "number",
                     "value": 190.9
@@ -132,7 +132,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -156,7 +156,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -184,7 +184,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -212,7 +212,7 @@
                 "name": "param0",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {

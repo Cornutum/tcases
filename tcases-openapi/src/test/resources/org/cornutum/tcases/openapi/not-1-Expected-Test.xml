@@ -18,6 +18,7 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
@@ -34,6 +35,7 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>
@@ -51,6 +53,7 @@
       <Has name="version" value="0.0.0"/>
       <Input type="query">
         <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="param0"/>
           <Has name="style" value="form"/>
         </Var>

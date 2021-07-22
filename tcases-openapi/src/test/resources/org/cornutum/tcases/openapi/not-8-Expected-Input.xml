@@ -63,11 +63,7 @@
                       <Value name="1"/>
                       <Value name="&gt; 1" property="param0BravoItemsMany"/>
                     </Var>
-                    <VarSet name="Contains">
-                      <When>
-                        <Not property="param0BravoItemsNone">
-                        </Not>
-                      </When>
+                    <VarSet name="Contains" whenNot="param0BravoItemsNone">
                       <Var name="Type">
                         <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
@@ -195,11 +191,7 @@
                       <Value name="1"/>
                       <Value name="&gt; 1" property="param0BravoItemsMany"/>
                     </Var>
-                    <VarSet name="Contains">
-                      <When>
-                        <Not property="param0BravoItemsNone">
-                        </Not>
-                      </When>
+                    <VarSet name="Contains" whenNot="param0BravoItemsNone">
                       <Var name="Type">
                         <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
@@ -291,12 +283,7 @@
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Property-Count">
-                <Value name="0" once="true">
-                  <When>
-                    <Not property="param0Properties">
-                    </Not>
-                  </When>
-                </Value>
+                <Value name="0" once="true" whenNot="param0Properties"/>
                 <Value name="&gt; 0" when="param0Properties"/>
               </Var>
               <VarSet name="Properties">
@@ -329,11 +316,7 @@
                       <Value name="1"/>
                       <Value name="&gt; 1" property="param0BravoItemsMany"/>
                     </Var>
-                    <VarSet name="Contains">
-                      <When>
-                        <Not property="param0BravoItemsNone">
-                        </Not>
-                      </When>
+                    <VarSet name="Contains" whenNot="param0BravoItemsNone">
                       <Var name="Type">
                         <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>
@@ -421,12 +404,7 @@
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Property-Count">
-                <Value name="0" once="true">
-                  <When>
-                    <Not property="param0Properties">
-                    </Not>
-                  </When>
-                </Value>
+                <Value name="0" once="true" whenNot="param0Properties"/>
                 <Value name="&gt; 0" when="param0Properties"/>
               </Var>
               <VarSet name="Properties">
@@ -459,11 +437,7 @@
                       <Value name="1"/>
                       <Value name="&gt; 1" property="param0BravoItemsMany"/>
                     </Var>
-                    <VarSet name="Contains">
-                      <When>
-                        <Not property="param0BravoItemsNone">
-                        </Not>
-                      </When>
+                    <VarSet name="Contains" whenNot="param0BravoItemsNone">
                       <Var name="Type">
                         <Has name="itemType" value="string"/>
                         <Value name="string" property="param0BravoItemsValue"/>

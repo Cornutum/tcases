@@ -63,7 +63,6 @@ import static java.math.RoundingMode.UP;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
@@ -581,33 +580,18 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaTypeName);
             MediaType mediaType = contentDef.getValue();
 
+            Schema<?> mediaTypeSchema =
+              Optional.ofNullable( mediaType.getSchema())
+              .map( s -> exampleSchemaFor( mediaType.getExample(), mediaType.getExamples(), analyzeSchema( api, s)))
+              .orElse( null);
+
             return
               VarSetBuilder.with( mediaTypeVarName)
               .when( has( mediaTypeVarTag))
-              .members( mediaTypeExampleVars( api, mediaTypeVarTag, mediaType))
+              .members( instanceSchemaVars( mediaTypeVarTag, false, mediaTypeSchema))
               .build();
             });
         });
-    }
-
-  /**
-   * Returns the {@link IVarDef input variable definitions} for the given media type examples.
-   */
-  private Stream<IVarDef> mediaTypeExampleVars( OpenAPI api, String mediaTypeVarTag, MediaType mediaType)
-    {
-    Schema<?> mediaTypeSchema =
-      Optional.ofNullable( mediaType.getSchema())
-      .map( s -> analyzeSchema( api, s))
-      .orElse( null);
-    
-    return
-      instanceExampleVars(
-        api,
-        mediaTypeVarTag,
-        false,
-        mediaType.getExample(),
-        mediaType.getExamples(),
-        mediaTypeSchema);
     }
 
   /**
@@ -896,10 +880,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         Schema<?> parameterSchema = parameterSchema( api, parameter);
         String parameterType = parameterSchema.getType();
         parameter.setStyle( parameterStyle( parameter, parameterType));
-        parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
+        parameter.setExplode( parameterExplode( parameter.getExplode(), getValidTypes( parameterSchema), parameter.getStyle()));
 
         // Normalize parameter schema
-        parameterSchema = normalizeParameterSchema( api, parameter, parameterSchema);
+        normalizeParameterDnf( parameter, parameterSchema);
         
         String parameterVarName = toIdentifier( parameterName);
         return
@@ -929,13 +913,20 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           }
 
         // Normalize parameter properties
-        Schema<?> parameterSchema = parameterSchema( api, parameter);
+        Schema<?> parameterSchema =
+          analyzeSchema(
+            api,
+            exampleSchemaFor(
+              parameterContentExample( parameter),
+              parameterContentExamples( parameter),
+              parameterSchema( api, parameter)));
+        
         String parameterType = parameterSchema.getType();
         parameter.setStyle( parameterStyle( parameter, parameterType));
-        parameter.setExplode( parameterExplode( parameter.getExplode(), parameterType, parameter.getStyle()));
+        parameter.setExplode( parameterExplode( parameter.getExplode(), getValidTypes( parameterSchema), parameter.getStyle()));
 
         // Normalize parameter schema
-        parameterSchema = normalizeParameterSchema( api, parameter, parameterSchema);
+        normalizeParameterDnf( parameter, parameterSchema);
         
         String parameterVarName = toIdentifier( parameterName);
         return
@@ -943,24 +934,9 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           .type( parameterIn)
           .has( "paramName", parameterName)
           .members( parameterDefinedVar( parameterVarName, parameter))
-          .members( parameterExampleVars( api, parameterVarName, parameterSchema, parameter))
+          .members( instanceSchemaVars( parameterVarName, !parameter.getRequired(), parameterSchema))
           .build();
         });
-    }
-
-  /**
-   * Returns the {@link IVarDef input variable definitions} for the given parameter examples.
-   */
-  private Stream<IVarDef> parameterExampleVars( OpenAPI api, String parameterVarTag, Schema<?> parameterSchema, Parameter parameter)
-    {
-    return
-      instanceExampleVars(
-        api,
-        parameterVarTag,
-        !parameter.getRequired(),
-        parameterContentExample( parameter),
-        parameterContentExamples( parameter),
-        parameterSchema);
     }
 
   /**
@@ -980,23 +956,31 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }    
 
   /**
-   * Returns the given parameter schema after normalizing parameter correctly designate valid/invalid values.
+   * Updates the DNF of the given parameter schema to normalize the model of valid/invalid values.
    */
-  private Schema<?> normalizeParameterSchema( OpenAPI api, Parameter parameter, Schema<?> parameterSchema)
+  private void normalizeParameterDnf( Parameter parameter, Schema<?> parameterSchema)
     {
-    Schema<?> normalized = null;
+    for( Schema<?> schema : getDnf( parameterSchema).getAlternatives())
+      {
+      normalizeParameterSchema( parameter, schema);
+      }
+    }
 
+  /**
+   * Updates the given parameter schema to normalize the model of valid/invalid values.
+   */
+  private void normalizeParameterSchema( Parameter parameter, Schema<?> parameterSchema)
+    {
     // Is this a nullable path parameter?
     if( "path".equals( parameter.getIn()) && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
       {
       // Yes, null is equivalent to "undefined", which is invalid
       notifyError( "Null values not allowed", "Using nullable=false");
       parameterSchema.setNullable( false);
-      normalized = parameterSchema;
       }
 
       // Is this a string parameter...
-    if( singleton( "string").equals( getValidTypes( parameterSchema))
+    if( "string".equals( parameterSchema.getType())
         // ... for which an empty string value is allowed?
         && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
       {
@@ -1006,7 +990,6 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         // Yes, an empty string is equivalent to "undefined", which is invalid
         notifyWarning( "Empty string values not allowed -- using minLength=1");
         parameterSchema.setMinLength( 1);
-        normalized = parameterSchema;
         }
 
       // Is this a non-nullable query parameter?
@@ -1015,21 +998,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         // Yes, an empty string is equivalent to null, which is invalid.
         notifyWarning( "Empty string values not allowed -- using minLength=1");
         parameterSchema.setMinLength( 1);
-        normalized = parameterSchema;
         }
       }
-
-    if( normalized != null)
-      {
-      setDnf( normalized, null);
-      normalized =  analyzeSchema( api, normalized);
-      }
-    else
-      {
-      normalized = parameterSchema;
-      }
-
-    return normalized;
     }
 
   /**
@@ -1122,10 +1092,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Resolves the value of a parameter explode property.
    */
-  private Boolean parameterExplode( Boolean explode, String parameterType, Parameter.StyleEnum parameterStyle)
+  private Boolean parameterExplode( Boolean explode, Set<String> parameterTypes, Parameter.StyleEnum parameterStyle)
     {
     return
-      !("object".equals( parameterType) || "array".equals( parameterType))?
+      parameterTypes != null && !(parameterTypes.contains( "object") || parameterTypes.contains( "array"))?
       null :
 
       explode != null?
@@ -2176,22 +2146,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns the {@link IVarDef input variable definitions} for the given examples.
+   * Returns a new schema that validates the examples specified for the given instance.
    */
-  private Stream<IVarDef> instanceExampleVars(
-    OpenAPI api,
-    String instanceVarTag,
-    boolean instanceOptional,
-    Object instanceExample,
-    Map<String,Example> instanceExamples,
-    Schema<?> instanceSchema)
+  private Schema<?> exampleSchemaFor( Object instanceExample, Map<String,Example> instanceExamples, Schema<?> instanceSchema)
     {
     String exampleType = Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null);
     boolean exampleNullable = Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false);
 
     Optional<Object> exampleObject = Optional.ofNullable( instanceExample);
 
-    Schema<?> exampleSchema =
+    return
       exampleObject.isPresent()?
       exampleSchemaFor( exampleObject.get(), exampleType, exampleNullable) :
 
@@ -2202,8 +2166,6 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         exampleNullable) :
 
       exampleSchemaFor( instanceSchema, exampleType, exampleNullable);
-
-    return instanceSchemaVars( instanceVarTag, instanceOptional, analyzeSchema( api, exampleSchema));
     }
 
   /**
