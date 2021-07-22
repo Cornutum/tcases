@@ -46,8 +46,9 @@
               </Var>
               <VarSet name="Value" when="param0AlphaValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                  <Value name="0" property="param0AlphaLengthValid"/>
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                  <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
                 </Var>
               </VarSet>
             </VarSet>
@@ -63,8 +64,9 @@
               </Var>
               <VarSet name="Value" when="param0BravoValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0BravoLengthValid, param0BravoNotEmpty"/>
-                  <Value name="0" property="param0BravoLengthValid"/>
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="param0BravoLengthValid, param0BravoNotEmpty"/>
+                  <Value name="&gt; 1" property="param0BravoLengthValid, param0BravoNotEmpty"/>
                 </Var>
               </VarSet>
             </VarSet>
@@ -80,8 +82,9 @@
               </Var>
               <VarSet name="Value" when="param0CharlieValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0CharlieLengthValid, param0CharlieNotEmpty"/>
-                  <Value name="0" property="param0CharlieLengthValid"/>
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="param0CharlieLengthValid, param0CharlieNotEmpty"/>
+                  <Value name="&gt; 1" property="param0CharlieLengthValid, param0CharlieNotEmpty"/>
                 </Var>
               </VarSet>
             </VarSet>
@@ -97,8 +100,9 @@
               </Var>
               <VarSet name="Value" when="param0DeltaValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0DeltaLengthValid, param0DeltaNotEmpty"/>
-                  <Value name="0" property="param0DeltaLengthValid"/>
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="param0DeltaLengthValid, param0DeltaNotEmpty"/>
+                  <Value name="&gt; 1" property="param0DeltaLengthValid, param0DeltaNotEmpty"/>
                 </Var>
               </VarSet>
             </VarSet>

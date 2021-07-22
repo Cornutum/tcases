@@ -22,12 +22,7 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Property-Count">
-            <Value name="0" once="true">
-              <When>
-                <Not property="param0Properties">
-                </Not>
-              </When>
-            </Value>
+            <Value name="0" once="true" whenNot="param0Properties"/>
             <Value name="&gt; 0" when="param0Properties"/>
           </Var>
           <VarSet name="Properties">
@@ -43,8 +38,9 @@
               </Var>
               <VarSet name="Value" when="param0MyStringValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0MyStringLengthValid, param0MyStringNotEmpty"/>
-                  <Value name="0" property="param0MyStringLengthValid"/>
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="param0MyStringLengthValid, param0MyStringNotEmpty"/>
+                  <Value name="&gt; 1" property="param0MyStringLengthValid, param0MyStringNotEmpty"/>
                 </Var>
               </VarSet>
             </VarSet>

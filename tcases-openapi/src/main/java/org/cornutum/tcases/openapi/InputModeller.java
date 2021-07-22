@@ -960,15 +960,34 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    */
   private void normalizeParameterDnf( Parameter parameter, Schema<?> parameterSchema)
     {
-    for( Schema<?> schema : getDnf( parameterSchema).getAlternatives())
+    List<Schema<?>> alternatives = 
+      Optional.ofNullable( getDnf( parameterSchema))
+      .map( Dnf::getAlternatives)
+      .orElse( Arrays.asList( parameterSchema));
+
+    for( Schema<?> schema : alternatives)
       {
       normalizeParameterSchema( parameter, schema);
+
+      Optional.ofNullable( asArraySchema( schema))
+        .map( array -> array.getItems())
+        .ifPresent( items -> doFor( "items", () -> normalizeParameterDnf( parameter, items)));
+
+      Optional.ofNullable( schema.getProperties())
+        .ifPresent( properties -> {
+          properties.keySet().stream()
+            .forEach( p -> doFor( p, () -> normalizeParameterDnf( parameter, properties.get(p))));
+          });
+
+      Optional.ofNullable( additionalPropertiesSchema( schema))
+        .ifPresent( ap -> doFor( "additionalProperties", () -> normalizeParameterDnf( parameter, ap)));
       }
     }
 
   /**
    * Updates the given parameter schema to normalize the model of valid/invalid values.
    */
+  @SuppressWarnings("unchecked")
   private void normalizeParameterSchema( Parameter parameter, Schema<?> parameterSchema)
     {
     // Is this a nullable path parameter?
@@ -979,25 +998,38 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       parameterSchema.setNullable( false);
       }
 
-      // Is this a string parameter...
+    // Is this a string parameter?
     if( "string".equals( parameterSchema.getType())
-        // ... for which an empty string value is allowed?
+        // ... for which an empty string value is valid?
         && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
       {
-      // Yes, is this a simple path parameter?
-      if( "path".equals( parameter.getIn()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
-        {
-        // Yes, an empty string is equivalent to "undefined", which is invalid
-        notifyWarning( "Empty string values not allowed -- using minLength=1");
-        parameterSchema.setMinLength( 1);
-        }
+      // Is an empty string allowed for this parameter?
+      boolean emptyNotAllowed =
+        (Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()) || Parameter.StyleEnum.FORM.equals( parameter.getStyle()))
+        && ("path".equals( parameter.getIn()) || Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false);
 
-      // Is this a non-nullable query parameter?
-      else if( "query".equals( parameter.getIn()) && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
+      if( emptyNotAllowed)
         {
-        // Yes, an empty string is equivalent to null, which is invalid.
-        notifyWarning( "Empty string values not allowed -- using minLength=1");
-        parameterSchema.setMinLength( 1);
+        if( parameterSchema.getEnum() != null)
+          {
+          // An empty string is equivalent to null, which is invalid.
+          ((Schema<Object>) parameterSchema).setEnum(
+            parameterSchema.getEnum().stream()
+            .map( enumValue -> String.valueOf( enumValue).isEmpty()? null : enumValue)
+            .collect( toList()));
+          }
+        else if( "path".equals( parameter.getIn()))
+          {
+          // An empty string is equivalent to "undefined", which is invalid
+          notifyWarning( "Empty string values not allowed for path parameter -- using minLength=1");
+          parameterSchema.setMinLength( 1);
+          }
+        else
+          {
+          // An empty string is equivalent to null, which is invalid.
+          notifyWarning( "Empty string values not allowed for non-nullable parameter -- using minLength=1");
+          parameterSchema.setMinLength( 1);
+          }
         }
       }
     }

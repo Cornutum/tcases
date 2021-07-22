@@ -79,7 +79,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ">#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+vSzABaBn'*TqsjaV#]X-ST`V}(1/*8V-S%cq{VHyTpYF/IOaB'"
+                    "value": "i"
                 },
                 "valid": true
             }
@@ -87,7 +87,7 @@
     },
     {
         "id": 4,
-        "name": "param0.Alternative.1.Value.Length='0'",
+        "name": "param0.Alternative.1.Value.Length='> 1'",
         "server": "/",
         "version": "0.0.0",
         "api": "OneOf",
@@ -101,7 +101,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+"
                 },
                 "valid": true
             }
@@ -145,12 +145,44 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": 190.9
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "ABaB"
+                        },
+                        {
+                            "type": "string",
+                            "value": "'"
+                        }
+                    ]
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Alternative.0.Type=Not boolean,string"
+    },
+    {
+        "id": 7,
+        "name": "param0.Alternative.1.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OneOf",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Length=0"
     }
 ]

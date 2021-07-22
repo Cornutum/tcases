@@ -19,7 +19,7 @@
                     "value": {
                         "myString": {
                             "type": "string",
-                            "value": ">#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+vSzABaBn'*TqsjaV#]X-ST`V}(1/*8V-S%cq{VHyTpYF/IOaB'"
+                            "value": "i"
                         }
                     }
                 },
@@ -70,7 +70,7 @@
     },
     {
         "id": 3,
-        "name": "param0.Value.Properties.myString.Value.Length='0'",
+        "name": "param0.Value.Properties.myString.Value.Length='> 1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Object",
@@ -87,7 +87,7 @@
                     "value": {
                         "myString": {
                             "type": "string",
-                            "value": ""
+                            "value": "#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+"
                         }
                     }
                 },
@@ -110,8 +110,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": 190.9
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": false
             }
@@ -188,8 +188,9 @@
                     "type": "object",
                     "value": {
                         "myString": {
-                            "type": "number",
-                            "value": 485.3
+                            "type": "integer",
+                            "value": -447,
+                            "format": "int32"
                         }
                     }
                 },
@@ -200,6 +201,34 @@
     },
     {
         "id": 8,
+        "name": "param0.Value.Properties.myString.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "myString": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.myString.Value.Length=0"
+    },
+    {
+        "id": 9,
         "name": "param0.Value.Properties.Additional='Yes'",
         "server": "/",
         "version": "0.0.0",
@@ -217,20 +246,11 @@
                     "value": {
                         "myString": {
                             "type": "string",
-                            "value": "IgL%a0A>zG/b}'P|H}:Lt@N2:0Ln#`{']_6{q)_azDfneBI)3hWE0UXk`&vxx*U/bX9hjt2aw|o}Qg86e1kU`o&$eT4n_h]^A9=f22xRDHJh`(o/2WA(+9zu~jh(b)=v.TgJJsN'@XM<"
+                            "value": "A"
                         },
-                        "cgaahwfeixd": {
-                            "type": "object",
-                            "value": {
-                                "mpqfusqjwpdih": {
-                                    "type": "boolean",
-                                    "value": true
-                                }
-                            }
-                        },
-                        "zmnaiwmybjkac": {
-                            "type": "string",
-                            "value": "jKD"
+                        "sfxscqwnce": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },

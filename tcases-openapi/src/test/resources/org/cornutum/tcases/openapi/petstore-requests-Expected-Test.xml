@@ -33,7 +33,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -75,7 +75,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -117,8 +117,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="tags"/>
         </Var>
-        <Var name="tags.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="tags.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -140,7 +140,7 @@
     <TestCase id="3" name="tags.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="tags,tagsItemsLengthValid,tagsItemsMany,tagsItemsValue,tagsValue"/>
+      <Has name="properties" value="tags,tagsItemsLengthValid,tagsItemsMany,tagsItemsNotEmpty,tagsItemsValue,tagsValue"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -160,8 +160,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="tags"/>
         </Var>
-        <Var name="tags.Items.Contains.Value.Length" value="0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="tags.Items.Contains.Value.Length" value="&gt; 1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" value="Yes">
@@ -203,8 +203,8 @@
           <Has name="itemType" value="string"/>
           <Has name="paramName" value="tags"/>
         </Var>
-        <Var name="tags.Items.Contains.Value.Length" value="&gt; 0">
-          <Has name="itemMinLength" value="0"/>
+        <Var name="tags.Items.Contains.Value.Length" value="1">
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" value="No">
@@ -247,7 +247,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -290,7 +290,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -333,7 +333,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -376,7 +376,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -395,7 +395,50 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="limit.Type=null">
+    <TestCase id="9" failure="true" name="tags.Items.Contains.Value.Length=&apos;0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/pets"/>
+      <Has name="properties" value="tags,tagsItemsValue,tagsValue"/>
+      <Has name="server" value="http://petstore.swagger.io/api"/>
+      <Has name="title" value="Swagger Petstore"/>
+      <Has name="version" value="1.0.0"/>
+      <Input type="query">
+        <Var name="tags.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="tags"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="tags.Type" value="array">
+          <Has name="paramName" value="tags"/>
+        </Var>
+        <Var name="tags.Items.Size" value="1">
+          <Has name="paramName" value="tags"/>
+        </Var>
+        <Var name="tags.Items.Contains.Type" value="string">
+          <Has name="itemType" value="string"/>
+          <Has name="paramName" value="tags"/>
+        </Var>
+        <Var name="tags.Items.Contains.Value.Length" value="0" failure="true">
+          <Has name="itemMinLength" value="1"/>
+          <Has name="paramName" value="tags"/>
+        </Var>
+        <Var name="tags.Items.Unique" NA="true">
+          <Has name="paramName" value="tags"/>
+        </Var>
+        <Var name="limit.Defined" value="No">
+          <Has name="paramName" value="limit"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="limit.Type" NA="true">
+          <Has name="paramName" value="limit"/>
+        </Var>
+        <Var name="limit.Value.Is" NA="true">
+          <Has name="format" value="int32"/>
+          <Has name="paramName" value="limit"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true" name="limit.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit"/>
@@ -419,7 +462,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">
@@ -438,7 +481,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="limit.Type=&apos;Not integer&apos;">
+    <TestCase id="11" failure="true" name="limit.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/pets"/>
       <Has name="properties" value="limit"/>
@@ -462,7 +505,7 @@
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Contains.Value.Length" NA="true">
-          <Has name="itemMinLength" value="0"/>
+          <Has name="itemMinLength" value="1"/>
           <Has name="paramName" value="tags"/>
         </Var>
         <Var name="tags.Items.Unique" NA="true">

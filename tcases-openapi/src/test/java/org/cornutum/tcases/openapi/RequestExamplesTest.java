@@ -1581,7 +1581,9 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_39()
     {
     verifyRequestExamplesModel( "examples-error-39");
-    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.");
+    assertWarnings(
+      "examples,/examples,POST,param0: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: Empty string values not allowed for non-nullable parameter -- using minLength=1.");
     }
 
   /**
@@ -1665,8 +1667,7 @@ public class RequestExamplesTest extends OpenApiTest
     {
     verifyRequestExamplesModel( "examples-error-41");
     assertWarnings(
-      "examples,/examples,POST,requestBody,application/json: Example data unavailable -- no example defined for schema of type=integer. Inputs will be defined by schema.",
-      "examples,/examples,POST,param0: Empty string values not allowed -- using minLength=1.");
+      "examples,/examples,POST,requestBody,application/json: Example data unavailable -- no example defined for schema of type=integer. Inputs will be defined by schema.");
     }
 
   /**
@@ -1706,7 +1707,9 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_42()
     {
     verifyRequestExamplesModel( "examples-error-42");
-    assertWarnings( "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.");
+    assertWarnings(
+      "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0,charlie: Empty string values not allowed for non-nullable parameter -- using minLength=1.");
     }
 
   /**

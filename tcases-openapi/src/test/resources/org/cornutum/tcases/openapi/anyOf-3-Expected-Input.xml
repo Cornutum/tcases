@@ -107,12 +107,7 @@
             </Var>
             <VarSet name="Value" when="param0Value">
               <Var name="Property-Count">
-                <Value name="0" once="true">
-                  <When>
-                    <Not property="param0Properties">
-                    </Not>
-                  </When>
-                </Value>
+                <Value name="0" once="true" whenNot="param0Properties"/>
                 <Value name="&gt; 0" when="param0Properties"/>
               </Var>
               <VarSet name="Properties">

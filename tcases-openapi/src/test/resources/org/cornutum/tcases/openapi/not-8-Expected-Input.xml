@@ -42,8 +42,9 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                      <Value name="0" property="param0AlphaLengthValid"/>
+                      <Value name="0" failure="true"/>
+                      <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                      <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -123,8 +124,9 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length">
-                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
-                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="0" failure="true"/>
+                            <Value name="1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
+                            <Value name="&gt; 1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
                           </Var>
                         </VarSet>
                       </VarSet>
@@ -172,8 +174,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                      <Value name="0" property="param0AlphaLengthValid"/>
+                      <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                      <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -246,8 +248,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length">
-                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
-                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
+                            <Value name="&gt; 1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
                           </Var>
                         </VarSet>
                       </VarSet>
@@ -297,8 +299,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                      <Value name="0" property="param0AlphaLengthValid"/>
+                      <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                      <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -359,8 +361,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length" when="param0AdditionalRequiredNotExcluded">
-                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
-                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
+                            <Value name="&gt; 1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
                           </Var>
                           <Var name="Is">
                             <Value name="Any" property="param0AdditionalRequiredNotExcluded">
@@ -418,8 +420,8 @@
                   </Var>
                   <VarSet name="Value" when="param0AlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                      <Value name="0" property="param0AlphaLengthValid"/>
+                      <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                      <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
                     </Var>
                   </VarSet>
                 </VarSet>
@@ -480,8 +482,8 @@
                         </Var>
                         <VarSet name="Value" when="param0AdditionalRequiredValue">
                           <Var name="Length">
-                            <Value name="&gt; 0" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
-                            <Value name="0" property="param0AdditionalRequiredLengthValid"/>
+                            <Value name="1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
+                            <Value name="&gt; 1" property="param0AdditionalRequiredLengthValid, param0AdditionalRequiredNotEmpty"/>
                           </Var>
                         </VarSet>
                       </VarSet>

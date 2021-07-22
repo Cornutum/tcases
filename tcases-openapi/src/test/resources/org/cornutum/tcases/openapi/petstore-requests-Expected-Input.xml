@@ -35,9 +35,10 @@
             </Var>
             <VarSet name="Value" when="tagsItemsValue">
               <Var name="Length">
-                <Has name="itemMinLength" value="0"/>
-                <Value name="&gt; 0" property="tagsItemsLengthValid, tagsItemsNotEmpty"/>
-                <Value name="0" property="tagsItemsLengthValid"/>
+                <Has name="itemMinLength" value="1"/>
+                <Value name="0" failure="true"/>
+                <Value name="1" property="tagsItemsLengthValid, tagsItemsNotEmpty"/>
+                <Value name="&gt; 1" property="tagsItemsLengthValid, tagsItemsNotEmpty"/>
               </Var>
             </VarSet>
           </VarSet>

@@ -38,8 +38,9 @@
               </Var>
               <VarSet name="Value" when="param0AlphaValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                  <Value name="0" property="param0AlphaLengthValid"/>
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                  <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
                 </Var>
                 <Var name="Matches-Pattern" when="param0AlphaLengthValid">
                   <Has name="pattern" value="1999-.*"/>
@@ -73,10 +74,11 @@
                   </Var>
                   <VarSet name="Value" when="param0BravoItemsValue">
                     <Var name="Length" when="param0BravoItemsNotExcluded">
-                      <Has name="itemMinLength" value="0"/>
+                      <Has name="itemMinLength" value="1"/>
                       <Has name="itemNotEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
-                      <Value name="&gt; 0" property="param0BravoItemsLengthValid, param0BravoItemsNotEmpty"/>
-                      <Value name="0" property="param0BravoItemsLengthValid"/>
+                      <Value name="0" failure="true"/>
+                      <Value name="1" property="param0BravoItemsLengthValid, param0BravoItemsNotEmpty"/>
+                      <Value name="&gt; 1" property="param0BravoItemsLengthValid, param0BravoItemsNotEmpty"/>
                     </Var>
                     <Var name="Is">
                       <Value name="Any" property="param0BravoItemsNotExcluded">

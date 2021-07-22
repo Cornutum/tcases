@@ -24,7 +24,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -152,7 +152,7 @@
     <TestCase id="1" name="pathSimple.Value.Length=&apos;&gt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
-      <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelValue,pathOneOf,pathOneOfAlternative1,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryOneOf,queryOneOfAlternative1,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
+      <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelValue,pathOneOf,pathOneOfAlternative1,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryOneOf,queryOneOfAlternative1,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Locations"/>
       <Has name="version" value="0.0.0"/>
@@ -164,7 +164,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="0">
+        <Var name="headerSimple.Value.Length" value="&gt; 1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -304,7 +304,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -432,7 +432,7 @@
     <TestCase id="3" name="pathOneOf.Alternative.1.Value.Length=&apos;16&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
-      <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelValue,pathOneOf,pathOneOfAlternative1,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableNotEmpty,queryNullableValue,queryOneOf,queryOneOfAlternative1,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
+      <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelValue,pathOneOf,pathOneOfAlternative1,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableNotEmpty,queryNullableValue,queryOneOf,queryOneOfAlternative1,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Locations"/>
       <Has name="version" value="0.0.0"/>
@@ -444,7 +444,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="0">
+        <Var name="headerSimple.Value.Length" value="&gt; 1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -584,7 +584,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -724,7 +724,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -864,7 +864,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1004,7 +1004,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1144,7 +1144,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1284,7 +1284,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1424,7 +1424,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1564,7 +1564,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1704,7 +1704,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1844,7 +1844,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -1984,7 +1984,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2124,7 +2124,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2264,7 +2264,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2404,7 +2404,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2544,7 +2544,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2684,7 +2684,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2824,7 +2824,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -2964,7 +2964,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -3104,7 +3104,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -3244,7 +3244,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -3789,7 +3789,147 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="27" failure="true" name="querySimple.Type=null">
+    <TestCase id="27" failure="true" name="headerSimple.Value.Length=&apos;0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
+      <Has name="properties" value="headerSimple,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Locations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="headerSimple.Defined" value="Yes">
+          <Has name="paramName" value="headerSimple"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="headerSimple.Type" value="string">
+          <Has name="paramName" value="headerSimple"/>
+        </Var>
+        <Var name="headerSimple.Value.Length" value="0" failure="true">
+          <Has name="paramName" value="headerSimple"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="pathSimple.Defined" value="Yes">
+          <Has name="paramName" value="pathSimple"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="pathSimple.Type" value="string">
+          <Has name="paramName" value="pathSimple"/>
+        </Var>
+        <Var name="pathSimple.Value.Length" value="1">
+          <Has name="paramName" value="pathSimple"/>
+        </Var>
+        <Var name="pathLabel.Defined" value="Yes">
+          <Has name="paramName" value="pathLabel"/>
+          <Has name="style" value="label"/>
+        </Var>
+        <Var name="pathLabel.Type" value="string">
+          <Has name="paramName" value="pathLabel"/>
+        </Var>
+        <Var name="pathLabel.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="pathLabel"/>
+        </Var>
+        <Var name="pathDate.Defined" value="Yes">
+          <Has name="paramName" value="pathDate"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="pathDate.Type" value="string">
+          <Has name="paramName" value="pathDate"/>
+        </Var>
+        <Var name="pathDate.Value.Length" value="10">
+          <Has name="format" value="date"/>
+          <Has name="paramName" value="pathDate"/>
+        </Var>
+        <Var name="pathOneOf.Defined" value="Yes">
+          <Has name="paramName" value="pathOneOf"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.Used" value="0">
+          <Has name="paramName" value="pathOneOf"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.0.Type" value="string">
+          <Has name="paramName" value="pathOneOf"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.0.Value.Length" value="17">
+          <Has name="paramName" value="pathOneOf"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.0.Value.Matches-Pattern" value="Yes">
+          <Has name="paramName" value="pathOneOf"/>
+          <Has name="pattern" value="^[A-Z]*$"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="pathOneOf"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="pathOneOf"/>
+        </Var>
+        <Var name="pathOneOf.Alternative.1.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="pathOneOf"/>
+          <Has name="pattern" value="^[A-Z]*$"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="querySimple.Defined" value="Yes">
+          <Has name="paramName" value="querySimple"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="querySimple.Type" value="string">
+          <Has name="paramName" value="querySimple"/>
+        </Var>
+        <Var name="querySimple.Value.Length" value="1">
+          <Has name="paramName" value="querySimple"/>
+        </Var>
+        <Var name="queryNullable.Defined" value="Yes">
+          <Has name="paramName" value="queryNullable"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="queryNullable.Type" value="string">
+          <Has name="paramName" value="queryNullable"/>
+        </Var>
+        <Var name="queryNullable.Value.Length" value="0">
+          <Has name="paramName" value="queryNullable"/>
+        </Var>
+        <Var name="queryUuid.Defined" value="Yes">
+          <Has name="paramName" value="queryUuid"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="queryUuid.Type" value="string">
+          <Has name="paramName" value="queryUuid"/>
+        </Var>
+        <Var name="queryUuid.Value.Length" value="36">
+          <Has name="format" value="uuid"/>
+          <Has name="paramName" value="queryUuid"/>
+        </Var>
+        <Var name="queryOneOf.Defined" value="Yes">
+          <Has name="paramName" value="queryOneOf"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.Used" value="0">
+          <Has name="paramName" value="queryOneOf"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.0.Type" value="string">
+          <Has name="paramName" value="queryOneOf"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.0.Value.Length" value="17">
+          <Has name="paramName" value="queryOneOf"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.0.Value.Matches-Pattern" value="Yes">
+          <Has name="paramName" value="queryOneOf"/>
+          <Has name="pattern" value="^[A-Z]*$"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.1.Type" NA="true">
+          <Has name="paramName" value="queryOneOf"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.1.Value.Length" NA="true">
+          <Has name="paramName" value="queryOneOf"/>
+        </Var>
+        <Var name="queryOneOf.Alternative.1.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="queryOneOf"/>
+          <Has name="pattern" value="^[A-Z]*$"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="28" failure="true" name="querySimple.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -3804,7 +3944,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -3929,7 +4069,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="28" failure="true" name="querySimple.Type=&apos;Not string&apos;">
+    <TestCase id="29" failure="true" name="querySimple.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -3944,7 +4084,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4069,7 +4209,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="29" failure="true" name="querySimple.Value.Length=&apos;0&apos;">
+    <TestCase id="30" failure="true" name="querySimple.Value.Length=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -4084,7 +4224,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4209,7 +4349,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="30" failure="true" name="queryNullable.Defined=&apos;No&apos;">
+    <TestCase id="31" failure="true" name="queryNullable.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -4224,7 +4364,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4349,7 +4489,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="31" failure="true" name="queryNullable.Type=&apos;Not string&apos;">
+    <TestCase id="32" failure="true" name="queryNullable.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -4364,7 +4504,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4489,7 +4629,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="32" failure="true" name="queryUuid.Defined=&apos;No&apos;">
+    <TestCase id="33" failure="true" name="queryUuid.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue"/>
@@ -4504,7 +4644,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4629,7 +4769,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="33" failure="true" name="queryUuid.Type=null">
+    <TestCase id="34" failure="true" name="queryUuid.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid"/>
@@ -4644,7 +4784,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4769,7 +4909,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="34" failure="true" name="queryUuid.Type=&apos;Not string&apos;">
+    <TestCase id="35" failure="true" name="queryUuid.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid"/>
@@ -4784,7 +4924,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -4909,7 +5049,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="35" failure="true" name="queryUuid.Value.Length=&apos;35&apos;">
+    <TestCase id="36" failure="true" name="queryUuid.Value.Length=&apos;35&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidValue"/>
@@ -4924,7 +5064,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5049,7 +5189,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="36" failure="true" name="queryUuid.Value.Length=&apos;37&apos;">
+    <TestCase id="37" failure="true" name="queryUuid.Value.Length=&apos;37&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidValue"/>
@@ -5064,7 +5204,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5189,7 +5329,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="37" failure="true" name="queryOneOf.Defined=&apos;No&apos;">
+    <TestCase id="38" failure="true" name="queryOneOf.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOfAlternative0,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -5204,7 +5344,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5329,7 +5469,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="38" failure="true" name="queryOneOf.Alternative.0.Type=null">
+    <TestCase id="39" failure="true" name="queryOneOf.Alternative.0.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -5344,7 +5484,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5469,7 +5609,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="39" failure="true" name="queryOneOf.Alternative.0.Type=&apos;Not string&apos;">
+    <TestCase id="40" failure="true" name="queryOneOf.Alternative.0.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -5484,7 +5624,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5609,7 +5749,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="40" failure="true" name="queryOneOf.Alternative.0.Value.Length=&apos;16&apos;">
+    <TestCase id="41" failure="true" name="queryOneOf.Alternative.0.Value.Length=&apos;16&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -5624,7 +5764,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5749,7 +5889,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="41" failure="true" name="queryOneOf.Alternative.0.Value.Matches-Pattern=&apos;No&apos;">
+    <TestCase id="42" failure="true" name="queryOneOf.Alternative.0.Value.Matches-Pattern=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative0,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -5764,7 +5904,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -5889,7 +6029,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="42" failure="true" name="queryOneOf.Alternative.1.Value.Length=&apos;0&apos;">
+    <TestCase id="43" failure="true" name="queryOneOf.Alternative.1.Value.Length=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative1,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -5904,7 +6044,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -6029,7 +6169,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="43" failure="true" name="queryOneOf.Alternative.1.Value.Length=&apos;17&apos;">
+    <TestCase id="44" failure="true" name="queryOneOf.Alternative.1.Value.Length=&apos;17&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative1,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -6044,7 +6184,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
@@ -6169,7 +6309,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="44" failure="true" name="queryOneOf.Alternative.1.Value.Matches-Pattern=&apos;Yes&apos;">
+    <TestCase id="45" failure="true" name="queryOneOf.Alternative.1.Value.Matches-Pattern=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/locations/{pathSimple}/{pathLabel}/{pathDate}/{pathOneOf}"/>
       <Has name="properties" value="headerSimple,headerSimpleLengthValid,headerSimpleNotEmpty,headerSimpleValue,pathDate,pathDateLengthValid,pathDateNotEmpty,pathDateValue,pathLabel,pathLabelLengthValid,pathLabelNotEmpty,pathLabelValue,pathOneOf,pathOneOfAlternative0,pathOneOfLengthValid,pathOneOfNotEmpty,pathOneOfValue,pathSimple,pathSimpleLengthValid,pathSimpleNotEmpty,pathSimpleValue,queryNullable,queryNullableLengthValid,queryNullableValue,queryOneOf,queryOneOfAlternative1,queryOneOfLengthValid,queryOneOfNotEmpty,queryOneOfValue,querySimple,querySimpleLengthValid,querySimpleNotEmpty,querySimpleValue,queryUuid,queryUuidLengthValid,queryUuidNotEmpty,queryUuidValue"/>
@@ -6184,7 +6324,7 @@
         <Var name="headerSimple.Type" value="string">
           <Has name="paramName" value="headerSimple"/>
         </Var>
-        <Var name="headerSimple.Value.Length" value="&gt; 0">
+        <Var name="headerSimple.Value.Length" value="1">
           <Has name="paramName" value="headerSimple"/>
         </Var>
       </Input>
