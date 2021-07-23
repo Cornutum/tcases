@@ -170,7 +170,7 @@ public final class RequestCases
         DataValue.Type idType = nullFailureTypes.get(id);
         return
           requestCases.stream()
-          .filter( rc -> isStringEmptyFailureDup( rc, id) || isUndefinedFailureDup( rc, id, idType));
+          .filter( rc -> isArrayEmptyFailureDup( rc, id) || isStringEmptyFailureDup( rc, id) || isUndefinedFailureDup( rc, id, idType));
         })
       .collect( toList());
     }
@@ -237,6 +237,19 @@ public final class RequestCases
     return
       getFailureData( requestCase)
       .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId)))
+      .map( failure -> failure instanceof ParamData || !"application/json".equals( failure.getMediaType()))
+      .orElse( false);
+    }
+
+  /**
+   * Returns if the given request case represents a failure caused by an empty array that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isArrayEmptyFailureDup( RequestCase requestCase, String inputId)
+    {
+    return
+      getFailureData( requestCase)
+      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId)))
       .map( failure -> failure instanceof ParamData || !"application/json".equals( failure.getMediaType()))
       .orElse( false);
     }
