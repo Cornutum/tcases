@@ -20,65 +20,111 @@
                         "bravo": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "T"
+                                }
                             ]
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "A"
+                            "value": "H"
                         },
-                        "ijwcjcjlymlwy": {
+                        "zkwgiietsy": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": -396573646,
+                                    "value": -903018319,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "D"
+                                    "value": "d"
                                 },
-                                "la": {
+                                "qqgmofnigv": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "azl": {
+                                    "type": "string",
+                                    "value": "<h}W\"S"
+                                },
+                                "hyfhgtx": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": " t^]}<M"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "_JfU29n"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "zgvkyxeybmgpmhn": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": -376489142,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "M"
+                                },
+                                "kfdhpn": {
                                     "type": "object",
                                     "value": {
                                     }
+                                },
+                                "m": {
+                                    "type": "number",
+                                    "value": -307.2
                                 }
                             }
                         },
-                        "tvehglmzhvriwg": {
+                        "xcvmi": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": -786847280,
+                                    "value": -369638429,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "n"
+                                    "value": ")"
                                 },
-                                "rbh": {
-                                    "type": "string",
-                                    "value": "t\\uM"
-                                }
-                            }
-                        },
-                        "xsc": {
-                            "type": "object",
-                            "value": {
-                                "optional": {
-                                    "type": "integer",
-                                    "value": -311022770,
-                                    "format": "int32"
+                                "a": {
+                                    "type": "object",
+                                    "value": {
+                                        "uro": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "gemrrcgqggb": {
+                                            "type": "number",
+                                            "value": -521.6
+                                        }
+                                    }
                                 },
-                                "required": {
-                                    "type": "string",
-                                    "value": "U"
-                                },
-                                "erecohwzkwg": {
-                                    "type": "integer",
-                                    "value": 464,
-                                    "format": "int32"
+                                "xpijbdfzaymkdz": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "%5`"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "=w*aG)"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -150,8 +196,8 @@
         ]
     },
     {
-        "id": 4,
-        "name": "param0.Alternative.0.Value.Properties.alpha.Defined='No'",
+        "id": 5,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Value.Length='> 1'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -171,9 +217,40 @@
                             "value": [
                                 {
                                     "type": "string",
-                                    "value": "D"
+                                    "value": "p"
                                 }
                             ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "Ea0u'/2aK8SGQIw#BTF<wky_\\,5`6`?$c7+I|5t1@vzO{1Rev5Ia\"Bjp`lJ'(K3BX']2Sv]%?6s~4Bw|&QY? yMz-/v]FC'$zBmfm&A0X@bP^QzAABKx|b%#s@!["
+                        },
+                        "aezwtxhnklscmrj": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "/HBECHM+F~z)YfDwg9;:nKUelV0{f_\\+K Vm);X&p8a/ck^-CTu=Dm3ntx,[32\\PGylRW@Lf$%P%\"Zo.z:A,P VUn5d'bHR;73Gm6l"
+                                }
+                            }
+                        },
+                        "d": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "w&DB"
+                                }
+                            }
+                        },
+                        "elbakwfnjyjol": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "=wo>%]>e~ym,y\\PEzc?15mO7,8(7%va;m?[00wkbKm2!E0t\"L(+D[J]*^)$3_rl#u\""
+                                }
+                            }
                         }
                     }
                 },
@@ -201,13 +278,17 @@
                         "bravo": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "W"
+                                }
                             ]
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "F"
+                            "value": "a"
                         },
-                        "fjxejvwopqsuk": {
+                        "bjk": {
                             "type": "object",
                             "value": {
                                 "optional": {
@@ -217,28 +298,29 @@
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "<"
+                                    "value": "7"
                                 },
-                                "cvjwaxasip": {
-                                    "type": "string",
-                                    "value": "um[Av"
+                                "xheklr": {
+                                    "type": "boolean",
+                                    "value": true
                                 },
-                                "qlodjxrimkob": {
+                                "wfkxkftv": {
+                                    "type": "integer",
+                                    "value": -134,
+                                    "format": "int32"
+                                },
+                                "bnecunvszwba": {
                                     "type": "array",
                                     "value": [
                                         {
                                             "type": "string",
-                                            "value": "2Mv%"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "=yk."
+                                            "value": "Q;"
                                         }
                                     ]
                                 }
                             }
                         },
-                        "jbttlrnqn": {
+                        "kwux": {
                             "type": "object",
                             "value": {
                                 "optional": {
@@ -248,23 +330,15 @@
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": ")"
+                                    "value": "7"
                                 },
-                                "zgdihowfsa": {
-                                    "type": "string",
-                                    "value": ""
-                                },
-                                "ppha": {
-                                    "type": "string",
-                                    "value": "jcTNm'}Q"
-                                },
-                                "rvdzlahrxqxxhno": {
+                                "lbyrqfbmdxssa": {
                                     "type": "number",
-                                    "value": 642.0
+                                    "value": -375.6
                                 }
                             }
                         },
-                        "ncteevpkkbr": {
+                        "ull": {
                             "type": "object",
                             "value": {
                                 "optional": {
@@ -274,98 +348,17 @@
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "4"
+                                    "value": "p"
                                 },
-                                "qtgbqukcqatzzc": {
-                                    "type": "array",
-                                    "value": [
-                                        {
-                                            "type": "string",
-                                            "value": ""
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "A/"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "]"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Value.Is='> 0'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Not",
-        "path": "/not",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "w '.OP:k@'[Sj A+%x\"8G,v^ruR[jo7<#gE0FSm>`e=O6 J*i>{ 75x/fr@MT@L[J1Cm2FKb,K#G%v@/zs+bH3r9B&Sf-tf!e9(8Pt\\y/4D*Su'_2m=A3T/#+-2RVNmHO1ALiEoZHDlucPtI95zMVkISXh\\+>8uGOoEw}5Uy_qXF<7ZiuT#W?{<9xq{!A"
-                                }
-                            ]
-                        },
-                        "phkjhykfnmhu": {
-                            "type": "object",
-                            "value": {
-                                "optional": {
+                                "luaczmsevdxrypu": {
                                     "type": "integer",
-                                    "value": 692102562,
+                                    "value": 226,
                                     "format": "int32"
                                 },
-                                "required": {
-                                    "type": "string",
-                                    "value": "~VY-@_xeB\\;3Hbn\\g2'%i>^IKr(K#\"IIHOzoXaOyP` IGO[mO>Lkeh4ESSIKPSkt]nf}Rgq I&FxTA-yiGij^\"sva$9PV_tdx@A-,B OSnu~1gK4gR5|K#BH%a!Ahbo%\\$ 6m+eyi80HBJi9vEo!caH?Z~H=r@:M%\\H++aipwcniV><SL :UW5}u'lu0uP |.),B_iV/]whB,D+'UN 9L{*/Uclq@m"
-                                }
-                            }
-                        },
-                        "juapsfgb": {
-                            "type": "object",
-                            "value": {
-                                "optional": {
+                                "wtihu": {
                                     "type": "integer",
-                                    "value": 1024242063,
+                                    "value": -910,
                                     "format": "int32"
-                                },
-                                "required": {
-                                    "type": "string",
-                                    "value": "FgGkugBI3P\\S*v4b2m.Y ;>Y9SI&4:M-<=e:rHiyk}TEL9Nh{NZnLp%5/'^/D{9=(g: WR|ABk@A:_/m2ma&FS<kF:\"#tpPhv%k[Bdt2*]k$3C!umi\\WH**=T\"J?v&k;&<%vC``DHWkD1=ngV/pUF~(0_u^tE<l_XB#M!.1xp2^$[|jz`3},tG7#3}MfjlUE9lhQz`Q+S<,N9{+pTaGV%5.=0)5D6Pxqi<FbmW1pCV8vUla#QPUvkW[.bc"
-                                }
-                            }
-                        },
-                        "hqpmxogbypvxvx": {
-                            "type": "object",
-                            "value": {
-                                "optional": {
-                                    "type": "integer",
-                                    "value": 566427905,
-                                    "format": "int32"
-                                },
-                                "required": {
-                                    "type": "string",
-                                    "value": "A^-(G`%UgT18_7plJ"
                                 }
                             }
                         }
@@ -395,37 +388,72 @@
                         "bravo": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "4"
+                                }
                             ]
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "e"
+                            "value": "^"
                         },
                         "charlie": {
-                            "type": "boolean",
-                            "value": true
+                            "type": "object",
+                            "value": {
+                            }
                         },
-                        "ttgnju": {
+                        "jj": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": -207859014,
+                                    "value": -513353000,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "m"
+                                    "value": "i"
                                 },
-                                "kfy": {
+                                "ogsjbdtwizktsez": {
+                                    "type": "number",
+                                    "value": -276.1
+                                },
+                                "pqr": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "qiwukujiifcbjfh": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "utxxroj": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
                                     "type": "integer",
-                                    "value": -465,
+                                    "value": -1032285589,
                                     "format": "int32"
                                 },
-                                "fqae": {
-                                    "type": "array",
-                                    "value": [
-                                    ]
+                                "required": {
+                                    "type": "string",
+                                    "value": "w"
+                                },
+                                "atr": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "mnuscynhavvtx": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                },
+                                "fkkxggsddjjw": {
+                                    "type": "object",
+                                    "value": {
+                                    }
                                 }
                             }
                         }
@@ -453,8 +481,8 @@
                     "type": "object",
                     "value": {
                         "charlie": {
-                            "type": "boolean",
-                            "value": true
+                            "type": "string",
+                            "value": "--\\)"
                         }
                     }
                 },
@@ -463,8 +491,8 @@
         ]
     },
     {
-        "id": 11,
-        "name": "param0.Alternative.1.Value.Properties.alpha.Value.Length='> 1'",
+        "id": 13,
+        "name": "param0.Alternative.1.Value.Properties.Additional.Value.Properties.optional.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -479,38 +507,62 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
+                        "alpha": {
+                            "type": "string",
+                            "value": "'"
+                        },
+                        "charlie": {
                             "type": "array",
                             "value": [
                                 {
                                     "type": "string",
-                                    "value": "r"
+                                    "value": "9* I]"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "YY1X\"o3"
                                 }
                             ]
                         },
-                        "alpha": {
-                            "type": "string",
-                            "value": "38!\"s@o!Z|oqBPU!ibPz1Je>T9@X[U>f3ln8r*eS[Nv~ o@gfV"
-                        },
-                        "charlie": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "qltsyzhxpsr": {
+                        "tmjrurdkjlnuycni": {
                             "type": "object",
                             "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
                                 "required": {
                                     "type": "string",
-                                    "value": "~heV8]VFu3N-Z\"8!=L|?}]\\Za)]nUE!d4lr2,7_dm0>/^{ItRBx#Nyis/\\CLPO8Fob{tcKh`6BFb2fJ601DSiwj6(^]HKH4,eK[d6h`=Sh38,#_E|d$)AM[CM-\"33j*J|M^6XrCi$]Uy1e_Eap6-dl+TF-7MgNA7,}j\\no[0/WH0iD'JW4$cqYD4V:&CPsRZ<t2@EC'D5s|w f5]sYFCf}-7V,RuQ"
+                                    "value": "O"
+                                },
+                                "jvbbhsxsi": {
+                                    "type": "integer",
+                                    "value": 675,
+                                    "format": "int32"
                                 }
                             }
                         },
-                        "jatlt": {
+                        "smjbqedbqelpm": {
                             "type": "object",
                             "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
                                 "required": {
                                     "type": "string",
-                                    "value": "ofco*)T>7bBD=t'4=cY)BnWCcUw<VgQXow SB?1ic?;_QXy<?B;98K,.<O8Q+DEuu#2T/+m?p=*'iNq5qw~$C%CEMf1rCbw\"G>8waJ"
+                                    "value": "*"
+                                },
+                                "vsxhpobb": {
+                                    "type": "array",
+                                    "value": [
+                                    ]
+                                },
+                                "zfsxlcwthhx": {
+                                    "type": "string",
+                                    "value": "AE"
                                 }
                             }
                         }
@@ -537,44 +589,58 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "charlie": {
+                        "bravo": {
                             "type": "array",
                             "value": [
                                 {
                                     "type": "string",
-                                    "value": "E"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "$XN"
+                                    "value": "Qsasy*%z/}%}-ErS3lA5:yAr >QOygZwqb.QjZlanR~eNzw/BImeJtqU~9880_v2j3F::$NrDDsYw8pd@|)W3W@X{Id.xihw,Kbbn%o7e)qE6:~-anh-ijQ3C[87g)ED~Q#B'kgi :!*~.;B\"yBboqDfL.F$$BTQma7s0AdaYPQ.R$hvoMSwzSJ,^mmt\\h+/|@sp151G .v{\"`~H!GHy"
                                 }
                             ]
                         },
-                        "ieefmhdjhwrqybq": {
+                        "charlie": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "wegodgr": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": 862251659,
+                                    "value": 673105117,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "|qfwy82vJJ\"-%PX6c)I`ZQHs|`k_(Xzj!SGlFAAs+=0WGXrC?SxD B~b]+C(}tK`ofj56]RfBuh-%%*ik+j5}[yJvxer$v%`@bBA_lD~i_g[4YJcPuc][lzghr6\"F3kx}ndF8&+@{~MY1bQ`o_Agr>"
+                                    "value": "(v3(SKi<[jYago[lymUfdD\\cCYK_kX=Ep=`] O+(y8\\m>}sJ@/p,M#sJb"
                                 }
                             }
                         },
-                        "ehcvqcsvfyvdjgk": {
+                        "myiafshbqm": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": 88882325,
+                                    "value": 1016227137,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": ")HTU1CO^vD#{H|8B  _u9bPFC>wx50?SZXl`x^i<:yDi|-23EO5f6O|Hs/<>8:~D*@vVbr+,m\\Mfv0u&<I&CJ?E0n7_Kn$ UJY{</R.@RKnX`.q=OK@g#{zjhn2yU[}M!lGi^vf'P9l-Q9i%(-#wEv%d"
+                                    "value": "Tru,s'8kCNN1^?D>#>ZyP/qm5x~L-y{A>})hY&D14xfT$u796}7K]y]?NsY5+s\"mO\"`&3FzM/yH=IcY;f6/$?M:5]d"
+                                }
+                            }
+                        },
+                        "rbntaqr": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 765642281,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "&-*#+iGQV:/a$<{JUqD;+Gch3=2_R#z1>ddP1GCg<rz7%h%%9,!*XYv`nkQ7bvIObM3676#F5Uuq(OmKaleB>c&x}JL4D9(BwIc(D<,h.)#`6-r.IX8<\"K&#i'yP(bIVYb2?r,JX9U)'@VU:ATAq(<^fOQ)3@+2xU3x8[RAzJzy$?sjdq1OO5-Wu_fYVQC~\\S#)h]5[zyS(c7Nvr7)JIB2r6"
                                 }
                             }
                         }
@@ -604,80 +670,82 @@
                         "bravo": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "N"
+                                }
                             ]
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "{"
+                            "value": "h"
                         },
-                        "sjvyprhls": {
+                        "efsnjoestatbz": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": -900864161,
+                                    "value": -107377279,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "J"
+                                    "value": "j"
                                 },
-                                "nzywp": {
-                                    "type": "object",
-                                    "value": {
-                                        "tcktrhkqplr": {
-                                            "type": "number",
-                                            "value": -50.7
-                                        },
-                                        "nondj": {
-                                            "type": "array",
-                                            "value": [
-                                                {
-                                                    "type": "string",
-                                                    "value": "yiD=JTJ?"
-                                                },
-                                                {
-                                                    "type": "string",
-                                                    "value": ""
-                                                },
-                                                {
-                                                    "type": "string",
-                                                    "value": "W4ayZ[*]"
-                                                }
-                                            ]
-                                        },
-                                        "foeihlp": {
-                                            "type": "number",
-                                            "value": -612.0
-                                        }
-                                    }
+                                "cjmyon": {
+                                    "type": "boolean",
+                                    "value": true
                                 },
-                                "tpyjpnyturohm": {
-                                    "type": "string",
-                                    "value": "x^rOD"
-                                },
-                                "drmugjecr": {
+                                "qltrjwvmcleek": {
                                     "type": "integer",
-                                    "value": -95,
+                                    "value": -265,
                                     "format": "int32"
+                                },
+                                "yyvplwyzjmqetpzr": {
+                                    "type": "number",
+                                    "value": 951.2
                                 }
                             }
                         },
-                        "wbd": {
+                        "xvevjybslzebs": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": -875490085,
+                                    "value": -315902633,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "O"
+                                    "value": "\\"
                                 },
-                                "uoqgrty": {
+                                "js": {
+                                    "type": "object",
+                                    "value": {
+                                        "huedwk": {
+                                            "type": "number",
+                                            "value": 6.0
+                                        },
+                                        "breggiroqop": {
+                                            "type": "integer",
+                                            "value": -1013,
+                                            "format": "int32"
+                                        },
+                                        "bmf": {
+                                            "type": "integer",
+                                            "value": -724,
+                                            "format": "int32"
+                                        }
+                                    }
+                                },
+                                "ibq": {
+                                    "type": "integer",
+                                    "value": -342,
+                                    "format": "int32"
+                                },
+                                "nhknjaucnnnuyym": {
                                     "type": "number",
-                                    "value": -552.7
+                                    "value": -847.2
                                 }
                             }
                         }
@@ -706,7 +774,7 @@
                     "value": {
                         "alpha": {
                             "type": "string",
-                            "value": "w\\cY#@;2HDaeM]\"yg)S(.]|ev.);!ZFh'{DB=6+;Z|=Vv)8j!NW`i^=P3IOq/6t#$v|&M@ vD*c>$RQ&ffTM=kE67Rp{2Nd|z%C>tZQBHc[KV?,kj=BE@{aK+/Z$OJB?6s2#_!_%b#1d\"vli/^,M0:|0n!<Ptd.x9SfXcD|f|xuCAL'J#.9M9_]|uZ5<]'J_!jGj7gjcd=;n6h'?dso:Y.7|6+?odqd;{YWMf.NF[{t# Ihc[otB,_dx2,8Ic@"
+                            "value": "Cu309Xbc7MeGG]w,jxzTN^x:QpX/O?!(G[`.'.@$\"=t$.T:1M_:,SD]J1?_}+.qiDRX2XcW.'dD.[-q{yzb[a#d=kBSCDZ#D>_~Fw\\#hD0!b8mNe7Yhzv|#-UmZA\\b:6vpLh}[k6GM1jF:s|{+,h0k5sO;~.}2MOM&%NM5p>5wZ:^p{F]=9;T@"
                         }
                     }
                 },
@@ -715,8 +783,8 @@
         ]
     },
     {
-        "id": 17,
-        "name": "param0.Alternative.2.Value.Properties.bravo.Items.Size='1'",
+        "id": 19,
+        "name": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.optional.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -731,39 +799,45 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "2"
-                                }
-                            ]
-                        },
-                        "nhthpuijvmi": {
+                        "svgvtnub": {
                             "type": "object",
                             "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
                                 "required": {
                                     "type": "string",
-                                    "value": "!;jV3MWy?ZV*[g~Yq\\md#qu8Z5j{~!WAv?PT]\\h`5g;U0ybP-j\\gs_J@CWg=cEw$SJva\"6Q&U<uY7T 5TiG{>$Zj(<x<i`BnbSs>r?q(i;P*VDG<aaok4Nf'P+DY87f?zLjPbZ&P$I_u,xQ\\~7,m.bN)6i)N/$)0dthuQeH0PsD?_||XX}fd!^5|zrnnwNzg*a?}w05alA@E8u6$n|r"
-                                }
-                            }
-                        },
-                        "dutpemsu": {
-                            "type": "object",
-                            "value": {
-                                "required": {
-                                    "type": "string",
-                                    "value": "wZ?P#/$1oDr5h\"A5$*f%u{xb5_5wW|>B$T8x}w&Nt:KGY1\"9"
+                                    "value": "T"
+                                },
+                                "ibtqdpcsrdfw": {
+                                    "type": "object",
+                                    "value": {
+                                    }
                                 }
                             }
                         },
-                        "sk": {
+                        "tmvpmlsiwdcldb": {
                             "type": "object",
                             "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                },
                                 "required": {
                                     "type": "string",
-                                    "value": "ABSz)z2.+7}oTjj&iJ&eN\"7)Eqk)oCx1lTka,P2Zi,,G'*m3s68Ot'#i$@z02Q#}[^P+s-W|s=\""
+                                    "value": "z"
+                                },
+                                "bxjcogipki": {
+                                    "type": "integer",
+                                    "value": -323,
+                                    "format": "int32"
+                                },
+                                "womjhtxrfedyyu": {
+                                    "type": "string",
+                                    "value": "8"
                                 }
                             }
                         }
@@ -790,21 +864,44 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "B`0Ekp,;m)UZ}(n^5>eo`2%_&y4Df\"7W3j3Ri%k#:Y8~(,(95O<d`)Rd8A7zn<e@Q&QGqFI#{T5hKoH*M27Y+u3Khp~isgv|?z5[!A%I&N@9Dz{Jqp\"^!eqo}3C)msf&NnXD@M^1mC`>AWGT\\1KcZ(Pay)(^TWe1KKk]7[jq75]7,yq '$nr32&H3-N7Gjd4FTNS82vREG4vckVbLYb6Z3JmKj7q7jJ0X9sN6x3tEML7aX4qQm22ORDaD0Kzs0"
+                                }
+                            ]
+                        },
                         "alpha": {
                             "type": "string",
-                            "value": "%TsV>?XcnTnS'&NR^n8\",(aH:viFd[`u&*4NFOfZj8y,O#&BAXbN)y&Zcr y3$[`*S|ie*2FO1~IL|f$|??55XLQq'\"Y0bmQ4AB.>"
+                            "value": "G;g0vA[j'GzPr&:r@J:Zl~:zz,:h+I/%?FUAigZPWq !(w%MV@l5}C@(HeOZ !:~"
                         },
-                        "linupglw": {
+                        "odoraz": {
                             "type": "object",
                             "value": {
                                 "optional": {
                                     "type": "integer",
-                                    "value": 946586981,
+                                    "value": 518250791,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "&?l)x8[xw--\\NG%7sqA(F<V0+b3QNW~Y$gSHvq:i:Dm/6g>Aaq;X?ICgTc>u=5P?586o/Um`3fj29>7/Oye\\a8SY{tnol*4%m;90v]lk5U/mC*'fy\\?>"
+                                    "value": "Ad*|G)T~TR(~Je8Ax|I?!u}!yh#"
+                                }
+                            }
+                        },
+                        "wtsiff": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 764423632,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "L3n&Yb dG1Mw#AfOFFFd:;.t6T2H~KA?xT|kOQ9}1i"
                                 }
                             }
                         }
@@ -857,73 +954,64 @@
                         "bravo": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "R"
+                                }
                             ]
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "Y"
+                            "value": "P"
                         },
-                        "mexcjoyy": {
+                        "mvdjawgtcmnbjj": {
                             "type": "object",
                             "value": {
                                 "extra": {
-                                    "type": "string",
-                                    "value": ""
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": ".[>8}tf"
+                                        }
+                                    ]
                                 },
                                 "optional": {
                                     "type": "integer",
-                                    "value": -1057042837,
+                                    "value": -247941088,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "Y"
+                                    "value": "C"
                                 },
-                                "itoecnjpgjwpsk": {
-                                    "type": "number",
-                                    "value": 799.3
-                                }
-                            }
-                        },
-                        "enwtl": {
-                            "type": "object",
-                            "value": {
-                                "extra": {
+                                "boy": {
                                     "type": "object",
                                     "value": {
-                                        "icbzg": {
-                                            "type": "boolean",
-                                            "value": true
-                                        },
-                                        "fwg": {
+                                    }
+                                },
+                                "rdsupxhk": {
+                                    "type": "object",
+                                    "value": {
+                                        "vxri": {
                                             "type": "integer",
-                                            "value": -203,
+                                            "value": 653,
                                             "format": "int32"
                                         },
-                                        "bijjwf": {
-                                            "type": "boolean",
-                                            "value": true
+                                        "ppso": {
+                                            "type": "integer",
+                                            "value": -827,
+                                            "format": "int32"
+                                        },
+                                        "fzjdmaukmmqv": {
+                                            "type": "string",
+                                            "value": "QT2fKpF;"
                                         }
                                     }
                                 },
-                                "optional": {
-                                    "type": "integer",
-                                    "value": -613112544,
-                                    "format": "int32"
-                                },
-                                "required": {
+                                "zhcqgd": {
                                     "type": "string",
-                                    "value": ";"
-                                },
-                                "b": {
-                                    "type": "array",
-                                    "value": [
-                                    ]
-                                },
-                                "dupuhxidfki": {
-                                    "type": "object",
-                                    "value": {
-                                    }
+                                    "value": "E]~i"
                                 }
                             }
                         }
@@ -952,7 +1040,7 @@
                     "value": {
                         "alpha": {
                             "type": "string",
-                            "value": "8-Z\\`;rBNs^HXFo?K<z]ke%jbbyr;JXviR~r.7.@eMfTI+Cp6r-_JWjlgWI)Tkv:?HZIMV_f:hY*Ah6B}|*J\"@g0^l%6V,;08v2\"t~Ase5!G|RN0;g;O{{;'[FKnp%Cgf`)'Zd2$~vdQWRLzs~:1DPGtzcun rN0!>.<<2dA0%gktGyd2ncf/ADN:r u@M^v}5b^P.6p^RH?C0oxlq9E5(lnW7~,pUBccq"
+                            "value": "<mLz;hl]o t~|tW=W=}BgtJ% iSr>JBKWvN~!QI2b5}nX>#o+C7H[8]]EuJ&?`nu=YXIf-7Pe-WS?CQDmz$dCpRaX!w,G}z'j[R <X/K_B84`!!`dP`(].D^f}u_,(lRz>IBSv/h&g1PAu{6!N t|ZpPDvEX[Vn>#\\<T"
                         }
                     }
                 },
@@ -961,8 +1049,8 @@
         ]
     },
     {
-        "id": 24,
-        "name": "param0.Alternative.3.Value.Properties.bravo.Items.Size='1'",
+        "id": 26,
+        "name": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.optional.Value.Is='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -977,65 +1065,26 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "e"
-                                }
-                            ]
-                        },
-                        "fivwyuxvtrirx": {
-                            "type": "object",
-                            "value": {
-                                "extra": {
-                                    "type": "number",
-                                    "value": -849.5
-                                },
-                                "required": {
-                                    "type": "string",
-                                    "value": "6t+GvXM0/*Ggan9KMD%s: lJ%2&(\\-z|Wb(B/6\"2[ 8]*)H~}ypDITDu? CR/7E+7nxEkStp3j^2A}y%3i2.g__R%ifj~ZiAPuSgJm4EE7Uo{n^(>uh+$/G=sfO>Ju}j>>U}JvOneP4Vn8B4]{BCnr2TMaWId6p\"G &%d&l*)RT6mYcsL zM5t+PZc|jSpoM6lS@(nlW}s{)f1jH5n'Q}pM=wI\\&',H&pVi=>,$p~N|P\\${nYH'"
-                                }
-                            }
-                        },
-                        "zk": {
+                        "kkezadnvi": {
                             "type": "object",
                             "value": {
                                 "extra": {
                                     "type": "array",
                                     "value": [
-                                        {
-                                            "type": "string",
-                                            "value": "[s@vU"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "1S=s("
-                                        }
                                     ]
                                 },
-                                "required": {
-                                    "type": "string",
-                                    "value": "V-[hhWiVG2fzaXIwGt'X2;[9]a2DVj)"
-                                }
-                            }
-                        },
-                        "jfvtbatwvxpa": {
-                            "type": "object",
-                            "value": {
-                                "extra": {
-                                    "type": "object",
-                                    "value": {
-                                        "knbrpwnzs": {
-                                            "type": "boolean",
-                                            "value": true
-                                        }
-                                    }
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "?U|b+*jvZ[A?00+8W.cS b=\\&=y#CUMevhIJORA(:Pd*<>i:[])#hw{M\\L6L.&0p ' G/qVU7z`8V$we9k&IF,u]gCj,<\\W;V.Ia@I2_-p0~`<EVzr3*TD<1ak?y.5yrimg_<+45fl}M?X\\eInT"
+                                    "value": "e"
+                                },
+                                "nxlvbfdruurxai": {
+                                    "type": "boolean",
+                                    "value": true
                                 }
                             }
                         }
@@ -1062,25 +1111,62 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "\\0GCd2.0Z2rLmm-q?2QgD>Fi#:@Ys\"Pj'\\-X@xDnVHGV>OW1ly7Yygx6XYxQsAQ+xX@4#Vw/uv!,VP'R1O%0=EhM1Q\"]^PB7Z$Sq<i;_Vl~@|>sK[`%:b42loIaWkzerOWoQxfKV_sXpRevogrn~[- %!2vEZ$Y=oB<\"P{x+z;yDf"
+                                }
+                            ]
+                        },
                         "alpha": {
                             "type": "string",
-                            "value": "P;KZ1QC]Lk1|\"Chh.aSMCu=]4~T|-]ZcWBU|/YcR\"BUa6c@yfD4Z\\nLoIF^J&xI;k^$3*{n=p7&0<Ww7a5Ac+0ga~T#@dQPz3^^RjrI6<]Y/C}c]}JerfR5#`BrQb\"+,HC5w^DV}+D `xcPCOqOV7:\"PvZV`~MxW|S5ew\\1q1WF(F<iIF/d@o:'w1pt^\\: #v)-y0Y"
+                            "value": "-OZ9\"+X:yd!gHaWr^F-a@17y\\.G-:x$+Sq=^M(:4FQ.nrdvH_j;%4Zkcf}1HV+k{+T4jXF.^)S1y1P&/`K!W_)Qd,_#RiUJfeYyimY47gT|QzR1`z]lD21@zwm7B9@1 WXfAK-osD-SzRkzjI~74"
                         },
-                        "a": {
+                        "vfoxcrmci": {
                             "type": "object",
                             "value": {
                                 "extra": {
-                                    "type": "number",
-                                    "value": -135.1
+                                    "type": "object",
+                                    "value": {
+                                        "h": {
+                                            "type": "string",
+                                            "value": "C "
+                                        },
+                                        "amdoiu": {
+                                            "type": "integer",
+                                            "value": -9,
+                                            "format": "int32"
+                                        }
+                                    }
                                 },
                                 "optional": {
                                     "type": "integer",
-                                    "value": 102092313,
+                                    "value": 944860801,
                                     "format": "int32"
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "j}bk=&6)>g\\M=8wDo\\r}~&,b,;jrOf{#$7k]~j=>rkHbQ*lpLj?iLirqlb[Wr#y\" K@6_ZJTY Qp~u#]EHVBH,/1(1}$e be?'}ttJ0eO1rE^$EZhlQ:%MGTmY<SH7{\"i=J/Rjb]fy3V[MhyTpRU:-MU%l$^8d_~,oci[1[(&uCJ#h/ETf nmW=&0Ip=M=F9yU}&g#W5?cxVsRcYhGj"
+                                    "value": "|Qbs<.oh~gh[>;'$}H`$N.4_(f>rbp^*o\"g.]-*>:@}b{\\_N6GM6q/Y21#TWqaAvLT3oJGw@4F-z2n!}YPK^p%_BY6r5A3Ad3YDM~UP=l)~+,YM5P3JL\\cK "
+                                }
+                            }
+                        },
+                        "uwvmkmsr": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "string",
+                                    "value": "X/"
+                                },
+                                "optional": {
+                                    "type": "integer",
+                                    "value": 867590740,
+                                    "format": "int32"
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "^y7Pb\\AUq}4(@8a6NlH.4S+Ongy>^K>Jm:DEZ*29+#u>4\"}KhMPhe+!q,z8[}LvRT>~WW0]N V j*yV6+C5ccPt#NJ2buOXoTL,D jb(Y~M}_:|f={`  GxfEp<H(bH,R`Im?RWV\\=`\"y:G{cj~GFK,k&vZB!-H6`9?>zfn|4\"E(dZ*=WWh*p,j]C9?majF86n_Zz:}wyRYn-?EgBN|jp&W5QDc>A/H6uK]Jg7t#~/|'pKai>oK?"
                                 }
                             }
                         }
@@ -1128,13 +1214,134 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "integer",
+                    "value": -497,
+                    "format": "int32"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Alternative.0.Type=Not object"
+    },
+    {
+        "id": 30,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "S"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Type=null"
+    },
+    {
+        "id": 31,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "k"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "BKJ?"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "P<OEx&hR"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Type=Not string"
+    },
+    {
+        "id": 32,
+        "name": "param0.Alternative.0.Value.Properties.alpha.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "9"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.alpha.Value.Length=0"
     },
     {
         "id": 33,
@@ -1155,7 +1362,7 @@
                     "value": {
                         "alpha": {
                             "type": "string",
-                            "value": "\"rTf0fNowj-EQyNHl?,/@tT RglZ]-I21Q=\\\"`>8xj=FKT8:'V?TYEnH4O%pW9`ILxfn93^zTqjX8u0KYj rG9Y6D(bBAC~cGte~9*x;-TCr{_$FsXwFLMVXZ>/lX'JL!Im(rN0|CA$=G-Z^98`Ek$H"
+                            "value": ",5VcI \"G=sg-$[r6.-5QmeS+kvJN^ZhE0lj4DYRsJpql`zZbB>b$3Ehz`1enS[lJa`#X,pC$K {- z=D?FoHNTs5t,y8~0B~rc5w"
                         }
                     }
                 },
@@ -1187,7 +1394,7 @@
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "mTaSF+Cp)1tQ^:S2G N9YPK}3#%RT$>pwqcDU#1%lJ6)C=:k+J`yQ0I{Kw3\"X,88LpUvE2q7p\\P&8_j6^#4(0h8zObag`GWS.8MPOi^-fk (C%yR8k!KLT((,RG^rLM^^<byw3Agl;i3?R':AO_3 FG\"8|?T?!Z`~vqY:itB0Z/vg"
+                            "value": ":68gbRPIkpmP^q4JVC9_7t?[C(Da'+L?4[*K~~Ve+gyIW@4f49'|\"Dg1Em,e2mu<Tp0!YAOFn:SVITvba"
                         }
                     }
                 },
@@ -1214,12 +1421,12 @@
                     "type": "object",
                     "value": {
                         "bravo": {
-                            "type": "number",
-                            "value": 492.0
+                            "type": "string",
+                            "value": "`uk!xbm"
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "tk }%(RO4+u>QV-TZX?C9<9TM-,'}Eh',b<v~E\\HwP&]adFI4P}d(7n*c{)0eC;zxQ--`\\.CDnlIZa<"
+                            "value": "8ps>7*60kdHLvGVaIF@WWIdaGhq(U6^-l$d\\tg)={J1~0|MFSTqER1]N`0L^FyN<n4i*Dsa.w(iQ<E(QhI|V)5R0h}WM5e6T1p]#j&i"
                         }
                     }
                 },
@@ -1229,8 +1436,115 @@
         "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Type=Not array"
     },
     {
-        "id": 49,
-        "name": "param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern='No'",
+        "id": 36,
+        "name": "param0.Alternative.0.Value.Properties.bravo.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "KRHlH?.!\\H8.2ONAk`;75Hk.VM6KJ^a}X .bf^=7q]n~]Qj#c7qGo67W\\O|JnMXmO3PFiB"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Size=0"
+    },
+    {
+        "id": 37,
+        "name": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "null",
+                                    "value": null
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "]pj!UN-/k<P}lP2-o/q_{I32'Z]eRiq`QSFFNLI]W'9}nF6cwwerP]|\"=-B6FE&O7/)zEJ,-9Gh:a!,<5_8PHv$pV\\)["
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=null"
+    },
+    {
+        "id": 38,
+        "name": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "jCI3CQ9/>WX<xfGb!]oe .f>ujf|I\\zOdQ[UxL)]XiqZ!CPA~9xb^boKxN9Jr{gzq?nZ.L $U~0nymQV&k+d?UdJ}*v9Dr'GOvphjYh:n#7,4*567Te~98{]98E25Redq@5\\_du|+!z9=\\|d,n#nsB9*%io??W=Np vo|iq.5xGYdrI0KK"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Type=Not string"
+    },
+    {
+        "id": 39,
+        "name": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length='0'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -1250,24 +1564,255 @@
                             "value": [
                                 {
                                     "type": "string",
-                                    "value": "=+"
+                                    "value": ""
                                 }
                             ]
                         },
                         "alpha": {
                             "type": "string",
-                            "value": "^\"uf>b;Q<'KK8MTkh~C>'0;,~\\_95zK,sx8@C9smG|2Y;v~6u3y08%@h*F@54st:&p6$<7*O,Slj}tGX9S\"\"0<9T\\Q6X+b*22ds.U@Cr?=bmu.\"VgTjnLO5.},_JWXnY_d;nkwr;#n_o58`tzC69;BFIX+?s!)'fxbG<D0*ucSZky/7oel)9`iX5H92_^V%v}L?|qZeJ0 XC,51QC)%tLV'"
+                            "value": "sN;o|*O\"A<{F/lAoR9]~<h[O%TNAX3<Ys6%."
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Length=0"
+    },
+    {
+        "id": 40,
+        "name": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "?"
+                                }
+                            ]
                         },
-                        "charlie": {
+                        "alpha": {
+                            "type": "string",
+                            "value": "*`0}d<%gC~*^slY]!q9'EF:^&3c<' +Vm|,4uxDdoMj%c$ERLaP86M*Y,3O Fd>4j[lPy&8iyli7)5|CEl%(Cia{QQ btVe(!_fv_x4zgs+faWU1%\"UBt4?E,cu(r+.w\"2+[ &|Xsuex-tIhNI_J02q6c+o/ts]]4_NH;gQ1w+q^cGlK7,y-n%YU&(R0tm'#de`Bbdw54"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.0=No"
+    },
+    {
+        "id": 41,
+        "name": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "Y"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "C8e[;$)T6]zWD^?#E(X0)#cHVvjJ/_Ou(js8gs$hn_XI!l dz^u-rFJxRmTW^Xj)%YOSeS/B7BY[B^Fc ?W7f:%+be~Y[}DMYd/ltQQ(]!3\"<ZJEg}RLClWxcb=B#F'D>[&pn}SUf6y Xwr.pO7-O}EHbmo~l3Fp7SE2&7xvbQK?>##H2c@.ZKAEqsLKqj\\-1OR/PKa9S)B,"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.bravo.Items.Contains.Value.Matches-Patterns.1=Yes"
+    },
+    {
+        "id": 42,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "Q"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "Vx8ABCL`W9^W62Osl_Ut(;a.`_bC3iw7q;J:)tg1T6G2-/m"
+                        },
+                        "olzhmlmkotmmsned": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Type=null"
+    },
+    {
+        "id": 43,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "K"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "4*bsp}tr!8XH=bR3n7<=F;0{X[ao1{@7AP+#\\fdv-9fY-Na p$6\\0=Q|oB@fxKhyQ/1F%Wv~\\~D*kCXFvK$<Z7v^clwKuUmv:\";l<=YUi:G>KrN@U~lH1g \\+|l'qfGZ4=W/s\"hT<WpC)e7n948F^f]xqg2p*wLPo\""
+                        },
+                        "xvtimcdd": {
+                            "type": "integer",
+                            "value": 475,
+                            "format": "int32"
+                        },
+                        "aceye": {
+                            "type": "integer",
+                            "value": -547,
+                            "format": "int32"
+                        },
+                        "blhnk": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Type=Not object"
+    },
+    {
+        "id": 44,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "d"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "\\B/w?w)`3O%D'[$6KxDb})06QPhoxHY8m!oY&S1=UU]XfhK']t\\e6/4mQba5+gxK}{@+Lqs;c}`b=\\DeN5)R*N6Zy~%EZu5Mv+{$pm*w lL@f6j_/4elOV-_v lhyw9dzvrk*pJ;cM n}w-Oc3KTFTw"
+                        },
+                        "osdujcwbbcuqbly": {
                             "type": "object",
                             "value": {
-                                "a": {
-                                    "type": "boolean",
-                                    "value": true
-                                },
-                                "f": {
+                                "xjjlsceyvgm": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                }
+                            }
+                        },
+                        "gfrjada": {
+                            "type": "object",
+                            "value": {
+                                "ibcduuccwlugj": {
                                     "type": "number",
-                                    "value": -534.8
+                                    "value": 3.4
+                                }
+                            }
+                        },
+                        "c": {
+                            "type": "object",
+                            "value": {
+                                "x": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "2&NbDJJ"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "nUn1"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "g6x-b"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -1276,10 +1821,455 @@
                 "valid": false
             }
         ],
-        "invalidInput": "param0.Alternative.1.Value.Properties.bravo.Items.Contains.Value.Matches-Pattern=No"
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Defined=No"
     },
     {
-        "id": 50,
+        "id": 45,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "r"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "2&(T0R=n/S,JIY'7!'fw^=<8E9-GH P8N\\#>+bm\\r<mT/:n\\~VAbT&.yn0<(#>(+\")z,o ?X )ut&okG0!3U$dd/HuN=\"\"_Lo25eWJQ{vALmc(7zNf ~a}X4Zbi;j?;H`E'\""
+                        },
+                        "mefchi": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "mkvmbeqqnbr": {
+                                    "type": "string",
+                                    "value": "Ca"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=null"
+    },
+    {
+        "id": 46,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "C"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "9<2\"~H_sAL|qkr"
+                        },
+                        "qwuiydzriy": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "number",
+                                    "value": -844.2
+                                },
+                                "tirfrtn": {
+                                    "type": "number",
+                                    "value": 469.2
+                                },
+                                "saitejkq": {
+                                    "type": "integer",
+                                    "value": -399,
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Type=Not string"
+    },
+    {
+        "id": 47,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "7"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "0)%-D#1|s<|(w\"Uiu#J1`_uRtzDRBHbB)27xY y`OB7,OOaBc.LE*.7,\\#Y&&W&F/byiwP2<:Spn{?T6ZE<MX{*Mi27r&t<RQe.)gtA(@Pm+2:]d'Y=E4DO&'t~>TfCgeP+Y^n-LAtkIU)s8TmbQ|2ks>Y{AbgM;`&2):*j/9MA>oc."
+                        },
+                        "fhzt": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                "badz": {
+                                    "type": "integer",
+                                    "value": -681,
+                                    "format": "int32"
+                                },
+                                "gkigpcn": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "\\fqal"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "D7::4N1"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "vmdxvnjmsa": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                "kvrhdpslutxqv": {
+                                    "type": "number",
+                                    "value": 575.1
+                                },
+                                "uz": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "hms": {
+                                    "type": "object",
+                                    "value": {
+                                        "swiru": {
+                                            "type": "string",
+                                            "value": "E8@AL'"
+                                        },
+                                        "uta": {
+                                            "type": "boolean",
+                                            "value": true
+                                        },
+                                        "aobgxrv": {
+                                            "type": "integer",
+                                            "value": -955,
+                                            "format": "int32"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "utenwybdzmpyz": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                "ptjo": {
+                                    "type": "object",
+                                    "value": {
+                                        "csjbzezsbcwa": {
+                                            "type": "string",
+                                            "value": " afs}[["
+                                        },
+                                        "nltqckxol": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "QY0i"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "D/7.5"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "f"
+                                                }
+                                            ]
+                                        },
+                                        "f": {
+                                            "type": "number",
+                                            "value": 111.5
+                                        }
+                                    }
+                                },
+                                "ffkukdkpaam": {
+                                    "type": "string",
+                                    "value": "r"
+                                },
+                                "ngjtxakjdsgec": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "P[O"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "!24\\"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": ":)$(9X$"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.required.Value.Length=0"
+    },
+    {
+        "id": 48,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "y"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "G3%Oqn0|\\u2W?Hjs'M,aU'fVGX#>2E~sDC\\4ZZ)>e>m>&8$#7|f8a|>A0M&B'^~M.&y{<wXB9M,sal/fbm0F7%A2}MR4e=c~lM6<{xy$0,qFA:!i4&)@"
+                        },
+                        "e": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ","
+                                },
+                                "nomf": {
+                                    "type": "integer",
+                                    "value": 588,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "wwjfsfaaqkez": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ","
+                                },
+                                "ynxrvtqu": {
+                                    "type": "integer",
+                                    "value": -395,
+                                    "format": "int32"
+                                },
+                                "adyequfqree": {
+                                    "type": "string",
+                                    "value": ">-80}<Tk"
+                                }
+                            }
+                        },
+                        "gdkmen": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "null",
+                                    "value": null
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "7"
+                                },
+                                "jbeh": {
+                                    "type": "integer",
+                                    "value": -222,
+                                    "format": "int32"
+                                },
+                                "obyviodfzddwu": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=null"
+    },
+    {
+        "id": 49,
+        "name": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "J"
+                                }
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": ",?t9}bV=pc)q;gQn9;[Bcj0Tm#sU2Ib9e47>ZthhgX2&--&9-d4s)c5P|9qzEP[\"RC=!W|V!d(@p[ 1@Q+vex5$<W3_>$1Lcz\"4C#&!YWAB>r.OM_EzfeD 48@NMm/uX$IlC_qZ*>.A,X3/>cWsv7OmT!qA_W*X&ut9H^4jB+=]/IAeh|`oBySBbiS/$%HlN$"
+                        },
+                        "mwdqzgjr": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "number",
+                                    "value": -124.9
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": "["
+                                },
+                                "ypd": {
+                                    "type": "object",
+                                    "value": {
+                                    }
+                                },
+                                "tkafor": {
+                                    "type": "number",
+                                    "value": 97.1
+                                }
+                            }
+                        },
+                        "fsyaqebufqo": {
+                            "type": "object",
+                            "value": {
+                                "optional": {
+                                    "type": "object",
+                                    "value": {
+                                        "twsiu": {
+                                            "type": "boolean",
+                                            "value": true
+                                        }
+                                    }
+                                },
+                                "required": {
+                                    "type": "string",
+                                    "value": ">"
+                                },
+                                "fao": {
+                                    "type": "string",
+                                    "value": "Ea1E"
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.0.Value.Properties.Additional.Value.Properties.optional.Type=Not integer"
+    },
+    {
+        "id": 51,
         "name": "param0.Alternative.1.Value.Properties.charlie.Defined='No'",
         "server": "/",
         "version": "0.0.0",
@@ -1295,14 +2285,9 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
                         "alpha": {
                             "type": "string",
-                            "value": "mgdB4~S[$I3J!D9^foD|z]+/`^K3Y|WdHG.Odwkg<{4@h8VOOuU-YxMve7h4b*02lOrI,v27J`kg:x3PTKKra%G% 5$.OG%oYa*6p!@L=*bcW/hPyb|\\H9lRZ`q?xrO?E5l{&\"Ibp&\\d%z{>1f0\"z87uP|%jXR]![O\\!oOo{YicQqdl/6r$uAL+Ot/K}#Y>Q0`KH<<^Q`V4'rK@I"
+                            "value": ",Rb-EnA`zS*|ok5\"[`<z%pw)X)8nIaR+(}@hQ:[)EQ2(;Y>scW)3L]fdQ-royzu R_Pz3N}p}=&WZ:2b[e7tPI\"ZPWE4W${Se4l4Gk:(g\"8'8L?EUP^xa&!CqX\"Y!eE_iO' rNU*-;WDL!Q_({in!9A:5wKi^n:O5+b\"y:e62o"
                         }
                     }
                 },
@@ -1312,7 +2297,7 @@
         "invalidInput": "param0.Alternative.1.Value.Properties.charlie.Defined=No"
     },
     {
-        "id": 51,
+        "id": 52,
         "name": "param0.Alternative.1.Value.Properties.charlie.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -1328,14 +2313,9 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
                         "alpha": {
                             "type": "string",
-                            "value": "P UmiN|%w\\D}eua{mV6x$6:i\"(+ql8{M|AK29zpvTpFb\\/PEXNg\"a63QZboX(x!3PAbebc>mTT0*_n#oo4y$!Wm+s,(z?GCei\\:=(VD*#OiA~2IeY2`/Q>2:@\"\"SC^ $Xh##P#tvuq.(Eh\"cm\"-s:tM=Yjp'[{c9KSXweNvpuwej&QVjlX{bZjpV3N;"
+                            "value": "BM9%gI[}YKJxoOU-7[:wFc[n.M9fhS+[&7(L=?Z\"(tGZcC>)[`.u0-vrrg5Frn7t(WQ6vTnFQ}ESa ;}?Kc#/$>Uz:M6@&O2\\FQFeX/hEh )|P]D>lRQ^2\"t-]VEVTkY_YstEXCEf^S[]D;{'!c28TtO C-81=^r`(]VYsRR;i-\"Gp]L_>Xc"
                         },
                         "charlie": {
                             "type": "null",
@@ -1349,7 +2329,7 @@
         "invalidInput": "param0.Alternative.1.Value.Properties.charlie.Type=null"
     },
     {
-        "id": 52,
+        "id": 53,
         "name": "param0.Alternative.1.Value.Properties.charlie.Type='number'",
         "server": "/",
         "version": "0.0.0",
@@ -1365,18 +2345,13 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
                         "alpha": {
                             "type": "string",
-                            "value": "3V>8j-Z}N8Fd;DM3pE:~=hdmGN[%y{)\\W>$jO*0 ksm7Abm+;A:K0t&%|G:LhQ5[bh>`~G]{}>%tflmAPwgo]c2R?[K1#9(~Tzc.F{[Ab>\\NZtThMqG}L+tyKFc"
+                            "value": "]_PL^9?rMVbv4LJbz,#@I?ZP%SK!S.uSsl$c0.dw0>>XjG:rB&TadK3fGx3:ho>aYOjyi&u5y+~/tz?7P2AuVPJ|W4CH|lS<#F,3>q0Y9P,=k1m#mJIfo_,PIiMw0itOuN$6Ba1N8"
                         },
                         "charlie": {
                             "type": "number",
-                            "value": -3961892423421804338.0
+                            "value": -4285563825512341003.8
                         }
                     }
                 },
@@ -1386,7 +2361,7 @@
         "invalidInput": "param0.Alternative.1.Value.Properties.charlie.Type=number"
     },
     {
-        "id": 53,
+        "id": 54,
         "name": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is='X'",
         "server": "/",
         "version": "0.0.0",
@@ -1402,68 +2377,60 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "ickhiv": {
+                        "svyts": {
                             "type": "object",
                             "value": {
                                 "required": {
                                     "type": "string",
                                     "value": "X"
                                 },
-                                "yhlpwvrjxyhu": {
+                                "hkobldjwzbykpfuf": {
+                                    "type": "string",
+                                    "value": "KX71~4XC"
+                                },
+                                "ijhvwv": {
+                                    "type": "object",
+                                    "value": {
+                                        "gmy": {
+                                            "type": "array",
+                                            "value": [
+                                            ]
+                                        },
+                                        "i": {
+                                            "type": "string",
+                                            "value": "A=CT|`"
+                                        }
+                                    }
+                                },
+                                "vvypipxczjsywhaa": {
                                     "type": "boolean",
                                     "value": true
+                                }
+                            }
+                        },
+                        "pnkrekugssirgt": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "X"
                                 },
-                                "rhwc": {
+                                "ijewsxkdquw": {
                                     "type": "array",
                                     "value": [
                                         {
                                             "type": "string",
-                                            "value": "+jO/).`+"
+                                            "value": "TPh"
                                         },
                                         {
                                             "type": "string",
-                                            "value": ":"
+                                            "value": "**8"
                                         },
                                         {
                                             "type": "string",
-                                            "value": "g"
+                                            "value": "cfw:1f.o"
                                         }
                                     ]
-                                },
-                                "gmopdjpqlpnhqbe": {
-                                    "type": "string",
-                                    "value": "h!zmG"
-                                }
-                            }
-                        },
-                        "jugta": {
-                            "type": "object",
-                            "value": {
-                                "required": {
-                                    "type": "string",
-                                    "value": "X"
-                                },
-                                "kfwifo": {
-                                    "type": "string",
-                                    "value": "nZ>C8*EI"
-                                }
-                            }
-                        },
-                        "euipk": {
-                            "type": "object",
-                            "value": {
-                                "required": {
-                                    "type": "string",
-                                    "value": "X"
-                                },
-                                "pe": {
-                                    "type": "boolean",
-                                    "value": true
                                 }
                             }
                         }
@@ -1475,7 +2442,7 @@
         "invalidInput": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=X"
     },
     {
-        "id": 54,
+        "id": 55,
         "name": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is='Y'",
         "server": "/",
         "version": "0.0.0",
@@ -1491,61 +2458,46 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "cxqku": {
+                        "ocxuuavbn": {
                             "type": "object",
                             "value": {
                                 "required": {
                                     "type": "string",
                                     "value": "Y"
                                 },
-                                "nawkzqeoiw": {
-                                    "type": "number",
-                                    "value": 138.0
+                                "dhmwqjwlilqtughq": {
+                                    "type": "boolean",
+                                    "value": true
                                 }
                             }
                         },
-                        "cdju": {
+                        "ekfxropdty": {
                             "type": "object",
                             "value": {
                                 "required": {
                                     "type": "string",
                                     "value": "Y"
                                 },
-                                "bd": {
+                                "prrljatmkxcj": {
                                     "type": "array",
                                     "value": [
                                         {
                                             "type": "string",
-                                            "value": "@jK'<N"
+                                            "value": "V#N0+v1l"
                                         },
                                         {
                                             "type": "string",
-                                            "value": "OS"
+                                            "value": "]h("
                                         },
                                         {
                                             "type": "string",
-                                            "value": ",a!xu#"
+                                            "value": "m]L"
                                         }
                                     ]
                                 },
-                                "ksvphexefyvryw": {
-                                    "type": "string",
-                                    "value": "%-DoN)w"
-                                },
-                                "ttpqudeviwhxrjf": {
-                                    "type": "object",
-                                    "value": {
-                                        "yxw": {
-                                            "type": "array",
-                                            "value": [
-                                            ]
-                                        }
-                                    }
+                                "r": {
+                                    "type": "number",
+                                    "value": 308.0
                                 }
                             }
                         }
@@ -1557,7 +2509,7 @@
         "invalidInput": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=Y"
     },
     {
-        "id": 55,
+        "id": 56,
         "name": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is='Z'",
         "server": "/",
         "version": "0.0.0",
@@ -1573,95 +2525,34 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "pmnwbzicncm": {
+                        "lu": {
                             "type": "object",
                             "value": {
                                 "required": {
                                     "type": "string",
                                     "value": "Z"
                                 },
-                                "zuecwoyebll": {
-                                    "type": "boolean",
-                                    "value": true
+                                "ktlskqqpuzfzvhap": {
+                                    "type": "integer",
+                                    "value": 1,
+                                    "format": "int32"
+                                },
+                                "pomkwh": {
+                                    "type": "string",
+                                    "value": "n"
                                 }
                             }
                         },
-                        "tcjsreiwc": {
+                        "ahl": {
                             "type": "object",
                             "value": {
                                 "required": {
                                     "type": "string",
                                     "value": "Z"
                                 },
-                                "pyqo": {
-                                    "type": "object",
-                                    "value": {
-                                        "fugxmbm": {
-                                            "type": "number",
-                                            "value": -968.3
-                                        },
-                                        "dycpmedbyqeyaa": {
-                                            "type": "array",
-                                            "value": [
-                                                {
-                                                    "type": "string",
-                                                    "value": "3-oGxxZP"
-                                                },
-                                                {
-                                                    "type": "string",
-                                                    "value": "t@Eo>$3"
-                                                },
-                                                {
-                                                    "type": "string",
-                                                    "value": "FjA"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                },
-                                "gkcrwmhckichooz": {
-                                    "type": "object",
-                                    "value": {
-                                        "c": {
-                                            "type": "boolean",
-                                            "value": true
-                                        },
-                                        "cxaouurujzawny": {
-                                            "type": "integer",
-                                            "value": 646,
-                                            "format": "int32"
-                                        }
-                                    }
-                                },
-                                "txc": {
+                                "zcpws": {
                                     "type": "number",
-                                    "value": 529.0
-                                }
-                            }
-                        },
-                        "eiufnuykmhymcv": {
-                            "type": "object",
-                            "value": {
-                                "required": {
-                                    "type": "string",
-                                    "value": "Z"
-                                },
-                                "dcvjewwxiingiiqe": {
-                                    "type": "boolean",
-                                    "value": true
-                                },
-                                "xbwen": {
-                                    "type": "boolean",
-                                    "value": true
-                                },
-                                "lymoncqz": {
-                                    "type": "boolean",
-                                    "value": true
+                                    "value": 537.3
                                 }
                             }
                         }
@@ -1673,7 +2564,7 @@
         "invalidInput": "param0.Alternative.2.Value.Properties.Additional.Value.Properties.required.Value.Is=Z"
     },
     {
-        "id": 56,
+        "id": 57,
         "name": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined='No'",
         "server": "/",
         "version": "0.0.0",
@@ -1689,21 +2580,48 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "ktynvrfpllzodl": {
+                        "rquwkl": {
                             "type": "object",
                             "value": {
                                 "required": {
                                     "type": "string",
-                                    "value": "'"
+                                    "value": "`"
                                 },
-                                "qmdm": {
-                                    "type": "number",
-                                    "value": -499.7
+                                "vrdsrfolygki": {
+                                    "type": "integer",
+                                    "value": -300,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "oiyhgkxmgthbntv": {
+                            "type": "object",
+                            "value": {
+                                "required": {
+                                    "type": "string",
+                                    "value": "1"
+                                },
+                                "jnnlqtxrnpwgjss": {
+                                    "type": "integer",
+                                    "value": -516,
+                                    "format": "int32"
+                                },
+                                "mgqemtofhtcqruyc": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": " r*K3Z_"
+                                        }
+                                    ]
+                                },
+                                "vmixw": {
+                                    "type": "string",
+                                    "value": "]^md"
                                 }
                             }
                         }
@@ -1715,7 +2633,7 @@
         "invalidInput": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Defined=No"
     },
     {
-        "id": 57,
+        "id": 58,
         "name": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -1731,12 +2649,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "kloadkdazxssrd": {
+                        "qzptkxdqlxo": {
                             "type": "object",
                             "value": {
                                 "extra": {
@@ -1745,46 +2658,33 @@
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "E"
+                                    "value": "8"
                                 },
-                                "hrt": {
-                                    "type": "number",
-                                    "value": -122.8
-                                },
-                                "exndyukvbiwar": {
-                                    "type": "integer",
-                                    "value": -732,
-                                    "format": "int32"
-                                }
-                            }
-                        },
-                        "levhnlarb": {
-                            "type": "object",
-                            "value": {
-                                "extra": {
-                                    "type": "null",
-                                    "value": null
-                                },
-                                "required": {
-                                    "type": "string",
-                                    "value": "+"
-                                },
-                                "qguaesvumb": {
-                                    "type": "array",
-                                    "value": [
-                                        {
-                                            "type": "string",
-                                            "value": "v+/Y#"
+                                "qskrorkpgcclw": {
+                                    "type": "object",
+                                    "value": {
+                                        "pldctqwjkkkt": {
+                                            "type": "boolean",
+                                            "value": true
                                         },
-                                        {
+                                        "ra": {
                                             "type": "string",
-                                            "value": "*a"
+                                            "value": "iBZG|"
+                                        },
+                                        "yjitinkphtuzcqqp": {
+                                            "type": "string",
+                                            "value": "~\\P"
                                         }
-                                    ]
+                                    }
                                 },
-                                "nfidbizszywfn": {
-                                    "type": "string",
-                                    "value": ".0GB@~>5"
+                                "ojjlmjegxspcwd": {
+                                    "type": "number",
+                                    "value": 838.8
+                                },
+                                "ytwmlczoen": {
+                                    "type": "object",
+                                    "value": {
+                                    }
                                 }
                             }
                         }
@@ -1796,7 +2696,7 @@
         "invalidInput": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type=null"
     },
     {
-        "id": 58,
+        "id": 59,
         "name": "param0.Alternative.3.Value.Properties.Additional.Value.Properties.extra.Type='boolean'",
         "server": "/",
         "version": "0.0.0",
@@ -1812,12 +2712,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "tbqqrpiq": {
+                        "qpcqxwekfrxdd": {
                             "type": "object",
                             "value": {
                                 "extra": {
@@ -1826,24 +2721,19 @@
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "Q"
+                                    "value": "@"
                                 },
-                                "mhtigax": {
-                                    "type": "number",
-                                    "value": -704.3
-                                },
-                                "tagtici": {
+                                "p": {
                                     "type": "boolean",
                                     "value": true
                                 },
-                                "wtxxkpluwhh": {
-                                    "type": "array",
-                                    "value": [
-                                    ]
+                                "vnwftbhyugwvx": {
+                                    "type": "boolean",
+                                    "value": true
                                 }
                             }
                         },
-                        "rrszjklautfh": {
+                        "gye": {
                             "type": "object",
                             "value": {
                                 "extra": {
@@ -1852,65 +2742,59 @@
                                 },
                                 "required": {
                                     "type": "string",
-                                    "value": "\\"
+                                    "value": "T"
                                 },
-                                "virzipuy": {
-                                    "type": "boolean",
-                                    "value": true
-                                },
-                                "zevoahkcy": {
+                                "tenfuiaubg": {
                                     "type": "array",
                                     "value": [
-                                        {
-                                            "type": "string",
-                                            "value": ";6"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "!"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "nw|`Yks"
-                                        }
                                     ]
-                                }
-                            }
-                        },
-                        "gmsj": {
-                            "type": "object",
-                            "value": {
-                                "extra": {
-                                    "type": "boolean",
-                                    "value": true
                                 },
-                                "required": {
-                                    "type": "string",
-                                    "value": "="
-                                },
-                                "iqsbgindxhfxlki": {
-                                    "type": "string",
-                                    "value": "Z"
-                                },
-                                "lzijjpbbkr": {
+                                "hngjtatdgzelxtk": {
                                     "type": "object",
                                     "value": {
-                                        "svvkwv": {
-                                            "type": "integer",
-                                            "value": -470,
-                                            "format": "int32"
+                                        "kgyatymewwhprjts": {
+                                            "type": "string",
+                                            "value": "na\"gU"
                                         },
-                                        "vkrfnloijuw": {
-                                            "type": "integer",
-                                            "value": 963,
-                                            "format": "int32"
+                                        "hiuiups": {
+                                            "type": "number",
+                                            "value": -52.9
+                                        },
+                                        "rvyhskai": {
+                                            "type": "array",
+                                            "value": [
+                                                {
+                                                    "type": "string",
+                                                    "value": "M8<"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "}<"
+                                                },
+                                                {
+                                                    "type": "string",
+                                                    "value": "}="
+                                                }
+                                            ]
                                         }
                                     }
+                                }
+                            }
+                        },
+                        "lcl": {
+                            "type": "object",
+                            "value": {
+                                "extra": {
+                                    "type": "boolean",
+                                    "value": true
                                 },
-                                "rmsalyn": {
-                                    "type": "array",
-                                    "value": [
-                                    ]
+                                "required": {
+                                    "type": "string",
+                                    "value": "b"
+                                },
+                                "wlwmuwwnymq": {
+                                    "type": "boolean",
+                                    "value": true
                                 }
                             }
                         }

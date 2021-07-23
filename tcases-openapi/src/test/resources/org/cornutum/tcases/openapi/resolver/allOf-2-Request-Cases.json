@@ -29,16 +29,16 @@
                         "charlie": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "integer",
+                                    "value": -515714705,
+                                    "format": "int32"
+                                }
                             ]
                         },
-                        "jwcjcjlymlwyxwj": {
+                        "wcjcj": {
                             "type": "integer",
-                            "value": -844692461,
-                            "format": "int32"
-                        },
-                        "awa": {
-                            "type": "integer",
-                            "value": -396953445,
+                            "value": -431177927,
                             "format": "int32"
                         }
                     }
@@ -84,30 +84,56 @@
                     "type": "object",
                     "value": {
                         "alpha": {
-                            "type": "string",
-                            "value": "3"
+                            "type": "integer",
+                            "value": 908,
+                            "format": "int32"
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
                                 {
                                     "type": "integer",
-                                    "value": -419062191,
+                                    "value": 0,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 583519181,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -978079843,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -396573646,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -757064037,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 997040718,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -844692461,
                                     "format": "int32"
                                 }
                             ]
                         },
-                        "mzhvriwg": {
+                        "wartvehglmzhv": {
                             "type": "integer",
                             "value": 0,
                             "format": "int32"
                         },
-                        "lfl": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        },
-                        "bhlvz": {
+                        "iwg": {
                             "type": "integer",
                             "value": 0,
                             "format": "int32"
@@ -140,29 +166,15 @@
                             "value": false
                         },
                         "alpha": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "}4-"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "+U~"
-                                }
-                            ]
+                            "type": "boolean",
+                            "value": true
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
                                 {
                                     "type": "integer",
-                                    "value": 0,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -380193223,
+                                    "value": 586011854,
                                     "format": "int32"
                                 }
                             ]
@@ -195,22 +207,12 @@
                             "value": true
                         },
                         "alpha": {
-                            "type": "boolean",
-                            "value": true
+                            "type": "number",
+                            "value": -502.5
                         },
-                        "ohwzkwgiiets": {
+                        "lvz": {
                             "type": "integer",
-                            "value": 713018918,
-                            "format": "int32"
-                        },
-                        "nooqqgmofn": {
-                            "type": "integer",
-                            "value": 133023122,
-                            "format": "int32"
-                        },
-                        "vty": {
-                            "type": "integer",
-                            "value": 21665281,
+                            "value": 698495161,
                             "format": "int32"
                         }
                     }
@@ -221,7 +223,7 @@
     },
     {
         "id": 5,
-        "name": "param0.Value.Properties.charlie.Items.Contains.Value.Is='> 0'",
+        "name": "param0.Value.Properties.charlie.Items.Unique='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "AllOf",
@@ -241,27 +243,81 @@
                             "value": false
                         },
                         "alpha": {
-                            "type": "string",
-                            "value": "6{"
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "4"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "i+U~pW?5"
+                                }
+                            ]
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
                                 {
                                     "type": "integer",
-                                    "value": 1024275209,
+                                    "value": -790749656,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -679221724,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 200931105,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -679221724,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 409766837,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 825561475,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 709028133,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": -434446249,
+                                    "format": "int32"
+                                },
+                                {
+                                    "type": "integer",
+                                    "value": 407883369,
                                     "format": "int32"
                                 }
                             ]
                         },
-                        "fncghyfh": {
+                        "bnooqqgmofnigv": {
                             "type": "integer",
-                            "value": -931428280,
+                            "value": -348746843,
                             "format": "int32"
                         },
-                        "xcpexs": {
+                        "azl": {
                             "type": "integer",
-                            "value": -509798676,
+                            "value": -189851779,
+                            "format": "int32"
+                        },
+                        "izmfncghyfhgtxc": {
+                            "type": "integer",
+                            "value": -733759085,
                             "format": "int32"
                         }
                     }
@@ -272,126 +328,6 @@
     },
     {
         "id": 6,
-        "name": "param0.Value.Properties.charlie.Items.Unique='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "AllOf",
-        "path": "/allOf",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "header",
-                "style": "simple",
-                "explode": false,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "bravo": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "alpha": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "M[_Jf"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "29nXt"
-                                }
-                            ]
-                        },
-                        "charlie": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "integer",
-                                    "value": -247091458,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": 714456443,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": 243688315,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -399756644,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -172545367,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": 243688315,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -164115416,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -31250075,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": 885536907,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -772178468,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -838169851,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": -205899568,
-                                    "format": "int32"
-                                },
-                                {
-                                    "type": "integer",
-                                    "value": 1057761460,
-                                    "format": "int32"
-                                }
-                            ]
-                        },
-                        "kfdhpn": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        },
-                        "ydmvbjyxcvmifb": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 7,
         "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -414,7 +350,7 @@
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 8,
+        "id": 7,
         "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
@@ -428,8 +364,8 @@
                 "style": "simple",
                 "explode": false,
                 "data": {
-                    "type": "string",
-                    "value": "HcY=x\\"
+                    "type": "number",
+                    "value": 1003.7
                 },
                 "valid": false
             }
@@ -437,7 +373,7 @@
         "invalidInput": "param0.Type=Not object"
     },
     {
-        "id": 9,
+        "id": 8,
         "name": "param0.Value.Property-Count='< 3'",
         "server": "/",
         "version": "0.0.0",
@@ -454,13 +390,8 @@
                     "type": "object",
                     "value": {
                         "alpha": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "Q"
-                                }
-                            ]
+                            "type": "number",
+                            "value": 870.7
                         }
                     }
                 },
@@ -470,7 +401,7 @@
         "invalidInput": "param0.Value.Property-Count=< 3"
     },
     {
-        "id": 10,
+        "id": 9,
         "name": "param0.Value.Properties.bravo.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -491,23 +422,32 @@
                             "value": null
                         },
                         "alpha": {
-                            "type": "integer",
-                            "value": -27,
-                            "format": "int32"
+                            "type": "string",
+                            "value": "[_Jf"
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                }
                             ]
                         },
-                        "cgq": {
+                        "edhzg": {
                             "type": "integer",
-                            "value": 316150985,
+                            "value": 0,
                             "format": "int32"
                         },
-                        "bnkncxp": {
+                        "kyxeybm": {
                             "type": "integer",
-                            "value": 780924740,
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "pmhngcdpkfdhpng": {
+                            "type": "integer",
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -518,7 +458,7 @@
         "invalidInput": "param0.Value.Properties.bravo.Type=null"
     },
     {
-        "id": 11,
+        "id": 10,
         "name": "param0.Value.Properties.bravo.Type='Not boolean'",
         "server": "/",
         "version": "0.0.0",
@@ -537,28 +477,58 @@
                         "bravo": {
                             "type": "array",
                             "value": [
-                                {
-                                    "type": "string",
-                                    "value": "9sI;5("
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "jgGr"
-                                }
                             ]
                         },
                         "alpha": {
-                            "type": "number",
-                            "value": -808.1
+                            "type": "object",
+                            "value": {
+                                "jyxcv": {
+                                    "type": "integer",
+                                    "value": -549,
+                                    "format": "int32"
+                                },
+                                "brhachkurozdge": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "tB6)2"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "<2,{r[wp"
+                                        }
+                                    ]
+                                },
+                                "dfzaymkdz": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                }
                             ]
                         },
-                        "yhozbzsrxb": {
+                        "lllinyhozbzsrxbl": {
                             "type": "integer",
-                            "value": 337119652,
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "qe": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "qwexmczos": {
+                            "type": "integer",
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -569,7 +539,7 @@
         "invalidInput": "param0.Value.Properties.bravo.Type=Not boolean"
     },
     {
-        "id": 12,
+        "id": 11,
         "name": "param0.Value.Properties.charlie.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -587,19 +557,28 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "alpha": {
-                            "type": "string",
-                            "value": "IsK"
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": ",9fw7?5"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "KJYu$"
+                                }
+                            ]
                         },
                         "charlie": {
                             "type": "null",
                             "value": null
                         },
-                        "xmczosccg": {
+                        "fusqjwpdihbxz": {
                             "type": "integer",
-                            "value": 940408290,
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -610,7 +589,7 @@
         "invalidInput": "param0.Value.Properties.charlie.Type=null"
     },
     {
-        "id": 13,
+        "id": 12,
         "name": "param0.Value.Properties.charlie.Type='Not array'",
         "server": "/",
         "version": "0.0.0",
@@ -628,60 +607,20 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "alpha": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": ""
-                                }
-                            ]
+                            "type": "integer",
+                            "value": -697,
+                            "format": "int32"
                         },
                         "charlie": {
-                            "type": "object",
-                            "value": {
-                                "xdazmmpq": {
-                                    "type": "array",
-                                    "value": [
-                                        {
-                                            "type": "string",
-                                            "value": "vwp"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "FT Dsdo="
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": ".~p4;!D"
-                                        }
-                                    ]
-                                },
-                                "cjbdhcmihwtlstzp": {
-                                    "type": "number",
-                                    "value": 32.5
-                                },
-                                "ioimlurvy": {
-                                    "type": "number",
-                                    "value": -548.1
-                                }
-                            }
+                            "type": "number",
+                            "value": -295.5
                         },
-                        "ooqzmmbvr": {
+                        "bjkacj": {
                             "type": "integer",
-                            "value": 199674935,
-                            "format": "int32"
-                        },
-                        "k": {
-                            "type": "integer",
-                            "value": 352175314,
-                            "format": "int32"
-                        },
-                        "mba": {
-                            "type": "integer",
-                            "value": 228343982,
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -690,6 +629,58 @@
             }
         ],
         "invalidInput": "param0.Value.Properties.charlie.Type=Not array"
+    },
+    {
+        "id": 13,
+        "name": "param0.Value.Properties.charlie.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "AllOf",
+        "path": "/allOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "alpha": {
+                            "type": "number",
+                            "value": 294.9
+                        },
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "ihwtlstzpiwhv": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "oimlurvypdzdaoo": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "zmmbvrezk": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.charlie.Items.Size=0"
     },
     {
         "id": 14,
@@ -710,27 +701,11 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "alpha": {
-                            "type": "object",
-                            "value": {
-                                "jxevstlmngw": {
-                                    "type": "array",
-                                    "value": [
-                                    ]
-                                },
-                                "kiohmejom": {
-                                    "type": "integer",
-                                    "value": -743,
-                                    "format": "int32"
-                                },
-                                "ygxoj": {
-                                    "type": "array",
-                                    "value": [
-                                    ]
-                                }
-                            }
+                            "type": "number",
+                            "value": 176.5
                         },
                         "charlie": {
                             "type": "array",
@@ -741,19 +716,19 @@
                                 }
                             ]
                         },
-                        "wnoiummgqkajnnsj": {
+                        "veebjxevstl": {
                             "type": "integer",
-                            "value": 413390001,
+                            "value": 0,
                             "format": "int32"
                         },
-                        "nzoyzq": {
+                        "ngwvxdkiohmej": {
                             "type": "integer",
-                            "value": 921233522,
+                            "value": 0,
                             "format": "int32"
                         },
-                        "jogjixineeufcksh": {
+                        "mceiygxo": {
                             "type": "integer",
-                            "value": 826313654,
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -782,29 +757,35 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "alpha": {
-                            "type": "number",
-                            "value": -282.3
+                            "type": "boolean",
+                            "value": true
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
                                 {
-                                    "type": "boolean",
-                                    "value": true
+                                    "type": "array",
+                                    "value": [
+                                    ]
                                 }
                             ]
                         },
-                        "yfisrhuuobfdom": {
+                        "wnoiummgqkajnnsj": {
                             "type": "integer",
-                            "value": 683319539,
+                            "value": 0,
                             "format": "int32"
                         },
-                        "gpibwbtvmzbsys": {
+                        "cnzo": {
                             "type": "integer",
-                            "value": 172024609,
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "zqyujogjix": {
+                            "type": "integer",
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -833,26 +814,21 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                }
                             ]
                         },
-                        "rhlxxymtv": {
+                        "eeu": {
                             "type": "integer",
-                            "value": 516906186,
-                            "format": "int32"
-                        },
-                        "oers": {
-                            "type": "integer",
-                            "value": 296367760,
-                            "format": "int32"
-                        },
-                        "elnwzbythncmqv": {
-                            "type": "integer",
-                            "value": 523053930,
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -886,11 +862,16 @@
                         "charlie": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                }
                             ]
                         },
-                        "angmgjyztatk": {
+                        "kshuxltsmp": {
                             "type": "integer",
-                            "value": 362524765,
+                            "value": 0,
                             "format": "int32"
                         }
                     }
@@ -919,27 +900,36 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "alpha": {
-                            "type": "integer",
-                            "value": -846,
-                            "format": "int32"
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "?"
+                                }
+                            ]
                         },
                         "charlie": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                }
                             ]
                         },
-                        "chnaedrwghygi": {
+                        "uuobfdomdlgpib": {
                             "type": "null",
                             "value": null
                         },
-                        "omsmv": {
+                        "btvmzbsysnacr": {
                             "type": "null",
                             "value": null
                         },
-                        "ksxdixxgpkxsotwm": {
+                        "lxx": {
                             "type": "null",
                             "value": null
                         }
@@ -969,21 +959,57 @@
                     "value": {
                         "bravo": {
                             "type": "boolean",
-                            "value": false
+                            "value": true
                         },
                         "alpha": {
-                            "type": "object",
-                            "value": {
-                            }
-                        },
-                        "charlie": {
                             "type": "array",
                             "value": [
                             ]
                         },
-                        "texnzftx": {
-                            "type": "string",
-                            "value": "OUKk5L"
+                        "charlie": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "integer",
+                                    "value": 0,
+                                    "format": "int32"
+                                }
+                            ]
+                        },
+                        "d": {
+                            "type": "object",
+                            "value": {
+                                "rszyelnwzbythnc": {
+                                    "type": "boolean",
+                                    "value": true
+                                },
+                                "vgtyangmgjyztat": {
+                                    "type": "number",
+                                    "value": 558.7
+                                },
+                                "ndchn": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "wgh": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": " i"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Xr"
+                                }
+                            ]
                         }
                     }
                 },

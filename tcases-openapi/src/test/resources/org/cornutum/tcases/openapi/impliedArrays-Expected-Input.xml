@@ -54,11 +54,11 @@
         </Var>
         <VarSet name="Items" when="param1Value">
           <Var name="Size">
+            <Value name="0" failure="true"/>
             <Value name="1"/>
             <Value name="2" failure="true"/>
-            <Value name="0" property="param1ItemsNone"/>
           </Var>
-          <VarSet name="Contains" whenNot="param1ItemsNone">
+          <VarSet name="Contains">
             <Var name="Type">
               <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param1ItemsValue"/>
@@ -83,11 +83,11 @@
         <VarSet name="Items" when="param2Value">
           <Var name="Size">
             <Has name="itemsUnique" value="true"/>
-            <Value name="0" property="param2ItemsNone"/>
+            <Value name="0" failure="true"/>
             <Value name="1"/>
             <Value name="&gt; 1" property="param2ItemsMany"/>
           </Var>
-          <VarSet name="Contains" whenNot="param2ItemsNone">
+          <VarSet name="Contains">
             <Var name="Type">
               <Has name="itemType" value="Not null"/>
               <Value name="Not null" property="param2ItemsValue"/>

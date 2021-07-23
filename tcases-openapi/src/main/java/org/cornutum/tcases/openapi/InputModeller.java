@@ -1001,7 +1001,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     // Is this a string parameter?
     if( "string".equals( parameterSchema.getType())
         // ... for which an empty string value is valid?
-        && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 0)
+        && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) <= 0)
       {
       // Is an empty string allowed for this parameter?
       boolean emptyNotAllowed =
@@ -1029,6 +1029,28 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           // An empty string is equivalent to null, which is invalid.
           notifyWarning( "Empty string values not allowed for non-nullable parameter -- using minLength=1");
           parameterSchema.setMinLength( 1);
+          }
+        }
+      }
+
+    // Is this an array parameter...
+    if( "array".equals( parameterSchema.getType())
+        // ... for which an empty array value is valid?
+        && Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) <= 0)
+      {
+      if( !(Parameter.StyleEnum.MATRIX.equals( parameter.getStyle()) || Parameter.StyleEnum.LABEL.equals( parameter.getStyle())))
+        {
+        if( "path".equals( parameter.getIn()))
+          {
+          // An empty array is equivalent to "undefined", which is invalid
+          notifyWarning( "Empty array values not allowed for path parameter -- using minItems=1");
+          parameterSchema.setMinItems( 1);
+          }
+        else if( Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
+          {
+          // An empty array is equivalent to null, which is invalid.
+          notifyWarning( "Empty array values not allowed for non-nullable parameter -- using minItems=1");
+          parameterSchema.setMinItems( 1);
           }
         }
       }

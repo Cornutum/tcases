@@ -23,15 +23,11 @@
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
             <Has name="itemsUnique" value="true"/>
+            <Value name="0" failure="true"/>
             <Value name="1"/>
             <Value name="2" failure="true"/>
-            <Value name="0" property="param0ItemsNone"/>
           </Var>
           <VarSet name="Contains">
-            <When>
-              <Not property="param0ItemsNone">
-              </Not>
-            </When>
             <Var name="Type">
               <Has name="itemType" value="number"/>
               <Value name="number" property="param0ItemsValue"/>

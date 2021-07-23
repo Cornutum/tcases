@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -25,7 +25,7 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="3">
+        <Var name="param0.Items.Size" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="object">
@@ -65,7 +65,7 @@
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes">
+        <Var name="param0.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -130,68 +130,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2" name="param0.Items.Size=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/examples"/>
-      <Has name="properties" value="param0,param0ItemsNone,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="examples"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="array">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Size" value="0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Type" NA="true">
-          <Has name="itemType" value="object"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Property-Count" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.alpha.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.alpha.Value.Is" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.bravo.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.bravo.Value" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.charlie.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.charlie.Value" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Properties.Additional" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Unique" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="3" name="param0.Items.Size=&apos;&lt; 3&apos;">
+    <TestCase id="2" name="param0.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
       <Has name="properties" value="param0,param0ItemsAlpha,param0ItemsAlphaValue,param0ItemsBravo,param0ItemsBravoValue,param0ItemsCharlie,param0ItemsCharlieValue,param0ItemsMany,param0ItemsProperties,param0ItemsValue,param0Value"/>
@@ -207,9 +146,8 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="&lt; 3">
+        <Var name="param0.Items.Size" value="3">
           <Has name="paramName" value="param0"/>
-          <Has name="rangeMin" value="1"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="object">
           <Has name="itemType" value="object"/>
@@ -248,15 +186,15 @@
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="No">
+        <Var name="param0.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" name="param0.Items.Contains.Value.Properties.alpha.Value.Is=&apos;2&apos;">
+    <TestCase id="3" name="param0.Items.Contains.Value.Properties.alpha.Value.Is=&apos;2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="param0,param0ItemsAlpha,param0ItemsAlphaValue,param0ItemsMany,param0ItemsProperties,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsAlpha,param0ItemsAlphaValue,param0ItemsProperties,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -269,7 +207,7 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="3">
+        <Var name="param0.Items.Size" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="object">
@@ -309,12 +247,12 @@
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes">
+        <Var name="param0.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" name="param0.Items.Contains.Value.Properties.alpha.Value.Is=&apos;3&apos;">
+    <TestCase id="4" name="param0.Items.Contains.Value.Properties.alpha.Value.Is=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
       <Has name="properties" value="param0,param0ItemsAlpha,param0ItemsAlphaValue,param0ItemsBravo,param0ItemsBravoValue,param0ItemsCharlie,param0ItemsCharlieValue,param0ItemsMany,param0ItemsProperties,param0ItemsValue,param0Value"/>
@@ -330,9 +268,8 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="&lt; 3">
+        <Var name="param0.Items.Size" value="3">
           <Has name="paramName" value="param0"/>
-          <Has name="rangeMin" value="1"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="object">
           <Has name="itemType" value="object"/>
@@ -376,10 +313,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" name="param0.Items.Contains.Value.Properties.alpha.Value.Is=&apos;5&apos;">
+    <TestCase id="5" name="param0.Items.Contains.Value.Properties.alpha.Value.Is=&apos;5&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="param0,param0ItemsAlpha,param0ItemsAlphaValue,param0ItemsMany,param0ItemsProperties,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsAlpha,param0ItemsAlphaValue,param0ItemsProperties,param0ItemsValue,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -392,7 +329,7 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="3">
+        <Var name="param0.Items.Size" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Contains.Type" value="object">
@@ -432,7 +369,7 @@
         <Var name="param0.Items.Contains.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" value="Yes">
+        <Var name="param0.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

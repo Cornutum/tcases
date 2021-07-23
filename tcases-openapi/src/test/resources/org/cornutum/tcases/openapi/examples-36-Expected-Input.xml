@@ -33,11 +33,10 @@
         </Var>
         <VarSet name="Items" when="param1Value">
           <Var name="Size">
-            <Value name="0" property="param1ItemsNone"/>
             <Value name="1"/>
             <Value name="&gt; 1" property="param1ItemsMany"/>
           </Var>
-          <VarSet name="Contains" whenNot="param1ItemsNone">
+          <VarSet name="Contains">
             <Var name="Type">
               <Has name="itemType" value="integer"/>
               <Value name="integer" property="param1ItemsValue"/>
