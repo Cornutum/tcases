@@ -72,19 +72,6 @@ public class AllPaths_PostsTest {
     }
 
     @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void getPosts_IdsItemsSize_Is_5() {
         given()
             .baseUri( forTestServer())
@@ -1100,19 +1087,6 @@ public class AllPaths_PostsTest {
             .request( "TRACE", "/posts")
         .then()
             // postId.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePosts_PostIdItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .cookie( "postId", "")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }

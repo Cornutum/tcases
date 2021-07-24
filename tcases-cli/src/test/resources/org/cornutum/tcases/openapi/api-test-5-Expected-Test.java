@@ -359,19 +359,6 @@ public class MyMocoTest {
     }
 
     @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer( "http://localhost:9999"))
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void getPosts_IdsItemsSize_Is_5() {
         given()
             .baseUri( forTestServer( "http://localhost:9999"))

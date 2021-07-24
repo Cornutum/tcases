@@ -770,7 +770,7 @@ public class ApiTestCommandTest extends TestWriterTest
     assertFailure(
       ResolverException.class,
       () -> ApiTestCommand.run( new Options( args)),
-      "Error processing RequestCaseDef[3,param0.Items.Size='> 1',POST,/array,SUCCESS], param0, value, unique item[1] of 6",
+      "Error processing RequestCaseDef[2,param0.Items.Size='> 1',POST,/array,SUCCESS], param0, value, unique item[1] of 6",
       "Unable to resolve a value after 10000 tries");
     }
 

@@ -72,19 +72,6 @@ public class OpenAPIRequestTestCases_PostsTest {
     }
 
     @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void getPosts_IdsItemsSize_Is_5() {
         given()
             .baseUri( forTestServer())
@@ -1104,19 +1091,6 @@ public class OpenAPIRequestTestCases_PostsTest {
     }
 
     @Test
-    public void tracePosts_PostIdItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .cookie( "postId", "")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Size=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void tracePosts_PostIdItemsSize_Is_3() {
         given()
             .baseUri( forTestServer())
@@ -2087,19 +2061,6 @@ public class OpenAPIRequestTestCases_PostTest {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void patchPost_PostMarksItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }

@@ -415,19 +415,6 @@ public class WhyNotTest {
     }
 
     @Test(timeOut=12345)
-    public void patchPost_PostMarksItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Size=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test(timeOut=12345)
     public void patchPost_PostMarksItemsSize_Is_4() {
         given()
             .baseUri( forTestServer())

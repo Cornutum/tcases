@@ -85,19 +85,6 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     }
 
     @Test
-    public void tracePosts_PostIdItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .cookie( "postId", "")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Size=0
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
     public void tracePosts_PostIdItemsSize_Is_3() {
         given()
             .baseUri( forTestServer())
