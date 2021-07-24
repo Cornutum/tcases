@@ -36,7 +36,7 @@ public class IntegerEnum extends EnumDomain<Integer>
    * Returns the value represented by the given string.
    */
   @Override
-protected Integer valueOf( String value)
+  protected Integer valueOf( String value)
     {
     try
       {
@@ -52,7 +52,7 @@ protected Integer valueOf( String value)
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Integer> dataValueOf( Integer value)
+  protected DataValue<Integer> dataValueOf( Integer value)
     {
     return new IntegerValue( value);
     }

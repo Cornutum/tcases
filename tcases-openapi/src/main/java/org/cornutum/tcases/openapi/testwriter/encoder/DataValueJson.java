@@ -28,7 +28,7 @@ public class DataValueJson implements DataValueConverter<String>
    * Returns the converted form of the given {@link DataValue}.
    */
   @Override
-public String convert( DataValue<?> value)
+  public String convert( DataValue<?> value)
     {
     return Objects.toString( convertJsonValue_.convert( value), "");
     }

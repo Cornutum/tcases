@@ -49,7 +49,7 @@ public abstract class AbstractAssertion implements IAssertion
    * Returns the property asserted.
    */
   @Override
-public String getProperty()
+  public String getProperty()
     {
     return property_;
     }
@@ -58,7 +58,7 @@ public String getProperty()
    * Returns the assertions for this disjunction.
    */
   @Override
-public Iterator<IAssertion> getAssertions()
+  public Iterator<IAssertion> getAssertions()
     {
     return new SingletonIterator<IAssertion>( this);
     }
@@ -67,7 +67,7 @@ public Iterator<IAssertion> getAssertions()
    * Returns true if the given assertion is a member of this disjunction.
    */
   @Override
-public boolean contains( IAssertion assertion)
+  public boolean contains( IAssertion assertion)
     {
     return equals( assertion);
     }
@@ -76,7 +76,7 @@ public boolean contains( IAssertion assertion)
    * Returns the number of assertions for this disjunction.
    */
   @Override
-public int getAssertionCount()
+  public int getAssertionCount()
     {
     return 1;
     }
@@ -85,7 +85,7 @@ public int getAssertionCount()
    * Returns the disjuncts in this conjunction.
    */
   @Override
-public Iterator<IDisjunct> getDisjuncts()
+  public Iterator<IDisjunct> getDisjuncts()
     {
     return new SingletonIterator<IDisjunct>( this);
     }
@@ -94,7 +94,7 @@ public Iterator<IDisjunct> getDisjuncts()
    * Returns the number of disjunctions for this conjunction.
    */
   @Override
-public int getDisjunctCount()
+  public int getDisjunctCount()
     {
     return 1;
     }
@@ -105,13 +105,13 @@ public int getDisjunctCount()
    * or if it could be satisfied with the addition of more properties.
    */
   @Override
-public boolean compatible( PropertySet properties)
+  public boolean compatible( PropertySet properties)
     {
     return completable() || satisfied( properties);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -120,7 +120,7 @@ public String toString()
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -128,7 +128,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     return
       object != null

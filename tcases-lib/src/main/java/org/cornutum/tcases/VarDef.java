@@ -41,7 +41,7 @@ public class VarDef extends AbstractVarDef
    * Otherwise, returns null.
    */
   @Override
-public Iterator<IVarDef> getMembers()
+  public Iterator<IVarDef> getMembers()
     {
     return null;
     }
@@ -51,7 +51,7 @@ public Iterator<IVarDef> getMembers()
    * Otherwise, returns null.
    */
   @Override
-public Iterator<VarValueDef> getValues()
+  public Iterator<VarValueDef> getValues()
     {
     return values_.iterator();
     }
@@ -60,7 +60,7 @@ public Iterator<VarValueDef> getValues()
    * Returns the descendant variable with the given name path, relative to this variable.
    */
   @Override
-public IVarDef find( String... path)
+  public IVarDef find( String... path)
     {
     return
       path == null || path.length == 0

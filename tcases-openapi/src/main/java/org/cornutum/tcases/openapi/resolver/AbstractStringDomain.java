@@ -55,7 +55,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
    * Changes the values excluded from this domain.
    */
   @Override
-public void setExcludedStrings( Set<String> excluded)
+  public void setExcludedStrings( Set<String> excluded)
     {
     setExcluded( excluded);
     }
@@ -64,7 +64,7 @@ public void setExcludedStrings( Set<String> excluded)
    * Returns the length of the given value.
    */
   @Override
-protected int getLength( String value)
+  protected int getLength( String value)
     {
     return value.length();
     }
@@ -121,7 +121,7 @@ protected int getLength( String value)
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<String> dataValueOf( String value)
+  protected DataValue<String> dataValueOf( String value)
     {
     return new StringValue( value);
     }
@@ -166,7 +166,7 @@ protected DataValue<String> dataValueOf( String value)
    * Returns a random sequence of possible members of this domain.
    */
   @Override
-protected Stream<String> candidates( ResolverContext context)
+  protected Stream<String> candidates( ResolverContext context)
     {
     PatternResolver patternResolver = new PatternResolver( context);
     patternResolver.patternInfeasible( getLengthRange())
@@ -192,7 +192,7 @@ protected Stream<String> candidates( ResolverContext context)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( String value)
+  public boolean contains( String value)
     {
     return
       super.contains( value)

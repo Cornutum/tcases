@@ -43,7 +43,7 @@ public class DataValueJsonValue implements DataValueConverter<JsonValue>
    * Returns the converted form of the given {@link DataValue}.
    */
   @Override
-public JsonValue convert( DataValue<?> value)
+  public JsonValue convert( DataValue<?> value)
     {
     return
       Optional.ofNullable( value)

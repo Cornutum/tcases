@@ -27,7 +27,7 @@ public class RestServerTestWriter extends MocoServerTestWriter
    * Returns the Moco server class name for this test writer.
    */
   @Override
-protected String getServerClass()
+  protected String getServerClass()
     {
     return "RestServer";
     }
@@ -36,7 +36,7 @@ protected String getServerClass()
    * Returns the Moco server factory method for this test writer.
    */
   @Override
-protected String getServerFactory()
+  protected String getServerFactory()
     {
     return "restServer";
     }
@@ -45,7 +45,7 @@ protected String getServerFactory()
    * Returns the MocoJunitRunner factory method for this test writer.
    */
   @Override
-protected String getRunnerFactory()
+  protected String getRunnerFactory()
     {
     return "restRunner";
     }    
@@ -54,7 +54,7 @@ protected String getRunnerFactory()
    * Writes the target test dependencies for the POJO server configuration to the given stream.
    */
   @Override
-protected void writePojoDependencies( IndentedWriter targetWriter)
+  protected void writePojoDependencies( IndentedWriter targetWriter)
     {
     targetWriter.println( "import com.github.dreamhead.moco.RestServer;");
     targetWriter.println( "import static com.github.dreamhead.moco.MocoRest.*;");

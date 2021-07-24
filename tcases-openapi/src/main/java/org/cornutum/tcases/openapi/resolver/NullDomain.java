@@ -28,7 +28,7 @@ public class NullDomain extends AbstractValueDomain<Object>
    * Returns a random sequence of values from this domain.
    */
   @Override
-public Stream<DataValue<Object>> values( ResolverContext context)
+  public Stream<DataValue<Object>> values( ResolverContext context)
     {
     return Stream.of( select( context));
     }
@@ -37,7 +37,7 @@ public Stream<DataValue<Object>> values( ResolverContext context)
    * Returns a random value from this domain.
    */
   @Override
-public DataValue<Object> select( ResolverContext context)
+  public DataValue<Object> select( ResolverContext context)
     {
     return dataValueOf( null);
     }
@@ -46,7 +46,7 @@ public DataValue<Object> select( ResolverContext context)
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Object> dataValueOf( Object value)
+  protected DataValue<Object> dataValueOf( Object value)
     {
     return new NullValue();
     }
@@ -55,7 +55,7 @@ protected DataValue<Object> dataValueOf( Object value)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( Object value)
+  public boolean contains( Object value)
     {
     return value == null;
     }
@@ -64,13 +64,13 @@ public boolean contains( Object value)
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-public Type[] getTypes()
+  public Type[] getTypes()
     {
     return Type.only( Type.NULL);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

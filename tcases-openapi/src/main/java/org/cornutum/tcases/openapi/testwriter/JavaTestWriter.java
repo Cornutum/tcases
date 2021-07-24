@@ -37,7 +37,7 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
    * Returns the test name derived from the given base name.
    */
   @Override
-protected String getTestName( String baseName)
+  protected String getTestName( String baseName)
     {
     String[] words = baseName.split( "\\W+");
 
@@ -56,7 +56,7 @@ protected String getTestName( String baseName)
    * Writes the target test opening to the given stream.
    */
   @Override
-protected void writeOpening( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeOpening( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.println(
       String.format(
@@ -69,7 +69,7 @@ protected void writeOpening( JavaTestTarget target, String testName, IndentedWri
    * Writes the target test dependencies to the given stream.
    */
   @Override
-protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
     
@@ -82,7 +82,7 @@ protected void writeDependencies( JavaTestTarget target, String testName, Indent
    * Writes the target test declarations to the given stream.
    */
   @Override
-protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     StringBuilder classDecl = new StringBuilder() .append( "public class ") .append( getClassName( testName));
 
@@ -100,7 +100,7 @@ protected void writeDeclarations( JavaTestTarget target, String testName, Indent
    * Writes the target test closing to the given stream.
    */
   @Override
-protected void writeClosing( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeClosing( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.unindent();
     targetWriter.println( "}");
@@ -110,7 +110,7 @@ protected void writeClosing( JavaTestTarget target, String testName, IndentedWri
    * Returns the target file defined by the given target.
    */
   @Override
-protected File getTargetFile( JavaTestTarget target, String testName)
+  protected File getTargetFile( JavaTestTarget target, String testName)
     {
     File targetFile = super.getTargetFile( target, testName);
 

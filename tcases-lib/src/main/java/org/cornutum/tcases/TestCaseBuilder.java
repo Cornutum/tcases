@@ -146,7 +146,7 @@ public class TestCaseBuilder extends AnnotatedBuilder<TestCaseBuilder>
    * Returns the {@link Annotated} instance for this builder.
    */
   @Override
-protected Annotated getAnnotated()
+  protected Annotated getAnnotated()
     {
     return testCase_;
     }

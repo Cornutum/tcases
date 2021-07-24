@@ -37,7 +37,7 @@ public class BinaryDomain extends SequenceDomain<byte[]>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<byte[]> dataValueOf( byte[] value)
+  protected DataValue<byte[]> dataValueOf( byte[] value)
     {
     return new BinaryValue( value);
     }
@@ -46,7 +46,7 @@ protected DataValue<byte[]> dataValueOf( byte[] value)
    * Changes the values excluded from this domain.
    */
   @Override
-public void setExcludedStrings( Set<String> excluded)
+  public void setExcludedStrings( Set<String> excluded)
     {
     setExcluded(
       excluded.stream()
@@ -58,7 +58,7 @@ public void setExcludedStrings( Set<String> excluded)
    * Returns the length of the given value.
    */
   @Override
-protected int getLength( byte[] value)
+  protected int getLength( byte[] value)
     {
     return value.length;
     }
@@ -67,7 +67,7 @@ protected int getLength( byte[] value)
    * Returns true if the given values are equal.
    */
   @Override
-protected boolean valuesEqual( byte[] value1, byte[] value2)
+  protected boolean valuesEqual( byte[] value1, byte[] value2)
     {
     return Arrays.equals( value1, value2);
     }
@@ -86,7 +86,7 @@ protected boolean valuesEqual( byte[] value1, byte[] value2)
    * Returns a random sequence of possible members of this domain.
    */
   @Override
-protected Stream<byte[]> candidates( ResolverContext context)
+  protected Stream<byte[]> candidates( ResolverContext context)
     {
     return Stream.generate( () -> newValue( context));
     }

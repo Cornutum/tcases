@@ -28,7 +28,7 @@ public class ArrayConstant extends ConstantDomain<List<DataValue<Object>>>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<List<DataValue<Object>>> dataValueOf( List<DataValue<Object>> value)
+    protected DataValue<List<DataValue<Object>>> dataValueOf( List<DataValue<Object>> value)
     {
     return new ArrayValue<Object>( value);
     }

@@ -113,7 +113,7 @@ public class DataValue<T>
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -122,7 +122,7 @@ public String toString()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     @SuppressWarnings("unchecked")
     DataValue<T> other =
@@ -140,7 +140,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       DataValue.class.hashCode()

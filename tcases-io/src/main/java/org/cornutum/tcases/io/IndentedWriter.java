@@ -120,7 +120,7 @@ public class IndentedWriter implements Closeable
    * Closes the writer.
    */
   @Override
-public void close() throws IOException
+  public void close() throws IOException
     {
     writer_.close();
     }

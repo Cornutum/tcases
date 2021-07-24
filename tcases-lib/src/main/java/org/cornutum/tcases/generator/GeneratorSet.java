@@ -27,7 +27,7 @@ public class GeneratorSet implements IGeneratorSet, CloneableType<GeneratorSet>
    * Returns the test case generator for the given system function.
    */
   @Override
-public ITestCaseGenerator getGenerator( String functionName)
+  public ITestCaseGenerator getGenerator( String functionName)
     {
     ITestCaseGenerator generator = generators_.get( getFunctionKey( functionName));
     return generator==null? generators_.get( ALL) : generator;
@@ -38,7 +38,7 @@ public ITestCaseGenerator getGenerator( String functionName)
    * this set.
    */
   @Override
-public String[] getGeneratorFunctions()
+  public String[] getGeneratorFunctions()
     {
     String[] functions = new String[ generators_.size()];
     generators_.keySet().toArray( functions);
@@ -49,7 +49,7 @@ public String[] getGeneratorFunctions()
    * Returns all test case generators in this set.
    */
   @Override
-public Iterator<ITestCaseGenerator> getGenerators()
+  public Iterator<ITestCaseGenerator> getGenerators()
     {
     return generators_.values().iterator();
     }
@@ -107,7 +107,7 @@ public Iterator<ITestCaseGenerator> getGenerators()
     }
 
   @Override
-public GeneratorSet cloneOf()
+  public GeneratorSet cloneOf()
     {
     GeneratorSet clone = new GeneratorSet();
     generators_.forEach( (f, g) -> clone.setGenerator( f, g.cloneOf()));
@@ -115,7 +115,7 @@ public GeneratorSet cloneOf()
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -123,7 +123,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     GeneratorSet other =
       object != null && object.getClass().equals( getClass())
@@ -136,7 +136,7 @@ public boolean equals( Object object)
     }
   
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

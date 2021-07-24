@@ -73,7 +73,7 @@ public class RequestCaseResolverTest extends RequestCaseTest
    * Returns the {@link ResolverContext} for this test.
    */
   @Override
-protected ResolverContext getResolverContext()
+  protected ResolverContext getResolverContext()
     {
     return
       ResolverContext.builder( getRandom())

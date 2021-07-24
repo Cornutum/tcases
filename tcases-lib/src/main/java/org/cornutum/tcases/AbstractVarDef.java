@@ -113,7 +113,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * Returns the variable name.
    */
   @Override
-public String getName()
+  public String getName()
     {
     return name_;
     }
@@ -122,7 +122,7 @@ public String getName()
    * Returns the hierarchical path name of this variable.
    */
   @Override
-public String getPathName()
+  public String getPathName()
     {
     if( pathName_ == null)
       {
@@ -161,7 +161,7 @@ public String getPathName()
    * Returns the type identifier for this variable.
    */
   @Override
-public String getType()
+  public String getType()
     {
     IVarDef parent = getParent();
     return parent==null? type_ : parent.getType();
@@ -171,7 +171,7 @@ public String getType()
    * Changes the parent of this variable.
    */
   @Override
-public void setParent( IVarDef parent)
+  public void setParent( IVarDef parent)
     {
     parent_ = parent;
     pathName_ = null;
@@ -183,7 +183,7 @@ public void setParent( IVarDef parent)
    * If this is member of another variable, returns the parent variable. Otherwise, returns null.
    */
   @Override
-public IVarDef getParent()
+  public IVarDef getParent()
     {
     return parent_;
     }
@@ -193,7 +193,7 @@ public IVarDef getParent()
    * based on the conditions for this variable and all of its ancestors.
    */
   @Override
-public ICondition getEffectiveCondition()
+  public ICondition getEffectiveCondition()
     {
     if( effCondition_ == null)
       {
@@ -219,7 +219,7 @@ public ICondition getEffectiveCondition()
    * Changes the condition that defines when this element is applicable.
    */
   @Override
-public void setCondition( ICondition condition)
+  public void setCondition( ICondition condition)
     {
     super.setCondition( condition);
     effCondition_ = null;
@@ -237,7 +237,7 @@ public void setCondition( ICondition condition)
    * Returns the position of this variable definition.
    */
   @Override
-public IVarDef.Position getPosition()
+  public IVarDef.Position getPosition()
     {
     if( position_ == null)
       {
@@ -251,7 +251,7 @@ public IVarDef.Position getPosition()
    * Changes the sequence number of this variable.
    */
   @Override
-public void setSeqNum( int seqNum)
+  public void setSeqNum( int seqNum)
     {
     seqNum_ = seqNum;
     }
@@ -260,7 +260,7 @@ public void setSeqNum( int seqNum)
    * Returns the sequence number of this variable.
    */
   @Override
-public int getSeqNum()
+  public int getSeqNum()
     {
     return seqNum_;
     }
@@ -294,7 +294,7 @@ abstract public Iterator<VarValueDef> getValues();
 abstract public IVarDef find( String... path);
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -303,7 +303,7 @@ public String toString()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     AbstractVarDef other =
       object != null && object.getClass().equals( getClass())
@@ -316,7 +316,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()

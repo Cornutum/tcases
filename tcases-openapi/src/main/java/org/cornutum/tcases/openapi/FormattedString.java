@@ -61,7 +61,7 @@ public abstract class FormattedString
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return formatted();
     }

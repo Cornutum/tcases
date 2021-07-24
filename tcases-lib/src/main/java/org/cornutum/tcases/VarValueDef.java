@@ -212,7 +212,7 @@ public class VarValueDef extends Conditional
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     VarValueDef other =
       object != null && object.getClass().equals( getClass())
@@ -226,7 +226,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -235,7 +235,7 @@ public int hashCode()
     }
   
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

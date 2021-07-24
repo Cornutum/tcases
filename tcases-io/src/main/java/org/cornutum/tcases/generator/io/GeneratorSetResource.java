@@ -38,7 +38,7 @@ public class GeneratorSetResource extends Resource implements IGeneratorSetSourc
    * Returns a {@link IGeneratorSet} instance.
    */
   @Override
-public IGeneratorSet getGeneratorSet()
+  public IGeneratorSet getGeneratorSet()
     {
     return
       getType() == JSON?

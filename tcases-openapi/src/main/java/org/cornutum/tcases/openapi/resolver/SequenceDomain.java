@@ -145,7 +145,7 @@ public abstract class SequenceDomain<T> extends AbstractValueDomain<T>
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-public Type[] getTypes()
+  public Type[] getTypes()
     {
     return Type.only( Type.STRING);
     }
@@ -154,7 +154,7 @@ public Type[] getTypes()
    * Returns a random sequence of values from this domain.
    */
   @Override
-public Stream<DataValue<T>> values( ResolverContext context)
+  public Stream<DataValue<T>> values( ResolverContext context)
     {
     return
       candidates( context)
@@ -171,7 +171,7 @@ public Stream<DataValue<T>> values( ResolverContext context)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( T value)
+  public boolean contains( T value)
     {
     return
       // Length within min/max bounds?
@@ -198,7 +198,7 @@ public boolean contains( T value)
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

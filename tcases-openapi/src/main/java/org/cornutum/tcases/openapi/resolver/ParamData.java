@@ -91,7 +91,7 @@ public class ParamData extends MessageData
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     ParamData other =
       object instanceof ParamData
@@ -104,7 +104,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -112,7 +112,7 @@ public int hashCode()
     }
   
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

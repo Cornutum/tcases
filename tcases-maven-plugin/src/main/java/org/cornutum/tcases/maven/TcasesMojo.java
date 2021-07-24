@@ -30,7 +30,7 @@ import java.util.Set;
 public class TcasesMojo extends AbstractMojo
   {
   @Override
-public void execute() throws MojoExecutionException
+  public void execute() throws MojoExecutionException
     {
     try
       {

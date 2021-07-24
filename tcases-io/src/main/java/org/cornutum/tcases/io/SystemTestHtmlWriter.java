@@ -72,7 +72,7 @@ public class SystemTestHtmlWriter extends AbstractSystemTestWriter
    * Writes the given system test definition the form of an HTML document.
    */
   @Override
-public void write( SystemTestDef systemTest)
+  public void write( SystemTestDef systemTest)
     {
     write( systemTest, true, null, null);
     }
@@ -355,7 +355,7 @@ public void write( SystemTestDef systemTest)
    * Flushes the writer.
    */
   @Override
-public void flush()
+  public void flush()
     {
     getXmlWriter().flush();
     }
@@ -364,7 +364,7 @@ public void flush()
    * Closes the writer.
    */
   @Override
-public void close() throws IOException
+  public void close() throws IOException
     {
     getXmlWriter().close();
     }
@@ -373,7 +373,7 @@ public void close() throws IOException
    * Changes the output stream for this writer.
    */
   @Override
-protected void setWriter( Writer writer)
+  protected void setWriter( Writer writer)
     {
     setXmlWriter( new XmlWriter( writer));
     }

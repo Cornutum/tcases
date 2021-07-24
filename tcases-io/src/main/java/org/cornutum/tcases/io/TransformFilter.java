@@ -126,7 +126,7 @@ public class TransformFilter extends AbstractFilter implements ErrorListener
    * Initializes the filter.
    */
   @Override
-protected void initializeFilter( InputStream filterInput, OutputStream filterOutput)
+  protected void initializeFilter( InputStream filterInput, OutputStream filterOutput)
     {
     try
       {
@@ -163,33 +163,33 @@ protected void initializeFilter( InputStream filterInput, OutputStream filterOut
    * write transformed data to the {@link #getFilterOutput filter output stream}.
    */
   @Override
-protected void applyFilter() throws Exception
+  protected void applyFilter() throws Exception
     {
     transformer_.transform( transformSource_, transformResult_);
     }
 
   @Override
-public void error( TransformerException exception) throws TransformerException
+  public void error( TransformerException exception) throws TransformerException
     {
     logger_.error( "Exception during transform, {}", exception);
     throw exception;
     }
   
   @Override
-public void fatalError( TransformerException exception) throws TransformerException
+  public void fatalError( TransformerException exception) throws TransformerException
     {
     logger_.error( "Exception during transform, {}", exception);
     throw exception;
     }
   
  @Override
-public void warning( TransformerException exception)
+ public void warning( TransformerException exception)
     {
     logger_.warn( "Exception during transform, {}", exception);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

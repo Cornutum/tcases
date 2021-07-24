@@ -62,13 +62,13 @@ public class CertConfigFile extends CertConfig
    * Implements the Visitor pattern for this certificate configuration.
    */
   @Override
-public void accept( CertConfigVisitor visitor)
+  public void accept( CertConfigVisitor visitor)
     {
     visitor.visit( this);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

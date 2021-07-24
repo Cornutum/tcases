@@ -78,7 +78,7 @@ public class VarBindingDef implements IConditional
    * Returns the condition that defines when this binding is applicable.
    */
   @Override
-public ICondition getCondition()
+  public ICondition getCondition()
     {
     return valueDef_ == null? null : valueDef_.getCondition();
     }
@@ -105,7 +105,7 @@ public ICondition getCondition()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     VarBindingDef other =
       object != null && object.getClass().equals( getClass())
@@ -119,7 +119,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -128,7 +128,7 @@ public int hashCode()
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       new StringBuilder()

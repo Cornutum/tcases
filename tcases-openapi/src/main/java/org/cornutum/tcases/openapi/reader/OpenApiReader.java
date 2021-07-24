@@ -193,7 +193,7 @@ public class OpenApiReader implements Closeable
     }
 
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( reader_, null);
     }

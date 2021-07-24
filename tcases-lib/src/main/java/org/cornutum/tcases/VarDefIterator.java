@@ -44,13 +44,13 @@ public class VarDefIterator implements Iterator<VarDef>
     }
 
   @Override
-public boolean hasNext()
+  public boolean hasNext()
     {
     return getNextVarDef() != null;
     }
 
   @Override
-public VarDef next()
+  public VarDef next()
     {
     if( !hasNext())
       {
@@ -64,7 +64,7 @@ public VarDef next()
     }
 
   @Override
-public void remove()
+  public void remove()
     {
     throw new UnsupportedOperationException();
     }

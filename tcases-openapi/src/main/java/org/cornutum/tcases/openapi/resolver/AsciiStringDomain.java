@@ -56,7 +56,7 @@ public class AsciiStringDomain extends AbstractStringDomain
    * Returns a random sequence of possible members of this domain matching all pattern requirements.
    */
   @Override
-protected Stream<String> matchingCandidates( ResolverContext context, PatternResolver patternResolver)
+  protected Stream<String> matchingCandidates( ResolverContext context, PatternResolver patternResolver)
     {
     return generateMatchingValues( context, patternResolver);
     }
@@ -65,7 +65,7 @@ protected Stream<String> matchingCandidates( ResolverContext context, PatternRes
    * Returns a new random string of the given length for this domain.
    */
   @Override
-protected String newValue( ResolverContext context, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     StringBuilder value = new StringBuilder();
     for( int i = 0; i < length; i++)

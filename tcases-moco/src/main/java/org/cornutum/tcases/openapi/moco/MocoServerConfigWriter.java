@@ -125,7 +125,7 @@ public class MocoServerConfigWriter implements Closeable
    * Closes the writer.
    */
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( getWriter(), null);
     }

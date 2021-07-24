@@ -35,7 +35,7 @@ public class ResolverContext extends ExecutionContext<ResolverException>
    * Returns an exception to throw for the given failure.
    */
   @Override
-protected ResolverException whenFailure( Throwable e)
+  protected ResolverException whenFailure( Throwable e)
     {
     return
       ResolverException.class.isAssignableFrom( e.getClass())

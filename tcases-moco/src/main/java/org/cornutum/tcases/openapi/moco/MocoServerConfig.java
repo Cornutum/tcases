@@ -91,7 +91,7 @@ public abstract class MocoServerConfig
   public abstract void accept( ConfigVisitor visitor);
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

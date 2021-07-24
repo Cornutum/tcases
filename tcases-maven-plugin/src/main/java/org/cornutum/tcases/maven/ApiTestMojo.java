@@ -33,7 +33,7 @@ import java.util.Set;
 public class ApiTestMojo extends AbstractMojo
   {
   @Override
-public void execute() throws MojoExecutionException
+  public void execute() throws MojoExecutionException
     {
     try
       {

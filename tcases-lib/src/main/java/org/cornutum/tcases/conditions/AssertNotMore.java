@@ -35,7 +35,7 @@ public class AssertNotMore extends BoundedAssertion
    * Returns true is the bound is exclusive.
    */
   @Override
-public boolean isExclusive()
+  public boolean isExclusive()
     {
     return false;
     }
@@ -44,7 +44,7 @@ public boolean isExclusive()
    * Returns true if this condition is satisfied by the given test case properties.
    */
   @Override
-public boolean satisfied( PropertySet properties)
+  public boolean satisfied( PropertySet properties)
     {
     return properties.getCount( getProperty()) <= getBound();
     }
@@ -53,7 +53,7 @@ public boolean satisfied( PropertySet properties)
    * Returns an assertion that negates this assertion.
    */
   @Override
-public IAssertion negate()
+  public IAssertion negate()
     {
     return new AssertMore( getProperty(), getBound());
     }
@@ -62,7 +62,7 @@ public IAssertion negate()
    * Returns true if this assertion negates the other.
    */
   @Override
-public boolean negates( IAssertion other)
+  public boolean negates( IAssertion other)
     {
     AssertMore assertion =
       other != null && other.getClass().equals( AssertMore.class)
@@ -80,7 +80,7 @@ public boolean negates( IAssertion other)
    * the addition of another (instance of a) property.
    */
   @Override
-public boolean completable()
+  public boolean completable()
     {
     return false;
     }
@@ -89,7 +89,7 @@ public boolean completable()
    * Implements the Visitor pattern for this condition.
    */
   @Override
-public void accept( IConditionVisitor visitor)
+  public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }

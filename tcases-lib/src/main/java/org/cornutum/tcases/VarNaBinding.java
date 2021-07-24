@@ -46,7 +46,7 @@ public class VarNaBinding extends VarBinding
    * Changes if this variable is bound to a valid value.
    */
   @Override
-public void setValueValid( boolean valid)
+  public void setValueValid( boolean valid)
     {
     if( !valid)
       {
@@ -58,7 +58,7 @@ public void setValueValid( boolean valid)
    * Returns if this variable is bound to a valid value.
    */
   @Override
-public boolean isValueValid()
+  public boolean isValueValid()
     {
     return true;
     }
@@ -67,13 +67,13 @@ public boolean isValueValid()
    * Returns true if this binding indicates a "not applicable" condition for this variable.
    */
   @Override
-public boolean isValueNA()
+  public boolean isValueNA()
     {
     return true;
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

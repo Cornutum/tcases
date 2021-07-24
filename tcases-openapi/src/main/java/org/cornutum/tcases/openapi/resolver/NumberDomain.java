@@ -144,7 +144,7 @@ public abstract class NumberDomain<T extends Number & Comparable<T>> extends Abs
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( T value)
+  public boolean contains( T value)
     {
     return
       // Value within min/max bounds?
@@ -164,13 +164,13 @@ public boolean contains( T value)
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-public Type[] getTypes()
+  public Type[] getTypes()
     {
     return Type.only( type_);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

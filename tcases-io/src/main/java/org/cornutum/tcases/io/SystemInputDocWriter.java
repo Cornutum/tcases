@@ -55,7 +55,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
    * Writes the given system test definition the form of an XML document.
    */
   @Override
-public void write( SystemInputDef systemInput)
+  public void write( SystemInputDef systemInput)
     {
     xmlWriter_.writeDeclaration();
 
@@ -198,7 +198,7 @@ public void write( SystemInputDef systemInput)
    * Flushes the writer.
    */
   @Override
-public void flush()
+  public void flush()
     {
     getXmlWriter().flush();
     }
@@ -207,7 +207,7 @@ public void flush()
    * Closes the writer.
    */
   @Override
-public void close() throws IOException
+  public void close() throws IOException
     {
     getXmlWriter().close();
     }
@@ -216,7 +216,7 @@ public void close() throws IOException
    * Changes the output stream for this writer.
    */
   @Override
-protected void setWriter( Writer writer)
+  protected void setWriter( Writer writer)
     {
     setXmlWriter( new XmlWriter( writer));
     }

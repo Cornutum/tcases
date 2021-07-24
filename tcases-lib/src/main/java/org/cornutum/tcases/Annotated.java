@@ -76,7 +76,7 @@ public abstract class Annotated implements IAnnotated
    * Returns the value of the given annotation.
    */
   @Override
-public String getAnnotation( String name)
+  public String getAnnotation( String name)
     {
     return annotations_.get( name);
     }
@@ -97,7 +97,7 @@ public String getAnnotation( String name)
    * Returns the list of all annotation names.
    */
   @Override
-public Iterator<String> getAnnotations()
+  public Iterator<String> getAnnotations()
     {
     return annotations_.keySet().iterator();
     }

@@ -172,7 +172,7 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 
@@ -192,7 +192,7 @@ public String toString()
     }
 
   @Override
-public int compareTo( VarBinding other)
+  public int compareTo( VarBinding other)
     {
     IVarDef varDef = getVarDef();
     IVarDef otherVarDef = other.getVarDef();
@@ -210,7 +210,7 @@ public int compareTo( VarBinding other)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -218,7 +218,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     VarBinding other =
       object != null && object.getClass().equals( getClass())

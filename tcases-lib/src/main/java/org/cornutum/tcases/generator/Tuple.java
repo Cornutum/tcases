@@ -273,7 +273,7 @@ public class Tuple
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     Tuple other =
       object != null && object.getClass().equals( getClass())
@@ -286,7 +286,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -294,7 +294,7 @@ public int hashCode()
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
     if( !bindings_.isEmpty())

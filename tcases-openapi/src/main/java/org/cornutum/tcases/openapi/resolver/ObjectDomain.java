@@ -153,7 +153,7 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
    * Returns a random sequence of values from this domain.
    */
   @Override
-public Stream<DataValue<Map<String,DataValue<?>>>> values( ResolverContext context)
+    public Stream<DataValue<Map<String,DataValue<?>>>> values( ResolverContext context)
     {
     return Stream.generate( () -> dataValueOf( newObject( context)));
     }
@@ -162,7 +162,7 @@ public Stream<DataValue<Map<String,DataValue<?>>>> values( ResolverContext conte
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
+    protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
     {
     return new ObjectValue( value);
     }
@@ -202,7 +202,7 @@ protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( Map<String,DataValue<?>> value)
+    public boolean contains( Map<String,DataValue<?>> value)
     {
     boolean containsProperties =
       getPropertyDomains().entrySet().stream()
@@ -232,13 +232,13 @@ public boolean contains( Map<String,DataValue<?>> value)
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-public Type[] getTypes()
+    public Type[] getTypes()
     {
     return Type.only( Type.OBJECT);
     }
 
   @Override
-public String toString()
+    public String toString()
     {
     return
       ToString.getBuilder( this)

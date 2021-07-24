@@ -63,13 +63,13 @@ public class CartesianProduct<T> implements Iterator<List<T>>
     }
 
   @Override
-public boolean hasNext()
+  public boolean hasNext()
     {
     return getNext() != null;
     }
 
   @Override
-public List<T> next()
+  public List<T> next()
     {
     List<T> next = getNext();
     if( next == null)
@@ -82,7 +82,7 @@ public List<T> next()
     }
 
   @Override
-public void remove()
+  public void remove()
     {
     throw new UnsupportedOperationException();
     }

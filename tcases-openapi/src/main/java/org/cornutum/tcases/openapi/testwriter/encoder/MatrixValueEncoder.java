@@ -83,7 +83,7 @@ public class MatrixValueEncoder extends UriEncoder implements DataValueVisitor
     }
     
   @Override
-public void visit( ArrayValue<?> data)
+  public void visit( ArrayValue<?> data)
     {
     if( data.getValue().isEmpty())
       {
@@ -104,43 +104,43 @@ public void visit( ArrayValue<?> data)
     }
 
   @Override
-public void visit( BinaryValue data)
+  public void visit( BinaryValue data)
     {
     encoded_ = matrixParamOf( Base64Domain.encoded( data.getValue()));
     }
 
   @Override
-public void visit( BooleanValue data)
+  public void visit( BooleanValue data)
     {
     encoded_ = matrixParamOf( data);
     }
 
   @Override
-public void visit( DecimalValue data)
+  public void visit( DecimalValue data)
     {
     encoded_ = matrixParamOf( data);
     }
 
   @Override
-public void visit( IntegerValue data)
+  public void visit( IntegerValue data)
     {
     encoded_ = matrixParamOf( data);
     }
 
   @Override
-public void visit( LongValue data)
+  public void visit( LongValue data)
     {
     encoded_ = matrixParamOf( data);
     }
 
   @Override
-public void visit( NullValue data)
+  public void visit( NullValue data)
     {
     encoded_ = matrixOf( name_);
     }
 
   @Override
-public void visit( ObjectValue data)
+  public void visit( ObjectValue data)
     {
     if( exploded_)
       {
@@ -156,7 +156,7 @@ public void visit( ObjectValue data)
     }
 
   @Override
-public void visit( StringValue data)
+  public void visit( StringValue data)
     {
     encoded_ = matrixParamOf( data);
     }

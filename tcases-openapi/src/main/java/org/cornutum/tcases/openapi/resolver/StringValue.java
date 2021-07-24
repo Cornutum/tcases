@@ -38,13 +38,13 @@ public class StringValue extends DataValue<String>
    * Implements the Visitor pattern for this data value.
    */
   @Override
-public void accept( DataValueVisitor visitor)
+  public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ToStringBuilder builder =
       ToString.getBuilder( this)

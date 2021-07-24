@@ -524,7 +524,7 @@ public class TupleCombiner implements CloneableType<TupleCombiner>
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -538,7 +538,7 @@ public String toString()
    * Returns a copy of this object.
    */
   @Override
-public TupleCombiner cloneOf()
+  public TupleCombiner cloneOf()
     {
     TupleCombiner other = new TupleCombiner();
     other.setTupleSize( getTupleSize());
@@ -549,7 +549,7 @@ public TupleCombiner cloneOf()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     TupleCombiner other =
       object != null && object.getClass().equals( getClass())
@@ -566,7 +566,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()

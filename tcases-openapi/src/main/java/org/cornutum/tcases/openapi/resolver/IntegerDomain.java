@@ -58,7 +58,7 @@ public class IntegerDomain extends NumberDomain<Integer>
    * Defines the value range for this domain.
    */
   @Override
-public void setRange( Range range)
+  public void setRange( Range range)
     {
     Optional<Range> ifRange = Optional.ofNullable( range);
 
@@ -84,7 +84,7 @@ public void setRange( Range range)
    * Defines the value range for this domain.
    */
   @Override
-public void setRange( Integer min, Integer max)
+  public void setRange( Integer min, Integer max)
     {
     if( Integer.signum( min) != Integer.signum( max) && -Math.max( min, -Integer.MAX_VALUE) > Integer.MAX_VALUE - max)
       {
@@ -97,7 +97,7 @@ public void setRange( Integer min, Integer max)
    * If non-null, all values in this domain are a multiple of the given value.
    */
   @Override
-public void setMultipleOf( String multipleOf)
+  public void setMultipleOf( String multipleOf)
     {
     setMultipleOf( Optional.ofNullable( multipleOf).map( Integer::valueOf).orElse( (Integer) null));
     }
@@ -106,7 +106,7 @@ public void setMultipleOf( String multipleOf)
    * Changes the factors not allowed for any values in this domain.
    */
   @Override
-public void setNotMultipleOfs( String[] notMultipleOfs)
+  public void setNotMultipleOfs( String[] notMultipleOfs)
     {
     setNotMultipleOfs(
       Arrays.stream( notMultipleOfs)
@@ -118,7 +118,7 @@ public void setNotMultipleOfs( String[] notMultipleOfs)
    * Returns true if <CODE>value</CODE> is a multiple of <CODE>multiple</CODE>.
    */
   @Override
-protected boolean isMultipleOf( Integer value, Integer multiple)
+  protected boolean isMultipleOf( Integer value, Integer multiple)
     {
     return value.intValue() % multiple.intValue() == 0;
     }
@@ -127,7 +127,7 @@ protected boolean isMultipleOf( Integer value, Integer multiple)
    * Returns a random sequence of values from this domain.
    */
   @Override
-public Stream<DataValue<Integer>> values( ResolverContext context)
+  public Stream<DataValue<Integer>> values( ResolverContext context)
     {
     // Find smallest and largest multiples in range
     int multiple = Optional.ofNullable( getMultipleOf()).orElse( 1);
@@ -175,7 +175,7 @@ public Stream<DataValue<Integer>> values( ResolverContext context)
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Integer> dataValueOf( Integer value)
+  protected DataValue<Integer> dataValueOf( Integer value)
     {
     return new IntegerValue( value);
     }

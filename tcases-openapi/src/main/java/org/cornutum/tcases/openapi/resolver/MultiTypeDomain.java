@@ -69,7 +69,7 @@ public class MultiTypeDomain extends AbstractValueDomain<Object>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Object> dataValueOf( Object value)
+  protected DataValue<Object> dataValueOf( Object value)
     {
     throw new UnsupportedOperationException();
     }
@@ -78,7 +78,7 @@ protected DataValue<Object> dataValueOf( Object value)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( Object value)
+  public boolean contains( Object value)
     {
     return typeDomains_.stream().anyMatch( domain -> domain.containsObject( value));
     }
@@ -87,7 +87,7 @@ public boolean contains( Object value)
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-public Type[] getTypes()
+  public Type[] getTypes()
     {
     return
       typeDomains_.stream()
@@ -175,7 +175,7 @@ public Type[] getTypes()
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

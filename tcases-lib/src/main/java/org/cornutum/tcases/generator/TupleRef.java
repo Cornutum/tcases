@@ -80,7 +80,7 @@ public class TupleRef
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     VarBinding[] bindings = new VarBinding[ varBindings_.size()];
     Arrays.sort( varBindings_.values().toArray( bindings));
@@ -92,7 +92,7 @@ public String toString()
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -100,7 +100,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     TupleRef other =
       object != null && object.getClass().equals( getClass())

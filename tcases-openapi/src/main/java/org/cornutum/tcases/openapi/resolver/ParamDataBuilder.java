@@ -49,7 +49,7 @@ public class ParamDataBuilder extends AbstractMessageDataBuilder<ParamDataBuilde
 
 
   @Override
-public ParamData build()
+  public ParamData build()
     {
     ParamData param = new ParamData( name_, super.build());
     param.setLocation( location_);

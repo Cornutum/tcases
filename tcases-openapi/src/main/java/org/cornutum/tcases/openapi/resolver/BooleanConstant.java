@@ -26,7 +26,7 @@ public class BooleanConstant extends ConstantDomain<Boolean>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Boolean> dataValueOf( Boolean value)
+  protected DataValue<Boolean> dataValueOf( Boolean value)
     {
     return new BooleanValue( value);
     }

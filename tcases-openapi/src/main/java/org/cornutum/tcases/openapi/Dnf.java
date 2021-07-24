@@ -141,7 +141,7 @@ public class Dnf
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     StringBuilder builder = new StringBuilder();
 

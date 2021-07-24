@@ -41,7 +41,7 @@ public class Base64Domain extends SequenceDomain<String>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<String> dataValueOf( String value)
+  protected DataValue<String> dataValueOf( String value)
     {
     return new Base64Value( value);
     }
@@ -50,7 +50,7 @@ protected DataValue<String> dataValueOf( String value)
    * Changes the values excluded from this domain.
    */
   @Override
-public void setExcludedStrings( Set<String> excluded)
+  public void setExcludedStrings( Set<String> excluded)
     {
     setExcluded( excluded);
     }
@@ -59,7 +59,7 @@ public void setExcludedStrings( Set<String> excluded)
    * Returns the length of the given value.
    */
   @Override
-protected int getLength( String value)
+  protected int getLength( String value)
     {
     return decoded( value).length;
     }
@@ -68,7 +68,7 @@ protected int getLength( String value)
    * Defines a constant length range for values in this domain.
    */
   @Override
-public void setLengthRange( Integer length)
+  public void setLengthRange( Integer length)
     {
     getBytes().setLengthRange( length);
     }
@@ -77,7 +77,7 @@ public void setLengthRange( Integer length)
    * Defines the length range for values in this domain.
    */
   @Override
-public void setLengthRange( Integer min, Integer max)
+  public void setLengthRange( Integer min, Integer max)
     {
     getBytes().setLengthRange( min, max);
     }
@@ -86,7 +86,7 @@ public void setLengthRange( Integer min, Integer max)
    * Defines the length range for values in this domain.
    */
   @Override
-public void setLengthRange( Range range)
+  public void setLengthRange( Range range)
     {
     getBytes().setLengthRange( range);
     }
@@ -95,7 +95,7 @@ public void setLengthRange( Range range)
    * Returns the length range for values in this domain.
    */
   @Override
-protected LengthDomain getLengthRange()
+  protected LengthDomain getLengthRange()
     {
     return getBytes().getLengthRange();
     }
@@ -104,7 +104,7 @@ protected LengthDomain getLengthRange()
    * Changes the values excluded from this domain.
    */
   @Override
-public void setExcluded( Set<String> excluded)
+  public void setExcluded( Set<String> excluded)
     {
     getBytes().setExcluded(
       Optional.ofNullable( excluded).orElse( emptySet())
@@ -117,7 +117,7 @@ public void setExcluded( Set<String> excluded)
    * Returns the values excluded from this domain.
    */
   @Override
-public Set<String> getExcluded()
+  public Set<String> getExcluded()
     {
     return
       getBytes().getExcluded().stream()
@@ -158,7 +158,7 @@ public Set<String> getExcluded()
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( String value)
+  public boolean contains( String value)
     {
     try
       {
@@ -174,7 +174,7 @@ public boolean contains( String value)
    * Returns a random sequence of possible members of this domain.
    */
   @Override
-protected Stream<String> candidates( ResolverContext context)
+  protected Stream<String> candidates( ResolverContext context)
     {
     return
       getBytes().values( context)

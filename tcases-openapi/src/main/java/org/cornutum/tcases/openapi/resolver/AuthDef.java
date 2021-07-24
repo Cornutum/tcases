@@ -42,7 +42,7 @@ public abstract class AuthDef
   public abstract void accept( AuthDefVisitor visitor);
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

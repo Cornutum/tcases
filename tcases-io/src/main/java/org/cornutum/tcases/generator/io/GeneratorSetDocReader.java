@@ -550,7 +550,7 @@ public class GeneratorSetDocReader extends DefaultHandler implements IGeneratorS
    * Returns a {@link GeneratorSet} instance.
    */
   @Override
-public IGeneratorSet getGeneratorSet()
+  public IGeneratorSet getGeneratorSet()
     {
     SAXParser parser;
     try
@@ -601,7 +601,7 @@ public IGeneratorSet getGeneratorSet()
     }
 
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( stream_, null);
     }
@@ -631,7 +631,7 @@ public void close()
     }
     
   @Override
-public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+  public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
     ElementHandler handler =
       qName.equals( COMBINE_TAG)?         (ElementHandler) new CombineHandler() :
@@ -663,7 +663,7 @@ public void startElement( String uri, String localName, String qName, Attributes
     }
 
   @Override
-public void endElement( String uri, String localName, String qName) throws SAXException
+  public void endElement( String uri, String localName, String qName) throws SAXException
     {
     ElementHandler handler = getCurrentElementHandler();
     if( handler != null)
@@ -674,7 +674,7 @@ public void endElement( String uri, String localName, String qName) throws SAXEx
     }
 
   @Override
-public void setDocumentLocator( Locator locator)
+  public void setDocumentLocator( Locator locator)
     {
     locator_ = locator;
     }
@@ -685,12 +685,12 @@ public void setDocumentLocator( Locator locator)
     }
     
   @Override
-public void warning( SAXParseException e) throws SAXException
+  public void warning( SAXParseException e) throws SAXException
     {
     }
 
   @Override
-public void error( SAXParseException e) throws SAXException
+  public void error( SAXParseException e) throws SAXException
     {
     throw e;
     }

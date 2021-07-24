@@ -25,7 +25,7 @@ import java.util.Set;
 public class ReducerMojo extends AbstractMojo
   {
   @Override
-public void execute() throws MojoExecutionException
+  public void execute() throws MojoExecutionException
     {
     try
       {
