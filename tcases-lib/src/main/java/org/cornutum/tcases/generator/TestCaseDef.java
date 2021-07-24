@@ -535,7 +535,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   @Override
-public int compareTo( TestCaseDef other)
+  public int compareTo( TestCaseDef other)
     {
     int id = getId()==null? Integer.MAX_VALUE : getId();
     int otherId  = other.getId()==null? Integer.MAX_VALUE : other.getId();
@@ -543,7 +543,7 @@ public int compareTo( TestCaseDef other)
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ArrayList<VarDef> vars = new ArrayList<VarDef>( bindings_.keySet());
     Collections.sort

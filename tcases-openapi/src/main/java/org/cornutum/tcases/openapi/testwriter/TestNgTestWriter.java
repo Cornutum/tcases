@@ -29,7 +29,7 @@ public class TestNgTestWriter extends AnnotatedJavaTestWriter
    * Writes the target test annotation dependencies to the given stream.
    */
   @Override
-protected void writeTestAnnotationDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeTestAnnotationDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     targetWriter.println( "import org.testng.annotations.Test;");
     }
@@ -38,7 +38,7 @@ protected void writeTestAnnotationDependencies( JavaTestTarget target, String te
    * Writes the annotation for a target test case to the given stream.
    */
   @Override
-protected void writeTestAnnotation( JavaTestTarget target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
+  protected void writeTestAnnotation( JavaTestTarget target, String testName, RequestCase requestCase, IndentedWriter targetWriter)
     {
     targetWriter.println(
       String.format(

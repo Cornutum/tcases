@@ -168,7 +168,7 @@ public class JavaTestTarget extends TestTarget
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

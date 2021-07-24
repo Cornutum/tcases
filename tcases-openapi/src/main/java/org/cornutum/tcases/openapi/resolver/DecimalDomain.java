@@ -101,7 +101,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
    * Defines the value range for this domain.
    */
   @Override
-public void setRange( Range range)
+  public void setRange( Range range)
     {
     Optional<Range> ifRange = Optional.ofNullable( range);
 
@@ -133,7 +133,7 @@ public void setRange( Range range)
    * Defines the value range for this domain.
    */
   @Override
-public void setRange( BigDecimal min, BigDecimal max)
+  public void setRange( BigDecimal min, BigDecimal max)
     {
     if( max.subtract( min).compareTo( MAX_SIZE) > 0)
       {
@@ -146,7 +146,7 @@ public void setRange( BigDecimal min, BigDecimal max)
    * If non-null, all values in this domain are a multiple of the given value.
    */
   @Override
-public void setMultipleOf( String multipleOf)
+  public void setMultipleOf( String multipleOf)
     {
     setMultipleOf( Optional.ofNullable( multipleOf).map( BigDecimal::new).orElse( (BigDecimal) null));
     }
@@ -155,7 +155,7 @@ public void setMultipleOf( String multipleOf)
    * Changes the factors not allowed for any values in this domain.
    */
   @Override
-public void setNotMultipleOfs( String[] notMultipleOfs)
+  public void setNotMultipleOfs( String[] notMultipleOfs)
     {
     setNotMultipleOfs(
       Arrays.stream( notMultipleOfs)
@@ -167,7 +167,7 @@ public void setNotMultipleOfs( String[] notMultipleOfs)
    * Returns true if <CODE>value</CODE> is a multiple of <CODE>multiple</CODE>.
    */
   @Override
-protected boolean isMultipleOf( BigDecimal value, BigDecimal multiple)
+  protected boolean isMultipleOf( BigDecimal value, BigDecimal multiple)
     {
     return value.remainder( multiple).compareTo( BigDecimal.ZERO) == 0;
     }
@@ -176,7 +176,7 @@ protected boolean isMultipleOf( BigDecimal value, BigDecimal multiple)
    * Returns a random sequence of values from this domain.
    */
   @Override
-public Stream<DataValue<BigDecimal>> values( ResolverContext context)
+  public Stream<DataValue<BigDecimal>> values( ResolverContext context)
     {
     // Find unit of iteration over value range
     int unitScale =
@@ -232,7 +232,7 @@ public Stream<DataValue<BigDecimal>> values( ResolverContext context)
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
+  protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
     {
     return new DecimalValue( value, format_);
     }

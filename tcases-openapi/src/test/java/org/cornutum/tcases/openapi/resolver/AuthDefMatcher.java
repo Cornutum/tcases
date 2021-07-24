@@ -25,25 +25,25 @@ public class AuthDefMatcher extends BaseMatcher<AuthDef>
     }
 
   @Override
-public boolean matches( Object item)
+  public boolean matches( Object item)
     {
     return delegate_.matches( item);
     }
 
   @Override
-public void describeMismatch( Object item, Description mismatchDescription)
+  public void describeMismatch( Object item, Description mismatchDescription)
     {
     delegate_.describeMismatch( item, mismatchDescription);
     }
 
   @Override
-public void describeTo( Description mismatchDescription)
+  public void describeTo( Description mismatchDescription)
     {
     delegate_.describeTo( mismatchDescription);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return delegate_.toString();
     }

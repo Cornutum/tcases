@@ -160,7 +160,7 @@ public class VarNamePattern
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     return
       object != null
@@ -169,7 +169,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     int code = getClass().hashCode();
     int pathSize = varNamePath_==null? 0 : varNamePath_.length;
@@ -182,7 +182,7 @@ public int hashCode()
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return StringUtils.join( varNamePath_, '.');
     }

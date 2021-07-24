@@ -48,13 +48,13 @@ public class TupleIterator implements Iterator<Tuple>
     }
 
   @Override
-public boolean hasNext()
+  public boolean hasNext()
     {
     return getNextCompatibleTuple() != null;
     }
 
   @Override
-public Tuple next()
+  public Tuple next()
     {
     Tuple nextTuple = getNextCompatibleTuple();
     if( nextTuple == null)
@@ -67,7 +67,7 @@ public Tuple next()
     }
 
   @Override
-public void remove()
+  public void remove()
     {
     throw new UnsupportedOperationException();
     }
@@ -163,7 +163,7 @@ public void remove()
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

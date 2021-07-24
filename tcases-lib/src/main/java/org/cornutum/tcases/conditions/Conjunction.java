@@ -37,7 +37,7 @@ public class Conjunction implements IConjunct
    * Returns true if this condition is satisfied by the given test case properties.
    */
   @Override
-public boolean satisfied( PropertySet properties)
+  public boolean satisfied( PropertySet properties)
     {
     boolean isSatisfied;
     Iterator<IDisjunct> disjuncts;
@@ -60,7 +60,7 @@ public boolean satisfied( PropertySet properties)
    * or if it could be satisfied with the addition of more properties.
    */
   @Override
-public boolean compatible( PropertySet properties)
+  public boolean compatible( PropertySet properties)
     {
     boolean isCompatible;
     Iterator<IDisjunct> disjuncts;
@@ -81,7 +81,7 @@ public boolean compatible( PropertySet properties)
    * Implements the Visitor pattern for this condition.
    */
   @Override
-public void accept( IConditionVisitor visitor)
+  public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }
@@ -122,7 +122,7 @@ public void accept( IConditionVisitor visitor)
    * Returns the disjuncts in this conjunction.
    */
   @Override
-public Iterator<IDisjunct> getDisjuncts()
+  public Iterator<IDisjunct> getDisjuncts()
     {
     return disjuncts_.iterator();
     }
@@ -131,13 +131,13 @@ public Iterator<IDisjunct> getDisjuncts()
    * Returns the number of disjunctions for this conjunction.
    */
   @Override
-public int getDisjunctCount()
+  public int getDisjunctCount()
     {
     return disjuncts_.size();
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -146,13 +146,13 @@ public String toString()
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return disjuncts_.hashCode();
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     IConjunct other =
       object != null && object instanceof IConjunct

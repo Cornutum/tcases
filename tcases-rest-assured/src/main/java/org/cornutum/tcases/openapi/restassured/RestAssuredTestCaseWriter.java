@@ -48,7 +48,7 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
    * Writes the dependencies for target test cases to the given stream.
    */
   @Override
-public void writeDependencies( String testName, IndentedWriter targetWriter)
+  public void writeDependencies( String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
     targetWriter.println( "import org.hamcrest.Matcher;");
@@ -62,7 +62,7 @@ public void writeDependencies( String testName, IndentedWriter targetWriter)
    * Writes the declarations for target test cases to the given stream.
    */
   @Override
-public void writeDeclarations( String testName, IndentedWriter targetWriter)
+  public void writeDeclarations( String testName, IndentedWriter targetWriter)
     {
     // By default, none
     }
@@ -71,7 +71,7 @@ public void writeDeclarations( String testName, IndentedWriter targetWriter)
    * Writes a target test case to the given stream.
    */
   @Override
-public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
+  public void writeTestCase( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
     try
       {
@@ -104,7 +104,7 @@ public void writeTestCase( String testName, URI testServer, RequestCase requestC
    * Writes the closing for target test cases to the given stream.
    */
   @Override
-public void writeClosing( String testName, IndentedWriter targetWriter)
+  public void writeClosing( String testName, IndentedWriter targetWriter)
     {
     writeStatusCodeMatcherDef( testName, targetWriter, depends_);
     writeTestServerDef( testName, targetWriter, depends_);

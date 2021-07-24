@@ -90,7 +90,7 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     }
     
   @Override
-public void visit( ArrayValue<?> data)
+  public void visit( ArrayValue<?> data)
     {
     if( data.getValue().isEmpty())
       {
@@ -113,43 +113,43 @@ public void visit( ArrayValue<?> data)
     }
 
   @Override
-public void visit( BinaryValue data)
+  public void visit( BinaryValue data)
     {
     bindParam( Base64Domain.encoded( data.getValue()));
     }
 
   @Override
-public void visit( BooleanValue data)
+  public void visit( BooleanValue data)
     {
     bindParam( data);
     }
 
   @Override
-public void visit( DecimalValue data)
+  public void visit( DecimalValue data)
     {
     bindParam( data);
     }
 
   @Override
-public void visit( IntegerValue data)
+  public void visit( IntegerValue data)
     {
     bindParam( data);
     }
 
   @Override
-public void visit( LongValue data)
+  public void visit( LongValue data)
     {
     bindParam( data);
     }
 
   @Override
-public void visit( NullValue data)
+  public void visit( NullValue data)
     {
     bindParam( data);
     }
 
   @Override
-public void visit( ObjectValue data)
+  public void visit( ObjectValue data)
     {
     if( "deepObject".equals( style_))
       {
@@ -171,7 +171,7 @@ public void visit( ObjectValue data)
     }
 
   @Override
-public void visit( StringValue data)
+  public void visit( StringValue data)
     {
     bindParam( data);
     }

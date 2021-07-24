@@ -135,7 +135,7 @@ public abstract class Resource implements Closeable
     }
 
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( stream_, null);
     }
@@ -183,7 +183,7 @@ public void close()
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

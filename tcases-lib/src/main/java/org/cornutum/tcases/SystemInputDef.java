@@ -114,7 +114,7 @@ public class SystemInputDef extends Annotated
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -122,7 +122,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     SystemInputDef other =
       object != null && object.getClass().equals( getClass())
@@ -135,7 +135,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

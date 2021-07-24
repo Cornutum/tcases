@@ -108,7 +108,7 @@ public class TupleGenerator implements ITestCaseGenerator
    * Changes the random number sequence seed for this generator.
    */
   @Override
-public void setRandomSeed( Long seed)
+  public void setRandomSeed( Long seed)
     {
     seed_ = seed;
     }
@@ -127,7 +127,7 @@ public void setRandomSeed( Long seed)
    * that extend the base tests.
    */
   @Override
-public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
+  public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
     try
       {
@@ -786,7 +786,7 @@ public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef base
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)
@@ -841,7 +841,7 @@ public String toString()
    * Returns a copy of this object.
    */
   @Override
-public ITestCaseGenerator cloneOf()
+  public ITestCaseGenerator cloneOf()
     {
     TupleGenerator other = new TupleGenerator();
     other.setRandomSeed( getRandomSeed());
@@ -851,7 +851,7 @@ public ITestCaseGenerator cloneOf()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     TupleGenerator other =
       object != null && object.getClass().equals( getClass())
@@ -866,7 +866,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()

@@ -115,7 +115,7 @@ public class TestTarget
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 

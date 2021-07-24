@@ -85,7 +85,7 @@ public class RequestTestDefReader implements Closeable
     }
 
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( getInputStream(), null);
     }

@@ -28,7 +28,7 @@ public class BinaryConstant extends ConstantDomain<byte[]>
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( byte[] value)
+  public boolean contains( byte[] value)
     {
     return Arrays.equals( value, getValue());
     }
@@ -37,7 +37,7 @@ public boolean contains( byte[] value)
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<byte[]> dataValueOf( byte[] value)
+  protected DataValue<byte[]> dataValueOf( byte[] value)
     {
     return new BinaryValue( value);
     }

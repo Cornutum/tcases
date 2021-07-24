@@ -218,7 +218,7 @@ public abstract class AbstractFilter implements Runnable
     }  
 
   @Override
-public void run()
+  public void run()
     {
     logger_.debug( "Starting, thread={}", thread_);
     

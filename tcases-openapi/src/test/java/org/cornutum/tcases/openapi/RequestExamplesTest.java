@@ -1848,7 +1848,7 @@ public class RequestExamplesTest extends OpenApiTest
    * Returns the {@link ModelOptions} used for this test.
    */
   @Override
-protected ModelOptions getModelOptions()
+  protected ModelOptions getModelOptions()
     {
     return withConditionRecorder();
     }

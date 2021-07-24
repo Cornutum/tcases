@@ -119,7 +119,7 @@ public class TestSource
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 

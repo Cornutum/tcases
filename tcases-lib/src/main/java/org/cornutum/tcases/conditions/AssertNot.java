@@ -35,7 +35,7 @@ public class AssertNot extends AbstractAssertion
    * Returns true if this condition is satisfied by the given test case properties.
    */
   @Override
-public boolean satisfied( PropertySet properties)
+  public boolean satisfied( PropertySet properties)
     {
     String property = getProperty();
     return !(property != null && properties.contains( property));
@@ -45,7 +45,7 @@ public boolean satisfied( PropertySet properties)
    * Returns an assertion that negates this assertion.
    */
   @Override
-public IAssertion negate()
+  public IAssertion negate()
     {
     return new Assert( getProperty());
     }
@@ -54,7 +54,7 @@ public IAssertion negate()
    * Returns true if this assertion negates the other.
    */
   @Override
-public boolean negates( IAssertion other)
+  public boolean negates( IAssertion other)
     {
     Assert assertion =
       other != null && other.getClass().equals( Assert.class)
@@ -71,7 +71,7 @@ public boolean negates( IAssertion other)
    * the addition of another (instance of a) property.
    */
   @Override
-public boolean completable()
+  public boolean completable()
     {
     return false;
     }
@@ -80,7 +80,7 @@ public boolean completable()
    * Implements the Visitor pattern for this condition.
    */
   @Override
-public void accept( IConditionVisitor visitor)
+  public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }

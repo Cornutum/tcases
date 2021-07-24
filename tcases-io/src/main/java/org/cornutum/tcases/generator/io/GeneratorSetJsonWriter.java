@@ -82,7 +82,7 @@ public class GeneratorSetJsonWriter implements Closeable
    * Closes the writer.
    */
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( getWriter(), null);
     }

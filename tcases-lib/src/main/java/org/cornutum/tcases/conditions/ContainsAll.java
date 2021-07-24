@@ -66,7 +66,7 @@ public class ContainsAll extends PropertyExpr implements ICondition
    * Returns true if this condition is satisfied by the given test case contains.
    */
   @Override
-public boolean satisfied( PropertySet propertySet)
+  public boolean satisfied( PropertySet propertySet)
     {
     boolean isSatisfied;
     Iterator<String> properties;
@@ -88,7 +88,7 @@ public boolean satisfied( PropertySet propertySet)
    * or if it could be satisfied with the addition of more properties.
    */
   @Override
-public boolean compatible( PropertySet properties)
+  public boolean compatible( PropertySet properties)
     {
     return true;
     }
@@ -97,7 +97,7 @@ public boolean compatible( PropertySet properties)
    * Implements the Visitor pattern for this condition.
    */
   @Override
-public void accept( IConditionVisitor visitor)
+  public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }

@@ -207,7 +207,7 @@ public class FunctionInputDefBuilder extends AnnotatedBuilder<FunctionInputDefBu
    * Returns the {@link Annotated} instance for this builder.
    */
   @Override
-protected Annotated getAnnotated()
+  protected Annotated getAnnotated()
     {
     return functionInputDef_;
     }

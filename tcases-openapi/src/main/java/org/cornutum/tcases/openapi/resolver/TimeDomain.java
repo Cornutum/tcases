@@ -94,7 +94,7 @@ public abstract class TimeDomain extends AbstractStringDomain
    * Changes the values excluded from this domain.
    */
   @Override
-public void setExcluded( Set<String> excluded)
+  public void setExcluded( Set<String> excluded)
     {
     super.setExcluded( excluded);
     getExcluded().stream().forEach( value -> assertValidTime( value));
@@ -104,7 +104,7 @@ public void setExcluded( Set<String> excluded)
    * Returns a random sequence of possible members of this domain.
    */
   @Override
-protected Stream<String> newValues( ResolverContext context)
+  protected Stream<String> newValues( ResolverContext context)
     {
     return timeValues( context).map( this::format).map( value -> withLength( context, value));
     }
@@ -131,7 +131,7 @@ protected Stream<String> newValues( ResolverContext context)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( String value)
+  public boolean contains( String value)
     {
     return
       super.contains( value)
@@ -142,7 +142,7 @@ public boolean contains( String value)
    * Returns a new random string of the given length for this domain.
    */
   @Override
-protected String newValue( ResolverContext context, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     throw new UnsupportedOperationException();
     }
@@ -168,7 +168,7 @@ protected String newValue( ResolverContext context, int length)
   protected abstract String format( Date time);
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

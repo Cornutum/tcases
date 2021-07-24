@@ -36,13 +36,13 @@ public class MocoServerConfigResource extends MocoServerConfig
    * Implements the Visitor pattern for this server configuration.
    */
   @Override
-public void accept( ConfigVisitor visitor)
+  public void accept( ConfigVisitor visitor)
     {
     visitor.visit( this);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

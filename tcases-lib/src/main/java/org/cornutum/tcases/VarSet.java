@@ -42,7 +42,7 @@ public class VarSet extends AbstractVarDef
    * Otherwise, returns null.
    */
   @Override
-public Iterator<IVarDef> getMembers()
+  public Iterator<IVarDef> getMembers()
     {
     return members_.iterator();
     }
@@ -52,7 +52,7 @@ public Iterator<IVarDef> getMembers()
    * Otherwise, returns null.
    */
   @Override
-public Iterator<VarValueDef> getValues()
+  public Iterator<VarValueDef> getValues()
     {
     return null;
     }
@@ -61,7 +61,7 @@ public Iterator<VarValueDef> getValues()
    * Changes the parent of this variable.
    */
   @Override
-public void setParent( IVarDef parent)
+  public void setParent( IVarDef parent)
     {
     super.setParent( parent);
 
@@ -79,7 +79,7 @@ public void setParent( IVarDef parent)
    * Changes the condition that defines when this element is applicable.
    */
   @Override
-public void setCondition( ICondition condition)
+  public void setCondition( ICondition condition)
     {
     super.setCondition( condition);
 
@@ -97,7 +97,7 @@ public void setCondition( ICondition condition)
    * Returns the descendant variable with the given name path, relative to this variable.
    */
   @Override
-public IVarDef find( String... path)
+  public IVarDef find( String... path)
     {
     return
        path == null || path.length == 0

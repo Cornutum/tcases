@@ -29,7 +29,7 @@ import java.util.Set;
 public class ApiMojo extends AbstractMojo
   {
   @Override
-public void execute() throws MojoExecutionException
+  public void execute() throws MojoExecutionException
     {
     try
       {

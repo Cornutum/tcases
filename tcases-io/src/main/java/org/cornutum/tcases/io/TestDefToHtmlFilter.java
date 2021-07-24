@@ -112,7 +112,7 @@ public class TestDefToHtmlFilter extends AbstractFilter
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

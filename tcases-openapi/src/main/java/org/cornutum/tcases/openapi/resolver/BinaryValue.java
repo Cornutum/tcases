@@ -26,13 +26,13 @@ public class BinaryValue extends DataValue<byte[]>
    * Implements the Visitor pattern for this data value.
    */
   @Override
-public void accept( DataValueVisitor visitor)
+  public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

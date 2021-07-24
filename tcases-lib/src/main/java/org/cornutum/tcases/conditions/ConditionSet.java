@@ -36,7 +36,7 @@ public abstract class ConditionSet implements ICondition
    * Returns true if this condition is satisfied by the given test case properties.
    */
   @Override
-public abstract boolean satisfied( PropertySet properties);
+  public abstract boolean satisfied( PropertySet properties);
 
   /**
    * Returns true if this condition is compatible with the given test case properties.
@@ -44,7 +44,7 @@ public abstract boolean satisfied( PropertySet properties);
    * or if it could be satisfied with the addition of more properties.
    */
   @Override
-public abstract boolean compatible( PropertySet properties);
+  public abstract boolean compatible( PropertySet properties);
   
   /**
    * Adds a condition to this set.
@@ -73,7 +73,7 @@ public abstract boolean compatible( PropertySet properties);
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -81,7 +81,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     ConditionSet other =
       object != null && object.getClass().equals( getClass())
@@ -94,7 +94,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

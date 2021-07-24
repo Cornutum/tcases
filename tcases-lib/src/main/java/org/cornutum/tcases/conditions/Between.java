@@ -70,7 +70,7 @@ public class Between extends AllOf
    * Adds a condition to this set.
    */
   @Override
-public ConditionSet add( ICondition condition)
+  public ConditionSet add( ICondition condition)
     {
     throw new UnsupportedOperationException();
     }
@@ -79,7 +79,7 @@ public ConditionSet add( ICondition condition)
    * Removes a condition from this set.
    */
   @Override
-public ConditionSet remove( ICondition condition)
+  public ConditionSet remove( ICondition condition)
     {
     throw new UnsupportedOperationException();
     }
@@ -88,13 +88,13 @@ public ConditionSet remove( ICondition condition)
    * Implements the Visitor pattern for this condition.
    */
   @Override
-public void accept( IConditionVisitor visitor)
+  public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

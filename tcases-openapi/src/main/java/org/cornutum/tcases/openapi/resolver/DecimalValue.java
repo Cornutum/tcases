@@ -34,7 +34,7 @@ public class DecimalValue extends DataValue<BigDecimal>
    * Implements the Visitor pattern for this data value.
    */
   @Override
-public void accept( DataValueVisitor visitor)
+  public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }

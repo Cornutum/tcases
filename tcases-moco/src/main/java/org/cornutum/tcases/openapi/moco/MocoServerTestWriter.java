@@ -40,7 +40,7 @@ public abstract class MocoServerTestWriter extends JUnitTestWriter
    * the server URI defined by this {@link RequestCase request case}.
    */
   @Override
-protected URI getTestServer( RequestCase requestCase)
+  protected URI getTestServer( RequestCase requestCase)
     {
     return getConfigWriter().getTestServer( requestCase);
     }
@@ -89,7 +89,7 @@ protected URI getTestServer( RequestCase requestCase)
    * Writes the target test dependencies to the given stream.
    */
   @Override
-protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeDependencies( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     super.writeDependencies( target, testName, targetWriter);
 
@@ -109,7 +109,7 @@ protected void writeDependencies( JavaTestTarget target, String testName, Indent
    * Writes the target test declarations to the given stream.
    */
   @Override
-protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
+  protected void writeDeclarations( JavaTestTarget target, String testName, IndentedWriter targetWriter)
     {
     super.writeDeclarations( target, testName, targetWriter);
 
@@ -176,7 +176,7 @@ protected void writeDeclarations( JavaTestTarget target, String testName, Indent
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

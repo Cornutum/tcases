@@ -123,7 +123,7 @@ public class FunctionTestDefBuilder extends AnnotatedBuilder<FunctionTestDefBuil
    * Returns the {@link Annotated} instance for this builder.
    */
   @Override
-protected Annotated getAnnotated()
+  protected Annotated getAnnotated()
     {
     return functionTestDef_;
     }

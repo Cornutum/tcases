@@ -73,7 +73,7 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     }
     
   @Override
-public void visit( ArrayValue<?> data)
+  public void visit( ArrayValue<?> data)
     {
     encoded_ =
       data.getValue().stream()
@@ -82,43 +82,43 @@ public void visit( ArrayValue<?> data)
     }
 
   @Override
-public void visit( BinaryValue data)
+  public void visit( BinaryValue data)
     {
     encoded_ = Base64Domain.encoded( data.getValue());
     }
 
   @Override
-public void visit( BooleanValue data)
+  public void visit( BooleanValue data)
     {
     encoded_ = stringOf( data);
     }
 
   @Override
-public void visit( DecimalValue data)
+  public void visit( DecimalValue data)
     {
     encoded_ = stringOf( data);
     }
 
   @Override
-public void visit( IntegerValue data)
+  public void visit( IntegerValue data)
     {
     encoded_ = stringOf( data);
     }
 
   @Override
-public void visit( LongValue data)
+  public void visit( LongValue data)
     {
     encoded_ = stringOf( data);
     }
 
   @Override
-public void visit( NullValue data)
+  public void visit( NullValue data)
     {
     encoded_ = stringOf( data);
     }
 
   @Override
-public void visit( ObjectValue data)
+  public void visit( ObjectValue data)
     {
     if( exploded_)
       {
@@ -137,7 +137,7 @@ public void visit( ObjectValue data)
     }
 
   @Override
-public void visit( StringValue data)
+  public void visit( StringValue data)
     {
     encoded_ = stringOf( data);
     }

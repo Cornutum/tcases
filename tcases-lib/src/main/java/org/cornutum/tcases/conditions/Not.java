@@ -29,7 +29,7 @@ public class Not extends ConditionSet
    * Returns true if this condition is satisfied by the given test case properties.
    */
   @Override
-public boolean satisfied( PropertySet properties)
+  public boolean satisfied( PropertySet properties)
     {
     boolean isSatisfied;
     Iterator<ICondition> conditions;
@@ -52,7 +52,7 @@ public boolean satisfied( PropertySet properties)
    * or if it could be satisfied with the addition of more properties.
    */
   @Override
-public boolean compatible( PropertySet properties)
+  public boolean compatible( PropertySet properties)
     {
     return satisfied( properties);
     }
@@ -61,7 +61,7 @@ public boolean compatible( PropertySet properties)
    * Implements the Visitor pattern for this condition.
    */
   @Override
-public void accept( IConditionVisitor visitor)
+  public void accept( IConditionVisitor visitor)
     {
     visitor.visit( this);
     }

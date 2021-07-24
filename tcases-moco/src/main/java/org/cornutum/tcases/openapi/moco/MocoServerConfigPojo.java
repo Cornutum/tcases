@@ -86,7 +86,7 @@ public class MocoServerConfigPojo extends MocoServerConfig
    * Implements the Visitor pattern for this server configuration.
    */
   @Override
-public void accept( ConfigVisitor visitor)
+  public void accept( ConfigVisitor visitor)
     {
     visitor.visit( this);
     }

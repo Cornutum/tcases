@@ -56,7 +56,7 @@ public class GeneratorOptions
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

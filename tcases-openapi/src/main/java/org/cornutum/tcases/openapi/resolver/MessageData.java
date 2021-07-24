@@ -61,7 +61,7 @@ public class MessageData
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     ToStringBuilder builder = ToString.getBuilder( this);
 

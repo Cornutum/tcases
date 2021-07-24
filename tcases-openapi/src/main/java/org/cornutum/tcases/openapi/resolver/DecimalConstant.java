@@ -37,7 +37,7 @@ public class DecimalConstant extends ConstantDomain<BigDecimal>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
+  protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
     {
     return new DecimalValue( value, format_);
     }

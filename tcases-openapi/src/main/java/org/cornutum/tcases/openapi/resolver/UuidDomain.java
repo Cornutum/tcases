@@ -33,7 +33,7 @@ public class UuidDomain extends AbstractStringDomain
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<String> dataValueOf( String value)
+  protected DataValue<String> dataValueOf( String value)
     {
     return new UuidValue( value);
     }
@@ -42,7 +42,7 @@ protected DataValue<String> dataValueOf( String value)
    * Defines the initial length range for values in this domain.
    */
   @Override
-protected void initLengthRange()
+  protected void initLengthRange()
     {
     setLengthRange( MAX_LENGTH);
     }
@@ -51,7 +51,7 @@ protected void initLengthRange()
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( String value)
+  public boolean contains( String value)
     {
     return
       super.contains( value)
@@ -64,7 +64,7 @@ public boolean contains( String value)
    * @see java.util.UUID#randomUUID
    */
   @Override
-protected String newValue( ResolverContext context, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     byte[] randomBytes = new byte[16];
     context.getRandom().nextBytes(randomBytes);
@@ -97,7 +97,7 @@ protected String newValue( ResolverContext context, int length)
    * Returns true if the given values are equal.
    */
   @Override
-protected boolean valuesEqual( String value1, String value2)
+  protected boolean valuesEqual( String value1, String value2)
     {
     return value1.equalsIgnoreCase( value2);
     }

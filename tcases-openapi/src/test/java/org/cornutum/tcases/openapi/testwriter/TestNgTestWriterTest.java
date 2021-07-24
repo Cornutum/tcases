@@ -45,7 +45,7 @@ public class TestNgTestWriterTest extends TestWriterTest
    * Returns the expected test writer results for the specified {@link RequestTestDef}.
    */
   @Override
-protected File getExpectedTestResults( String testDefName)
+  protected File getExpectedTestResults( String testDefName)
     {
     return new File( getResourceDir(), testDefName + "-Expected-TestNG.java");
     }

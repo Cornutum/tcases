@@ -26,7 +26,7 @@ public abstract class HttpAuthDef extends AuthDef
    * Returns the name of this authentication input.
    */
   @Override
-public String getName()
+  public String getName()
     {
     return "Authorization";
     }

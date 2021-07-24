@@ -271,7 +271,7 @@ public class RequestCase implements Comparable<RequestCase>
     }
 
   @Override
-public int compareTo( RequestCase other)
+  public int compareTo( RequestCase other)
     {
     return
       Comparator.comparing( RequestCase::getApi)
@@ -282,7 +282,7 @@ public int compareTo( RequestCase other)
     }
   
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     RequestCase other =
       object instanceof RequestCase
@@ -299,7 +299,7 @@ public boolean equals( Object object)
     }
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       getClass().hashCode()
@@ -311,7 +311,7 @@ public int hashCode()
     }
   
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

@@ -57,7 +57,7 @@ public class LengthDomain extends AbstractValueDomain<Integer>
    * Returns a random sequence of values from this domain.
    */
   @Override
-public Stream<DataValue<Integer>> values( ResolverContext context)
+  public Stream<DataValue<Integer>> values( ResolverContext context)
     {
     return valueDomain_.values( context);
     }
@@ -66,7 +66,7 @@ public Stream<DataValue<Integer>> values( ResolverContext context)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( Integer value)
+  public boolean contains( Integer value)
     {
     return valueDomain_.contains( value);
     }
@@ -75,7 +75,7 @@ public boolean contains( Integer value)
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-public Type[] getTypes()
+  public Type[] getTypes()
     {
     return valueDomain_.getTypes();
     }
@@ -84,13 +84,13 @@ public Type[] getTypes()
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<Integer> dataValueOf( Integer value)
+  protected DataValue<Integer> dataValueOf( Integer value)
     {
     return new IntegerValue( value);
     }
 
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

@@ -1576,7 +1576,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
    * Returns a {@link SystemInputDef} instance.
    */
   @Override
-public SystemInputDef getSystemInputDef()
+  public SystemInputDef getSystemInputDef()
     {
     SAXParser parser;
     try
@@ -1627,7 +1627,7 @@ public SystemInputDef getSystemInputDef()
     }
 
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( stream_, null);
     }
@@ -1657,7 +1657,7 @@ public void close()
     }
     
   @Override
-public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+  public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
     ElementHandler handler =
       qName.equals( ALLOF_TAG)?       (ElementHandler) new AllOfHandler() :
@@ -1700,7 +1700,7 @@ public void startElement( String uri, String localName, String qName, Attributes
     }
 
   @Override
-public void endElement( String uri, String localName, String qName) throws SAXException
+  public void endElement( String uri, String localName, String qName) throws SAXException
     {
     ElementHandler handler = getCurrentElementHandler();
     if( handler != null)
@@ -1711,7 +1711,7 @@ public void endElement( String uri, String localName, String qName) throws SAXEx
     }
 
   @Override
-public void setDocumentLocator( Locator locator)
+  public void setDocumentLocator( Locator locator)
     {
     locator_ = locator;
     }
@@ -1722,12 +1722,12 @@ public void setDocumentLocator( Locator locator)
     }
     
   @Override
-public void warning( SAXParseException e) throws SAXException
+  public void warning( SAXParseException e) throws SAXException
     {
     }
 
   @Override
-public void error( SAXParseException e) throws SAXException
+  public void error( SAXParseException e) throws SAXException
     {
     throw e;
     }

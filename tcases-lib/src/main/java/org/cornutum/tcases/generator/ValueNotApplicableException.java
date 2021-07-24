@@ -43,7 +43,7 @@ public class ValueNotApplicableException extends BindingException
     }
 
   @Override
-public String getMessage()
+  public String getMessage()
     {
     return
       new StringBuilder()

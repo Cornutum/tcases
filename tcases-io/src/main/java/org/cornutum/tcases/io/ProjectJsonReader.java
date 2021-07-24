@@ -91,7 +91,7 @@ public class ProjectJsonReader implements Closeable
     }
 
   @Override
-public void close()
+  public void close()
     {
     IOUtils.closeQuietly( getInputStream(), null);
     }

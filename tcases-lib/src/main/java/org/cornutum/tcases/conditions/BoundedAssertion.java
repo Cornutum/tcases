@@ -58,7 +58,7 @@ public abstract class BoundedAssertion extends AbstractAssertion
   public abstract boolean isExclusive();
 
   @Override
-public int hashCode()
+  public int hashCode()
     {
     return
       super.hashCode()
@@ -66,7 +66,7 @@ public int hashCode()
     }
 
   @Override
-public boolean equals( Object object)
+  public boolean equals( Object object)
     {
     BoundedAssertion other =
       super.equals( object)
@@ -79,7 +79,7 @@ public boolean equals( Object object)
     }
   
   @Override
-public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

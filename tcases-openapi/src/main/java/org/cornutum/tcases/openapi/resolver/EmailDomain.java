@@ -70,7 +70,7 @@ public class EmailDomain extends AbstractStringDomain
    * Defines the initial length range for values in this domain.
    */
   @Override
-protected void initLengthRange()
+  protected void initLengthRange()
     {
     setLengthRange( MIN_LENGTH, getMaxLength());
     }
@@ -79,7 +79,7 @@ protected void initLengthRange()
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-protected DataValue<String> dataValueOf( String value)
+  protected DataValue<String> dataValueOf( String value)
     {
     return new EmailValue( value);
     }
@@ -88,7 +88,7 @@ protected DataValue<String> dataValueOf( String value)
    * Returns true if the given value belongs to this domain.
    */
   @Override
-public boolean contains( String value)
+  public boolean contains( String value)
     {
     return
       super.contains( value)
@@ -120,7 +120,7 @@ public boolean contains( String value)
    * Returns a new random string of the given length for this domain.
    */
   @Override
-protected String newValue( ResolverContext context, int length)
+  protected String newValue( ResolverContext context, int length)
     {
     String value;
 
