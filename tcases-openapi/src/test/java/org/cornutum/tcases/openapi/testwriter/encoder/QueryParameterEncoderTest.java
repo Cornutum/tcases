@@ -29,7 +29,6 @@ import static java.util.Collections.emptyList;
 /**
  * Runs tests for {@link FormParameterEncoder}.
  */
-@SuppressWarnings("unchecked")
 public class QueryParameterEncoderTest
   {  
   @Test
@@ -115,7 +114,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "")
+        .encoding( "myParam", null)
         .build()));
 
     // Given...
@@ -136,7 +135,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .binding( "myParam", "")
+        .binding( "myParam", null)
         .build()));
     }
   
@@ -160,7 +159,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "")
+        .encoding( "myParam", null)
         .build()));
 
     // Given...
@@ -181,7 +180,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .binding( "myParam", "")
+        .binding( "myParam", null)
         .build()));
     }
   
@@ -205,7 +204,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "")
+        .encoding( "myParam", null)
         .build()));
 
     // Given...
@@ -226,7 +225,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .binding( "myParam", "")
+        .binding( "myParam", null)
         .build()));
     }
   
@@ -250,7 +249,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "")
+        .encoding( "myParam", null)
         .build()));
 
     // Given...
@@ -271,7 +270,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .binding( "myParam", "")
+        .binding( "myParam", null)
         .build()));
     }
   
@@ -283,7 +282,7 @@ public class QueryParameterEncoderTest
       param( "myParam")
       .location( QUERY)
       .style( "form")
-      .arrayData( stringOf( "A"), stringOf( "B"))
+      .arrayData( stringOf( "A"), noValue(), stringOf( "?"), stringOf( "B"))
       .build();
 
     // When...
@@ -295,7 +294,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "A,B")
+        .encoding( "myParam", "A,,?,B")
         .build()));
 
     // Given...
@@ -303,7 +302,7 @@ public class QueryParameterEncoderTest
       param( "myParam")
       .location( QUERY)
       .style( "form")
-      .arrayData( stringOf( "A"), stringOf( "B"))
+      .arrayData( stringOf( "A"), noValue(), stringOf( "?"), stringOf( "B"))
       .exploded()
       .build();
 
@@ -317,6 +316,8 @@ public class QueryParameterEncoderTest
       containsMembers(
         params()
         .binding( "myParam", "A")
+        .binding( "myParam", null)
+        .binding( "myParam", "?")
         .binding( "myParam", "B")
         .build()));
     }
@@ -466,7 +467,12 @@ public class QueryParameterEncoderTest
       param( "myParam")
       .location( QUERY)
       .style( "form")
-      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
       .build();
 
     // When...
@@ -478,7 +484,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encoding( "myParam", "nick name,X,sex,?")
+        .encoding( "myParam", "nick name,X,sex,?,income,,worth,")
         .build()));
 
     // Given...
@@ -486,7 +492,12 @@ public class QueryParameterEncoderTest
       param( "myParam")
       .location( QUERY)
       .style( "form")
-      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
       .exploded()
       .build();
 
@@ -501,6 +512,8 @@ public class QueryParameterEncoderTest
         params()
         .binding( "nick name", "X")
         .binding( "sex", "?")
+        .binding( "income", null)
+        .binding( "worth", "")
         .build()));
     }
   
@@ -512,7 +525,12 @@ public class QueryParameterEncoderTest
       param( "myParam")
       .location( QUERY)
       .style( "deepObject")
-      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
       .build();
 
     // When...
@@ -526,6 +544,8 @@ public class QueryParameterEncoderTest
         params()
         .encodingDeep( "myParam", "nick name", "X")
         .encodingDeep( "myParam", "sex", "?")
+        .encodingDeep( "myParam", "income", null)
+        .encodingDeep( "myParam", "worth", "")
         .build()));
 
     // Given...
@@ -533,7 +553,12 @@ public class QueryParameterEncoderTest
       param( "myParam")
       .location( QUERY)
       .style( "deepObject")
-      .objectData( object().with( "nick name", stringOf( "X")).with( "sex", stringOf( "?")))
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
       .exploded()
       .build();
 
@@ -548,6 +573,8 @@ public class QueryParameterEncoderTest
         params()
         .binding( "myParam[nick name]", "X")
         .binding( "myParam[sex]", "?")
+        .binding( "myParam[income]", null)
+        .binding( "myParam[worth]", "")
         .build()));
     }
 

@@ -28,6 +28,7 @@ public class UriEncoderTest
     assertEncodingFor( QUERY, "1,2,3", "1,2,3");
     assertEncodingFor( QUERY, "1|2|3", "1%7C2%7C3");
     assertEncodingFor( QUERY, "1 2 3", "1%202%203");
+    assertEncodingFor( QUERY, null, null);
     }
   
   @Test
@@ -39,6 +40,7 @@ public class UriEncoderTest
     assertEncodingFor( PATH, "1,2,3", "1,2,3");
     assertEncodingFor( PATH, "1|2|3", "1%7C2%7C3");
     assertEncodingFor( PATH, "1 2 3", "1%202%203");
+    assertEncodingFor( PATH, null, null);
     }
   
   @Test
@@ -50,6 +52,7 @@ public class UriEncoderTest
     assertEncodingFor( NONE, "1,2,3", "1,2,3");
     assertEncodingFor( NONE, "1|2|3", "1|2|3");
     assertEncodingFor( NONE, "1 2 3", "1 2 3");
+    assertEncodingFor( NONE, null, null);
     }
 
   private void assertEncodingFor( UriEncoder.Component component, String value, String encoded)
