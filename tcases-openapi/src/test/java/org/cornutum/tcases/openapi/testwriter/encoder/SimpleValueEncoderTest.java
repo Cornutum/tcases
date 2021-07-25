@@ -23,7 +23,6 @@ import java.util.Optional;
 /**
  * Runs tests for {@link SimpleValueEncoder}.
  */
-@SuppressWarnings("unchecked")
 public class SimpleValueEncoderTest
   {  
   @Test

@@ -91,6 +91,11 @@ public final class DataValues
     return new NullValue();
     }
 
+  public static NullValue noValue()
+    {
+    return nullValue();
+    }
+
   public static ObjectValueBuilder object()
     {
     return new ObjectValueBuilder();

@@ -50,7 +50,7 @@ public abstract class UriEncoder
   public static String uriEncoded( Component component, String value)
     {
     String encoded;
-    switch( Optional.ofNullable( component).orElse( Component.NONE))
+    switch( Optional.ofNullable( component).filter( c -> value != null).orElse( Component.NONE))
       {
       case QUERY:
         {
