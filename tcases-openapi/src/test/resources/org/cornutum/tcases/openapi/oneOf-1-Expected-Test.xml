@@ -120,15 +120,15 @@
         <Var name="param0.Alternative.1.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="1">
+        <Var name="param0.Alternative.1.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" name="param0.Alternative.1.Value.Length=&apos;&gt; 1&apos;">
+    <TestCase id="4" name="param0.Alternative.1.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0NotEmpty,param0Value"/>
+      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OneOf"/>
       <Has name="version" value="0.0.0"/>
@@ -149,7 +149,7 @@
         <Var name="param0.Alternative.1.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="&gt; 1">
+        <Var name="param0.Alternative.1.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -208,35 +208,6 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Length" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="7" failure="true" name="param0.Alternative.1.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="OneOf"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Alternative.Used" value="1">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.0.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.0.Value" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.1.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="0" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

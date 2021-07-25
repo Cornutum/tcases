@@ -22,11 +22,11 @@
         </Var>
         <VarSet name="Items" when="param0Value">
           <Var name="Size">
-            <Value name="0" failure="true"/>
+            <Value name="0" property="param0ItemsNone"/>
             <Value name="1"/>
             <Value name="&gt; 1" property="param0ItemsMany"/>
           </Var>
-          <VarSet name="Contains">
+          <VarSet name="Contains" whenNot="param0ItemsNone">
             <Var name="Type">
               <Has name="itemType" value="object"/>
               <Value name="object" property="param0ItemsValue"/>

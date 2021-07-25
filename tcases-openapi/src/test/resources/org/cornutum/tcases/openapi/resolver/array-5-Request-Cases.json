@@ -17,10 +17,6 @@
                 "data": {
                     "type": "array",
                     "value": [
-                        {
-                            "type": "boolean",
-                            "value": true
-                        }
                     ]
                 },
                 "valid": true
@@ -65,6 +61,37 @@
                     "value": [
                         {
                             "type": "boolean",
+                            "value": true
+                        },
+                        {
+                            "type": "boolean",
+                            "value": false
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "param0.Items.Contains.Value='false'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Array",
+        "path": "/array",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "spaceDelimited",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "boolean",
                             "value": false
                         },
                         {
@@ -78,7 +105,7 @@
         ]
     },
     {
-        "id": 3,
+        "id": 4,
         "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -101,7 +128,7 @@
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 4,
+        "id": 5,
         "name": "param0.Type='Not array'",
         "server": "/",
         "version": "0.0.0",
@@ -115,38 +142,13 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "integer",
-                    "value": -360,
-                    "format": "int32"
+                    "type": "string",
+                    "value": ":GpN}9B5"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Type=Not array"
-    },
-    {
-        "id": 5,
-        "name": "param0.Items.Size='0'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Array",
-        "path": "/array",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "spaceDelimited",
-                "explode": false,
-                "data": {
-                    "type": "array",
-                    "value": [
-                    ]
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Items.Size=0"
     },
     {
         "id": 6,
@@ -168,6 +170,10 @@
                         {
                             "type": "null",
                             "value": null
+                        },
+                        {
+                            "type": "boolean",
+                            "value": true
                         }
                     ]
                 },
@@ -194,8 +200,12 @@
                     "type": "array",
                     "value": [
                         {
-                            "type": "string",
-                            "value": "kI:"
+                            "type": "number",
+                            "value": 478.5
+                        },
+                        {
+                            "type": "boolean",
+                            "value": true
                         }
                     ]
                 },

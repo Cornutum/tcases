@@ -457,7 +457,7 @@ public class MyTest extends MyBaseClass {
         given()
             .baseUri( forTestServer())
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".")
+            .pathParam( "userId", "")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -526,7 +526,7 @@ public class MyTest extends MyBaseClass {
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "approved", ".")
+            .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")

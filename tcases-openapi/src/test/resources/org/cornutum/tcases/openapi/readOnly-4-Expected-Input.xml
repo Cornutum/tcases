@@ -38,9 +38,8 @@
               </Var>
               <VarSet name="Value" when="param0AlphaValue">
                 <Var name="Length">
-                  <Value name="0" failure="true"/>
-                  <Value name="1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
-                  <Value name="&gt; 1" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                  <Value name="&gt; 0" property="param0AlphaLengthValid, param0AlphaNotEmpty"/>
+                  <Value name="0" property="param0AlphaLengthValid"/>
                 </Var>
               </VarSet>
             </VarSet>

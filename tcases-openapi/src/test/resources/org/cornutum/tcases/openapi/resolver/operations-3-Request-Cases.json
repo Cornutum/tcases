@@ -17,10 +17,6 @@
                 "data": {
                     "type": "array",
                     "value": [
-                        {
-                            "type": "boolean",
-                            "value": true
-                        }
                     ]
                 },
                 "valid": true
@@ -47,7 +43,34 @@
         ]
     },
     {
-        "id": 3,
+        "id": 2,
+        "name": "param0.Items.Size='1'",
+        "server": "http://www.cornutum.org/tcases/reducer/api",
+        "version": "0.0.0",
+        "api": "Operations",
+        "path": "/operations",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
         "name": "param0.Items.Unique='No'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
@@ -110,7 +133,7 @@
         ]
     },
     {
-        "id": 4,
+        "id": 5,
         "name": "param0.Type=null",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
@@ -133,7 +156,7 @@
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 5,
+        "id": 6,
         "name": "param0.Type='Not array'",
         "server": "http://www.cornutum.org/tcases/reducer/api",
         "version": "0.0.0",
@@ -154,30 +177,6 @@
             }
         ],
         "invalidInput": "param0.Type=Not array"
-    },
-    {
-        "id": 6,
-        "name": "param0.Items.Size='0'",
-        "server": "http://www.cornutum.org/tcases/reducer/api",
-        "version": "0.0.0",
-        "api": "Operations",
-        "path": "/operations",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "array",
-                    "value": [
-                    ]
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Items.Size=0"
     },
     {
         "id": 7,

@@ -38,7 +38,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="1">
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
@@ -51,7 +51,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -161,7 +161,7 @@
     <TestCase id="2" name="param0.Value.Properties.bravo.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaValue,param0Hotel,param0HotelValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -200,7 +200,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -233,10 +233,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" name="param0.Value.Properties.bravo.Value.Length=&apos;&gt; 1&apos;">
+    <TestCase id="3" name="param0.Value.Properties.bravo.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoLengthValid,param0BravoNotEmpty,param0BravoValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Bravo,param0BravoLengthValid,param0BravoValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -262,7 +262,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="&gt; 1">
+        <Var name="param0.Value.Properties.bravo.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="No">
@@ -500,7 +500,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -575,7 +575,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -650,7 +650,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -725,7 +725,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -758,82 +758,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="param0.Value.Properties.bravo.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Bravo,param0BravoValue,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Object"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="object">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
-          <Has name="excludedType" value="string"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" value="0" failure="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="No">
-          <Has name="excludedType" value="boolean"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.delta.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.echo.Defined" value="No">
-          <Has name="excludedType" value="integer"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.foxtrot.Defined" value="No">
-          <Has name="excludedType" value="number"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.golf.Defined" value="No">
-          <Has name="excludedType" value="object"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Type" value="object">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="No">
-          <Has name="excludedType" value="integer"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="11" failure="true" name="param0.Value.Properties.charlie.Defined=&apos;Yes&apos;">
+    <TestCase id="10" failure="true" name="param0.Value.Properties.charlie.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -875,7 +800,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -908,7 +833,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true" name="param0.Value.Properties.delta.Type=null">
+    <TestCase id="11" failure="true" name="param0.Value.Properties.delta.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -983,7 +908,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true" name="param0.Value.Properties.delta.Type=&apos;Not string&apos;">
+    <TestCase id="12" failure="true" name="param0.Value.Properties.delta.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -1058,82 +983,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true" name="param0.Value.Properties.delta.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Delta,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Object"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="object">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Property-Count" value="&gt;= 2">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="No">
-          <Has name="excludedType" value="string"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="No">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Value.Length" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="No">
-          <Has name="excludedType" value="boolean"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.delta.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.delta.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="0" failure="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.echo.Defined" value="No">
-          <Has name="excludedType" value="integer"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.foxtrot.Defined" value="No">
-          <Has name="excludedType" value="number"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.golf.Defined" value="No">
-          <Has name="excludedType" value="object"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Type" value="object">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined" value="No">
-          <Has name="excludedType" value="integer"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.hotel.Value.Properties.Additional" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="15" failure="true" name="param0.Value.Properties.echo.Defined=&apos;Yes&apos;">
+    <TestCase id="13" failure="true" name="param0.Value.Properties.echo.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -1175,7 +1025,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="Yes" failure="true">
@@ -1208,7 +1058,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true" name="param0.Value.Properties.foxtrot.Defined=&apos;Yes&apos;">
+    <TestCase id="14" failure="true" name="param0.Value.Properties.foxtrot.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -1250,7 +1100,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -1283,7 +1133,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true" name="param0.Value.Properties.golf.Defined=&apos;Yes&apos;">
+    <TestCase id="15" failure="true" name="param0.Value.Properties.golf.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -1325,7 +1175,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -1358,7 +1208,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true" name="param0.Value.Properties.hotel.Type=null">
+    <TestCase id="16" failure="true" name="param0.Value.Properties.hotel.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0Properties,param0Value"/>
@@ -1400,7 +1250,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -1433,7 +1283,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true" name="param0.Value.Properties.hotel.Type=&apos;Not object&apos;">
+    <TestCase id="17" failure="true" name="param0.Value.Properties.hotel.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0Properties,param0Value"/>
@@ -1475,7 +1325,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">
@@ -1508,7 +1358,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true" name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined=&apos;Yes&apos;">
+    <TestCase id="18" failure="true" name="param0.Value.Properties.hotel.Value.Properties.rooms.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0,param0Delta,param0DeltaLengthValid,param0DeltaNotEmpty,param0DeltaValue,param0Hotel,param0HotelProperties,param0HotelValue,param0Properties,param0Value"/>
@@ -1550,7 +1400,7 @@
         <Var name="param0.Value.Properties.delta.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.delta.Value.Length" value="1">
+        <Var name="param0.Value.Properties.delta.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.echo.Defined" value="No">

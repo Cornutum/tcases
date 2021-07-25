@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsNone,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
@@ -25,15 +25,15 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="1">
+        <Var name="param0.Items.Size" value="0">
           <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Type" value="boolean">
+        <Var name="param0.Items.Contains.Type" NA="true">
           <Has name="itemType" value="boolean"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Contains.Value" value="true">
+        <Var name="param0.Items.Contains.Value" NA="true">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -98,6 +98,39 @@
           <Has name="itemType" value="boolean"/>
           <Has name="paramName" value="param0"/>
         </Var>
+        <Var name="param0.Items.Contains.Value" value="true">
+          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" name="param0.Items.Contains.Value=&apos;false&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/array"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="spaceDelimited"/>
+        </Var>
+        <Var name="param0.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" value="2">
+          <Has name="itemsUnique" value="true"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Contains.Type" value="boolean">
+          <Has name="itemType" value="boolean"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
         <Var name="param0.Items.Contains.Value" value="false">
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
           <Has name="paramName" value="param0"/>
@@ -107,7 +140,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true" name="param0.Type=null">
+    <TestCase id="4" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
       <Has name="properties" value="param0"/>
@@ -140,7 +173,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true" name="param0.Type=&apos;Not array&apos;">
+    <TestCase id="5" failure="true" name="param0.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
       <Has name="properties" value="param0"/>
@@ -173,43 +206,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true" name="param0.Items.Size=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Array"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="spaceDelimited"/>
-        </Var>
-        <Var name="param0.Type" value="array">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Size" value="0" failure="true">
-          <Has name="itemsUnique" value="true"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Type" value="boolean">
-          <Has name="itemType" value="boolean"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value" value="true">
-          <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Unique" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
     <TestCase id="6" failure="true" name="param0.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
@@ -222,7 +222,7 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="1">
+        <Var name="param0.Items.Size" value="2">
           <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -234,7 +234,7 @@
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" NA="true">
+        <Var name="param0.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -242,7 +242,7 @@
     <TestCase id="7" failure="true" name="param0.Items.Contains.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0ItemsMany,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Array"/>
       <Has name="version" value="0.0.0"/>
@@ -255,7 +255,7 @@
         <Var name="param0.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Size" value="1">
+        <Var name="param0.Items.Size" value="2">
           <Has name="itemsUnique" value="true"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -267,7 +267,7 @@
           <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Items.Unique" NA="true">
+        <Var name="param0.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

@@ -73,8 +73,8 @@
               </Var>
               <VarSet name="Value" when="param0CharlieValue">
                 <Var name="Length">
-                  <Value name="1" property="param0CharlieLengthValid, param0CharlieNotEmpty"/>
-                  <Value name="&gt; 1" property="param0CharlieLengthValid, param0CharlieNotEmpty"/>
+                  <Value name="&gt; 0" property="param0CharlieLengthValid, param0CharlieNotEmpty"/>
+                  <Value name="0" property="param0CharlieLengthValid"/>
                 </Var>
               </VarSet>
             </VarSet>

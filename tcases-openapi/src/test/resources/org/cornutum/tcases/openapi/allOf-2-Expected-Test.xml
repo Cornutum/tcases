@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -43,14 +43,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&lt; 0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
@@ -139,7 +139,7 @@
     <TestCase id="2" name="param0.Value.Properties.bravo.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Charlie,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -170,17 +170,17 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&lt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Unique" value="Yes">
+        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
@@ -203,7 +203,7 @@
     <TestCase id="3" name="param0.Value.Properties.bravo.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -234,17 +234,17 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="&gt; 1">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
+        <Var name="param0.Value.Properties.charlie.Items.Unique" value="Yes">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
@@ -328,7 +328,71 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" name="param0.Value.Properties.charlie.Items.Unique=&apos;No&apos;">
+    <TestCase id="5" name="param0.Value.Properties.charlie.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/allOf"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="AllOf"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt;= 3">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Type" value="boolean">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Type" value="array">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.alpha.Type" value="Not null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" name="param0.Value.Properties.charlie.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsMany,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
@@ -353,7 +417,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="false">
+        <Var name="param0.Value.Properties.bravo.Value" value="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -387,12 +451,12 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="&lt; 0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="param0.Type=null">
+    <TestCase id="7" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0"/>
@@ -456,7 +520,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="param0.Type=&apos;Not object&apos;">
+    <TestCase id="8" failure="true" name="param0.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0"/>
@@ -520,7 +584,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="param0.Value.Property-Count=&apos;&lt; 3&apos;">
+    <TestCase id="9" failure="true" name="param0.Value.Property-Count=&apos;&lt; 3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Alpha,param0AlphaValue,param0Properties,param0Value"/>
@@ -584,10 +648,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="param0.Value.Properties.bravo.Type=null">
+    <TestCase id="10" failure="true" name="param0.Value.Properties.bravo.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -618,14 +682,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
@@ -643,15 +707,15 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="param0.Value.Properties.bravo.Type=&apos;Not boolean&apos;">
+    <TestCase id="11" failure="true" name="param0.Value.Properties.bravo.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -682,14 +746,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
@@ -707,12 +771,12 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true" name="param0.Value.Properties.charlie.Type=null">
+    <TestCase id="12" failure="true" name="param0.Value.Properties.charlie.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
@@ -737,7 +801,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -771,12 +835,12 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true" name="param0.Value.Properties.charlie.Type=&apos;Not array&apos;">
+    <TestCase id="13" failure="true" name="param0.Value.Properties.charlie.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
       <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0Properties,param0Value"/>
@@ -801,7 +865,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -835,71 +899,7 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="13" failure="true" name="param0.Value.Properties.charlie.Items.Size=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="AllOf"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="object">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Property-Count" value="&gt;= 3">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Type" value="boolean">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Type" value="array">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="0" failure="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
-          <Has name="itemType" value="integer"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.alpha.Type" value="Not null">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.Additional.Type" value="integer">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -929,7 +929,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -963,7 +963,7 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -993,7 +993,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -1027,7 +1027,7 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -1035,7 +1035,7 @@
     <TestCase id="16" failure="true" name="param0.Value.Properties.alpha.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -1057,7 +1057,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -1066,14 +1066,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
@@ -1091,7 +1091,7 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -1099,7 +1099,7 @@
     <TestCase id="17" failure="true" name="param0.Value.Properties.alpha.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0AdditionalValue,param0Alpha,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -1130,14 +1130,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
@@ -1155,7 +1155,7 @@
         <Var name="param0.Value.Properties.Additional.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.Additional.Value.Is" value="0">
+        <Var name="param0.Value.Properties.Additional.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -1163,7 +1163,7 @@
     <TestCase id="18" failure="true" name="param0.Value.Properties.Additional.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -1185,7 +1185,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -1194,14 +1194,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">
@@ -1227,7 +1227,7 @@
     <TestCase id="19" failure="true" name="param0.Value.Properties.Additional.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/allOf"/>
-      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsValue,param0CharlieValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Additional,param0Alpha,param0AlphaValue,param0Bravo,param0BravoValue,param0Charlie,param0CharlieItemsNone,param0CharlieValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AllOf"/>
       <Has name="version" value="0.0.0"/>
@@ -1249,7 +1249,7 @@
         <Var name="param0.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.bravo.Value" value="true">
+        <Var name="param0.Value.Properties.bravo.Value" value="false">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Defined" value="Yes">
@@ -1258,14 +1258,14 @@
         <Var name="param0.Value.Properties.charlie.Type" value="array">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Size" value="1">
+        <Var name="param0.Value.Properties.charlie.Items.Size" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" value="integer">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Type" NA="true">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" value="0">
+        <Var name="param0.Value.Properties.charlie.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.charlie.Items.Unique" NA="true">

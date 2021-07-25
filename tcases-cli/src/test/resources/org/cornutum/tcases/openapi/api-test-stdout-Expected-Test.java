@@ -772,7 +772,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .baseUri( forTestServer())
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".")
+            .pathParam( "userId", "")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -841,7 +841,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "approved", ".")
+            .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -2066,7 +2066,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";attributes")
+            .pathParam( "attributes", "")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2105,7 +2105,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=;likes=703703613")
+            .pathParam( "attributes", ";approved;likes=703703613")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2118,7 +2118,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=;likes=89711824")
+            .pathParam( "attributes", ";approved;likes=89711824")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2144,7 +2144,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;likes=")
+            .pathParam( "attributes", ";approved=false;likes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2183,7 +2183,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;subject=;likes=369139405")
+            .pathParam( "attributes", ";approved=false;subject;likes=369139405")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()

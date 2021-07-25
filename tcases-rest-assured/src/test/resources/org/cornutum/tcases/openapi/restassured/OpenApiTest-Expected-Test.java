@@ -838,7 +838,7 @@ public class OpenApiTest {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".")
+            .pathParam( "userId", "")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -907,7 +907,7 @@ public class OpenApiTest {
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .pathParam( "approved", ".")
+            .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -2267,7 +2267,7 @@ public class OpenApiTest {
     public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .pathParam( "attributes", ";attributes")
+            .pathParam( "attributes", "")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2306,7 +2306,7 @@ public class OpenApiTest {
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .pathParam( "attributes", ";approved=;likes=127128009")
+            .pathParam( "attributes", ";approved;likes=127128009")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2345,7 +2345,7 @@ public class OpenApiTest {
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .pathParam( "attributes", ";approved=false;likes=")
+            .pathParam( "attributes", ";approved=false;likes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2384,7 +2384,7 @@ public class OpenApiTest {
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .pathParam( "attributes", ";approved=false;subject=;likes=279878075")
+            .pathParam( "attributes", ";approved=false;subject;likes=279878075")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2423,7 +2423,7 @@ public class OpenApiTest {
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .pathParam( "attributes", ";approved=false;likes=776704486;wuf=")
+            .pathParam( "attributes", ";approved=false;likes=776704486;wuf")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()

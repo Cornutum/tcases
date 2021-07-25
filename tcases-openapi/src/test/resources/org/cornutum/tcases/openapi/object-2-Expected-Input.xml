@@ -47,9 +47,8 @@
               </Var>
               <VarSet name="Value" when="param0AdditionalValue">
                 <Var name="Length">
-                  <Value name="0" failure="true"/>
-                  <Value name="1" property="param0AdditionalLengthValid, param0AdditionalNotEmpty"/>
-                  <Value name="&gt; 1" property="param0AdditionalLengthValid, param0AdditionalNotEmpty"/>
+                  <Value name="&gt; 0" property="param0AdditionalLengthValid, param0AdditionalNotEmpty"/>
+                  <Value name="0" property="param0AdditionalLengthValid"/>
                 </Var>
               </VarSet>
             </VarSet>

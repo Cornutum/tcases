@@ -968,19 +968,6 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     for( Schema<?> schema : alternatives)
       {
       normalizeParameterSchema( parameter, schema);
-
-      Optional.ofNullable( asArraySchema( schema))
-        .map( array -> array.getItems())
-        .ifPresent( items -> doFor( "items", () -> normalizeParameterDnf( parameter, items)));
-
-      Optional.ofNullable( schema.getProperties())
-        .ifPresent( properties -> {
-          properties.keySet().stream()
-            .forEach( p -> doFor( p, () -> normalizeParameterDnf( parameter, properties.get(p))));
-          });
-
-      Optional.ofNullable( additionalPropertiesSchema( schema))
-        .ifPresent( ap -> doFor( "additionalProperties", () -> normalizeParameterDnf( parameter, ap)));
       }
     }
 
@@ -1004,29 +991,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) <= 0)
       {
       // Is an empty string allowed for this parameter?
-      boolean emptyNotAllowed =
-        (Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()) || Parameter.StyleEnum.FORM.equals( parameter.getStyle()))
-        && ("path".equals( parameter.getIn()) || Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false);
-
-      if( emptyNotAllowed)
+      if( Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
+          && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
         {
+        // No, an empty string is equivalent to null, which is invalid.
         if( parameterSchema.getEnum() != null)
           {
-          // An empty string is equivalent to null, which is invalid.
           ((Schema<Object>) parameterSchema).setEnum(
             parameterSchema.getEnum().stream()
             .map( enumValue -> String.valueOf( enumValue).isEmpty()? null : enumValue)
             .collect( toList()));
           }
-        else if( "path".equals( parameter.getIn()))
-          {
-          // An empty string is equivalent to "undefined", which is invalid
-          notifyWarning( "Empty string values not allowed for path parameter -- using minLength=1");
-          parameterSchema.setMinLength( 1);
-          }
         else
           {
-          // An empty string is equivalent to null, which is invalid.
           notifyWarning( "Empty string values not allowed for non-nullable parameter -- using minLength=1");
           parameterSchema.setMinLength( 1);
           }
@@ -1038,20 +1015,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         // ... for which an empty array value is valid?
         && Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) <= 0)
       {
-      if( !(Parameter.StyleEnum.MATRIX.equals( parameter.getStyle()) || Parameter.StyleEnum.LABEL.equals( parameter.getStyle())))
+      // Is an empty array allowed for this parameter?
+      if( Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
+          && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
         {
-        if( "path".equals( parameter.getIn()))
-          {
-          // An empty array is equivalent to "undefined", which is invalid
-          notifyWarning( "Empty array values not allowed for path parameter -- using minItems=1");
-          parameterSchema.setMinItems( 1);
-          }
-        else if( Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
-          {
-          // An empty array is equivalent to null, which is invalid.
-          notifyWarning( "Empty array values not allowed for non-nullable parameter -- using minItems=1");
-          parameterSchema.setMinItems( 1);
-          }
+        // No, an empty array is equivalent to null, which is invalid.
+        notifyWarning( "Empty array values not allowed for non-nullable parameter -- using minItems=1");
+        parameterSchema.setMinItems( 1);
         }
       }
     }

@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
-      <Has name="properties" value="param0,param0LengthValid,param0NotEmpty,param0Value"/>
+      <Has name="properties" value="param0,param0LengthValid,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="String"/>
       <Has name="version" value="0.0.0"/>
@@ -24,7 +24,7 @@
         <Var name="param0.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Length" value="1">
+        <Var name="param0.Value.Length" value="0">
           <Has name="default" value="X"/>
           <Has name="paramName" value="param0"/>
         </Var>
@@ -50,7 +50,28 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2" failure="true" name="param0.Type=null">
+    <TestCase id="2" name="param0.Value.Length=&apos;1&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/string"/>
+      <Has name="properties" value="param0,param0LengthValid,param0NotEmpty,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="String"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Length" value="1">
+          <Has name="default" value="X"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param0"/>
@@ -71,7 +92,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" failure="true" name="param0.Type=&apos;Not string&apos;">
+    <TestCase id="4" failure="true" name="param0.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/string"/>
       <Has name="properties" value="param0"/>
@@ -87,27 +108,6 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Length" NA="true">
-          <Has name="default" value="X"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="4" failure="true" name="param0.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/string"/>
-      <Has name="properties" value="param0,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="String"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Length" value="0" failure="true">
           <Has name="default" value="X"/>
           <Has name="paramName" value="param0"/>
         </Var>

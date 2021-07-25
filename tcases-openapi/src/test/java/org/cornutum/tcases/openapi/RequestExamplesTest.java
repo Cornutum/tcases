@@ -1707,9 +1707,7 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_42()
     {
     verifyRequestExamplesModel( "examples-error-42");
-    assertWarnings(
-      "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.",
-      "examples,/examples,POST,param0,charlie: Empty string values not allowed for non-nullable parameter -- using minLength=1.");
+    assertWarnings( "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.");
     }
 
   /**

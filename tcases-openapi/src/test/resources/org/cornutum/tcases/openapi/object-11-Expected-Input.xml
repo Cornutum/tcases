@@ -38,9 +38,8 @@
               </Var>
               <VarSet name="Value" when="param0MyStringValue">
                 <Var name="Length">
-                  <Value name="0" failure="true"/>
-                  <Value name="1" property="param0MyStringLengthValid, param0MyStringNotEmpty"/>
-                  <Value name="&gt; 1" property="param0MyStringLengthValid, param0MyStringNotEmpty"/>
+                  <Value name="&gt; 0" property="param0MyStringLengthValid, param0MyStringNotEmpty"/>
+                  <Value name="0" property="param0MyStringLengthValid"/>
                 </Var>
               </VarSet>
             </VarSet>

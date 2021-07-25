@@ -123,6 +123,43 @@
     <TestCase id="3" name="param0.Alternative.1.Type=&apos;string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
+      <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="OneOf"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Alternative.Used" value="1">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="X*"/>
+        </Var>
+        <Var name="param0.Alternative.1.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Alternative.1.Value.Matches-Pattern" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="pattern" value="X*"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" name="param0.Alternative.1.Value.Length=&apos;1&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/oneOf"/>
       <Has name="properties" value="param0,param0Alternative1,param0LengthValid,param0NotEmpty,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OneOf"/>
@@ -157,7 +194,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" failure="true" name="param0.Alternative.0.Type=null">
+    <TestCase id="5" failure="true" name="param0.Alternative.0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
       <Has name="properties" value="param0,param0Alternative0"/>
@@ -194,7 +231,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true" name="param0.Alternative.0.Type=&apos;Not string&apos;">
+    <TestCase id="6" failure="true" name="param0.Alternative.0.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
       <Has name="properties" value="param0,param0Alternative0"/>
@@ -231,7 +268,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="param0.Alternative.0.Value.Length=&apos;10&apos;">
+    <TestCase id="7" failure="true" name="param0.Alternative.0.Value.Length=&apos;10&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0Value"/>
@@ -268,7 +305,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="param0.Alternative.0.Value.Matches-Pattern=&apos;No&apos;">
+    <TestCase id="8" failure="true" name="param0.Alternative.0.Value.Matches-Pattern=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/oneOf"/>
       <Has name="properties" value="param0,param0Alternative0,param0LengthValid,param0NotEmpty,param0Value"/>
@@ -297,43 +334,6 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Length" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
-          <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X*"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="8" failure="true" name="param0.Alternative.1.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/oneOf"/>
-      <Has name="properties" value="param0,param0Alternative1,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="OneOf"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="query">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Alternative.Used" value="1">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.0.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.0.Value.Length" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.0.Value.Matches-Pattern" NA="true">
-          <Has name="paramName" value="param0"/>
-          <Has name="pattern" value="X*"/>
-        </Var>
-        <Var name="param0.Alternative.1.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Alternative.1.Value.Length" value="0" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Matches-Pattern" NA="true">
