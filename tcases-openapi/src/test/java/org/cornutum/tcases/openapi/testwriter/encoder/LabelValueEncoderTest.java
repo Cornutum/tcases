@@ -22,7 +22,6 @@ import java.math.BigDecimal;
 /**
  * Runs tests for {@link LabelValueEncoder}.
  */
-@SuppressWarnings("unchecked")
 public class LabelValueEncoderTest
   {  
   @Test
@@ -52,10 +51,58 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".123.45"));
+    }
+  
+  @Test
+  public void whenLabelString()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( PATH)
+      .style( "label")
+      .stringData( "X[Y]")
+      .build();
+
+    // When...
+    String encoded = TestWriterUtils.getPathParameterValue( param);
+    
+    // Then...
+    assertThat( "Label encoding", encoded, is( ".X[Y]"));
+
+    // Given...
+    param =
+      param( "myParam")
+      .location( PATH)
+      .style( "label")
+      .stringData( "X[Y]")
+      .exploded()
+      .build();
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    
+    // Then...
+    assertThat( "Label encoding", encoded, is( ".X%5BY%5D"));
+
+    // Given...
+    param =
+      param( "myParam")
+      .location( PATH)
+      .style( "label")
+      .stringData( "")
+      .exploded()
+      .build();
+
+    // When...
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    
+    // Then...
+    assertThat( "Label encoding", encoded, is( "."));
     }
   
   @Test
@@ -91,7 +138,7 @@ public class LabelValueEncoderTest
     String encoded = TestWriterUtils.getPathParameterValue( param);
     
     // Then...
-    assertThat( "Label encoding", encoded, is( "."));
+    assertThat( "Label encoding", encoded, is( ""));
 
     // Given...
     param =
@@ -103,10 +150,10 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
-    assertThat( "Label encoding", encoded, is( "."));
+    assertThat( "Label encoding", encoded, is( ""));
     }
   
   @Test
@@ -175,7 +222,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = TestWriterUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".name=X.sex=true"));

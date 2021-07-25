@@ -115,7 +115,7 @@ public class LabelValueEncoder extends UriEncoder implements DataValueVisitor
   @Override
   public void visit( NullValue data)
     {
-    encoded_ = labelOf( data);
+    encoded_ = "";
     }
 
   @Override

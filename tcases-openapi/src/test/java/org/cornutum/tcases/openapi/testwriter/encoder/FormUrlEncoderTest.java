@@ -19,6 +19,7 @@ import static org.hamcrest.Matchers.is;
 
 import java.math.BigDecimal;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import static java.util.Collections.emptyList;
@@ -33,10 +34,12 @@ public class FormUrlEncoderTest
     {
     // Given...
     DataValue<?> value =
-      arrayOf(
-        arrayOf( valueOf(1), valueOf(2), valueOf(3)),
-        arrayOf( valueOf(4), valueOf(5)),
-        arrayOf( valueOf(6)));
+      arrayOfAny(
+        Arrays.asList(
+          arrayOf( valueOf(1), valueOf(2), valueOf(3)),
+          arrayOf( valueOf(4), valueOf(5)),
+          nullValue(),
+          arrayOf( valueOf(6))));
     
     // When...
     List<Map.Entry<String,String>> bindings = FormUrlEncoder.encode( value);
@@ -49,14 +52,15 @@ public class FormUrlEncoderTest
         form()
         .with( "0", "1%2C2%2C3")
         .with( "1", "4%2C5")
-        .with( "2", "6")
+        .with( "2", null)
+        .with( "3", "6")
         .build()));
 
     // When...
     String content = FormUrlEncoder.toForm( value);
 
     // Then...
-    assertThat( "Content", content, is( "0=1%2C2%2C3&1=4%2C5&2=6"));
+    assertThat( "Content", content, is( "0=1%2C2%2C3&1=4%2C5&2&3=6"));
     }
 
   @Test
@@ -209,8 +213,14 @@ public class FormUrlEncoderTest
         form()
         .with( "What%3F", "Me%3F%2CWorry%3F")
         .with( "Some+Numbers", "-1%2C0%2C1")
-        .with( "Nothing", "")
+        .with( "Nothing", null)
         .build()));
+
+    // When...
+    String content = FormUrlEncoder.toForm( value);
+
+    // Then...
+    assertThat( "Content", content, is( "What%3F=Me%3F%2CWorry%3F&Some+Numbers=-1%2C0%2C1&Nothing"));
     }
 
   @Test

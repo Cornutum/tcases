@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.resolver;
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 /**
  * Base class for {@link MessageData} builders
@@ -34,9 +35,9 @@ public abstract class AbstractMessageDataBuilder<T extends AbstractMessageDataBu
     return new MessageData( value_, mediaType_, valid_);
     }
 
-  public <I> T arrayData( DataValue<I>... itemValues)
+  public T arrayData( DataValue<?>... itemValues)
     {
-    value_ = arrayOf( itemValues);
+    value_ = arrayOfAny( Arrays.asList( itemValues));
     return (T) this;
     }
 

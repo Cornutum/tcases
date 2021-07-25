@@ -72,7 +72,7 @@ public class FormUrlEncoder implements DataValueVisitor
     {
     return
       encode( value).stream()
-      .map( entry -> String.format( "%s=%s", entry.getKey(), entry.getValue()))
+      .map( entry -> Optional.ofNullable( entry.getValue()).map( v -> String.format( "%s=%s", entry.getKey(), v)).orElse( entry.getKey()))
       .collect( joining( "&"));
     }
 
@@ -97,9 +97,16 @@ public class FormUrlEncoder implements DataValueVisitor
     bind( name, data.getValue());
     }
 
+  private void bindMember( String name, DataValue<?> member)
+    {
+    bind(
+      name,
+      member.getValue() == null? null : SimpleValueEncoder.encode( member, Component.NONE));
+    }
+
   private void bind( String name, Object value)
     {
-    add( urlEncoded( name), urlEncoded( Objects.toString( value, "")));
+    add( urlEncoded( name), urlEncoded( Objects.toString( value, null)));
     }
 
   private String urlEncoded( String value)
@@ -107,7 +114,7 @@ public class FormUrlEncoder implements DataValueVisitor
     try
       {
       return
-        encoded_
+        encoded_ && value != null
         ? URLEncoder.encode( value, "UTF-8")
         : value;
       }
@@ -120,7 +127,7 @@ public class FormUrlEncoder implements DataValueVisitor
   @Override
   public void visit( ArrayValue<?> data)
     {
-    IntStream.range( 0, data.getValue().size()).forEach( i -> bind( String.valueOf(i), SimpleValueEncoder.encode( data.getValue().get(i), Component.NONE)));
+    IntStream.range( 0, data.getValue().size()).forEach( i -> bindMember( String.valueOf(i), data.getValue().get(i)));
     }
 
   @Override
@@ -161,7 +168,7 @@ public class FormUrlEncoder implements DataValueVisitor
   @Override
   public void visit( ObjectValue data)
     {
-    data.getValue().forEach( (property,value) -> bind( property, SimpleValueEncoder.encode( value, Component.NONE)));
+    data.getValue().forEach( (property,value) -> bindMember( property, value));
     }
 
   @Override

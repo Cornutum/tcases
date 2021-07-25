@@ -74,7 +74,10 @@ public class MatrixValueEncoder extends UriEncoder implements DataValueVisitor
 
   private String matrixParamOf( String name, String value)
     {
-    return matrixOf( String.format( "%s=%s", uriEncoded( name), uriEncoded( value)));
+    return
+      value.isEmpty()
+      ? matrixOf( uriEncoded( name))
+      : matrixOf( String.format( "%s=%s", uriEncoded( name), uriEncoded( value)));
     }
 
   private String matrixOf( String value)
@@ -136,7 +139,7 @@ public class MatrixValueEncoder extends UriEncoder implements DataValueVisitor
   @Override
   public void visit( NullValue data)
     {
-    encoded_ = matrixOf( name_);
+    encoded_ = "";
     }
 
   @Override

@@ -71,12 +71,19 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
 
   private void bind( String name, Object value)
     {
-    add( uriEncoded( name), uriEncoded( Objects.toString( value, "")));
+    add( uriEncoded( name), uriEncoded( Objects.toString( value, null)));
     }
 
-  private void bindDeep( String property, Object value)
+  private void bindMember( String name, DataValue<?> member)
     {
-    add( String.format( "%s[%s]", uriEncoded( name_), uriEncoded( property)), uriEncoded( Objects.toString( value, "")));
+    bind(
+      name,
+      member.getValue() == null? null : SimpleValueEncoder.encode( member, Component.NONE));
+    }
+
+  private void bindDeep( String property, DataValue<?> member)
+    {
+    bindMember( String.format( "%s[%s]", name_, property), member);
     }
 
   private void bindParam( Object value)
@@ -99,7 +106,7 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     else if( exploded_)
       {
       data.getValue().stream()
-        .forEach( value -> bindParam( SimpleValueEncoder.encode( value, Component.NONE)));
+        .forEach( value -> bindMember( name_, value));
       }
     else
       {
@@ -154,12 +161,12 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     if( "deepObject".equals( style_))
       {
       data.getValue()
-        .forEach( (property, value) -> bindDeep( property, SimpleValueEncoder.encode( value, Component.NONE)));
+        .forEach( (property, value) -> bindDeep( property, value));
       }
     else if( exploded_)
       {
       data.getValue()
-        .forEach( (property, value) -> bind( property, SimpleValueEncoder.encode( value, Component.NONE)));
+        .forEach( (property, value) -> bindMember( property, value));
       }
     else
       {
