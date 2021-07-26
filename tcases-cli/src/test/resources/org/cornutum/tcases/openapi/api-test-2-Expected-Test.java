@@ -74,7 +74,7 @@ public class MyTest extends MyBaseClass {
     public void patchPost_PostMarksType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
+            .queryParam( "Post Marks", (String) null)
         .when()
             .request( "PATCH", "/post")
         .then()

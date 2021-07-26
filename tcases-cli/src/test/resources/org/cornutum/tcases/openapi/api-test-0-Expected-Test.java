@@ -49,7 +49,7 @@ public class MyTest extends MyBaseClass {
     public void getPosts_IdsType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "ids", "")
+            .queryParam( "ids", (String) null)
         .when()
             .request( "GET", "/posts")
         .then()

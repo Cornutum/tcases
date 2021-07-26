@@ -49,7 +49,7 @@ public class MyTest extends MyBaseClass {
     public void getPosts_IdsType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "ids", "")
+            .queryParam( "ids", (String) null)
         .when()
             .request( "GET", "/posts")
         .then()
@@ -424,7 +424,7 @@ public class MyTest extends MyBaseClass {
     public void postPosts_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "approved", "")
+            .cookie( "approved", null)
         .when()
             .request( "POST", "/posts")
         .then()
@@ -689,7 +689,7 @@ public class MyTest extends MyBaseClass {
     public void putPosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"7@N.com\"}")
         .when()
@@ -736,7 +736,7 @@ public class MyTest extends MyBaseClass {
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "country", "")
+            .cookie( "country", null)
             .cookie( "region", "E")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"`@h.edu\"}")
@@ -784,7 +784,7 @@ public class MyTest extends MyBaseClass {
         given()
             .baseUri( forTestServer())
             .cookie( "country", "E")
-            .cookie( "region", "")
+            .cookie( "region", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"-@q.edu\"}")
         .when()
@@ -1071,7 +1071,7 @@ public class MyTest extends MyBaseClass {
     public void tracePosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
         .when()
             .request( "TRACE", "/posts")
         .then()

@@ -79,7 +79,7 @@ public class ReadOnlyTest extends MyBaseClass {
     public void postObject_Param0Type_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "param0", "")
+            .queryParam( "param0", (String) null)
         .when()
             .request( "POST", "/object")
         .then()
@@ -135,7 +135,7 @@ public class ReadOnlyTest extends MyBaseClass {
     public void postObject_Param0ValuePropertiesBravoType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "bravo", "")
+            .queryParam( "bravo", (String) null)
             .queryParam( "delta", "")
         .when()
             .request( "POST", "/object")
@@ -164,7 +164,7 @@ public class ReadOnlyTest extends MyBaseClass {
     public void postObject_Param0ValuePropertiesDeltaType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "delta", "")
+            .queryParam( "delta", (String) null)
             .queryParam( "tejmdfv", "zjknigcd,-795,rnixecummrmos,tD<G<dx,ofhgtynxqndjxf,329.3")
             .queryParam( "a", "-275.2")
         .when()

@@ -92,7 +92,31 @@
                                     </includes>
                                 </resource>
                             </resources>              
-                        </configuration>            
+                        </configuration> 
+                    </execution>
+                    <execution>
+                        <id>normalize-specs</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-classes/org/cornutum/tcases/openapi/testwriter</outputDirectory>
+                            <resources>       
+                                <resource>
+                                    <directory>src/test/resources/org/cornutum/tcases/openapi</directory>
+                                    <includes>
+                                        <include>normalize-*.json</include>
+                                    </includes>
+                                </resource>     
+                                <resource>
+                                    <directory>${project.build.directory}/test-classes/org/cornutum/tcases/openapi/resolver</directory>
+                                    <includes>
+                                        <include>normalize-*-Request-Cases.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>              
+                        </configuration> 
                     </execution>
                 </executions>
             </plugin>
@@ -130,6 +154,8 @@
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiTest-Request-Cases.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiAuth.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiAuth-Request-Cases.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/normalize-*.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/normalize-*-Request-Cases.json</include>
                             </includes>
                         </configuration>
                     </execution>

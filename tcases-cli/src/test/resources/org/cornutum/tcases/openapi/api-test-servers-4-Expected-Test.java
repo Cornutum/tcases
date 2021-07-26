@@ -48,7 +48,7 @@ public class ApiTestServers_4_Test {
     public void getServersOp_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://myhost.com"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers/op")
         .then()
@@ -122,7 +122,7 @@ public class ApiTestServers_4_Test {
     public void deleteServersOpPath_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://myhost.com"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "DELETE", "/servers/op/path")
         .then()
@@ -196,7 +196,7 @@ public class ApiTestServers_4_Test {
     public void getServersOpPath_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://myhost.com"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers/op/path")
         .then()
@@ -270,7 +270,7 @@ public class ApiTestServers_4_Test {
     public void getServersPath_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://myhost.com"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers/path")
         .then()

@@ -62,7 +62,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     public void tracePosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
         .when()
             .request( "TRACE", "/posts")
         .then()
