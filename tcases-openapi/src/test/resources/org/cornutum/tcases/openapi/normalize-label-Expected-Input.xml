@@ -1,0 +1,428 @@
+<?xml version="1.0"?>
+<System name="Normalize">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Normalize"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_path-string-empty-nonEmpty-nullable">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/path/string/{empty}/{nonEmpty}/{nullable}"/>
+    <Input type="path">
+      <VarSet name="empty">
+        <Has name="paramName" value="empty"/>
+        <Var name="Defined">
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="empty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="empty">
+          <Value name="string" property="emptyValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="emptyValue">
+          <Var name="Length">
+            <Value name="&gt; 0" property="emptyLengthValid, emptyNotEmpty"/>
+            <Value name="0" property="emptyLengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="nonEmpty">
+        <Has name="paramName" value="nonEmpty"/>
+        <Var name="Defined">
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="nonEmpty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nonEmpty">
+          <Value name="string" property="nonEmptyValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="nonEmptyValue">
+          <Var name="Length">
+            <Value name="2" failure="true"/>
+            <Value name="3" property="nonEmptyLengthValid, nonEmptyNotEmpty"/>
+            <Value name="&gt; 3" property="nonEmptyLengthValid, nonEmptyNotEmpty"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="nullable">
+        <Has name="paramName" value="nullable"/>
+        <Var name="Defined">
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="nullable"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nullable">
+          <Value name="string" property="nullableValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="nullableValue">
+          <Var name="Length">
+            <Value name="&gt; 0" property="nullableLengthValid, nullableNotEmpty"/>
+            <Value name="0" property="nullableLengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="GET_path-array-empty-nonEmpty-nullable-exploded">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}"/>
+    <Input type="path">
+      <VarSet name="empty">
+        <Has name="paramName" value="empty"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="empty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="empty">
+          <Value name="array" property="emptyValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="emptyValue">
+          <Var name="Size">
+            <Value name="0" property="emptyItemsNone"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="emptyItemsMany"/>
+          </Var>
+          <VarSet name="Contains" whenNot="emptyItemsNone">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="emptyItemsValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="emptyItemsValue">
+              <Var name="Is">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="emptyItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="nonEmpty">
+        <Has name="paramName" value="nonEmpty"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="nonEmpty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nonEmpty">
+          <Value name="array" property="nonEmptyValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="nonEmptyValue">
+          <Var name="Size">
+            <Value name="2" failure="true"/>
+            <Value name="3" property="nonEmptyItemsMany"/>
+            <Value name="&gt; 3" property="nonEmptyItemsMany"/>
+          </Var>
+          <VarSet name="Contains">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="nonEmptyItemsValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="nonEmptyItemsValue">
+              <Var name="Is">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="nonEmptyItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="nullable">
+        <Has name="paramName" value="nullable"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="nullable"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nullable">
+          <Value name="array" property="nullableValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="nullableValue">
+          <Var name="Size">
+            <Value name="0" property="nullableItemsNone"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="nullableItemsMany"/>
+          </Var>
+          <VarSet name="Contains" whenNot="nullableItemsNone">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="nullableItemsValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="nullableItemsValue">
+              <Var name="Is">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="nullableItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="exploded">
+        <Has name="paramName" value="exploded"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="exploded"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="exploded">
+          <Value name="array" property="explodedValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="explodedValue">
+          <Var name="Size">
+            <Value name="0" property="explodedItemsNone"/>
+            <Value name="1"/>
+            <Value name="&gt; 1" property="explodedItemsMany"/>
+          </Var>
+          <VarSet name="Contains" whenNot="explodedItemsNone">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="explodedItemsValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="explodedItemsValue">
+              <Var name="Is">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="explodedItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="GET_path-object-nonEmpty-nullable-exploded">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
+    <Input type="path">
+      <VarSet name="nonEmpty">
+        <Has name="paramName" value="nonEmpty"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="nonEmpty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nonEmpty">
+          <Value name="object" property="nonEmptyValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="nonEmptyValue">
+          <Var name="Property-Count">
+            <Value name="0" once="true" whenNot="nonEmptyProperties"/>
+            <Value name="&gt; 0" when="nonEmptyProperties"/>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="width">
+              <Var name="Defined">
+                <Value name="Yes" property="nonEmptyProperties, nonEmptyWidth"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="nonEmptyWidth">
+                <Value name="integer" property="nonEmptyWidthValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="nonEmptyWidthValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="height">
+              <Var name="Defined">
+                <Value name="Yes" property="nonEmptyHeight, nonEmptyProperties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="nonEmptyHeight">
+                <Value name="integer" property="nonEmptyHeightValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="nonEmptyHeightValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="nonEmptyProperties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="nullable">
+        <Has name="paramName" value="nullable"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="nullable"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nullable">
+          <Value name="object" property="nullableValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="nullableValue">
+          <Var name="Property-Count">
+            <Value name="0" once="true" whenNot="nullableProperties"/>
+            <Value name="&gt; 0" when="nullableProperties"/>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="width">
+              <Var name="Defined">
+                <Value name="Yes" property="nullableProperties, nullableWidth"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="nullableWidth">
+                <Value name="integer" property="nullableWidthValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="nullableWidthValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="height">
+              <Var name="Defined">
+                <Value name="Yes" property="nullableHeight, nullableProperties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="nullableHeight">
+                <Value name="integer" property="nullableHeightValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="nullableHeightValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="nullableProperties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="exploded">
+        <Has name="paramName" value="exploded"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="exploded"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="exploded">
+          <Value name="object" property="explodedValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="explodedValue">
+          <Var name="Property-Count">
+            <Value name="0" once="true" whenNot="explodedProperties"/>
+            <Value name="&gt; 0" when="explodedProperties"/>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="width">
+              <Var name="Defined">
+                <Value name="Yes" property="explodedProperties, explodedWidth"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="explodedWidth">
+                <Value name="integer" property="explodedWidthValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="explodedWidthValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="height">
+              <Var name="Defined">
+                <Value name="Yes" property="explodedHeight, explodedProperties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="explodedHeight">
+                <Value name="integer" property="explodedHeightValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="explodedHeightValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" property="explodedProperties"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

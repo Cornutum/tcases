@@ -1,0 +1,4518 @@
+
+[
+    {
+        "id": 0,
+        "name": "empty.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "x6{"
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*a"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "empty.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ")@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg"
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "empty.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "bD`dep"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "5Ft"
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Defined=No"
+    },
+    {
+        "id": 3,
+        "name": "empty.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "A\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[Ng"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Z> "
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Type=null"
+    },
+    {
+        "id": 4,
+        "name": "empty.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvz"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "R;]"
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": -970,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Type=Not string"
+    },
+    {
+        "id": 5,
+        "name": "nonEmpty.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>."
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "krSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd+p>N0dO\\9hw3dRq9;79pOa~ZqI^em4Hd@2*2WW}8ow RJ=\"8Uu^|B}T\\<*e}$Yl!&( 3hQ.G3P{C_2`OKs914cJYO&=("
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Defined=No"
+    },
+    {
+        "id": 6,
+        "name": "nonEmpty.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ">{hfh'##I/*uigZ6GmM&Pm%` %DKf!jA,:\\(DkCa \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3[cDuks&|t5vCKQjPAF_@KB&HOD7y]8s#C'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "t)listU>?]sAviyah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n1bF%j|UIqx[@`~t0Yub'x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;vgsi}{1YsSiTi|>S:c`%\";D'[b&IY0S#=[fBQR|Yk_o#)?iw1sv09r"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Type=null"
+    },
+    {
+        "id": 7,
+        "name": "nonEmpty.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "cxxp8%X/#>V|=KN(ip@[:+&rEEMcN.PyrD\\.9M5:</v2\\t|3I;&@@K~$JU@ihst_E[pP)^oQ)x4U1!` `FGJ+1Z~3\"P(Ys|!DI,F) >*$t{egzYY<JB](%E4N"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": ""
+                        },
+                        {
+                            "type": "string",
+                            "value": "W"
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "zX(0o|HhJW4M.w(:\"QB6?Nu^7M%pKSwr/BFl6m7V$v2vn mLDewSA>qQZ=`bnm^hT=[M~LM]2iAtQ*{M*H< yoM\\Z<]t%QO{7_`&pEdwsXr3Fgmd J| =o_oc=[`Pal#.G`.4{wREEbl'H<q%|EdyDlPp`z<rpJWEwMgaqlhIs6/-b9X9sg~x>>tB%,/k~ c\"V_Ak1T=Jco~ D\\X2>_qzE`@c% Kg,)xak\\Q:bcGrj6(F(g8\\'gX'uf8"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Type=Not string"
+    },
+    {
+        "id": 8,
+        "name": "nonEmpty.Value.Length='2'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "i~Y+F>-X(mg(f3NDGZW$sU\\l,8dK4Ush*wg5cupL@=wy5R:7{*B}O$/dmfFfe^>quwQw]Cb_@R\"-+\"mX(o!+EUV<<>`=CBg2d\"Ow:e6KT6;IUFdOY}vLS&K8^S:F+,*V$`$p.VlD}[!xuGEGh_MV$i:26U'~lb<#Ctwr~#\\d8l= SP^A6>|V@<p idGE`zGK-[#'o/K*#@mPxlw4ejJJBF<m?msiX,S"
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "RO"
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "FRR`~6E'JU(8+l\"o! G-M3VX_UxHz~rHo&3mshX&U{Bu9J_GI'ekwfY})Fo{JuFa}]]Sd8$&x9_"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Value.Length=2"
+    },
+    {
+        "id": 9,
+        "name": "nullable.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "%Bh"
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Bu3p}9%{Q,2e>=R/-)D`0Q;@f_~3+2Dys=ohR+{T8*hW$:%2Z7Udz)VMKq)8$Zc\\DOqfvFSDLh@^8B"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Defined=No"
+    },
+    {
+        "id": 10,
+        "name": "nullable.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "wBC"
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "q*6(H](E4iEMT205M.w2pMI;$BwM\"4-/cp^f1W<R,',~~6E'{_>(ZTh_wt'k_.uo}b#<`j^P@xz"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Type=null"
+    },
+    {
+        "id": 11,
+        "name": "nullable.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/string/{empty}/{nonEmpty}/{nullable}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "}?\""
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ",XS$plN ~[0E(:bVT}nN+D8~L7Ni'\\|_}g7N@:04p}o)\"&0 V|_3bYGA\"vho1:\"%13?BvplkOt4ublrE>JSCa+m&{#p"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Type=Not string"
+    },
+    {
+        "id": 0,
+        "name": "empty.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -667734390,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 52888943,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -613703947,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "empty.Items.Size='1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -502866499,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -178922770,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 579673678,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -123379548,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -310726322,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 408916674,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -123379548,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 833605195,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -470221954,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -146739138,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "empty.Items.Size='> 1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 324498561,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -447569366,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -246773701,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 391059911,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1051980808,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -587451820,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -606844601,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -423775159,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -847400667,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -1052151849,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -986748104,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1041524851,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 536130786,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1022475891,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1071792615,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1003304817,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -371443331,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -118750903,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -743637375,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 508438038,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 617143212,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -190189331,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 288416967,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -834544207,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 184418481,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 808988688,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -372617346,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "null",
+                            "value": null
+                        },
+                        {
+                            "type": "integer",
+                            "value": -585675863,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 72596763,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -296017831,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 213256445,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1021710089,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 510153224,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 229600205,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 139820056,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -902694470,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -243357730,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "empty.Items.Contains.Value.Is='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 647363701,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 463221855,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 647363701,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -1020983073,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "empty.Items.Contains.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -582110256,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 253195087,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 192270468,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 875761980,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -531738245,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 486958294,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 343346691,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 64986756,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -737295796,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -147385826,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 431083565,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 64986756,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -357597705,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "nullable.Items.Contains.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 268536239,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 621480451,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1047340513,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -789247164,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -287886212,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 646483382,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -104528854,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 994637034,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 496226084,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 423537660,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 24282505,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 691777861,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 691777861,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -224601062,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -43482798,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 762468838,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 331672103,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 939308768,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -893662531,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -874186250,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -213851462,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -772744928,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -690599939,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -661964290,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -468691461,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -228899221,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -690599939,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -69920141,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -57884003,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 131718532,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -338157609,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -368116076,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -338157609,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 512548671,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -871130631,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 395623599,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "empty.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 369756713,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 1012174457,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -974094503,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Defined=No"
+    },
+    {
+        "id": 7,
+        "name": "empty.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 573105675,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 844025164,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 312440747,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Type=null"
+    },
+    {
+        "id": 8,
+        "name": "empty.Type='Not array'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 89483985,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -96976226,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -446897229,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "0A#!Z3"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Type=Not array"
+    },
+    {
+        "id": 9,
+        "name": "empty.Items.Contains.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 456220268,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -677702117,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -630282775,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "object",
+                            "value": {
+                                "phnqrg": {
+                                    "type": "number",
+                                    "value": -884.8
+                                },
+                                "lzlgihskrmr": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "empty.Items.Contains.Type=Not integer"
+    },
+    {
+        "id": 10,
+        "name": "nonEmpty.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -431535649,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Defined=No"
+    },
+    {
+        "id": 11,
+        "name": "nonEmpty.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -3026385,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Type=null"
+    },
+    {
+        "id": 12,
+        "name": "nonEmpty.Type='Not array'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 794,
+                    "format": "int32"
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -176837910,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Type=Not array"
+    },
+    {
+        "id": 13,
+        "name": "nonEmpty.Items.Size='2'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 634757152,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 634757152,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -853497690,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Items.Size=2"
+    },
+    {
+        "id": 14,
+        "name": "nonEmpty.Items.Contains.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": ""
+                        },
+                        {
+                            "type": "integer",
+                            "value": -29284074,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -946180665,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -335173784,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nonEmpty.Items.Contains.Type=Not integer"
+    },
+    {
+        "id": 15,
+        "name": "nullable.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 609732032,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 342427315,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -968734343,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -32130110,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Defined=No"
+    },
+    {
+        "id": 16,
+        "name": "nullable.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 364242478,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 222537679,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -987010397,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -577610107,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Type=null"
+    },
+    {
+        "id": 17,
+        "name": "nullable.Type='Not array'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "c"
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 818914408,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 518439902,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 834539361,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -81576929,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Type=Not array"
+    },
+    {
+        "id": 18,
+        "name": "nullable.Items.Contains.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "object",
+                            "value": {
+                                "duzedqjf": {
+                                    "type": "number",
+                                    "value": 651.2
+                                }
+                            }
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 231524417,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 290226503,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 667561301,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -217836452,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Items.Contains.Type=Not integer"
+    },
+    {
+        "id": 19,
+        "name": "exploded.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 942935294,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -783262995,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 286177554,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -336116414,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Defined=No"
+    },
+    {
+        "id": 20,
+        "name": "exploded.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 838625815,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 277302202,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 628047030,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -238641164,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Type=null"
+    },
+    {
+        "id": 21,
+        "name": "exploded.Type='Not array'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "integer",
+                    "value": -884,
+                    "format": "int32"
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 343897587,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": 757984424,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -347740067,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -603146024,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Type=Not array"
+    },
+    {
+        "id": 22,
+        "name": "exploded.Items.Contains.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": 629688416,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -481185912,
+                            "format": "int32"
+                        },
+                        {
+                            "type": "integer",
+                            "value": -110569375,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            },
+            {
+                "name": "empty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "integer",
+                            "value": -291851879,
+                            "format": "int32"
+                        }
+                    ]
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Items.Contains.Type=Not integer"
+    },
+    {
+        "id": 0,
+        "name": "nonEmpty.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "nonEmpty.Value.Property-Count='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "hm": {
+                            "type": "number",
+                            "value": 718.2
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "ahuuzljs": {
+                            "type": "number",
+                            "value": 821.0
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "yxubbptfpytcho": {
+                            "type": "string",
+                            "value": "mj8~t++\""
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "nonEmpty.Value.Properties.width.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "null",
+                            "value": null
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "nonEmpty.Value.Properties.width.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "sudvyjsx": {
+                            "type": "number",
+                            "value": 640.8
+                        },
+                        "uru": {
+                            "type": "number",
+                            "value": -420.9
+                        },
+                        "pyoxebkxbcogv": {
+                            "type": "integer",
+                            "value": 998,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "rzwb": {
+                            "type": "integer",
+                            "value": -597,
+                            "format": "int32"
+                        },
+                        "bipkjfxbd": {
+                            "type": "string",
+                            "value": "]s rPt/*"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 852022644,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "rjncljsrfgnsz": {
+                            "type": "object",
+                            "value": {
+                                "yyjloqdswuoqm": {
+                                    "type": "integer",
+                                    "value": -819,
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "fj": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "nonEmpty.Value.Properties.height.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 339840912,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 4449220,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 846785478,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "nullable.Value.Properties.height.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 47833503,
+                            "format": "int32"
+                        },
+                        "xckpo": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "wcznoamolspy": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "sbkmwthgjsio": {
+                            "type": "integer",
+                            "value": -1003,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 68160380,
+                            "format": "int32"
+                        },
+                        "eimgdokpxsjxige": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "/c"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "PS{u{j>X"
+                                }
+                            ]
+                        },
+                        "kvljgvoab": {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "uvou": {
+                            "type": "object",
+                            "value": {
+                                "bspwdlfzd": {
+                                    "type": "number",
+                                    "value": 762.6
+                                },
+                                "znxnypvm": {
+                                    "type": "number",
+                                    "value": 668.6
+                                },
+                                "capwftptbcwghyhz": {
+                                    "type": "string",
+                                    "value": "#U_+$f"
+                                }
+                            }
+                        },
+                        "lzcginjmhkjzjdd": {
+                            "type": "number",
+                            "value": 150.8
+                        },
+                        "rqkqpotnrfnmbvwj": {
+                            "type": "number",
+                            "value": 495.5
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "nonEmpty.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Defined=No"
+    },
+    {
+        "id": 7,
+        "name": "nonEmpty.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Type=null"
+    },
+    {
+        "id": 8,
+        "name": "nonEmpty.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "@DVZ#y?"
+                        },
+                        {
+                            "type": "string",
+                            "value": ">?H^YNRW"
+                        },
+                        {
+                            "type": "string",
+                            "value": ",V"
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Type=Not object"
+    },
+    {
+        "id": 9,
+        "name": "nonEmpty.Value.Properties.width.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "number",
+                            "value": 593.5
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Value.Properties.width.Type=Not integer"
+    },
+    {
+        "id": 10,
+        "name": "nonEmpty.Value.Properties.width.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Value.Properties.width.Value.Is=-1"
+    },
+    {
+        "id": 11,
+        "name": "nonEmpty.Value.Properties.height.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "number",
+                            "value": 645.4
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Value.Properties.height.Type=Not integer"
+    },
+    {
+        "id": 12,
+        "name": "nonEmpty.Value.Properties.height.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "nonEmpty.Value.Properties.height.Value.Is=-1"
+    },
+    {
+        "id": 13,
+        "name": "nullable.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Defined=No"
+    },
+    {
+        "id": 14,
+        "name": "nullable.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Type=null"
+    },
+    {
+        "id": 15,
+        "name": "nullable.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "vIQT;"
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Type=Not object"
+    },
+    {
+        "id": 16,
+        "name": "nullable.Value.Properties.width.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "number",
+                            "value": 520.4
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Value.Properties.width.Type=Not integer"
+    },
+    {
+        "id": 17,
+        "name": "nullable.Value.Properties.width.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Value.Properties.width.Value.Is=-1"
+    },
+    {
+        "id": 18,
+        "name": "nullable.Value.Properties.height.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "object",
+                            "value": {
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Value.Properties.height.Type=Not integer"
+    },
+    {
+        "id": 19,
+        "name": "nullable.Value.Properties.height.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "nullable.Value.Properties.height.Value.Is=-1"
+    },
+    {
+        "id": 20,
+        "name": "exploded.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Defined=No"
+    },
+    {
+        "id": 21,
+        "name": "exploded.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Type=null"
+    },
+    {
+        "id": 22,
+        "name": "exploded.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Type=Not object"
+    },
+    {
+        "id": 23,
+        "name": "exploded.Value.Properties.width.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Value.Properties.width.Type=Not integer"
+    },
+    {
+        "id": 24,
+        "name": "exploded.Value.Properties.width.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Value.Properties.width.Value.Is=-1"
+    },
+    {
+        "id": 25,
+        "name": "exploded.Value.Properties.height.Type='Not integer'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Value.Properties.height.Type=Not integer"
+    },
+    {
+        "id": 26,
+        "name": "exploded.Value.Properties.height.Value.Is='-1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Normalize",
+        "path": "/path/object/{nonEmpty}/{nullable}/{exploded}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        },
+                        "height": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "nonEmpty",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "height": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "exploded.Value.Properties.height.Value.Is=-1"
+    }
+]

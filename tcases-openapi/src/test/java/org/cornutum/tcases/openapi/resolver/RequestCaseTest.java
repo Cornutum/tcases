@@ -142,6 +142,7 @@ public class RequestCaseTest
     "integer",
     "not",
     "number",
+    "normalize",
     "object",
     "oneOf",
     "operations",
