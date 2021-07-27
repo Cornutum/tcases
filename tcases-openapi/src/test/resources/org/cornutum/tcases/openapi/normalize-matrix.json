@@ -1,0 +1,224 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Normalize",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/path/string/{empty}/{nonEmpty}/{nullable}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "empty",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nonEmpty",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "string",
+                            "minLength": 3
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/path/array/{empty}/{nonEmpty}/{nullable}/{exploded}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "empty",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    {
+                        "name": "nonEmpty",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "minItems": 3
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "exploded",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/path/object/{nonEmpty}/{nullable}/{exploded}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "nonEmpty",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            },
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "exploded",
+                        "in": "path",
+                        "required": true,
+                        "style": "matrix",
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

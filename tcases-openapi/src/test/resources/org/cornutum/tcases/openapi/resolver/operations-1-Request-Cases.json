@@ -436,7 +436,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2I"
+                    "value": "t"
                 },
                 "valid": true
             }
@@ -463,7 +463,7 @@
     },
     {
         "id": 2,
-        "name": "param0.Value.Length='0'",
+        "name": "param0.Value.Length='> 1'",
         "server": "http://www.cornutum.org/tcases/api",
         "version": "0.0.0",
         "api": "Operations",
@@ -477,7 +477,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ""
+                    "value": "rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 "
                 },
                 "valid": true
             }
@@ -522,12 +522,35 @@
                 "explode": false,
                 "data": {
                     "type": "number",
-                    "value": -418.0
+                    "value": 188.4
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Type=Not string"
+    },
+    {
+        "id": 5,
+        "name": "param0.Value.Length='0'",
+        "server": "http://www.cornutum.org/tcases/api",
+        "version": "0.0.0",
+        "api": "Operations",
+        "path": "/operationNew",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Length=0"
     },
     {
         "id": 0,
@@ -545,7 +568,7 @@
                 "explode": false,
                 "data": {
                     "type": "integer",
-                    "value": -953414454,
+                    "value": -477261106,
                     "format": "int32"
                 },
                 "valid": true
@@ -556,12 +579,7 @@
             "data": {
                 "type": "object",
                 "value": {
-                    "czosccgaahwfe": {
-                        "type": "integer",
-                        "value": 949,
-                        "format": "int32"
-                    },
-                    "azmmpqf": {
+                    "qf": {
                         "type": "array",
                         "value": [
                             {

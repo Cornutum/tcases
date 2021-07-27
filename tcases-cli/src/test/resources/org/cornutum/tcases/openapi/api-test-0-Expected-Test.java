@@ -49,7 +49,7 @@ public class MyTest extends MyBaseClass {
     public void getPosts_IdsType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "ids", "")
+            .queryParam( "ids", (String) null)
         .when()
             .request( "GET", "/posts")
         .then()
@@ -67,19 +67,6 @@ public class MyTest extends MyBaseClass {
             .request( "GET", "/posts")
         .then()
             // ids.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }

@@ -66,7 +66,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
-            .queryParam( "user attributes", "")
+            .queryParam( "user attributes", (String) null)
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -107,7 +107,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,1")
-            .queryParam( "user attributes[user-type]", "")
+            .queryParam( "user attributes[user-type]", (String) null)
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -162,7 +162,7 @@ public class OpenAPIRequestTestCasesTest {
     public void headPost_PostType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "post?", "")
+            .queryParam( "post?", (String) null)
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -203,7 +203,7 @@ public class OpenAPIRequestTestCasesTest {
     public void headPost_PostValuePropertiesPostReferencesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "post?[post-references]", "")
+            .queryParam( "post?[post-references]", (String) null)
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -390,7 +390,7 @@ public class OpenAPIRequestTestCasesTest {
     public void patchPost_PostMarksType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
+            .queryParam( "Post Marks", (String) null)
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -408,19 +408,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void patchPost_PostMarksItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -528,7 +515,7 @@ public class OpenAPIRequestTestCasesTest {
     public void putPost_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "postId", "")
+            .queryParam( "postId", (String) null)
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -650,7 +637,7 @@ public class OpenAPIRequestTestCasesTest {
             .baseUri( forTestServer())
             .queryParam( "postId", "588727425155782203.3")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "")
+            .formParam( "approved", (String) null)
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -698,7 +685,7 @@ public class OpenAPIRequestTestCasesTest {
             .queryParam( "postId", "110822385164496122.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "")
+            .formParam( "reviewer", (String) null)
         .when()
             .request( "PUT", "/post")
         .then()
@@ -785,7 +772,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .baseUri( forTestServer())
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".")
+            .pathParam( "userId", "")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -854,7 +841,7 @@ public class OpenAPIRequestTestCasesTest {
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "approved", ".")
+            .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -932,7 +919,7 @@ public class OpenAPIRequestTestCasesTest {
     public void getPosts_IdsType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "ids", "")
+            .queryParam( "ids", (String) null)
         .when()
             .request( "GET", "/posts")
         .then()
@@ -950,19 +937,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "GET", "/posts")
         .then()
             // ids.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -1320,7 +1294,7 @@ public class OpenAPIRequestTestCasesTest {
     public void postPosts_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "approved", "")
+            .cookie( "approved", null)
         .when()
             .request( "POST", "/posts")
         .then()
@@ -1585,7 +1559,7 @@ public class OpenAPIRequestTestCasesTest {
     public void putPosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"S@H.com\"}")
         .when()
@@ -1630,7 +1604,7 @@ public class OpenAPIRequestTestCasesTest {
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "country", "")
+            .cookie( "country", null)
             .cookie( "region", "M")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\";@M.edu\"}")
@@ -1678,7 +1652,7 @@ public class OpenAPIRequestTestCasesTest {
         given()
             .baseUri( forTestServer())
             .cookie( "country", "/")
-            .cookie( "region", "")
+            .cookie( "region", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"2@l.net\"}")
         .when()
@@ -1965,7 +1939,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1983,19 +1957,6 @@ public class OpenAPIRequestTestCasesTest {
             .request( "TRACE", "/posts")
         .then()
             // postId.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePosts_PostIdItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .cookie( "postId", "")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -2105,7 +2066,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";attributes")
+            .pathParam( "attributes", "")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2144,7 +2105,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=;likes=703703613")
+            .pathParam( "attributes", ";approved;likes=703703613")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2157,7 +2118,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_NotBoolean() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=;likes=89711824")
+            .pathParam( "attributes", ";approved;likes=89711824")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2183,7 +2144,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;likes=")
+            .pathParam( "attributes", ";approved=false;likes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -2222,7 +2183,7 @@ public class OpenAPIRequestTestCasesTest {
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;subject=;likes=369139405")
+            .pathParam( "attributes", ";approved=false;subject;likes=369139405")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()

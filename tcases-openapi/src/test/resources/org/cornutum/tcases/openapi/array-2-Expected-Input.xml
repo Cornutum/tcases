@@ -40,11 +40,7 @@
                 <Value name="1"/>
                 <Value name="&gt; 1" property="param0ItemsItemsMany"/>
               </Var>
-              <VarSet name="Contains">
-                <When>
-                  <Not property="param0ItemsItemsNone">
-                  </Not>
-                </When>
+              <VarSet name="Contains" whenNot="param0ItemsItemsNone">
                 <Var name="Type">
                   <Has name="itemType" value="string"/>
                   <Value name="string" property="param0ItemsItemsValue"/>

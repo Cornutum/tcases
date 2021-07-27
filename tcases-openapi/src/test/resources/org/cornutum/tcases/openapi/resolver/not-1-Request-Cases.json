@@ -13,7 +13,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "integer",
                     "value": -326,
@@ -36,7 +36,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": null,
                 "valid": true
             }
@@ -55,7 +55,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "null",
                     "value": null

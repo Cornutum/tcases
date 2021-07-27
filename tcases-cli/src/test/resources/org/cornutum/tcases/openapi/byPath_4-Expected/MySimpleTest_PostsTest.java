@@ -49,7 +49,7 @@ public class MySimpleTest_PostsTest {
     public void getPosts_IdsType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "ids", "")
+            .queryParam( "ids", (String) null)
         .when()
             .request( "GET", "/posts")
         .then()
@@ -67,19 +67,6 @@ public class MySimpleTest_PostsTest {
             .request( "GET", "/posts")
         .then()
             // ids.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -437,7 +424,7 @@ public class MySimpleTest_PostsTest {
     public void postPosts_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "approved", "")
+            .cookie( "approved", null)
         .when()
             .request( "POST", "/posts")
         .then()
@@ -702,7 +689,7 @@ public class MySimpleTest_PostsTest {
     public void putPosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"B@N.org\"}")
         .when()
@@ -747,7 +734,7 @@ public class MySimpleTest_PostsTest {
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "country", "")
+            .cookie( "country", null)
             .cookie( "region", "k")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"l@u.gov\"}")
@@ -795,7 +782,7 @@ public class MySimpleTest_PostsTest {
         given()
             .baseUri( forTestServer())
             .cookie( "country", "[")
-            .cookie( "region", "")
+            .cookie( "region", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"v@S.com\"}")
         .when()
@@ -1081,7 +1068,7 @@ public class MySimpleTest_PostsTest {
     public void tracePosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
         .when()
             .request( "TRACE", "/posts")
         .then()
@@ -1099,19 +1086,6 @@ public class MySimpleTest_PostsTest {
             .request( "TRACE", "/posts")
         .then()
             // postId.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void tracePosts_PostIdItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .cookie( "postId", "")
-        .when()
-            .request( "TRACE", "/posts")
-        .then()
-            // postId.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }

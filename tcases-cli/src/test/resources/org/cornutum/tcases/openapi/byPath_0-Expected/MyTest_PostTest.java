@@ -66,7 +66,7 @@ public class MyTest_PostTest {
         given()
             .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes", "")
+            .queryParam( "user attributes", (String) null)
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -107,7 +107,7 @@ public class MyTest_PostTest {
         given()
             .baseUri( forTestServer())
             .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes[user-type]", "")
+            .queryParam( "user attributes[user-type]", (String) null)
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -162,7 +162,7 @@ public class MyTest_PostTest {
     public void headPost_PostType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "post?", "")
+            .queryParam( "post?", (String) null)
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -203,7 +203,7 @@ public class MyTest_PostTest {
     public void headPost_PostValuePropertiesPostReferencesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "post?[post-references]", "")
+            .queryParam( "post?[post-references]", (String) null)
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -390,7 +390,7 @@ public class MyTest_PostTest {
     public void patchPost_PostMarksType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
+            .queryParam( "Post Marks", (String) null)
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -408,19 +408,6 @@ public class MyTest_PostTest {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void patchPost_PostMarksItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -528,7 +515,7 @@ public class MyTest_PostTest {
     public void putPost_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "postId", "")
+            .queryParam( "postId", (String) null)
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -650,7 +637,7 @@ public class MyTest_PostTest {
             .baseUri( forTestServer())
             .queryParam( "postId", "478596007308032957.7")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "")
+            .formParam( "approved", (String) null)
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -698,7 +685,7 @@ public class MyTest_PostTest {
             .queryParam( "postId", "597422243307448674.8")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "")
+            .formParam( "reviewer", (String) null)
         .when()
             .request( "PUT", "/post")
         .then()

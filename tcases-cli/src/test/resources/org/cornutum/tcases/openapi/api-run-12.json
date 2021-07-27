@@ -16,6 +16,7 @@
                         "schema": {
                             "type": "array",
                             "uniqueItems": false,
+                            "minItems": 1,
                             "items": {
                                 "type": "object"
                             }

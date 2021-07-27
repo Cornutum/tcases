@@ -17,6 +17,7 @@ import org.cornutum.tcases.openapi.testwriter.JavaTestTarget;
 import org.cornutum.tcases.openapi.testwriter.TestSource;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueJson;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
+import static org.cornutum.tcases.openapi.resolver.RequestCases.realizeRequestCases;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -77,6 +78,30 @@ public class RestAssuredTestCaseWriterTest extends MocoServerTest
     // Then
     verifyTest( testDefName, FileUtils.readFileToString( testWriter.getTestFile( source, target), "UTF-8"));
     }
+  
+  @Test
+  public void writeNormalizedForm() throws Exception
+    {
+    verifyRealized( "normalize-form");
+    }
+  
+  @Test
+  public void writeNormalizedLabel() throws Exception
+    {
+    verifyRealized( "normalize-label");
+    }
+  
+  @Test
+  public void writeNormalizedMatrix() throws Exception
+    {
+    verifyRealized( "normalize-matrix");
+    }
+  
+  @Test
+  public void writeNormalizedSimple() throws Exception
+    {
+    verifyRealized( "normalize-simple");
+    }
 
   @Test
   public void whenGetConverter()
@@ -100,5 +125,27 @@ public class RestAssuredTestCaseWriterTest extends MocoServerTest
   private Class<?> converterFor( RestAssuredTestCaseWriter writer, String mediaType)
     {
     return writer.getConverter( mediaType).map( Object::getClass).orElse( null);
+    }
+
+  private void verifyRealized( String testDefName) throws Exception
+    {
+    // Given...
+    TestSource source =
+      TestSource.from( realizeRequestCases( stdRequestTestDef( testDefName)))
+      .build();
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( testDefName)
+      .inDir( getGeneratedTestDir())
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new RestAssuredTestCaseWriter());
+    
+    // When...
+    testWriter.writeTest( source, target);
+
+    // Then
+    verifyTest( testDefName, FileUtils.readFileToString( testWriter.getTestFile( source, target), "UTF-8"));
     }
   }

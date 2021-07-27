@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -25,55 +25,6 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Is" value="&lt; 0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param1.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="param1"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param1.Type" value="array">
-          <Has name="paramName" value="param1"/>
-        </Var>
-        <Var name="param1.Items.Size" value="0">
-          <Has name="paramName" value="param1"/>
-        </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
-          <Has name="itemType" value="integer"/>
-          <Has name="paramName" value="param1"/>
-        </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
-          <Has name="paramName" value="param1"/>
-        </Var>
-        <Var name="param1.Items.Unique" NA="true">
-          <Has name="paramName" value="param1"/>
-        </Var>
-      </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
-      </Input>
-    </TestCase>
-    <TestCase id="1" name="param0.Value.Is=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value,param1,param1ItemsValue,param1Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Operations"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="path">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param0.Type" value="integer">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -99,16 +50,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="2" name="param0.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="1" name="param0.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1ItemsMany,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="param0,param0Value,param1,param1ItemsMany,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -120,7 +73,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -146,18 +99,16 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="3" name="param1.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="2" name="param0.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -169,7 +120,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&lt; 0">
+        <Var name="param0.Value.Is" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -195,16 +146,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
-    <TestCase id="4" name="param1.Items.Unique=&apos;No&apos;">
+    <TestCase id="3" name="param1.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1ItemsMany,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="param0,param0Value,param1,param1ItemsMany,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -216,7 +169,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="0">
+        <Var name="param0.Value.Is" value="&lt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -242,18 +195,16 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-json">
-          <Has name="mediaType" value="application/json"/>
-        </Var>
-        <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.application-json.Type" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true" name="param0.Defined=&apos;No&apos;">
+    <TestCase id="4" failure="true" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -276,14 +227,14 @@
         <Var name="param1.Type" value="array">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Size" value="0">
+        <Var name="param1.Items.Size" value="1">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
+        <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
+        <Var name="param1.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param1"/>
         </Var>
         <Var name="param1.Items.Unique" NA="true">
@@ -291,16 +242,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="param0.Type=null">
+    <TestCase id="5" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -323,14 +276,14 @@
         <Var name="param1.Type" value="array">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Size" value="0">
+        <Var name="param1.Items.Size" value="1">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
+        <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
+        <Var name="param1.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param1"/>
         </Var>
         <Var name="param1.Items.Unique" NA="true">
@@ -338,16 +291,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="param0.Type=&apos;Not integer&apos;">
+    <TestCase id="6" failure="true" name="param0.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -370,14 +325,14 @@
         <Var name="param1.Type" value="array">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Size" value="0">
+        <Var name="param1.Items.Size" value="1">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
+        <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
+        <Var name="param1.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param1"/>
         </Var>
         <Var name="param1.Items.Unique" NA="true">
@@ -385,16 +340,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="param1.Defined=&apos;No&apos;">
+    <TestCase id="7" failure="true" name="param1.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -406,7 +363,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="No" failure="true">
@@ -432,16 +389,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="param1.Type=null">
+    <TestCase id="8" failure="true" name="param1.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value,param1"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -453,7 +412,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -479,16 +438,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="param1.Type=&apos;Not array&apos;">
+    <TestCase id="9" failure="true" name="param1.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value,param1"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -500,7 +461,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -526,16 +487,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true" name="param1.Items.Contains.Type=null">
+    <TestCase id="10" failure="true" name="param1.Items.Size=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -547,7 +510,56 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param1.Type" value="array">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Size" value="0" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Items.Unique" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true" name="param1.Items.Contains.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operations/${param1}/${param0}"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="integer">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -573,16 +585,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true" name="param1.Items.Contains.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -594,7 +608,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -620,16 +634,18 @@
         </Var>
       </Input>
       <Input type="request">
-        <Var name="Body.Defined" value="No"/>
-        <Var name="Body.Media-Type" NA="true"/>
-        <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="application-json">
+          <Has name="mediaType" value="application/json"/>
+        </Var>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="Content,param0,param0Value,param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -641,7 +657,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -652,14 +668,14 @@
         <Var name="param1.Type" value="array">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Size" value="0">
+        <Var name="param1.Items.Size" value="1">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
+        <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
+        <Var name="param1.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param1"/>
         </Var>
         <Var name="param1.Items.Unique" NA="true">
@@ -678,7 +694,7 @@
     <TestCase id="14" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,Content,param0,param0Value,param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="application-json,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -690,7 +706,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -701,14 +717,14 @@
         <Var name="param1.Type" value="array">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Size" value="0">
+        <Var name="param1.Items.Size" value="1">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
+        <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
+        <Var name="param1.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param1"/>
         </Var>
         <Var name="param1.Items.Unique" NA="true">
@@ -727,7 +743,7 @@
     <TestCase id="15" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,Content,param0,param0Value,param1,param1ItemsNone,param1Value"/>
+      <Has name="properties" value="application-json,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -739,7 +755,7 @@
         <Var name="param0.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Is" value="&gt; 0">
+        <Var name="param0.Value.Is" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param1.Defined" value="Yes">
@@ -750,14 +766,14 @@
         <Var name="param1.Type" value="array">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Size" value="0">
+        <Var name="param1.Items.Size" value="1">
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Type" NA="true">
+        <Var name="param1.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="param1"/>
         </Var>
-        <Var name="param1.Items.Contains.Value.Is" NA="true">
+        <Var name="param1.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="param1"/>
         </Var>
         <Var name="param1.Items.Unique" NA="true">

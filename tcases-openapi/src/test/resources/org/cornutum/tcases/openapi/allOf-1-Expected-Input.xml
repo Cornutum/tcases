@@ -32,11 +32,7 @@
               <Value name="1"/>
               <Value name="&gt; 1" property="application-jsonItemsMany"/>
             </Var>
-            <VarSet name="Contains">
-              <When>
-                <Not property="application-jsonItemsNone">
-                </Not>
-              </When>
+            <VarSet name="Contains" whenNot="application-jsonItemsNone">
               <Var name="Type">
                 <Has name="itemType" value="integer"/>
                 <Value name="integer" property="application-jsonItemsValue"/>

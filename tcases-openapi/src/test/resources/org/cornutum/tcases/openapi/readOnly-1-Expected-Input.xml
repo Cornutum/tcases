@@ -167,12 +167,7 @@
               </Var>
               <VarSet name="Value" when="param0HotelValue">
                 <Var name="Property-Count">
-                  <Value name="0" once="true">
-                    <When>
-                      <Not property="param0HotelProperties">
-                      </Not>
-                    </When>
-                  </Value>
+                  <Value name="0" once="true" whenNot="param0HotelProperties"/>
                   <Value name="&gt; 0" when="param0HotelProperties"/>
                 </Var>
                 <VarSet name="Properties">

@@ -83,7 +83,7 @@ public class MyMocoTest {
     public void putPost_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:9999"))
-            .queryParam( "postId", "")
+            .queryParam( "postId", (String) null)
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -205,7 +205,7 @@ public class MyMocoTest {
             .baseUri( forTestServer( "http://localhost:9999"))
             .queryParam( "postId", "218911377319422868.8")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "")
+            .formParam( "approved", (String) null)
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -253,7 +253,7 @@ public class MyMocoTest {
             .queryParam( "postId", "167771822150204639.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "")
+            .formParam( "reviewer", (String) null)
         .when()
             .request( "PUT", "/post")
         .then()
@@ -336,7 +336,7 @@ public class MyMocoTest {
     public void getPosts_IdsType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:9999"))
-            .queryParam( "ids", "")
+            .queryParam( "ids", (String) null)
         .when()
             .request( "GET", "/posts")
         .then()
@@ -354,19 +354,6 @@ public class MyMocoTest {
             .request( "GET", "/posts")
         .then()
             // ids.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void getPosts_IdsItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer( "http://localhost:9999"))
-            .queryParam( "ids", "")
-        .when()
-            .request( "GET", "/posts")
-        .then()
-            // ids.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -497,7 +484,7 @@ public class MyMocoTest {
     public void putPosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:9999"))
-            .cookie( "postId", "")
+            .cookie( "postId", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"|@4.org\"}")
         .when()
@@ -542,7 +529,7 @@ public class MyMocoTest {
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:9999"))
-            .cookie( "country", "")
+            .cookie( "country", null)
             .cookie( "region", "F")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"=@M.org\"}")
@@ -590,7 +577,7 @@ public class MyMocoTest {
         given()
             .baseUri( forTestServer( "http://localhost:9999"))
             .cookie( "country", "%")
-            .cookie( "region", "")
+            .cookie( "region", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"r@m.net\"}")
         .when()

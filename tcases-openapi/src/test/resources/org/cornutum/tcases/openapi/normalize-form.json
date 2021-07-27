@@ -1,0 +1,458 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Normalize",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/query/string": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "empty",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nonEmpty",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "minLength": 3
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/query/array": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "empty",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    {
+                        "name": "nonEmpty",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "minItems": 3
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "exploded",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/query/object": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "nonEmpty",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            },
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "exploded",
+                        "in": "query",
+                        "required": true,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "deep",
+                        "in": "query",
+                        "required": true,
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/cookie/string": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "empty",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nonEmpty",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "minLength": 3
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/cookie/array": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "empty",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    {
+                        "name": "nonEmpty",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "minItems": 3
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "exploded",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/cookie/object": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "nonEmpty",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "nullable",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            },
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "exploded",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "deep",
+                        "in": "cookie",
+                        "required": true,
+                        "style": "deepObject",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "width": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                },
+                                "height": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

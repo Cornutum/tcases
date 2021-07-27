@@ -29,11 +29,7 @@
               <Has name="rangeMin" value="1"/>
             </Value>
           </Var>
-          <VarSet name="Contains">
-            <When>
-              <Not property="param0ItemsNone">
-              </Not>
-            </When>
+          <VarSet name="Contains" whenNot="param0ItemsNone">
             <Var name="Type">
               <Has name="itemType" value="integer"/>
               <Value name="integer" property="param0ItemsValue"/>

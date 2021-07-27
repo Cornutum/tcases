@@ -157,15 +157,21 @@ public final class TestWriterUtils
    */
   public static String stringLiteral( Object value)
     {
-    Matcher escapeMatcher = literalEscaped_.matcher( Objects.toString( value, ""));
-    StringBuffer escaped = new StringBuffer();
-    while( escapeMatcher.find())
+    String literal = null;
+    if( value != null)
       {
-      escapeMatcher.appendReplacement( escaped, String.format( "\\\\%s", Matcher.quoteReplacement( escapeMatcher.group())));
-    }
-    escapeMatcher.appendTail( escaped);
+      Matcher escapeMatcher = literalEscaped_.matcher( Objects.toString( value, ""));
+      StringBuffer escaped = new StringBuffer();
+      while( escapeMatcher.find())
+        {
+        escapeMatcher.appendReplacement( escaped, String.format( "\\\\%s", Matcher.quoteReplacement( escapeMatcher.group())));
+        }
+      escapeMatcher.appendTail( escaped);
 
-    return String.format( "\"%s\"", escaped.toString());
+      literal = String.format( "\"%s\"", escaped.toString());
+      }
+
+    return literal;
     }
 
   /**

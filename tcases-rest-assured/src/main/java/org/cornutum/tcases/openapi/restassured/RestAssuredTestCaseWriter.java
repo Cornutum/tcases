@@ -161,7 +161,14 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
   protected void writeQueryParam( String testName, ParamData param, IndentedWriter targetWriter)
     {
     getQueryParameters( param).stream()
-      .forEach( entry -> targetWriter.println( String.format( ".queryParam( %s, %s)", stringLiteral( entry.getKey()), stringLiteral( entry.getValue()))));
+      .forEach( entry -> {
+        String queryParamFormat =
+          entry.getValue() == null
+          ? ".queryParam( %s, (String) %s)"
+          : ".queryParam( %s, %s)";
+          
+        targetWriter.println( String.format( queryParamFormat, stringLiteral( entry.getKey()), stringLiteral( entry.getValue())));
+        });
     }
   
   /**
@@ -356,9 +363,14 @@ public class RestAssuredTestCaseWriter extends TestCaseContentWriter
     FormUrlEncoder.encode( value, false)
       .stream()
       .forEach( entry -> {
+        String formParamFormat =
+          entry.getValue() == null
+          ? ".formParam( %s, (String) %s)"
+          : ".formParam( %s, %s)";
+
         targetWriter.println(
           String.format(
-            ".formParam( %s, %s)",
+            formParamFormat,
             stringLiteral( entry.getKey()),
             stringLiteral( entry.getValue())));
         });

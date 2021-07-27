@@ -39,7 +39,7 @@ public class RealizeTest extends RequestCaseTest
   @Parameters(name = "{0}")
   public static Iterable<Object[]> requestCases()
     {
-    return getRequestCaseParams( new String[]{ "petstore-requests", "realize"});
+    return getRequestCaseParams( new String[]{ "petstore-requests", "realize", "normalize"});
     }
 
   private static Iterable<Object[]> getRequestCaseParams( String[] groups)

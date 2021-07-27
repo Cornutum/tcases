@@ -62,7 +62,7 @@ public class MySimpleTest_PostsAttributesTest {
     public void tracePostsAttributes_AttributesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";attributes")
+            .pathParam( "attributes", "")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -75,7 +75,7 @@ public class MySimpleTest_PostsAttributesTest {
     public void tracePostsAttributes_AttributesType_Is_NotObject() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";attributes=")
+            .pathParam( "attributes", ";attributes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -101,7 +101,7 @@ public class MySimpleTest_PostsAttributesTest {
     public void tracePostsAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=;likes=835347369")
+            .pathParam( "attributes", ";approved;likes=835347369")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -140,7 +140,7 @@ public class MySimpleTest_PostsAttributesTest {
     public void tracePostsAttributes_AttributesValuePropertiesLikesType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;likes=")
+            .pathParam( "attributes", ";approved=false;likes")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -179,7 +179,7 @@ public class MySimpleTest_PostsAttributesTest {
     public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;subject=;likes=187325925")
+            .pathParam( "attributes", ";approved=false;subject;likes=187325925")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()
@@ -205,7 +205,7 @@ public class MySimpleTest_PostsAttributesTest {
     public void tracePostsAttributes_AttributesValuePropertiesAdditional_Is_Yes() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "attributes", ";approved=false;likes=803777274;i=")
+            .pathParam( "attributes", ";approved=false;likes=803777274;i")
         .when()
             .request( "TRACE", "/posts/{attributes}")
         .then()

@@ -73,7 +73,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
             .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes", "")
+            .queryParam( "user attributes", (String) null)
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -114,7 +114,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
             .queryParam( "post?[post-references]", "0,2")
-            .queryParam( "user attributes[user-type]", "")
+            .queryParam( "user attributes[user-type]", (String) null)
         .when()
             .request( "HEAD", "/post")
         .then()
@@ -171,7 +171,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     public void headPost_PostType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .queryParam( "post?", "")
+            .queryParam( "post?", (String) null)
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -212,7 +212,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     public void headPost_PostValuePropertiesPostReferencesType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .queryParam( "post?[post-references]", "")
+            .queryParam( "post?[post-references]", (String) null)
             .queryParam( "user attributes[user-type]", "VIP!")
         .when()
             .request( "HEAD", "/post")
@@ -399,7 +399,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     public void patchPost_PostMarksType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .queryParam( "Post Marks", "")
+            .queryParam( "Post Marks", (String) null)
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -417,19 +417,6 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void patchPost_PostMarksItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer( "http://localhost:12306"))
-            .queryParam( "Post Marks", "")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -537,7 +524,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     public void putPost_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://localhost:12306"))
-            .queryParam( "postId", "")
+            .queryParam( "postId", (String) null)
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -659,7 +646,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .baseUri( forTestServer( "http://localhost:12306"))
             .queryParam( "postId", "218911377319422868.8")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "")
+            .formParam( "approved", (String) null)
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -707,7 +694,7 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
             .queryParam( "postId", "167771822150204639.4")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "")
+            .formParam( "reviewer", (String) null)
         .when()
             .request( "PUT", "/post")
         .then()

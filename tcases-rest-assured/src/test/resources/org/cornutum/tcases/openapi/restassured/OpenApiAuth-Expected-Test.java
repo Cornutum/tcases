@@ -53,7 +53,7 @@ public class OpenApiAuthTest {
         given()
             .baseUri( forTestServer())
             .header( "Authorization", tcasesApiBasicCredentials())
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "DELETE", "/resource")
         .then()

@@ -79,7 +79,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "X"
+                    "value": ""
                 },
                 "valid": true
             }
@@ -87,6 +87,28 @@
     },
     {
         "id": 4,
+        "name": "param0.Alternative.1.Value.Length='1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OneOf",
+        "path": "/oneOf",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "X"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
         "name": "param0.Alternative.0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -109,7 +131,7 @@
         "invalidInput": "param0.Alternative.0.Type=null"
     },
     {
-        "id": 5,
+        "id": 6,
         "name": "param0.Alternative.0.Type='Not string'",
         "server": "/",
         "version": "0.0.0",
@@ -123,8 +145,9 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": -1021.1
+                    "type": "object",
+                    "value": {
+                    }
                 },
                 "valid": false
             }
@@ -132,7 +155,7 @@
         "invalidInput": "param0.Alternative.0.Type=Not string"
     },
     {
-        "id": 6,
+        "id": 7,
         "name": "param0.Alternative.0.Value.Length='10'",
         "server": "/",
         "version": "0.0.0",
@@ -147,35 +170,12 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "%AlU1l`p?H"
+                    "value": "]f7qH[r3.G"
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Alternative.0.Value.Length=10"
-    },
-    {
-        "id": 8,
-        "name": "param0.Alternative.1.Value.Length='0'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "OneOf",
-        "path": "/oneOf",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": ""
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "param0.Alternative.1.Value.Length=0"
     },
     {
         "id": 9,
@@ -193,7 +193,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "/I"
+                    "value": "BX"
                 },
                 "valid": false
             }

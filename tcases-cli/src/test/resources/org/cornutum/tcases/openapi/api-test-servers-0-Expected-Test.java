@@ -48,7 +48,7 @@ public class ApiTestServers_0_Test {
     public void getServers_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://api.cornutum.org/test/root"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers")
         .then()
@@ -122,7 +122,7 @@ public class ApiTestServers_0_Test {
     public void deleteServersOp_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://api.cornutum.org/test/root"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "DELETE", "/servers/op")
         .then()
@@ -196,7 +196,7 @@ public class ApiTestServers_0_Test {
     public void getServersOp_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://api.cornutum.org/test/op"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers/op")
         .then()
@@ -270,7 +270,7 @@ public class ApiTestServers_0_Test {
     public void getServersOpPath_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://api.cornutum.org/test/op"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers/op/path")
         .then()
@@ -344,7 +344,7 @@ public class ApiTestServers_0_Test {
     public void getServersPath_IdType_Is_Null() {
         given()
             .baseUri( forTestServer( "http://api.cornutum.org/test/path"))
-            .queryParam( "id", "")
+            .queryParam( "id", (String) null)
         .when()
             .request( "GET", "/servers/path")
         .then()

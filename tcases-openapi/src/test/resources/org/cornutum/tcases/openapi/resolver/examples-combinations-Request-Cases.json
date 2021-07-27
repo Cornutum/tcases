@@ -13,7 +13,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "number",
                     "value": 1.2
@@ -35,7 +35,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "string",
                     "value": "Howdy"
@@ -57,7 +57,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -95,7 +95,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "integer",
                     "value": 42,
@@ -118,7 +118,7 @@
                 "name": "param0",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "number",
                     "value": 3.4

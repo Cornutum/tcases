@@ -65,11 +65,7 @@
                   <Value name="1"/>
                   <Value name="&gt; 1" property="param0CharlieItemsMany"/>
                 </Var>
-                <VarSet name="Contains">
-                  <When>
-                    <Not property="param0CharlieItemsNone">
-                    </Not>
-                  </When>
+                <VarSet name="Contains" whenNot="param0CharlieItemsNone">
                   <Var name="Type">
                     <Has name="itemType" value="integer"/>
                     <Value name="integer" property="param0CharlieItemsValue"/>

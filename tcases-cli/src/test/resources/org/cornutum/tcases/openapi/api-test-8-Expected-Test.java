@@ -74,7 +74,7 @@ public class MyTest extends MyBaseClass {
     public void patchPost_PostMarksType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
+            .queryParam( "Post Marks", (String) null)
         .when()
             .request( "PATCH", "/post")
         .then()
@@ -92,19 +92,6 @@ public class MyTest extends MyBaseClass {
             .request( "PATCH", "/post")
         .then()
             // Post-Marks.Type=Not array
-            .statusCode( isBadRequest())
-            ;
-    }
-
-    @Test
-    public void patchPost_PostMarksItemsSize_Is_0() {
-        given()
-            .baseUri( forTestServer())
-            .queryParam( "Post Marks", "")
-        .when()
-            .request( "PATCH", "/post")
-        .then()
-            // Post-Marks.Items.Size=0
             .statusCode( isBadRequest())
             ;
     }
@@ -212,7 +199,7 @@ public class MyTest extends MyBaseClass {
     public void putPost_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .queryParam( "postId", "")
+            .queryParam( "postId", (String) null)
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
             .formParam( "reviewer", "Larry Moe")
@@ -334,7 +321,7 @@ public class MyTest extends MyBaseClass {
             .baseUri( forTestServer())
             .queryParam( "postId", "22335668025250416.4")
             .contentType( "application/x-www-form-urlencoded")
-            .formParam( "approved", "")
+            .formParam( "approved", (String) null)
             .formParam( "reviewer", "Larry Moe")
         .when()
             .request( "PUT", "/post")
@@ -382,7 +369,7 @@ public class MyTest extends MyBaseClass {
             .queryParam( "postId", "669399166412585775.6")
             .contentType( "application/x-www-form-urlencoded")
             .formParam( "approved", "false")
-            .formParam( "reviewer", "")
+            .formParam( "reviewer", (String) null)
         .when()
             .request( "PUT", "/post")
         .then()
@@ -470,7 +457,7 @@ public class MyTest extends MyBaseClass {
         given()
             .baseUri( forTestServer())
             .pathParam( "approved", ".0")
-            .pathParam( "userId", ".")
+            .pathParam( "userId", "")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
         .then()
@@ -539,7 +526,7 @@ public class MyTest extends MyBaseClass {
     public void deletePostUserIdApproved_ApprovedType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .pathParam( "approved", ".")
+            .pathParam( "approved", "")
             .pathParam( "userId", ".0")
         .when()
             .request( "DELETE", "/post/{userId}/{approved}")
@@ -625,7 +612,7 @@ public class MyTest extends MyBaseClass {
     public void putPosts_PostIdType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "postId", "")
+            .cookie( "postId", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"7@N.com\"}")
         .when()
@@ -672,7 +659,7 @@ public class MyTest extends MyBaseClass {
     public void putPosts_PostIdValuePropertiesCountryType_Is_Null() {
         given()
             .baseUri( forTestServer())
-            .cookie( "country", "")
+            .cookie( "country", null)
             .cookie( "region", "E")
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"`@h.edu\"}")
@@ -720,7 +707,7 @@ public class MyTest extends MyBaseClass {
         given()
             .baseUri( forTestServer())
             .cookie( "country", "E")
-            .cookie( "region", "")
+            .cookie( "region", null)
             .contentType( "text/plain")
             .request().body( "{\"text\":\"\",\"email\":\"-@q.edu\"}")
         .when()
