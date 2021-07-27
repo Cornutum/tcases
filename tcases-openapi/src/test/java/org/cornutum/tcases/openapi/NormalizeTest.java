@@ -64,7 +64,9 @@ public class NormalizeTest extends OpenApiTest
         "Normalize,/path/array/{empty}/{nonEmpty}/{nullable}/{exploded},GET,nullable: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
         "Normalize,/path/array/{empty}/{nonEmpty}/{nullable}/{exploded},GET,exploded: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
         "Normalize,/header/string,GET,empty: Empty string values not allowed for non-nullable parameter -- using minLength=1.",
+        "Normalize,/header/string,GET,nullableNonEmpty: Empty string values allowed for nullable parameter -- using minLength=0.",
         "Normalize,/header/array,GET,empty: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
+        "Normalize,/header/array,GET,nullableNonEmpty: Empty array values allowed for nullable parameter -- using minItems=0.",
         "Normalize,/header/array,GET,exploded: Empty array values not allowed for non-nullable parameter -- using minItems=1."),
 
       Arrays.asList(

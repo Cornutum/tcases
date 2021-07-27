@@ -5711,7 +5711,7 @@
     <TestCase id="0" name="empty.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5746,12 +5746,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="1" name="empty.Value.Length=&apos;&gt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableNonEmpty"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5786,12 +5796,22 @@
         <Var name="nullable.Value.Length" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="null">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="2" name="nullable.Value.Length=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyNotEmpty,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5826,12 +5846,22 @@
         <Var name="nullable.Value.Length" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="3" failure="true" name="empty.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5866,12 +5896,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="4" failure="true" name="empty.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5906,12 +5946,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="5" failure="true" name="empty.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5946,12 +5996,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="6" failure="true" name="empty.Value.Length=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5986,12 +6046,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="7" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6026,12 +6096,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="8" failure="true" name="nonEmpty.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6066,12 +6146,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="9" failure="true" name="nonEmpty.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6106,12 +6196,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="10" failure="true" name="nonEmpty.Value.Length=&apos;2&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue,nullableNotEmpty,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6146,12 +6246,22 @@
         <Var name="nullable.Value.Length" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true" name="nullable.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6186,12 +6296,22 @@
         <Var name="nullable.Value.Length" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true" name="nullable.Type=&apos;Not string&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/string"/>
-      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableNonEmpty,nullableNonEmptyLengthValid,nullableNonEmptyValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6226,6 +6346,116 @@
         <Var name="nullable.Value.Length" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="string">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true" name="nullableNonEmpty.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/string"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNotEmpty,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="string">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="string">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Length" value="&gt; 3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="string">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="No" failure="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="14" failure="true" name="nullableNonEmpty.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/string"/>
+      <Has name="properties" value="empty,emptyLengthValid,emptyNotEmpty,emptyValue,nonEmpty,nonEmptyLengthValid,nonEmptyNotEmpty,nonEmptyValue,nullable,nullableLengthValid,nullableNonEmpty,nullableNotEmpty,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="string">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="string">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Length" value="&gt; 3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="string">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="Not string" failure="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Value.Length" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
       </Input>
     </TestCase>
   </Function>
@@ -6238,7 +6468,7 @@
     <TestCase id="0" name="empty.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6306,6 +6536,27 @@
         <Var name="nullable.Items.Unique" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -6332,7 +6583,7 @@
     <TestCase id="1" name="empty.Items.Size=&apos;&gt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsMany,emptyValue,exploded,explodedItemsMany,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyValue,nullable"/>
+      <Has name="properties" value="empty,emptyItemsMany,emptyValue,exploded,explodedItemsMany,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyValue,nullable,nullableNonEmpty"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6400,6 +6651,27 @@
         <Var name="nullable.Items.Unique" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="null">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -6426,7 +6698,7 @@
     <TestCase id="2" name="empty.Items.Contains.Value.Is=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsValue,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsMany,nullableNonEmptyItemsValue,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6494,6 +6766,27 @@
         <Var name="nullable.Items.Unique" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -6520,7 +6813,7 @@
     <TestCase id="3" name="empty.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsMany,emptyItemsValue,emptyValue,exploded,explodedItemsMany,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsMany,emptyItemsValue,emptyValue,exploded,explodedItemsMany,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6588,6 +6881,27 @@
         <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -6614,7 +6928,7 @@
     <TestCase id="4" name="nullable.Items.Contains.Value.Is=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsValue,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsMany,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6682,6 +6996,27 @@
         <Var name="nullable.Items.Unique" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" value="null">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" value="No">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -6708,7 +7043,7 @@
     <TestCase id="5" name="nullable.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsMany,emptyItemsValue,emptyValue,exploded,explodedItemsMany,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsMany,emptyItemsValue,emptyValue,exploded,explodedItemsMany,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6776,6 +7111,27 @@
         <Var name="nullable.Items.Unique" value="No">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -6799,10 +7155,240 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="empty.Defined=&apos;No&apos;">
+    <TestCase id="6" name="nullableNonEmpty.Items.Contains.Value.Is=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableNonEmpty,nullableNonEmptyItemsMany,nullableNonEmptyItemsValue,nullableNonEmptyValue,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="array">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Size" value="1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Unique" NA="true">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="array">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Size" value="3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="array">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Size" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Unique" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="array">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Size" value="1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Unique" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" name="nullableNonEmpty.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/array"/>
+      <Has name="properties" value="empty,emptyItemsMany,emptyItemsValue,emptyValue,exploded,explodedItemsMany,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsMany,nullableNonEmptyItemsValue,nullableNonEmptyValue,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="array">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Unique" value="No">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="array">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Size" value="&gt; 3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Unique" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="array">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Size" value="1">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Unique" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" value="No">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="array">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Unique" value="No">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="empty.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/array"/>
+      <Has name="properties" value="exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6843,7 +7429,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -6857,18 +7443,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -6885,7 +7492,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -6893,10 +7500,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="empty.Type=null">
+    <TestCase id="9" failure="true" name="empty.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -6937,7 +7544,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -6951,18 +7558,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -6979,7 +7607,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -6987,10 +7615,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="empty.Type=&apos;Not array&apos;">
+    <TestCase id="10" failure="true" name="empty.Type=&apos;Not array&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7031,7 +7659,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -7045,18 +7673,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7073,7 +7722,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7081,10 +7730,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="empty.Items.Size=&apos;0&apos;">
+    <TestCase id="11" failure="true" name="empty.Items.Size=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7104,7 +7753,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7125,7 +7774,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -7139,18 +7788,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7167,7 +7837,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7175,10 +7845,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="10" failure="true" name="empty.Items.Contains.Type=&apos;Not integer&apos;">
+    <TestCase id="12" failure="true" name="empty.Items.Contains.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7219,7 +7889,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -7233,18 +7903,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7261,7 +7952,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7269,10 +7960,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="11" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
+    <TestCase id="13" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7292,7 +7983,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7327,18 +8018,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7355,7 +8067,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7363,10 +8075,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="12" failure="true" name="nonEmpty.Type=null">
+    <TestCase id="14" failure="true" name="nonEmpty.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7386,7 +8098,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7421,18 +8133,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7449,7 +8182,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7457,10 +8190,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="13" failure="true" name="nonEmpty.Type=&apos;Not array&apos;">
+    <TestCase id="15" failure="true" name="nonEmpty.Type=&apos;Not array&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7480,7 +8213,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7515,18 +8248,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7543,7 +8297,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7551,10 +8305,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="14" failure="true" name="nonEmpty.Items.Size=&apos;2&apos;">
+    <TestCase id="16" failure="true" name="nonEmpty.Items.Size=&apos;2&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7574,7 +8328,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7595,7 +8349,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" NA="true">
@@ -7609,18 +8363,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7637,7 +8412,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7645,10 +8420,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="15" failure="true" name="nonEmpty.Items.Contains.Type=&apos;Not integer&apos;">
+    <TestCase id="17" failure="true" name="nonEmpty.Items.Contains.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7668,7 +8443,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7703,18 +8478,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -7731,7 +8527,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7739,10 +8535,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true" name="nullable.Defined=&apos;No&apos;">
+    <TestCase id="18" failure="true" name="nullable.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7762,7 +8558,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7783,7 +8579,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -7810,6 +8606,27 @@
         <Var name="nullable.Items.Unique" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -7825,7 +8642,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7833,10 +8650,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true" name="nullable.Type=&apos;Not array&apos;">
+    <TestCase id="19" failure="true" name="nullable.Type=&apos;Not array&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7856,7 +8673,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7877,7 +8694,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -7904,6 +8721,27 @@
         <Var name="nullable.Items.Unique" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
           <Has name="paramName" value="exploded"/>
@@ -7919,7 +8757,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -7927,10 +8765,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true" name="nullable.Items.Contains.Type=&apos;Not integer&apos;">
+    <TestCase id="20" failure="true" name="nullable.Items.Contains.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -7950,7 +8788,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -7971,7 +8809,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -7985,7 +8823,7 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="1">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Items.Contains.Type" value="Not integer" failure="true">
@@ -7995,8 +8833,29 @@
         <Var name="nullable.Items.Contains.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -8013,7 +8872,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -8021,10 +8880,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true" name="exploded.Defined=&apos;No&apos;">
+    <TestCase id="21" failure="true" name="nullableNonEmpty.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -8044,7 +8903,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -8065,7 +8924,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -8079,18 +8938,384 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="No" failure="true">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="array">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Size" value="1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Unique" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="22" failure="true" name="nullableNonEmpty.Type=&apos;Not array&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/array"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="array">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Size" value="1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Unique" NA="true">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="array">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Size" value="3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="array">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Unique" value="Yes">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="Not array" failure="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="array">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Size" value="1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Unique" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="23" failure="true" name="nullableNonEmpty.Items.Contains.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/array"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsMany,nullableNonEmptyValue,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="array">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Size" value="1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Unique" NA="true">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="array">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Size" value="3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="array">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Unique" value="Yes">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" value="Not integer" failure="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="array">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Size" value="1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Items.Unique" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="24" failure="true" name="exploded.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/array"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="empty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="empty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="empty.Type" value="array">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Size" value="1">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="empty.Items.Unique" NA="true">
+          <Has name="paramName" value="empty"/>
+        </Var>
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="array">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Size" value="3">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Items.Unique" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="array">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Size" value="&gt; 1">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Type" value="integer">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Items.Unique" value="Yes">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="No" failure="true">
           <Has name="explode" value="true"/>
@@ -8115,10 +9340,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true" name="exploded.Type=null">
+    <TestCase id="25" failure="true" name="exploded.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -8138,7 +9363,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -8159,7 +9384,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -8173,18 +9398,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -8209,10 +9455,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true" name="exploded.Type=&apos;Not array&apos;">
+    <TestCase id="26" failure="true" name="exploded.Type=&apos;Not array&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -8232,7 +9478,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -8253,7 +9499,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -8267,18 +9513,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -8303,10 +9570,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true" name="exploded.Items.Size=&apos;0&apos;">
+    <TestCase id="27" failure="true" name="exploded.Items.Size=&apos;0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedItemsValue,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -8326,7 +9593,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -8347,7 +9614,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -8361,18 +9628,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>
@@ -8389,7 +9677,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="exploded.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Items.Unique" NA="true">
@@ -8397,10 +9685,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true" name="exploded.Items.Contains.Type=&apos;Not integer&apos;">
+    <TestCase id="28" failure="true" name="exploded.Items.Contains.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/array"/>
-      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsNone,nullableValue"/>
+      <Has name="properties" value="empty,emptyItemsValue,emptyValue,exploded,explodedValue,nonEmpty,nonEmptyItemsMany,nonEmptyItemsValue,nonEmptyValue,nullable,nullableItemsMany,nullableItemsValue,nullableNonEmpty,nullableNonEmptyItemsNone,nullableNonEmptyValue,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -8420,7 +9708,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="empty"/>
         </Var>
-        <Var name="empty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="empty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="empty"/>
         </Var>
         <Var name="empty.Items.Unique" NA="true">
@@ -8441,7 +9729,7 @@
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Items.Contains.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Items.Unique" value="Yes">
@@ -8455,18 +9743,39 @@
         <Var name="nullable.Type" value="array">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Size" value="0">
+        <Var name="nullable.Items.Size" value="&gt; 1">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Type" NA="true">
+        <Var name="nullable.Items.Contains.Type" value="integer">
           <Has name="itemType" value="integer"/>
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Contains.Value.Is" NA="true">
+        <Var name="nullable.Items.Contains.Value.Is" value="0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Items.Unique" NA="true">
+        <Var name="nullable.Items.Unique" value="Yes">
           <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullableNonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullableNonEmpty.Type" value="array">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Size" value="0">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="integer"/>
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
+        </Var>
+        <Var name="nullableNonEmpty.Items.Unique" NA="true">
+          <Has name="paramName" value="nullableNonEmpty"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
           <Has name="explode" value="true"/>

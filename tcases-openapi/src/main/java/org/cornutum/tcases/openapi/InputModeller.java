@@ -985,16 +985,14 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       parameterSchema.setNullable( false);
       }
 
-    // Is this a string parameter?
-    if( "string".equals( parameterSchema.getType())
-        // ... for which an empty string value is valid?
-        && Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) <= 0)
+    // Is this a simple string parameter?
+    if( "string".equals( parameterSchema.getType()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
       {
-      // Is an empty string allowed for this parameter?
-      if( Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
+      // Is a valid empty value equivalent to an invalid null value?
+      if( Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) <= 0
           && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
         {
-        // No, an empty string is equivalent to null, which is invalid.
+        // Yes, avoid inconsistent empty value
         if( parameterSchema.getEnum() != null)
           {
           ((Schema<Object>) parameterSchema).setEnum(
@@ -1008,20 +1006,36 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           parameterSchema.setMinLength( 1);
           }
         }
+
+      // Is a valid null value equivalent to an invalid empty value?
+      else if( Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 1
+               && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
+        {
+        // Yes, avoid inconsistent empty value failure
+        notifyWarning( "Empty string values allowed for nullable parameter -- using minLength=0");
+        parameterSchema.setMinLength( 0);
+        }
       }
 
-    // Is this an array parameter...
-    if( "array".equals( parameterSchema.getType())
-        // ... for which an empty array value is valid?
-        && Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) <= 0)
+    // Is this a simple array parameter?
+    if( "array".equals( parameterSchema.getType()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
       {
-      // Is an empty array allowed for this parameter?
-      if( Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
+      // Is a valid empty value equivalent to an invalid null value?
+      if( Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) <= 0
           && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
         {
-        // No, an empty array is equivalent to null, which is invalid.
+        // Yes, avoid inconsistent empty value
         notifyWarning( "Empty array values not allowed for non-nullable parameter -- using minItems=1");
         parameterSchema.setMinItems( 1);
+        }
+
+      // Is a valid null value equivalent to an invalid empty value?
+      else if( Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) == 1
+               && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
+        {
+        // Yes, avoid inconsistent empty value failure
+        notifyWarning( "Empty array values allowed for nullable parameter -- using minItems=0");
+        parameterSchema.setMinItems( 0);
         }
       }
     }

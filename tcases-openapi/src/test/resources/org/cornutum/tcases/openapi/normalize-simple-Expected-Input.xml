@@ -490,6 +490,25 @@
           </Var>
         </VarSet>
       </VarSet>
+      <VarSet name="nullableNonEmpty">
+        <Has name="paramName" value="nullableNonEmpty"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="nullableNonEmpty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nullableNonEmpty">
+          <Value name="string" property="nullableNonEmptyValue"/>
+          <Value name="null" once="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="nullableNonEmptyValue">
+          <Var name="Length">
+            <Value name="0" property="nullableNonEmptyLengthValid"/>
+            <Value name="&gt; 0" property="nullableNonEmptyLengthValid, nullableNonEmptyNotEmpty"/>
+          </Var>
+        </VarSet>
+      </VarSet>
     </Input>
   </Function>
   <Function name="GET_header-array">
@@ -611,6 +630,45 @@
             </VarSet>
           </VarSet>
           <Var name="Unique" when="nullableItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="nullableNonEmpty">
+        <Has name="paramName" value="nullableNonEmpty"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="nullableNonEmpty"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="nullableNonEmpty">
+          <Value name="array" property="nullableNonEmptyValue"/>
+          <Value name="null" once="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="nullableNonEmptyValue">
+          <Var name="Size">
+            <Value name="0" property="nullableNonEmptyItemsNone"/>
+            <Value name="&gt; 1" property="nullableNonEmptyItemsMany"/>
+          </Var>
+          <VarSet name="Contains" whenNot="nullableNonEmptyItemsNone">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="nullableNonEmptyItemsValue"/>
+              <Value name="null" once="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="nullableNonEmptyItemsValue">
+              <Var name="Is">
+                <Value name="&lt; 0"/>
+                <Value name="0"/>
+                <Value name="&gt; 0"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="nullableNonEmptyItemsMany">
             <Value name="Yes"/>
             <Value name="No"/>
           </Var>

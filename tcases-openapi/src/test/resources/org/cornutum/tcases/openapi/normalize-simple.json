@@ -227,6 +227,17 @@
                             "type": "string",
                             "nullable": true
                         }
+                    },
+                    {
+                        "name": "nullableNonEmpty",
+                        "in": "header",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true,
+                            "minLength": 1
+                        }
                     }
                 ],
                 "responses": {
@@ -281,6 +292,21 @@
                                 "nullable": true
                             },
                             "nullable": true
+                        }
+                    },
+                    {
+                        "name": "nullableNonEmpty",
+                        "in": "header",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "nullable": true
+                            },
+                            "nullable": true,
+                            "minItems": 1
                         }
                     },
                     {
