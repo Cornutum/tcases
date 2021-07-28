@@ -162,7 +162,7 @@ public final class TestCaseWriterUtils
       targetWriter.println( "}");
       targetWriter.println( "catch( Exception e) {");
       targetWriter.indent();
-      targetWriter.println( "    throw new IllegalArgumentException( String.format( \"Can't get Base64 token for value=%s\", value), e);");
+      targetWriter.println( "throw new IllegalArgumentException( String.format( \"Can't get Base64 token for value=%s\", value), e);");
       targetWriter.unindent();
       targetWriter.println( "}");
       targetWriter.unindent();

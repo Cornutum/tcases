@@ -316,7 +316,7 @@ public class OpenApiAuthTest {
             return java.util.Base64.getEncoder().encodeToString( value.getBytes( "UTF-8"));
         }
         catch( Exception e) {
-                throw new IllegalArgumentException( String.format( "Can't get Base64 token for value=%s", value), e);
+            throw new IllegalArgumentException( String.format( "Can't get Base64 token for value=%s", value), e);
         }
     }
 }
