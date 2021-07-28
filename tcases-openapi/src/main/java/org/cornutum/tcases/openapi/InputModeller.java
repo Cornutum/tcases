@@ -3683,20 +3683,20 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns a new DNF that generates a simpler but equivalent input model.
    */
-  public Dnf simplified( Dnf dnf)
+  private static Dnf simplified( Dnf dnf)
     {
     return
       Optional.of( dnf)
-      .map( this::removeFalse)
-      .map( this::simplifyTypeChecks)
-      .map( this::simplifyNullChecks)
+      .map( InputModeller::removeFalse)
+      .map( InputModeller::simplifyTypeChecks)
+      .map( InputModeller::simplifyNullChecks)
       .get();
     }
 
   /**
    * Returns a DNF that eliminates superfluous "false" alternatives.
    */
-  private Dnf removeFalse( Dnf dnf)
+  private static Dnf removeFalse( Dnf dnf)
     {
     return Dnf.of( dnf.getAlternatives().stream().filter( s -> !isFalse( s)));
     }
@@ -3704,7 +3704,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns a DNF that eliminates redundant type checks.
    */
-  private Dnf simplifyTypeChecks( Dnf dnf)
+  private static Dnf simplifyTypeChecks( Dnf dnf)
     {
     Set<String> types = dnf.getTypes();
     if( types.size() > 1)
@@ -3736,7 +3736,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns a DNF that eliminates redundant null checks.
    */
-  private Dnf simplifyNullChecks( Dnf dnf)
+  private static Dnf simplifyNullChecks( Dnf dnf)
     {
     // Given the set of nullable assertions made by all alternatives...
     Set<Boolean> nullables =
