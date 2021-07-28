@@ -1,5 +1,23 @@
 # Release Notes #
 
+## 3.7.1 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Avoid conflicting test cases for null vs. empty values** [[201](https://github.com/Cornutum/tcases/issues/201)]
+
+    Depending on how a request parameter is serialized, a null value and an empty value can take the same form in the serialized
+    request message. This is problematic if the parameter schema dictates that a null value is invalid but an empty value is OK,
+    or vice versa. But Tcases for OpenAPI will now adjust the request input model to eliminate such conflicting test cases.
+
+  * **Request parameters serialized correctly**
+
+    The [encoders](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/UriEncoder.html) used
+    when generating executable tests to serialize parameter input values now correctly implement the rules defined
+    by [the OpenAPI Specification](https://spec.openapis.org/oas/v3.0.2#style-values) for each parameter `style`. In particular,
+    this entails changes to the serialization of `null` and empty values.
+
+    
 ## 3.7.0 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
