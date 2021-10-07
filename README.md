@@ -20,7 +20,7 @@ Tcases is a tool for designing tests. It doesn't matter what kind of system you 
 [REST-ful API](tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful), or backend.
 Nor does it matter what level of the system you are testing -- unit, subsystem, or full system. You can use Tcases to design your tests in any of these situations. With Tcases, you define the input space for your system-under-test and the level of coverage that you want. Then Tcases generates a minimal set of test cases that meets your requirements.
 
-Tcases is primarily a tool for black-box test design. For such tests, the concept of "coverage" is different from structural testing critieria such as line coverage, branch converage, etc. Instead, Tcases is guided by coverage of the input space of your system.
+Tcases is primarily a tool for black-box test design. For such tests, the concept of "coverage" is different from structural testing criteria such as line coverage, branch coverage, etc. Instead, Tcases is guided by coverage of the input space of your system.
 
 Tcases gives you a way to define the input space for your system in a form that is concise but comprehensive. Then Tcases allows you to control the number of test cases in your sample subset by specifying the level of coverage you want. You can start with a basic level of coverage, and Tcases will generate a small set of test cases that touches every significant element of the input space. Then you can improve your tests by selectively adding coverage in specific high-risk areas. For example, you can specify pairwise coverage or higher-order combinations of selected input variables.
 
