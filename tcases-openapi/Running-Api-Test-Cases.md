@@ -78,7 +78,7 @@ three elements:
     responsible for producing the code required for a specific [test framework](#test-framework),
 
   * and a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
-    that is reponsible for producing the code that uses a specific [request execution interface](#request-execution) to submit
+    that is responsible for producing the code that uses a specific [request execution interface](#request-execution) to submit
     API requests.
 
 ### Example: REST Assured and JUnit  ###
@@ -281,7 +281,7 @@ such frameworks. For test developers, such frameworks generally define how to de
 their execution. And they are general-purpose, equally applicable for all kinds of testing. There is nothing about them that
 specifically supports API testing. To create tests for a different test framework, create a new subclass of the basic
 [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) class.
-Several [helpful utilties](#some-helpful-utilities) are available to make this easier.
+Several [helpful utilities](#some-helpful-utilities) are available to make this easier.
 
 Also, API tests must rely on an additional set of <A name="request-execution">"request execution"</A> interfaces. These are
 the interfaces used to construct a request message, deliver it to an API server, and collect the resulting response. Here, too,
@@ -292,7 +292,7 @@ different execution interface, create a new implementation of the
 [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) interface.
 `TestCaseWriter` implementations often start with a subclass of
 [`TestCaseContentWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseContentWriter.html).
-Several [helpful utilties](#some-helpful-utilities) are available to make this easier.
+Several [helpful utilities](#some-helpful-utilities) are available to make this easier.
 
 #### Creating an API test, step-by-step ####
 

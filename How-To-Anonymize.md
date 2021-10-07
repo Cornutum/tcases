@@ -51,19 +51,19 @@ using the [`tcases:anon`](http://www.cornutum.org/tcases/docs/tcases-maven-plugi
 Some examples:
 
 ```bash
-# Write an anonymous version of each Tcases project in src/test/tcases to a correponding
+# Write an anonymous version of each Tcases project in src/test/tcases to a corresponding
 # "anon-*" file in target/tcases.
 mvn tcases:anon 
 ```
 
 ```bash
-# Write an anonymous version of each Tcases project in src/test-models to a correponding
+# Write an anonymous version of each Tcases project in src/test-models to a corresponding
 # "the-anonymous-*.xml" file in target/test-models
 mvn tcases:anon -DinDir=src/test-models -DoutFile='the-anonymous-*.xml' -DoutDir=test-models
 ```
 
 ```bash
-# Write an anonymous version of the "myProject" input definition in src/test/tcases to a correponding
+# Write an anonymous version of the "myProject" input definition in src/test/tcases to a corresponding
 # "anon-*" file in target/tcases. Read the project generator definition from the
 # "myProjectGenDef" file and write an anonymized version to the "anon-myProject-Generators.*" file.
 mvn tcases:anon -Dproject=myProject -DgenDef='*GenDef'
