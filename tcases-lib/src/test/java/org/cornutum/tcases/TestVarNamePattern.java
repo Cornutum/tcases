@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.generator;
+package org.cornutum.tcases;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;

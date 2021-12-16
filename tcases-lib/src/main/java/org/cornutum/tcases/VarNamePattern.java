@@ -5,9 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.generator;
-
-import org.cornutum.tcases.*;
+package org.cornutum.tcases;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -139,7 +137,7 @@ public class VarNamePattern
   /**
    * Returns true if this pattern is applicable to the given set of variables.
    */
-  private boolean isApplicable( Iterator<IVarDef> varDefs)
+  public boolean isApplicable( Iterator<IVarDef> varDefs)
     {
     boolean applicable = false;
     while( varDefs.hasNext() && !(applicable = isApplicable( varDefs.next())));
@@ -149,7 +147,7 @@ public class VarNamePattern
   /**
    * Returns true if this pattern is applicable to the given variable.
    */
-  private boolean isApplicable( IVarDef var)
+  public boolean isApplicable( IVarDef var)
     {
     Iterator<IVarDef> members = var.getMembers();
 
