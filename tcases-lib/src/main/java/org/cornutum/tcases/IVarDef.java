@@ -81,6 +81,16 @@ public interface IVarDef extends IConditional, IAnnotated, Comparable<IVarDef>
   Iterator<VarValueDef> getValues();
 
   /**
+   * Returns true if this variable defines a list of values.
+   */
+  boolean isList();
+
+  /**
+   * Returns true if this variable defines a list of unique values.
+   */
+  boolean isSet();
+
+  /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
   IVarDef find( String... path);
@@ -89,13 +99,13 @@ public interface IVarDef extends IConditional, IAnnotated, Comparable<IVarDef>
    * Returns the condition that defines when values for this variable are applicable.
    */
   @Override
-ICondition getCondition();
+  ICondition getCondition();
 
   /**
    * Returns the condition that defines when values for this variable are applicable.
    */
   @Override
-default int compareTo( IVarDef other)
+  default int compareTo( IVarDef other)
     {
     return getPosition().compareTo( other.getPosition());
     }

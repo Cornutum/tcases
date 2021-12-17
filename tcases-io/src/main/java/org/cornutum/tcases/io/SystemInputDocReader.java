@@ -634,6 +634,8 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       return
         super.isMember( memberQname)
+        || LIST_TAG.equals( memberQname)
+        || SET_TAG.equals( memberQname)
         || VAR_TAG.equals( memberQname)
         || VARSET_TAG.equals( memberQname);
       }
@@ -1260,7 +1262,21 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     @Override
     public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
       {
-      setVarDef( createVarDef( requireIdentifier( attributes, NAME_ATR)));
+      String varName;
+      if( !(getParent() instanceof MembersHandler))
+        {
+        varName = requireIdentifier( attributes, NAME_ATR);
+        }
+      else
+        {
+        if( getAttribute( attributes, NAME_ATR) != null)
+          {
+          logger_.warn( "line={}: Ignoring superfluous name={} for anonymous member definition", getDocumentLocator().getLineNumber(), getAttribute( attributes, NAME_ATR));
+          }
+        varName = "Member";
+        }
+
+      setVarDef( createVarDef( varName));
       super.startElement( uri, localName, qName, attributes);
       }
 
@@ -1270,7 +1286,16 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       AbstractVarDef varDef = getVarDef();
       try
         {
-        if( getParent() instanceof InputHandler)
+        if( getParent() instanceof MembersHandler)
+          {
+          MembersHandler parent = (MembersHandler) getParent();
+          if( parent.getVarDef() != null)
+            {
+            throw new SAXParseException( "Duplicate member definition", getDocumentLocator());             
+            }
+          parent.setVarDef( varDef);
+          }
+        else if( getParent() instanceof InputHandler)
           {
           InputHandler parent = (InputHandler) getParent();
           varDef.setType( parent.getType());
@@ -1292,7 +1317,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
     /**
      * Changes the {@link AbstractVarDef} represented by this element.
      */
-    private void setVarDef( AbstractVarDef varDef)
+    protected void setVarDef( AbstractVarDef varDef)
       {
       varDef_ = varDef;
       }
@@ -1402,6 +1427,8 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       return
         super.isMember( memberQname)
+        || LIST_TAG.equals( memberQname)
+        || SET_TAG.equals( memberQname)
         || VAR_TAG.equals( memberQname)
         || VARSET_TAG.equals( memberQname);
       }
@@ -1422,6 +1449,246 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       {
       return (VarSet) getVarDef();
       }
+    }
+  
+  /**
+   * Handles List elements.
+   */
+  protected class ListHandler extends VarDefHandler
+    {
+    @Override
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      if( getListVar().getMemberVarDef() == null)
+        {
+        throw new SAXParseException( "No member definition specified for " + getListVar(), getDocumentLocator()); 
+        }
+
+      super.endElement( uri, localName, qName);
+      }
+    
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    @Override
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || SIZE_TAG.equals( memberQname)
+        || MEMBERS_TAG.equals( memberQname);
+      }
+    
+    /**
+     * Creates the {@link AbstractVarDef} represented by this element.
+     */
+    @Override
+    public AbstractVarDef createVarDef( String name)
+      {
+      return new ListVar( name);
+      }
+
+    /**
+     * Returns the {@link ListVar} represented by this element.
+     */
+    public ListVar getListVar()
+      {
+      return (ListVar) getVarDef();
+      }
+    }
+  
+  /**
+   * Handles Set elements.
+   */
+  protected class SetHandler extends ListHandler
+    {
+    @Override
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      super.endElement( uri, localName, qName);
+
+      SetVar setVar = (SetVar) getListVar();
+      try
+        {
+        setVar.setKey( getKey());
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Invalid key definition", getDocumentLocator(), e);
+        }
+      }
+    
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    @Override
+    public boolean isMember( String memberQname)
+      {
+      return
+        super.isMember( memberQname)
+        || KEY_TAG.equals( memberQname);
+      }
+    
+    /**
+     * Creates the {@link AbstractVarDef} represented by this element.
+     */
+    @Override
+    public AbstractVarDef createVarDef( String name)
+      {
+      return new SetVar( name);
+      }
+
+    /**
+     * Returns the key variables for this set.
+     */
+    public Set<VarNamePattern> getKey()
+      {
+      return key_;
+      }
+
+    private Set<VarNamePattern> key_ = new HashSet<VarNamePattern>();
+    }
+  
+  /**
+   * Handles Size elements
+   */
+  protected class SizeHandler extends ElementHandler
+    {    
+    @Override
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      ListHandler parent = (ListHandler) getParent();
+      ListVar listVar = parent.getListVar();
+
+      try
+        {
+        listVar.setSize( getInteger( attributes, MIN_ATR), getInteger( attributes, MAX_ATR));
+        listVar.setMemberCountProperty( getAttribute( attributes, PROPERTY_ATR));
+        }
+      catch( Exception e)
+        {
+        throw new SAXParseException( "Invalid size definition", getDocumentLocator(), e);
+        }
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    @Override
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), MIN_ATR, MAX_ATR, PROPERTY_ATR);
+      }
+    }
+  
+  /**
+   * Handles Key elements
+   */
+  protected class KeyHandler extends ElementHandler
+    {  
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    @Override
+    public boolean isMember( String memberQname)
+      {
+      return VALUEOF_TAG.equals( memberQname);
+      }
+
+    /**
+     * Returns the current set key variables.
+     */
+    public Set<VarNamePattern> getKey()
+      {
+      SetHandler parent = (SetHandler) getParent();
+      return parent.getKey();
+      }
+    }
+  
+  /**
+   * Handles ValueOf elements
+   */
+  protected class ValueOfHandler extends ElementHandler
+    {    
+    @Override
+    public void startElement( String uri, String localName, String qName, Attributes attributes) throws SAXException
+      {
+      VarNamePattern varPath = new VarNamePattern( requireAttribute( attributes, VAR_ATR));
+
+      KeyHandler parent = (KeyHandler) getParent();
+      if( !varPath.isValid())
+        {
+        throw new SAXParseException( String.format( "Invalid key variable=%s", varPath), getDocumentLocator()); 
+        }
+      else if( parent.getKey().contains( varPath))
+        {
+        logger_.warn( "line={}: Ignoring duplicate key variable={}", getDocumentLocator().getLineNumber(), varPath);
+        }
+      else
+        {
+        parent.getKey().add( varPath);
+        }
+      }
+      
+    /**
+     * Adds the valid attributes for this element.
+     */
+    @Override
+    protected Set<String> addAttributes( Set<String> attributes)
+      {
+      return addAttributeList( super.addAttributes( attributes), VAR_ATR);
+      }
+    }
+  
+  /**
+   * Handles Members elements.
+   */
+  protected class MembersHandler extends ElementHandler
+    {
+    @Override
+    public void endElement( String uri, String localName, String qName) throws SAXException
+      {
+      if( getVarDef() == null)
+        {
+        throw new SAXParseException( "No member definition specified", getDocumentLocator()); 
+        }
+
+      ListHandler parent = (ListHandler) getParent();
+      parent.getListVar().setMemberVarDef( getVarDef());
+      
+      super.endElement( uri, localName, qName);
+      }
+    
+    /**
+     * Returns true if the given element is a valid member of this element.
+     */
+    @Override
+    public boolean isMember( String memberQname)
+      {
+      return
+        LIST_TAG.equals( memberQname)
+        || SET_TAG.equals( memberQname)
+        || VAR_TAG.equals( memberQname)
+        || VARSET_TAG.equals( memberQname);
+      }
+
+    /**
+     * Changes the {@link AbstractVarDef} represented by this element.
+     */
+    public void setVarDef( AbstractVarDef varDef)
+      {
+      varDef_ = varDef;
+      }
+
+    /**
+     * Returns the {@link AbstractVarDef} represented by this element.
+     */
+    public AbstractVarDef getVarDef()
+      {
+      return varDef_;
+      }
+
+    private AbstractVarDef varDef_;
     }
   
   /**
@@ -1667,13 +1934,19 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
       qName.equals( FUNCTION_TAG)?    (ElementHandler) new FunctionHandler() :
       qName.equals( HAS_TAG)?         (ElementHandler) new HasHandler() :
       qName.equals( INPUT_TAG)?       (ElementHandler) new InputHandler() :
+      qName.equals( KEY_TAG)?         (ElementHandler) new KeyHandler() :
       qName.equals( LESSTHAN_TAG)?    (ElementHandler) new LessThanHandler() :
+      qName.equals( LIST_TAG)?        (ElementHandler) new ListHandler() :
+      qName.equals( MEMBERS_TAG)?     (ElementHandler) new MembersHandler() :
       qName.equals( MORETHAN_TAG)?    (ElementHandler) new MoreThanHandler() :
       qName.equals( NOTLESSTHAN_TAG)? (ElementHandler) new NotLessThanHandler() :
       qName.equals( NOTMORETHAN_TAG)? (ElementHandler) new NotMoreThanHandler() :
       qName.equals( NOT_TAG)?         (ElementHandler) new NotHandler() :
       qName.equals( PROPERTY_TAG)?    (ElementHandler) new PropertyHandler() :
+      qName.equals( SET_TAG)?         (ElementHandler) new SetHandler() :
+      qName.equals( SIZE_TAG)?        (ElementHandler) new SizeHandler() :
       qName.equals( SYSTEM_TAG)?      (ElementHandler) new SystemHandler() :
+      qName.equals( VALUEOF_TAG)?     (ElementHandler) new ValueOfHandler() :
       qName.equals( VALUE_TAG)?       (ElementHandler) new ValueHandler() :
       qName.equals( VAR_TAG)?         (ElementHandler) new VarHandler() :
       qName.equals( VARSET_TAG)?      (ElementHandler) new VarSetHandler() :

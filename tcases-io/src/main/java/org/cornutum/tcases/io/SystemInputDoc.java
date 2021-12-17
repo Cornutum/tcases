@@ -25,13 +25,19 @@ public final class SystemInputDoc
   public static final String FUNCTION_TAG  = "Function";
   public static final String HAS_TAG       = "Has";
   public static final String INPUT_TAG     = "Input";
+  public static final String KEY_TAG       = "Key";
   public static final String LESSTHAN_TAG  = "LessThan";
+  public static final String LIST_TAG      = "List";
+  public static final String MEMBERS_TAG   = "Members";
   public static final String MORETHAN_TAG  = "MoreThan";
   public static final String NOTLESSTHAN_TAG= "NotLessThan";
   public static final String NOTMORETHAN_TAG= "NotMoreThan";
   public static final String NOT_TAG       = "Not";
   public static final String PROPERTY_TAG  = "Property";
+  public static final String SET_TAG       = "Set";
+  public static final String SIZE_TAG      = "Size";
   public static final String SYSTEM_TAG    = "System";
+  public static final String VALUEOF_TAG   = "ValueOf";
   public static final String VALUE_TAG     = "Value";
   public static final String VARSET_TAG    = "VarSet";
   public static final String VAR_TAG       = "Var";
@@ -48,6 +54,7 @@ public final class SystemInputDoc
   public static final String PROPERTY_ATR  = "property";
   public static final String TYPE_ATR      = "type";
   public static final String VALUE_ATR     = "value";
+  public static final String VAR_ATR       = "var";
   public static final String WHENNOT_ATR   = "whenNot";
   public static final String WHEN_ATR      = "when";
   }

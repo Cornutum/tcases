@@ -278,20 +278,38 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * Otherwise, returns null.
    */
   @Override
-abstract public Iterator<IVarDef> getMembers();
+  abstract public Iterator<IVarDef> getMembers();
 
   /**
    * If this variable defines a value set, returns an iterator for the value set.
    * Otherwise, returns null.
    */
   @Override
-abstract public Iterator<VarValueDef> getValues();
+  abstract public Iterator<VarValueDef> getValues();
+
+  /**
+   * Returns true if this variable defines a list of values.
+   */
+  @Override
+  public boolean isList()
+    {
+    return false;
+    }
+
+  /**
+   * Returns true if this variable defines a list of unique values.
+   */
+  @Override
+  public boolean isSet()
+    {
+    return false;
+    }
 
   /**
    * Returns the descendant variable with the given name path, relative to this variable.
    */
   @Override
-abstract public IVarDef find( String... path);
+  abstract public IVarDef find( String... path);
 
   @Override
   public String toString()
