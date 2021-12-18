@@ -72,7 +72,7 @@
 
   <!-- Variables -->
   <xs:attributeGroup name="varDefAttrs">
-    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="name" type="xs:string"/> <!-- Normally required, except for a variable defined in a Members element -->
     <xs:attribute name="when" type="xs:string"/>
     <xs:attribute name="whenNot" type="xs:string"/>
   </xs:attributeGroup>
@@ -114,6 +114,67 @@
     <xs:attributeGroup ref="varDefAttrs"/>
   </xs:complexType>
 
+  <xs:complexType name="sizeType">
+    <xs:attribute name="min" type="xs:integer"/>
+    <xs:attribute name="max" type="xs:integer"/>
+    <xs:attribute name="property" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="keyType">
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element name="ValueOf">
+          <xs:complexType>
+            <xs:attribute name="var" type="xs:string" use="required"/>
+          </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="membersType">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:choice>
+        <xs:element name="Var" type="varType"/>
+        <xs:element name="VarSet" type="varSetType"/>
+        <xs:element name="List" type="listType"/>
+        <xs:element name="Set" type="setType"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listType">
+    <xs:sequence>
+
+      <xs:element name="When" minOccurs="0" maxOccurs="1" type="conditionType"/>
+
+      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
+      <xs:element name="Size" minOccurs="0" maxOccurs="1" type="sizeType"/>
+
+      <xs:element name="Members" minOccurs="1" maxOccurs="1" type="membersType"/>
+
+    </xs:sequence>
+
+    <xs:attributeGroup ref="varDefAttrs"/>
+  </xs:complexType>
+
+  <xs:complexType name="setType">
+    <xs:sequence>
+
+      <xs:element name="When" minOccurs="0" maxOccurs="1" type="conditionType"/>
+
+      <xs:element name="Has" minOccurs="0" maxOccurs="unbounded" type="annotationType"/>
+
+      <xs:element name="Size" minOccurs="0" maxOccurs="1" type="sizeType"/>
+
+      <xs:element name="Key" minOccurs="0" maxOccurs="1" type="keyType"/>
+
+      <xs:element name="Members" minOccurs="1" maxOccurs="1" type="membersType"/>
+
+    </xs:sequence>
+
+    <xs:attributeGroup ref="varDefAttrs"/>
+  </xs:complexType>
+
   <xs:complexType name="varSetType">
     <xs:sequence>
 
@@ -125,6 +186,8 @@
         <xs:choice>
           <xs:element name="Var" type="varType"/>
           <xs:element name="VarSet" type="varSetType"/>
+          <xs:element name="List" type="listType"/>
+          <xs:element name="Set" type="setType"/>
         </xs:choice>
       </xs:sequence>
 
@@ -156,6 +219,8 @@
                     <xs:choice>
                       <xs:element name="Var" type="varType"/>
                       <xs:element name="VarSet" type="varSetType"/>
+                      <xs:element name="List" type="listType"/>
+                      <xs:element name="Set" type="setType"/>
                     </xs:choice>
 
                   </xs:sequence>
