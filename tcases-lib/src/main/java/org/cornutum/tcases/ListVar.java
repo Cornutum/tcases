@@ -8,12 +8,16 @@
 package org.cornutum.tcases;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Defines a list of values.
  */
-public class ListVar extends VarSet
+public class ListVar extends CompositeVar
   {
   /**
    * Creates a new ListVar instance.
@@ -42,24 +46,6 @@ public class ListVar extends VarSet
     }
 
   /**
-   * Adds an input variable to this set.
-   */
-  @Override
-  public VarSet addMember( IVarDef var)
-    {
-    throw new UnsupportedOperationException( String.format( "Can't change the members that represent a %s", getClass().getSimpleName()));
-    }
-
-  /**
-   * Removes an input variable from this set.
-   */
-  @Override
-  public VarSet removeMember( String name)
-    {
-    throw new UnsupportedOperationException( String.format( "Can't change the members that represent a %s", getClass().getSimpleName()));
-    }
-
-  /**
    * Changes the size of this list.
    */
   public void setSize( Integer minSize, Integer maxSize)
@@ -82,20 +68,11 @@ public class ListVar extends VarSet
       }
 
     // (Re)define the size input variable model for this list.
-    VarDef sizeVar = (VarDef) getMember( "Size");
-    if( sizeVar == null)
-      {
-      sizeVar = new VarDef( "Size");
-      super.addMember( sizeVar);
-      }
-    else
-      {
-      for( Iterator<VarValueDef> values = sizeVar.getValues();
-           values.hasNext();
-           values.next(), values.remove());
-      }
+    for( Iterator<VarValueDef> values = sizeVarDef_.getValues();
+         values.hasNext();
+         values.next(), values.remove());
       
-    VarDefBuilder sizeBuilder = VarDefBuilder.with( sizeVar);
+    VarDefBuilder sizeBuilder = VarDefBuilder.with( sizeVarDef_);
 
     Optional<Integer> minValue = Optional.ofNullable( getMinSize());
     minValue.filter( min -> min > 0).ifPresent( min -> {
@@ -154,7 +131,7 @@ public class ListVar extends VarSet
     {
     memberVarDef.setName( "Member");
     memberVarDef.setCondition( null);
-    super.addMember( memberVarDef);
+    memberVarDef_ = memberVarDef;
     }
 
   /**
@@ -162,10 +139,32 @@ public class ListVar extends VarSet
    */
   public IVarDef getMemberVarDef()
     {
-    return getMember( "Member");
+    return memberVarDef_;
+    }
+
+  /**
+   * Returns the input definition for the size of this list.
+   */
+  private VarDef getSizeVarDef()
+    {
+    return sizeVarDef_;
+    }
+
+  /**
+   * Returns a list of member variables.
+   */
+  @Override
+  protected List<IVarDef> getMemberVarDefs()
+    {
+    return
+      Stream.of( getSizeVarDef(), getMemberVarDef())
+      .filter( Objects::nonNull)
+      .collect( toList());
     }
 
   private Integer minSize_ = 0;
   private Integer maxSize_ = null;
   private String  memberCountProperty_;
+  private VarDef  sizeVarDef_ = new VarDef( "Size");
+  private IVarDef memberVarDef_;
   }
