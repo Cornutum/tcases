@@ -173,7 +173,7 @@ public class VarSet extends AbstractVarDef
 
          i < parentPathLength
            && (descendant = parent.getMember( StringUtils.trimToNull( path[i]))) != null
-           && descendant.getClass().equals( getClass());
+           && descendant instanceof VarSet;
 
          i++,
            parent = (VarSet) descendant);
