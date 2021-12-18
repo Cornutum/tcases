@@ -1653,6 +1653,11 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         throw new SAXParseException( "No member definition specified", getDocumentLocator()); 
         }
 
+      if( getVarDef().getCondition() != null)
+        {
+        logger_.warn( "line={}: Ignoring unsupported variable conditions for member definition", getDocumentLocator().getLineNumber());
+        }
+      
       ListHandler parent = (ListHandler) getParent();
       parent.getListVar().setMemberVarDef( getVarDef());
       

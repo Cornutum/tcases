@@ -153,6 +153,7 @@ public class ListVar extends VarSet
   public void setMemberVarDef( AbstractVarDef memberVarDef)
     {
     memberVarDef.setName( "Member");
+    memberVarDef.setCondition( null);
     super.addMember( memberVarDef);
     }
 
