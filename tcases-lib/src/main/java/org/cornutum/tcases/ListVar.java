@@ -33,6 +33,7 @@ public class ListVar extends CompositeVar
   public ListVar( String name)
     {
     super( name);
+    sizeVarDef_ = addComponent( new VarDef( "Size"));
     setSize( null, null);
     }
 
@@ -52,13 +53,13 @@ public class ListVar extends CompositeVar
     {
     if( !(minSize == null || minSize >= 0))
       {
-      throw new IllegalArgumentException( String.format( "Invalid minSize=%s -- must be non-negative", minSize));
+      throw new IllegalArgumentException( String.format( "Invalid min=%s -- must be non-negative", minSize));
       }
     minSize_ = minSize;
     
     if( !(maxSize == null || maxSize >= 0))
       {
-      throw new IllegalArgumentException( String.format( "Invalid maxSize=%s -- must be non-negative", maxSize));
+      throw new IllegalArgumentException( String.format( "Invalid max=%s -- must be non-negative", maxSize));
       }
     maxSize_ = maxSize;
 
@@ -131,7 +132,7 @@ public class ListVar extends CompositeVar
     {
     memberVarDef.setName( "Member");
     memberVarDef.setCondition( null);
-    memberVarDef_ = memberVarDef;
+    memberVarDef_ = addComponent( memberVarDef);
     }
 
   /**
@@ -151,10 +152,10 @@ public class ListVar extends CompositeVar
     }
 
   /**
-   * Returns a list of member variables.
+   * Returns a list of component variables.
    */
   @Override
-  protected List<IVarDef> getMemberVarDefs()
+  protected List<IVarDef> getComponents()
     {
     return
       Stream.of( getSizeVarDef(), getMemberVarDef())
@@ -165,6 +166,6 @@ public class ListVar extends CompositeVar
   private Integer minSize_ = 0;
   private Integer maxSize_ = null;
   private String  memberCountProperty_;
-  private VarDef  sizeVarDef_ = new VarDef( "Size");
+  private VarDef  sizeVarDef_;
   private IVarDef memberVarDef_;
   }

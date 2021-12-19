@@ -45,9 +45,7 @@ public class VarSet extends CompositeVar
       throw new IllegalStateException( "Member=" + var.getName() + " already defined for varSet=" + getPathName());
       }
 
-    getMemberVarDefs().add( var);
-    var.setParent( this);
-    var.setSeqNum( getNextSeqNum());
+    getComponents().add( addComponent( var));
 
     return this;
     }
@@ -60,17 +58,17 @@ public class VarSet extends CompositeVar
     int i = findMember( name);
     if( i >= 0)
       {
-      getMemberVarDefs().remove(i).setParent( null) ;
+      getComponents().remove(i).setParent( null) ;
       }
 
     return this;
     }
 
   /**
-   * Returns a list of member variables.
+   * Returns a list of component variables.
    */
   @Override
-  protected List<IVarDef> getMemberVarDefs()
+  protected List<IVarDef> getComponents()
     {
     return members_;
     }

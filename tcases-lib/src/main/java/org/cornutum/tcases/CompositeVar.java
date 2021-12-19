@@ -42,7 +42,7 @@ public abstract class CompositeVar extends AbstractVarDef
   @Override
   public Iterator<IVarDef> getMembers()
     {
-    return getMemberVarDefs().iterator();
+    return getComponents().iterator();
     }
 
   /**
@@ -64,7 +64,7 @@ public abstract class CompositeVar extends AbstractVarDef
     super.setParent( parent);
 
     // Reset ancestry for all descendants.
-    for( IVarDef member : getMemberVarDefs())
+    for( IVarDef member : getComponents())
       {
       member.setParent( this);
       }
@@ -79,10 +79,21 @@ public abstract class CompositeVar extends AbstractVarDef
     super.setCondition( condition);
 
     // Reset ancestry for all descendants.
-    for( IVarDef member : getMemberVarDefs())
+    for( IVarDef member : getComponents())
       {
       member.setParent( this);
       }
+    }
+
+  /**
+   * Adds a component to this composite.
+   */
+  public <T extends IVarDef> T addComponent( T component)
+    {
+    component.setParent( this);
+    component.setSeqNum( getNextSeqNum());
+
+    return component;
     }
   
   /**
@@ -103,7 +114,7 @@ public abstract class CompositeVar extends AbstractVarDef
   public IVarDef getMember( String name)
     {
     int i = findMember( name);
-    return i >= 0? getMemberVarDefs().get(i) : null;
+    return i >= 0? getComponents().get(i) : null;
     }
 
   /**
@@ -147,14 +158,14 @@ public abstract class CompositeVar extends AbstractVarDef
    */
   protected int findMember( String name)
     {
-    int memberCount = name==null? 0 : getMemberVarDefs().size();
+    int memberCount = name==null? 0 : getComponents().size();
     int i;
-    for( i = 0; i < memberCount && !name.equals( getMemberVarDefs().get(i).getName()); i++);
+    for( i = 0; i < memberCount && !name.equals( getComponents().get(i).getName()); i++);
     return i < memberCount? i : -1;
     }
 
   /**
-   * Returns a list of member variables.
+   * Returns a list of component variables.
    */
-  protected abstract List<IVarDef> getMemberVarDefs();
+  protected abstract List<IVarDef> getComponents();
   }
