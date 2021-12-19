@@ -89,7 +89,8 @@ public class ListVar extends CompositeVar
       });
     if( !maxValue.isPresent())
       {
-      sizeBuilder.values( VarValueDefBuilder.with( String.format( "> %s", minValue.orElse( 0))).build());
+      int minimum = minValue.orElse( 0) + 1;
+      sizeBuilder.values( VarValueDefBuilder.with( String.format( ">= %s", minimum)).has( "minimum", minimum).build());
       }
     }
 
