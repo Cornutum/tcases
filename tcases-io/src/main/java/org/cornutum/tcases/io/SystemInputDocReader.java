@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -1564,6 +1565,7 @@ public class SystemInputDocReader extends DefaultHandler implements ISystemInput
         {
         listVar.setSize( getInteger( attributes, MIN_ATR), getInteger( attributes, MAX_ATR));
         listVar.setMemberCountProperty( getAttribute( attributes, PROPERTY_ATR));
+        propertiesDefined( Optional.ofNullable( listVar.getMemberCountProperty()).map( Collections::singleton).orElse( null));
         }
       catch( Exception e)
         {
