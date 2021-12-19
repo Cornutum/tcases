@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases;
 
+import static org.cornutum.tcases.conditions.Conditions.has;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +36,6 @@ public class ListVar extends CompositeVar
     {
     super( name);
     sizeVarDef_ = addComponent( new VarDef( "Size"));
-    setSize( null, null);
     }
 
   /**
@@ -55,43 +56,20 @@ public class ListVar extends CompositeVar
       {
       throw new IllegalArgumentException( String.format( "Invalid min=%s -- must be non-negative", minSize));
       }
-    minSize_ = minSize;
-    
     if( !(maxSize == null || maxSize >= 0))
       {
       throw new IllegalArgumentException( String.format( "Invalid max=%s -- must be non-negative", maxSize));
       }
-    maxSize_ = maxSize;
 
     if( Optional.ofNullable( maxSize).filter( max -> max < Optional.ofNullable( minSize).orElse( 0)).isPresent())
       {
       throw new IllegalArgumentException( String.format( "max=%s is less than min=%s", maxSize, minSize));
       }
 
-    // (Re)define the size input variable model for this list.
-    for( Iterator<VarValueDef> values = sizeVarDef_.getValues();
-         values.hasNext();
-         values.next(), values.remove());
-      
-    VarDefBuilder sizeBuilder = VarDefBuilder.with( sizeVarDef_);
+    minSize_ = minSize;
+    maxSize_ = maxSize;
 
-    Optional<Integer> minValue = Optional.ofNullable( getMinSize());
-    minValue.filter( min -> min > 0).ifPresent( min -> {
-      sizeBuilder.values( VarValueDefBuilder.with( min - 1).type( VarValueDef.Type.FAILURE).build());
-      });
-    sizeBuilder.values( VarValueDefBuilder.with( minValue.orElse( 0)).build());
-
-    Optional<Integer> maxValue = Optional.ofNullable( getMaxSize());;
-    maxValue.ifPresent( max -> {
-      sizeBuilder.values(
-        VarValueDefBuilder.with( max).build(),
-        VarValueDefBuilder.with( max + 1).type( VarValueDef.Type.FAILURE).build());
-      });
-    if( !maxValue.isPresent())
-      {
-      int minimum = minValue.orElse( 0) + 1;
-      sizeBuilder.values( VarValueDefBuilder.with( String.format( ">= %s", minimum)).has( "minimum", minimum).build());
-      }
+    clearSizeVarDef();
     }
 
   /**
@@ -111,7 +89,7 @@ public class ListVar extends CompositeVar
     }
 
   /**
-   * Changes the name of the property used to count list members.
+   * Changes the property used to count list members.
    */
   public void setMemberCountProperty( String property)
     {
@@ -119,11 +97,32 @@ public class ListVar extends CompositeVar
     }
 
   /**
-   * Returns the name of the property used to count list members.
+   * Returns the property used to count list members.
    */
   public String getMemberCountProperty()
     {
+    if( memberCountProperty_ == null)
+      {
+      memberCountProperty_ = String.format( "members_%s", sizeVarDef_.getSeqNum());
+      }
     return memberCountProperty_;
+    }
+
+  /**
+   * Returns the property that indicates if a list of the given size is non-empty.
+   * Returns <CODE>empty()</CODE> if <CODE>size</CODE> is zero.
+   */
+  private Optional<String> hasMembers( int size)
+    {
+    return Optional.of( getNonEmptyProperty()).filter( p -> size > 0);
+    }
+
+  /**
+   * Returns the property that indicates that this list that is non-empty.
+   */
+  private String getNonEmptyProperty()
+    {
+    return String.format( "hasMembers_%s", sizeVarDef_.getSeqNum());
     }
 
   /**
@@ -132,7 +131,7 @@ public class ListVar extends CompositeVar
   public void setMemberVarDef( AbstractVarDef memberVarDef)
     {
     memberVarDef.setName( "Member");
-    memberVarDef.setCondition( null);
+    AbstractVarDef.class.cast( memberVarDef).setCondition( has( getNonEmptyProperty()));
     memberVarDef_ = addComponent( memberVarDef);
     }
 
@@ -149,7 +148,48 @@ public class ListVar extends CompositeVar
    */
   private VarDef getSizeVarDef()
     {
+    if( !sizeVarDef_.getValues().hasNext())
+      {
+      resetSizeVarDef();
+      }
     return sizeVarDef_;
+    }
+
+  /**
+   * Clears the input definition for the size of this list.
+   */
+  private void clearSizeVarDef()
+    {
+    for( Iterator<VarValueDef> values = sizeVarDef_.getValues();
+         values.hasNext();
+         values.next(), values.remove());
+    }
+
+  /**
+   * Resets the input definition for the size of this list.
+   */
+  private void resetSizeVarDef()
+    {
+    VarDefBuilder sizeBuilder = VarDefBuilder.with( sizeVarDef_);
+
+    int minValue = Optional.ofNullable( getMinSize()).orElse( 0);
+    if( minValue > 0)
+      {
+      sizeBuilder.values( VarValueDefBuilder.with( minValue - 1).type( VarValueDef.Type.FAILURE).build());
+      }
+    sizeBuilder.values( VarValueDefBuilder.with( minValue).properties( hasMembers( minValue)).build());
+    
+    Optional<Integer> maxValue = Optional.ofNullable( getMaxSize());
+    maxValue.ifPresent( max -> {
+      sizeBuilder.values(
+        VarValueDefBuilder.with( max).properties( hasMembers( max)).build(),
+        VarValueDefBuilder.with( max + 1).type( VarValueDef.Type.FAILURE).build());
+      });
+    if( !maxValue.isPresent())
+      {
+      int min = minValue + 1;
+      sizeBuilder.values( VarValueDefBuilder.with( String.format( ">= %s", min)).properties( hasMembers( min)).has( "minimum", min).build());
+      }
     }
 
   /**
@@ -164,8 +204,8 @@ public class ListVar extends CompositeVar
       .collect( toList());
     }
 
-  private Integer minSize_ = 0;
-  private Integer maxSize_ = null;
+  private Integer minSize_;
+  private Integer maxSize_;
   private String  memberCountProperty_;
   private VarDef  sizeVarDef_;
   private IVarDef memberVarDef_;
