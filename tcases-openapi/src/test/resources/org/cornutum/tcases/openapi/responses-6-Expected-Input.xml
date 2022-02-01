@@ -139,11 +139,7 @@
                 <Value name="1"/>
                 <Value name="&gt; 1" property="2XXtext-plainItemsMany"/>
               </Var>
-              <VarSet name="Contains">
-                <When>
-                  <Not property="2XXtext-plainItemsNone">
-                  </Not>
-                </When>
+              <VarSet name="Contains" whenNot="2XXtext-plainItemsNone">
                 <Var name="Type">
                   <Has name="itemType" value="boolean"/>
                   <Value name="boolean" property="2XXtext-plainItemsValue"/>
