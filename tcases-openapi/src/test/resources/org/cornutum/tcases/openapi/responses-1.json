@@ -31,7 +31,9 @@
             "options": {
                 "responses": {
                     "202": {
-                        "description": "Empty"
+                        "description": "Empty",
+                        "content": {
+                        }
                     }
                 }
             }

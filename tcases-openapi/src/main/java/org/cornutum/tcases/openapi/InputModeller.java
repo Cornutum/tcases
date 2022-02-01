@@ -1287,7 +1287,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     return
       resultFor( "content",
         () ->
-        Optional.ofNullable( response.getContent())
+        ifNotEmpty( response.getContent())
         .map( mediaTypes -> {
           return
             VarSetBuilder.with( contentVarName)

@@ -101,6 +101,14 @@ public final class CollectionUtils
     }
 
   /**
+   * Returns the given map if it is non-null and non-empty. Otherwise, returns {@link Optional#empty}.
+   */
+  public static <K,V> Optional<Map<K,V>> ifNotEmpty( Map<K,V> map)
+    {
+    return Optional.ofNullable( map).filter( m -> !m.isEmpty());
+    }
+
+  /**
    * Returns the given list of values as a comma-separated string.
    */
   public static String toCsv( Stream<?> values)
