@@ -455,7 +455,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
           String contentVarTag = "Content";
-          Map<String,MediaType> mediaTypes = expectedValueOf( b.getContent(), "Request body content");
+          Map<String,MediaType> mediaTypes = expectedValueOf( ifNotEmpty( b.getContent()).orElse( null), "Request body content");
           return
             VarSetBuilder.with( "Body")
             .type( "request")
@@ -480,7 +480,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
           String contentVarTag = "Content";
-          Map<String,MediaType> mediaTypes = expectedValueOf( b.getContent(), "Request body content");
+          Map<String,MediaType> mediaTypes = expectedValueOf( ifNotEmpty( b.getContent()).orElse( null), "Request body content");
           return
             VarSetBuilder.with( "Body")
             .type( "request")
