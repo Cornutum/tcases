@@ -655,4 +655,13 @@ public class OperationsTest extends OpenApiTest
       "Invalid API definition",
       "API title is not defined");
     }
+  
+  @Test
+  public void API_12()
+    {
+    assertRequestInputModelFailure(
+      "operations-12",
+      "Error processing Operations, /operations, POST, requestBody",
+      "Request body content is not defined");
+    }
   }
