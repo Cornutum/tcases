@@ -1,5 +1,23 @@
 # Release Notes #
 
+## 3.7.2 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Handle empty and invalid `content` definitions**
+
+    Various elements of an OpenAPI definition can be described by a `content` property that defines one or more data media
+    types. For example a `content` property can be used to describe a request parameter, a request body, or a request
+    response. Depending on the situation, the `content` must conform to certain rules. For example, a response `content` can
+    define multiple media types, but a parameter `content` must define exactly one media type. Tcases for OpenAPI will now
+    correctly verify conformance with all these rules.
+
+  * **Handle `content` media types that define no schema**
+
+    Some `content` media types represent unstructured data that can't be described in an OpenAPI definition, in which case the
+    `schema` property is undefined. Tcases for OpenAPI now correctly accepts such media type definitions but reports a
+    [warning](tcases-openapi/Running-Api-Test-Cases.md#content-no-schema).
+
 ## 3.7.1 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
