@@ -512,8 +512,8 @@ tcases-api -T yaml -D < petstore-expanded.yaml
 
 "Resolving" a [test case description](http://www.cornutum.org/tcases/docs/Tcases-Json.htm#testCases) means generating an actual
 value for each of the request input variables. To do this, Tcases for OpenAPI creates a random dummy value of the required type
-that satisfies all of the requirements described for the test case. You can control the resolution process using the options
-described below.
+that satisfies all of the requirements described for the test case (with some [limitations](#resolution-limitations)). You can
+control the resolution process using the options described below.
 
 #### Generating random values ####
 
@@ -566,3 +566,15 @@ separate values for `-DonModellingCondition` and `-DonResolverCondition`.
 tcases-api -D -c ignore,fail petstore-expanded.yaml
 ```
 
+#### Resolution limitations ####
+
+  * **When a content media type has no schema** 
+
+    <a name="content-no-schema"></a>
+    Various elements of an OpenAPI definition can be described by a `content` property that defines one or more data media
+    types. Some `content` media types represent unstructured data that can't be described in an OpenAPI definition, in which
+    case the `schema` property is undefined. Tcases for OpenAPI accepts such media type definitions but reports a warning. Why?
+    Because without a schema, Tcases for OpenAPI doesn't know how to generate actual input data for this content.
+
+    Instead, input resolution will proceed using an empty schema, i.e. any type of non-null JSON data. The result is almost
+    certainly not a valid value for your API, so you will need to modify the generated test cases accordingly.
