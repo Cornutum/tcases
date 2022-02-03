@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<TestCases system="Operations">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Operations"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_operations">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/operations"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Operations"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operations"/>
+      <Has name="properties" value="Content,param0,param0Value,text-plain,text-plainValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="Not null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="Not null"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operations"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="No"/>
+        <Var name="Body.Media-Type" NA="true"/>
+        <Var name="Body.text-plain.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2" failure="true" name="param0.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operations"/>
+      <Has name="properties" value="Content,param0,text-plain,text-plainValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="Not null"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="Body.Media-Type=&apos;Other&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operations"/>
+      <Has name="properties" value="Content,param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="Not null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="Other" failure="true">
+          <Has name="excluded" value="&apos;text/plain&apos;"/>
+        </Var>
+        <Var name="Body.text-plain.Type" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="Body.text-plain.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/operations"/>
+      <Has name="properties" value="Content,param0,param0Value,text-plain"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Operations"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="param0.Type" value="Not null">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+      <Input type="request">
+        <Var name="Body.Defined" value="Yes"/>
+        <Var name="Body.Media-Type" value="text-plain">
+          <Has name="mediaType" value="text/plain"/>
+        </Var>
+        <Var name="Body.text-plain.Type" value="null" failure="true"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

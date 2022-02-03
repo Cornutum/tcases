@@ -28,7 +28,7 @@ public class NotifierTest extends OpenApiTest
     getTests( getRequestInputModel( "warnings-1"));
     
     // Then...
-    assertWarnings( "Operations,/operations,PATCH,requestBody,text/plain: No schema defined for media type=text/plain.");
+    assertWarnings( "Operations,/operations,PATCH,requestBody,text/plain: No schema defined.");
     }
   
   @Test

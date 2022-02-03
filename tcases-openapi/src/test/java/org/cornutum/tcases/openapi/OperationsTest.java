@@ -664,4 +664,17 @@ public class OperationsTest extends OpenApiTest
       "Error processing Operations, /operations, POST, requestBody",
       "Request body content is not defined");
     }
+  
+
+
+  /**
+   * Tests {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} when
+   * parameters and request bodies are defined by a media type with no schema.
+   */
+  @Test
+  public void API_13()
+    {
+    // Given...
+    verifyRequestInputModel( "operations-13");
+    }
   }

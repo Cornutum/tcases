@@ -542,19 +542,10 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               VarSetBuilder.with( mediaTypeVarName)
               .when( has( mediaTypeVarTag));
 
-            // Schema defined for this media type?
-            Schema<?> mediaTypeSchema = contentDef.getValue().getSchema();
-            if( mediaTypeSchema == null)
-              {
-              // No, use perfunctory "must be defined" input model for contents
-              notifyWarning( String.format( "No schema defined for media type=%s", mediaType));
-              contentVar.members( instanceDefinedVar( mediaTypeVarTag, false));
-              }
-            else
-              {
-              // Yes, use schema input model for contents
-              contentVar.members( instanceSchemaVars( mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
-              }
+            Schema<?> mediaTypeSchema =
+              Optional.ofNullable( contentDef.getValue().getSchema())
+              .orElseGet( () -> { notifyWarning( "No schema defined"); return emptySchema();});
+            contentVar.members( instanceSchemaVars( mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
 
             return contentVar.build();
             });
@@ -950,7 +941,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       Optional.ofNullable( parameter.getSchema())
       
       // ... or the content property
-      .orElseGet( () -> parameterMediaType( parameter).map( MediaType::getSchema).orElse( null));
+      .orElseGet(
+        () ->
+        parameterMediaType( parameter)
+        .map( mediaType -> Optional.ofNullable( mediaType.getSchema()).orElseGet( () -> { notifyWarning( "No schema defined"); return emptySchema();}))
+        .orElse( null));
 
     return analyzeSchema( api, schema);
     }    
