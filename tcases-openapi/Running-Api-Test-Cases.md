@@ -541,7 +541,7 @@ tcases-api -l stdout -D -r 1234567890 petstore-expanded.yaml
 
 #### Controlling resolution attempts ####
 
-When a test case describes complex constraints on an input variable, resolving a satisfying value may require multiple
+When a test case requires complex constraints on an input variable, resolving a satisfying value may require multiple
 iterations. To prevent an infinite fruitless search, Tcases for OpenAPI places a limit on the maximum number of resolution
 attempts made before giving up and reporting an error condition. By default, the limit on resolution attempts is 10000. But that limit is
 arbitrary and there is no guarantee that it will be sufficient for your API definition. You can choose a different limit by using the `-m
@@ -552,6 +552,8 @@ limit` option (or, when using [Maven](http://www.cornutum.org/tcases/docs/tcases
 # Define a specific limit on resolution attempts
 tcases-api -D -m 999999 petstore-expanded.yaml
 ```
+
+#### Handling resolution conditions ####
 
 Tcases for OpenAPI reports conditions in the OpenAPI definition or its corresponding test model that affect how input values are
 resolved.  Warning conditions are reported with an explanation of the situation. Error conditions report input values that could
@@ -568,6 +570,15 @@ tcases-api -D -c ignore,fail petstore-expanded.yaml
 
 #### Resolution limitations ####
 
+  * **When unable to resolve a value** 
+
+    When a test case requires complex constraints on an input variable, resolving a satisfying value may require multiple
+    iterations. In some cases, the search for a satisfying value may be unsuccessful, in which case the you'll see the following
+    error message. But note that there are [options you can use](#controlling-resolution-attempts) that may eliminate this failure.
+```
+... ERROR o.c.t.o.r.RequestCaseResolver - RequestCaseDef[...],...: Unable to resolve a value after 10000 tries. No request case created for this test.
+```
+    
   * **When a content media type has no schema** 
 
     <a name="content-no-schema"></a>
