@@ -214,11 +214,12 @@ OpenAPI definition even better.
 
 ## How does it work? ##
 
-Your OpenAPI definition defines rules for all the data that flows to and from the API server. Most of these rules are represented by
-the [schema](http://spec.openapis.org/oas/v3.0.2#schema-object) that describe each data item. By default, Tcases for OpenAPI
-uses these schema definitions to compose a model of the input space of your API -- a model of all the forms of data that
-could be accepted. From this input model, Tcases can generate a set of test cases, including not only cases of valid data but also
-cases of data that do not match the schema and are expected to produce an error response.
+Your OpenAPI definition defines rules for all the data that flows to and from the API server. Most of these rules are
+represented by the [schema](http://spec.openapis.org/oas/v3.0.2#schema-object) that describe each data item. By default, Tcases
+for OpenAPI uses these schema definitions to compose a [model of the input space](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#input)
+of your API -- a model of all the forms of data that could be accepted. From this input model, Tcases can
+[generate a set of test cases](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#coverage), including not only cases of valid
+data but also cases of data that do not match the schema and are expected to produce an error response.
 
 Alternatively, Tcases for OpenAPI can create an input model from a different source: the <A name="examples">examples</A> defined
 in your OpenAPI definition.  Every request parameter, content object, or schema can list at least one example data item. From these,
@@ -348,10 +349,11 @@ mvn tcases:api -Dproject=my-api -Dsource=examples
 
 ## Semantic linting with Tcases for OpenAPI ##
 
-Tcases for OpenAPI works by constructing a model of the "input space" for API requests or responses. In other words, a representation of all possible valid
-inputs to your API. As a result, Tcases for OpenAPI can detect when an API definition that is syntactically valid nevertheless defines an input space that is
-*semantically* flawed. For example, it may define a schema that is inconsistent and can never by validated by any instance. Or it may contain elements that are
-intended to have some effect but actually are superfluous and have no effect at all.
+Tcases for OpenAPI works by constructing [a model of the "input space"](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#input)
+for API requests or responses. In other words, a representation of all possible valid inputs to your API. As a result, Tcases
+for OpenAPI can detect when an API definition that is syntactically valid nevertheless defines an input space that is
+*semantically* flawed. For example, it may define a schema that is inconsistent and can never by validated by any instance. Or
+it may contain elements that are intended to have some effect but actually are superfluous and have no effect at all.
 
 Such semantic flaws are referred to as "input modelling conditions". In most cases, Tcases for OpenAPI can automatically adjust the input space to remove the
 condition and continue to generate test cases using the modified input space model. In addition, Tcases for OpenAPI will report all input modelling conditions
