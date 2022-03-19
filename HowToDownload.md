@@ -19,7 +19,7 @@ of the following dependencies in your project POM.
 #### tcases-maven-plugin
 A Maven plugin to run Tcases. For details, see the [plugin documentation site](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/).
 
-#### tcases-lib
+#### [tcases-lib](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-lib)
 The core models for Tcases objects. For the current version, see the [release notes](ReleaseNotes.md). Prior to 3.0.0, this JAR also contained all other Tcases APIs.
 
 ```xml
@@ -30,7 +30,7 @@ The core models for Tcases objects. For the current version, see the [release no
 </dependency>
 ```
 
-#### tcases-io
+#### [tcases-io](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-io)
 (Since 3.0.0) Supports reading and writing Tcases objects from external documents. For the current version, see the [release notes](ReleaseNotes.md).
 
 ```xml
@@ -41,7 +41,7 @@ The core models for Tcases objects. For the current version, see the [release no
 </dependency>
 ```
 
-#### tcases-cli
+#### [tcases-cli](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-cli)
 (Since 3.0.0) Command line tools for running Tcases. For the current version, see the [release notes](ReleaseNotes.md).
 
 ```xml
@@ -52,7 +52,7 @@ The core models for Tcases objects. For the current version, see the [release no
 </dependency>
 ```
 
-#### tcases-openapi
+#### [tcases-openapi](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-openapi)
 (Since 3.1.0) Converts an OpenAPI v3 definition into test cases for a REST-ful API. For the current version, see the [release notes](ReleaseNotes.md).
 
 ```xml
@@ -63,7 +63,7 @@ The core models for Tcases objects. For the current version, see the [release no
 </dependency>
 ```
 
-#### tcases-rest-assured
+#### [tcases-rest-assured](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-rest-assured)
 (Since 3.4.0) Provides a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/restassured/RestAssuredTestCaseWriter.html)
 implementation for [REST Assured](https://github.com/rest-assured/rest-assured).
 For the current version, see the [release notes](ReleaseNotes.md).
@@ -76,7 +76,7 @@ For the current version, see the [release notes](ReleaseNotes.md).
 </dependency>
 ```
 
-#### tcases-moco
+#### [tcases-moco](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-moco)
 (Since 3.4.0) Provides a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/moco/MocoServerTestWriter.html)
 implementation for JUnit API tests using a [Moco](https://github.com/dreamhead/moco) stub server.
 For the current version, see the [release notes](ReleaseNotes.md).
@@ -89,7 +89,7 @@ For the current version, see the [release notes](ReleaseNotes.md).
 </dependency>
 ```
 
-#### tcases-ant
+#### [tcases-ant](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-ant)
 (Since 2.0.0) Provides an Ant task for running Tcases. For the current version, see the [release notes](ReleaseNotes.md).
 
 ```xml
