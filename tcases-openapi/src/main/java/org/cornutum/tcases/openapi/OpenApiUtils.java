@@ -7,9 +7,12 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.openapi.test.ResponsesDef;
 import static org.cornutum.tcases.openapi.SchemaUtils.*;
 
+import io.swagger.v3.core.util.Json;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.media.ComposedSchema;
@@ -20,12 +23,18 @@ import io.swagger.v3.oas.models.parameters.RequestBody;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.io.IOUtils;
 import static io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.*;
 
 import java.net.URL;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
+
 import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -460,6 +469,81 @@ public final class OpenApiUtils
       }
 
     return applicable;
+    }
+
+  /**
+   * Returns the responses definition defined for the given API for the given request paths and operations.
+   * If <CODE>paths/operations</CODE> is null or empty, including responses for all paths/operations.
+   */
+  public static ResponsesDef responsesDef( OpenAPI api, Set<String> paths, Set<String> ops)
+    {
+    Set<String> includePaths = Optional.ofNullable( paths).orElse( emptySet());
+    Set<String> includeOps = Optional.ofNullable( ops).orElse( emptySet());
+
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectNode root = mapper.createObjectNode();
+
+    // For all API paths...
+    api.getPaths().keySet().stream()
+      // ...that are to be included...
+      .filter( path -> includePaths.isEmpty() || includePaths.contains( path))
+      .forEach(
+        path -> {
+          ObjectNode pathResponses = mapper.createObjectNode();
+          PathItem pathItem = api.getPaths().get( path);
+
+          // ...for each path operation...
+          Stream.of( "delete", "get", "head", "options", "patch", "post", "put", "trace")
+            .forEach(
+              opName -> {
+              Optional.of( opName)
+                // ...that is to be included...
+                .filter( op -> includeOps.isEmpty() || includeOps.stream().anyMatch( includeOp -> includeOp.equalsIgnoreCase( op)))
+
+                // ...find the path operation definition...
+                .map(
+                  op ->
+                  "delete".equals( op)?
+                  pathItem.getDelete() :
+
+                  "get".equals( op)?
+                  pathItem.getGet() :
+
+                  "head".equals( op)?
+                  pathItem.getHead() :
+
+                  "options".equals( op)?
+                  pathItem.getOptions() :
+
+                  "patch".equals( op)?
+                  pathItem.getPatch() :
+
+                  "post".equals( op)?
+                  pathItem.getPost() :
+
+                  "put".equals( op)?
+                  pathItem.getPut() :
+
+                  // "trace".equals( op)
+                  pathItem.getTrace())
+                .ifPresent(
+                  op -> {
+                  try
+                    {
+                    // ...and add the JSON representation of the operation response definition
+                    pathResponses.set( opName, mapper.readTree( Json.mapper().writeValueAsString( op.getResponses())));
+                    }
+                  catch( Exception e)
+                    {
+                    throw new IllegalStateException( String.format( "%s.%s.responses: Can't create JsonNode", path, opName), e);
+                    }
+                  });
+              });
+                  
+            root.set( path, pathResponses);
+        });
+    
+    return new ResponsesDef( root);
     }
 
   private static final String COMPONENTS_PARAMETERS_REF = "#/components/parameters/";
