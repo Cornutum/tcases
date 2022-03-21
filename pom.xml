@@ -283,6 +283,7 @@
     <module>tcases-shell</module>
     <module>tcases-maven-plugin</module>
     <module>tcases-openapi</module>
+    <module>tcases-openapi-test</module>
     <module>tcases-rest-assured</module>
     <module>tcases-moco</module>
   </modules>

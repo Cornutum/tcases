@@ -170,6 +170,12 @@
             <artifactId>tcases-io</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-openapi-test</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.swagger.parser.v3</groupId>
