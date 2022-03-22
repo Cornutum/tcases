@@ -100,12 +100,9 @@ public class ResponsesDef
     return
       opStatusContent( op, path, statusCode)
       .flatMap( content -> {
-        String[] mediaTypeParts = contentType.split( "/|;", 0);
-        String mediaType = mediaTypeParts[0];
-        String mediaSubtype = mediaTypeParts[1];
-
+        MediaRange media = MediaRange.of( contentType);
         return
-          Arrays.asList( contentType, mediaType + "/" + mediaSubtype, mediaType + "/*", "*/*").stream()
+          Arrays.asList( contentType, media.type() + "/" + media.subtype(), media.type() + "/*", "*/*").stream()
           .map( type -> asObject( content.get( type)))
           .filter( Objects::nonNull)
           .findFirst();
