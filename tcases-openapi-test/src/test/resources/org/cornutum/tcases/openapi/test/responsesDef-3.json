@@ -1,0 +1,9 @@
+{
+  "/responses" : {
+    "post" : {
+      "default" : {
+        "description" : "Default response"
+      }
+    }
+  }
+}

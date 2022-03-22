@@ -1,0 +1,64 @@
+{
+  "/responses" : {
+    "get" : {
+      "2XX" : {
+        "description" : "Headers only",
+        "headers" : {
+          "x-standard-header" : {
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string",
+              "enum" : [ "this", "that" ]
+            }
+          },
+          "x-extra-header" : {
+            "required" : false,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "minLength" : 1,
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "head" : {
+      "201" : {
+        "description" : "Empty"
+      }
+    },
+    "options" : {
+      "202" : {
+        "description" : "Empty",
+        "content" : { }
+      }
+    }
+  },
+  "/respond" : {
+    "get" : {
+      "203" : {
+        "description" : "Empty"
+      }
+    },
+    "options" : {
+      "204" : {
+        "description" : "Empty"
+      }
+    }
+  },
+  "/respondingly" : {
+    "get" : {
+      "206" : {
+        "description" : "Empty"
+      }
+    },
+    "head" : {
+      "205" : {
+        "description" : "Empty"
+      }
+    }
+  }
+}

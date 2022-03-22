@@ -1,0 +1,39 @@
+{
+  "/responses" : {
+    "put" : {
+      "2XX" : {
+        "description" : "Headers ignored",
+        "headers" : {
+          "Content-Type" : {
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "4XX" : {
+        "description" : "Error",
+        "content" : {
+          "text/plain" : {
+          }
+        }
+      },
+      "default" : {
+        "description" : "Error",
+        "content" : {
+          "text/*" : {
+            "schema" : {
+              "type" : "integer"
+            }
+          },
+            
+          "*/*" : {
+          }
+        }
+      }
+    }
+  }
+}
