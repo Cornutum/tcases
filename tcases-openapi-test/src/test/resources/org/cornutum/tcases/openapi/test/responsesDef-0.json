@@ -1,0 +1,28 @@
+{
+  "/responses" : {
+    "delete" : {
+      "200" : {
+        "description" : "Success",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "maximum" : 10,
+              "minimum" : 0,
+              "type" : "integer"
+            }
+          }
+        }
+      },
+      "default" : {
+        "description" : "Error",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "/responses" : {
+    "trace" : {
+      "2XX" : {
+        "description" : "Headers ignored",
+        "headers" : {
+          "x-standard-header" : {
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "Content-Type" : {
+            "required" : true,
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-extra-header" : {
+            "style" : "simple",
+            "explode" : false,
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "maxLength" : 255,
+              "minLength" : 16,
+              "type" : "string"
+            }
+          },
+          "text/javascript" : {
+            "schema" : {
+              "maxLength" : 16,
+              "type" : "string",
+              "nullable" : true
+            }
+          }
+        }
+      }
+    }
+  }
+}
