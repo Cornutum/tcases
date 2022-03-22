@@ -5,16 +5,14 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.testwriter;
-
-import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter.MediaRange;
+package org.cornutum.tcases.openapi.test;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.junit.Assert.*;
 
 /**
- * Runs tests for {@link TestCaseContentWriter.MediaRange}.
+ * Runs tests for {@link MediaRange}.
  */
 public class MediaRangeTest
   {
