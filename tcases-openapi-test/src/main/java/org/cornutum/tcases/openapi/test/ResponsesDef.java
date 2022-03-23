@@ -101,9 +101,18 @@ public class ResponsesDef
       opStatusContent( op, path, statusCode)
       .flatMap( content -> {
         MediaRange media = MediaRange.of( contentType);
+
+        Object[] alternatives = new Object[]{
+          contentType,
+          media.baseStructured(),
+          MediaRange.anyOf( media.type(), media.suffix()),
+          media.base(),
+          MediaRange.anyOf( media.type()),
+          MediaRange.any()};
+
         return
-          Arrays.asList( contentType, media.type() + "/" + media.subtype(), media.type() + "/*", "*/*").stream()
-          .map( type -> asObject( content.get( type)))
+          Arrays.stream( alternatives)
+          .map( type -> asObject( content.get( String.valueOf( type))))
           .filter( Objects::nonNull)
           .findFirst();
         })
