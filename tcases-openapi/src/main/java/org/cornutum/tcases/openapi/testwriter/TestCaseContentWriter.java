@@ -14,9 +14,8 @@ import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
 import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.ToString;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -77,21 +76,17 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
     {
     MediaRange mediaRange = MediaRange.of( mediaType);
 
-    List<String> alternatives = new ArrayList<String>();
-    alternatives.add( mediaRange.toString());
-
-    Optional.ofNullable( mediaRange.suffix())
-      .ifPresent( suffix -> {
-        alternatives.add( String.format( "%s/%s+%s", mediaRange.type(), mediaRange.subtype(), mediaRange.suffix()));
-        alternatives.add( String.format( "%s/*+%s", mediaRange.type(), mediaRange.suffix()));
-        });
-
-    alternatives.add( String.format( "%s/%s", mediaRange.type(), mediaRange.subtype()));
-    alternatives.add( String.format( "%s/*", mediaRange.type()));
-    alternatives.add( "*/*");
+    Object[] alternatives = new Object[]{
+      mediaType,
+      mediaRange.baseStructured(),
+      MediaRange.anyOf( mediaRange.type(), mediaRange.suffix()),
+      mediaRange.base(),
+      MediaRange.anyOf( mediaRange.type()),
+      MediaRange.any()};
 
     return
-      alternatives.stream()
+      Arrays.stream( alternatives)
+      .map( String::valueOf)
       .filter( alternative -> converters_.containsKey( alternative))
       .map( alternative -> converters_.get( alternative))
       .findFirst();
