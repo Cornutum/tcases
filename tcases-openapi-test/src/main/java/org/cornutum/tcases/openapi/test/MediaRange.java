@@ -66,7 +66,7 @@ public class MediaRange
     }
     
   /**
-   * Return the "type" from this media range.
+   * Returns the "type" from this media range.
    */
   public String type()
     {
@@ -74,7 +74,7 @@ public class MediaRange
     }
 
   /**
-   * Return the "subtype" from this media range.
+   * Returns the "subtype" from this media range.
    */
   public String subtype()
     {
@@ -82,7 +82,7 @@ public class MediaRange
     }
 
   /**
-   * Return the base type (i.e. "type/subtype" only) from this media range.
+   * Returns the base type (i.e. "type/subtype" only) from this media range.
    */
   public String base()
     {
@@ -90,7 +90,7 @@ public class MediaRange
     }
 
   /**
-   * Return the base type with optional suffix (i.e. "type/subtype+suffix" only) from this media range.
+   * Returns the base type with optional suffix (i.e. "type/subtype+suffix" only) from this media range.
    */
   public String baseStructured()
     {
@@ -98,7 +98,7 @@ public class MediaRange
     }
 
   /**
-   * Return the "suffix" from this media range.
+   * Returns the "suffix" from this media range.
    */
   public String suffix()
     {
@@ -106,7 +106,7 @@ public class MediaRange
     }
 
   /**
-   * Return the "parameter" from this media range.
+   * Returns the "parameter" from this media range.
    */
   public String parameter()
     {
@@ -114,7 +114,7 @@ public class MediaRange
     }
 
   /**
-   * Return a base type representation.
+   * Returns a base type representation.
    */
   private static String baseType( String type, String subtype, String suffix)
     {
