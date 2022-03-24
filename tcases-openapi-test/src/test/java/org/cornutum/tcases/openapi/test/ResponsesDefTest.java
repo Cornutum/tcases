@@ -7,9 +7,8 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
-
 import org.junit.Test;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
