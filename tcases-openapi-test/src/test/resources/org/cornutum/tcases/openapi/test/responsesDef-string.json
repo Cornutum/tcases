@@ -1,0 +1,95 @@
+{
+  "/responses": {
+    "delete": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "pattern": "^[0-9]*$"
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "format": "password",
+              "default": "Change Me!",
+              "maxLength": 16,
+              "nullable": true
+            }
+          }
+        }
+      }
+    },
+    "patch": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "default": "Bad",
+              "enum": [
+                "Bad",
+                "Worse"
+              ],
+              "nullable": false
+            }
+          }
+        }
+      }
+    },
+    "put": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "enum": [
+                "2022-03-04",
+                "2020-12-31"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "trace": {
+      "200": {
+        "description": "Success",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    }
+  }
+}
