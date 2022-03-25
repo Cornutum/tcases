@@ -166,7 +166,9 @@ public class ResponseValidator
       return
         Optional.ofNullable(
           ("application/json".equals( media.base()) || "json".equals( media.suffix()))?
-          decodeJson( bodyContent) :
+          Optional.of( decodeJson( bodyContent))
+          .filter( json -> !json.isMissingNode())
+          .orElseThrow( () -> new IllegalArgumentException( "Response body is empty")):
 
           "text/plain".equals( media.base())?
           decodeSimple( bodyContent) :
@@ -179,7 +181,7 @@ public class ResponseValidator
     catch( Exception e)
       {
       throw new ResponseValidationException(
-        messageFor( op, path, statusCode, String.format( "Can't get JSON for contentType=%s", contentType)),
+        messageFor( op, path, statusCode, String.format( "Can't decode response body as contentType=%s", contentType)),
         e);
       }
     }

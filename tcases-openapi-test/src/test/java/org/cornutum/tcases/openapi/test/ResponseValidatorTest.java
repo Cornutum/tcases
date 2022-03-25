@@ -10,6 +10,9 @@ package org.cornutum.tcases.openapi.test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -46,11 +49,16 @@ public abstract class ResponseValidatorTest
    */
   protected void assertValidationErrors( ResponseValidationException failure, String... expectedLines) 
     {
-    String[] actualLines = failure.getMessage().split( "\\n", 0);
+    List<String> actualLines = new ArrayList<String>();
+    for( Throwable cause = failure; cause != null; cause = cause.getCause())
+      {
+      actualLines.addAll( Arrays.asList( cause.getMessage().split( "\\n", 0)));
+      }
+
     assertThat(
       "Validation errors",
       actualLines,
-      listsElements( expectedLines));
+      listsMembers( expectedLines));
     }
 
   }

@@ -1,0 +1,64 @@
+{
+    "/responses": {
+        "delete": {
+            "200": {
+                "description": "Success"
+            },
+            "4XX": {
+                "description": "Error",
+                "content": {
+                    "text/plain": {
+                    }
+                }
+            },
+            "5XX": {
+                "description": "Internal",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/xml": {
+                    }
+                }
+            },
+            "4XX": {
+                "description": "Error",
+                "content": {
+                    "application/*+json": {
+                    }
+                }
+            }
+        },
+        "post": {
+            "default": {
+                "description": "Default",
+                "content": {
+                    "application/*": {
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    "application/*+json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "*/*": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
