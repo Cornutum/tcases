@@ -1,0 +1,38 @@
+{
+    "/responses": {
+        "delete": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "minItems": 1,
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "maxItems": 5,
+                            "items": {
+                                "type": "integer"
+                            },
+                            "nullable": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
