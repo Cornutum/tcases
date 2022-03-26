@@ -48,4 +48,189 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
           "'123X' does not respect pattern '^[0-9]*$'.");
         });
     }
+
+  @Test
+  public void whenMaxLength()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+
+    String op = "get";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "\"XXXXXXXXXXXXXXXX\"";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...
+    String bodyContent = "null";
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "\"01234567890123456\"";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "Max length is '16', found '17'.");
+        });
+    }
+
+  @Test
+  public void whenFormatUuid()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+
+    String op = "patch";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "\"f81d4fae-7dec-11d0-a765-00a0c91e6bf6\"";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "\"f-7-1-a-0\"";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "patch /responses (200): invalid response",
+          "Value 'f-7-1-a-0' does not match format 'uuid'.");
+        });
+    }
+
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+
+    String op = "post";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "\"Worse\"";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "\"Good\"";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "post /responses (200): invalid response",
+          "Value 'Good' is not defined in the schema.");
+        });
+    }
+
+  @Test
+  public void whenFormatDate()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+
+    String op = "put";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "[\"2020-12-31\"]";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "[\"2020-12-31\",\"2020/12/31\"]";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200): invalid response",
+          "1: Value '2020/12/31' does not match format 'date'.");
+        });
+    }
+
+  @Test
+  public void whenFormatDateTime()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+
+    String op = "trace";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "\"2019-01-10T01:02:03.456+01:01\""; 
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "\"2019-01-10:01:02:03\"";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "trace /responses (200): invalid response",
+          "Value '2019-01-10:01:02:03' does not match format 'date-time'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "null";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "trace /responses (200): invalid response",
+          "Null value is not allowed.");
+        });
+    }
   }

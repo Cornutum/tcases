@@ -54,8 +54,7 @@
               "enum": [
                 "Bad",
                 "Worse"
-              ],
-              "nullable": false
+              ]
             }
           }
         }
@@ -67,12 +66,11 @@
         "content": {
           "application/json": {
             "schema": {
-              "type": "string",
-              "format": "date",
-              "enum": [
-                "2022-03-04",
-                "2020-12-31"
-              ]
+              "type": "array",
+              "items": {
+                "type": "string",
+                  "format": "date"
+              }
             }
           }
         }
@@ -85,7 +83,8 @@
           "application/json": {
             "schema": {
               "type": "string",
-              "format": "date-time"
+              "format": "date-time",
+              "nullable": false
             }
           }
         }
