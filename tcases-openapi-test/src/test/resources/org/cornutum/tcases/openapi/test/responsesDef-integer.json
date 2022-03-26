@@ -1,0 +1,56 @@
+{
+    "/responses": {
+        "delete": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": 11,
+                            "minimum": 10,
+                            "exclusiveMinimum": true,
+                            "maximum": 100,
+                            "exclusiveMaximum": false,
+                            "nullable": true
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "multipleOf": 3,
+                            "nullable": false
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": 
+                        {
+                            "type": "integer",
+                            "enum": [
+                                -1,
+                                0,
+                                1
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

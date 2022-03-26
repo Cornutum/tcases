@@ -1,0 +1,192 @@
+//////////////////////////////////////////////////////////////////////////////
+// 
+//                    Copyright 2022, Cornutum Project
+//                             www.cornutum.org
+//
+//////////////////////////////////////////////////////////////////////////////
+
+package org.cornutum.tcases.openapi.test;
+
+import static org.cornutum.tcases.openapi.test.ResponseValidator.UNVALIDATED_FAIL;
+
+import org.junit.Test;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+
+/**
+ * Runs {@link ResponseValidator#assertBodyValid} tests for integer body content.
+ */
+public class IntegerBodyValidator extends ResponseValidatorTest
+  {
+  @Test
+  public void whenMinMax()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-integer", UNVALIDATED_FAIL);
+
+    String op = "delete";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "11";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...
+    String bodyContent = "100";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...
+    String bodyContent = "null";
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "10";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "delete /responses (200): invalid response",
+          "Excluded minimum is '10', found '10'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "12.3";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "delete /responses (200): invalid response",
+          "Value '12.3' does not match format 'int64'.",
+          "Type expected 'integer', found 'number'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "101";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "delete /responses (200): invalid response",
+          "Maximum is '100', found '101'.");
+        });
+    }
+
+  @Test
+  public void whenMultipleOf()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-integer", UNVALIDATED_FAIL);
+
+    String op = "get";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "81";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...
+    String bodyContent = "-333";
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "333667000332";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "Value '333667000332' does not match format 'int32'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "299";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "Value '299' is not a multiple of '3'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "null";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "Null value is not allowed.");
+        });
+    }
+
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-integer", UNVALIDATED_FAIL);
+
+    String op = "patch";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...
+    String bodyContent = "-1";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "-10";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "patch /responses (200): invalid response",
+          "Value '-10' is not defined in the schema.");
+        });
+    }
+  }
