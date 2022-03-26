@@ -1,0 +1,56 @@
+{
+    "/responses": {
+        "delete": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "number",
+                            "default": 2.71828,
+                            "maximum": 3.14156,
+                            "nullable": true
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "number",
+                            "format": "double",
+                            "multipleOf": 2.71,
+                            "minimum": -8.13,
+                            "exclusiveMinimum": true,
+                            "maximum": -2.71,
+                            "exclusiveMaximum": false,
+                            "nullable": false
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": 
+                        {
+                            "type": "number",
+                            "enum": [
+                                -1,
+                                0,
+                                1
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
