@@ -1,0 +1,68 @@
+{
+    "/responses": {
+        "delete": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "myString": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "myString"
+                            ],
+                            "additionalProperties": false
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "myString": {
+                                    "type": "string"
+                                },
+                                "myNumber": {
+                                    "type": "number"
+                                },
+                                "myBoolean": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "minProperties": 1,
+                            "maxProperties": 2,
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "patch": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "maxProperties": 3,
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "nullable": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
