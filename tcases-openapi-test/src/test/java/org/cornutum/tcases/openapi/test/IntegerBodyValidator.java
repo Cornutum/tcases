@@ -60,7 +60,7 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Excluded minimum is '10', found '10'.");
+          "#minimum: Excluded minimum is '10', found '10'.");
         });
 
     // Then...
@@ -73,8 +73,8 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Value '12.3' does not match format 'int64'.",
-          "Type expected 'integer', found 'number'.");
+          "#format: Value '12.3' does not match format 'int64'.",
+          "#type: Type expected 'integer', found 'number'.");
         });
 
     // Then...
@@ -87,7 +87,7 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Maximum is '100', found '101'.");
+          "#maximum: Maximum is '100', found '101'.");
         });
     }
 
@@ -127,7 +127,7 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Value '333667000332' does not match format 'int32'.");
+          "#format: Value '333667000332' does not match format 'int32'.");
         });
 
     // Then...
@@ -140,7 +140,7 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Value '299' is not a multiple of '3'.");
+          "#multipleOf: Value '299' is not a multiple of '3'.");
         });
 
     // Then...
@@ -153,7 +153,7 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Null value is not allowed.");
+          "#nullable: Null value is not allowed.");
         });
     }
 
@@ -186,7 +186,7 @@ public class IntegerBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "patch /responses (200): invalid response",
-          "Value '-10' is not defined in the schema.");
+          "#enum: Value '-10' is not defined in the schema.");
         });
     }
   }

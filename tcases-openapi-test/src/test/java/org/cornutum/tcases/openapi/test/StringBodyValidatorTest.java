@@ -44,8 +44,8 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Min length is '8', found '4'.",
-          "'123X' does not respect pattern '^[0-9]*$'.");
+          "#minLength: Min length is '8', found '4'.",
+          "#pattern: '123X' does not respect pattern '^[0-9]*$'.");
         });
     }
 
@@ -85,7 +85,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Max length is '16', found '17'.");
+          "#maxLength: Max length is '16', found '17'.");
         });
     }
 
@@ -118,7 +118,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "patch /responses (200): invalid response",
-          "Value 'f-7-1-a-0' does not match format 'uuid'.");
+          "#format: Value 'f-7-1-a-0' does not match format 'uuid'.");
         });
     }
 
@@ -151,7 +151,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "post /responses (200): invalid response",
-          "Value 'Good' is not defined in the schema.");
+          "#enum: Value 'Good' is not defined in the schema.");
         });
     }
 
@@ -184,7 +184,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "put /responses (200): invalid response",
-          "1: Value '2020/12/31' does not match format 'date'.");
+          "1#items/format: Value '2020/12/31' does not match format 'date'.");
         });
     }
 
@@ -217,7 +217,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "trace /responses (200): invalid response",
-          "Value '2019-01-10:01:02:03' does not match format 'date-time'.");
+          "#format: Value '2019-01-10:01:02:03' does not match format 'date-time'.");
         });
 
     // Then...
@@ -230,7 +230,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "trace /responses (200): invalid response",
-          "Null value is not allowed.");
+          "#nullable: Null value is not allowed.");
         });
     }
   }

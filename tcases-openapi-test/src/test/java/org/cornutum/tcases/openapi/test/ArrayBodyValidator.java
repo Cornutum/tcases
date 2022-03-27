@@ -53,7 +53,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Min items is '1', found '0'.");
+          "#minItems: Min items is '1', found '0'.");
         });
 
     // Then...
@@ -66,7 +66,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Uniqueness is not respected 'Hello'.");
+          "#uniqueItems: Uniqueness is not respected 'Hello'.");
         });
 
     // Then...
@@ -79,7 +79,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "1: Null value is not allowed.");
+          "1#items/nullable: Null value is not allowed.");
         });
 
     // Then...
@@ -92,7 +92,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Type expected 'array', found 'string'.");
+          "#type: Type expected 'array', found 'string'.");
         });
 
     // Then...
@@ -105,7 +105,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Null value is not allowed.");
+          "#nullable: Null value is not allowed.");
         });
     }
 
@@ -152,7 +152,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Max items is '5', found '6'.");
+          "#maxItems: Max items is '5', found '6'.");
         });
 
     // Then...
@@ -165,7 +165,7 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "0: Type expected 'integer', found 'number'.");
+          "0#items/type: Type expected 'integer', found 'number'.");
         });
     }
   }

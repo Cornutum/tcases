@@ -53,7 +53,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Maximum is '3.14156', found '3.14157'.");
+          "#maximum: Maximum is '3.14156', found '3.14157'.");
         });
 
     // Then...
@@ -66,7 +66,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Type expected 'number', found 'string'.");
+          "#type: Type expected 'number', found 'string'.");
         });
     }
 
@@ -106,7 +106,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Excluded minimum is '-8.13', found '-8.13'.");
+          "#minimum: Excluded minimum is '-8.13', found '-8.13'.");
         });
 
     // Then...
@@ -119,7 +119,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Maximum is '-2.71', found '0'.");
+          "#maximum: Maximum is '-2.71', found '0'.");
         });
 
     // Then...
@@ -132,7 +132,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Value '-4.0' is not a multiple of '2.71'.");
+          "#multipleOf: Value '-4.0' is not a multiple of '2.71'.");
         });
 
     // Then...
@@ -145,7 +145,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Null value is not allowed.");
+          "#nullable: Null value is not allowed.");
         });
     }
 
@@ -178,7 +178,7 @@ public class NumberBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "patch /responses (200): invalid response",
-          "Value '-10' is not defined in the schema.");
+          "#enum: Value '-10' is not defined in the schema.");
         });
     }
   }

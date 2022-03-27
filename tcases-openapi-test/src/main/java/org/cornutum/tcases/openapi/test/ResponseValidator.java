@@ -226,10 +226,40 @@ public class ResponseValidator
     StringJoiner joiner = new StringJoiner( "\n");
     for( ValidationItem item : validation.results().items( ValidationSeverity.ERROR))
       {
+      // Extract JSON pointer fragment for the location of the failed schema assertion
+      StringBuffer schemaKeys = new StringBuffer();
+      String crumbs = item.schemaCrumbs();
+      int keyEnd = crumbs.lastIndexOf( '>');
+      boolean moreSchemaKeys = keyEnd >= 0;
+
+      while( moreSchemaKeys)
+        {
+        int keyStart = crumbs.lastIndexOf( '<', keyEnd);
+        moreSchemaKeys = keyStart >= 0;
+        if( moreSchemaKeys)
+          {
+          schemaKeys.insert( 0, crumbs.substring( keyStart + 1, keyEnd));
+          keyEnd = keyStart - 2;
+          }
+
+        moreSchemaKeys =
+          moreSchemaKeys
+          && keyEnd > 0
+          && crumbs.substring( keyEnd, keyStart).equals( ">.");
+        if( moreSchemaKeys)
+          {
+          schemaKeys.insert( 0, "/");
+          }
+        }
+
+      String schemaLocation = Optional.of( schemaKeys.toString()).filter( String::isEmpty).orElse( String.format( "#%s", schemaKeys));
+      String dataLocation = item.dataCrumbs();
+      String location = String.format("%s%s", dataLocation, schemaLocation);
+      
       joiner.add(
-        String.format
-        ( "%s%s",
-          Optional.of( item.dataCrumbs()).filter( data -> !data.isEmpty()).map( data -> String.format( "%s: ", data)).orElse( ""),
+        String.format(
+          "%s%s",
+          Optional.of( location).filter( String::isEmpty).orElse( String.format( "%s: ", location)),
           item.message()));
       }
     
