@@ -15,7 +15,7 @@ import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 /**
  * Runs {@link ResponseValidator#assertBodyValid} tests for number body content.
  */
-public class NumberBodyValidator extends ResponseValidatorTest
+public class NumberBodyValidatorTest extends ResponseValidatorTest
   {
   @Test
   public void whenMaximum()

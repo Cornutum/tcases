@@ -13,15 +13,15 @@ import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
 /**
- * Runs {@link ResponseValidator#assertBodyValid} tests for array body content.
+ * Runs {@link ResponseValidator#assertBodyValid} tests for object body content.
  */
-public class ArrayBodyValidator extends ResponseValidatorTest
+public class ObjectBodyValidatorTest extends ResponseValidatorTest
   {
   @Test
-  public void whenMinItems()
+  public void whenAdditionalPropertiesNone()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-array", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
 
     String op = "delete";
     String path = "/responses";
@@ -30,70 +30,11 @@ public class ArrayBodyValidator extends ResponseValidatorTest
 
     {
     // When...
-    String bodyContent = "[\"Hello\"]";
+    String bodyContent = "{ \"myString\": \"Howdy\" }";
 
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
-    {
-    // When...
-    String bodyContent = "[\"Hello\", \"World\"]";
-
-    // Then...
-    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-    }
-
-    // Then...
-    expectFailure( ResponseValidationException.class)
-      .when( () -> {
-        String bodyContent = "[]";
-        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-        })
-      .then( failure -> {
-        assertValidationErrors(
-          failure,
-          "delete /responses (200): invalid response",
-          "#minItems: Min items is '1', found '0'.");
-        });
-
-    // Then...
-    expectFailure( ResponseValidationException.class)
-      .when( () -> {
-        String bodyContent = "[\"Hello\", \"Hello\"]";
-        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-        })
-      .then( failure -> {
-        assertValidationErrors(
-          failure,
-          "delete /responses (200): invalid response",
-          "#uniqueItems: Uniqueness is not respected 'Hello'.");
-        });
-
-    // Then...
-    expectFailure( ResponseValidationException.class)
-      .when( () -> {
-        String bodyContent = "[\"Hello\", null]";
-        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-        })
-      .then( failure -> {
-        assertValidationErrors(
-          failure,
-          "delete /responses (200): invalid response",
-          "1#items/nullable: Null value is not allowed.");
-        });
-
-    // Then...
-    expectFailure( ResponseValidationException.class)
-      .when( () -> {
-        String bodyContent = "\"Hello\"";
-        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-        })
-      .then( failure -> {
-        assertValidationErrors(
-          failure,
-          "delete /responses (200): invalid response",
-          "#type: Type expected 'array', found 'string'.");
-        });
 
     // Then...
     expectFailure( ResponseValidationException.class)
@@ -105,15 +46,55 @@ public class ArrayBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "#nullable: Null value is not allowed.");
+          "#nullable: Null value is not allowed.",
+          "#required: Field 'myString' is required.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "{}";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "delete /responses (200): invalid response",
+          "#required: Field 'myString' is required.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "{ \"myString\": \"Howdy\", \"extra\": 123 }";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "delete /responses (200): invalid response",
+          "#additionalProperties: Additional property 'extra' is not allowed.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "{ \"myString\": 123 }";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "delete /responses (200): invalid response",
+          "myString#type: Type expected 'string', found 'integer'.");
         });
     }
 
   @Test
-  public void whenMaxItems()
+  public void whenAdditionalPropertiesAny()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-array", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
 
     String op = "get";
     String path = "/responses";
@@ -122,22 +103,80 @@ public class ArrayBodyValidator extends ResponseValidatorTest
 
     {
     // When...
-    String bodyContent = "[ 1, 1, 2, 3, 5]";
+    String bodyContent = "{ \"myString\": \"Howdy\", \"extra\": \"Doody\"}";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }{
+    // When...
+    String bodyContent = "{ \"extra\": \"Doody\"}";
 
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "{}";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "#minProperties: Minimum is '1', found '0'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "{ \"myString\": \"Howdy\", \"myBoolean\": true, \"extra\": \"Doody\"}";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "#maxProperties: Maximum is '2', found '3'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String bodyContent = "null";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200): invalid response",
+          "#nullable: Null value is not allowed.");
+        });
+    }
+
+  @Test
+  public void whenAdditionalPropertiesDefined()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+
+    String op = "patch";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
     {
     // When...
-    String bodyContent = "[]";
-    
+    String bodyContent = "{ \"myString\": \"Howdy\", \"myBoolean\": \"true\", \"extra\": \"Doody\"}";
+
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
     {
     // When...
     String bodyContent = "null";
-    
+
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
@@ -145,27 +184,27 @@ public class ArrayBodyValidator extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "[ 1, 2, 3, 4, 5, 6]";
+        String bodyContent = "{ \"A\": \"0\", \"B\": \"1\", \"C\": \"2\", \"D\": \"3\"}";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
-          "#maxItems: Max items is '5', found '6'.");
+          "patch /responses (200): invalid response",
+          "#maxProperties: Maximum is '3', found '4'.");
         });
 
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "[ 1.23 ]";
+        String bodyContent = "{ \"A\": \"0\", \"B\": \"1\", \"C\": 2}";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
-          "0#items/type: Type expected 'integer', found 'number'.");
+          "patch /responses (200): invalid response",
+          "#additionalProperties/type: Type expected 'string', found 'integer'.");
         });
     }
   }
