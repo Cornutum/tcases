@@ -46,8 +46,8 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Null value is not allowed.",
-          "Field 'myString' is required.");
+          "#nullable: Null value is not allowed.",
+          "#required: Field 'myString' is required.");
         });
 
     // Then...
@@ -60,7 +60,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Field 'myString' is required.");
+          "#required: Field 'myString' is required.");
         });
 
     // Then...
@@ -73,7 +73,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "Additional property 'extra' is not allowed.");
+          "#additionalProperties: Additional property 'extra' is not allowed.");
         });
 
     // Then...
@@ -86,7 +86,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "myString: Type expected 'string', found 'integer'.");
+          "myString#type: Type expected 'string', found 'integer'.");
         });
     }
 
@@ -125,7 +125,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Minimum is '1', found '0'.");
+          "#minProperties: Minimum is '1', found '0'.");
         });
 
     // Then...
@@ -138,7 +138,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Maximum is '2', found '3'.");
+          "#maxProperties: Maximum is '2', found '3'.");
         });
 
     // Then...
@@ -151,7 +151,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "Null value is not allowed.");
+          "#nullable: Null value is not allowed.");
         });
     }
 
@@ -191,7 +191,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "patch /responses (200): invalid response",
-          "Maximum is '3', found '4'.");
+          "#maxProperties: Maximum is '3', found '4'.");
         });
 
     // Then...
@@ -204,7 +204,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "patch /responses (200): invalid response",
-          "Type expected 'string', found 'integer'.");
+          "#additionalProperties/type: Type expected 'string', found 'integer'.");
         });
     }
   }
