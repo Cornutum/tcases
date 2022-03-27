@@ -13,15 +13,15 @@ import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
 /**
- * Runs {@link ResponseValidator#assertBodyValid} tests for object body content.
+ * Runs {@link ResponseValidator#assertBodyValid} tests for integer body content.
  */
-public class ObjectBodyValidator extends ResponseValidatorTest
+public class IntegerBodyValidatorTest extends ResponseValidatorTest
   {
   @Test
-  public void whenAdditionalPropertiesNone()
+  public void whenMinMax()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-integer", UNVALIDATED_FAIL);
 
     String op = "delete";
     String path = "/responses";
@@ -30,8 +30,22 @@ public class ObjectBodyValidator extends ResponseValidatorTest
 
     {
     // When...
-    String bodyContent = "{ \"myString\": \"Howdy\" }";
+    String bodyContent = "11";
 
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...
+    String bodyContent = "100";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...
+    String bodyContent = "null";
+    
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
@@ -39,62 +53,49 @@ public class ObjectBodyValidator extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "null";
+        String bodyContent = "10";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "#nullable: Null value is not allowed.",
-          "#required: Field 'myString' is required.");
+          "#minimum: Excluded minimum is '10', found '10'.");
         });
 
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "{}";
+        String bodyContent = "12.3";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "#required: Field 'myString' is required.");
+          "#format: Value '12.3' does not match format 'int64'.",
+          "#type: Type expected 'integer', found 'number'.");
         });
 
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "{ \"myString\": \"Howdy\", \"extra\": 123 }";
+        String bodyContent = "101";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
           "delete /responses (200): invalid response",
-          "#additionalProperties: Additional property 'extra' is not allowed.");
-        });
-
-    // Then...
-    expectFailure( ResponseValidationException.class)
-      .when( () -> {
-        String bodyContent = "{ \"myString\": 123 }";
-        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-        })
-      .then( failure -> {
-        assertValidationErrors(
-          failure,
-          "delete /responses (200): invalid response",
-          "myString#type: Type expected 'string', found 'integer'.");
+          "#maximum: Maximum is '100', found '101'.");
         });
     }
 
   @Test
-  public void whenAdditionalPropertiesAny()
+  public void whenMultipleOf()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-integer", UNVALIDATED_FAIL);
 
     String op = "get";
     String path = "/responses";
@@ -103,14 +104,15 @@ public class ObjectBodyValidator extends ResponseValidatorTest
 
     {
     // When...
-    String bodyContent = "{ \"myString\": \"Howdy\", \"extra\": \"Doody\"}";
+    String bodyContent = "81";
 
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-    }{
+    }
+    {
     // When...
-    String bodyContent = "{ \"extra\": \"Doody\"}";
-
+    String bodyContent = "-333";
+    
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
@@ -118,27 +120,27 @@ public class ObjectBodyValidator extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "{}";
+        String bodyContent = "333667000332";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "#minProperties: Minimum is '1', found '0'.");
+          "#format: Value '333667000332' does not match format 'int32'.");
         });
 
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "{ \"myString\": \"Howdy\", \"myBoolean\": true, \"extra\": \"Doody\"}";
+        String bodyContent = "299";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
           "get /responses (200): invalid response",
-          "#maxProperties: Maximum is '2', found '3'.");
+          "#multipleOf: Value '299' is not a multiple of '3'.");
         });
 
     // Then...
@@ -156,10 +158,10 @@ public class ObjectBodyValidator extends ResponseValidatorTest
     }
 
   @Test
-  public void whenAdditionalPropertiesDefined()
+  public void whenEnum()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-integer", UNVALIDATED_FAIL);
 
     String op = "patch";
     String path = "/responses";
@@ -168,14 +170,7 @@ public class ObjectBodyValidator extends ResponseValidatorTest
 
     {
     // When...
-    String bodyContent = "{ \"myString\": \"Howdy\", \"myBoolean\": \"true\", \"extra\": \"Doody\"}";
-
-    // Then...
-    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-    }
-    {
-    // When...
-    String bodyContent = "null";
+    String bodyContent = "-1";
 
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
@@ -184,27 +179,14 @@ public class ObjectBodyValidator extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        String bodyContent = "{ \"A\": \"0\", \"B\": \"1\", \"C\": \"2\", \"D\": \"3\"}";
+        String bodyContent = "-10";
         validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
         })
       .then( failure -> {
         assertValidationErrors(
           failure,
           "patch /responses (200): invalid response",
-          "#maxProperties: Maximum is '3', found '4'.");
-        });
-
-    // Then...
-    expectFailure( ResponseValidationException.class)
-      .when( () -> {
-        String bodyContent = "{ \"A\": \"0\", \"B\": \"1\", \"C\": 2}";
-        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
-        })
-      .then( failure -> {
-        assertValidationErrors(
-          failure,
-          "patch /responses (200): invalid response",
-          "#additionalProperties/type: Type expected 'string', found 'integer'.");
+          "#enum: Value '-10' is not defined in the schema.");
         });
     }
   }
