@@ -1,0 +1,64 @@
+{
+    "/responses": {
+        "get": {
+            "200": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "myString": {
+                                    "oneOf": [
+                                        {
+                                            "allOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+
+                                                {
+                                                    "minLength": 1
+                                                },
+                                                {
+                                                    "maxLength": 8
+                                                },
+                                                {
+                                                    "pattern": "^[0-9]*$"
+                                                }
+                                            ]
+                                        },
+                                        
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "not": {
+                                                    "anyOf": [
+                                                        { "type": "array" },
+                                                        { "type": "object" },
+                                                        { "type": "string" }
+                                                    ]
+                                                }
+                                            },
+                                            "minItems": 2
+                                        },
+                                        
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "X": { "type": "number"},
+                                                "Y": { "type": "number"}
+                                            },
+                                            "required": [ "X", "Y" ],
+                                            "additionalProperties": false
+                                        }
+                                    ]
+                                        
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
