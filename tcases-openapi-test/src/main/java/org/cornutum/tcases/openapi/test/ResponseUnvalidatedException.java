@@ -8,48 +8,17 @@
 package org.cornutum.tcases.openapi.test;
 
 /**
- * Reports a failure when validating API request responses.
+ * Reports a condition that prevents API request validation.
  */
 public class ResponseUnvalidatedException extends ResponseValidationException
   {
   /**
    * Creates a new ResponseUnvalidatedException instance.
    */
-  public ResponseUnvalidatedException( String op, String path, int statusCode, String reason)
+  public ResponseUnvalidatedException( String op, String path, Integer statusCode, String location, String reason)
     {
-    super( ResponseValidator.messageFor( op, path, statusCode, reason));
-    op_ = op;
-    path_ = path;
-    statusCode_ = statusCode;
-    }
-
-  /**
-   * Returns the operation of the API request returning an unvalidated response.
-   */
-  public String getOperation()
-    {
-    return op_;
-    }
-
-  /**
-   * Returns the path of the API request returning an unvalidated response.
-   */
-  public String getPath()
-    {
-    return path_;
-    }
-
-  /**
-   * Returns the status code of the API request returning an unvalidated response.
-   */
-  public int getStatusCode()
-    {
-    return statusCode_;
+    super( op, path, statusCode, location, reason);
     }
   
-  private final String op_;
-  private final String path_;
-  private final int statusCode_;
-
   private static final long serialVersionUID = -847135141260063875L;
   }

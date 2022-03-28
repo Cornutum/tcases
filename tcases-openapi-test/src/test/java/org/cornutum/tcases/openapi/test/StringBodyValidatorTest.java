@@ -43,7 +43,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#minLength: Min length is '8', found '4'.",
           "#pattern: '123X' does not respect pattern '^[0-9]*$'.");
         });
@@ -84,7 +84,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#maxLength: Max length is '16', found '17'.");
         });
     }
@@ -117,7 +117,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "patch /responses (200): invalid response",
+          "patch /responses (200), body: invalid response",
           "#format: Value 'f-7-1-a-0' does not match format 'uuid'.");
         });
     }
@@ -150,7 +150,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "post /responses (200): invalid response",
+          "post /responses (200), body: invalid response",
           "#enum: Value 'Good' is not defined in the schema.");
         });
     }
@@ -183,7 +183,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "put /responses (200): invalid response",
+          "put /responses (200), body: invalid response",
           "1#items/format: Value '2020/12/31' does not match format 'date'.");
         });
     }
@@ -216,7 +216,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "trace /responses (200): invalid response",
+          "trace /responses (200), body: invalid response",
           "#format: Value '2019-01-10:01:02:03' does not match format 'date-time'.");
         });
 
@@ -229,7 +229,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "trace /responses (200): invalid response",
+          "trace /responses (200), body: invalid response",
           "#nullable: Null value is not allowed.");
         });
     }

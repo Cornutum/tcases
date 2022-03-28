@@ -52,7 +52,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#maximum: Maximum is '3.14156', found '3.14157'.");
         });
 
@@ -65,7 +65,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#type: Type expected 'number', found 'string'.");
         });
     }
@@ -105,7 +105,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#minimum: Excluded minimum is '-8.13', found '-8.13'.");
         });
 
@@ -118,7 +118,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#maximum: Maximum is '-2.71', found '0'.");
         });
 
@@ -131,7 +131,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#multipleOf: Value '-4.0' is not a multiple of '2.71'.");
         });
 
@@ -144,7 +144,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#nullable: Null value is not allowed.");
         });
     }
@@ -177,7 +177,7 @@ public class NumberBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "patch /responses (200): invalid response",
+          "patch /responses (200), body: invalid response",
           "#enum: Value '-10' is not defined in the schema.");
         });
     }
