@@ -45,7 +45,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#nullable: Null value is not allowed.",
           "#required: Field 'myString' is required.");
         });
@@ -59,7 +59,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#required: Field 'myString' is required.");
         });
 
@@ -72,7 +72,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#additionalProperties: Additional property 'extra' is not allowed.");
         });
 
@@ -85,7 +85,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "myString#type: Type expected 'string', found 'integer'.");
         });
     }
@@ -124,7 +124,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#minProperties: Minimum is '1', found '0'.");
         });
 
@@ -137,7 +137,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#maxProperties: Maximum is '2', found '3'.");
         });
 
@@ -150,7 +150,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#nullable: Null value is not allowed.");
         });
     }
@@ -190,7 +190,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "patch /responses (200): invalid response",
+          "patch /responses (200), body: invalid response",
           "#maxProperties: Maximum is '3', found '4'.");
         });
 
@@ -203,7 +203,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "patch /responses (200): invalid response",
+          "patch /responses (200), body: invalid response",
           "#additionalProperties/type: Type expected 'string', found 'integer'.");
         });
     }

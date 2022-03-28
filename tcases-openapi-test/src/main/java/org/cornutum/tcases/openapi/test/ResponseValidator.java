@@ -93,7 +93,7 @@ public class ResponseValidator
       {
       if( !responses_.defined( op, path, statusCode))
         {
-        throw new ResponseValidationException( String.format( "%s %s: no response defined for statusCode=%s", op, path, statusCode));
+        throw new ResponseValidationException( op, path, String.format( "no response defined for statusCode=%s", statusCode));
         }
 
       // The actual body and content type must be defined if and only if an expected body content is defined.
@@ -101,34 +101,34 @@ public class ResponseValidator
         {
         if( contentType == null)
           {
-          throw new ResponseValidationException( messageFor( op, path, statusCode, "no response Content-Type header received"));
+          throw new ResponseValidationException( op, path, statusCode, "body", "no response Content-Type header received");
           }
         if( bodyContent == null)
           {
-          throw new ResponseValidationException( messageFor( op, path, statusCode, "no response body received"));
+          throw new ResponseValidationException( op, path, statusCode, "body", "no response body received");
           }
         }
       else if( bodyContent != null)
         {
-        throw new ResponseValidationException( messageFor( op, path, statusCode, "unexpected response body received"));
+        throw new ResponseValidationException( op, path, statusCode, "body", "unexpected response body received");
         }
 
       if( bodyContent != null)
         {
         if( !responses_.contentTypeDefined( op, path, statusCode, contentType))
           {
-          throw new ResponseValidationException( messageFor( op, path, statusCode, String.format( "unexpected response contentType=%s", contentType)));
+          throw new ResponseValidationException( op, path, statusCode, "body", String.format( "unexpected response contentType=%s", contentType));
           }
         
         // Compare actual body content...
         JsonNode bodyContentJson =
           bodyContentJson( op, path, statusCode, contentType, bodyContent)
-          .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, String.format( "contentType=%s can't be validated", contentType)));
+          .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "contentType=%s can't be validated", contentType)));
 
         // ...with expected content schema...
         JsonNode schema =
           responses_.contentSchema( op, path, statusCode, contentType)
-          .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, String.format( "no schema defined for contentType=%s", contentType)));
+          .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "no schema defined for contentType=%s", contentType)));
 
         // ...and report any non-conformance errors
         ValidationData<Void> validation = new ValidationData<>();
@@ -139,12 +139,12 @@ public class ResponseValidator
           }
         catch( Exception e)
           {
-          throw new ResponseValidationException( messageFor( op, path, statusCode, "can't validate body content"), e);
+          throw new ResponseValidationException( op, path, statusCode, "body", "can't validate content", e);
           }
         
         if( !validation.isValid())
           {
-          throw new ResponseValidationException( messageFor( op, path, statusCode, String.format( "invalid response\n%s", validationErrors( validation))));
+          throw new ResponseValidationException( op, path, statusCode, "body", String.format( "invalid response\n%s", validationErrors( validation)));
           }
         }
       }
@@ -180,9 +180,7 @@ public class ResponseValidator
       }
     catch( Exception e)
       {
-      throw new ResponseValidationException(
-        messageFor( op, path, statusCode, String.format( "Can't decode response body as contentType=%s", contentType)),
-        e);
+      throw new ResponseValidationException( op, path, statusCode, "body", String.format( "Can't decode as contentType=%s", contentType), e);
       }
     }
 
@@ -264,14 +262,6 @@ public class ResponseValidator
       }
     
     return joiner.toString();
-    }
-
-  /**
-   * Returns a message for the given operation, path, and status code.
-   */
-  public static String messageFor( String op, String path, int statusCode, String message)
-    {
-    return String.format( "%s %s (%s): %s", op, path, statusCode, message);
     }
 
   /**

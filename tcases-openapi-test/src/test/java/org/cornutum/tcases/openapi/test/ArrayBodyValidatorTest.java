@@ -52,7 +52,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#minItems: Min items is '1', found '0'.");
         });
 
@@ -65,7 +65,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#uniqueItems: Uniqueness is not respected 'Hello'.");
         });
 
@@ -78,7 +78,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "1#items/nullable: Null value is not allowed.");
         });
 
@@ -91,7 +91,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#type: Type expected 'array', found 'string'.");
         });
 
@@ -104,7 +104,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): invalid response",
+          "delete /responses (200), body: invalid response",
           "#nullable: Null value is not allowed.");
         });
     }
@@ -151,7 +151,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "#maxItems: Max items is '5', found '6'.");
         });
 
@@ -164,7 +164,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "0#items/type: Type expected 'integer', found 'number'.");
         });
     }

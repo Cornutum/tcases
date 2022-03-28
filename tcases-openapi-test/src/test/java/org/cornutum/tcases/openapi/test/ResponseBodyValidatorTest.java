@@ -43,7 +43,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200): unexpected response body received");
+          "delete /responses (200), body: unexpected response body received");
         });
     
     // When...
@@ -57,7 +57,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (404): no response Content-Type header received");
+          "delete /responses (404), body: no response Content-Type header received");
         });
     
     // When...
@@ -71,7 +71,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (404): no response body received");
+          "delete /responses (404), body: no response body received");
         });
     }
   
@@ -117,7 +117,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (400): unexpected response contentType=application/json");
+          "delete /responses (400), body: unexpected response contentType=application/json");
         });
     }
   
@@ -140,7 +140,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (500): Can't decode response body as contentType=application/json",
+          "delete /responses (500), body: Can't decode as contentType=application/json",
           "Response body is empty");
         });
 
@@ -153,7 +153,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (500): Can't decode response body as contentType=application/json",
+          "delete /responses (500), body: Can't decode as contentType=application/json",
           "Unexpected character (',' (code 44)): was expecting a colon to separate field name and value",
           " at [Source: (StringReader); line: 1, column: 9]");
         });
@@ -205,7 +205,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): contentType=application/xml can't be validated");
+          "get /responses (200), body: contentType=application/xml can't be validated");
         });
     }
 
@@ -224,7 +224,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (400): no schema defined for contentType=application/schema+json");
+          "get /responses (400), body: no schema defined for contentType=application/schema+json");
         });
     }
     }

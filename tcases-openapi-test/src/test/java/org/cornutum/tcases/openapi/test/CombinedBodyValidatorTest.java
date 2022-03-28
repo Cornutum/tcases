@@ -61,7 +61,7 @@ public class CombinedBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "myString#oneOf/allOf/type: Type expected 'string', found 'object'.",
           "myString#oneOf/type: Type expected 'array', found 'object'.",
           "myString.Y#nullable: Null value is not allowed.");
@@ -76,7 +76,7 @@ public class CombinedBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "myString#oneOf/allOf/maxLength: Max length is '8', found '9'.",
           "myString#oneOf/type: Type expected 'array', found 'string'.",
           "myString#oneOf/type: Type expected 'object', found 'string'.",
@@ -93,7 +93,7 @@ public class CombinedBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "get /responses (200): invalid response",
+          "get /responses (200), body: invalid response",
           "myString#oneOf/allOf/type: Type expected 'string', found 'array'.",
           "myString#oneOf/minItems: Min items is '2', found '1'.",
           "myString.0#items/not: Schema should not be valid.",
