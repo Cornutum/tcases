@@ -19,6 +19,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
@@ -155,9 +157,86 @@ public class ResponseValidator
     }
 
   /**
+   * Given a response with the given status code to the given operation on the API resource at the given path, completes
+   * successfully if the response headers conform to its OpenAPI definition. Otherwise, throws a ResponseValidationException.
+   *
+   * @param headers Maps each header name to its value
+   */
+  public void assertHeadersValid( String op, String path, int statusCode, Map<String,String> headers) throws ResponseValidationException
+    {
+    try
+      {
+      if( !responses_.defined( op, path, statusCode))
+        {
+        throw new ResponseValidationException( op, path, String.format( "no response defined for statusCode=%s", statusCode));
+        }
+
+      // For each header defined for this response...
+      Arrays.stream( responses_.headers( op, path, statusCode))
+        .forEach( headerName -> {
+          // ... except Content-Type, which must be ignored...
+          if( !"Content-Type".equals( headerName))
+            {
+            if( headers.containsKey( headerName))
+              {
+              // ...compare expected content schema...
+              JsonNode schema =
+                responses_.headerSchema( op, path, statusCode, headerName)
+                .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, headerName, "no schema defined"));
+
+              // ...with actual header content...
+              String contentType =
+                responses_.headerContentType( op, path, statusCode, headerName)
+                .orElse( "text/plain");
+
+              boolean explode = responses_.headerExplode( op, path, statusCode, headerName);
+              
+              JsonNode headerContentJson =
+                contentJson( op, path, statusCode, headerName, contentType, headers.get( headerName), explode)
+                .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, headerName, String.format( "contentType=%s can't be validated", contentType)));
+
+              // ...and report any non-conformance errors
+              ValidationData<Void> validation = new ValidationData<>();
+              try
+                {
+                SchemaValidator schemaValidator = new SchemaValidator( null, schema);
+                schemaValidator.validate( headerContentJson, validation);
+                }
+              catch( Exception e)
+                {
+                throw new ResponseValidationException( op, path, statusCode, headerName, "can't validate value", e);
+                }
+        
+              if( !validation.isValid())
+                {
+                throw new ResponseValidationException( op, path, statusCode, headerName, String.format( "invalid value\n%s", validationErrors( validation)));
+                }
+              }
+            else if ( responses_.headerRequired( op, path, statusCode, headerName))
+              {
+              throw new ResponseValidationException( op, path, statusCode, headerName, "required header not received");
+              }
+            }
+          });
+      }
+    catch( ResponseUnvalidatedException unvalidated)
+      {
+      notify( unvalidated);
+      }
+    }
+
+  /**
    * Returns a JSON representation of the given body content. Returns {@link Optional#empty} if no JSON representation is possible.
    */
   private Optional<JsonNode> bodyContentJson( String op, String path, int statusCode, String contentType, String bodyContent)
+    {
+    return contentJson( op, path, statusCode, "body", contentType, bodyContent, false);
+    }
+
+  /**
+   * Returns a JSON representation of the given content. Returns {@link Optional#empty} if no JSON representation is possible.
+   */
+  private Optional<JsonNode> contentJson( String op, String path, int statusCode, String location, String contentType, String content, boolean explode)
     {
     try
       {
@@ -166,21 +245,24 @@ public class ResponseValidator
       return
         Optional.ofNullable(
           ("application/json".equals( media.base()) || "json".equals( media.suffix()))?
-          Optional.of( decodeJson( bodyContent))
+          Optional.of( decodeJson( content))
           .filter( json -> !json.isMissingNode())
-          .orElseThrow( () -> new IllegalArgumentException( "Response body is empty")):
+          .orElseThrow( () -> new IllegalArgumentException( "No JSON content found")):
 
           "text/plain".equals( media.base())?
-          decodeSimple( bodyContent) :
+          decodeSimple( content, explode) :
 
           "multipart/form-data".equals( media.base())?
-          decodeForm( bodyContent) :
+          decodeForm( content, explode) :
 
+          "application/x-www-form-urlencoded".equals( media.base())?
+          decodeFormUrl( content, explode) :
+          
           null);
       }
     catch( Exception e)
       {
-      throw new ResponseValidationException( op, path, statusCode, "body", String.format( "Can't decode as contentType=%s", contentType), e);
+      throw new ResponseValidationException( op, path, statusCode, location, String.format( "Can't decode as contentType=%s", contentType), e);
       }
     }
 
@@ -195,7 +277,7 @@ public class ResponseValidator
   /**
    * Returns the JSON representation of simple-encoded text content.
    */
-  private JsonNode decodeSimple( String content) throws Exception
+  private JsonNode decodeSimple( String content, boolean explode) throws Exception
     {
     return null;
     }
@@ -203,7 +285,15 @@ public class ResponseValidator
   /**
    * Returns the JSON representation of multipart/form-data content.
    */
-  private JsonNode decodeForm( String content) throws Exception
+  private JsonNode decodeForm( String content, boolean explode) throws Exception
+    {
+    return null;
+    }
+
+  /**
+   * Returns the JSON representation of application/x-www-form-urlencoded content.
+   */
+  private JsonNode decodeFormUrl( String content, boolean explode) throws Exception
     {
     return null;
     }

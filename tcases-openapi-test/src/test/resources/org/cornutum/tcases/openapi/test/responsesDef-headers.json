@@ -1,0 +1,113 @@
+{
+    "/responses": {
+        "delete": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                    "My-Array": {
+                        "description": "array",
+                        "explode": false,
+                        "style": "simple",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "get": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        },
+        "patch": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        },
+        "post": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        },
+        "put": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        },
+        "trace": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        },
+        "head": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        },
+        "options": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                }
+            }
+        }
+    },
+
+    "/unvalidated": {
+        "delete": {
+            "200": {
+                "description": "Success",
+                "headers": {
+                    "X-Xml": {
+                        "description": "XML",
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Failure",
+                "headers": {
+                    "X-Undefined-Json": {
+                        "description": "JSON",
+                        "content": {
+                            "application/json": {
+                            }
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "Not Found",
+                "headers": {
+                    "X-Unknown": {
+                        "description": "Unknown"
+                    }
+                }
+            }
+        }
+    }
+}

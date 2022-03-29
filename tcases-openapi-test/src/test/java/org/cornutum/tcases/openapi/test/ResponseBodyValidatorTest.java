@@ -141,7 +141,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
         assertValidationErrors(
           failure,
           "delete /responses (500), body: Can't decode as contentType=application/json",
-          "Response body is empty");
+          "No JSON content found");
         });
 
     // Then...

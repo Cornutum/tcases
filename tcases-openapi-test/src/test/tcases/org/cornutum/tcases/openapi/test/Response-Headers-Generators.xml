@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Headers" seed="181127088295777280" tuples="1">
+    <Combine tuples="3">
+      <Include var="Headers.Explode"/>
+      <Include var="Headers.Schema.Content-Type"/>
+      <Include var="Headers.Schema.Type"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Headers.Schema.Defined"/>
+      <Include var="Headers.Schema.Source"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>
