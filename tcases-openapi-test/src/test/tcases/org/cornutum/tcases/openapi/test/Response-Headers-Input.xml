@@ -1,0 +1,52 @@
+<System name="Response">
+    <Function name="Headers">
+        <Input>
+            <VarSet name="Headers">
+                <Var name="Count">
+                    <Value name="0"/>
+                    <Value name="1" property="headers"/>
+                    <Value name="Many" property="headers, headersMany"/>
+                </Var>
+                <Var name="Name" when="headers">
+                    <Value name="Content-Type" when="headersMany"/>
+                    <Value name="Defined" property="header"/>
+                </Var>
+                <Var name="Required" when="header">
+                    <Value name="true"/>
+                    <Value name="false"/>
+                    <Value name="Undefined"/>
+                </Var>
+                <Var name="Explode" when="header">
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <Var name="Style" when="header">
+                    <Value name="simple"/>
+                    <Value name="Undefined"/>
+                </Var>
+                <VarSet name="Schema" when="header">
+                    <Var name="Defined">
+                        <Value name="true" property="schema"/>
+                        <Value name="false"/>
+                    </Var>
+                    <Var name="Source">
+                        <Value name="Header" property="schemaHeader" whenNot="schemaContent"/>
+                        <Value name="Content" property="schemaContent" whenNot="schemaHeader"/>
+                    </Var>
+                    <Var name="Content-Type" when="schema, schemaContent">
+                        <Value name="application/json"/>
+                        <Value name="text/plain"/>
+                        <Value name="multipart/form-data" when="object"/>
+                        <Value name="application/x-www-form-urlencoded" when="object"/>
+                    </Var>
+                    <Var name="Type" when="schema">
+                        <Value name="array"/>
+                        <Value name="integer"/>
+                        <Value name="object" property="object"/>
+                        <Value name="string"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

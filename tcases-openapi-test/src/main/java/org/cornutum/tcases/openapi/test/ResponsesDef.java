@@ -16,11 +16,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * Defines the responses for requests described by an OpenAPI definition.
@@ -72,6 +75,66 @@ public class ResponsesDef
     }
 
   /**
+   * Returns the names of headers defined for the given status code for the given operation on the API resource at the given path.
+   */
+  public String[] headers( String op, String path, int statusCode)
+    {
+    return
+      opStatusHeaders( op, path, statusCode)
+      .map( headers -> toStream( headers.fieldNames()).toArray( String[]::new))
+      .orElse( new String[0]);
+    }
+
+  /**
+   * Returns true if the given header is required for the given status code for the given operation on the API resource at the given path.
+   */
+  public boolean headerRequired( String op, String path, int statusCode, String headerName)
+    {
+    return
+      opStatusHeader( op, path, statusCode, headerName)
+      .flatMap( header -> Optional.ofNullable( header.get( "required")))
+      .map( JsonNode::asBoolean)
+      .orElse( false);
+    }
+
+  /**
+   * Returns true if explode-encoding is used for the given header value for the given status code for the given operation on the API resource at the given path.
+   */
+  public boolean headerExplode( String op, String path, int statusCode, String headerName)
+    {
+    return
+      opStatusHeader( op, path, statusCode, headerName)
+      .flatMap( header -> Optional.ofNullable( header.get( "explode")))
+      .map( JsonNode::asBoolean)
+      .orElse( false);
+    }
+
+  /**
+   * Returns the content type for the given header value for the given status code for the given operation on the API resource at the given path.
+   */
+  public Optional<String> headerContentType( String op, String path, int statusCode, String headerName)
+    {
+    return
+      opStatusHeaderContent( op, path, statusCode, headerName)
+      .flatMap( content -> toStream( content.fieldNames()).findFirst());
+    }
+
+  /**
+   * Returns the schema used for the given header value for the given status code for the given operation on the API resource at the given path.
+   */
+  public Optional<ObjectNode> headerSchema( String op, String path, int statusCode, String headerName)
+    {
+    Optional<ObjectNode> content =
+      opStatusHeaderContent( op, path, statusCode, headerName)
+      .flatMap( mediaTypes -> toStream( mediaTypes.elements()).findFirst())
+      .map( contentType -> asObject( contentType));
+
+    return
+      (content.isPresent()? content : opStatusHeader( op, path, statusCode, headerName))
+      .flatMap( header -> Optional.ofNullable( asObject( header.get( "schema"))));
+    }
+
+  /**
    * Returns the response definitions for the given operation on the API resource at the given path.
    */
   private ObjectNode opResponses( String op, String path)
@@ -117,6 +180,37 @@ public class ResponsesDef
           .findFirst();
         })
       ;
+    }
+
+  /**
+   * Returns the header definitions for the given status code for the given operation on the API resource at the given path.
+   */
+  private Optional<ObjectNode> opStatusHeaders( String op, String path, int statusCode)
+    {
+    return
+      opStatusResponse( op, path, statusCode)
+      .flatMap( response -> Optional.ofNullable( asObject( response.get( "headers"))))
+      .filter( headers -> headers.size() > 0);
+    }
+
+  /**
+   * Returns the definition of the given header defined for the given status code for the given operation on the API resource at the given path.
+   */
+  private Optional<ObjectNode> opStatusHeader( String op, String path, int statusCode, String headerName)
+    {
+    return
+      opStatusHeaders( op, path, statusCode)
+      .flatMap( headers -> Optional.ofNullable( asObject( headers.get( headerName))));
+    }
+
+  /**
+   * Returns the definition of the given header content defined for the given status code for the given operation on the API resource at the given path.
+   */
+  private Optional<ObjectNode> opStatusHeaderContent( String op, String path, int statusCode, String headerName)
+    {
+    return
+      opStatusHeader( op, path, statusCode, headerName)
+      .flatMap( header -> Optional.ofNullable( asObject( header.get( "content"))));
     }
 
   /**
@@ -191,6 +285,31 @@ public class ResponsesDef
       }
     matcher.appendTail( escaped);
     return escaped.toString();
+    }
+
+  /**
+   * Returns a stream that produces the sequence defined by the given Iterator.
+   */
+  private static <T> Stream<T> toStream( Iterator<T> iterator)
+    {
+    return
+      Optional.ofNullable( iterator)
+      .map( i -> {
+        Iterable<T> iterable = () -> i;
+        return toStream( iterable);
+        })
+      .orElse( null);
+    }
+
+  /**
+   * Returns a stream that produces the sequence defined by the given Iterable.
+   */
+  private static <T> Stream<T> toStream( Iterable<T> iterable)
+    {
+    return
+      Optional.ofNullable( iterable)
+      .map( i -> StreamSupport.stream( i.spliterator(), false))
+      .orElse( null);
     }
 
   /**

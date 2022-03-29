@@ -47,7 +47,7 @@ public abstract class ResponseValidatorTest
   /**
    * Throws an AssertionError if the given failure message does not match the expected contents.
    */
-  protected void assertValidationErrors( ResponseValidationException failure, String... expectedLines) 
+  protected void assertValidationErrors( Exception failure, String... expectedLines) 
     {
     List<String> actualLines = new ArrayList<String>();
     for( Throwable cause = failure; cause != null; cause = cause.getCause())
