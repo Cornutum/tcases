@@ -10,7 +10,6 @@ package org.cornutum.tcases.openapi.test;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.openapi4j.core.validation.ValidationResults.ValidationItem;
 import org.openapi4j.core.validation.ValidationSeverity;
 import org.openapi4j.schema.validator.ValidationData;
 import org.openapi4j.schema.validator.v3.SchemaValidator;
@@ -23,10 +22,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.StringJoiner;
 import java.util.function.Consumer;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Verifies that request responses conform to the form described by an OpenAPI definition.
@@ -138,20 +138,18 @@ public class ResponseValidator
           .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "no schema defined for contentType=%s", contentType)));
 
         // ...and report any non-conformance errors
-        ValidationData<Void> validation;
+        Optional<List<SchemaValidationError>> validationErrors;
         try
           {
           SchemaValidator schemaValidator = new SchemaValidator( null, schema);
-          validation = validateSchema( schemaValidator, bodyContentJson);
+          validationErrors = validateSchema( schemaValidator, bodyContentJson);
           }
         catch( Exception e)
           {
           throw new ResponseValidationException( op, path, statusCode, "body", "can't validate content", e);
           }
-        if( !validation.isValid())
-          {
-          throw new ResponseValidationException( op, path, statusCode, "body", String.format( "invalid response\n%s", validationErrors( validation)));
-          }
+
+        validationErrors.ifPresent( errors -> reportValidationErrors( op, path, statusCode, "body", "invalid response", errors));
         }
       }
     catch( ResponseUnvalidatedException unvalidated)
@@ -202,22 +200,20 @@ public class ResponseValidator
                 }
 
               // ...and report any non-conformance errors
-              ValidationData<Void> validation;
+              Optional<List<SchemaValidationError>> validationErrors;
               try
                 {
                 SchemaValidator schemaValidator = new SchemaValidator( null, schema);
-                validation = validateSchema( schemaValidator, headerContentJson);
+                validationErrors = validateSchema( schemaValidator, headerContentJson);
                 }
               catch( Exception e)
                 {
                 throw new ResponseValidationException( op, path, statusCode, headerName, "can't validate value", e);
                 }
-        
-              if( !validation.isValid())
-                {
-                throw new ResponseValidationException( op, path, statusCode, headerName, String.format( "invalid value\n%s", validationErrors( validation)));
-                }
+
+              validationErrors.ifPresent( errors -> reportValidationErrors( op, path, statusCode, headerName, "invalid value", errors));
               }
+
             else if ( responses_.headerRequired( op, path, statusCode, headerName))
               {
               throw new ResponseValidationException( op, path, statusCode, headerName, "required header not received");
@@ -233,31 +229,39 @@ public class ResponseValidator
 
   /**
    * Returns the results of applying the given schema validator to the given alternative content representations.
+   * If at least one alternative is valid, returns {@link Optional#empty}. Otherwise, returns a list of
+   * validation errors.
    */
-  private ValidationData<Void> validateSchema( SchemaValidator schemaValidator, List<JsonNode> content) throws Exception
+  private Optional<List<SchemaValidationError>> validateSchema( SchemaValidator schemaValidator, List<JsonNode> content) throws Exception
     {
-    ValidationData<Void> initialValidation = new ValidationData<>();
-    JsonNode initialContent = content.get(0);
-    schemaValidator.validate( initialContent, initialValidation);
+    List<List<SchemaValidationError>> alternativeErrors =
+      content.stream()
+      .map( alternate -> {
+          ValidationData<Void> validation = new ValidationData<>();
+          schemaValidator.validate( alternate, validation);
+          return validationErrors( validation);
+        })
+      .collect( toList());
 
-    return
-      // First content alternative valid?
-      initialValidation.isValid()?
 
-      // Yes
-      initialValidation :
+    List<SchemaValidationError> result =
+      // Is any alternative valid?
+      alternativeErrors.stream().anyMatch( List::isEmpty)?
 
-      // No, return the results of the first successful validation of a different alternative.
-      // If none validated, return the initial validation errors.
-      content.subList( 1, content.size()).stream()
-        .map( alternateContent -> {
-          ValidationData<Void> alternateValidation = new ValidationData<>();
-          schemaValidator.validate( alternateContent, alternateValidation);
-          return alternateValidation;
-          })
-        .filter( ValidationData::isValid)
-        .findFirst()
-        .orElse( initialValidation);
+      // Yes, no errors to return
+      null :
+
+      // No, return the errors for...
+      alternativeErrors.stream()
+
+      // ... an alternative that has the expected type...
+      .filter( errors -> errors.stream().noneMatch( error -> "#type".equals( error.getLocation())))
+      .findFirst()
+
+      // ... or the first alternative
+      .orElse( alternativeErrors.get(0));
+
+    return Optional.ofNullable( result);
     }
 
   /**
@@ -344,51 +348,56 @@ public class ResponseValidator
     }
 
   /**
+   * Returns the errors described by the given schema validation results.
+   */
+  private List<SchemaValidationError> validationErrors( ValidationData<Void> validation)
+    {
+    return
+      validation.results().items( ValidationSeverity.ERROR).stream()
+      .map( item -> {
+        // Extract JSON pointer fragment for the location of the failed schema assertion
+        StringBuffer schemaKeys = new StringBuffer();
+        String crumbs = item.schemaCrumbs();
+        int keyEnd = crumbs.lastIndexOf( '>');
+        boolean moreSchemaKeys = keyEnd >= 0;
+
+        while( moreSchemaKeys)
+          {
+          int keyStart = crumbs.lastIndexOf( '<', keyEnd);
+          moreSchemaKeys = keyStart >= 0;
+          if( moreSchemaKeys)
+            {
+            schemaKeys.insert( 0, crumbs.substring( keyStart + 1, keyEnd));
+            keyEnd = keyStart - 2;
+            }
+
+          moreSchemaKeys =
+            moreSchemaKeys
+            && keyEnd > 0
+            && crumbs.substring( keyEnd, keyStart).equals( ">.");
+          if( moreSchemaKeys)
+            {
+            schemaKeys.insert( 0, "/");
+            }
+          }
+
+        return new SchemaValidationError( item.dataCrumbs(), schemaKeys.toString(), item.message());
+        })
+      .collect( toList());
+    }
+
+  /**
    * Returns a message describing the errors listed in the given schema validation results.
    */
-  private String validationErrors( ValidationData<Void> validation)
+  private void reportValidationErrors( String op, String path, int statusCode, String location, String reason, List<SchemaValidationError> errors)
     {
-    StringJoiner joiner = new StringJoiner( "\n");
-    for( ValidationItem item : validation.results().items( ValidationSeverity.ERROR))
-      {
-      // Extract JSON pointer fragment for the location of the failed schema assertion
-      StringBuffer schemaKeys = new StringBuffer();
-      String crumbs = item.schemaCrumbs();
-      int keyEnd = crumbs.lastIndexOf( '>');
-      boolean moreSchemaKeys = keyEnd >= 0;
-
-      while( moreSchemaKeys)
-        {
-        int keyStart = crumbs.lastIndexOf( '<', keyEnd);
-        moreSchemaKeys = keyStart >= 0;
-        if( moreSchemaKeys)
-          {
-          schemaKeys.insert( 0, crumbs.substring( keyStart + 1, keyEnd));
-          keyEnd = keyStart - 2;
-          }
-
-        moreSchemaKeys =
-          moreSchemaKeys
-          && keyEnd > 0
-          && crumbs.substring( keyEnd, keyStart).equals( ">.");
-        if( moreSchemaKeys)
-          {
-          schemaKeys.insert( 0, "/");
-          }
-        }
-
-      String schemaLocation = Optional.of( schemaKeys.toString()).filter( String::isEmpty).orElse( String.format( "#%s", schemaKeys));
-      String dataLocation = item.dataCrumbs();
-      String location = String.format("%s%s", dataLocation, schemaLocation);
-      
-      joiner.add(
-        String.format(
-          "%s%s",
-          Optional.of( location).filter( String::isEmpty).orElse( String.format( "%s: ", location)),
-          item.message()));
-      }
-    
-    return joiner.toString();
+    throw
+      new ResponseValidationException
+      ( op,
+        path,
+        statusCode,
+        location,
+        String.format( "%s\n%s", reason, errors.stream().map( Object::toString).collect( joining( "\n"))));
     }
 
   /**
