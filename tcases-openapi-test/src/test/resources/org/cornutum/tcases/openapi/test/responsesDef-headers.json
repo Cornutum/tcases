@@ -12,7 +12,9 @@
                             "application/json": {
                                 "schema": {
                                     "type": "array",
-                                    "items": "integer"
+                                    "items": {
+                                        "type": "integer"
+                                    }
                                 }
                             }
                         }
@@ -24,6 +26,52 @@
             "200": {
                 "description": "Success",
                 "headers": {
+                    "My-String": {
+                        "description": "array",
+                        "required": false,
+                        "explode": false,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "My-Simple-Array": {
+                        "description": "array",
+                        "required": true,
+                        "explode": true,
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "My-Mixed-Array": {
+                        "description": "array",
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "type": "number"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
                 }
             }
         },
