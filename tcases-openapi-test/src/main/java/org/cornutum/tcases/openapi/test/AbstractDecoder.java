@@ -8,11 +8,13 @@
 package org.cornutum.tcases.openapi.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.BigIntegerNode;
 import com.fasterxml.jackson.databind.node.DecimalNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -89,14 +91,36 @@ public abstract class AbstractDecoder
    */
   public Optional<JsonNode> decodeNumber( String content)
     {
+    JsonNode jsonNode;
+
     try
       {
-      return Optional.of( DecimalNode.valueOf( new BigDecimal( content)));
+      BigDecimal number = new BigDecimal( content);
+      BigInteger integer;
+      try
+        {
+        integer =
+          Optional.of( number)
+          .filter( decimal -> decimal.scale() == 0)
+          .map( BigDecimal::toBigIntegerExact)
+          .orElse( null);
+        }
+      catch( Exception e)
+        {
+        integer = null;
+        }
+
+      jsonNode =
+        Optional.ofNullable( integer)
+        .map( i -> (JsonNode) BigIntegerNode.valueOf(i))
+        .orElse( DecimalNode.valueOf( number));
       }
     catch( Exception e)
       {
-      return Optional.empty();
+      jsonNode = null;
       }
+
+    return Optional.ofNullable( jsonNode);
     }
 
   /**
