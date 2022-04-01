@@ -69,6 +69,115 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
 
   @Test
+  public void whenSimpleArray()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-headers", UNVALIDATED_FAIL);
+    String op = "get";
+    String path = "/responses";
+    int statusCode = 200;
+
+    {
+    // When...
+    Map<String,String> headers =
+      headers()
+      .put( "My-String", "\"A,B,C,D\"")
+      .put( "My-Simple-Array", "1,2,3,")
+      .put( "My-Mixed-Array", "1,,-2.0,")
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+    {
+    // When...
+    Map<String,String> headers =
+      headers()
+      .put( "My-Simple-Array", "")
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-Simple-Array", "1,2,X")
+          .put( "My-Mixed-Array", "1.234")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200), My-Simple-Array: invalid value",
+          "2#items/type: Type expected 'integer', found 'string'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-String", "1.234")
+          .put( "My-Simple-Array", "")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200), My-String: invalid value",
+          "#type: Type expected 'string', found 'number'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-String", "\"\"")
+          .put( "My-Mixed-Array", "X,Y")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200), My-Simple-Array: required header not received");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-String", "\"1.234\"")
+          .put( "My-Simple-Array", "")
+          .put( "My-Mixed-Array", "")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /responses (200), My-Mixed-Array: invalid value",
+          "#minItems: Min items is '1', found '0'.");
+        });
+    }
+
+  @Test
   public void whenUnvalidated()
     {
     // Given...
