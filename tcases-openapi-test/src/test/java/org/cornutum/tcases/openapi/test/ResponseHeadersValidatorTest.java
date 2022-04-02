@@ -178,6 +178,108 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
 
   @Test
+  public void whenExplodedObject()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-headers", UNVALIDATED_FAIL);
+    String op = "patch";
+    String path = "/responses";
+    int statusCode = 200;
+
+    {
+    // When...
+    Map<String,String> headers =
+      headers()
+      .put( "My-Simple-Object", "A=2014-03-21,B=0,C=")
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+    {
+    // When...
+    Map<String,String> headers =
+      headers()
+      .put( "My-Simple-Object", "A=2014-03-21,B=123,C=-123")
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-Simple-Object", "A=,B=0,C=-123")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "patch /responses (200), My-Simple-Object: invalid value",
+          "A#format: Value '' does not match format 'date'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-Simple-Object", "")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "patch /responses (200), My-Simple-Object: invalid value",
+          "#required: Field 'A' is required.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "patch /responses (200), My-Simple-Object: required header not received");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        Map<String,String> headers =
+          headers()
+          .put( "My-Simple-Object", "A,B,C=")
+          .build();
+    
+        // Then...
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "patch /responses (200), My-Simple-Object: invalid value",
+          "#type: Type expected 'object', found 'array'.",
+          "#required: Field 'A' is required.");
+        });
+    }
+
+  @Test
   public void whenUnvalidated()
     {
     // Given...
