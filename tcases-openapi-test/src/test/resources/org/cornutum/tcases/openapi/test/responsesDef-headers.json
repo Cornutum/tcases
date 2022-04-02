@@ -27,7 +27,7 @@
                 "description": "Success",
                 "headers": {
                     "My-String": {
-                        "description": "array",
+                        "description": "string",
                         "required": false,
                         "explode": false,
                         "content": {
@@ -79,6 +79,33 @@
             "200": {
                 "description": "Success",
                 "headers": {
+                    "My-Simple-Object": {
+                        "description": "object",
+                        "required": true,
+                        "explode": true,
+                        "style": "simple",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "A": {
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "B": {
+                                            "type": "integer"
+                                        },
+                                        "C": {
+                                            "type": "number",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "required": [ "A" ]
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
