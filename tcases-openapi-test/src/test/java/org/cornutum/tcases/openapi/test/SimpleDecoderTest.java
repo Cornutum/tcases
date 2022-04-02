@@ -13,7 +13,10 @@ import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Runs {@link SimpleDecoder} tests.
@@ -214,13 +217,238 @@ public class SimpleDecoderTest
       "[-2.34]",
       "[\"-2.34\"]");
     }
+  
+  @Test
+  public void whenValue()
+    {
+    // Given...
+    boolean explode = false;
+    SimpleDecoder decoder = new SimpleDecoder( explode);
+    String content;
+
+    // When...
+    content = "1.234";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decodeValue( content),
+      "1.234",
+      "\"1.234\"");
+
+    // When...
+    content = "true";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      valueNodes( decoder.decodeValue( content)),
+      "true",
+      "\"true\"");
+
+    // When...
+    content = "";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      valueNodes( decoder.decodeValue( content)),
+      "\"\"",
+      "null");
+
+    // When...
+    content = "Murgatroid";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      valueNodes( decoder.decodeValue( content)),
+      "\"Murgatroid\"");
+    }
+  
+  @Test
+  public void whenAny()
+    {
+    // Given...
+    boolean explode = false;
+    SimpleDecoder decoder = new SimpleDecoder( explode);
+    String content;
+
+    // When...
+    content = "A,2";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decode( content),
+      "{\"A\":2}",
+      "{\"A\":\"2\"}",
+      "[\"A\",2]",
+      "[\"A\",\"2\"]",     
+      "\"A,2\"");
+
+    // When...
+    content = "true";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decode( content),
+      "[true]",
+      "[\"true\"]",
+      "true",
+      "\"true\"");
+
+    // When...
+    content = "";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decode( content),
+      "{}", 
+      "[]", 
+      "\"\"",
+      "null");
+
+    // When...
+    content = "Murgatroid";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decode( content),
+      "[\"Murgatroid\"]",
+      "\"Murgatroid\"");
+    }
+  
+  @Test
+  public void whenBoolean()
+    {
+    // Given...
+    boolean explode = false;
+    SimpleDecoder decoder = new SimpleDecoder( explode);
+    String content;
+    Optional<JsonNode> jsonNode;
+    
+    // When...
+    content = "true";
+    
+    // Then...
+    jsonNode = decoder.decodeBoolean( content);
+    assertThat( "Boolean content", jsonNode.isPresent(), is( true));
+    assertThat( "BooleanNode", jsonNode.get().isBoolean(), is( true));
+    assertThat( "Value", jsonNode.get().asBoolean(), is( true));
+
+    // When...
+    content = "false";
+    
+    // Then...
+    jsonNode = decoder.decodeBoolean( content);
+    assertThat( "Boolean content", jsonNode.isPresent(), is( true));
+    assertThat( "BooleanNode", jsonNode.get().isBoolean(), is( true));
+    assertThat( "Value", jsonNode.get().asBoolean(), is( false));
+
+    // When...
+    content = "?";
+    
+    // Then...
+    jsonNode = decoder.decodeBoolean( content);
+    assertThat( "Boolean content", jsonNode.isPresent(), is( false));
+
+    // When...
+    content = "FALSE";
+    
+    // Then...
+    jsonNode = decoder.decodeBoolean( content);
+    assertThat( "Boolean content", jsonNode.isPresent(), is( false));
+
+    // When...
+    content = null;
+    
+    // Then...
+    jsonNode = decoder.decodeBoolean( content);
+    assertThat( "Boolean content", jsonNode.isPresent(), is( false));
+
+    // When...
+    content = "-1.23";
+    
+    // Then...
+    jsonNode = decoder.decodeBoolean( content);
+    assertThat( "Boolean content", jsonNode.isPresent(), is( false));
+    }
+  
+  @Test
+  public void whenNumber()
+    {
+    // Given...
+    boolean explode = false;
+    SimpleDecoder decoder = new SimpleDecoder( explode);
+    String content;
+    Optional<JsonNode> jsonNode;
+    
+    // When...
+    content = "-1.234";
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( true));
+    assertThat( "DecimalNode", jsonNode.get().isBigDecimal(), is( true));
+    assertThat( "Value", jsonNode.get().decimalValue(), is( new BigDecimal( content)));
+
+    // When...
+    content = "0.0";
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( true));
+    assertThat( "DecimalNode", jsonNode.get().isBigDecimal(), is( true));
+    assertThat( "Value", jsonNode.get().decimalValue(), is( new BigDecimal( content)));
+
+    // When...
+    content = "1234";
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( true));
+    assertThat( "BigIntegerNode", jsonNode.get().isBigInteger(), is( true));
+    assertThat( "Value", jsonNode.get().bigIntegerValue(), is( new BigInteger( content)));
+
+    // When...
+    content = "?";
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( false));
+
+    // When...
+    content = "false";
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( false));
+
+    // When...
+    content = null;
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( false));
+
+    // When...
+    content = "0XA";
+    
+    // Then...
+    jsonNode = decoder.decodeNumber( content);
+    assertThat( "Number content", jsonNode.isPresent(), is( false));
+    }
 
   private void assertJsonNodes( String label, List<JsonNode> actual, String... expected)
     {
     assertThat(
       label,
       actual.stream().map( String::valueOf).toArray( String[]::new),
-      containsElements( expected));
+      listsElements( expected));
     }
 
   private List<JsonNode> objectNodes( List<JsonNode> jsonNodes)
@@ -238,6 +466,16 @@ public class SimpleDecoderTest
     jsonNodes.stream()
       .forEach( node -> {
         assertThat( String.format( "'%s' is an array", node), node.isArray(), is( true));
+        });
+
+    return jsonNodes;
+    }
+
+  private List<JsonNode> valueNodes( List<JsonNode> jsonNodes)
+    {
+    jsonNodes.stream()
+      .forEach( node -> {
+        assertThat( String.format( "'%s' is a value", node), node.isValueNode(), is( true));
         });
 
     return jsonNodes;
