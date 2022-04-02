@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.BigIntegerNode;
+import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.DecimalNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.TextNode;
@@ -77,9 +78,8 @@ public abstract class AbstractDecoder
    */
   protected List<JsonNode> decodeValue( String content)
     {
-    
     return
-      Arrays.asList( decodeNumber( content), decodeString( content), decodeNull( content))
+      Arrays.asList( decodeNumber( content), decodeBoolean( content), decodeString( content), decodeNull( content))
       .stream()
       .filter( Optional::isPresent)
       .map( Optional::get)
@@ -124,11 +124,24 @@ public abstract class AbstractDecoder
     }
 
   /**
+   * Returns the JSON boolean representation of the given content.
+   */
+  public Optional<JsonNode> decodeBoolean( String content)
+    {
+    return
+      Optional.ofNullable( content)
+      .filter( text -> "true".equals( text) || "false".equals( text))
+      .map( text -> BooleanNode.valueOf( Boolean.valueOf( text)));
+    }
+
+  /**
    * Returns the JSON string representation of the given content.
    */
   public Optional<JsonNode> decodeString( String content)
     {
-    return Optional.ofNullable( TextNode.valueOf( content));
+    return
+      Optional.ofNullable( content)
+      .map( text -> TextNode.valueOf( text));
     }
 
   /**
