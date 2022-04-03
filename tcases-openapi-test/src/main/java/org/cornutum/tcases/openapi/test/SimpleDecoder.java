@@ -13,18 +13,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.IntStream;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Returns the JSON representation of simple-encoded content.
@@ -140,19 +135,6 @@ public class SimpleDecoder extends AbstractDecoder
           .map( jsonNode -> mapper_.createArrayNode().addAll( prevArray).add( jsonNode));
         })
       .collect( toList());
-    }
-
-  /**
-   * A collector that produces a map sorted in insertion order.
-   */
-  private <T> Collector<T,?,Map<String,String>> toOrderedMap( Function<T,String> keyMapper, Function<T,String> valueMapper)
-    {
-    return
-      toMap(
-        keyMapper,
-        valueMapper,
-        (v1, v2) -> v1,
-        LinkedHashMap::new);
     }
 
   private final ObjectMapper mapper_ = new ObjectMapper();        
