@@ -20,6 +20,24 @@
                         }
                     }
                 }
+            },
+            "400": {
+                "description": "Failure",
+                "headers": {
+                    "My-Simple-Integer": {
+                        "description": "integer",
+                        "style": "simple",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "integer",
+                                    "minimum": -1,
+                                    "maximum": 1
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "get": {
@@ -71,6 +89,38 @@
                                 ]
                             }
                         }
+                    },
+                    "My-Number-Array": {
+                        "description": "array",
+                        "required": false,
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number",
+                                        "multipleOf": 3
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Failure",
+                "headers": {
+                    "My-Simple-String": {
+                        "description": "string",
+                        "required": "true",
+                        "style": "simple",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -107,12 +157,68 @@
                         }
                     }
                 }
+            },
+            "400": {
+                "description": "Failure",
+                "headers": {
+                    "My-Simple-Object": {
+                        "description": "object",
+                        "explode": false,
+                        "style": "simple",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "boolean"
+                                },
+                                "B": {
+                                    "type": "number",
+                                    "nullable": true
+                                },
+                                "C": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "post": {
             "200": {
                 "description": "Success",
                 "headers": {
+                    "My-Json-String": {
+                        "explode": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "My-Json-Integer": {
+                        "explode": false,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "My-Json-Object": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "maxProperties": 1,
+                                    "nullable": true
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
