@@ -766,6 +766,207 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
 
   @Test
+  public void whenExplodedForm()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-headers", UNVALIDATED_FAIL);
+    String op = "put";
+    String path = "/responses";
+    int statusCode = 200;
+
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "O", "X=1,Y=0")
+      .field( "N", "-1.234")
+      .field( "S", "Howdy, folks!")
+      .build();
+    
+    Map<String,String> headers =
+      headers()
+      .put( "My-Exploded-Form", content)
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "A", "A,B,C")
+      .field( "B", "true")
+      .build();
+    
+    Map<String,String> headers =
+      headers()
+      .put( "My-Exploded-Form", content)
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .build();
+    
+    Map<String,String> headers =
+      headers()
+      .put( "My-Exploded-Form", content)
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "N", "")
+          .build();
+    
+        Map<String,String> headers =
+          headers()
+          .put( "My-Exploded-Form", content)
+          .build();
+
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200), My-Exploded-Form: invalid value",
+          "N#type: Type expected 'number', found 'object'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "O", "X,1,Y,0")
+          .build();
+    
+        Map<String,String> headers =
+          headers()
+          .put( "My-Exploded-Form", content)
+          .build();
+
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200), My-Exploded-Form: invalid value",
+          "O#type: Type expected 'object', found 'array'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content = "X==0";
+
+        Map<String,String> headers =
+          headers()
+          .put( "My-Exploded-Form", content)
+          .build();
+
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200), My-Exploded-Form: Can't decode as contentType=application/x-www-form-urlencoded",
+          "'X==0' is not a valid key/value pair");
+        });
+    }
+
+  @Test
+  public void whenUnexplodedForm()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-headers", UNVALIDATED_FAIL);
+    String op = "put";
+    String path = "/responses";
+    int statusCode = 200;
+
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "O", "X,1,Y,0")
+      .field( "N", "-1.234")
+      .field( "S", "")
+      .build();
+    
+    Map<String,String> headers =
+      headers()
+      .put( "My-Form", content)
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "A", "A,B,C")
+      .field( "B", "true")
+      .build();
+    
+    Map<String,String> headers =
+      headers()
+      .put( "My-Form", content)
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .build();
+    
+    Map<String,String> headers =
+      headers()
+      .put( "My-Form", content)
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "O", "X,1,Y,0,")
+          .build();
+    
+        Map<String,String> headers =
+          headers()
+          .put( "My-Form", content)
+          .build();
+
+        validator.assertHeadersValid( op, path, statusCode, headers);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200), My-Form: invalid value",
+          "O#type: Type expected 'object', found 'array'.");
+        });
+    }
+
+  @Test
   public void whenUnvalidated()
     {
     // Given...

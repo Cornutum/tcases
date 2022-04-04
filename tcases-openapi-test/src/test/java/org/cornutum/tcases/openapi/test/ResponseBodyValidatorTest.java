@@ -267,4 +267,79 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     }
     }
+
+  @Test
+  public void whenForm()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-body", UNVALIDATED_FAIL);
+    String op = "put";
+    String path = "/responses";
+    int statusCode = 200;
+    String bodyContentType = "application/x-www-form-urlencoded";
+
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "O", "X,1,Y,0")
+      .field( "N", "-1.234")
+      .field( "S", "")
+      .build();
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "A", "A,B,C")
+      .field( "B", "true")
+      .build();
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .build();
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "O", "X,1,Y,0,")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200), body: invalid response",
+          "O#type: Type expected 'object', found 'array'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content = "X==0";
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (200), body: Can't decode as contentType=application/x-www-form-urlencoded",
+          "'X==0' is not a valid key/value pair");
+        });
+    }
   }

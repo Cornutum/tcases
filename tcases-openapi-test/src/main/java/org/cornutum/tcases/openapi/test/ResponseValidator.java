@@ -336,7 +336,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeFormUrl( String content, boolean explode) throws Exception
     {
-    return null;
+    return new FormUrlDecoder( explode).decode( content);
     }
 
   /**
