@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -171,6 +172,24 @@ public abstract class AbstractDecoder
         valueMapper,
         (v1, v2) -> v1,
         LinkedHashMap::new);
+    }
+
+  /**
+   * Decodes an application/x-www-form-urlencoded string.
+   */
+  protected String decodeUrl( String content)
+    {
+    try
+      {
+      return
+        content == null
+        ? null
+        : URLDecoder.decode( content, "UTF-8");
+      }
+    catch( Exception e)
+      {
+      throw new IllegalArgumentException( String.format( "Can't decode application/x-www-form-urlencoded content=%s", content), e);
+      }
     }
 
   private final boolean explode_;
