@@ -9,19 +9,17 @@ package org.cornutum.tcases.openapi.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Test;
-import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Optional;
 
 /**
  * Runs {@link SimpleDecoder} tests.
  */
-public class SimpleDecoderTest
+public class SimpleDecoderTest extends AbstractDecoderTest
   {
   @Test
   public void whenNotExplodedObject()
@@ -441,43 +439,5 @@ public class SimpleDecoderTest
     // Then...
     jsonNode = decoder.decodeNumber( content);
     assertThat( "Number content", jsonNode.isPresent(), is( false));
-    }
-
-  private void assertJsonNodes( String label, List<JsonNode> actual, String... expected)
-    {
-    assertThat(
-      label,
-      actual.stream().map( String::valueOf).toArray( String[]::new),
-      listsElements( expected));
-    }
-
-  private List<JsonNode> objectNodes( List<JsonNode> jsonNodes)
-    {
-    jsonNodes.stream()
-      .forEach( node -> {
-        assertThat( String.format( "'%s' is an object", node), node.isObject(), is( true));
-        });
-
-    return jsonNodes;
-    }
-
-  private List<JsonNode> arrayNodes( List<JsonNode> jsonNodes)
-    {
-    jsonNodes.stream()
-      .forEach( node -> {
-        assertThat( String.format( "'%s' is an array", node), node.isArray(), is( true));
-        });
-
-    return jsonNodes;
-    }
-
-  private List<JsonNode> valueNodes( List<JsonNode> jsonNodes)
-    {
-    jsonNodes.stream()
-      .forEach( node -> {
-        assertThat( String.format( "'%s' is a value", node), node.isValueNode(), is( true));
-        });
-
-    return jsonNodes;
     }
   }
