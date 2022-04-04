@@ -226,27 +226,78 @@
             "200": {
                 "description": "Success",
                 "headers": {
-                }
-            }
-        },
-        "trace": {
-            "200": {
-                "description": "Success",
-                "headers": {
-                }
-            }
-        },
-        "head": {
-            "200": {
-                "description": "Success",
-                "headers": {
-                }
-            }
-        },
-        "options": {
-            "200": {
-                "description": "Success",
-                "headers": {
+                    "My-Form": {
+                        "explode": false,
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "O": {
+                                            "type": "object",
+                                            "properties": {
+                                                "X": "integer",
+                                                "Y": "integer"
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "A": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "N": {
+                                            "type": "number"
+                                        },
+                                        "B": {
+                                            "type": "boolean"
+                                        },
+                                        "S": {
+                                            "type": "string",
+                                            "nullable": "true"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "My-Exploded-Form": {
+                        "explode": true,
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "O": {
+                                            "type": "object",
+                                            "properties": {
+                                                "X": "integer",
+                                                "Y": "integer"
+                                            },
+                                            "additionalProperties": false
+                                        },
+                                        "A": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "N": {
+                                            "type": "number"
+                                        },
+                                        "B": {
+                                            "type": "boolean"
+                                        },
+                                        "S": {
+                                            "type": "string",
+                                            "nullable": "true"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
