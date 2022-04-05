@@ -30,11 +30,9 @@ import static io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.*;
 
 import java.net.URL;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static java.util.Collections.emptyList;
-import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -472,21 +470,15 @@ public final class OpenApiUtils
     }
 
   /**
-   * Returns the responses definition defined for the given API for the given request paths and operations.
-   * If <CODE>paths/operations</CODE> is null or empty, including responses for all paths/operations.
+   * Returns the responses definition defined for the given API.
    */
-  public static ResponsesDef responsesDef( OpenAPI api, Set<String> paths, Set<String> ops)
+  public static ResponsesDef responsesDef( OpenAPI api)
     {
-    Set<String> includePaths = Optional.ofNullable( paths).orElse( emptySet());
-    Set<String> includeOps = Optional.ofNullable( ops).orElse( emptySet());
-
     ObjectMapper mapper = new ObjectMapper();
     ObjectNode root = mapper.createObjectNode();
 
     // For all API paths...
     api.getPaths().keySet().stream()
-      // ...that are to be included...
-      .filter( path -> includePaths.isEmpty() || includePaths.contains( path))
       .forEach(
         path -> {
           ObjectNode pathResponses = mapper.createObjectNode();
@@ -497,9 +489,6 @@ public final class OpenApiUtils
             .forEach(
               opName -> {
               Optional.of( opName)
-                // ...that is to be included...
-                .filter( op -> includeOps.isEmpty() || includeOps.stream().anyMatch( includeOp -> includeOp.equalsIgnoreCase( op)))
-
                 // ...find the path operation definition...
                 .map(
                   op ->

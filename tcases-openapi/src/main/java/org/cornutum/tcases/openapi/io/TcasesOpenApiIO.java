@@ -17,6 +17,7 @@ import org.cornutum.tcases.openapi.resolver.RequestCases;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.openapi.resolver.ResolverContext;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
+import org.cornutum.tcases.openapi.test.ResponsesDef;
 
 import java.io.File;
 import java.io.InputStream;
@@ -263,6 +264,14 @@ public final class TcasesOpenApiIO
   public static SystemTestDef getResponseTests( File api, String defaultDocType, ModelOptions options)
     {
     return Tcases.getTests( getResponseInputModel( api, defaultDocType, options), null, null);
+    }
+
+  /**
+   * Returns a {@link ResponsesDef request responses definition} for the given OpenAPI definition.
+   */
+  public static ResponsesDef getResponsesDef( File api)
+    {
+    return null;
     }
 
   /**

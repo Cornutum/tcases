@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.test;
 
 import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -157,6 +158,44 @@ public class ResponsesDefTest
     // Then...
     assertThat( "Defined", responses.defined( "HEAD", "/responses", 200), is( true));
     assertThat( "Has body", responses.hasBody( "HEAD", "/responses", 200), is( false));
+    }
+
+  @Test
+  public void forPaths()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-1");
+    ResponsesDef view;
+
+    // Then...
+    assertThat( "Paths", responses.paths(), listsMembers( "/responses", "/respond","/respondingly"));
+    assertThat( "/responses ops", responses.ops( "/responses"), listsMembers( "get", "head","options"));
+    
+    // When....
+    view = responses.forPaths().forOps();
+    
+    // Then...
+    assertThat( "New view", view != responses, is( true));
+    assertThat( "Unchanged view", view, is( responses));
+
+    // When....
+    view = responses.forPaths( "/responses").forOps( "get");
+    
+    // Then...
+    assertThat( "New view", view != responses, is( true));
+    assertThat( "Paths", view.paths(), listsMembers( "/responses"));
+    assertThat( "/responses ops", view.ops( "/responses"), listsMembers( "get"));
+    assertThat( "Unchanged get /responses", view.opDef( "get", "/responses") == responses.opDef( "get", "/responses"), is( true));
+
+    // When....
+    view = responses.forOps( "head");
+    
+    // Then...
+    assertThat( "New view", view != responses, is( true));
+    assertThat( "Paths", view.paths(), listsMembers( responses.paths()));
+    assertThat( "/responses ops", view.ops( "/responses"), listsMembers( "head"));
+    assertThat( "/respondingly ops", view.ops( "/respondingly"), listsMembers( "head"));
+    assertThat( "/respond ops", view.ops( "/respond"), is( empty()));
     }
 
   /**
