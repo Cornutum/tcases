@@ -30,7 +30,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-0");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
@@ -43,7 +43,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-1");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
@@ -56,7 +56,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-2");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
@@ -69,7 +69,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-3");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
@@ -82,7 +82,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-4");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
@@ -95,7 +95,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-5");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
@@ -108,7 +108,7 @@ public class ResponsesDefTest extends OpenApiTest
     OpenAPI api = readApi( "responses-6");
 
     // When...
-    ResponsesDef responses = OpenApiUtils.responsesDef( api, null, null);
+    ResponsesDef responses = OpenApiUtils.responsesDef( api);
 
     // Then...
     assertResponsesJson( responses);
