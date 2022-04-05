@@ -328,7 +328,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeForm( String content, boolean explode) throws Exception
     {
-    return null;
+    throw new UnsupportedOperationException( "Not implemented");
     }
 
   /**
