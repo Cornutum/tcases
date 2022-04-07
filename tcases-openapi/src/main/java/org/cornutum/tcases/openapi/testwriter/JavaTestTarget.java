@@ -13,7 +13,6 @@ import static org.apache.commons.lang3.StringUtils.abbreviateMiddle;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import static java.util.stream.Collectors.joining;
@@ -145,26 +144,12 @@ public class JavaTestTarget extends TestTarget
    */
   private Optional<String> getMavenPackage( File dir)
     {
-    List<String> dirs = getPathElements( dir);
+    List<String> dirs = TestTarget.getPathElements( dir);
     int root = dirs.indexOf( "java");
     return
       root >= 0
       ? Optional.ofNullable( trimToNull( dirs.subList( root + 1, dirs.size()).stream().collect( joining( "."))))
       : Optional.empty();
-    }
-
-  /**
-   * Returns the elements of the given file path.
-   */
-  private List<String> getPathElements( File file)
-    {
-    List<String> elements = 
-      Optional.ofNullable( file.getParentFile())
-      .map( this::getPathElements)
-      .orElseGet( ArrayList::new);
-
-    elements.add( file.getName());
-    return elements;
     }
 
   @Override

@@ -94,6 +94,7 @@ public class ApiTestMojo extends AbstractMojo
         options.setServerUri( getBaseUri());
         options.setContentType( getContentType());
         options.setOutDir( new File( getOutDirFile(), getPath( inputFile)));
+        options.setResourceOutDir( getTestResourceDir( getPath( inputFile)));
         options.setOnModellingCondition( getOnModellingCondition());
         options.setOnResolverCondition( getOnResolverCondition());
         options.setReadOnlyEnforced( isReadOnlyEnforced());
@@ -216,7 +217,7 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
-   * Changes the output directory for generated Tcases models.
+   * Changes the output directory for generated test source files.
    */
   public void setOutDir( String outDir)
     {
@@ -224,7 +225,7 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
-   * Returns the output directory for generated Tcases models.
+   * Returns the output directory for generated test source files.
    */
   public String getOutDir()
     {
@@ -232,11 +233,46 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
-   * Returns the output directory for generated Tcases models.
+   * Returns the output directory for generated test source files.
    */
   public File getOutDirFile()
     {
     return getTargetDir( outDir==null? null : new File( outDir));
+    }
+
+  /**
+   * Changes the output directory for generated test resource files.
+   */
+  public void setResourceDir( String resourceDir)
+    {
+    this.resourceDir = resourceDir;
+    }
+
+  /**
+   * Returns the output directory for generated test resource files.
+   */
+  public String getResourceDir()
+    {
+    return resourceDir;
+    }
+
+  /**
+   * Returns the output directory for generated test resource files.
+   */
+  public File getResourceDirFile()
+    {
+    return getTargetDir( resourceDir==null? null : new File( resourceDir));
+    }
+
+  /**
+   * Returns the output directory for resource files generated for the given source path.
+   */
+  public File getTestResourceDir( String sourcePath)
+    {
+    return
+      withResources
+      ? new File( getResourceDirFile(), sourcePath)
+      : new File( "false");
     }
 
   /**
@@ -574,6 +610,20 @@ public class ApiTestMojo extends AbstractMojo
    */
   @Parameter(property="outDir",defaultValue="${project.build.directory}/generated-test-sources/java")
   private String outDir;
+
+  /**
+   * Defines the path to the directory where generated test resourcess are written.
+   * A relative path is applied relative to the <B><CODE>${project.build.directory}</CODE></B> of
+   * the project.
+   */
+  @Parameter(property="resourceDir",defaultValue="${project.build.directory}/generated-test-sources/resources")
+  private String resourceDir;
+
+  /**
+   * If false, no test resource files are produced.
+   */
+  @Parameter(property="withResources",defaultValue="true")
+  private boolean withResources;
 
   /**
    * Defines how input modelling conditions are handled. Valid values are "log", "fail", or "ignore".

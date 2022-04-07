@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
+import org.cornutum.tcases.openapi.test.ResponsesDef;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
@@ -118,6 +119,25 @@ public class TestSource
     return getTestDef().getRequestCases( getPaths(), getOperations());
     }
 
+  /**
+   * Changes the request response definitions for this source.
+   */
+  public void setResponses( ResponsesDef responses)
+    {
+    responses_ = responses;
+    }
+
+  /**
+   * Returns the request response definitions for this source.
+   */
+  public ResponsesDef getResponses()
+    {
+    return
+      Optional.ofNullable( responses_)
+      .map( responses -> responses.forPaths( getPaths()).forOps( getOperations()))
+      .orElse( null);
+    }
+
   @Override
   public String toString()
     {
@@ -141,6 +161,7 @@ public class TestSource
   private RequestTestDef testDef_;
   private Set<String> paths_;
   private Set<String> ops_;
+  private ResponsesDef responses_;
 
   /**
    * Builds a {@link TestSource} instance.
@@ -164,6 +185,12 @@ public class TestSource
     public Builder operations( String... operations)
       {
       source_.setOperations( operations);
+      return this;
+      }
+
+    public Builder responses( ResponsesDef responses)
+      {
+      source_.setResponses( responses);
       return this;
       }
     

@@ -13,6 +13,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Defines the target for output from a {@link TestWriter}.
@@ -99,6 +102,22 @@ public class TestTarget
     }
 
   /**
+   * Changes the resource output directory for this target.
+   */
+  public void setResourceDir( File dir)
+    {
+    resourceDir_ = dir;
+    }
+
+  /**
+   * Returns the resource output directory for this target.
+   */
+  public File getResourceDir()
+    {
+    return resourceDir_;
+    }
+
+  /**
    * Changes the test timeout (milliseconds) for this target.
    */
   public void setTimeout( Long millis)
@@ -154,6 +173,20 @@ public class TestTarget
     }
 
   /**
+   * Returns the elements of the given file path.
+   */
+  public static List<String> getPathElements( File file)
+    {
+    List<String> elements = 
+      Optional.ofNullable( file.getParentFile())
+      .map( JavaTestTarget::getPathElements)
+      .orElseGet( ArrayList::new);
+
+    elements.add( file.getName());
+    return elements;
+    }
+
+/**
    * Returns a new {@link Builder}.
    */
   public static Builder basic()
@@ -165,6 +198,7 @@ public class TestTarget
   private String name_;
   private File file_;
   private File dir_;
+  private File resourceDir_;
   private Long timeout_;
 
   /**
@@ -238,6 +272,12 @@ public class TestTarget
     public T inDir( File dir)
       {
       getTestTarget().setDir( dir);
+      return (T) this;
+      }
+
+    public T withResourcesIn( File dir)
+      {
+      getTestTarget().setResourceDir( dir);
       return (T) this;
       }
 

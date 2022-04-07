@@ -17,8 +17,8 @@ import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
 import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
-import org.cornutum.tcases.openapi.testwriter.TestCaseContentWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
+import org.cornutum.tcases.openapi.testwriter.ValidatingTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
@@ -35,7 +35,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * Writes the source code for REST Assured test cases that execute API requests.
  */
-public class RestAssuredTestCaseWriter extends TestCaseContentWriter
+public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   {
   /**
    * Creates a new RestAssuredTestCaseWriter instance.

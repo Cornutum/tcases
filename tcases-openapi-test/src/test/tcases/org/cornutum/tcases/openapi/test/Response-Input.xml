@@ -1,0 +1,82 @@
+<System name="API">
+    <Function name="Response">
+        <Input>
+            <VarSet name="Body">
+                <VarSet name="ContentTypes">
+                    <Var name="Count">
+                        <Value name="0"/>
+                        <Value name="1" property="bodyContent">
+                            <When>
+                                <Equals property="bodyMediaType" count="1"/>
+                            </When>
+                        </Value>
+                        <Value name="Many" property="bodyContent">
+                            <When>
+                                <Equals property="bodyMediaType" count="2"/>
+                            </When>
+                        </Value>
+                    </Var>
+                    <Var name="application_json" when="bodyContent">
+                        <Value name="Yes" property="bodyMediaType"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="text_plain" when="bodyContent">
+                        <Value name="Yes" property="bodyMediaType"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="application_x-www-form-urlencoded" when="bodyObject">
+                        <Value name="Yes" property="bodyMediaType"/>
+                        <Value name="No"/>
+                    </Var>
+                    <VarSet name="Schema" when="bodyContent">
+                        <Var name="Defined">
+                            <Value name="true" property="bodySchema"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="Type" when="bodySchema">
+                            <Value name="array"/>
+                            <Value name="number"/>
+                            <Value name="object" property="bodyObject"/>
+                            <Value name="string"/>
+                            <Value name="boolean"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+            
+            <VarSet name="Headers">
+                <Var name="Count">
+                    <Value name="0"/>
+                    <Value name="1" property="headers"/>
+                    <Value name="Many" property="headers, headersMany"/>
+                </Var>
+                <Var name="Explode" when="headerObject,headerText">
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <VarSet name="Schema" when="headers">
+                    <Var name="Defined">
+                        <Value name="true" property="headerSchema"/>
+                        <Value name="false"/>
+                    </Var>
+                    <Var name="Source" when="headerSchema">
+                        <Value name="Header" property="headerSchemaHeader" whenNot="headerSchemaContent"/>
+                        <Value name="Content" property="headerSchemaContent" whenNot="headerSchemaHeader"/>
+                    </Var>
+                    <Var name="Content-Type" when="headerSchema">
+                        <Value name="application_json" when="headerSchemaContent"/>
+                        <Value name="text_plain" property="headerText"/>
+                        <Value name="application_x-www-form-urlencoded" when="headerObject,headerSchemaContent"/>
+                    </Var>
+                    <Var name="Type" when="headerSchema">
+                        <Value name="array"/>
+                        <Value name="number"/>
+                        <Value name="object" property="headerObject"/>
+                        <Value name="string"/>
+                        <Value name="boolean"/>
+                    </Var>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
