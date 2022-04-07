@@ -11,6 +11,7 @@ import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.Tcases;
 import org.cornutum.tcases.TcasesJson;
 import org.cornutum.tcases.openapi.ModelOptions;
+import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 import org.cornutum.tcases.openapi.resolver.RequestCases;
@@ -271,7 +272,37 @@ public final class TcasesOpenApiIO
    */
   public static ResponsesDef getResponsesDef( File api)
     {
-    return null;
+    return getResponsesDef( api, null);
+    }
+
+  /**
+   * Returns a {@link ResponsesDef request responses definition} for the given OpenAPI definition.
+   */
+  public static ResponsesDef getResponsesDef( File api, String docType)
+    {
+    try( OpenApiReader reader = new OpenApiReader( api, docType))
+      {
+      return OpenApiUtils.responsesDef( reader.read());
+      }
+    }
+
+  /**
+   * Returns a {@link ResponsesDef request responses definition} for the given OpenAPI definition.
+   */
+  public static ResponsesDef getResponsesDef( InputStream api)
+    {
+    return getResponsesDef( api, null);
+    }
+
+  /**
+   * Returns a {@link ResponsesDef request responses definition} for the given OpenAPI definition.
+   */
+  public static ResponsesDef getResponsesDef( InputStream api, String docType)
+    {
+    try( OpenApiReader reader = new OpenApiReader( api, docType))
+      {
+      return OpenApiUtils.responsesDef( reader.read());
+      }
     }
 
   /**

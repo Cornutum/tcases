@@ -180,6 +180,20 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-d <I>resourceOutDir</I> </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-d</I> is defined, test resource output is written to the specified directory.
+   * If omitted, the default <I>resourceOutDir</I> is the same as the <I>outDir</I>.
+   * If <I>-d</I> is "no" or "false", no test resources are produced.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-u timeout </NOBR>
    * </TD>
    * <TD>
@@ -389,6 +403,7 @@ public class ApiTestCommand
       setExecType( ExecType.RESTASSURED);
       setModelOptions( new ModelOptions());
       setResolverContext( new ResolverContext( new Random()));
+      setResourceOutDir( null);
       }
 
     /**
@@ -506,6 +521,16 @@ public class ApiTestCommand
           throwMissingValue( arg);
           }
         setOutDir( new File( args[i]));
+        }
+
+      else if( arg.equals( "-d"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwMissingValue( arg);
+          }
+        setResourceOutDir( new File( args[i]));
         }
 
       else if( arg.equals( "-u"))
@@ -732,6 +757,10 @@ public class ApiTestCommand
                "                  default outDir is the directory containing the apiDef or, if reading from standard",
                "                  input, output is written to standard output.",
                "",
+               "  -d resourceDir  If -d is defined, test resource output is written to the specified directory. If omitted,",
+               "                  the default resourceDir is the same as the outDir. If resourceDir is 'no' or 'false',",
+               "                  no test resource output is produced.",
+               "",
                "  -u timeout      Defines the maximum time (in milliseconds) to complete an individual test method.",
                "                  A test failure occurs if a method continues past this time limit. If omitted, no time",
                "                  limit is enforced.",
@@ -945,6 +974,39 @@ public class ApiTestCommand
     public File getOutDir()
       {
       return outDir_;
+      }
+
+    /**
+     * Changes the resource directory for command output.
+     */
+    public void setResourceOutDir( File resourceOutDir)
+      {
+      hasResources_ =
+        Optional.ofNullable( resourceOutDir)
+        .map( File::getPath)
+        .map( path -> !("false".equalsIgnoreCase( path) || "no".equalsIgnoreCase( path)))
+        .orElse( true);
+        
+      resourceOutDir_ =
+        hasResources_
+        ? resourceOutDir
+        : null;
+      }
+
+    /**
+     * Returns the resource directory for command output.
+     */
+    public File getResourceOutDir()
+      {
+      return resourceOutDir_;
+      }
+
+    /**
+     * Returns true if test output resources are produced.
+     */
+    public boolean hasResources()
+      {
+      return hasResources_;
       }
 
     /**
@@ -1348,6 +1410,7 @@ public class ApiTestCommand
         .extending( getBaseClass())
         .toFile( getOutFile())
         .inDir( getOutDir())
+        .withResourcesIn( getResourceOutDir())
         .timeout( getTimeout())
         .build();
       }
@@ -1449,6 +1512,7 @@ public class ApiTestCommand
       Optional.ofNullable( getBaseClass()).ifPresent( base -> builder.append( " -b ").append( base));
       Optional.ofNullable( getOutFile()).ifPresent( file -> builder.append( " -f ").append( file.getPath()));
       Optional.ofNullable( getOutDir()).ifPresent( dir -> builder.append( " -o ").append( dir.getPath()));   
+      Optional.ofNullable( getResourceOutDir()).ifPresent( dir -> builder.append( " -d ").append( dir.getPath()));   
       Optional.ofNullable( getTimeout()).ifPresent( timeout -> builder.append( " -u ").append( timeout));   
       Optional.ofNullable( getMocoTestConfig()).ifPresent( moco -> builder.append( " -M ").append( moco.getPath()));
       if( isByPath()) builder.append( " -S");
@@ -1475,6 +1539,8 @@ public class ApiTestCommand
     private String testPackage_;
     private String baseClass_;
     private File outDir_;
+    private File resourceOutDir_;
+    private boolean hasResources_;
     private File outFile_;
     private Long timeout_;
     private File mocoTestConfig_;
@@ -1548,6 +1614,12 @@ public class ApiTestCommand
       public Builder outDir( File outDir)
         {
         options_.setOutDir( outDir);
+        return this;
+        }
+
+      public Builder resourceOutDir( File resourceOutDir)
+        {
+        options_.setResourceOutDir( resourceOutDir);
         return this;
         }
 
@@ -1713,10 +1785,16 @@ public class ApiTestCommand
         {
         logger_.info( "Generating request test cases using random seed={}", options.getRandomSeed());
         }
+
+      // Generate API request test cases
       RequestTestDef testDef = RequestCases.getRequestCases( Tcases.getTests( inputDef, null, null), options.getResolverContext());
 
       // Write API tests for realized request cases only
       TestSource testSource = options.getTestSource( RequestCases.realizeRequestCases( testDef));
+      if( apiDefFile != null && options.hasResources())
+        {
+        testSource.setResponses( TcasesOpenApiIO.getResponsesDef( apiDefFile, options.getContentType()));
+        }
 
       TestCaseWriter testCaseWriter = options.getTestCaseWriter();
       TestWriter<?,?> testWriter = options.getTestWriter( testCaseWriter);

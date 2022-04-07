@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.io.IndentedWriter;
+import org.cornutum.tcases.openapi.test.ResponsesDef;
 
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.FilenameUtils.getExtension;
@@ -16,6 +17,7 @@ import static org.apache.commons.lang3.text.WordUtils.capitalize;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.joining;
@@ -107,6 +109,18 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
     }
 
   /**
+   * Writes the target test responses definition to a resource file associated with the test target file.
+   */
+  @Override
+  protected void writeResponsesDef( ResponsesDef responses, File targetFile, File resourceDir)
+    {
+    super.writeResponsesDef(
+      responses,
+      targetFile,
+      Optional.ofNullable( resourceDir).orElseGet( () -> getMavenResourceDir( targetFile).orElse( null)));
+    }
+
+  /**
    * Returns the target file defined by the given target.
    */
   @Override
@@ -118,6 +132,31 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
       targetFile != null && isBlank( getExtension( targetFile.getName()))
       ? new File( targetFile.getParentFile(), String.format( "%s.java", getBaseName( targetFile.getName())))
       : targetFile;
+    }
+
+  /**
+   * If the given Java file belongs to a Maven project, returns its associated resource directory.
+   */
+  private Optional<File> getMavenResourceDir( File javaFile)
+    {
+    List<String> dirs = TestTarget.getPathElements( javaFile.getParentFile());
+
+    return
+      Optional.of( dirs.indexOf( "java"))
+      .filter( i -> i >= 0)
+      .map( i -> {
+
+        String resourceDirRoot =
+          Optional.of( dirs.subList( 0, i).stream().collect( joining( "/")))
+          .filter( root -> !root.isEmpty())
+          .map( root -> String.format( "%s/", root))
+          .orElse( "");
+
+        String resourceDirRelative = dirs.subList( i+1, dirs.size()).stream().collect( joining( "/"));
+
+        return new File( String.format( "%sresources/%s", resourceDirRoot, resourceDirRelative));
+        });
+    
     }
 
   }

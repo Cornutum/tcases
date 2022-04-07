@@ -9,6 +9,7 @@ package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
+import org.cornutum.tcases.openapi.test.ResponsesDef;
 import org.cornutum.tcases.util.ToString;
 
 import static org.apache.commons.io.FilenameUtils.getBaseName;
@@ -16,6 +17,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.List;
@@ -88,6 +90,9 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
       
       closeQuietly( fileStream, null);
       }
+
+    Optional.ofNullable( source.getResponses())
+      .ifPresent( responses -> writeResponsesDef( responses, targetFile, target.getResourceDir()));
     }
 
   /**
@@ -209,6 +214,30 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
    * Writes the target test closing to the given stream.
    */
   protected abstract void writeClosing( T target, String testName, IndentedWriter targetWriter);
+
+  /**
+   * Writes the target test responses definition to a resource file associated with the test target file.
+   */
+  protected void writeResponsesDef( ResponsesDef responses, File targetFile, File resourceDir)
+    {
+    File resourceFile =
+      new File(
+        Optional.ofNullable( resourceDir).orElse( targetFile.getParentFile()),
+        String.format( "%s-Responses.json", getBaseName( targetFile.getName())));
+
+    Optional.of( resourceFile.getParentFile())
+      .filter( dir -> dir.exists() || dir.mkdirs())
+      .orElseThrow( () -> new TestWriterException( String.format( "Can't create resourceDir=%s", resourceFile.getParentFile())));
+
+    try( FileWriter writer = new FileWriter( resourceFile))
+      {
+      ResponsesDef.write( responses, writer);
+      }
+    catch( Exception e)
+      {
+      throw new TestWriterException( String.format( "Can't write responses definition to resourceFile=%s", resourceFile), e);
+      }
+    }
 
   /**
    * Returns the {@link TestCaseWriter} for this test.

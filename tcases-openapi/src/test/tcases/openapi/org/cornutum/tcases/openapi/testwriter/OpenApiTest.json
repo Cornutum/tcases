@@ -28,7 +28,29 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Array": {
+                                "description": "X-Array",
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -75,7 +97,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "headers": {
+                            "X-Allowed": {
+                                "description": "X-Allowed",
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "X-Enabled": {
+                                "description": "X-Enabled",
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -126,7 +162,31 @@
                 },
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Number": {
+                                "description": "X-Number",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -157,7 +217,19 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -219,7 +291,19 @@
                 },
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-None": {
+                                "description": "X-None"
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -272,7 +356,33 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "text/plain": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-State": {
+                                "description": "X-State",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Country": {
+                                "description": "X-Country",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -312,7 +422,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -364,7 +484,19 @@
                 },
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "headers": {
+                            "X-Object": {
+                                "description": "X-Object",
+                                "content": {
+                                    "application/x-www-form-urlencoded": {
+                                        "schema": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -419,7 +551,35 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "X-Name": {
+                                "description": "X-Name",
+                                "explode": true,
+                                "schema": {
+                                    "type": "object"
+                                }
+                            },
+                            "X-Address": {
+                                "description": "X-Address",
+                                "explode": true,
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
@@ -448,7 +608,24 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                            }
+                        },
+                        "headers": {
+                            "X-Object": {
+                                "description": "X-Object",
+                                "explode": false,
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "default": {
                         "$ref": "#/components/responses/failure"
