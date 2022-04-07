@@ -63,7 +63,7 @@ public class ApiTestMojoTest extends AbstractMojoTest
     assertThat( "Out dir", apiTestMojo.getOutDirFile(), is( expectedOutDir));
 
     List<String> expectedTests =
-      Arrays.asList( "Post", "Posts", "Users")
+      Arrays.asList( "Post", "Posts")
       .stream()
       .map( path -> String.format( "org/cornutum/api/OpenAPIRequestTestCases_%sTest.java", path))
       .collect( toList());
