@@ -44,6 +44,10 @@
             "200": {
                 "description": "Success",
                 "headers": {
+                    "Content-Type": {
+                        "description": "Ignored",
+                        "required": true
+                    },
                     "My-String": {
                         "description": "string",
                         "required": false,
