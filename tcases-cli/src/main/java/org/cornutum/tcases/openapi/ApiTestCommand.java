@@ -1825,8 +1825,15 @@ public class ApiTestCommand
           testSource.setPaths( singleton( testPath));
           testTarget.setName( String.format( "%s_%s", testBaseName, testPath));
 
-          logger_.info( "Writing API tests for {} to {}", testPath, Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
-          writeTest( testWriter, testSource, testTarget);
+          if( testSource.getRequestCases().isEmpty())
+            {
+            logger_.warn( "No API request test cases defined for {}", testPath);
+            }
+          else
+            {
+            logger_.info( "Writing API tests for {} to {}", testPath, Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
+            writeTest( testWriter, testSource, testTarget);
+            }
           }
         }
       else
