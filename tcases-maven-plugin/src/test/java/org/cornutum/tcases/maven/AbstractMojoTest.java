@@ -5,7 +5,9 @@ import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Rule;
+
 import java.io.File;
+import java.util.Optional;
 
 /**
  * Base class for Mojo tests.
@@ -17,11 +19,17 @@ public class AbstractMojoTest
    */
   protected String[] findPathsMatching( File baseDir, String... patterns)
     {
-    DirectoryScanner scanner = new DirectoryScanner();
-    scanner.setBasedir( baseDir);
-    scanner.setIncludes( patterns);
-    scanner.scan();
-    return scanner.getIncludedFiles();
+    return
+      Optional.ofNullable( baseDir)
+      .filter( File::exists)
+      .map( dir -> {
+        DirectoryScanner scanner = new DirectoryScanner();
+        scanner.setBasedir( dir);
+        scanner.setIncludes( patterns);
+        scanner.scan();
+        return scanner.getIncludedFiles();
+        })
+      .orElse( new String[0]);
     }
 
   /**

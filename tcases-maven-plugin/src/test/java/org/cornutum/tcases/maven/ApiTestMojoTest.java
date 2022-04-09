@@ -42,6 +42,10 @@ public class ApiTestMojoTest extends AbstractMojoTest
 
     List<String> expectedTests = Arrays.asList( "org/cornutum/api/MyTest.java");
     assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
+
+    assertThat( "Resource dir", apiTestMojo.getResourceDirFile(), is( nullValue()));
+    File expectedResourceDir = new File( baseDirTest, "target/generated-test-sources/resources");
+    assertThat( "Responses", Arrays.asList( findPathsMatching( expectedResourceDir, "**/*")), is( empty()));
     }
   
   @Test
@@ -68,6 +72,15 @@ public class ApiTestMojoTest extends AbstractMojoTest
       .map( path -> String.format( "org/cornutum/api/OpenAPIRequestTestCases_%sTest.java", path))
       .collect( toList());
     assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
+
+    assertThat( "Resource dir", apiTestMojo.getResourceDirFile(), is( nullValue()));
+    File expectedResourceDir = new File( baseDirTest, "target/generated-test-sources/resources");
+    List<String> expectedResponses =
+      Arrays.asList( "Post", "Posts")
+      .stream()
+      .map( path -> String.format( "org/cornutum/api/OpenAPIRequestTestCases_%sTest-Responses.json", path))
+      .collect( toList());
+    assertThat( "Responses", Arrays.asList( findPathsMatching( expectedResourceDir, "**/*")), containsMembers( expectedResponses));
     }
   
   @Test
@@ -90,5 +103,10 @@ public class ApiTestMojoTest extends AbstractMojoTest
 
     List<String> expectedTests = Arrays.asList( "org/examples/SwaggerPetstoreTest.java");
     assertThat( "Tests", Arrays.asList( findPathsMatching( expectedOutDir, "**/*")), containsMembers( expectedTests));
+
+    assertThat( "Resource dir", apiTestMojo.getResourceDirFile(), is( nullValue()));
+    File expectedResourceDir = new File( baseDirTest, "target/tcases/resources");
+    List<String> expectedResponses = Arrays.asList( "org/examples/SwaggerPetstoreTest-Responses.json");
+    assertThat( "Responses", Arrays.asList( findPathsMatching( expectedResourceDir, "**/*")), containsMembers( expectedResponses));
     }
   }
