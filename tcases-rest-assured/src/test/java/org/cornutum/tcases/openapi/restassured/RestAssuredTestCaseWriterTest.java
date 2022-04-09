@@ -80,6 +80,34 @@ public class RestAssuredTestCaseWriterTest extends MocoServerTest
     }
   
   @Test
+  public void writeOpenApiResponses() throws Exception
+    {
+    // Given...
+    String testDefName = "OpenApiTestResponses";
+    
+    TestSource source =
+      TestSource.from( stdRequestTestDef( "OpenApiTest"))
+      .build();
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( testDefName)
+      .inDir( getGeneratedTestDir())
+      .build();
+
+    RestAssuredTestCaseWriter testCaseWriter = new RestAssuredTestCaseWriter();
+    testCaseWriter.setValidateResponses( true);
+    
+    JUnitTestWriter testWriter = new JUnitTestWriter( testCaseWriter);
+    
+    // When...
+    testWriter.writeTest( source, target);
+
+    // Then
+    verifyTest( testDefName, FileUtils.readFileToString( testWriter.getTestFile( source, target), "UTF-8"));
+    }
+  
+  @Test
   public void writeNormalizedForm() throws Exception
     {
     verifyRealized( "normalize-form");

@@ -51,6 +51,16 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   public void writeDependencies( String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
+    if( validateResponses())
+      {
+      targetWriter.println( "import java.util.Map;");
+      targetWriter.println( "import static java.util.stream.Collectors.toMap;");
+      targetWriter.println();
+      targetWriter.println( "import io.restassured.http.Header;");
+      targetWriter.println( "import io.restassured.response.Response;");
+      targetWriter.println( "import org.cornutum.tcases.openapi.test.ResponseValidator;");
+      targetWriter.println();
+      }
     targetWriter.println( "import org.hamcrest.Matcher;");
     targetWriter.println( "import static io.restassured.RestAssured.*;");
     targetWriter.println( "import static org.hamcrest.Matchers.*;");
@@ -64,7 +74,10 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   @Override
   public void writeDeclarations( String testName, IndentedWriter targetWriter)
     {
-    // By default, none
+    if( validateResponses())
+      {
+      targetWriter.println( "private ResponseValidator responseValidator = new ResponseValidator( getClass());");
+      }
     }
   
   /**
@@ -75,6 +88,12 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     {
     try
       {
+      if( validateResponses())
+        {
+        targetWriter.println( "Response response =");
+        targetWriter.indent();
+        }
+
       targetWriter.println( "given()");
       targetWriter.indent();
       writeServer( testName, testServer, requestCase, targetWriter);
@@ -91,8 +110,36 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println( ".then()");
       targetWriter.indent();
       writeExpectResponse( testName, requestCase, targetWriter);
+
+      if( validateResponses())
+        {
+        targetWriter.unindent();
+
+        targetWriter.println( ".extract()");
+        targetWriter.indent();
+        targetWriter.println( ".response()");
+        }
+
       targetWriter.println( ";");
       targetWriter.unindent();
+
+      if( validateResponses())
+        {
+        targetWriter.unindent();
+
+        targetWriter.println();
+        targetWriter.println(
+          String.format(
+            "responseValidator.assertBodyValid( %s, %s, response.statusCode(), response.getContentType(), response.asString());",
+            stringLiteral( requestCase.getOperation().toUpperCase()),
+            stringLiteral( requestCase.getPath())));
+        
+        targetWriter.println(
+          String.format(
+            "responseValidator.assertHeadersValid( %s, %s, response.statusCode(), responseHeaders( response));",
+            stringLiteral( requestCase.getOperation().toUpperCase()),
+            stringLiteral( requestCase.getPath())));
+        }
       }
     catch( Exception e)
       {
@@ -109,6 +156,11 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     writeStatusCodeMatcherDef( testName, targetWriter, depends_);
     writeTestServerDef( testName, targetWriter, depends_);
     writeAuthCredentialsDef( testName, targetWriter, depends_);
+
+    if( validateResponses())
+      {
+      writeResponseHeadersDef( testName, targetWriter, depends_);
+      }
     }
   
   /**
@@ -401,6 +453,24 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       {
       targetWriter.println( ".statusCode( isSuccess())");
       }
+    }
+
+  /**
+   * Writes the definition of standard status code matcher methods to the given stream. Note: this generates a runtime dependency
+   * on <A href="http://hamcrest.org/JavaHamcrest/distributables#previous-versions-of-hamcrest">hamcrest.jar</A>.
+   */
+  protected void writeResponseHeadersDef( String testName, IndentedWriter targetWriter, Depends dependencies)
+    {
+    targetWriter.println();
+    targetWriter.println( "private static Map<String,String> responseHeaders( Response response) {");
+    targetWriter.indent();
+    targetWriter.println( "return");
+    targetWriter.indent();
+    targetWriter.println( "response.getHeaders().asList().stream()");
+    targetWriter.println( ".collect( toMap( Header::getName, Header::getValue));");
+    targetWriter.unindent();
+    targetWriter.unindent();
+    targetWriter.println( "}");
     }
 
   private Depends depends_;

@@ -1488,7 +1488,9 @@ public class ApiTestCommand
     @Override
     public TestCaseWriter createTestCaseWriter()
       {
-      return new RestAssuredTestCaseWriter();
+      RestAssuredTestCaseWriter testCaseWriter = new RestAssuredTestCaseWriter();
+      testCaseWriter.setValidateResponses( hasResources());
+      return testCaseWriter;
       }
 
     /**
