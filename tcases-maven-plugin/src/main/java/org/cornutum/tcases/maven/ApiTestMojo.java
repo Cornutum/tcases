@@ -261,7 +261,7 @@ public class ApiTestMojo extends AbstractMojo
    */
   public File getResourceDirFile()
     {
-    return getTargetDir( resourceDir==null? null : new File( resourceDir));
+    return resourceDir==null? null : new File( resourceDir);
     }
 
   /**
@@ -271,7 +271,7 @@ public class ApiTestMojo extends AbstractMojo
     {
     return
       withResources
-      ? new File( getResourceDirFile(), sourcePath)
+      ? getResourceDirFile()
       : new File( "false");
     }
 
@@ -488,7 +488,7 @@ public class ApiTestMojo extends AbstractMojo
    */
   public File getMocoTestConfigFile()
     {
-    return getBaseDir( getMocoTestConfig()==null? null : new File( getMocoTestConfig()));
+    return getMocoTestConfig()==null? null : getBaseDir( new File( getMocoTestConfig()));
     }
 
   /**
@@ -613,10 +613,9 @@ public class ApiTestMojo extends AbstractMojo
 
   /**
    * Defines the path to the directory where generated test resourcess are written.
-   * A relative path is applied relative to the <B><CODE>${project.build.directory}</CODE></B> of
-   * the project.
+   * A relative path is applied relative to the specified <B><CODE>outDir</CODE></B>.
    */
-  @Parameter(property="resourceDir",defaultValue="${project.build.directory}/generated-test-sources/resources")
+  @Parameter(property="resourceDir")
   private String resourceDir;
 
   /**

@@ -41,6 +41,7 @@
             <testPackage>org.cornutum.mojo</testPackage>
             <testType>moco</testType>
             <timeout>12345</timeout>
+            <withResources>false</withResources>
         </configuration>
       </plugin>
     </plugins>
