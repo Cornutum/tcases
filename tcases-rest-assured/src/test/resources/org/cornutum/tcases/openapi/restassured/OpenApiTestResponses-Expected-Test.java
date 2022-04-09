@@ -1,4 +1,4 @@
-package org.cornutum.examples;
+package org.cornutum.tcases.openapi.restassured;
 
 
 import org.junit.Test;
@@ -14,7 +14,7 @@ import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class OpenAPIRequestTestCasesTest {
+public class OpenApiTestResponsesTest {
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
@@ -79,7 +79,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "0,1")
+                .queryParam( "post?[post-references]", "0,2")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -98,7 +98,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "0,1")
+                .queryParam( "post?[post-references]", "0,2")
                 .queryParam( "user attributes", (String) null)
             .when()
                 .request( "HEAD", "/post")
@@ -118,8 +118,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "0,1")
-                .queryParam( "user attributes", "Cm-4uM")
+                .queryParam( "post?[post-references]", "0,2")
+                .queryParam( "user attributes", "-163.3")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -138,7 +138,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "0,1")
+                .queryParam( "post?[post-references]", "0,2")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -157,7 +157,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "0,1")
+                .queryParam( "post?[post-references]", "0,2")
                 .queryParam( "user attributes[user-type]", (String) null)
             .when()
                 .request( "HEAD", "/post")
@@ -173,12 +173,32 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void headPost_UserAttributesValuePropertiesUserTypeType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "post?[post-references]", "0,1")
+                .queryParam( "user attributes[user-type]", "-492.0")
+            .when()
+                .request( "HEAD", "/post")
+            .then()
+                // user-attributes.Value.Properties.user-type.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "HEAD", "/post", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "HEAD", "/post", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void headPost_UserAttributesValuePropertiesUserTypeValue_Is_Other() {
         Response response =
             given()
                 .baseUri( forTestServer())
                 .queryParam( "post?[post-references]", "0,1")
-                .queryParam( "user attributes[user-type]", "\">gb//V~cOamLd\"guT=(|fwcJYu&H7cwat!)7U*9%m#/E\\xaR C3L$L!7CuE^D`zivT 8KY2G\"'?FjW?la&:<{E&>9t6sxMPPkU\"t6BzKl0n)<r-5ca7J,/U#OG;;,p-jforEO=_lZy\"U R~*T(\"i,Z%$ 3uJ6g}6@[TS7&oeK>57gl+z:q8#s'sYn  /FfzE.buMUx!dsHyzc~1x")
+                .queryParam( "user attributes[user-type]", "*76s/1*r")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -199,7 +219,9 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .queryParam( "post?[post-references]", "0,2")
                 .queryParam( "user attributes[user-type]", "VIP!")
-                .queryParam( "user attributes[larulaaxjyqkr]", "1wWIn")
+                .queryParam( "user attributes[wfgawhzebqxw]", "-993.3")
+                .queryParam( "user attributes[bt]", "-646")
+                .queryParam( "user attributes[d]", "429")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -257,7 +279,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?", "247")
+                .queryParam( "post?", "-689.9")
                 .queryParam( "user attributes[user-type]", "VIP!")
             .when()
                 .request( "HEAD", "/post")
@@ -316,7 +338,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "-65")
+                .queryParam( "post?[post-references]", "true")
                 .queryParam( "user attributes[user-type]", "VIP!")
             .when()
                 .request( "HEAD", "/post")
@@ -396,7 +418,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "eb,true,2")
+                .queryParam( "post?[post-references]", ",,NU,2")
                 .queryParam( "user attributes[user-type]", "VIP!")
             .when()
                 .request( "HEAD", "/post")
@@ -416,7 +438,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "-454253172,0")
+                .queryParam( "post?[post-references]", "518413185,0")
                 .queryParam( "user attributes[user-type]", "VIP!")
             .when()
                 .request( "HEAD", "/post")
@@ -457,7 +479,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .queryParam( "post?[post-references]", "0,1")
-                .queryParam( "post?[ahujej]", "-923")
+                .queryParam( "post?[pfuxkykifiozux]", "g\"YtKR,&")
                 .queryParam( "user attributes[user-type]", "VIP!")
             .when()
                 .request( "HEAD", "/post")
@@ -495,7 +517,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "Post Marks", "<Y> #Z {X}")
+                .queryParam( "Post Marks", "<Y> {X} #Z")
             .when()
                 .request( "PATCH", "/post")
             .then()
@@ -586,7 +608,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "Post Marks", "-726")
+                .queryParam( "Post Marks", "+")
             .when()
                 .request( "PATCH", "/post")
             .then()
@@ -601,11 +623,30 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void patchPost_PostMarksItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "Post Marks", "")
+            .when()
+                .request( "PATCH", "/post")
+            .then()
+                // Post-Marks.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PATCH", "/post", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PATCH", "/post", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "Post Marks", "<Y> {X} {X} {X}")
+                .queryParam( "Post Marks", "<Y> <Y> <Y> {X}")
             .when()
                 .request( "PATCH", "/post")
             .then()
@@ -639,11 +680,30 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void patchPost_PostMarksItemsContainsType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "Post Marks", "true")
+            .when()
+                .request( "PATCH", "/post")
+            .then()
+                // Post-Marks.Items.Contains.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PATCH", "/post", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PATCH", "/post", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void patchPost_PostMarksItemsContainsValue_Is_Other() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "Post Marks", "v<O`")
+                .queryParam( "Post Marks", "#/lL\"%`\\M,7/RPK2]eZ/b\"LtW=MB6,(")
             .when()
                 .request( "PATCH", "/post")
             .then()
@@ -683,7 +743,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "475916517641722120.2")
+                .queryParam( "postId", "884128300094585099.3")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
                 .formParam( "reviewer", "(?)")
@@ -768,7 +828,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "")
+                .queryParam( "postId", "%")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
                 .formParam( "reviewer", "Larry Moe")
@@ -812,7 +872,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "605865143995980997.5")
+                .queryParam( "postId", "579110988210992054.5")
             .when()
                 .request( "PUT", "/post")
             .then()
@@ -831,9 +891,9 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "704226969094570698.1")
-                .contentType( "application/json")
-                .request().body( "[\"oq8$f6\",\"Zzg\",\"R7&,\"]")
+                .queryParam( "postId", "100055597218570470.8")
+                .contentType( "application/xml")
+                .request().body( ">jg-FQI")
             .when()
                 .request( "PUT", "/post")
             .then()
@@ -852,7 +912,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "717516071707418917.7")
+                .queryParam( "postId", "545768800747318227.7")
                 .contentType( "application/x-www-form-urlencoded")
             .when()
                 .request( "PUT", "/post")
@@ -872,9 +932,9 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "321628010121646716.6")
+                .queryParam( "postId", "787781271506673512.7")
                 .contentType( "application/x-www-form-urlencoded")
-                .formParam( "number", "815.7")
+                .formParam( "string", "")
             .when()
                 .request( "PUT", "/post")
             .then()
@@ -893,7 +953,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "455879347664227151.2")
+                .queryParam( "postId", "887390451195556957.7")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "reviewer", "Larry Moe")
             .when()
@@ -914,7 +974,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "588727425155782203.3")
+                .queryParam( "postId", "218911377319422868.8")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", (String) null)
                 .formParam( "reviewer", "Larry Moe")
@@ -936,9 +996,9 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "781577041014836317.1")
+                .queryParam( "postId", "847512139010470218.2")
                 .contentType( "application/x-www-form-urlencoded")
-                .formParam( "approved", "OO")
+                .formParam( "approved", "eytx,7ea{")
                 .formParam( "reviewer", "Larry Moe")
             .when()
                 .request( "PUT", "/post")
@@ -958,7 +1018,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "318391597246017975.3")
+                .queryParam( "postId", "711003745143914146.9")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
             .when()
@@ -979,7 +1039,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "110822385164496122.4")
+                .queryParam( "postId", "167771822150204639.4")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
                 .formParam( "reviewer", (String) null)
@@ -997,14 +1057,36 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "postId", "922322478226252041.6")
+                .contentType( "application/x-www-form-urlencoded")
+                .formParam( "approved", "false")
+                .formParam( "reviewer", "loul,true")
+            .when()
+                .request( "PUT", "/post")
+            .then()
+                // Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/post", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/post", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void putPost_BodyApplicationXWwwFormUrlencodedValuePropertiesReviewerValue_Is_Other() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "709336837994542699.4")
+                .queryParam( "postId", "886308504886987482.6")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
-                .formParam( "reviewer", "HdW\\=z^v/tD>C5ab[so1p]B8`DQSWnL7z[Q{")
+                .formParam( "reviewer", "i&")
             .when()
                 .request( "PUT", "/post")
             .then()
@@ -1023,11 +1105,12 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "postId", "34427969928977086.3")
+                .queryParam( "postId", "920816794015899048.8")
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
                 .formParam( "reviewer", "Larry Moe")
-                .formParam( "gjosghzwtdqokjpw", "xntquexllpz,473")
+                .formParam( "dxobuuyffc", "true")
+                .formParam( "wssfr", "true")
             .when()
                 .request( "PUT", "/post")
             .then()
@@ -1125,7 +1208,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "approved", ".0")
-                .pathParam( "userId", ".true")
+                .pathParam( "userId", ".Ti0q{}")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")
             .then()
@@ -1244,7 +1327,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "approved", ".-184521552")
+                .pathParam( "approved", ".-39383625")
                 .pathParam( "userId", ".0")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")
@@ -1282,7 +1365,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "ids", "100|53|52|11")
+                .queryParam( "ids", "100|93|41|58")
             .when()
                 .request( "GET", "/posts")
             .then()
@@ -1337,7 +1420,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "ids", "E$z\\y-I")
+                .queryParam( "ids", "27")
             .when()
                 .request( "GET", "/posts")
             .then()
@@ -1352,11 +1435,30 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void getPosts_IdsItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "ids", "")
+            .when()
+                .request( "GET", "/posts")
+            .then()
+                // ids.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void getPosts_IdsItemsSize_Is_5() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "ids", "0|40|64|96|85")
+                .queryParam( "ids", "0|85|16|15|7")
             .when()
                 .request( "GET", "/posts")
             .then()
@@ -1394,7 +1496,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "ids", "true")
+                .queryParam( "ids", "%lB,,iZ7s")
             .when()
                 .request( "GET", "/posts")
             .then()
@@ -1451,7 +1553,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "ids", "0|0|91|44")
+                .queryParam( "ids", "0|82|16|16")
             .when()
                 .request( "GET", "/posts")
             .then()
@@ -1490,7 +1592,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .header( "X-Post-Types", "2345,7700")
-                .header( "X-User-Id", "304086962")
+                .header( "X-User-Id", "305257074")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1508,7 +1610,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", "7700,2345")
+                .header( "X-Post-Types", "7700,1001")
                 .header( "X-User-Id", "0")
             .when()
                 .request( "OPTIONS", "/posts")
@@ -1527,7 +1629,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-User-Id", "776767066")
+                .header( "X-User-Id", "633125734")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1547,7 +1649,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .header( "X-Post-Types", "")
-                .header( "X-User-Id", "623701463")
+                .header( "X-User-Id", "908798277")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1566,8 +1668,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", "-963.4")
-                .header( "X-User-Id", "1032704551")
+                .header( "X-Post-Types", "true")
+                .header( "X-User-Id", "45784771")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1587,7 +1689,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .header( "X-Post-Types", "1001")
-                .header( "X-User-Id", "533873321")
+                .header( "X-User-Id", "454534268")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1607,7 +1709,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .header( "X-Post-Types", "1001,2345,7700")
-                .header( "X-User-Id", "181167995")
+                .header( "X-User-Id", "199793883")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1626,8 +1728,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", ",2345")
-                .header( "X-User-Id", "354736")
+                .header( "X-Post-Types", ",1001")
+                .header( "X-User-Id", "530075126")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1646,8 +1748,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", "SP_KH,5,MWxCd,7700")
-                .header( "X-User-Id", "118523476")
+                .header( "X-Post-Types", "true,2345")
+                .header( "X-User-Id", "685227360")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1666,8 +1768,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", "-378304222,1001")
-                .header( "X-User-Id", "348369597")
+                .header( "X-Post-Types", "220811161,1001")
+                .header( "X-User-Id", "807325043")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1687,7 +1789,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .header( "X-Post-Types", "1001,1001")
-                .header( "X-User-Id", "1008527334")
+                .header( "X-User-Id", "212382841")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1706,7 +1808,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", "1001,7700")
+                .header( "X-Post-Types", "1001,2345")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1745,8 +1847,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "X-Post-Types", "1001,7700")
-                .header( "X-User-Id", "yjxdckmlmkupo,mh-3,")
+                .header( "X-Post-Types", "1001,2345")
+                .header( "X-User-Id", "EC]h<,G\"3+*")
             .when()
                 .request( "OPTIONS", "/posts")
             .then()
@@ -1787,7 +1889,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "true")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\"\",\"email\":\"y@9.org\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"^@z.org\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -1825,7 +1927,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "true")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\")`uM;l J8CC`5,YnP]d,C#\\\\8J+8{zQ\\\"dSJFz^Cn\\\\R0hO3(BG;K\\\\Z+],z=:IHT]dJ\",\"email\":\"L.6**.t4X@Lc2.jA.6m.Bj.wz.2L.edu\"}")
+                .request().body( "{\"text\":\"R)Z=aRk9 O X699I4brEZc)}_H]~YGFQ[u7+[Y{1jvMl\\\\?fP`ZaHE\\\\}tmHpOpb:$\",\"email\":\"7l`.TTd.+7p.TsH.ix;@eGpUw8WI.gov\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -1880,7 +1982,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "approved", "220")
+                .cookie( "approved", "864.8")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -1901,7 +2003,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/xml")
-                .request().body( "-1012.7")
+                .request().body( "[\"7&)E$\\\\1\",\"b;7\",\"lJ}rpY>H\"]")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -1943,7 +2045,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "true")
+                .request().body( "-394")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2006,7 +2108,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\"\",\"email\":674.0}")
+                .request().body( "{\"text\":\"\",\"email\":{\"ojuslephkogs\":\"O+\\\"q[j\"}}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2027,7 +2129,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\"\",\"email\":\"9S.edu\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"fR.gov\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2048,7 +2150,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\"\",\"email\":\"w_9j!u/En;$_LuJD+Lq73VUiT1@VD.edu\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"rROlqhu.sK`/Fa9@P.bYh.ZiC.Ppf.net\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2069,7 +2171,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"email\":\"G@M.org\"}")
+                .request().body( "{\"email\":\"'@e.gov\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2090,7 +2192,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":null,\"email\":\"K@x.net\"}")
+                .request().body( "{\"text\":null,\"email\":\"^@j.org\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2111,7 +2213,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":907,\"email\":\"#@X.net\"}")
+                .request().body( "{\"text\":{\"xtgcbcxgfoi\":true,\"rqnrarsvehz\":\"t\",\"kxodoxjnhruqlc\":-55},\"email\":\"f@y.org\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2132,7 +2234,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\"QTc!FO\\\\TOZ9\\\"QK@+$br\\\\%w}2O)lmlw#Q(SL6gy6*(`.$Fmkz{P>=HQy>ILCo`w?;e\",\"email\":\"_@J.org\"}")
+                .request().body( "{\"text\":\"5Tr|w`=C8;V~x]FkwIVg-us5r0!]cKW/BU<tb$Q2<fbMlh$?7iFs\\\"Nx$~*VJQWa{@\",\"email\":\"j@9.net\"}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2153,7 +2255,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "approved", "false")
                 .contentType( "application/json")
-                .request().body( "{\"text\":\"\",\"email\":\"C@D.edu\",\"jfqdxwtpqqm\":\" b{8R\",\"wyxzvaqalrv\":545}")
+                .request().body( "{\"text\":\"\",\"email\":\"z@6.com\",\"i\":true,\"zhbygokxf\":true,\"hbwvniykc\":true}")
             .when()
                 .request( "POST", "/posts")
             .then()
@@ -2172,10 +2274,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "#")
-                .cookie( "region", "s")
+                .cookie( "country", "f")
+                .cookie( "region", "U")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"T@G.gov\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"|@g.net\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2193,10 +2295,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "o03M8u3l]Yytb?%N")
-                .cookie( "region", "d4U#f[?E>gU'=4X#")
+                .cookie( "country", "3?yf*R>MA(|%pz}@")
+                .cookie( "region", "x8U}z3%?N$)|r!FQ")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"0rXnR+w^VdUaLjyXJ1duEPdCDFe5iWJS2!kEZ*lH<[kr/ZC\\\\i_wfXn>Xj:6e|l_U\",\"email\":\"|Qg~`^=.AK-V9}X@dT.60F5.cOvs.com\"}")
+                .request().body( "{\"text\":\")@Pxh_%0+3b#tkKys=2JtkX\\\"mXVZ]bCFkngr[zxur1da$%Pz\\\"a>Orl/(Y}a_q-M5\",\"email\":\"8rM.?GYI.3Xq$@8g.sOO.YAD.VG3.gov\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2215,7 +2317,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"N@Y.com\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"'@2.edu\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2236,7 +2338,7 @@ public class OpenAPIRequestTestCasesTest {
                 .baseUri( forTestServer())
                 .cookie( "postId", null)
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"S@H.com\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"|@4.org\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2255,9 +2357,9 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "e|t")
+                .cookie( "postId", "true")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"5@E.gov\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"O@T.org\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2276,9 +2378,9 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "region", ".")
+                .cookie( "region", ")")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"m@R.com\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"{@0.com\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2298,9 +2400,9 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .cookie( "country", null)
-                .cookie( "region", "M")
+                .cookie( "region", "F")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\";@M.edu\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"=@M.org\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2315,14 +2417,58 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void putPosts_PostIdValuePropertiesCountryType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "country", "574.0")
+                .cookie( "region", "&")
+                .contentType( "text/plain")
+                .request().body( "{\"text\":\"\",\"email\":\"b@6.edu\"}")
+            .when()
+                .request( "PUT", "/posts")
+            .then()
+                // postId.Value.Properties.country.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
+    public void putPosts_PostIdValuePropertiesCountryValueLength_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "country", "")
+                .cookie( "region", "6")
+                .contentType( "text/plain")
+                .request().body( "{\"text\":\"\",\"email\":\"k@4.org\"}")
+            .when()
+                .request( "PUT", "/posts")
+            .then()
+                // postId.Value.Properties.country.Value.Length=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void putPosts_PostIdValuePropertiesCountryValueLength_Is_17() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", ">0H]#cggQ}Wa*>u<c")
-                .cookie( "region", "7")
+                .cookie( "country", "j'AJKsh61`bvz&f^7")
+                .cookie( "region", ".")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"`@F.gov\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"r@F.net\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2341,9 +2487,9 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "s")
+                .cookie( "country", "<")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"^@7.com\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"k@b.com\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2362,10 +2508,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "/")
+                .cookie( "country", "%")
                 .cookie( "region", null)
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"2@l.net\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"r@m.net\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2380,14 +2526,58 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void putPosts_PostIdValuePropertiesRegionType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "country", "'")
+                .cookie( "region", "611.8")
+                .contentType( "text/plain")
+                .request().body( "{\"text\":\"\",\"email\":\"J@Q.com\"}")
+            .when()
+                .request( "PUT", "/posts")
+            .then()
+                // postId.Value.Properties.region.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
+    public void putPosts_PostIdValuePropertiesRegionValueLength_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "country", "e")
+                .cookie( "region", "")
+                .contentType( "text/plain")
+                .request().body( "{\"text\":\"\",\"email\":\"I@s.gov\"}")
+            .when()
+                .request( "PUT", "/posts")
+            .then()
+                // postId.Value.Properties.region.Value.Length=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void putPosts_PostIdValuePropertiesRegionValueLength_Is_17() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "&")
-                .cookie( "region", "B[6|E|2JcPzw*R(04")
+                .cookie( "country", "m")
+                .cookie( "region", "F~v>f|K%35t[U3nn}")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"z@v.org\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"P@v.edu\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2406,12 +2596,12 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "0")
-                .cookie( "region", "-")
-                .cookie( "xgwtqoghbxd", "true")
-                .cookie( "wpdxd", "true")
+                .cookie( "country", "W")
+                .cookie( "region", "0")
+                .cookie( "xtrylgzujvaskrsm", "-+%")
+                .cookie( "osgrs", "-625.2")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"A@h.gov\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"=@Q.gov\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2430,8 +2620,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "/")
-                .cookie( "region", ":")
+                .cookie( "country", "@")
+                .cookie( "region", "o")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2450,10 +2640,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "&")
-                .cookie( "region", "1")
-                .contentType( "application/json")
-                .request().body( "\"J)\\\"\"")
+                .cookie( "country", "q")
+                .cookie( "region", "q")
+                .contentType( "application/x-www-form-urlencoded")
+                .formParam( "string", " (&O;=")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2472,8 +2662,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "|")
-                .cookie( "region", "E")
+                .cookie( "country", "t")
+                .cookie( "region", ".")
                 .contentType( "text/plain")
                 .request().body( "null")
             .when()
@@ -2494,10 +2684,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "-")
-                .cookie( "region", "T")
+                .cookie( "country", ")")
+                .cookie( "region", "H")
                 .contentType( "text/plain")
-                .request().body( "W\\S")
+                .request().body( "-463")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2516,8 +2706,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "A")
-                .cookie( "region", "`")
+                .cookie( "country", "B")
+                .cookie( "region", "'")
                 .contentType( "text/plain")
                 .request().body( "{\"text\":\"\"}")
             .when()
@@ -2538,8 +2728,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "j")
-                .cookie( "region", ">")
+                .cookie( "country", "U")
+                .cookie( "region", "{")
                 .contentType( "text/plain")
                 .request().body( "{\"text\":\"\",\"email\":null}")
             .when()
@@ -2556,14 +2746,36 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void putPosts_BodyTextPlainValuePropertiesEmailType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "country", "0")
+                .cookie( "region", "e")
+                .contentType( "text/plain")
+                .request().body( "{\"text\":\"\",\"email\":127}")
+            .when()
+                .request( "PUT", "/posts")
+            .then()
+                // Body.text-plain.Value.Properties.email.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void putPosts_BodyTextPlainValuePropertiesEmailValueLength_Is_6() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "*")
-                .cookie( "region", "R")
+                .cookie( "country", "V")
+                .cookie( "region", "q")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"H6.com\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"F7.net\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2582,10 +2794,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "Z")
-                .cookie( "region", "?")
+                .cookie( "country", "Y")
+                .cookie( "region", "D")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"Q.-R.O%.xI.8_.R~@0vr.KU.aj.T0.net\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"Ku.#5c._&*.!`~.fPV@j.0c.bm.I4.edu\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2604,10 +2816,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "l")
-                .cookie( "region", "m")
+                .cookie( "country", "_")
+                .cookie( "region", "<")
                 .contentType( "text/plain")
-                .request().body( "{\"email\":\"d@a.gov\"}")
+                .request().body( "{\"email\":\"F@Y.org\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2626,10 +2838,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "0")
-                .cookie( "region", "*")
+                .cookie( "country", "J")
+                .cookie( "region", "&")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":null,\"email\":\"M@5.gov\"}")
+                .request().body( "{\"text\":null,\"email\":\"+@J.gov\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2644,14 +2856,36 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void putPosts_BodyTextPlainValuePropertiesTextType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "country", "%")
+                .cookie( "region", "E")
+                .contentType( "text/plain")
+                .request().body( "{\"text\":13,\"email\":\"w@R.org\"}")
+            .when()
+                .request( "PUT", "/posts")
+            .then()
+                // Body.text-plain.Value.Properties.text.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PUT", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PUT", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void putPosts_BodyTextPlainValuePropertiesTextValueLength_Is_65() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "W")
-                .cookie( "region", "e")
+                .cookie( "country", "#")
+                .cookie( "region", "$")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"XDS:6kGbu7hpwCtKd`560|E U&=Tvy)0BVvr\\\\4e$S`F]~%X&v~KbwBZX=\\\"l1\\\",EU[\",\"email\":\"}@d.edu\"}")
+                .request().body( "{\"text\":\"JPt TLg/#+P9F03USC(F12J)k+BE<&oGTJh<RrmNe6-yTg=G<?qA\\\\MHn+L:c\\\"B7~'\",\"email\":\"q@2.org\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2670,10 +2904,10 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "country", "P")
-                .cookie( "region", "K")
+                .cookie( "country", "O")
+                .cookie( "region", "6")
                 .contentType( "text/plain")
-                .request().body( "{\"text\":\"\",\"email\":\"*@H.gov\",\"gkajbwqvp\":\"k2cW\"}")
+                .request().body( "{\"text\":\"\",\"email\":\"g@I.org\",\"qlrcnlkwzq\":\"[oIUO\"}")
             .when()
                 .request( "PUT", "/posts")
             .then()
@@ -2783,11 +3017,30 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "-297.0")
+                .cookie( "postId", "568.0")
             .when()
                 .request( "TRACE", "/posts")
             .then()
                 // postId.Type=Not array
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "TRACE", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "TRACE", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
+    public void tracePosts_PostIdItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "postId", "")
+            .when()
+                .request( "TRACE", "/posts")
+            .then()
+                // postId.Items.Size=0
                 .statusCode( isBadRequest())
             .extract()
                 .response()
@@ -2821,7 +3074,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "|C")
+                .cookie( "postId", "|B")
             .when()
                 .request( "TRACE", "/posts")
             .then()
@@ -2836,11 +3089,30 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void tracePosts_PostIdItemsContainsType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "postId", "|B")
+            .when()
+                .request( "TRACE", "/posts")
+            .then()
+                // postId.Items.Contains.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "TRACE", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "TRACE", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void tracePosts_PostIdItemsContainsValue_Is_Other() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "-kQr{oH&F5t6_4R7i4.d@-gs5gZFdIi6B#N?xOsn]1Q}yh*NC[l}>wH*NzR^O<Wmc3Ki*cX*|C")
+                .cookie( "postId", "jLId'31*^UjExCZerfw#(S_b#m[(L&~c@x{Xp7Btyr+R+'p[jrH_o$X`LnQgI'mW?MxXRGcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.5ef?WOZ+>MHIUD-{?yH$5-DM3*T>hR%ct'(7EzCR]8|A")
             .when()
                 .request( "TRACE", "/posts")
             .then()
@@ -2896,7 +3168,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=968584127")
+                .pathParam( "attributes", ";approved=false;likes=597033979")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -2970,7 +3242,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";attributes=217")
+                .pathParam( "attributes", ";attributes=-441")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -2989,7 +3261,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";likes=354355398")
+                .pathParam( "attributes", ";likes=1035843385")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -3008,7 +3280,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved;likes=703703613")
+                .pathParam( "attributes", ";approved;likes=127128009")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -3027,7 +3299,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved;likes=89711824")
+                .pathParam( "attributes", ";approved=\"+DZYOH4;likes=222686173")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -3122,7 +3394,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;subject;likes=369139405")
+                .pathParam( "attributes", ";approved=false;subject;likes=279878075")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -3137,11 +3409,30 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void tracePostsAttributes_AttributesValuePropertiesSubjectType_Is_NotString() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .pathParam( "attributes", ";approved=false;subject=-272;likes=245000076")
+            .when()
+                .request( "TRACE", "/posts/{attributes}")
+            .then()
+                // attributes.Value.Properties.subject.Type=Not string
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "TRACE", "/posts/{attributes}", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "TRACE", "/posts/{attributes}", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void tracePostsAttributes_AttributesValuePropertiesSubjectValue_Is_Other() {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;subject==EOonKR3%i@(h,kXwv]bDcPjC*8 }PXp1CcGRBK_I_r 9T@f'vtYf!`G`PCGAn5mQS8DuqLn?NE;likes=372852380")
+                .pathParam( "attributes", ";approved=false;subject=~+:.-g:o)lz~^hL-;. o1\\Vc64a#.Sm!*Y`|qrPD^$*wXi2.a22Qkgt|f8T;#g33QP&F3Sq{<43[l#SP:C>1C~NW?G\\a _%Jkm?u2\"l\"H7*]q:f9@re;likes=859073676")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -3160,7 +3451,7 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=509855036;ar=725")
+                .pathParam( "attributes", ";approved=false;likes=776704486;wuf")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -3199,7 +3490,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "approved=false")
-                .pathParam( "userId", "363198115")
+                .pathParam( "userId", "361643225")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3217,12 +3508,32 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "[attributes]", "likes=744505988")
+                .pathParam( "[attributes]", "likes=548990533")
                 .pathParam( "userId", "0")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
                 .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
+    public void deletePostsUserIdAttributes_UserIdDefined_Is_No() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .pathParam( "[attributes]", "approved=true")
+                .pathParam( "userId", "")
+            .when()
+                .request( "DELETE", "/posts/{userId}/{[attributes]}")
+            .then()
+                // userId.Defined=No
+                .statusCode( isBadRequest())
             .extract()
                 .response()
                 ;
@@ -3257,7 +3568,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "approved=true")
-                .pathParam( "userId", "true")
+                .pathParam( "userId", "$$jsW^f_,,jxOXXRb")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3292,12 +3603,32 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void deletePostsUserIdAttributes_AttributesDefined_Is_No() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .pathParam( "[attributes]", "")
+                .pathParam( "userId", "681280805")
+            .when()
+                .request( "DELETE", "/posts/{userId}/{[attributes]}")
+            .then()
+                // attributes.Defined=No
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void deletePostsUserIdAttributes_AttributesType_Is_Null() {
         Response response =
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "")
-                .pathParam( "userId", "381255829")
+                .pathParam( "userId", "357334495")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3316,8 +3647,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "[attributes]", "|")
-                .pathParam( "userId", "129395836")
+                .pathParam( "[attributes]", "-772.4")
+                .pathParam( "userId", "471978604")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3337,7 +3668,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "")
-                .pathParam( "userId", "841917001")
+                .pathParam( "userId", "944897639")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3357,7 +3688,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "approved=")
-                .pathParam( "userId", "468903080")
+                .pathParam( "userId", "515833097")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3376,8 +3707,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "[attributes]", "approved=")
-                .pathParam( "userId", "365462155")
+                .pathParam( "[attributes]", "approved=cyhdwbn,rUyOPpmo,hvkexe,337.6")
+                .pathParam( "userId", "1066915565")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3397,7 +3728,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "approved=true,likes=")
-                .pathParam( "userId", "873203121")
+                .pathParam( "userId", "143212479")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3416,8 +3747,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "[attributes]", "approved=true,likes=h'sx_E7")
-                .pathParam( "userId", "1023834291")
+                .pathParam( "[attributes]", "approved=true,likes=true")
+                .pathParam( "userId", "728445295")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3437,7 +3768,7 @@ public class OpenAPIRequestTestCasesTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "[attributes]", "approved=true,likes=-1")
-                .pathParam( "userId", "535291287")
+                .pathParam( "userId", "171293516")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
@@ -3456,8 +3787,8 @@ public class OpenAPIRequestTestCasesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "[attributes]", "approved=true,shhelptr=54,avuhxdkoidtkij=-85")
-                .pathParam( "userId", "196324320")
+                .pathParam( "[attributes]", "approved=true,blsssh=,osdpcfswhlbninro=-981.1,ublzqiqwnlq=true")
+                .pathParam( "userId", "814600097")
             .when()
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()

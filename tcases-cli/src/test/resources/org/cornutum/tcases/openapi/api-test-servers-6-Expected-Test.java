@@ -3,306 +3,458 @@ package org.cornutum.examples;
 
 import org.junit.Test;
 
+import java.util.Map;
+import static java.util.stream.Collectors.toMap;
+
+import io.restassured.http.Header;
+import io.restassured.response.Response;
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class ApiTestServers_6_Test {
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
     public void getServersOp_IdDefined_Is_Yes() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "0")
-        .when()
-            .request( "GET", "/servers/op")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "0")
+            .when()
+                .request( "GET", "/servers/op")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOp_IdDefined_Is_No() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-        .when()
-            .request( "GET", "/servers/op")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+            .when()
+                .request( "GET", "/servers/op")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOp_IdValue_Is_Gt_0() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "856182706")
-        .when()
-            .request( "GET", "/servers/op")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "856182706")
+            .when()
+                .request( "GET", "/servers/op")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOp_IdType_Is_Null() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", (String) null)
-        .when()
-            .request( "GET", "/servers/op")
-        .then()
-            // id.Type=null
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", (String) null)
+            .when()
+                .request( "GET", "/servers/op")
+            .then()
+                // id.Type=null
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOp_IdType_Is_NotInteger() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "true")
-        .when()
-            .request( "GET", "/servers/op")
-        .then()
-            // id.Type=Not integer
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "true")
+            .when()
+                .request( "GET", "/servers/op")
+            .then()
+                // id.Type=Not integer
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOp_IdValue_Is_M1() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "-1")
-        .when()
-            .request( "GET", "/servers/op")
-        .then()
-            // id.Value.Is=-1
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "-1")
+            .when()
+                .request( "GET", "/servers/op")
+            .then()
+                // id.Value.Is=-1
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void deleteServersOpPath_IdDefined_Is_Yes() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "0")
-        .when()
-            .request( "DELETE", "/servers/op/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "0")
+            .when()
+                .request( "DELETE", "/servers/op/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void deleteServersOpPath_IdDefined_Is_No() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-        .when()
-            .request( "DELETE", "/servers/op/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+            .when()
+                .request( "DELETE", "/servers/op/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void deleteServersOpPath_IdValue_Is_Gt_0() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "498527769")
-        .when()
-            .request( "DELETE", "/servers/op/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "498527769")
+            .when()
+                .request( "DELETE", "/servers/op/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void deleteServersOpPath_IdType_Is_Null() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", (String) null)
-        .when()
-            .request( "DELETE", "/servers/op/path")
-        .then()
-            // id.Type=null
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", (String) null)
+            .when()
+                .request( "DELETE", "/servers/op/path")
+            .then()
+                // id.Type=null
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void deleteServersOpPath_IdType_Is_NotInteger() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "true")
-        .when()
-            .request( "DELETE", "/servers/op/path")
-        .then()
-            // id.Type=Not integer
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "true")
+            .when()
+                .request( "DELETE", "/servers/op/path")
+            .then()
+                // id.Type=Not integer
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void deleteServersOpPath_IdValue_Is_M1() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "-1")
-        .when()
-            .request( "DELETE", "/servers/op/path")
-        .then()
-            // id.Value.Is=-1
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "-1")
+            .when()
+                .request( "DELETE", "/servers/op/path")
+            .then()
+                // id.Value.Is=-1
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOpPath_IdDefined_Is_Yes() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "0")
-        .when()
-            .request( "GET", "/servers/op/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "0")
+            .when()
+                .request( "GET", "/servers/op/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOpPath_IdDefined_Is_No() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-        .when()
-            .request( "GET", "/servers/op/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+            .when()
+                .request( "GET", "/servers/op/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOpPath_IdValue_Is_Gt_0() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "535990035")
-        .when()
-            .request( "GET", "/servers/op/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "535990035")
+            .when()
+                .request( "GET", "/servers/op/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOpPath_IdType_Is_Null() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", (String) null)
-        .when()
-            .request( "GET", "/servers/op/path")
-        .then()
-            // id.Type=null
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", (String) null)
+            .when()
+                .request( "GET", "/servers/op/path")
+            .then()
+                // id.Type=null
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOpPath_IdType_Is_NotInteger() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "1&!q")
-        .when()
-            .request( "GET", "/servers/op/path")
-        .then()
-            // id.Type=Not integer
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "1&!q")
+            .when()
+                .request( "GET", "/servers/op/path")
+            .then()
+                // id.Type=Not integer
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersOpPath_IdValue_Is_M1() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-            .queryParam( "id", "-1")
-        .when()
-            .request( "GET", "/servers/op/path")
-        .then()
-            // id.Value.Is=-1
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
+                .queryParam( "id", "-1")
+            .when()
+                .request( "GET", "/servers/op/path")
+            .then()
+                // id.Value.Is=-1
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/op/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/op/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersPath_IdDefined_Is_Yes() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "0")
-        .when()
-            .request( "GET", "/servers/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "0")
+            .when()
+                .request( "GET", "/servers/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersPath_IdDefined_Is_No() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-        .when()
-            .request( "GET", "/servers/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+            .when()
+                .request( "GET", "/servers/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersPath_IdValue_Is_Gt_0() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "811028334")
-        .when()
-            .request( "GET", "/servers/path")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "811028334")
+            .when()
+                .request( "GET", "/servers/path")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersPath_IdType_Is_Null() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", (String) null)
-        .when()
-            .request( "GET", "/servers/path")
-        .then()
-            // id.Type=null
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", (String) null)
+            .when()
+                .request( "GET", "/servers/path")
+            .then()
+                // id.Type=null
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersPath_IdType_Is_NotInteger() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "fhrlstmy,506.3,u,-939.4,kcts,798")
-        .when()
-            .request( "GET", "/servers/path")
-        .then()
-            // id.Type=Not integer
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "fhrlstmy,506.3,u,-939.4,kcts,798")
+            .when()
+                .request( "GET", "/servers/path")
+            .then()
+                // id.Type=Not integer
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/path", response.statusCode(), responseHeaders( response));
     }
 
     @Test
     public void getServersPath_IdValue_Is_M1() {
-        given()
-            .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-            .queryParam( "id", "-1")
-        .when()
-            .request( "GET", "/servers/path")
-        .then()
-            // id.Value.Is=-1
-            .statusCode( isBadRequest())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
+                .queryParam( "id", "-1")
+            .when()
+                .request( "GET", "/servers/path")
+            .then()
+                // id.Value.Is=-1
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/servers/path", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/servers/path", response.statusCode(), responseHeaders( response));
     }
 
     private static Matcher<Integer> isSuccess() {
@@ -324,5 +476,11 @@ public class ApiTestServers_6_Test {
     private static String tcasesApiServer() {
         String uri = System.getProperty( "tcasesApiServer");
         return uri == null? "" : uri.trim();
+    }
+
+    private static Map<String,String> responseHeaders( Response response) {
+        return
+            response.getHeaders().asList().stream()
+            .collect( toMap( Header::getName, Header::getValue));
     }
 }
