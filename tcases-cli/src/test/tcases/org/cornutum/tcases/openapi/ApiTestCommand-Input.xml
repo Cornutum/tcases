@@ -46,6 +46,21 @@
                     <Value name="No"/>
                 </Var>
             </VarSet>
+            <VarSet name="Resource-Dir">
+                <Var name="Defined">
+                    <Value name="Yes" property="resourceDir"/>
+                    <Value name="No"/>                    
+                </Var>
+                <Var name="Enabled" when="resourceDir">
+                    <Value name="false"/>
+                    <Value name="no"/>
+                    <Value name="Yes" property="resourceDirPath"/>
+                </Var>
+                <Var name="Path" when="resourceDirPath">
+                    <Value name="Absolute"/>
+                    <Value name="Relative"/>
+                </Var>
+            </VarSet>
             <Var name="Moco-Test-Config" when="moco">
                 <Value name="Defined"/>
                 <Value name="Undefined" failure="true"/>

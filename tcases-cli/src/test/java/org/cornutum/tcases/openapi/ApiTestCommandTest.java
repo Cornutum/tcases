@@ -88,6 +88,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outFile.getParent(), outFile.getName() + "Test.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-0", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, false);
     }
 
   /**
@@ -152,6 +155,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outDir, "OpenAPIRequestTestCasesTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-1", testFileResults);
+
+    File responsesDir = new File( getResourceDir(), "resources/org/cornutum/moco");
+    assertResponses( testFile, responsesDir, true);
     }
 
   /**
@@ -199,6 +205,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-b", "org.cornutum.examples.MyBaseClass",
         "-f", outFile.getPath(),
         "-o", outDir.getPath(),
+        "-d", "no",
         "-P", "/posts/{attributes}, /post",
         "-O", "TRACE, PATCH",
         "-c", "ignore,",
@@ -212,6 +219,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outDir, outFile.getPath() + ".java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-2", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, false);
     }
 
   /**
@@ -248,6 +258,7 @@ public class ApiTestCommandTest extends TestWriterTest
     {
     // Given...
     File apiFile = stdApiDef( "OpenApiTest");
+    File resourceDir = new File( "resources");
     
     String[] args =
       {
@@ -257,6 +268,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-O", "TRACE",
         "-c", ",ignore",
         "-m", "10",
+        "-d", resourceDir.getPath(),
         apiFile.getPath()
       };
     
@@ -267,6 +279,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( apiFile.getParentFile(), "OpenAPIRequestTestCasesTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-3", testFileResults);
+
+    File responsesDir = new File( testFile.getParentFile(), resourceDir.getPath());
+    assertResponses( testFile, responsesDir, true);
     }
 
   /**
@@ -324,6 +339,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outFile.getParent(), outFile.getName() + "Test.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-4", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, false);
     }
 
   /**
@@ -390,6 +408,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outDir, "MyMocoTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-5", testFileResults);
+
+    File responsesDir = new File( getResourceDir(), "resources/org/cornutum/moco");
+    assertResponses( testFile, responsesDir, true);
     }
 
   /**
@@ -435,6 +456,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-e", "restassured",
         "-f", outFile.getPath(),
         "-o", outDir.getPath(),
+        "-d", "false",
         "-u", "12345",
         "-O", "options",
         "-c", ",ignore",
@@ -450,6 +472,9 @@ public class ApiTestCommandTest extends TestWriterTest
       File testFile = new File( outDir, outFile.getPath() + ".java");
       String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
       verifyTest( "api-test-6", testFileResults);
+
+      File responsesDir = testFile.getParentFile();
+      assertResponses( testFile, responsesDir, false);
       }
     finally
       {
@@ -500,6 +525,7 @@ public class ApiTestCommandTest extends TestWriterTest
         "-P", "/post",
         "-m", "1234",
         "-u", "12345",
+        "-d", "no",
         apiFile.getPath()
       };
     
@@ -510,6 +536,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( apiFile.getParentFile(), "WhyNotTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-7", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, false);
     }
 
   /**
@@ -568,6 +597,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outFile.getParent(), outFile.getName() + ".java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-8", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, false);
     }
 
   /**
@@ -623,6 +655,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( outDir, "ReadOnlyTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-9", testFileResults);
+
+    File responsesDir = new File( getResourceDir(), "resources/org/cornutum/readonly");
+    assertResponses( testFile, responsesDir, true);
     }
 
   /**
@@ -838,28 +873,30 @@ public class ApiTestCommandTest extends TestWriterTest
    * Tests {@link ApiTestCommand#run run()} using the following inputs.
    * <P>
    * <TABLE border="1" cellpadding="8">
-   * <TR align="left"><TH colspan=2> 14. run (<FONT color="red">Failure</FONT>) </TH></TR>
+   * <TR align="left"><TH colspan=2> 14. run (Success) </TH></TR>
    * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
-   * <TR><TD> Test-Type </TD> <TD> testng </TD> </TR>
+   * <TR><TD> Test-Type </TD> <TD> moco </TD> </TR>
    * <TR><TD> Exec-Type </TD> <TD> Default </TD> </TR>
    * <TR><TD> Test-Name </TD> <TD> Simple </TD> </TR>
-   * <TR><TD> Test-Package </TD> <TD> Defined </TD> </TR>
-   * <TR><TD> Base-Class </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Test-Package </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Base-Class </TD> <TD> Simple </TD> </TR>
    * <TR><TD> Output-File.Defined </TD> <TD> No </TD> </TR>
    * <TR><TD> Output-File.Path </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Output-Dir.Defined </TD> <TD> No </TD> </TR>
-   * <TR><TD> Output-Dir.Exists </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Timeout </TD> <TD> <FONT color="red">Invalid</FONT> </TD> </TR>
-   * <TR><TD> Moco-Test-Config </TD> <TD> (not applicable) </TD> </TR>
-   * <TR><TD> Paths </TD> <TD> One </TD> </TR>
-   * <TR><TD> Operations </TD> <TD> Default </TD> </TR>
-   * <TR><TD> Condition-Handler.Modelling </TD> <TD> Log </TD> </TR>
-   * <TR><TD> Condition-Handler.Resolver </TD> <TD> Log </TD> </TR>
+   * <TR><TD> Output-Dir.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Output-Dir.Exists </TD> <TD> No </TD> </TR>
+   * <TR><TD> Resource-Dir.Defined </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Resource-Dir.Enabled </TD> <TD> Yes </TD> </TR>
+   * <TR><TD> Resource-Dir.Path </TD> <TD> Absolute </TD> </TR>
+   * <TR><TD> Moco-Test-Config </TD> <TD> Defined </TD> </TR>
+   * <TR><TD> Paths </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Operations </TD> <TD> One </TD> </TR>
+   * <TR><TD> Condition-Handler.Modelling </TD> <TD> Default </TD> </TR>
+   * <TR><TD> Condition-Handler.Resolver </TD> <TD> Ignore </TD> </TR>
    * <TR><TD> Read-Only-Enforced </TD> <TD> No </TD> </TR>
    * <TR><TD> Random-Seed </TD> <TD> Default </TD> </TR>
    * <TR><TD> Max-Tries </TD> <TD> Defined </TD> </TR>
    * <TR><TD> Api-Spec.Defined </TD> <TD> Yes </TD> </TR>
-   * <TR><TD> Api-Spec.Path </TD> <TD> Relative </TD> </TR>
+   * <TR><TD> Api-Spec.Path </TD> <TD> Absolute </TD> </TR>
    * </TABLE>
    * </P>
    */
@@ -868,24 +905,39 @@ public class ApiTestCommandTest extends TestWriterTest
     {
     // Given...
     File apiFile = stdApiDef( "OpenApiTest");
+    File outDir = new File( getResourceDir(), "java/org/cornutum/moco");
+    File resourceDir = new File( getResourceDir(), "resources");
+
+    File testConfigFile = new File( getResourceDir(), "mocoRestServer.json");
+    MocoTestConfig testConfig =
+      MocoTestConfig.builder( "RestServer")
+      .serverConfig( MocoServerConfig.file( new File( getResourceDir(), "myRestServerConfig.json")).build())
+      .build();
+    writeMocoTestConfig( testConfig, testConfigFile);
     
     String[] args =
       {
-        "-t", "testng",
-        "-n", "Why Not?",
-        "-p", "org.cornutum.examples",
-        "-P", "/post",
-        "-m", "1234",
-        "-u", "wtf?",
+        "-n", "MyTestClass",
+        "-t", "moco",
+        "-b", "MyBaseClass",
+        "-o", outDir.getPath(),
+        "-d", resourceDir.getPath(),
+        "-M", testConfigFile.getPath(),
+        "-O", "get",
+        "-m", "123",
         apiFile.getPath()
       };
 
-    assertFailure(
-      IllegalArgumentException.class,
-      () -> ApiTestCommand.run( new Options( args)),
-      "Invalid command line argument. For all command line details, use the -help option.",
-      "Invalid timeout",
-      "For input string: \"wtf?\"");
+    // When...
+    ApiTestCommand.run( new Options( args));
+    
+    // Then...
+    File testFile = new File( outDir, "MyTestClassTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-14", testFileResults);
+
+    File responsesDir = resourceDir;
+    assertResponses( testFile, responsesDir, true);
     }
 
   @Test
@@ -929,6 +981,9 @@ public class ApiTestCommandTest extends TestWriterTest
     File testFile = new File( apiFile.getParentFile(), "OpenApiExamplesTest.java");
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-examples", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, true);
     }
 
   /**
