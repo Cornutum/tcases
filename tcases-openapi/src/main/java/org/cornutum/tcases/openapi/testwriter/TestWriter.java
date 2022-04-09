@@ -220,22 +220,32 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
    */
   protected void writeResponsesDef( ResponsesDef responses, File targetFile, File resourceDir)
     {
-    File resourceFile =
-      new File(
-        Optional.ofNullable( resourceDir).orElse( targetFile.getParentFile()),
-        String.format( "%s-Responses.json", getBaseName( targetFile.getName())));
+    File targetDir =
+      Optional.ofNullable( targetFile)
+      .map( target -> target.getParentFile())
+      .orElse( null);
 
-    Optional.of( resourceFile.getParentFile())
-      .filter( dir -> dir.exists() || dir.mkdirs())
-      .orElseThrow( () -> new TestWriterException( String.format( "Can't create resourceDir=%s", resourceFile.getParentFile())));
+    File targetResourceDir =
+      Optional.ofNullable( resourceDir)
+      .map( dir -> dir.isAbsolute() || targetDir == null? dir : new File( targetDir, dir.getPath()))
+      .orElse( targetDir);
 
-    try( FileWriter writer = new FileWriter( resourceFile))
+    if( targetResourceDir != null)
       {
-      ResponsesDef.write( responses, writer);
-      }
-    catch( Exception e)
-      {
-      throw new TestWriterException( String.format( "Can't write responses definition to resourceFile=%s", resourceFile), e);
+      Optional.of( targetResourceDir)
+        .filter( dir -> dir.exists() || dir.mkdirs())
+        .orElseThrow( () -> new TestWriterException( String.format( "Can't create resourceDir=%s", targetResourceDir)));
+
+      File resourceFile = new File( targetResourceDir, String.format( "%s-Responses.json", getBaseName( targetFile.getName())));
+
+      try( FileWriter writer = new FileWriter( resourceFile))
+        {
+        ResponsesDef.write( responses, writer);
+        }
+      catch( Exception e)
+        {
+        throw new TestWriterException( String.format( "Can't write responses definition to resourceFile=%s", resourceFile), e);
+        }
       }
     }
 
