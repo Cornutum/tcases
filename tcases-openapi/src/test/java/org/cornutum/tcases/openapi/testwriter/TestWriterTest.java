@@ -13,6 +13,7 @@ import org.cornutum.tcases.openapi.resolver.RequestTestDef;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils; 
 import org.apache.commons.lang3.StringUtils;
@@ -323,6 +324,23 @@ public abstract class TestWriterTest
     generatedTestDir.mkdirs();
 
     return generatedTestDir;
+    }
+
+  /**
+   * Reports a failure unless the response definitions file for the given test file does (not) exist as expected.
+   */
+  protected void assertResponses( File testFile, File expectedDir, boolean exists)
+    {
+    File responsesFile = new File( expectedDir, responsesFor( testFile));
+    assertThat( responsesFile.getName(), responsesFile.exists(), is( exists));
+    }
+
+  /**
+   * Returns the name of the response definition file associated with the given test file.
+   */
+  protected String responsesFor( File testFile)
+    {
+    return String.format( "%s-Responses.json", FilenameUtils.getBaseName( testFile.getName()));
     }
 
   /**

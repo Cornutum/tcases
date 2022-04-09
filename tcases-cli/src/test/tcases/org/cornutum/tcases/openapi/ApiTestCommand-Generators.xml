@@ -13,5 +13,13 @@
           <Include var="Test-Name"/>
           <Include var="Base-Class"/>
       </Combine>
+      <Combine tuples="2">
+          <Include var="Test-Name"/>
+          <Include var="Base-Class"/>
+      </Combine>
+      <Combine tuples="2">
+          <Include var="Output-Dir.Defined"/>
+          <Include var="Resource-Dir.Defined"/>
+      </Combine>
   </TupleGenerator>
 </Generators>
