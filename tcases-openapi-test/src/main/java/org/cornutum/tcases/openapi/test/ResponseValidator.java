@@ -14,6 +14,8 @@ import org.openapi4j.core.validation.ValidationSeverity;
 import org.openapi4j.schema.validator.ValidationData;
 import org.openapi4j.schema.validator.v3.SchemaValidator;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -21,6 +23,7 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import static java.util.Collections.emptyList;
@@ -46,7 +49,7 @@ public class ResponseValidator
    */
   public ResponseValidator( Class<?> testClass, String resourceName)
     {
-    this( testClass.getResourceAsStream( resourceName));
+    this( streamFor( testClass, resourceName));
     }
   
   /**
@@ -102,9 +105,10 @@ public class ResponseValidator
         }
 
       // The actual body and content type must be defined if and only if an expected body content is defined.
+      String bodyContentType = Objects.toString( contentType, "").trim();
       if( responses_.hasBody( op, path, statusCode))
         {
-        if( contentType == null)
+        if( bodyContentType.isEmpty())
           {
           throw new ResponseValidationException( op, path, statusCode, "body", "no response Content-Type header received");
           }
@@ -120,22 +124,22 @@ public class ResponseValidator
 
       if( bodyContent != null)
         {
-        if( !responses_.contentTypeDefined( op, path, statusCode, contentType))
+        if( !responses_.contentTypeDefined( op, path, statusCode, bodyContentType))
           {
-          throw new ResponseValidationException( op, path, statusCode, "body", String.format( "unexpected response contentType=%s", contentType));
+          throw new ResponseValidationException( op, path, statusCode, "body", String.format( "unexpected response contentType=%s", bodyContentType));
           }
         
         // Compare actual body content...
-        List<JsonNode> bodyContentJson = bodyContentJson( op, path, statusCode, contentType, bodyContent);
+        List<JsonNode> bodyContentJson = bodyContentJson( op, path, statusCode, bodyContentType, bodyContent);
         if( bodyContentJson.isEmpty())
           {
-          throw new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "contentType=%s can't be validated", contentType));
+          throw new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "contentType=%s can't be validated", bodyContentType));
           }
 
         // ...with expected content schema...
         JsonNode schema =
-          responses_.contentSchema( op, path, statusCode, contentType)
-          .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "no schema defined for contentType=%s", contentType)));
+          responses_.contentSchema( op, path, statusCode, bodyContentType)
+          .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "no schema defined for contentType=%s", bodyContentType)));
 
         // ...and report any non-conformance errors
         Optional<List<SchemaValidationError>> validationErrors;
@@ -414,6 +418,39 @@ public class ResponseValidator
       throw new ResponseValidationException( "Can't read response definitions", e);
       }
     };
+
+  /**
+   * Returns an input stream a {@link ResponsesDef} resource for the given test class.
+   */
+  private static InputStream streamFor( Class<?> testClass, String resourceName)
+    {
+    InputStream responses;
+
+    // Resource location specified at runtime?
+    String resourceDir = Objects.toString( System.getProperty( "tcasesApiResourceDir"), "").trim();
+    if( !resourceDir.isEmpty())
+      {
+      // Yes, read specified resource file.
+      File resourceFile = new File( resourceDir, resourceName);
+      try
+        {
+        responses = new FileInputStream( resourceFile);
+        }
+      catch( Exception e)
+        {
+        throw new IllegalArgumentException( "Can't read response definitions from " + resourceFile, e);
+        }
+      }
+    else
+      {
+      // No, read resource from class path.
+      responses =
+        Optional.ofNullable( testClass.getResourceAsStream( resourceName))
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find resource=%s for class=%s", resourceName, testClass.getName())));
+      }
+
+    return responses;
+    }
 
   /**
    * Handles a {@link ResponseUnvalidatedException} by ignoring it.
