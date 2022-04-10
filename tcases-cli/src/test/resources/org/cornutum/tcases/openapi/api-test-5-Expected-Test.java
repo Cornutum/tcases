@@ -1,6 +1,8 @@
 package org.cornutum.moco;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import com.github.dreamhead.moco.junit.MocoJunitRunner;
@@ -14,18 +16,18 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class MyMocoTest {
+
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
     private static final HttpsCertificate myCertificate = certificate( pathResource( "myCert.cks"), "kss!", "css!");
 
     @Rule
     public MocoJunitRunner runner = MocoJunitRunner.jsonHttpsRunner( 9999, pathResource( "myMocoServerConfig"), myCertificate);
-    private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
     public void putPost_PostIdDefined_Is_Yes() {

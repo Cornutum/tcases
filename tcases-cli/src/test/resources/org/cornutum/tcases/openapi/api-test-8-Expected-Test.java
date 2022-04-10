@@ -2,6 +2,8 @@ package org.cornutum;
 
 import org.cornutum.utils.MyBaseClass
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -9,13 +11,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class MyTest extends MyBaseClass {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
