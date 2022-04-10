@@ -17,8 +17,8 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -232,13 +232,14 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
 
     if( targetResourceDir != null)
       {
-      Optional.of( targetResourceDir)
-        .filter( dir -> dir.exists() || dir.mkdirs())
-        .orElseThrow( () -> new TestWriterException( String.format( "Can't create resourceDir=%s", targetResourceDir)));
+      if( !(targetResourceDir.exists() || targetResourceDir.mkdirs()))
+        {
+        throw new TestWriterException( String.format( "Can't create resourceDir=%s", targetResourceDir));
+        }
 
       File resourceFile = new File( targetResourceDir, String.format( "%s-Responses.json", getBaseName( targetFile.getName())));
 
-      try( FileWriter writer = new FileWriter( resourceFile))
+      try( OutputStreamWriter writer = new OutputStreamWriter( new FileOutputStream( resourceFile), "UTF-8"))
         {
         ResponsesDef.write( responses, writer);
         }

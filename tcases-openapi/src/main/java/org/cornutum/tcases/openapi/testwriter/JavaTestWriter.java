@@ -168,7 +168,5 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
 
         return new File( String.format( "%sresources/%s", resourceDirRoot, resourceDirRelative));
         });
-    
     }
-
   }

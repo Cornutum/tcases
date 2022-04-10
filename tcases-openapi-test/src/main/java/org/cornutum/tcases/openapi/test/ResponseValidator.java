@@ -77,6 +77,7 @@ public class ResponseValidator
         }
       catch( Exception ignored)
         {
+        // Don't care about this
         }
       }
     }
@@ -332,7 +333,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeForm( String content, boolean explode) throws Exception
     {
-    throw new UnsupportedOperationException( "Not implemented");
+    throw new UnsupportedOperationException( String.format( "decodeForm( \"%s\", %s)", content, explode));
     }
 
   /**
@@ -360,7 +361,7 @@ public class ResponseValidator
       validation.results().items( ValidationSeverity.ERROR).stream()
       .map( item -> {
         // Extract JSON pointer fragment for the location of the failed schema assertion
-        StringBuffer schemaKeys = new StringBuffer();
+        StringBuilder schemaKeys = new StringBuilder();
         String crumbs = item.schemaCrumbs();
         int keyEnd = crumbs.lastIndexOf( '>');
         boolean moreSchemaKeys = keyEnd >= 0;
