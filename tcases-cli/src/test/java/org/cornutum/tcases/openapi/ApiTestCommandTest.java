@@ -754,7 +754,7 @@ public class ApiTestCommandTest extends TestWriterTest
       () -> runWithStdIO( new Options( args), apiFile, null),
       "JUnitTestWriter[]: Can't write test for TestSource[RequestTestDef[OpenAPI Request Test Cases]]",
       "Can't write test=OpenAPIRequestTestCases",
-      "No package defined for target=JavaTestTarget[package=<null>,STDOUT]");
+      "No package defined for target=JavaTestTarget[package=<null>,STDOUT,validateResponses=true]");
     }
 
   /**

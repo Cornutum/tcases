@@ -1412,6 +1412,7 @@ public class ApiTestCommand
         .inDir( getOutDir())
         .withResourcesIn( getResourceOutDir())
         .timeout( getTimeout())
+        .validateResponses( hasResources())
         .build();
       }
     

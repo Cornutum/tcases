@@ -58,7 +58,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println();
       targetWriter.println( "import io.restassured.http.Header;");
       targetWriter.println( "import io.restassured.response.Response;");
-      targetWriter.println( "import org.cornutum.tcases.openapi.test.ResponseValidator;");
       targetWriter.println();
       }
     targetWriter.println( "import org.hamcrest.Matcher;");
@@ -74,10 +73,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   @Override
   public void writeDeclarations( String testName, IndentedWriter targetWriter)
     {
-    if( validateResponses())
-      {
-      targetWriter.println( "private ResponseValidator responseValidator = new ResponseValidator( getClass());");
-      }
+    
     }
   
   /**

@@ -132,6 +132,21 @@ public class TestTarget
     {
     return timeout_;
     }
+  /**
+   * Changes if generated test cases will validate API requests responses.
+   */
+  public void setValidateResponses( boolean validateResponses)
+    {
+    validateResponses_ = validateResponses;
+    }
+
+  /**
+   * Returns if generated test cases will validate API requests responses.
+   */
+  public boolean validateResponses()
+    {
+    return validateResponses_;
+    }
 
   @Override
   public String toString()
@@ -168,6 +183,8 @@ public class TestTarget
       {
       builder.append( "timeout", getTimeout());
       }
+
+    builder.append( "validateResponses", validateResponses());
     
     return builder.toString();    
     }
@@ -186,7 +203,7 @@ public class TestTarget
     return elements;
     }
 
-/**
+  /**
    * Returns a new {@link Builder}.
    */
   public static Builder basic()
@@ -200,6 +217,7 @@ public class TestTarget
   private File dir_;
   private File resourceDir_;
   private Long timeout_;
+  private boolean validateResponses_;
 
   /**
    * Builds a {@link TestTarget} instance.
@@ -286,6 +304,11 @@ public class TestTarget
       getTestTarget().setTimeout( timeout);
       return (T) this;
       }
-    }
 
+    public T validateResponses( boolean validate)
+      {
+      getTestTarget().setValidateResponses( validate);
+      return (T) this;
+      }
+    }
   }

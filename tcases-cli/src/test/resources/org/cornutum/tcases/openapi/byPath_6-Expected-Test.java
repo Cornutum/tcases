@@ -1,6 +1,8 @@
 package org.cornutum.examples;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -8,13 +10,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenAPIRequestTestCases_PostsTest {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
@@ -1664,6 +1666,8 @@ public class OpenAPIRequestTestCases_PostsTest {
 package org.cornutum.examples;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -1671,13 +1675,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenAPIRequestTestCases_PostsUseridAttributesTest {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
@@ -2011,6 +2015,8 @@ public class OpenAPIRequestTestCases_PostsUseridAttributesTest {
 package org.cornutum.examples;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -2018,13 +2024,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenAPIRequestTestCases_PostsAttributesTest {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
@@ -2362,6 +2368,8 @@ public class OpenAPIRequestTestCases_PostsAttributesTest {
 package org.cornutum.examples;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -2369,13 +2377,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenAPIRequestTestCases_PostTest {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
@@ -3438,6 +3446,8 @@ public class OpenAPIRequestTestCases_PostTest {
 package org.cornutum.examples;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -3445,13 +3455,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenAPIRequestTestCases_PostUseridApprovedTest {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
@@ -3706,6 +3716,8 @@ public class OpenAPIRequestTestCases_PostUseridApprovedTest {
 package org.cornutum.examples;
 
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.junit.Test;
 
 import java.util.Map;
@@ -3713,13 +3725,13 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
-import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenAPIRequestTestCases_UsersTest {
+
     private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
