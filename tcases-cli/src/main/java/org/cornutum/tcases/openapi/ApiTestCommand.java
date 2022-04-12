@@ -1835,6 +1835,7 @@ public class ApiTestCommand
           else
             {
             logger_.info( "Writing API tests for {} to {}", testPath, Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
+            logTestResourceDir( options, testWriter, testSource, testTarget);
             writeTest( testWriter, testSource, testTarget);
             }
           }
@@ -1842,6 +1843,7 @@ public class ApiTestCommand
       else
         {
         logger_.info( "Writing all API tests to {}", Objects.toString( getTestFile( testWriter, testSource, testTarget),  "standard output"));
+        logTestResourceDir( options, testWriter, testSource, testTarget);
         writeTest( testWriter, testSource, testTarget);
         }
       }
@@ -1878,6 +1880,59 @@ public class ApiTestCommand
       }
 
     return testFile;
+    }
+
+  /**
+   * Returns the {@link TestWriter#getTestResourceDir test resource directory} for the given {@link TestWriter}.
+   */
+  private static File getTestResourceDir( TestWriter<?,?> testWriter, TestSource testSource, TestTarget testTarget)
+    {
+    Throwable failure = null;
+    File resourceDir = null;
+
+    try
+      {
+      resourceDir =
+        (File)
+        testWriter.getClass()
+        .getMethod( "getTestResourceDir", TestSource.class, TestTarget.class)
+        .invoke( testWriter, testSource, testTarget);
+      }
+    catch( InvocationTargetException ite)
+      {
+      failure = ite.getCause();
+      }
+    catch( Exception e)
+      {
+      failure = e;
+      }
+
+    if( failure != null)
+      {
+      throw new TestWriterException( String.format( "Can't get test resource directory for %s", testWriter), failure);
+      }
+
+    return resourceDir;
+    }
+
+  /**
+   * Writes a log message describing the test resource directory used for the given TestWriter.
+   */
+  private static void logTestResourceDir( Options options, TestWriter<?,?> testWriter, TestSource testSource, TestTarget testTarget)
+    {
+    File testResourceDir =
+      options.hasResources()
+      ? getTestResourceDir( testWriter, testSource, testTarget)
+      : null;
+
+    if( testResourceDir != null)
+      {
+      logger_.info( "Writing API test resources to {}", testResourceDir);
+      }
+    else
+      {
+      logger_.warn( "No API test resources written");
+      }
     }
 
   /**
