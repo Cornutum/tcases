@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidator.UNVALIDATED_FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -21,7 +21,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
   public void whenMinItems()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-array", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-array", FAIL);
 
     String op = "delete";
     String path = "/responses";
@@ -113,7 +113,7 @@ public class ArrayBodyValidatorTest extends ResponseValidatorTest
   public void whenMaxItems()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-array", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-array", FAIL);
 
     String op = "get";
     String path = "/responses";

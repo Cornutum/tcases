@@ -83,12 +83,12 @@ public class ResponseValidator
     }
 
   /**
-   * Changes the handler for {@link ResponseUnvalidatedException} actions. If <CODE>null</CODE>,
-   * {@link ResponseUnvalidatedException} actions are ignored (the default).
+   * Changes the handler for validation condition. If <CODE>null</CODE>, validation conditions are
+   * ignored (the default).
    */
-  public ResponseValidator whenUnvalidated( Consumer<ResponseUnvalidatedException> handler)
+  public ResponseValidator notifying( ResponseValidationHandler handler)
     {
-    unvalidatedHandler_ = Optional.ofNullable( handler).orElse( UNVALIDATED_IGNORE);
+    validationHandler_ = Optional.ofNullable( handler).orElse( ResponseValidationHandler.IGNORE);
     return this;
     }
 
@@ -349,7 +349,7 @@ public class ResponseValidator
    */
   private void notify( ResponseUnvalidatedException unvalidated)
     {
-    unvalidatedHandler_.accept( unvalidated);
+    validationHandler_.handleUnvalidated( unvalidated);
     }
 
   /**
@@ -464,5 +464,5 @@ public class ResponseValidator
   public static final Consumer<ResponseUnvalidatedException> UNVALIDATED_FAIL = e -> { throw e;};
 
   private final ResponsesDef responses_;
-  private Consumer<ResponseUnvalidatedException> unvalidatedHandler_ = UNVALIDATED_IGNORE;
+  private ResponseValidationHandler validationHandler_ = ResponseValidationHandler.IGNORE;
   }

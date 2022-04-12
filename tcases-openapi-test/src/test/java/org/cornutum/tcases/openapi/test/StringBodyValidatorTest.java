@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidator.UNVALIDATED_FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -21,7 +21,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
   public void whenMinLength()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-string", FAIL);
 
     String op = "delete";
     String path = "/responses";
@@ -53,7 +53,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
   public void whenMaxLength()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-string", FAIL);
 
     String op = "get";
     String path = "/responses";
@@ -93,7 +93,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
   public void whenFormatUuid()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-string", FAIL);
 
     String op = "patch";
     String path = "/responses";
@@ -126,7 +126,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
   public void whenEnum()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-string", FAIL);
 
     String op = "post";
     String path = "/responses";
@@ -159,7 +159,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
   public void whenFormatDate()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-string", FAIL);
 
     String op = "put";
     String path = "/responses";
@@ -192,7 +192,7 @@ public class StringBodyValidatorTest extends ResponseValidatorTest
   public void whenFormatDateTime()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-string", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-string", FAIL);
 
     String op = "trace";
     String path = "/responses";
