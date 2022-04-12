@@ -94,7 +94,7 @@ public class ApiTestMojo extends AbstractMojo
         options.setServerUri( getBaseUri());
         options.setContentType( getContentType());
         options.setOutDir( new File( getOutDirFile(), getPath( inputFile)));
-        options.setResourceOutDir( getTestResourceDir( getPath( inputFile)));
+        options.setResourceOutDir( getTestResourceDir());
         options.setOnModellingCondition( getOnModellingCondition());
         options.setOnResolverCondition( getOnResolverCondition());
         options.setReadOnlyEnforced( isReadOnlyEnforced());
@@ -267,7 +267,7 @@ public class ApiTestMojo extends AbstractMojo
   /**
    * Returns the output directory for resource files generated for the given source path.
    */
-  public File getTestResourceDir( String sourcePath)
+  public File getTestResourceDir()
     {
     return
       withResources
@@ -612,8 +612,12 @@ public class ApiTestMojo extends AbstractMojo
   private String outDir;
 
   /**
-   * Defines the path to the directory where generated test resourcess are written.
+   * Defines the path to the directory where generated test resources are written.
    * A relative path is applied relative to the specified <B><CODE>outDir</CODE></B>.
+   * If omitted, a default path is derived from the specified <B><CODE>outDir</CODE></B>.
+   * If the <B><CODE>outDir</CODE></B> path follows Maven conventions for a Java source directory,
+   * the default resource directory is be the corresponding "resources" directory.
+   * Otherwise, the default resource directory is the same as the <B><CODE>outDir</CODE></B>.
    */
   @Parameter(property="resourceDir")
   private String resourceDir;
