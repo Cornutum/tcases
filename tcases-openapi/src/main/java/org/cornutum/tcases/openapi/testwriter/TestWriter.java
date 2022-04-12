@@ -92,7 +92,7 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
       }
 
     Optional.ofNullable( source.getResponses())
-      .ifPresent( responses -> writeResponsesDef( responses, targetFile, target.getResourceDir()));
+      .ifPresent( responses -> writeResponsesDef( responses, targetFile, getTestResourceDir( targetFile, target.getResourceDir())));
     }
 
   /**
@@ -130,6 +130,41 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
         Optional.ofNullable( target.getFile())
         .map( file -> getBaseName( file.getName()))
         .orElse( source.getApi()));
+    }
+
+  /**
+   * Returns the resource directory derived from the given source and target
+   */
+  public File getTestResourceDir( S source, T target)
+    {
+    String testName = getTestName( source, target);
+    File targetFile = getTargetFile( target, testName);
+    return getTestResourceDir( targetFile, target.getResourceDir());
+    }
+
+  /**
+   * Returns the resource directory derived from the given target file and resource directory options.
+   */
+  protected File getTestResourceDir( File targetFile, File resourceDir)
+    {
+    File targetResourceDir;
+    if( targetFile == null)
+      {
+      // Test cases go to standard output when the OpenAPI definition comes from standard input.
+      // In this case, the OpenAPI definition can't be reprocessed to generate resources.
+      targetResourceDir = null;
+      }
+    else
+      {
+      File targetDir = targetFile.getParentFile();
+
+      targetResourceDir =
+        Optional.ofNullable( resourceDir)
+        .map( dir -> dir.isAbsolute() || targetDir == null? dir : new File( targetDir, dir.getPath()))
+        .orElse( targetDir);
+      }
+
+    return targetResourceDir;
     }
 
   /**
@@ -216,28 +251,18 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
   protected abstract void writeClosing( T target, String testName, IndentedWriter targetWriter);
 
   /**
-   * Writes the target test responses definition to a resource file associated with the test target file.
+   * Writes the given responses definitions to a resource file associated with the test target file.
    */
   protected void writeResponsesDef( ResponsesDef responses, File targetFile, File resourceDir)
     {
-    File targetDir =
-      Optional.ofNullable( targetFile)
-      .map( target -> target.getParentFile())
-      .orElse( null);
-
-    File targetResourceDir =
-      Optional.ofNullable( resourceDir)
-      .map( dir -> dir.isAbsolute() || targetDir == null? dir : new File( targetDir, dir.getPath()))
-      .orElse( targetDir);
-
-    if( targetResourceDir != null)
+    if( resourceDir != null)
       {
-      if( !(targetResourceDir.exists() || targetResourceDir.mkdirs()))
+      if( !(resourceDir.exists() || resourceDir.mkdirs()))
         {
-        throw new TestWriterException( String.format( "Can't create resourceDir=%s", targetResourceDir));
+        throw new TestWriterException( String.format( "Can't create resourceDir=%s", resourceDir));
         }
 
-      File resourceFile = new File( targetResourceDir, String.format( "%s-Responses.json", getBaseName( targetFile.getName())));
+      File resourceFile = new File( resourceDir, String.format( "%s-Responses.json", getBaseName( targetFile.getName())));
 
       try( OutputStreamWriter writer = new OutputStreamWriter( new FileOutputStream( resourceFile), "UTF-8"))
         {
