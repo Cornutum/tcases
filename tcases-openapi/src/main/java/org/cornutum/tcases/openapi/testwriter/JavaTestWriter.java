@@ -8,7 +8,6 @@
 package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.io.IndentedWriter;
-import org.cornutum.tcases.openapi.test.ResponsesDef;
 
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.FilenameUtils.getExtension;
@@ -20,6 +19,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.joining;
 
 /**
@@ -121,15 +121,17 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
     }
 
   /**
-   * Writes the target test responses definition to a resource file associated with the test target file.
+   * Returns the resource directory derived from the given target file and resource directory options.
    */
   @Override
-  protected void writeResponsesDef( ResponsesDef responses, File targetFile, File resourceDir)
+  protected File getTestResourceDir( File targetFile, File resourceDir)
     {
-    super.writeResponsesDef(
-      responses,
-      targetFile,
-      Optional.ofNullable( resourceDir).orElseGet( () -> getMavenResourceDir( targetFile).orElse( null)));
+    return
+      super.getTestResourceDir(
+        targetFile,
+
+        Optional.ofNullable( resourceDir)
+        .orElseGet( () -> getMavenResourceDir( targetFile).orElse( null)));
     }
 
   /**
@@ -151,7 +153,10 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
    */
   private Optional<File> getMavenResourceDir( File javaFile)
     {
-    List<String> dirs = TestTarget.getPathElements( javaFile.getParentFile());
+    List<String> dirs =
+      Optional.ofNullable( javaFile)
+      .map( file -> TestTarget.getPathElements( file.getParentFile()))
+      .orElse( emptyList());
 
     return
       Optional.of( dirs.indexOf( "java"))
