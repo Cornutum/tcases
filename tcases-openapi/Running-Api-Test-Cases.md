@@ -18,6 +18,7 @@
     - [Manage test resources](#manage-test-resources)
     - [Override the default API server](#override-the-default-api-server)
     - [Define credentials for request authorization](#define-credentials-for-request-authorization)
+    - [Handle response validation conditions](#handle-response-validation-conditions)
   - [Generating request inputs](#generating-request-inputs)
     - [Instead of input descriptions...](#instead-of-input-descriptions)
     - [Get actual input values...](#get-actual-input-values)
@@ -498,6 +499,62 @@ Depending on the security scheme, different settings are required. The following
     # Run the 'SwaggerPetstoreTest', using a bearer token to authenticate test requests.
     mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiBearer=eyJ0eXAi.eyJtZXNz.-yIVBD5b
     ```
+
+### Handle response validation conditions ###
+
+What is a response validation condition? Clearly, one such condition occurs whenever response data does not conform to the
+requirements of its OpenAPI definition -- an "invalid response" condition. But other conditions are also possible. In some
+cases, validating certain parts of the response may not be possible -- for example, when no schema is defined for the response
+body or when the response content type is not supported by Tcases for OpenAPI. In such cases, an "unvalidated" condition occurs.
+
+By default, an "invalid response" condition is handled by throwing an exception, while "unvalidated" conditions are ignored. But
+you can change this behavior by defining your own
+[`ResponseValidationHandler`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/test/ResponseValidationHandler.html).
+For example, you could define a handler that writes a log message for all "unvalidated" conditions or that ignores invalid
+responses for certain API paths or operations.
+
+You can inject an instance of your own handler at runtime by defining the `tcasesApiValidationHandler` system property. This
+setting can be defined in the `java` command that you run, either directly or via your IDE. Similarly, if you run tests using
+Maven, these settings can be defined in the `mvn` command.
+
+```
+# Run the 'SwaggerPetstoreTest', using 'MyHandler' to handle response validation conditions.
+# 'MyHandler' is assumed to be in the same package as 'SwaggerPetstoreTest'.
+mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiValidationHandler=MyHandler
+```
+
+Here's what you need to do to create a response validation handler named `MyHandler`
+
+  * The `MyHandler` class must implement
+    [`ResponseValidationHandler`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/test/ResponseValidationHandler.html).
+
+  * The `MyHandler` class must define at least one of the following public constructors.
+
+    1. A constructor with one `Class` argument. When called, this argument is set to the test class.
+    1. A constructor with no arguments
+
+    For example:
+
+```java
+public class MyHandler implements ResponseValidationHandler {
+
+    // If defined, this constructor is used.
+    public MyHandler( Class<?> testClass) {
+        ...
+    }
+
+    // Otherwise, the no-arg constructor is used.
+    public MyHandler() {
+        ...
+    }
+    ...
+```
+
+  * The `MyHandler` class must be accessible on the class path when the test is executed.
+
+  * If `MyHandler` is located in same package as the test class, the value of `tcasesApiValidationHandler` can be the simple
+    class name. Otherwise, `tcasesApiValidationHandler` must be set to the fully-qualified name of the `MyHandler` class.
+
 
 ## Generating request inputs ##
 
