@@ -13,7 +13,6 @@ import static org.hamcrest.MatcherAssert.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Base class for {@link ResponseValidator} tests.
@@ -25,23 +24,16 @@ public abstract class ResponseValidatorTest
    */
   protected ResponseValidator validatorFor( String resource)
     {
-    try
-      {
-      return new ResponseValidator( getClass().getResourceAsStream( String.format( "%s.json", resource)));
-      }
-    catch( Exception e)
-      {
-      throw new IllegalStateException( String.format( "Can't read ResponsesDef from resource=%s", resource), e);
-      }
+    return new ResponseValidator( getClass(), String.format( "%s.json", resource));
     }
   
   /**
    * Returns a validator for the {@link ResponsesDef} defined by the content of the given resource, using
-   * the given {@link ResponseUnvalidatedException} handler.
+   * the given {@link ResponseValidationHandler}.
    */
-  protected ResponseValidator validatorFor( String resource, Consumer<ResponseUnvalidatedException> unvalidatedHandler)
+  protected ResponseValidator validatorFor( String resource, ResponseValidationHandler validationHandler)
     {
-    return validatorFor( resource).whenUnvalidated( unvalidatedHandler);
+    return validatorFor( resource).notifying( validationHandler);
     }
 
   /**

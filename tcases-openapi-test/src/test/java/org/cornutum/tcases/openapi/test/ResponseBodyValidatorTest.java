@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidator.UNVALIDATED_FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL_ALL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -21,7 +21,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
   public void whenBodyUndefined()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-body", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body", FAIL_ALL);
     String op = "delete";
     String path = "/responses";
     int statusCode = 200;
@@ -79,7 +79,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
   public void whenStatusCodeUndefined()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-body", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body", FAIL_ALL);
     String op = "delete";
     String path = "/responses";
     
@@ -102,7 +102,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
   public void whenContentTypeUndefined()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-body", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body", FAIL_ALL);
     String op = "delete";
     String path = "/responses";
     int statusCode = 400;
@@ -125,7 +125,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
   public void whenContentDecodeFailed()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-body", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body", FAIL_ALL);
     String op = "delete";
     String path = "/responses";
     int statusCode = 500;
@@ -192,7 +192,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
     
     {
     // When...
-    ResponseValidator validator = validatorFor( "responsesDef-body").whenUnvalidated( UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body").notifying( ResponseValidationHandler.FAIL_ALL);
     int statusCode = 200;
     String bodyContentType = "application/xml";
     String bodyContent = "<hello>world</hello>";
@@ -211,7 +211,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    ResponseValidator validator = validatorFor( "responsesDef-body").whenUnvalidated( UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body").notifying( ResponseValidationHandler.FAIL_ALL);
     int statusCode = 400;
     String bodyContentType = "application/schema+json";
     String bodyContent = "{}";
@@ -233,7 +233,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
   public void whenContentTypeMatched()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-body").whenUnvalidated( UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body").notifying( ResponseValidationHandler.FAIL_ALL);
     String op = "post";
     String path = "/responses";
 
@@ -272,7 +272,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
   public void whenForm()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-body", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-body", FAIL_ALL);
     String op = "put";
     String path = "/responses";
     int statusCode = 200;
