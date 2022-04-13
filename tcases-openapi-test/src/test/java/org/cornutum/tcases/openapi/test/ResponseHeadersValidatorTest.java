@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL_ALL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -23,7 +23,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenJsonArray()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "delete";
     String path = "/responses";
     int statusCode = 200;
@@ -72,7 +72,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenSimpleArray()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "get";
     String path = "/responses";
     int statusCode = 200;
@@ -235,7 +235,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenExplodedObject()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "patch";
     String path = "/responses";
     int statusCode = 200;
@@ -337,7 +337,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenSimpleInteger()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "delete";
     String path = "/responses";
     int statusCode = 400;
@@ -421,7 +421,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenUnexplodedObject()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "patch";
     String path = "/responses";
     int statusCode = 400;
@@ -518,7 +518,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenSimpleString()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "get";
     String path = "/responses";
     int statusCode = 400;
@@ -559,7 +559,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenJsonString()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "post";
     String path = "/responses";
     int statusCode = 200;
@@ -644,7 +644,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenJsonInteger()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "post";
     String path = "/responses";
     int statusCode = 200;
@@ -702,7 +702,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenJsonObject()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "post";
     String path = "/responses";
     int statusCode = 200;
@@ -769,7 +769,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenExplodedForm()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "put";
     String path = "/responses";
     int statusCode = 200;
@@ -890,7 +890,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenUnexplodedForm()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
     String op = "put";
     String path = "/responses";
     int statusCode = 200;
@@ -970,7 +970,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   public void whenUnvalidated()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-headers", ResponseValidationHandler.FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-headers", ResponseValidationHandler.FAIL_ALL);
     String op = "delete";
     String path = "/unvalidated";
 

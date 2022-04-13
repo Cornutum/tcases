@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL_ALL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -21,7 +21,7 @@ public class IntegerBodyValidatorTest extends ResponseValidatorTest
   public void whenMinMax()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-integer", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-integer", FAIL_ALL);
 
     String op = "delete";
     String path = "/responses";
@@ -95,7 +95,7 @@ public class IntegerBodyValidatorTest extends ResponseValidatorTest
   public void whenMultipleOf()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-integer", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-integer", FAIL_ALL);
 
     String op = "get";
     String path = "/responses";
@@ -161,7 +161,7 @@ public class IntegerBodyValidatorTest extends ResponseValidatorTest
   public void whenEnum()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-integer", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-integer", FAIL_ALL);
 
     String op = "patch";
     String path = "/responses";

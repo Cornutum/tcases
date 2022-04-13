@@ -24,14 +24,7 @@ public abstract class ResponseValidatorTest
    */
   protected ResponseValidator validatorFor( String resource)
     {
-    try
-      {
-      return new ResponseValidator( getClass().getResourceAsStream( String.format( "%s.json", resource)));
-      }
-    catch( Exception e)
-      {
-      throw new IllegalStateException( String.format( "Can't read ResponsesDef from resource=%s", resource), e);
-      }
+    return new ResponseValidator( getClass(), String.format( "%s.json", resource));
     }
   
   /**

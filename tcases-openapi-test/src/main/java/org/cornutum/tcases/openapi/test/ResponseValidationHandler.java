@@ -13,23 +13,66 @@ package org.cornutum.tcases.openapi.test;
 public interface ResponseValidationHandler
   {
   /**
-   * Handles a condition that results in no validation of response data.
+   * Handles when response data does not satisfy OpenAPI requirements.
+   */
+  public void handleInvalid( ResponseValidationException condition);
+
+  /**
+   * Handles when response data cannot be validated.
    */
   public void handleUnvalidated( ResponseUnvalidatedException condition);
 
-  public ResponseValidationHandler IGNORE =
+  /**
+   * Reports a failure only when response data does not satisfy OpenAPI requirements.
+   * All other conditions are ignored.
+   */
+  public ResponseValidationHandler EXPECT_CONFORM =
     new ResponseValidationHandler()
       {
+      @Override
+      public void handleInvalid( ResponseValidationException condition)
+        {
+        throw condition;
+        }
+      
       @Override
       public void handleUnvalidated( ResponseUnvalidatedException condition)
         {
         // Ignore this condition.
         }
       };
-  
-  public ResponseValidationHandler FAIL =
+
+  /**
+   * Ignores all validation conditions.
+   */
+  public ResponseValidationHandler IGNORE_ALL =
     new ResponseValidationHandler()
       {
+      @Override
+      public void handleInvalid( ResponseValidationException condition)
+        {
+        // Ignore this condition.
+        }
+      
+      @Override
+      public void handleUnvalidated( ResponseUnvalidatedException condition)
+        {
+        // Ignore this condition.
+        }
+      };
+
+  /**
+   * Reports a failure for all validation conditions.
+   */
+  public ResponseValidationHandler FAIL_ALL =
+    new ResponseValidationHandler()
+      {
+      @Override
+      public void handleInvalid( ResponseValidationException condition)
+        {
+        throw condition;
+        }
+      
       @Override
       public void handleUnvalidated( ResponseUnvalidatedException condition)
         {

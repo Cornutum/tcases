@@ -20,12 +20,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Consumer;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.joining;
@@ -50,6 +50,7 @@ public class ResponseValidator
   public ResponseValidator( Class<?> testClass, String resourceName)
     {
     this( streamFor( testClass, resourceName));
+    notifying( validationHanderFor( testClass).orElse( null));
     }
   
   /**
@@ -83,20 +84,21 @@ public class ResponseValidator
     }
 
   /**
-   * Changes the handler for validation condition. If <CODE>null</CODE>, validation conditions are
-   * ignored (the default).
+   * Changes the handler for validation condition. If <CODE>null</CODE>, the default validation
+   * handler ({@link ResponseValidationHandler#EXPECT_CONFORM}) is used.
    */
   public ResponseValidator notifying( ResponseValidationHandler handler)
     {
-    validationHandler_ = Optional.ofNullable( handler).orElse( ResponseValidationHandler.IGNORE);
+    validationHandler_ = Optional.ofNullable( handler).orElse( ResponseValidationHandler.EXPECT_CONFORM);
     return this;
     }
 
   /**
    * Given a response with the given status code to the given operation on the API resource at the given path, completes
-   * successfully if the response body conforms to its OpenAPI definition. Otherwise, throws a ResponseValidationException.
+   * successfully if the response body conforms to its OpenAPI definition. Otherwise,
+   * {@link ResponseValidationHander#handleInvalid reports an invalid response condition}.
    */
-  public void assertBodyValid( String op, String path, int statusCode, String contentType, String bodyContent) throws ResponseValidationException
+  public void assertBodyValid( String op, String path, int statusCode, String contentType, String bodyContent)
     {
     try
       {
@@ -161,15 +163,20 @@ public class ResponseValidator
       {
       notify( unvalidated);
       }
+    catch( ResponseValidationException invalid)
+      {
+      notify( invalid);
+      }
     }
 
   /**
    * Given a response with the given status code to the given operation on the API resource at the given path, completes
-   * successfully if the response headers conform to its OpenAPI definition. Otherwise, throws a ResponseValidationException.
+   * successfully if the response headers conform to its OpenAPI definition. Otherwise,
+   * {@link ResponseValidationHander#handleInvalid reports an invalid response condition}
    *
    * @param headers Maps each header name to its value
    */
-  public void assertHeadersValid( String op, String path, int statusCode, Map<String,String> headers) throws ResponseValidationException
+  public void assertHeadersValid( String op, String path, int statusCode, Map<String,String> headers)
     {
     try
       {
@@ -229,6 +236,10 @@ public class ResponseValidator
     catch( ResponseUnvalidatedException unvalidated)
       {
       notify( unvalidated);
+      }
+    catch( ResponseValidationException invalid)
+      {
+      notify( invalid);
       }
     }
 
@@ -353,6 +364,14 @@ public class ResponseValidator
     }
 
   /**
+   * Notifies a {@link ResponseValidationException} exception.
+   */
+  private void notify( ResponseValidationException invalid)
+    {
+    validationHandler_.handleInvalid( invalid);
+    }
+
+  /**
    * Returns the errors described by the given schema validation results.
    */
   private List<SchemaValidationError> validationErrors( ValidationData<Void> validation)
@@ -454,15 +473,67 @@ public class ResponseValidator
     }
 
   /**
-   * Handles a {@link ResponseUnvalidatedException} by ignoring it.
+   * Returns the {@link ResponseValidationHandler} specified at runtime, if any.
    */
-  public static final Consumer<ResponseUnvalidatedException> UNVALIDATED_IGNORE = e -> {};
+  private Optional<ResponseValidationHandler> validationHanderFor( Class<?> testClass)
+    {
+    return
+      // System property defines a handler class?
+      Optional.of( Objects.toString( System.getProperty( "tcasesApiValidationHandler"), "").trim())
+      .filter( className -> !className.isEmpty())
+
+      .map( className -> {
+        // Yes, get the fully-qualified handler class name
+        String fqn =
+          className.indexOf( '.') >= 0
+          ? className
+          : String.format( "%s.%s", testClass.getPackage().getName(), className);
+
+        // Return an instance of the specified handler class
+        ResponseValidationHandler handler;
+        try
+          {
+          @SuppressWarnings("unchecked")
+          Class<ResponseValidationHandler> handlerClass = (Class<ResponseValidationHandler>) Class.forName( fqn);
+
+          Constructor<ResponseValidationHandler> handlerConstructor;
+          if( (handlerConstructor = handlerConstructor( handlerClass, Class.class)) != null)
+            {
+            handler = handlerConstructor.newInstance( testClass);
+            }
+          else if( (handlerConstructor = handlerConstructor( handlerClass)) != null)
+            {
+            handler = handlerConstructor.newInstance();
+            }
+          else
+            {
+            throw new IllegalArgumentException( String.format( "Can't get constructor for class=%s", fqn));
+            }
+          }
+        catch( Exception e)
+          {
+          throw new IllegalArgumentException( String.format( "Can't create instance of class=%s", fqn), e);
+          }
+
+        return handler;
+        });
+    }
 
   /**
-   * Handles a {@link ResponseUnvalidatedException} by throwing the exception.
+   * Returns a ResponseValidationHandler constructor for the given argument types.
    */
-  public static final Consumer<ResponseUnvalidatedException> UNVALIDATED_FAIL = e -> { throw e;};
+  private Constructor<ResponseValidationHandler> handlerConstructor( Class<ResponseValidationHandler> handlerClass, Class<?>... argTypes)
+    {
+    try
+      {
+      return handlerClass.getConstructor( argTypes);
+      }
+    catch( Exception e)
+      {
+      return null;
+      }
+    }
 
   private final ResponsesDef responses_;
-  private ResponseValidationHandler validationHandler_ = ResponseValidationHandler.IGNORE;
+  private ResponseValidationHandler validationHandler_ = ResponseValidationHandler.EXPECT_CONFORM;
   }

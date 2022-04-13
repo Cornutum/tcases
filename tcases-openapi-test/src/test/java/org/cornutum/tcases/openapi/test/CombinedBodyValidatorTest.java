@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL_ALL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -21,7 +21,7 @@ public class CombinedBodyValidatorTest extends ResponseValidatorTest
   public void whenCombined()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-combined", FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-combined", FAIL_ALL);
 
     String op = "get";
     String path = "/responses";
