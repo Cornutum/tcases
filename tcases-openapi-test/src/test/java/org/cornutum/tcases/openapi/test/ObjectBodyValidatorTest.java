@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.ResponseValidator.UNVALIDATED_FAIL;
+import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL_ALL;
 
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -21,7 +21,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
   public void whenAdditionalPropertiesNone()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-object", FAIL_ALL);
 
     String op = "delete";
     String path = "/responses";
@@ -94,7 +94,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
   public void whenAdditionalPropertiesAny()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-object", FAIL_ALL);
 
     String op = "get";
     String path = "/responses";
@@ -159,7 +159,7 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
   public void whenAdditionalPropertiesDefined()
     {
     // Given...
-    ResponseValidator validator = validatorFor( "responsesDef-object", UNVALIDATED_FAIL);
+    ResponseValidator validator = validatorFor( "responsesDef-object", FAIL_ALL);
 
     String op = "patch";
     String path = "/responses";
