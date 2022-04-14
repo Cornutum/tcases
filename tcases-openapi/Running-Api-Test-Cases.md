@@ -11,10 +11,14 @@
     - [Example: Select the API server used by generated tests](#example-select-the-api-server-used-by-generated-tests)
     - [Example: Organize tests by API resource path](#example-organize-tests-by-api-resource-path)
     - [Example: Create tests from examples](#example-create-tests-from-examples)
+    - [Example: Exclude response validation](#example-exclude-response-validation)
     - [Understanding the TestWriter API](#understanding-the-testwriter-api)    
   - [Running generated tests](#running-generated-tests)
+    - [Set up test dependencies](#set-up-test-dependencies)
+    - [Manage test resources](#manage-test-resources)
     - [Override the default API server](#override-the-default-api-server)
     - [Define credentials for request authorization](#define-credentials-for-request-authorization)
+    - [Handle response validation conditions](#handle-response-validation-conditions)
   - [Generating request inputs](#generating-request-inputs)
     - [Instead of input descriptions...](#instead-of-input-descriptions)
     - [Get actual input values...](#get-actual-input-values)
@@ -32,7 +36,7 @@ Consider that any such test program must combine all of the following elements.
   1. :white_check_mark: The framework for organizing test execution, e.g. JUnit, etc.
   1. :white_check_mark: The interfaces for submitting HTTP requests and receiving responses
   1. :white_check_mark: The actual request inputs
-  1. :x: The expected response outputs
+  1. :ballot_box_with_check: The expected response outputs
 
 One of the most complicated parts is #3. But Tcases for OpenAPI can automatically generate random request input values,
 including valid values that satisfy the requirements of the OpenAPI definition as well as invalid values that test API error
@@ -43,8 +47,11 @@ program. Tcases for OpenAPI has built-in support for many of the most common int
 addition, Tcases for OpenAPI provides an extensible Java API for implementing the same support for other test frameworks.  For
 details, see [*Generating executable tests*](#generating-executable-tests) below.
 
-That leaves part #4: defining the expected responses. But that's the part of the test program you have to fill in yourself.
-Tcases for OpenAPI has no way to predict what your API will do for any request, much less a request using random inputs.
+That leaves part #4: defining the expected responses. The form of API responses is defined by the OpenAPI definition, and Tcases
+for OpenAPI will generate code to verify that response data matches those requirements. But what about the actual response data
+*values*? Will generated tests verify that the response contains the values expected for the each API request executed? No,
+that's the part of the test program you have to fill in yourself.  Tcases for OpenAPI has no way to predict what your API will
+do for any request, much less a request using random inputs.
 
 ## Generating executable tests ##
   
@@ -110,6 +117,7 @@ You can see a summary of the generation process in the `tcases-api-test.log` fil
 ...
 12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
 12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing all API tests to src/test/java/org/examples/SwaggerPetstoreTest.java
+12:48:36.446 INFO  o.c.t.openapi.ApiTestCommand - Writing API test resources to src/test/resources/org/examples
 ```
 
 And you can see the generated source code in `SwaggerPetstoreTest.java`:
@@ -117,24 +125,36 @@ And you can see the generated source code in `SwaggerPetstoreTest.java`:
 ```java
 package org.examples;
 
-import org.junit.Test;
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
+import org.junit.Test;
+...
+import io.restassured.response.Response;
+...
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+...
 
 public class SwaggerPetstoreTest {
 
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
+
     @Test
     public void getPets_TagsDefined_Is_Yes() {
-        given()
-            .baseUri( forTestServer( "http://petstore.swagger.io/api"))
-            .queryParam( "limit", "-736708634")
-            .queryParam( "tags", "")
-        .when()
-            .request( "GET", "/pets")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://petstore.swagger.io/api"))
+                .queryParam( "limit", "-736708634")
+                .queryParam( "tags", "")
+            .when()
+                .request( "GET", "/pets")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/pets", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/pets", response.statusCode(), responseHeaders( response));
     }
 ...
 }
@@ -163,6 +183,7 @@ You can see the difference in the `tcases-api-test.log` file:
 ...
 14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using TestNgTestWriter[] and RestAssuredTestCaseWriter[]
 14:20:19.222 INFO  o.c.t.openapi.ApiTestCommand - Writing all API tests to ./MyTests.java
+14:20:19.224 INFO  o.c.t.openapi.ApiTestCommand - Writing API test resources to .
 ```
 
 And also in the the generated source code in `MyTests.java`:
@@ -170,24 +191,36 @@ And also in the the generated source code in `MyTests.java`:
 ```java
 package org.examples.testng;
 
-import org.testng.annotations.Test;
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
+import org.testng.annotations.Test;
+...
+import io.restassured.response.Response;
+...
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+...
 
 public class MyTests extends MyBaseClass {
 
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
+
     @Test(timeOut=10000)
     public void getPets_TagsDefined_Is_Yes() {
-        given()
-            .baseUri( forTestServer( "http://petstore.swagger.io/api"))
-            .queryParam( "limit", "-889243316")
-            .queryParam( "tags", "")
-        .when()
-            .request( "GET", "/pets")
-        .then()
-            .statusCode( isSuccess())
-            ;
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://petstore.swagger.io/api"))
+                .queryParam( "limit", "-889243316")
+                .queryParam( "tags", "")
+            .when()
+                .request( "GET", "/pets")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/pets", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/pets", response.statusCode(), responseHeaders( response));
     }
 ...
 }
@@ -242,8 +275,11 @@ You can see a summary of the result in the `tcases-api-test.log` file:
 ...
 16:51:05.955 INFO  o.c.t.openapi.ApiTestCommand - Writing API test using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
 16:51:05.956 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests for /pets to ./Petstore_PetsTest.java
+16:51:05.958 INFO  o.c.t.openapi.ApiTestCommand - Writing API test resources to .
 16:51:06.005 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests for /pets/{id} to ./Petstore_PetsIdTest.java
+16:51:06.010 INFO  o.c.t.openapi.ApiTestCommand - Writing API test resources to .
 ```
+
 ### Example: Create tests from examples  ###
 
 By default, Tcases for OpenAPI generates test cases using the schemas defined by the OpenAPI definition.
@@ -264,6 +300,47 @@ You can see a summary of the result in the `tcases-api-test.log` file:
 ...
 12:48:36.443 INFO  o.c.t.openapi.ApiTestCommand - Writing API tests using JUnitTestWriter[] and RestAssuredTestCaseWriter[]
 12:48:36.444 INFO  o.c.t.openapi.ApiTestCommand - Writing all API tests to ./PetstoreExamplesTest.java
+12:48:36.445 INFO  o.c.t.openapi.ApiTestCommand - Writing API test resources to .
+```
+
+### Example: Exclude response validation  ###
+
+By default, Tcases for OpenAPI generates test cases that check the responses from API requests and verify that all requirements
+specified in the OpenAPI definition are satisfied. For backward compatibility with previous releases that did not have this
+feature, you may want to exclude response validation from generated tests, using the `-d false` option (or, if using
+[Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-test-mojo.html), `-DwithResources=false`).
+
+```bash
+# Generate JUnit tests that don't verify response requirements defined in 'petstore-expanded.yaml'.
+tcases-api-test -p org.examples -d false petstore-expanded.yaml
+```
+
+This produces the following generated source code in `SwaggerPetstoreTest.java`:
+
+```java
+package org.examples;
+
+import org.junit.Test;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+public class SwaggerPetstoreTest {
+
+    @Test
+    public void getPets_TagsDefined_Is_Yes() {
+        given()
+            .baseUri( forTestServer( "http://petstore.swagger.io/api"))
+            .queryParam( "limit", "-736708634")
+            .queryParam( "tags", "")
+        .when()
+            .request( "GET", "/pets")
+        .then()
+            .statusCode( isSuccess())
+            ;
+    }
+...
+}
 ```
 
 ### Understanding the TestWriter API ###
@@ -327,7 +404,54 @@ Here's a step-by-step outline of how to use the TestWriter API to convert an Ope
 
 ## Running generated tests ##
 
-This section describes the settings you can change when you run the tests generated by Tcases for OpenAPI.
+By default, certain dependencies are required to compile and execute tests generated by Tcases for OpenAPI. This section
+describes the [setup](#set-up-test-dependencies) you will need.
+
+Generated tests also depend on certain supporting resource files.  This section explains how ensure that these [resource
+files](#manage-test-resources) are accessible at runtime.
+
+This section also describes several runtime settings you can change to control the operation of generated tests.
+
+### Set up test dependencies ###
+
+(If you choose to [exclude response validation](#example-exclude-response-validation), no dependencies are needed.)
+
+Generated tests that validate response requirements (the default) depend on classes defined in the `tcases-openapi-test` JAR. You
+must ensure that this JAR appears on the class path when compiling or executing these tests. If you are using Maven or another similar build tool,
+you can use the dependency definition shown [here](../HowToDownload.md#tcases-openapi-test). Alternatively, you can download the `tcases-openapi-test` JAR
+directly from the [Maven Central Repository](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-openapi-test).
+
+### Manage test resources ###
+
+(If you choose to [exclude response validation](#example-exclude-response-validation), you can ignore this section.)
+
+Generated tests that validate response requirements (the default) must have access to the OpenAPI response definitions.
+Therefore, for each generated test class, Tcases for OpenAPI also generates a corresponding *response definition file* that the
+test can access as a resource at runtime. For example, for a test source file named `MyApiTest.java`, the corresponding
+response definition file is named `MyApiTest-Responses.json`.
+
+When you run the `tcases-api-test` command (or, if using Maven, the
+[`tcases:api-test`](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-test-mojo.html) goal), the generated response
+definition file is created in a *resource directory*, which by default is determined based on the location of the test class
+source file. But you can specify the resource directory directly using the `-d` option (or, if using
+[Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html), `-DresourceDir=path`). At any rate, the resource
+directory path is always shown in the `tcases-api-test.log` file.
+
+If you are using Maven with default settings, you should find that the generated response definition file is automatically
+copied to the class path used to compile and execute the corresponding test class. Otherwise, you may have adjust the value of
+command options or settings in your build project to ensure that response definition resource files are accessible to the
+corresponding tests at runtime.
+
+Alternatively, you can specify a different resource directory path when you run the test.  For Java tests, use the
+`tcasesApiResourceDir` system property to override the normal resource directory setting. This property can be defined in the
+`java` command that you run, either directly or via your IDE. Similarly, if you run tests using Maven, this setting can be
+defined in the `mvn` command. For example:
+
+```
+# Run the 'SwaggerPetstoreTest', using response definitions located in a specific resource directory.
+mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiResourceDir=/myResources
+```
+
 
 ### Override the default API server ###
 
@@ -375,6 +499,62 @@ Depending on the security scheme, different settings are required. The following
     # Run the 'SwaggerPetstoreTest', using a bearer token to authenticate test requests.
     mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiBearer=eyJ0eXAi.eyJtZXNz.-yIVBD5b
     ```
+
+### Handle response validation conditions ###
+
+What is a response validation condition? Clearly, one such condition occurs whenever response data does not conform to the
+requirements of its OpenAPI definition -- an "invalid response" condition. But other conditions are also possible. In some
+cases, validating certain parts of the response may not be possible -- for example, when no schema is defined for the response
+body or when the response content type is not supported by Tcases for OpenAPI. In such cases, an "unvalidated" condition occurs.
+
+By default, an "invalid response" condition is handled by throwing an exception, while "unvalidated" conditions are ignored. But
+you can change this behavior by defining your own
+[`ResponseValidationHandler`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/test/ResponseValidationHandler.html).
+For example, you could define a handler that writes a log message for all "unvalidated" conditions or that ignores invalid
+responses for certain API paths or operations.
+
+You can inject an instance of your own handler at runtime by defining the `tcasesApiValidationHandler` system property. This
+setting can be defined in the `java` command that you run, either directly or via your IDE. Similarly, if you run tests using
+Maven, these settings can be defined in the `mvn` command.
+
+```
+# Run the 'SwaggerPetstoreTest', using 'MyHandler' to handle response validation conditions.
+# 'MyHandler' is assumed to be in the same package as 'SwaggerPetstoreTest'.
+mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiValidationHandler=MyHandler
+```
+
+Here's what you need to do to create a response validation handler named `MyHandler`
+
+  * The `MyHandler` class must implement
+    [`ResponseValidationHandler`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/test/ResponseValidationHandler.html).
+
+  * The `MyHandler` class must define at least one of the following public constructors.
+
+    1. A constructor with one `Class` argument. When called, this argument is set to the test class.
+    1. A constructor with no arguments
+
+    For example:
+
+```java
+public class MyHandler implements ResponseValidationHandler {
+
+    // If defined, this constructor is used.
+    public MyHandler( Class<?> testClass) {
+        ...
+    }
+
+    // Otherwise, the no-arg constructor is used.
+    public MyHandler() {
+        ...
+    }
+    ...
+```
+
+  * The `MyHandler` class must be accessible on the class path when the test is executed.
+
+  * If `MyHandler` is located in same package as the test class, the value of `tcasesApiValidationHandler` can be the simple
+    class name. Otherwise, `tcasesApiValidationHandler` must be set to the fully-qualified name of the `MyHandler` class.
+
 
 ## Generating request inputs ##
 
@@ -460,7 +640,7 @@ have to choose the one to use in your test.
 
 ### Get actual input values... ###
 
-But compare the result of the previous command to the result of the command below. Specifying the `-D` option (or, when using
+But compare the result of the previous command to the result of the command below. Specifying the `-D` option (or, if using
 [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html), `-DrequestCases=true`) produces an entirely
 different result: a JSON document that describes actual values for each request input. This document is called a "request test
 definition" (see details [here](Request-Test-Definition.md)) and it is created by ["resolving"](#how-does-input-resolution-work)
@@ -521,7 +701,7 @@ Typically, it's important for the results of `tcases-api -D` to be repeatable. S
 generator with a consistent definition of its initial seed value. By default, the random seed value is a hash of the
 [name](https://docs.oracle.com/javase/8/docs/api/java/io/File.html#getName--) of the file containing your OpenAPI definition.
 
-If you need more control over the random seed, use the `-r seed` option (or, when using
+If you need more control over the random seed, use the `-r seed` option (or, if using
 [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html), `-Drandom=seed`). See example below.
 
 But what happens when `tcases-api -D` reads the OpenAPI definition from standard input? In this case, no file name is given,
@@ -545,7 +725,7 @@ When a test case requires complex constraints on an input variable, resolving a 
 iterations. To prevent an infinite fruitless search, Tcases for OpenAPI places a limit on the maximum number of resolution
 attempts made before giving up and reporting an error condition. By default, the limit on resolution attempts is 10000. But that limit is
 arbitrary and there is no guarantee that it will be sufficient for your API definition. You can choose a different limit by using the `-m
-limit` option (or, when using [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html),
+limit` option (or, if using [Maven](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/api-mojo.html),
 `-DmaxTries=limit`). See example below.
 
 ```

@@ -5,10 +5,10 @@
 
 ## What's New? ##
 
-  * The latest version ([Tcases 3.7.2](ReleaseNotes.md#372)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.8.0](ReleaseNotes.md#380)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * Tcases 3.7.2 provides improvements to Tcases for OpenAPI. See the [release notes](ReleaseNotes.md#372) for details.
+  * Tcases 3.8.0 introduces an important new feature for Tcases for OpenAPI: response validation. See the [release notes](ReleaseNotes.md#380) for details.
 
   * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 

@@ -1,5 +1,32 @@
 # Release Notes #
 
+## 3.8.0 ##
+
+This release introduces an important new feature for Tcases for OpenAPI: response validation. By default, generated tests will
+now include code that checks the response data returned by API requests and verifies that all response requirements defined in the
+OpenAPI definition are satisfied.
+
+  * **Backward compatibility**
+
+    Because this change alters the behavior of generated tests and introduces new runtime dependencies, it is not strictly
+    compatible with previous releases. But if you want to maintain the previous behavior, you can use new command options
+    to [exclude response validation](tcases-openapi/Running-Api-Test-Cases.md#example-exclude-response-validation).
+
+  * **New test dependencies**
+
+    Generated tests that validate response requirements (the default) now depend on classes defined in the `tcases-openapi-test`
+    JAR. You must ensure that this JAR appears on the class path when compiling or executing these tests. For details,
+    see [*Set up test dependencies*](tcases-openapi/Running-Api-Test-Cases.md#set-up-test-dependencies).
+
+  * **New test resources**
+
+    Generated tests that validate response requirements must have access to the OpenAPI response definitions. Therefore, for
+    each generated test class, Tcases for OpenAPI now generates a corresponding *response definition file* that the test must
+    access as a resource at runtime. For details, see
+    [*Manage test resources*](tcases-openapi/Running-Api-Test-Cases.md#manage-test-resources).
+
+
+
 ## 3.7.2 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
