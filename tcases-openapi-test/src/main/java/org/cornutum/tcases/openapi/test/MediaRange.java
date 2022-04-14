@@ -1,8 +1,14 @@
 package org.cornutum.tcases.openapi.test;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Represents a <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">media range</a> definition.
@@ -54,7 +60,19 @@ public class MediaRange
     type_ = matcher.group(1);
     subtype_ = matcher.group(2);
     suffix_ = matcher.group(3);
-    parameter_ = matcher.group(4);
+
+    parameters_ =
+      Optional.ofNullable( matcher.group(4))
+      .map( params -> Arrays.stream( params.split( ";", 0)))
+      .orElse( Stream.empty())
+      .map( param -> param.split( "=", -1))
+      .filter( param -> param.length == 2)
+      .collect(
+        toMap(
+          param -> param[0],
+          param -> param[1],
+          (v1,v2) -> v1,
+          LinkedHashMap::new));
     }
 
   /**
@@ -106,11 +124,13 @@ public class MediaRange
     }
 
   /**
-   * Returns the "parameter" from this media range.
+   * Returns the "parameter" definitions from this media range.
    */
-  public String parameter()
+  public Map<String,String> parameters()
     {
-    return parameter_;
+    return
+      parameters_.entrySet().stream()
+      .collect( toMap( entry -> entry.getKey(), entry -> quotedValueOf( entry.getValue())));
     }
 
   /**
@@ -126,18 +146,48 @@ public class MediaRange
         suffix == null? "" : String.format( "+%s", suffix));
     }
 
+  /**
+   * Returns the value of a (possibly quoted) string.
+   */
+  private static String quotedValueOf( String value)
+    {
+    String unquoted;
+
+    if( !value.isEmpty() && value.indexOf( '"') == 0)
+      {
+      Matcher unquote = quotedChar_.matcher( value.substring( 1, Math.max( value.length() - 1, 1)));
+      StringBuffer result = new StringBuffer();
+      while( unquote.find())
+        {
+        unquote.appendReplacement( result, "$1");
+        }
+      unquote.appendTail( result);
+      unquoted = result.toString();
+      }
+    else
+      {
+      unquoted = value;
+      }
+    
+    return unquoted;
+    }
+
   @Override
   public String toString()
     {
     return
       baseType( type_, subtype_, suffix_)
-      + Optional.ofNullable( parameter_).orElse( "");          
+      +
+      Optional.ofNullable( parameters_)
+      .map( params -> params.entrySet().stream().map( param -> String.format( ";%s=%s", param.getKey(), param.getValue())).collect( joining()))
+      .orElse( "");          
     }
     
   private final String type_;
   private final String subtype_;
   private final String suffix_;
-  private final String parameter_;
+  private final Map<String,String> parameters_;
     
-  private static final Pattern mediaRange_ = Pattern.compile( "([^\\s/]+)/([^\\s+;]+)(?:\\+([^\\s;]+))?((?:;[^\\s;=]+=[^\\s;=]+)+)?");
+  private static final Pattern mediaRange_ = Pattern.compile( "([^\\s/]+)/([^\\s+;]+)(?:\\+([^\\s;]+))?((?:;[^\\s;=]+=(?:[^\\s\";=]+|\"(?:[^\\\"]|\\\\.)*\"))+)?");
+  private static final Pattern quotedChar_ = Pattern.compile( "\\\\(.)");
   }
