@@ -96,7 +96,7 @@ public class ResponseValidator
   /**
    * Given a response with the given status code to the given operation on the API resource at the given path, completes
    * successfully if the response body conforms to its OpenAPI definition. Otherwise,
-   * {@link ResponseValidationHander#handleInvalid reports an invalid response condition}.
+   * {@link ResponseValidationHandler#handleInvalid reports an invalid response condition}.
    */
   public void assertBodyValid( String op, String path, int statusCode, String contentType, String bodyContent)
     {
@@ -172,7 +172,7 @@ public class ResponseValidator
   /**
    * Given a response with the given status code to the given operation on the API resource at the given path, completes
    * successfully if the response headers conform to its OpenAPI definition. Otherwise,
-   * {@link ResponseValidationHander#handleInvalid reports an invalid response condition}
+   * {@link ResponseValidationHandler#handleInvalid reports an invalid response condition}
    *
    * @param headers Maps each header name to its value
    */
