@@ -11,6 +11,8 @@ import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.junit.Assert.*;
 
+import static java.util.Collections.emptyMap;
+
 /**
  * Runs tests for {@link MediaRange}.
  */
@@ -46,7 +48,7 @@ public class MediaRangeTest
     assertEquals( "Type", "image", mediaRange.type());
     assertEquals( "Subtype", "svg", mediaRange.subtype());
     assertEquals( "Suffix", "xml", mediaRange.suffix());
-    assertEquals( "Parameter", ";height=1024;width=768", mediaRange.parameter());
+    assertEquals( "Parameters", params().put( "height", "1024").put( "width", "768").build(), mediaRange.parameters());
     assertEquals( "String", definition, mediaRange.toString());
     }
 
@@ -80,7 +82,7 @@ public class MediaRangeTest
     assertEquals( "Type", "application", mediaRange.type());
     assertEquals( "Subtype", "*", mediaRange.subtype());
     assertEquals( "Suffix", "json", mediaRange.suffix());
-    assertEquals( "Parameter", null, mediaRange.parameter());
+    assertEquals( "Parameters", emptyMap(), mediaRange.parameters());
     assertEquals( "String", definition, mediaRange.toString());
     }
 
@@ -114,7 +116,7 @@ public class MediaRangeTest
     assertEquals( "Type", "*", mediaRange.type());
     assertEquals( "Subtype", "*", mediaRange.subtype());
     assertEquals( "Suffix", "json", mediaRange.suffix());
-    assertEquals( "Parameter", ";version=1.0.0", mediaRange.parameter());
+    assertEquals( "Parameters", params().put( "version", "1.0.0").build(), mediaRange.parameters());
     assertEquals( "String", definition, mediaRange.toString());
     }
 
@@ -139,7 +141,7 @@ public class MediaRangeTest
   public void Of_3()
     {
     // Given...
-    String definition = "*/*;level=0;version=1.2.3";
+    String definition = "*/*;level=0;version=\"1.2.3\"";
                                 
     // When...
     MediaRange mediaRange = MediaRange.of( definition);
@@ -148,7 +150,7 @@ public class MediaRangeTest
     assertEquals( "Type", "*", mediaRange.type());
     assertEquals( "Subtype", "*", mediaRange.subtype());
     assertEquals( "Suffix", null, mediaRange.suffix());
-    assertEquals( "Parameter", ";level=0;version=1.2.3", mediaRange.parameter());
+    assertEquals( "Parameters", params().put( "level", "0").put( "version", "1.2.3").build(), mediaRange.parameters());
     assertEquals( "String", definition, mediaRange.toString());
     }
 
@@ -173,7 +175,7 @@ public class MediaRangeTest
   public void Of_4()
     {
     // Given...
-    String definition = "text/plain;lang=EN";
+    String definition = "text/plain;lang=\"American \\(Standard\\) English\"";
                                 
     // When...
     MediaRange mediaRange = MediaRange.of( definition);
@@ -182,7 +184,7 @@ public class MediaRangeTest
     assertEquals( "Type", "text", mediaRange.type());
     assertEquals( "Subtype", "plain", mediaRange.subtype());
     assertEquals( "Suffix", null, mediaRange.suffix());
-    assertEquals( "Parameter", ";lang=EN", mediaRange.parameter());
+    assertEquals( "Parameters", params().put( "lang", "American (Standard) English").build(), mediaRange.parameters());
     assertEquals( "String", definition, mediaRange.toString());
     }
 
@@ -216,7 +218,7 @@ public class MediaRangeTest
     assertEquals( "Type", "*", mediaRange.type());
     assertEquals( "Subtype", "xml", mediaRange.subtype());
     assertEquals( "Suffix", null, mediaRange.suffix());
-    assertEquals( "Parameter", null, mediaRange.parameter());
+    assertEquals( "Parameters", emptyMap(), mediaRange.parameters());
     assertEquals( "String", definition, mediaRange.toString());
     }
 
@@ -411,5 +413,10 @@ public class MediaRangeTest
     expectFailure( IllegalArgumentException.class)
       .when( () -> MediaRange.of( "application/json;=1.0.0"));
     }
-  
+
+  private MapBuilder<String,String> params()
+    {
+    return new MapBuilder<String,String>();
+    }
+
   }
