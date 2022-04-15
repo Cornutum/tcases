@@ -307,9 +307,6 @@ public class ResponseValidator
           "text/plain".equals( media.base())?
           decodeSimple( content, explode) :
 
-          "multipart/form-data".equals( media.base())?
-          decodeForm( content, explode) :
-
           "application/x-www-form-urlencoded".equals( media.base())?
           decodeFormUrl( content, explode) :
           
@@ -337,14 +334,6 @@ public class ResponseValidator
   private List<JsonNode> decodeSimple( String content, boolean explode) throws Exception
     {
     return new SimpleDecoder( explode).decode( content);
-    }
-
-  /**
-   * Returns JSON representation of multipart/form-data content.
-   */
-  private List<JsonNode> decodeForm( String content, boolean explode) throws Exception
-    {
-    throw new UnsupportedOperationException( String.format( "decodeForm( \"%s\", %s)", content, explode));
     }
 
   /**
