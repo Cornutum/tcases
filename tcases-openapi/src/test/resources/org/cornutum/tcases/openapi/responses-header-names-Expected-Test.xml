@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<TestCases system="Responses">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Responses"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_responses">
+    <Has name="server" value="/"/>
+    <Has name="title" value="Responses"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="Status-Code=&apos;2XX&apos;">
+      <Has name="properties" value="2XXHeader124,2XXHeader124Value,2XXHeaderYippee,2XXHeaderYippeeValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" value="integer"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" value="0"/>
+        <Var name="2XX.Headers.124.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" value="string"/>
+        <Var name="2XX.Headers.124.Value" value="Yes"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="Status-Code=&apos;Other&apos;">
+      <Has name="properties" value="statusOther"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="Other">
+          <Has name="excluded" value="&apos;2XX&apos;"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Defined" NA="true">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" NA="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" NA="true">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" NA="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" NA="true"/>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="2XX.Headers.Yippee.Defined=&apos;No&apos;">
+      <Has name="properties" value="status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" NA="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" NA="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="3" name="2XX.Headers.Yippee.Value.Is=&apos;1&apos;">
+      <Has name="properties" value="2XXHeader124,2XXHeader124Value,2XXHeaderYippee,2XXHeaderYippeeValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" value="integer"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" value="1"/>
+        <Var name="2XX.Headers.124.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" value="string"/>
+        <Var name="2XX.Headers.124.Value" value="No"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="2XX.Headers.Yippee.Type=null">
+      <Has name="properties" value="2XXHeaderYippee,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" value="null" failure="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" NA="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="2XX.Headers.Yippee.Type=&apos;Not integer&apos;">
+      <Has name="properties" value="2XXHeaderYippee,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" value="Not integer" failure="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" NA="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="2XX.Headers.Yippee.Value.Is=&apos;Other&apos;">
+      <Has name="properties" value="2XXHeaderYippee,2XXHeaderYippeeValue,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" value="integer"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" value="Other" failure="true">
+          <Has name="excluded" value="&apos;0&apos;,&apos;1&apos;"/>
+        </Var>
+        <Var name="2XX.Headers.124.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" NA="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="2XX.Headers.124.Type=null">
+      <Has name="properties" value="2XXHeader124,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" NA="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" value="null" failure="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="2XX.Headers.124.Type=&apos;Not string&apos;">
+      <Has name="properties" value="2XXHeader124,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" NA="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" value="Not string" failure="true"/>
+        <Var name="2XX.Headers.124.Value" NA="true"/>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="2XX.Headers.124.Value=&apos;Other&apos;">
+      <Has name="properties" value="2XXHeader124,2XXHeader124Value,status2XX"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Responses"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="response">
+        <Var name="Status-Code" value="2XX"/>
+        <Var name="2XX.Headers.Yippee.Defined" value="No">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="Yippee!!"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.Yippee.Type" NA="true"/>
+        <Var name="2XX.Headers.Yippee.Value.Is" NA="true"/>
+        <Var name="2XX.Headers.124.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="headerName" value="$1+2*4"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="2XX.Headers.124.Type" value="string"/>
+        <Var name="2XX.Headers.124.Value" value="Other" failure="true">
+          <Has name="excluded" value="&apos;Yes&apos;,&apos;No&apos;"/>
+        </Var>
+        <Var name="2XX.Content.Defined" value="No"/>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

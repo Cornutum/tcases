@@ -16,6 +16,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -56,6 +57,7 @@
         <Var name="Status-Code" value="4XX"/>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -98,6 +100,7 @@
         </Var>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -136,6 +139,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -176,6 +180,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -216,6 +221,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -256,6 +262,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -296,6 +303,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -336,6 +344,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -376,6 +385,7 @@
         <Var name="Status-Code" value="4XX"/>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -416,6 +426,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="No" failure="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -456,6 +467,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="null" failure="true"/>
@@ -496,6 +508,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="Not array" failure="true"/>
@@ -536,6 +549,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -576,6 +590,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -616,6 +631,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -654,6 +670,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -694,6 +711,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -734,6 +752,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -774,6 +793,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -814,6 +834,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -854,6 +875,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -894,6 +916,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -934,6 +957,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -974,6 +998,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -1014,6 +1039,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -1054,6 +1080,7 @@
         <Var name="Status-Code" value="200"/>
         <Var name="200.Headers.x-my-secret-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" value="array"/>
@@ -1094,6 +1121,7 @@
         <Var name="Status-Code" value="4XX"/>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -1132,6 +1160,7 @@
         <Var name="Status-Code" value="4XX"/>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -1172,6 +1201,7 @@
         <Var name="Status-Code" value="4XX"/>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>
@@ -1212,6 +1242,7 @@
         <Var name="Status-Code" value="4XX"/>
         <Var name="200.Headers.x-my-secret-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-my-secret-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="200.Headers.x-my-secret-header.Type" NA="true"/>

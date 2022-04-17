@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<System name="Responses">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Responses"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_responses">
+    <Input type="response">
+      <Var name="Status-Code">
+        <Value name="2XX" property="status2XX"/>
+        <Value name="Other" property="statusOther">
+          <Has name="excluded" value="&apos;2XX&apos;"/>
+        </Value>
+      </Var>
+      <VarSet name="2XX" when="status2XX">
+        <VarSet name="Headers">
+          <VarSet name="Yippee">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="headerName" value="Yippee!!"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="2XXHeaderYippee"/>
+              <Value name="No"/>
+            </Var>
+            <Var name="Type" when="2XXHeaderYippee">
+              <Value name="integer" property="2XXHeaderYippeeValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="2XXHeaderYippeeValue">
+              <Var name="Is">
+                <Value name="0"/>
+                <Value name="1"/>
+                <Value name="Other" failure="true">
+                  <Has name="excluded" value="&apos;0&apos;,&apos;1&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <VarSet name="124">
+            <Var name="Defined">
+              <Has name="explode" value="false"/>
+              <Has name="headerName" value="$1+2*4"/>
+              <Has name="style" value="simple"/>
+              <Value name="Yes" property="2XXHeader124"/>
+              <Value name="No"/>
+            </Var>
+            <Var name="Type" when="2XXHeader124">
+              <Value name="string" property="2XXHeader124Value"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <Var name="Value" when="2XXHeader124Value">
+              <Value name="Yes"/>
+              <Value name="No"/>
+              <Value name="Other" failure="true">
+                <Has name="excluded" value="&apos;Yes&apos;,&apos;No&apos;"/>
+              </Value>
+            </Var>
+          </VarSet>
+        </VarSet>
+        <VarSet name="Content">
+          <Var name="Defined">
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

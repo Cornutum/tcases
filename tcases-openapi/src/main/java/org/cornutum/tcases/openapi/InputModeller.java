@@ -1254,7 +1254,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
         return
           VarSetBuilder.with( headerVarName)
-          .members( headerDefinedVar( headerVarTag, header))
+          .members( headerDefinedVar( headerName, headerVarTag, header))
           .members( instanceSchemaVars( headerVarTag, headerSchema))
           .build();
         });
@@ -1263,10 +1263,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns an {@link IVarDef input variable} to represent if the given header is defined.
    */
-  private IVarDef headerDefinedVar( String headerVarTag, Header header)
+  private IVarDef headerDefinedVar( String headerName, String headerVarTag, Header header)
     {
     return
       VarDefBuilder.with( instanceDefinedVar( headerVarTag, Boolean.TRUE.equals( header.getRequired())))
+      .has( "headerName", headerName)
       .has( "style", header.getStyle())
       .has( "explode", header.getExplode())
       .build();

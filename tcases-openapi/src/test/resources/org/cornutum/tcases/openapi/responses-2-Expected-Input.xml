@@ -17,6 +17,7 @@
           <VarSet name="x-my-secret-header">
             <Var name="Defined">
               <Has name="explode" value="false"/>
+              <Has name="headerName" value="x-my-secret-header"/>
               <Has name="style" value="simple"/>
               <Value name="Yes" property="200HeaderX-my-secret-header"/>
               <Value name="No" failure="true"/>
