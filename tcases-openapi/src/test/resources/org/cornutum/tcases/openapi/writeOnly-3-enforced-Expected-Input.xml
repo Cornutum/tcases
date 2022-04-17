@@ -46,6 +46,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="defaultapplication-jsonAlpha, defaultapplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>

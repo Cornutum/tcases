@@ -41,6 +41,7 @@
           <VarSet name="Properties">
             <VarSet name="myString">
               <Var name="Defined">
+                <Has name="propertyName" value="myString"/>
                 <Value name="Yes" property="param0MyString, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -58,6 +59,7 @@
             </VarSet>
             <VarSet name="myBoolean">
               <Var name="Defined">
+                <Has name="propertyName" value="myBoolean"/>
                 <Value name="Yes" property="param0MyBoolean, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -73,6 +75,7 @@
             </VarSet>
             <VarSet name="myNumber">
               <Var name="Defined">
+                <Has name="propertyName" value="myNumber"/>
                 <Value name="Yes" property="param0MyNumber, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
@@ -91,6 +94,7 @@
             </VarSet>
             <VarSet name="myInteger">
               <Var name="Defined">
+                <Has name="propertyName" value="myInteger"/>
                 <Value name="Yes" property="param0MyInteger, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -109,6 +113,7 @@
             </VarSet>
             <VarSet name="Additional">
               <Var name="Defined">
+                <Has name="propertyName" value="Additional"/>
                 <Value name="Yes" property="param0Additional, param0Properties"/>
                 <Value name="No"/>
               </Var>

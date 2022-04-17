@@ -24,8 +24,8 @@ public class OpenApiExamplesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "0,1")
-                .queryParam( "user attributes[user-type]", "Typical User")
+                .queryParam( "post?[post references]", "0,1")
+                .queryParam( "user attributes[user type]", "Typical User")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -43,8 +43,8 @@ public class OpenApiExamplesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "1,0")
-                .queryParam( "user attributes[user-type]", "VIP!")
+                .queryParam( "post?[post references]", "1,0")
+                .queryParam( "user attributes[user type]", "VIP!")
             .when()
                 .request( "HEAD", "/post")
             .then()
@@ -62,8 +62,8 @@ public class OpenApiExamplesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "post?[post-references]", "2,1")
-                .queryParam( "user attributes[user-type]", "Typical User")
+                .queryParam( "post?[post references]", "2,1")
+                .queryParam( "user attributes[user type]", "Typical User")
             .when()
                 .request( "HEAD", "/post")
             .then()

@@ -32,6 +32,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -49,6 +50,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
                     <Value name="No" failure="true"/>
                   </Var>
@@ -101,6 +103,7 @@
                 </VarSet>
                 <VarSet name="Additional">
                   <Var name="Defined">
+                    <Has name="propertyName" value="Additional"/>
                     <Value name="Yes" property="param0Additional, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -113,6 +116,7 @@
                     <VarSet name="Properties">
                       <VarSet name="required">
                         <Var name="Defined">
+                          <Has name="propertyName" value="required"/>
                           <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
                           <Value name="No" failure="true"/>
                         </Var>
@@ -130,6 +134,7 @@
                       </VarSet>
                       <VarSet name="optional">
                         <Var name="Defined">
+                          <Has name="propertyName" value="optional"/>
                           <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
                           <Value name="No"/>
                         </Var>
@@ -164,6 +169,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -179,6 +185,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -218,6 +225,7 @@
                 </VarSet>
                 <VarSet name="charlie">
                   <Var name="Defined">
+                    <Has name="propertyName" value="charlie"/>
                     <Value name="Yes" property="param0Charlie, param0Properties"/>
                     <Value name="No" failure="true"/>
                   </Var>
@@ -229,6 +237,7 @@
                 </VarSet>
                 <VarSet name="Additional">
                   <Var name="Defined">
+                    <Has name="propertyName" value="Additional"/>
                     <Value name="Yes" property="param0Additional, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -239,6 +248,7 @@
                     <VarSet name="Properties">
                       <VarSet name="required">
                         <Var name="Defined">
+                          <Has name="propertyName" value="required"/>
                           <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
                         </Var>
                         <Var name="Type" when="param0AdditionalRequired">
@@ -253,6 +263,7 @@
                       </VarSet>
                       <VarSet name="optional">
                         <Var name="Defined">
+                          <Has name="propertyName" value="optional"/>
                           <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
                           <Value name="No"/>
                         </Var>
@@ -289,6 +300,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -304,6 +316,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -342,6 +355,7 @@
                 </VarSet>
                 <VarSet name="Additional">
                   <Var name="Defined">
+                    <Has name="propertyName" value="Additional"/>
                     <Value name="Yes" property="param0Additional, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -352,6 +366,7 @@
                     <VarSet name="Properties">
                       <VarSet name="required">
                         <Var name="Defined">
+                          <Has name="propertyName" value="required"/>
                           <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
                         </Var>
                         <Var name="Type" when="param0AdditionalRequired">
@@ -374,6 +389,7 @@
                       </VarSet>
                       <VarSet name="optional">
                         <Var name="Defined">
+                          <Has name="propertyName" value="optional"/>
                           <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
                           <Value name="No"/>
                         </Var>
@@ -410,6 +426,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -425,6 +442,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -463,6 +481,7 @@
                 </VarSet>
                 <VarSet name="Additional">
                   <Var name="Defined">
+                    <Has name="propertyName" value="Additional"/>
                     <Value name="Yes" property="param0Additional, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -473,6 +492,7 @@
                     <VarSet name="Properties">
                       <VarSet name="required">
                         <Var name="Defined">
+                          <Has name="propertyName" value="required"/>
                           <Value name="Yes" property="param0AdditionalProperties, param0AdditionalRequired"/>
                         </Var>
                         <Var name="Type" when="param0AdditionalRequired">
@@ -487,6 +507,7 @@
                       </VarSet>
                       <VarSet name="optional">
                         <Var name="Defined">
+                          <Has name="propertyName" value="optional"/>
                           <Value name="Yes" property="param0AdditionalOptional, param0AdditionalProperties"/>
                           <Value name="No"/>
                         </Var>
@@ -503,6 +524,7 @@
                       </VarSet>
                       <VarSet name="extra">
                         <Var name="Defined">
+                          <Has name="propertyName" value="extra"/>
                           <Value name="Yes" property="param0AdditionalExtra, param0AdditionalProperties"/>
                           <Value name="No" failure="true"/>
                         </Var>

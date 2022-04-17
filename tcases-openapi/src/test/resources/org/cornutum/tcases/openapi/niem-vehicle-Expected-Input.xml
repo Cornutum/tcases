@@ -72,6 +72,7 @@
                           <VarSet name="Properties">
                             <VarSet name="id">
                               <Var name="Defined">
+                                <Has name="propertyName" value="@id"/>
                                 <Value name="Yes" property="200application-jsonItemsItemsId, 200application-jsonItemsItemsProperties"/>
                                 <Value name="No"/>
                               </Var>
@@ -89,6 +90,7 @@
                             </VarSet>
                             <VarSet name="base">
                               <Var name="Defined">
+                                <Has name="propertyName" value="@base"/>
                                 <Value name="Yes" property="200application-jsonItemsItemsBase, 200application-jsonItemsItemsProperties"/>
                                 <Value name="No"/>
                               </Var>
@@ -106,6 +108,7 @@
                             </VarSet>
                             <VarSet name="VehicleAxleQuantity">
                               <Var name="Defined">
+                                <Has name="propertyName" value="VehicleAxleQuantity"/>
                                 <Value name="Yes" property="200application-jsonItemsItemsProperties, 200application-jsonItemsItemsVehicleAxleQuantity"/>
                                 <Value name="No"/>
                               </Var>
@@ -162,6 +165,7 @@
                             </VarSet>
                             <VarSet name="VehicleIdentification">
                               <Var name="Defined">
+                                <Has name="propertyName" value="VehicleIdentification"/>
                                 <Value name="Yes" property="200application-jsonItemsItemsProperties, 200application-jsonItemsItemsVehicleIdentification"/>
                                 <Value name="No"/>
                               </Var>
@@ -193,6 +197,7 @@
                                         <VarSet name="Properties">
                                           <VarSet name="IdentificationID">
                                             <Var name="Defined">
+                                              <Has name="propertyName" value="IdentificationID"/>
                                               <Value name="Yes" property="200application-jsonItemsItemsVehicleIdentificationItemsIdentificationID, 200application-jsonItemsItemsVehicleIdentificationItemsProperties"/>
                                               <Value name="No"/>
                                             </Var>
@@ -270,6 +275,7 @@
                                     <VarSet name="Properties">
                                       <VarSet name="IdentificationID">
                                         <Var name="Defined">
+                                          <Has name="propertyName" value="IdentificationID"/>
                                           <Value name="Yes" property="200application-jsonItemsItemsVehicleIdentificationIdentificationID, 200application-jsonItemsItemsVehicleIdentificationProperties"/>
                                           <Value name="No"/>
                                         </Var>
@@ -331,6 +337,7 @@
                             </VarSet>
                             <VarSet name="VehicleMSRPAmount">
                               <Var name="Defined">
+                                <Has name="propertyName" value="VehicleMSRPAmount"/>
                                 <Value name="Yes" property="200application-jsonItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmount"/>
                                 <Value name="No"/>
                               </Var>
@@ -362,6 +369,7 @@
                                         <VarSet name="Properties">
                                           <VarSet name="Amount">
                                             <Var name="Defined">
+                                              <Has name="propertyName" value="Amount"/>
                                               <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsAmount, 200application-jsonItemsItemsVehicleMSRPAmountItemsProperties"/>
                                               <Value name="No"/>
                                             </Var>
@@ -417,6 +425,7 @@
                                           </VarSet>
                                           <VarSet name="Currency">
                                             <Var name="Defined">
+                                              <Has name="propertyName" value="Currency"/>
                                               <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrency, 200application-jsonItemsItemsVehicleMSRPAmountItemsProperties"/>
                                               <Value name="No"/>
                                             </Var>
@@ -1044,6 +1053,7 @@
                                                           <VarSet name="Properties">
                                                             <VarSet name="rdf-value">
                                                               <Var name="Defined">
+                                                                <Has name="propertyName" value="rdf-value"/>
                                                                 <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                                 <Value name="No" failure="true"/>
                                                               </Var>
@@ -1102,6 +1112,7 @@
                                                           <VarSet name="Properties">
                                                             <VarSet name="rdf-value">
                                                               <Var name="Defined">
+                                                                <Has name="propertyName" value="rdf-value"/>
                                                                 <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                               </Var>
                                                               <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -1170,6 +1181,7 @@
                                                           <VarSet name="Properties">
                                                             <VarSet name="rdf-value">
                                                               <Var name="Defined">
+                                                                <Has name="propertyName" value="rdf-value"/>
                                                                 <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                               </Var>
                                                               <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -1225,6 +1237,7 @@
                                                           <VarSet name="Properties">
                                                             <VarSet name="rdf-value">
                                                               <Var name="Defined">
+                                                                <Has name="propertyName" value="rdf-value"/>
                                                                 <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                               </Var>
                                                               <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -1292,6 +1305,7 @@
                                                           <VarSet name="Properties">
                                                             <VarSet name="rdf-value">
                                                               <Var name="Defined">
+                                                                <Has name="propertyName" value="rdf-value"/>
                                                                 <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                               </Var>
                                                               <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -1347,6 +1361,7 @@
                                                           <VarSet name="Properties">
                                                             <VarSet name="rdf-value">
                                                               <Var name="Defined">
+                                                                <Has name="propertyName" value="rdf-value"/>
                                                                 <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                               </Var>
                                                               <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -1426,6 +1441,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                             <Value name="No" failure="true"/>
                                                           </Var>
@@ -1467,6 +1483,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1518,6 +1535,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1556,6 +1574,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1606,6 +1625,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1644,6 +1664,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1887,6 +1908,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1925,6 +1947,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -1974,6 +1997,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -2012,6 +2036,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -2061,6 +2086,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -2099,6 +2125,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -2141,6 +2168,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyProperties, 200application-jsonItemsItemsVehicleMSRPAmountItemsCurrencyRdf-value"/>
                                                         <Value name="No"/>
                                                       </Var>
@@ -2211,6 +2239,7 @@
                                     <VarSet name="Properties">
                                       <VarSet name="Amount">
                                         <Var name="Defined">
+                                          <Has name="propertyName" value="Amount"/>
                                           <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountAmount, 200application-jsonItemsItemsVehicleMSRPAmountProperties"/>
                                           <Value name="No"/>
                                         </Var>
@@ -2264,6 +2293,7 @@
                                       </VarSet>
                                       <VarSet name="Currency">
                                         <Var name="Defined">
+                                          <Has name="propertyName" value="Currency"/>
                                           <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrency, 200application-jsonItemsItemsVehicleMSRPAmountProperties"/>
                                           <Value name="No"/>
                                         </Var>
@@ -2873,6 +2903,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -2928,6 +2959,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -2994,6 +3026,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -3049,6 +3082,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -3115,6 +3149,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -3170,6 +3205,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -3247,6 +3283,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3285,6 +3322,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3334,6 +3372,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3372,6 +3411,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3421,6 +3461,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3459,6 +3500,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3701,6 +3743,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3739,6 +3782,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3788,6 +3832,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3826,6 +3871,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3875,6 +3921,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3913,6 +3960,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -3955,6 +4003,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsItemsVehicleMSRPAmountCurrencyProperties, 200application-jsonItemsItemsVehicleMSRPAmountCurrencyRdf-value"/>
                                                     <Value name="No"/>
                                                   </Var>
@@ -4034,6 +4083,7 @@
                       <VarSet name="Properties">
                         <VarSet name="id">
                           <Var name="Defined">
+                            <Has name="propertyName" value="@id"/>
                             <Value name="Yes" property="200application-jsonItemsId, 200application-jsonItemsProperties"/>
                             <Value name="No"/>
                           </Var>
@@ -4051,6 +4101,7 @@
                         </VarSet>
                         <VarSet name="base">
                           <Var name="Defined">
+                            <Has name="propertyName" value="@base"/>
                             <Value name="Yes" property="200application-jsonItemsBase, 200application-jsonItemsProperties"/>
                             <Value name="No"/>
                           </Var>
@@ -4068,6 +4119,7 @@
                         </VarSet>
                         <VarSet name="VehicleAxleQuantity">
                           <Var name="Defined">
+                            <Has name="propertyName" value="VehicleAxleQuantity"/>
                             <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsVehicleAxleQuantity"/>
                             <Value name="No"/>
                           </Var>
@@ -4120,6 +4172,7 @@
                         </VarSet>
                         <VarSet name="VehicleIdentification">
                           <Var name="Defined">
+                            <Has name="propertyName" value="VehicleIdentification"/>
                             <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsVehicleIdentification"/>
                             <Value name="No"/>
                           </Var>
@@ -4151,6 +4204,7 @@
                                     <VarSet name="Properties">
                                       <VarSet name="IdentificationID">
                                         <Var name="Defined">
+                                          <Has name="propertyName" value="IdentificationID"/>
                                           <Value name="Yes" property="200application-jsonItemsVehicleIdentificationItemsIdentificationID, 200application-jsonItemsVehicleIdentificationItemsProperties"/>
                                           <Value name="No"/>
                                         </Var>
@@ -4226,6 +4280,7 @@
                                 <VarSet name="Properties">
                                   <VarSet name="IdentificationID">
                                     <Var name="Defined">
+                                      <Has name="propertyName" value="IdentificationID"/>
                                       <Value name="Yes" property="200application-jsonItemsVehicleIdentificationIdentificationID, 200application-jsonItemsVehicleIdentificationProperties"/>
                                       <Value name="No"/>
                                     </Var>
@@ -4287,6 +4342,7 @@
                         </VarSet>
                         <VarSet name="VehicleMSRPAmount">
                           <Var name="Defined">
+                            <Has name="propertyName" value="VehicleMSRPAmount"/>
                             <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsVehicleMSRPAmount"/>
                             <Value name="No"/>
                           </Var>
@@ -4318,6 +4374,7 @@
                                     <VarSet name="Properties">
                                       <VarSet name="Amount">
                                         <Var name="Defined">
+                                          <Has name="propertyName" value="Amount"/>
                                           <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsAmount, 200application-jsonItemsVehicleMSRPAmountItemsProperties"/>
                                           <Value name="No"/>
                                         </Var>
@@ -4371,6 +4428,7 @@
                                       </VarSet>
                                       <VarSet name="Currency">
                                         <Var name="Defined">
+                                          <Has name="propertyName" value="Currency"/>
                                           <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrency, 200application-jsonItemsVehicleMSRPAmountItemsProperties"/>
                                           <Value name="No"/>
                                         </Var>
@@ -4980,6 +5038,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -5035,6 +5094,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -5101,6 +5161,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -5156,6 +5217,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -5222,6 +5284,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -5277,6 +5340,7 @@
                                                       <VarSet name="Properties">
                                                         <VarSet name="rdf-value">
                                                           <Var name="Defined">
+                                                            <Has name="propertyName" value="rdf-value"/>
                                                             <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value"/>
                                                           </Var>
                                                           <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsItemsRdf-value">
@@ -5354,6 +5418,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5392,6 +5457,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5441,6 +5507,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5479,6 +5546,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5528,6 +5596,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5566,6 +5635,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5808,6 +5878,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5846,6 +5917,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5895,6 +5967,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5933,6 +6006,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -5982,6 +6056,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -6020,6 +6095,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountItemsCurrencyItemsRdf-value">
@@ -6062,6 +6138,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountItemsCurrencyProperties, 200application-jsonItemsVehicleMSRPAmountItemsCurrencyRdf-value"/>
                                                     <Value name="No"/>
                                                   </Var>
@@ -6131,6 +6208,7 @@
                                 <VarSet name="Properties">
                                   <VarSet name="Amount">
                                     <Var name="Defined">
+                                      <Has name="propertyName" value="Amount"/>
                                       <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountAmount, 200application-jsonItemsVehicleMSRPAmountProperties"/>
                                       <Value name="No"/>
                                     </Var>
@@ -6184,6 +6262,7 @@
                                   </VarSet>
                                   <VarSet name="Currency">
                                     <Var name="Defined">
+                                      <Has name="propertyName" value="Currency"/>
                                       <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrency, 200application-jsonItemsVehicleMSRPAmountProperties"/>
                                       <Value name="No"/>
                                     </Var>
@@ -6793,6 +6872,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -6848,6 +6928,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -6914,6 +6995,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -6969,6 +7051,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -7035,6 +7118,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -7090,6 +7174,7 @@
                                                   <VarSet name="Properties">
                                                     <VarSet name="rdf-value">
                                                       <Var name="Defined">
+                                                        <Has name="propertyName" value="rdf-value"/>
                                                         <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value"/>
                                                       </Var>
                                                       <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsItemsRdf-value">
@@ -7167,6 +7252,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7205,6 +7291,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7254,6 +7341,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7292,6 +7380,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7341,6 +7430,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7379,6 +7469,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7621,6 +7712,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7659,6 +7751,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7708,6 +7801,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7746,6 +7840,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7795,6 +7890,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7833,6 +7929,7 @@
                                               <VarSet name="Properties">
                                                 <VarSet name="rdf-value">
                                                   <Var name="Defined">
+                                                    <Has name="propertyName" value="rdf-value"/>
                                                     <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyItemsProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value"/>
                                                   </Var>
                                                   <Var name="Type" when="200application-jsonItemsVehicleMSRPAmountCurrencyItemsRdf-value">
@@ -7875,6 +7972,7 @@
                                           <VarSet name="Properties">
                                             <VarSet name="rdf-value">
                                               <Var name="Defined">
+                                                <Has name="propertyName" value="rdf-value"/>
                                                 <Value name="Yes" property="200application-jsonItemsVehicleMSRPAmountCurrencyProperties, 200application-jsonItemsVehicleMSRPAmountCurrencyRdf-value"/>
                                                 <Value name="No"/>
                                               </Var>

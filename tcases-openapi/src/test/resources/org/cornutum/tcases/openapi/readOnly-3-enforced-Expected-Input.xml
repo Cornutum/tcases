@@ -25,12 +25,14 @@
             <VarSet name="alpha">
               <Has name="excludedType" value="string"/>
               <Var name="Defined">
+                <Has name="propertyName" value="alpha"/>
                 <Value name="Yes" failure="true"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
             <VarSet name="bravo">
               <Var name="Defined">
+                <Has name="propertyName" value="bravo"/>
                 <Value name="Yes" property="param0Bravo, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
@@ -49,12 +51,14 @@
             <VarSet name="charlie">
               <Has name="excludedType" value="string"/>
               <Var name="Defined">
+                <Has name="propertyName" value="charlie"/>
                 <Value name="Yes" failure="true"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
             <VarSet name="delta">
               <Var name="Defined">
+                <Has name="propertyName" value="delta"/>
                 <Value name="Yes" property="param0Delta, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>

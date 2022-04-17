@@ -24,6 +24,7 @@
           <VarSet name="Properties">
             <VarSet name="myInteger">
               <Var name="Defined">
+                <Has name="propertyName" value="myInteger"/>
                 <Value name="Yes" property="param0MyInteger, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>

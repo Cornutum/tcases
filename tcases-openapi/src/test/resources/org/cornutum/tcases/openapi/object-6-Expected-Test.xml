@@ -30,6 +30,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -39,6 +40,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -48,6 +50,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -57,6 +60,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -66,6 +70,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -95,6 +100,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -104,6 +110,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -113,6 +120,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -122,6 +130,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -131,6 +140,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -161,6 +171,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -170,6 +181,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -179,6 +191,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -188,6 +201,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -197,6 +211,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -227,6 +242,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -236,6 +252,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -245,6 +262,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -254,6 +272,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -263,6 +282,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -293,6 +313,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -302,6 +323,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -311,6 +333,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -320,6 +343,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -329,6 +353,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -359,6 +384,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -368,6 +394,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -377,6 +404,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -386,6 +414,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -395,6 +424,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -425,6 +455,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -434,6 +465,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -443,6 +475,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -452,6 +485,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -461,6 +495,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -491,6 +526,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -500,6 +536,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -509,6 +546,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -518,6 +556,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -527,6 +566,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -557,6 +597,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -566,6 +607,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -575,6 +617,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -584,6 +627,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -593,6 +637,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -623,6 +668,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -632,6 +678,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -641,6 +688,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -650,6 +698,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -659,6 +708,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -689,6 +739,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -698,6 +749,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -707,6 +759,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -716,6 +769,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -725,6 +779,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -755,6 +810,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="Not string" failure="true">
           <Has name="paramName" value="param0"/>
@@ -764,6 +820,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -773,6 +830,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -782,6 +840,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -791,6 +850,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -821,6 +881,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -830,6 +891,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -839,6 +901,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -848,6 +911,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -857,6 +921,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -887,6 +952,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -896,6 +962,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="Not boolean" failure="true">
           <Has name="paramName" value="param0"/>
@@ -905,6 +972,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -914,6 +982,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -923,6 +992,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -953,6 +1023,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -962,6 +1033,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -971,6 +1043,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="No" failure="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -980,6 +1053,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -989,6 +1063,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1019,6 +1094,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1028,6 +1104,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1037,6 +1114,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1046,6 +1124,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1055,6 +1134,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1085,6 +1165,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1094,6 +1175,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1103,6 +1185,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="Not number" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1112,6 +1195,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1121,6 +1205,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1151,6 +1236,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1160,6 +1246,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1169,6 +1256,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -1178,6 +1266,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1187,6 +1276,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1217,6 +1307,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1226,6 +1317,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1235,6 +1327,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -1244,6 +1337,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" value="Not integer" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1253,6 +1347,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1283,6 +1378,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1292,6 +1388,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1301,6 +1398,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -1310,6 +1408,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1319,6 +1418,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1349,6 +1449,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1358,6 +1459,7 @@
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -1367,6 +1469,7 @@
         </Var>
         <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
         </Var>
         <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -1376,6 +1479,7 @@
         </Var>
         <Var name="param0.Value.Properties.myInteger.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
         </Var>
         <Var name="param0.Value.Properties.myInteger.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1385,6 +1489,7 @@
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="Not boolean" failure="true">
           <Has name="paramName" value="param0"/>

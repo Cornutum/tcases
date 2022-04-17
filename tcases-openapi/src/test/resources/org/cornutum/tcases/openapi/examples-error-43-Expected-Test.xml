@@ -47,6 +47,7 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -79,6 +80,7 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -112,6 +114,7 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="number">
           <Has name="paramName" value="param0"/>
@@ -145,6 +148,7 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="number">
           <Has name="paramName" value="param0"/>

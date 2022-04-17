@@ -30,6 +30,7 @@
           <VarSet name="Properties">
             <VarSet name="alpha">
               <Var name="Defined">
+                <Has name="propertyName" value="alpha"/>
                 <Value name="Yes" property="param0Alpha, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -43,6 +44,7 @@
             </VarSet>
             <VarSet name="bravo">
               <Var name="Defined">
+                <Has name="propertyName" value="bravo"/>
                 <Value name="Yes" property="param0Bravo, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -57,6 +59,7 @@
             </VarSet>
             <VarSet name="charlie">
               <Var name="Defined">
+                <Has name="propertyName" value="charlie"/>
                 <Value name="Yes" property="param0Charlie, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -71,6 +74,7 @@
             </VarSet>
             <VarSet name="Additional">
               <Var name="Defined">
+                <Has name="propertyName" value="Additional"/>
                 <Value name="Yes" property="param0Additional, param0Properties"/>
                 <Value name="No"/>
               </Var>

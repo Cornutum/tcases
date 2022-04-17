@@ -258,6 +258,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="nonEmptyProperties, nonEmptyWidth"/>
                 <Value name="No"/>
               </Var>
@@ -276,6 +277,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="nonEmptyHeight, nonEmptyProperties"/>
                 <Value name="No"/>
               </Var>
@@ -320,6 +322,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="nullableProperties, nullableWidth"/>
                 <Value name="No"/>
               </Var>
@@ -338,6 +341,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="nullableHeight, nullableProperties"/>
                 <Value name="No"/>
               </Var>
@@ -382,6 +386,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="explodedProperties, explodedWidth"/>
                 <Value name="No"/>
               </Var>
@@ -400,6 +405,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="explodedHeight, explodedProperties"/>
                 <Value name="No"/>
               </Var>
@@ -444,6 +450,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="deepProperties, deepWidth"/>
                 <Value name="No"/>
               </Var>
@@ -462,6 +469,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="deepHeight, deepProperties"/>
                 <Value name="No"/>
               </Var>
@@ -742,6 +750,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="nonEmptyProperties, nonEmptyWidth"/>
                 <Value name="No"/>
               </Var>
@@ -760,6 +769,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="nonEmptyHeight, nonEmptyProperties"/>
                 <Value name="No"/>
               </Var>
@@ -804,6 +814,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="nullableProperties, nullableWidth"/>
                 <Value name="No"/>
               </Var>
@@ -822,6 +833,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="nullableHeight, nullableProperties"/>
                 <Value name="No"/>
               </Var>
@@ -866,6 +878,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="explodedProperties, explodedWidth"/>
                 <Value name="No"/>
               </Var>
@@ -884,6 +897,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="explodedHeight, explodedProperties"/>
                 <Value name="No"/>
               </Var>
@@ -928,6 +942,7 @@
           <VarSet name="Properties">
             <VarSet name="width">
               <Var name="Defined">
+                <Has name="propertyName" value="width"/>
                 <Value name="Yes" property="deepProperties, deepWidth"/>
                 <Value name="No"/>
               </Var>
@@ -946,6 +961,7 @@
             </VarSet>
             <VarSet name="height">
               <Var name="Defined">
+                <Has name="propertyName" value="height"/>
                 <Value name="Yes" property="deepHeight, deepProperties"/>
                 <Value name="No"/>
               </Var>

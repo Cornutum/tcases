@@ -33,6 +33,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -51,12 +52,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -72,6 +75,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -87,12 +91,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -126,6 +132,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -144,12 +151,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -165,6 +174,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -180,12 +190,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -219,6 +231,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -237,12 +250,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -258,6 +273,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -273,12 +289,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -312,6 +330,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -330,12 +349,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -351,6 +372,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -366,12 +388,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -405,6 +429,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -423,12 +448,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -444,6 +471,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -459,12 +487,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -498,6 +528,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -516,12 +547,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -537,6 +570,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -552,12 +586,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -591,6 +627,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -609,12 +646,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -630,6 +669,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -645,12 +685,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -684,6 +726,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -702,12 +745,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" value="Not null">
           <Has name="paramName" value="param0"/>
@@ -723,6 +768,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -738,12 +784,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -777,6 +825,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -795,12 +844,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -816,6 +867,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -831,12 +883,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -870,6 +924,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -888,12 +943,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -909,6 +966,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -924,12 +982,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -963,6 +1023,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -981,12 +1042,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1002,6 +1065,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -1017,12 +1081,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1056,6 +1122,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1074,12 +1141,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1095,6 +1164,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1110,12 +1180,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" value="Not null">
           <Has name="paramName" value="param0"/>
@@ -1149,6 +1221,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1167,12 +1240,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1188,6 +1263,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1203,12 +1279,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1242,6 +1320,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1260,12 +1339,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1281,6 +1362,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1296,12 +1378,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1335,6 +1419,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1353,12 +1438,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1374,6 +1461,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1389,12 +1477,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1428,6 +1518,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="Not integer" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1446,12 +1537,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1467,6 +1560,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1482,12 +1576,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1521,6 +1617,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -1539,12 +1636,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1560,6 +1659,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1575,12 +1675,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1614,6 +1716,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1632,12 +1735,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" value="No" failure="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" value="Not null">
           <Has name="paramName" value="param0"/>
@@ -1653,6 +1758,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1668,12 +1774,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1707,6 +1815,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1725,12 +1834,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" value="integer" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" value="Not null">
           <Has name="paramName" value="param0"/>
@@ -1746,6 +1857,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1761,12 +1873,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1800,6 +1914,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1818,12 +1933,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" value="No" failure="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1839,6 +1956,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1854,12 +1972,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1893,6 +2013,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1911,12 +2032,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -1932,6 +2055,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1947,12 +2071,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -1986,6 +2112,7 @@
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2004,12 +2131,14 @@
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.1.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -2025,6 +2154,7 @@
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.2.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -2040,12 +2170,14 @@
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Alternative.3.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>

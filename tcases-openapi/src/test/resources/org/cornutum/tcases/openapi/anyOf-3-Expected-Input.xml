@@ -39,6 +39,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -77,6 +78,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No" failure="true"/>
                   </Var>
@@ -87,6 +89,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
                     <Value name="No" failure="true"/>
                   </Var>
@@ -113,6 +116,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                     <Value name="No"/>
                   </Var>
@@ -142,6 +146,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="param0Alpha, param0Properties"/>
                   </Var>
                   <Var name="Type" when="param0Alpha">
@@ -150,6 +155,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="param0Bravo, param0Properties"/>
                   </Var>
                   <Var name="Type" when="param0Bravo">

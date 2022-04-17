@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<System name="realize">
+  <Has name="server" value="/"/>
+  <Has name="title" value="realize"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_realize">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/realize"/>
+    <Input type="header">
+      <VarSet name="param">
+        <Has name="paramName" value="param"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param">
+          <Value name="string" property="paramValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="paramValue">
+          <Var name="Length">
+            <Value name="0" failure="true"/>
+            <Value name="1" property="paramLengthValid, paramNotEmpty"/>
+            <Value name="&gt; 1" property="paramLengthValid, paramNotEmpty"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

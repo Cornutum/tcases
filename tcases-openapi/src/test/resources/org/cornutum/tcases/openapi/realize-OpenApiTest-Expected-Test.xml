@@ -426,7 +426,7 @@
     <TestCase id="0" name="postId.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -441,6 +441,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -450,6 +451,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -467,12 +469,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -481,7 +487,7 @@
     <TestCase id="1" name="postId.Value.Properties.country.Value.Length=&apos;16&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextNotEmpty,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -496,6 +502,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -505,6 +512,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -522,12 +530,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="32">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="64"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -536,7 +548,7 @@
     <TestCase id="2" failure="true" name="postId.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -551,6 +563,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" NA="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -560,6 +573,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" NA="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -577,12 +591,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -591,7 +609,7 @@
     <TestCase id="3" failure="true" name="postId.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -606,6 +624,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" NA="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -615,6 +634,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" NA="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -632,12 +652,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -646,7 +670,7 @@
     <TestCase id="4" failure="true" name="postId.Type=&apos;Not object&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -661,6 +685,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" NA="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -670,6 +695,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" NA="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -687,12 +713,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -701,7 +731,7 @@
     <TestCase id="5" failure="true" name="postId.Value.Properties.country.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -716,6 +746,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="No" failure="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -725,6 +756,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -742,12 +774,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -756,7 +792,7 @@
     <TestCase id="6" failure="true" name="postId.Value.Properties.country.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -771,6 +807,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="null" failure="true">
           <Has name="paramName" value="postId"/>
@@ -780,6 +817,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -797,12 +835,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -811,7 +853,7 @@
     <TestCase id="7" failure="true" name="postId.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -826,6 +868,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="Not string" failure="true">
           <Has name="paramName" value="postId"/>
@@ -835,6 +878,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -852,12 +896,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -866,7 +914,7 @@
     <TestCase id="8" failure="true" name="postId.Value.Properties.country.Value.Length=&apos;0&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -881,6 +929,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -890,6 +939,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -907,12 +957,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -921,7 +975,7 @@
     <TestCase id="9" failure="true" name="postId.Value.Properties.country.Value.Length=&apos;17&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -936,6 +990,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -945,6 +1000,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -962,12 +1018,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -976,7 +1036,7 @@
     <TestCase id="10" failure="true" name="postId.Value.Properties.region.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -991,6 +1051,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1000,6 +1061,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="No" failure="true">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" NA="true">
           <Has name="paramName" value="postId"/>
@@ -1017,12 +1079,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1031,7 +1097,7 @@
     <TestCase id="11" failure="true" name="postId.Value.Properties.region.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1046,6 +1112,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1055,6 +1122,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="null" failure="true">
           <Has name="paramName" value="postId"/>
@@ -1072,12 +1140,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1086,7 +1158,7 @@
     <TestCase id="12" failure="true" name="postId.Value.Properties.region.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1101,6 +1173,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1110,6 +1183,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="Not string" failure="true">
           <Has name="paramName" value="postId"/>
@@ -1127,12 +1201,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1141,7 +1219,7 @@
     <TestCase id="13" failure="true" name="postId.Value.Properties.region.Value.Length=&apos;0&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1156,6 +1234,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1165,6 +1244,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1182,12 +1262,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1196,7 +1280,7 @@
     <TestCase id="14" failure="true" name="postId.Value.Properties.region.Value.Length=&apos;17&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1211,6 +1295,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1220,6 +1305,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1237,12 +1323,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1251,7 +1341,7 @@
     <TestCase id="15" failure="true" name="postId.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1266,6 +1356,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1275,6 +1366,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1292,12 +1384,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1306,7 +1402,7 @@
     <TestCase id="16" failure="true" name="Body.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue"/>
+      <Has name="properties" value="postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1321,6 +1417,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1330,6 +1427,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1345,12 +1443,16 @@
         <Var name="Body.Defined" value="No" failure="true"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.text-plain.Type" NA="true"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" NA="true"/>
@@ -1359,7 +1461,7 @@
     <TestCase id="17" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1374,6 +1476,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1383,6 +1486,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1400,12 +1504,16 @@
           <Has name="excluded" value="&apos;text/plain&apos;"/>
         </Var>
         <Var name="Body.text-plain.Type" NA="true"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" NA="true"/>
@@ -1414,7 +1522,7 @@
     <TestCase id="18" failure="true" name="Body.text-plain.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1429,6 +1537,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1438,6 +1547,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1455,12 +1565,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="null" failure="true"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" NA="true"/>
@@ -1469,7 +1583,7 @@
     <TestCase id="19" failure="true" name="Body.text-plain.Type=&apos;Not object&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1484,6 +1598,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1493,6 +1608,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1510,12 +1626,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="Not object" failure="true"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" NA="true"/>
@@ -1524,7 +1644,7 @@
     <TestCase id="20" failure="true" name="Body.text-plain.Value.Properties.email.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1539,6 +1659,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1548,6 +1669,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1565,12 +1687,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="No" failure="true"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="No" failure="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1579,7 +1705,7 @@
     <TestCase id="21" failure="true" name="Body.text-plain.Value.Properties.email.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1594,6 +1720,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1603,6 +1730,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1620,12 +1748,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="null" failure="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1634,7 +1766,7 @@
     <TestCase id="22" failure="true" name="Body.text-plain.Value.Properties.email.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1649,6 +1781,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1658,6 +1791,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1675,12 +1809,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="Not string" failure="true"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1689,7 +1827,7 @@
     <TestCase id="23" failure="true" name="Body.text-plain.Value.Properties.email.Value.Length=&apos;6&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1704,6 +1842,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1713,6 +1852,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1730,12 +1870,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="6" failure="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1744,7 +1888,7 @@
     <TestCase id="24" failure="true" name="Body.text-plain.Value.Properties.email.Value.Length=&apos;33&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1759,6 +1903,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1768,6 +1913,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1785,12 +1931,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="33" failure="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1799,7 +1949,7 @@
     <TestCase id="25" failure="true" name="Body.text-plain.Value.Properties.text.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1814,6 +1964,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1823,6 +1974,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1840,12 +1992,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="No" failure="true"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="No" failure="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1854,7 +2010,7 @@
     <TestCase id="26" failure="true" name="Body.text-plain.Value.Properties.text.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1869,6 +2025,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1878,6 +2035,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1895,12 +2053,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="null" failure="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1909,7 +2071,7 @@
     <TestCase id="27" failure="true" name="Body.text-plain.Value.Properties.text.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1924,6 +2086,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1933,6 +2096,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1950,12 +2114,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="Not string" failure="true"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -1964,7 +2132,7 @@
     <TestCase id="28" failure="true" name="Body.text-plain.Value.Properties.text.Value.Length=&apos;65&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1979,6 +2147,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -1988,6 +2157,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -2005,12 +2175,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="65" failure="true"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="No"/>
@@ -2019,7 +2193,7 @@
     <TestCase id="29" failure="true" name="Body.text-plain.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2034,6 +2208,7 @@
         </Var>
         <Var name="postId.Value.Properties.country.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="country"/>
         </Var>
         <Var name="postId.Value.Properties.country.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -2043,6 +2218,7 @@
         </Var>
         <Var name="postId.Value.Properties.region.Defined" value="Yes">
           <Has name="paramName" value="postId"/>
+          <Has name="propertyName" value="region"/>
         </Var>
         <Var name="postId.Value.Properties.region.Type" value="string">
           <Has name="paramName" value="postId"/>
@@ -2060,12 +2236,16 @@
           <Has name="mediaType" value="text/plain"/>
         </Var>
         <Var name="Body.text-plain.Type" value="object"/>
-        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.email.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.text-plain.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.text-plain.Value.Properties.text.Type" value="string"/>
         <Var name="Body.text-plain.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.text-plain.Value.Properties.Additional" value="Yes" failure="true"/>
@@ -2081,7 +2261,7 @@
     <TestCase id="0" name="approved.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2103,12 +2283,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2137,12 +2321,16 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2151,7 +2339,7 @@
     <TestCase id="2" name="Body.application-json.Value.Properties.email.Value.Length=&apos;32&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextNotEmpty,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2173,12 +2361,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="32">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="64"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2206,12 +2398,16 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2240,12 +2436,16 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2274,12 +2474,16 @@
         <Var name="Body.Defined" value="No"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2310,12 +2514,16 @@
           <Has name="excluded" value="&apos;application/json&apos;"/>
         </Var>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2346,12 +2554,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2382,12 +2594,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="Not object" failure="true"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" NA="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" NA="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -2396,7 +2612,7 @@
     <TestCase id="9" failure="true" name="Body.application-json.Value.Properties.email.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2418,12 +2634,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="No" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="No" failure="true">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2432,7 +2652,7 @@
     <TestCase id="10" failure="true" name="Body.application-json.Value.Properties.email.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2454,12 +2674,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2468,7 +2692,7 @@
     <TestCase id="11" failure="true" name="Body.application-json.Value.Properties.email.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2490,12 +2714,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="Not string" failure="true"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" NA="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2504,7 +2732,7 @@
     <TestCase id="12" failure="true" name="Body.application-json.Value.Properties.email.Value.Length=&apos;6&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2526,12 +2754,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="6" failure="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2540,7 +2772,7 @@
     <TestCase id="13" failure="true" name="Body.application-json.Value.Properties.email.Value.Length=&apos;33&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2562,12 +2794,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="33" failure="true">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2576,7 +2812,7 @@
     <TestCase id="14" failure="true" name="Body.application-json.Value.Properties.text.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2598,12 +2834,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="No" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="No" failure="true">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2612,7 +2852,7 @@
     <TestCase id="15" failure="true" name="Body.application-json.Value.Properties.text.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2634,12 +2874,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2648,7 +2892,7 @@
     <TestCase id="16" failure="true" name="Body.application-json.Value.Properties.text.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2670,12 +2914,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="Not string" failure="true"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2684,7 +2932,7 @@
     <TestCase id="17" failure="true" name="Body.application-json.Value.Properties.text.Value.Length=&apos;65&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2706,12 +2954,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="65" failure="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -2720,7 +2972,7 @@
     <TestCase id="18" failure="true" name="Body.application-json.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2742,12 +2994,16 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.email.Defined" value="Yes">
+          <Has name="propertyName" value="email"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.email.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.email.Value.Length" value="7">
           <Has name="format" value="email"/>
         </Var>
-        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.text.Defined" value="Yes">
+          <Has name="propertyName" value="text"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.text.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.text.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes" failure="true"/>
@@ -3890,6 +4146,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -3899,6 +4156,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="[attributes]"/>
@@ -3942,6 +4200,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -3951,6 +4210,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -3994,6 +4254,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4003,6 +4264,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="[attributes]"/>
@@ -4046,6 +4308,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4055,6 +4318,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4098,6 +4362,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4107,6 +4372,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4150,6 +4416,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4159,6 +4426,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4202,6 +4470,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4211,6 +4480,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4254,6 +4524,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" NA="true">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4263,6 +4534,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" NA="true">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4306,6 +4578,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" NA="true">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4315,6 +4588,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" NA="true">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4358,6 +4632,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" NA="true">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4367,6 +4642,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" NA="true">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4410,6 +4686,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4419,6 +4696,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4462,6 +4740,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="null" failure="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4471,6 +4750,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4514,6 +4794,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="Not boolean" failure="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4523,6 +4804,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4566,6 +4848,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4575,6 +4858,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="null" failure="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4618,6 +4902,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4627,6 +4912,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="Not integer" failure="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4670,6 +4956,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4679,6 +4966,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="[attributes]"/>
@@ -4722,6 +5010,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="[attributes]"/>
@@ -4731,6 +5020,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No">
           <Has name="paramName" value="[attributes]"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="[attributes]"/>
@@ -4768,6 +5058,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -4777,6 +5068,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -4786,6 +5078,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" value="string">
           <Has name="paramName" value="attributes"/>
@@ -4816,6 +5109,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -4825,6 +5119,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -4834,6 +5129,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -4864,6 +5160,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -4873,6 +5170,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -4882,6 +5180,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" value="string">
           <Has name="paramName" value="attributes"/>
@@ -4911,6 +5210,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -4920,6 +5220,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -4929,6 +5230,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -4959,6 +5261,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -4968,6 +5271,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -4977,6 +5281,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5007,6 +5312,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5016,6 +5322,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5025,6 +5332,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" NA="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5055,6 +5363,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="No" failure="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5064,6 +5373,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5073,6 +5383,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5103,6 +5414,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="null" failure="true">
           <Has name="paramName" value="attributes"/>
@@ -5112,6 +5424,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5121,6 +5434,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5151,6 +5465,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="Not boolean" failure="true">
           <Has name="paramName" value="attributes"/>
@@ -5160,6 +5475,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5169,6 +5485,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5199,6 +5516,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5208,6 +5526,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="No" failure="true">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5217,6 +5536,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5247,6 +5567,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5256,6 +5577,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="null" failure="true">
           <Has name="paramName" value="attributes"/>
@@ -5265,6 +5587,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5295,6 +5618,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5304,6 +5628,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="Not integer" failure="true">
           <Has name="paramName" value="attributes"/>
@@ -5313,6 +5638,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5343,6 +5669,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5352,6 +5679,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5361,6 +5689,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5391,6 +5720,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5400,6 +5730,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5409,6 +5740,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" value="null" failure="true">
           <Has name="paramName" value="attributes"/>
@@ -5439,6 +5771,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5448,6 +5781,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5457,6 +5791,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" value="Not string" failure="true">
           <Has name="paramName" value="attributes"/>
@@ -5487,6 +5822,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5496,6 +5832,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5505,6 +5842,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" value="string">
           <Has name="paramName" value="attributes"/>
@@ -5536,6 +5874,7 @@
         </Var>
         <Var name="attributes.Value.Properties.approved.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="approved"/>
         </Var>
         <Var name="attributes.Value.Properties.approved.Type" value="boolean">
           <Has name="paramName" value="attributes"/>
@@ -5545,6 +5884,7 @@
         </Var>
         <Var name="attributes.Value.Properties.likes.Defined" value="Yes">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="likes"/>
         </Var>
         <Var name="attributes.Value.Properties.likes.Type" value="integer">
           <Has name="paramName" value="attributes"/>
@@ -5554,6 +5894,7 @@
         </Var>
         <Var name="attributes.Value.Properties.subject.Defined" value="No">
           <Has name="paramName" value="attributes"/>
+          <Has name="propertyName" value="subject"/>
         </Var>
         <Var name="attributes.Value.Properties.subject.Type" NA="true">
           <Has name="paramName" value="attributes"/>
@@ -5598,10 +5939,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5632,10 +5977,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="(?)"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5666,10 +6015,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Me+You"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5700,10 +6053,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5734,10 +6091,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5768,10 +6129,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5802,10 +6167,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -5834,10 +6203,14 @@
         <Var name="Body.Defined" value="No" failure="true"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Type" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -5868,10 +6241,14 @@
           <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -5902,10 +6279,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="null" failure="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -5936,10 +6317,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="Not object" failure="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" NA="true">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" NA="true">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -5970,10 +6355,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="No" failure="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="No" failure="true">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -6004,10 +6393,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="null" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -6038,10 +6431,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="Not boolean" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -6072,10 +6469,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="No" failure="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="No" failure="true">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -6106,10 +6507,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="null" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -6140,10 +6545,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="Not string" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -6174,10 +6583,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Other" failure="true">
           <Has name="excluded" value="&apos;Larry Moe&apos;,&apos;(?)&apos;,&apos;Me+You&apos;"/>
@@ -6210,10 +6623,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined" value="Yes">
+          <Has name="propertyName" value="approved"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type" value="boolean"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Value" value="false"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined" value="Yes">
+          <Has name="propertyName" value="reviewer"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value" value="Larry Moe"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="Yes" failure="true"/>
@@ -6244,6 +6661,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -6264,6 +6682,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6306,6 +6725,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -6326,6 +6746,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6368,6 +6789,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -6388,6 +6810,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6430,6 +6853,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" NA="true">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" NA="true">
           <Has name="paramName" value="user attributes"/>
@@ -6450,6 +6874,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6492,6 +6917,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" NA="true">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" NA="true">
           <Has name="paramName" value="user attributes"/>
@@ -6512,6 +6938,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6554,6 +6981,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" NA="true">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" NA="true">
           <Has name="paramName" value="user attributes"/>
@@ -6574,6 +7002,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6616,6 +7045,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="No" failure="true">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" NA="true">
           <Has name="paramName" value="user attributes"/>
@@ -6636,6 +7066,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6678,6 +7109,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="null" failure="true">
           <Has name="paramName" value="user attributes"/>
@@ -6698,6 +7130,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6740,6 +7173,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="Not string" failure="true">
           <Has name="paramName" value="user attributes"/>
@@ -6760,6 +7194,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6802,6 +7237,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -6823,6 +7259,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6865,6 +7302,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -6885,6 +7323,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -6927,6 +7366,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -6947,6 +7387,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" NA="true">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" NA="true">
           <Has name="paramName" value="post?"/>
@@ -6989,6 +7430,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7009,6 +7451,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" NA="true">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" NA="true">
           <Has name="paramName" value="post?"/>
@@ -7051,6 +7494,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7071,6 +7515,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" NA="true">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" NA="true">
           <Has name="paramName" value="post?"/>
@@ -7113,6 +7558,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7133,6 +7579,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="No" failure="true">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" NA="true">
           <Has name="paramName" value="post?"/>
@@ -7175,6 +7622,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7195,6 +7643,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="null" failure="true">
           <Has name="paramName" value="post?"/>
@@ -7237,6 +7686,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7257,6 +7707,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="Not array" failure="true">
           <Has name="paramName" value="post?"/>
@@ -7299,6 +7750,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7319,6 +7771,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -7361,6 +7814,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7381,6 +7835,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -7423,6 +7878,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7443,6 +7899,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -7485,6 +7942,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7505,6 +7963,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -7547,6 +8006,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7567,6 +8027,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -7610,6 +8071,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7630,6 +8092,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -7672,6 +8135,7 @@
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Defined" value="Yes">
           <Has name="paramName" value="user attributes"/>
+          <Has name="propertyName" value="user type"/>
         </Var>
         <Var name="user-attributes.Value.Properties.user-type.Type" value="string">
           <Has name="paramName" value="user attributes"/>
@@ -7692,6 +8156,7 @@
         </Var>
         <Var name="post.Value.Properties.post-references.Defined" value="Yes">
           <Has name="paramName" value="post?"/>
+          <Has name="propertyName" value="post references"/>
         </Var>
         <Var name="post.Value.Properties.post-references.Type" value="array">
           <Has name="paramName" value="post?"/>
@@ -8443,6 +8908,23 @@
           <Has name="excluded" value="&apos;0&apos;,&apos;1&apos;"/>
           <Has name="paramName" value="approved"/>
         </Var>
+      </Input>
+    </TestCase>
+  </Function>
+  <Function name="GET_users">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/users"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="OpenAPI Request Test Cases"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="None.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/users"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="OpenAPI Request Test Cases"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="implicit">
+        <Var name="None.Defined" value="No"/>
       </Input>
     </TestCase>
   </Function>

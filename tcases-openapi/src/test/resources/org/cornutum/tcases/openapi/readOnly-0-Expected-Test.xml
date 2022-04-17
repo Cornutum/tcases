@@ -30,6 +30,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -62,6 +63,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -95,6 +97,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -128,6 +131,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -161,6 +165,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -194,6 +199,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -227,6 +233,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -260,6 +267,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -293,6 +301,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -326,6 +335,7 @@
         </Var>
         <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
         </Var>
         <Var name="param0.Value.Properties.myString.Type" value="Not string" failure="true">
           <Has name="paramName" value="param0"/>

@@ -36,6 +36,7 @@
           <VarSet name="Properties">
             <VarSet name="alpha">
               <Var name="Defined">
+                <Has name="propertyName" value="alpha"/>
                 <Value name="Yes" property="param0Alpha, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -53,6 +54,7 @@
             </VarSet>
             <VarSet name="bravo">
               <Var name="Defined">
+                <Has name="propertyName" value="bravo"/>
                 <Value name="Yes" property="param0Bravo, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -70,6 +72,7 @@
             </VarSet>
             <VarSet name="charlie">
               <Var name="Defined">
+                <Has name="propertyName" value="charlie"/>
                 <Value name="Yes" property="param0Charlie, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -85,6 +88,7 @@
             </VarSet>
             <VarSet name="delta">
               <Var name="Defined">
+                <Has name="propertyName" value="delta"/>
                 <Value name="Yes" property="param0Delta, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -102,6 +106,7 @@
             </VarSet>
             <VarSet name="echo">
               <Var name="Defined">
+                <Has name="propertyName" value="echo"/>
                 <Value name="Yes" property="param0Echo, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -120,6 +125,7 @@
             </VarSet>
             <VarSet name="foxtrot">
               <Var name="Defined">
+                <Has name="propertyName" value="foxtrot"/>
                 <Value name="Yes" property="param0Foxtrot, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -138,6 +144,7 @@
             </VarSet>
             <VarSet name="golf">
               <Var name="Defined">
+                <Has name="propertyName" value="golf"/>
                 <Value name="Yes" property="param0Golf, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -157,6 +164,7 @@
             </VarSet>
             <VarSet name="hotel">
               <Var name="Defined">
+                <Has name="propertyName" value="hotel"/>
                 <Value name="Yes" property="param0Hotel, param0Properties"/>
                 <Value name="No"/>
               </Var>
@@ -173,6 +181,7 @@
                 <VarSet name="Properties">
                   <VarSet name="rooms">
                     <Var name="Defined">
+                      <Has name="propertyName" value="rooms"/>
                       <Value name="Yes" property="param0HotelProperties, param0HotelRooms"/>
                       <Value name="No"/>
                     </Var>
