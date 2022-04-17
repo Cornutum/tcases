@@ -280,4 +280,10 @@ public class ResponsesTest extends OpenApiTest
     {
     verifyResponseInputModel( "responses-6");
     }
+  
+  @Test
+  public void whenHeaderNonIdentifier()
+    {
+    verifyResponseInputModel( "responses-header-names");
+    }
   }

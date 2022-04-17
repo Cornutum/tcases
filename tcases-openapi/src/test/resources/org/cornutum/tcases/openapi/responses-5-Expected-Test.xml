@@ -16,12 +16,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="&gt; 0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -47,12 +49,14 @@
         </Var>
         <Var name="2XX.Headers.x-standard-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" NA="true">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
@@ -74,12 +78,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
@@ -103,12 +109,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -132,12 +140,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
@@ -161,12 +171,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="&gt; 0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -190,12 +202,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" NA="true"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="No">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" NA="true"/>
@@ -221,12 +235,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="null" failure="true"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -250,12 +266,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="Not string" failure="true"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" NA="true"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -279,12 +297,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="null" failure="true"/>
@@ -308,12 +328,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="Not object" failure="true"/>
@@ -337,12 +359,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -364,12 +388,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -393,12 +419,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -422,12 +450,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -451,12 +481,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -480,12 +512,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -509,12 +543,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
@@ -538,12 +574,14 @@
         <Var name="Status-Code" value="2XX"/>
         <Var name="2XX.Headers.x-standard-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-standard-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-standard-header.Type" value="string"/>
         <Var name="2XX.Headers.x-standard-header.Value.Length" value="0"/>
         <Var name="2XX.Headers.x-extra-header.Defined" value="Yes">
           <Has name="explode" value="false"/>
+          <Has name="headerName" value="x-extra-header"/>
           <Has name="style" value="simple"/>
         </Var>
         <Var name="2XX.Headers.x-extra-header.Type" value="object"/>
