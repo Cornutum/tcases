@@ -55,6 +55,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="example-WName, example-WProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -72,6 +73,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="example-WProperties, example-WValue"/>
                   <Value name="No"/>
                 </Var>
@@ -108,6 +110,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="text-WPlangEgbName, text-WPlangEgbProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -125,6 +128,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="text-WPlangEgbProperties, text-WPlangEgbValue"/>
                   <Value name="No"/>
                 </Var>
@@ -161,6 +165,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="application-WSjsonName, application-WSjsonProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -178,6 +183,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="application-WSjsonProperties, application-WSjsonValue"/>
                   <Value name="No"/>
                 </Var>
@@ -214,6 +220,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="model-WSjsonPlangEgbPencEutf8Name, model-WSjsonPlangEgbPencEutf8Properties"/>
                   <Value name="No"/>
                 </Var>
@@ -231,6 +238,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="model-WSjsonPlangEgbPencEutf8Properties, model-WSjsonPlangEgbPencEutf8Value"/>
                   <Value name="No"/>
                 </Var>
@@ -267,6 +275,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="application-jsonName, application-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -284,6 +293,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="application-jsonProperties, application-jsonValue"/>
                   <Value name="No"/>
                 </Var>
@@ -320,6 +330,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="example-jsonPlangEgbName, example-jsonPlangEgbProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -337,6 +348,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="example-jsonPlangEgbProperties, example-jsonPlangEgbValue"/>
                   <Value name="No"/>
                 </Var>
@@ -373,6 +385,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="text-plainSxmlName, text-plainSxmlProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -390,6 +403,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="text-plainSxmlProperties, text-plainSxmlValue"/>
                   <Value name="No"/>
                 </Var>
@@ -426,6 +440,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="text-xmlSxmlPlangEgbName, text-xmlSxmlPlangEgbProperties"/>
                   <Value name="No"/>
                 </Var>
@@ -443,6 +458,7 @@
               </VarSet>
               <VarSet name="value">
                 <Var name="Defined">
+                  <Has name="propertyName" value="value"/>
                   <Value name="Yes" property="text-xmlSxmlPlangEgbProperties, text-xmlSxmlPlangEgbValue"/>
                   <Value name="No"/>
                 </Var>

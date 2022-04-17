@@ -12,7 +12,7 @@
     <TestCase id="0" name="param.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -34,10 +34,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -46,7 +50,7 @@
     <TestCase id="1" name="param.Value.Length=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -68,10 +72,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="null"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -80,7 +88,7 @@
     <TestCase id="2" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -102,10 +110,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="&gt; 1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -114,7 +126,7 @@
     <TestCase id="3" failure="true" name="param.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -136,10 +148,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -148,7 +164,7 @@
     <TestCase id="4" failure="true" name="param.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -170,10 +186,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -182,7 +202,7 @@
     <TestCase id="5" failure="true" name="param.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -204,10 +224,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -216,7 +240,7 @@
     <TestCase id="6" failure="true" name="param.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -238,10 +262,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -250,7 +278,7 @@
     <TestCase id="7" failure="true" name="Body.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramValue"/>
+      <Has name="properties" value="param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -270,10 +298,14 @@
         <Var name="Body.Defined" value="No" failure="true"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Type" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -282,7 +314,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,param,paramValue"/>
+      <Has name="properties" value="Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -304,10 +336,14 @@
           <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -316,7 +352,7 @@
     <TestCase id="9" failure="true" name="Body.application-x-www-form-urlencoded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -338,10 +374,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="null" failure="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -350,7 +390,7 @@
     <TestCase id="10" failure="true" name="Body.application-x-www-form-urlencoded.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -372,10 +412,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="Not object" failure="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" NA="true">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" NA="true"/>
@@ -384,7 +428,7 @@
     <TestCase id="11" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -406,10 +450,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="No" failure="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="No" failure="true">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -418,7 +466,7 @@
     <TestCase id="12" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -440,10 +488,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="null" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -452,7 +504,7 @@
     <TestCase id="13" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -474,10 +526,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="Not integer" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" NA="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -486,7 +542,7 @@
     <TestCase id="14" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -508,10 +564,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="-1" failure="true"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -520,7 +580,7 @@
     <TestCase id="15" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -542,10 +602,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="No" failure="true"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="No" failure="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -554,7 +618,7 @@
     <TestCase id="16" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -576,10 +640,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="Not string" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -588,7 +656,7 @@
     <TestCase id="17" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -610,10 +678,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="0" failure="true"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="No"/>
@@ -622,7 +694,7 @@
     <TestCase id="18" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -644,10 +716,14 @@
           <Has name="mediaType" value="application/x-www-form-urlencoded"/>
         </Var>
         <Var name="Body.application-x-www-form-urlencoded.Type" value="object"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined" value="Yes">
+          <Has name="propertyName" value="id"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type" value="integer"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is" value="&gt; 0"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length" value="1"/>
         <Var name="Body.application-x-www-form-urlencoded.Value.Properties.Additional" value="Yes" failure="true"/>

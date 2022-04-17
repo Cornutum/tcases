@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<System name="realize">
+  <Has name="server" value="/"/>
+  <Has name="title" value="realize"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_realize">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/realize"/>
+    <Input type="header">
+      <VarSet name="param">
+        <Has name="paramName" value="param"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="param"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param">
+          <Value name="object" property="paramValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="paramValue">
+          <VarSet name="Properties">
+            <VarSet name="id">
+              <Var name="Defined">
+                <Has name="propertyName" value="id"/>
+                <Value name="Yes" property="paramId, paramProperties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="paramId">
+                <Value name="integer" property="paramIdValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="paramIdValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="tag">
+              <Var name="Defined">
+                <Has name="propertyName" value="tag"/>
+                <Value name="Yes" property="paramProperties, paramTag"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="paramTag">
+                <Value name="string" property="paramTagValue"/>
+                <Value name="null" once="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="paramTagValue">
+                <Var name="Length">
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="paramTagLengthValid, paramTagNotEmpty"/>
+                  <Value name="&gt; 1" property="paramTagLengthValid, paramTagNotEmpty"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <VarSet name="Properties">
+              <VarSet name="id">
+                <Var name="Defined">
+                  <Has name="propertyName" value="id"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedId, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedId">
+                  <Value name="integer" property="application-x-www-form-urlencodedIdValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not integer" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedIdValue">
+                  <Var name="Is">
+                    <Value name="-1" failure="true"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="tag">
+                <Var name="Defined">
+                  <Has name="propertyName" value="tag"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedProperties, application-x-www-form-urlencodedTag"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedTag">
+                  <Value name="string" property="application-x-www-form-urlencodedTagValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedTagValue">
+                  <Var name="Length">
+                    <Value name="0" failure="true"/>
+                    <Value name="1" property="application-x-www-form-urlencodedTagLengthValid, application-x-www-form-urlencodedTagNotEmpty"/>
+                    <Value name="&gt; 1" property="application-x-www-form-urlencodedTagLengthValid, application-x-www-form-urlencodedTagNotEmpty"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

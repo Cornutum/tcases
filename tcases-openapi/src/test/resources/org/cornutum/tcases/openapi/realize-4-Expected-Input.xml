@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<System name="realize">
+  <Has name="server" value="/"/>
+  <Has name="title" value="realize"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_realize">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/realize"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="text-plain" property="text-plain">
+            <Has name="mediaType" value="text/plain"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;text/plain&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="text-plain" when="text-plain">
+          <Var name="Type">
+            <Value name="string" property="text-plainValue"/>
+            <Value name="null" once="true"/>
+            <Value name="Not string" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="text-plainValue">
+            <Var name="Length">
+              <Value name="0" property="text-plainLengthValid"/>
+              <Value name="&gt; 0" property="text-plainLengthValid, text-plainNotEmpty"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

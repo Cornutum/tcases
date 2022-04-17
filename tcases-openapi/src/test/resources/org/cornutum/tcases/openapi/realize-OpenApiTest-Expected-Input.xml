@@ -1,0 +1,902 @@
+<?xml version="1.0"?>
+<System name="OpenAPI-Request-Test-Cases">
+  <Has name="server" value="/"/>
+  <Has name="title" value="OpenAPI Request Test Cases"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_posts">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/posts"/>
+    <Input type="query">
+      <VarSet name="ids">
+        <Has name="paramName" value="ids"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+          <Value name="Yes" property="ids"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="ids">
+          <Value name="array" property="idsValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="idsValue">
+          <Var name="Size">
+            <Has name="itemsUnique" value="true"/>
+            <Value name="0" failure="true"/>
+            <Value name="1"/>
+            <Value name="4" property="idsItemsMany"/>
+            <Value name="5" failure="true"/>
+          </Var>
+          <VarSet name="Contains">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="idsItemsValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="idsItemsValue">
+              <Var name="Is">
+                <Has name="itemMax" value="100"/>
+                <Has name="itemMin" value="0"/>
+                <Value name="-1" failure="true"/>
+                <Value name="0"/>
+                <Value name="100"/>
+                <Value name="101" failure="true"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="idsItemsMany">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="PUT_posts">
+    <Has name="operation" value="PUT"/>
+    <Has name="path" value="/posts"/>
+    <Input type="cookie">
+      <VarSet name="postId">
+        <Has name="paramName" value="postId"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="postId"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="postId">
+          <Value name="object" property="postIdValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="postIdValue">
+          <VarSet name="Properties">
+            <VarSet name="country">
+              <Var name="Defined">
+                <Has name="propertyName" value="country"/>
+                <Value name="Yes" property="postIdCountry, postIdProperties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="postIdCountry">
+                <Value name="string" property="postIdCountryValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="postIdCountryValue">
+                <Var name="Length">
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="postIdCountryLengthValid, postIdCountryNotEmpty"/>
+                  <Value name="16" property="postIdCountryLengthValid, postIdCountryNotEmpty"/>
+                  <Value name="17" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="region">
+              <Var name="Defined">
+                <Has name="propertyName" value="region"/>
+                <Value name="Yes" property="postIdProperties, postIdRegion"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="postIdRegion">
+                <Value name="string" property="postIdRegionValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="postIdRegionValue">
+                <Var name="Length">
+                  <Value name="0" failure="true"/>
+                  <Value name="1" property="postIdRegionLengthValid, postIdRegionNotEmpty"/>
+                  <Value name="16" property="postIdRegionLengthValid, postIdRegionNotEmpty"/>
+                  <Value name="17" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="text-plain" property="text-plain">
+            <Has name="mediaType" value="text/plain"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;text/plain&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="text-plain" when="text-plain">
+          <Var name="Type">
+            <Value name="object" property="text-plainValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="text-plainValue">
+            <VarSet name="Properties">
+              <VarSet name="email">
+                <Var name="Defined">
+                  <Has name="propertyName" value="email"/>
+                  <Value name="Yes" property="text-plainEmail, text-plainProperties"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="text-plainEmail">
+                  <Value name="string" property="text-plainEmailValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-plainEmailValue">
+                  <Has name="format" value="email"/>
+                  <Var name="Length">
+                    <Value name="6" failure="true"/>
+                    <Value name="7" property="text-plainEmailLengthValid, text-plainEmailNotEmpty"/>
+                    <Value name="32" property="text-plainEmailLengthValid, text-plainEmailNotEmpty"/>
+                    <Value name="33" failure="true"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="text">
+                <Var name="Defined">
+                  <Has name="propertyName" value="text"/>
+                  <Value name="Yes" property="text-plainProperties, text-plainText"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="text-plainText">
+                  <Value name="string" property="text-plainTextValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="text-plainTextValue">
+                  <Var name="Length">
+                    <Value name="0" property="text-plainTextLengthValid"/>
+                    <Value name="64" property="text-plainTextLengthValid, text-plainTextNotEmpty"/>
+                    <Value name="65" failure="true"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_posts">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/posts"/>
+    <Input type="cookie">
+      <VarSet name="approved">
+        <Has name="paramName" value="approved"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="approved"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="approved">
+          <Value name="boolean" property="approvedValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not boolean" failure="true"/>
+        </Var>
+        <Var name="Value" when="approvedValue">
+          <Value name="true"/>
+          <Value name="false"/>
+        </Var>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-json" property="application-json">
+            <Has name="mediaType" value="application/json"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/json&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-json" when="application-json">
+          <Var name="Type">
+            <Value name="object" property="application-jsonValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-jsonValue">
+            <VarSet name="Properties">
+              <VarSet name="email">
+                <Var name="Defined">
+                  <Has name="propertyName" value="email"/>
+                  <Value name="Yes" property="application-jsonEmail, application-jsonProperties"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="application-jsonEmail">
+                  <Value name="string" property="application-jsonEmailValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-jsonEmailValue">
+                  <Has name="format" value="email"/>
+                  <Var name="Length">
+                    <Value name="6" failure="true"/>
+                    <Value name="7" property="application-jsonEmailLengthValid, application-jsonEmailNotEmpty"/>
+                    <Value name="32" property="application-jsonEmailLengthValid, application-jsonEmailNotEmpty"/>
+                    <Value name="33" failure="true"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="text">
+                <Var name="Defined">
+                  <Has name="propertyName" value="text"/>
+                  <Value name="Yes" property="application-jsonProperties, application-jsonText"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="application-jsonText">
+                  <Value name="string" property="application-jsonTextValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-jsonTextValue">
+                  <Var name="Length">
+                    <Value name="0" property="application-jsonTextLengthValid"/>
+                    <Value name="64" property="application-jsonTextLengthValid, application-jsonTextNotEmpty"/>
+                    <Value name="65" failure="true"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="OPTIONS_posts">
+    <Has name="operation" value="OPTIONS"/>
+    <Has name="path" value="/posts"/>
+    <Input type="header">
+      <VarSet name="X-Post-Types">
+        <Has name="paramName" value="X-Post-Types"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="X-Post-Types"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="X-Post-Types">
+          <Value name="array" property="X-Post-TypesValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="X-Post-TypesValue">
+          <Var name="Size">
+            <Has name="itemsUnique" value="true"/>
+            <Value name="1" failure="true"/>
+            <Value name="2" property="X-Post-TypesItemsMany"/>
+            <Value name="3" failure="true"/>
+          </Var>
+          <VarSet name="Contains">
+            <Var name="Type">
+              <Has name="itemType" value="integer"/>
+              <Value name="integer" property="X-Post-TypesItemsValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not integer" failure="true"/>
+            </Var>
+            <VarSet name="Value" when="X-Post-TypesItemsValue">
+              <Var name="Is">
+                <Has name="itemEnums" value="&apos;1001&apos;,&apos;2345&apos;,&apos;7700&apos;"/>
+                <Value name="1001"/>
+                <Value name="2345"/>
+                <Value name="7700"/>
+                <Value name="Other" failure="true">
+                  <Has name="excluded" value="&apos;1001&apos;,&apos;2345&apos;,&apos;7700&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+          </VarSet>
+          <Var name="Unique" when="X-Post-TypesItemsMany">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="X-User-Id">
+        <Has name="paramName" value="X-User-Id"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="X-User-Id"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="X-User-Id">
+          <Value name="integer" property="X-User-IdValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="X-User-IdValue">
+          <Var name="Is">
+            <Value name="-1" failure="true"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="TRACE_posts">
+    <Has name="operation" value="TRACE"/>
+    <Has name="path" value="/posts"/>
+    <Input type="cookie">
+      <VarSet name="postId">
+        <Has name="paramName" value="postId"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
+          <Value name="Yes" property="postId"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="postId">
+          <Value name="array" property="postIdValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="postIdValue">
+          <Var name="Size">
+            <Has name="itemsUnique" value="true"/>
+            <Value name="0" failure="true"/>
+            <Value name="1"/>
+            <Value name="2" property="postIdItemsMany"/>
+            <Value name="3" failure="true"/>
+          </Var>
+          <VarSet name="Contains">
+            <Var name="Type">
+              <Has name="itemType" value="string"/>
+              <Value name="string" property="postIdItemsValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <Var name="Value" when="postIdItemsValue">
+              <Has name="itemEnums" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+              <Value name="A"/>
+              <Value name="B"/>
+              <Value name="C"/>
+              <Value name="Other" failure="true">
+                <Has name="excluded" value="&apos;A&apos;,&apos;B&apos;,&apos;C&apos;"/>
+              </Value>
+            </Var>
+          </VarSet>
+          <Var name="Unique" when="postIdItemsMany">
+            <Value name="Yes"/>
+            <Value name="No" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="DELETE_posts-userId-attributes">
+    <Has name="operation" value="DELETE"/>
+    <Has name="path" value="/posts/{userId}/{[attributes]}"/>
+    <Input type="path">
+      <VarSet name="userId">
+        <Has name="paramName" value="userId"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="userId"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="userId">
+          <Value name="integer" property="userIdValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="userIdValue">
+          <Var name="Is">
+            <Value name="-1" failure="true"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="attributes">
+        <Has name="paramName" value="[attributes]"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="attributes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="attributes">
+          <Value name="object" property="attributesValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="attributesValue">
+          <Var name="Property-Count">
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="attributesProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="attributesProperties" max="1"/>
+              </When>
+            </Value>
+          </Var>
+          <VarSet name="Properties">
+            <VarSet name="approved">
+              <Var name="Defined">
+                <Has name="propertyName" value="approved"/>
+                <Value name="Yes" property="attributesApproved, attributesProperties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="attributesApproved">
+                <Value name="boolean" property="attributesApprovedValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not boolean" failure="true"/>
+              </Var>
+              <Var name="Value" when="attributesApprovedValue">
+                <Value name="true"/>
+                <Value name="false"/>
+              </Var>
+            </VarSet>
+            <VarSet name="likes">
+              <Var name="Defined">
+                <Has name="propertyName" value="likes"/>
+                <Value name="Yes" property="attributesLikes, attributesProperties"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="attributesLikes">
+                <Value name="integer" property="attributesLikesValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="attributesLikesValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="TRACE_posts-attributes">
+    <Has name="operation" value="TRACE"/>
+    <Has name="path" value="/posts/{attributes}"/>
+    <Input type="path">
+      <VarSet name="attributes">
+        <Has name="paramName" value="attributes"/>
+        <Var name="Defined">
+          <Has name="explode" value="true"/>
+          <Has name="style" value="matrix"/>
+          <Value name="Yes" property="attributes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="attributes">
+          <Value name="object" property="attributesValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="attributesValue">
+          <VarSet name="Properties">
+            <VarSet name="approved">
+              <Var name="Defined">
+                <Has name="propertyName" value="approved"/>
+                <Value name="Yes" property="attributesApproved, attributesProperties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="attributesApproved">
+                <Value name="boolean" property="attributesApprovedValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not boolean" failure="true"/>
+              </Var>
+              <Var name="Value" when="attributesApprovedValue">
+                <Value name="true"/>
+                <Value name="false"/>
+              </Var>
+            </VarSet>
+            <VarSet name="likes">
+              <Var name="Defined">
+                <Has name="propertyName" value="likes"/>
+                <Value name="Yes" property="attributesLikes, attributesProperties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="attributesLikes">
+                <Value name="integer" property="attributesLikesValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not integer" failure="true"/>
+              </Var>
+              <VarSet name="Value" when="attributesLikesValue">
+                <Var name="Is">
+                  <Value name="-1" failure="true"/>
+                  <Value name="0"/>
+                  <Value name="&gt; 0"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <VarSet name="subject">
+              <Var name="Defined">
+                <Has name="propertyName" value="subject"/>
+                <Value name="Yes" property="attributesProperties, attributesSubject"/>
+                <Value name="No"/>
+              </Var>
+              <Var name="Type" when="attributesSubject">
+                <Value name="string" property="attributesSubjectValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <Var name="Value" when="attributesSubjectValue">
+                <Value name="A Day In Hell"/>
+                <Value name="What? Me, worry?"/>
+                <Value name="Other" failure="true">
+                  <Has name="excluded" value="&apos;A Day In Hell&apos;,&apos;What? Me, worry?&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="PUT_post">
+    <Has name="operation" value="PUT"/>
+    <Has name="path" value="/post"/>
+    <Input type="query">
+      <VarSet name="postId">
+        <Has name="paramName" value="postId"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="postId"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="postId">
+          <Value name="number" property="postIdValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="postIdValue">
+          <Var name="Is">
+            <Value name="-1" failure="true"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <VarSet name="Properties">
+              <VarSet name="approved">
+                <Var name="Defined">
+                  <Has name="propertyName" value="approved"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedApproved, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedApproved">
+                  <Value name="boolean" property="application-x-www-form-urlencodedApprovedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedApprovedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="reviewer">
+                <Var name="Defined">
+                  <Has name="propertyName" value="reviewer"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedProperties, application-x-www-form-urlencodedReviewer"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedReviewer">
+                  <Value name="string" property="application-x-www-form-urlencodedReviewerValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedReviewerValue">
+                  <Value name="Larry Moe"/>
+                  <Value name="(?)"/>
+                  <Value name="Me+You"/>
+                  <Value name="Other" failure="true">
+                    <Has name="excluded" value="&apos;Larry Moe&apos;,&apos;(?)&apos;,&apos;Me+You&apos;"/>
+                  </Value>
+                </Var>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" failure="true"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="HEAD_post">
+    <Has name="operation" value="HEAD"/>
+    <Has name="path" value="/post"/>
+    <Input type="query">
+      <VarSet name="user-attributes">
+        <Has name="paramName" value="user attributes"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="deepObject"/>
+          <Value name="Yes" property="user-attributes"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="user-attributes">
+          <Value name="object" property="user-attributesValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="user-attributesValue">
+          <VarSet name="Properties">
+            <VarSet name="user-type">
+              <Var name="Defined">
+                <Has name="propertyName" value="user type"/>
+                <Value name="Yes" property="user-attributesProperties, user-attributesUser-type"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="user-attributesUser-type">
+                <Value name="string" property="user-attributesUser-typeValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not string" failure="true"/>
+              </Var>
+              <Var name="Value" when="user-attributesUser-typeValue">
+                <Value name="Typical User"/>
+                <Value name="VIP!"/>
+                <Value name="Other" failure="true">
+                  <Has name="excluded" value="&apos;Typical User&apos;,&apos;VIP!&apos;"/>
+                </Value>
+              </Var>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+      <VarSet name="post">
+        <Has name="paramName" value="post?"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="deepObject"/>
+          <Value name="Yes" property="post"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="post">
+          <Value name="object" property="postValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not object" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="postValue">
+          <VarSet name="Properties">
+            <VarSet name="post-references">
+              <Var name="Defined">
+                <Has name="propertyName" value="post references"/>
+                <Value name="Yes" property="postPost-references, postProperties"/>
+                <Value name="No" failure="true"/>
+              </Var>
+              <Var name="Type" when="postPost-references">
+                <Value name="array" property="postPost-referencesValue"/>
+                <Value name="null" failure="true"/>
+                <Value name="Not array" failure="true"/>
+              </Var>
+              <VarSet name="Items" when="postPost-referencesValue">
+                <Var name="Size">
+                  <Has name="itemsUnique" value="true"/>
+                  <Value name="1" failure="true"/>
+                  <Value name="2" property="postPost-referencesItemsMany"/>
+                  <Value name="3" failure="true"/>
+                </Var>
+                <VarSet name="Contains">
+                  <Var name="Type">
+                    <Has name="itemType" value="integer"/>
+                    <Value name="integer" property="postPost-referencesItemsValue"/>
+                    <Value name="null" failure="true"/>
+                    <Value name="Not integer" failure="true"/>
+                  </Var>
+                  <VarSet name="Value" when="postPost-referencesItemsValue">
+                    <Var name="Is">
+                      <Has name="itemEnums" value="&apos;0&apos;,&apos;1&apos;,&apos;2&apos;"/>
+                      <Value name="0"/>
+                      <Value name="1"/>
+                      <Value name="2"/>
+                      <Value name="Other" failure="true">
+                        <Has name="excluded" value="&apos;0&apos;,&apos;1&apos;,&apos;2&apos;"/>
+                      </Value>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+                <Var name="Unique" when="postPost-referencesItemsMany">
+                  <Value name="Yes"/>
+                  <Value name="No" failure="true"/>
+                </Var>
+              </VarSet>
+            </VarSet>
+            <Var name="Additional">
+              <Value name="Yes" failure="true"/>
+              <Value name="No"/>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="PATCH_post">
+    <Has name="operation" value="PATCH"/>
+    <Has name="path" value="/post"/>
+    <Input type="query">
+      <VarSet name="Post-Marks">
+        <Has name="paramName" value="Post Marks"/>
+        <Var name="Defined">
+          <Has name="explode" value="false"/>
+          <Has name="style" value="spaceDelimited"/>
+          <Value name="Yes" property="Post-Marks"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="Post-Marks">
+          <Value name="array" property="Post-MarksValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not array" failure="true"/>
+        </Var>
+        <VarSet name="Items" when="Post-MarksValue">
+          <Var name="Size">
+            <Value name="0" failure="true"/>
+            <Value name="1"/>
+            <Value name="3" property="Post-MarksItemsMany"/>
+            <Value name="4" failure="true"/>
+          </Var>
+          <VarSet name="Contains">
+            <Var name="Type">
+              <Has name="itemType" value="string"/>
+              <Value name="string" property="Post-MarksItemsValue"/>
+              <Value name="null" failure="true"/>
+              <Value name="Not string" failure="true"/>
+            </Var>
+            <Var name="Value" when="Post-MarksItemsValue">
+              <Has name="itemEnums" value="&apos;{X}&apos;,&apos;&lt;Y&gt;&apos;,&apos;#Z&apos;"/>
+              <Value name="{X}"/>
+              <Value name="&lt;Y&gt;"/>
+              <Value name="#Z"/>
+              <Value name="Other" failure="true">
+                <Has name="excluded" value="&apos;{X}&apos;,&apos;&lt;Y&gt;&apos;,&apos;#Z&apos;"/>
+              </Value>
+            </Var>
+          </VarSet>
+          <Var name="Unique" when="Post-MarksItemsMany">
+            <Value name="Yes"/>
+            <Value name="No"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="DELETE_post-userId-approved">
+    <Has name="operation" value="DELETE"/>
+    <Has name="path" value="/post/{userId}/{approved}"/>
+    <Input type="path">
+      <VarSet name="userId">
+        <Has name="paramName" value="userId"/>
+        <Var name="Defined">
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="userId"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="userId">
+          <Value name="integer" property="userIdValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="userIdValue">
+          <Var name="Is">
+            <Value name="-1" failure="true"/>
+            <Value name="0"/>
+            <Value name="1000"/>
+            <Value name="1001" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="approved">
+        <Has name="paramName" value="approved"/>
+        <Var name="Defined">
+          <Has name="style" value="label"/>
+          <Value name="Yes" property="approved"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="approved">
+          <Value name="integer" property="approvedValue"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not integer" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="approvedValue">
+          <Var name="Is">
+            <Value name="0"/>
+            <Value name="1"/>
+            <Value name="Other" failure="true">
+              <Has name="excluded" value="&apos;0&apos;,&apos;1&apos;"/>
+            </Value>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="GET_users">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/users"/>
+    <Input type="implicit">
+      <VarSet name="None">
+        <Var name="Defined">
+          <Value name="No"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

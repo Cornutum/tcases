@@ -12,7 +12,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,text-plain,text-plainValue"/>
+      <Has name="properties" value="Content,text-plain,text-plainLengthValid,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -44,7 +44,7 @@
     <TestCase id="2" name="Body.text-plain.Value.Length=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,text-plain,text-plainValue"/>
+      <Has name="properties" value="Content,text-plain,text-plainLengthValid,text-plainNotEmpty,text-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>

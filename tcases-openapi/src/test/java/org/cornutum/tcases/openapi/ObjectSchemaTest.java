@@ -300,4 +300,10 @@ public class ObjectSchemaTest extends OpenApiTest
     {
     verifyRequestInputModel( "object-12");
     }
+  
+  @Test
+  public void whenPropertyNonIdentifier()
+    {
+    verifyRequestInputModel( "object-property-names");
+    }
   }

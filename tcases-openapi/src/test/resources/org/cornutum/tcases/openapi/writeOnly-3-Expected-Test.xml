@@ -22,7 +22,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 4"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
@@ -43,7 +45,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 4"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
@@ -62,7 +66,9 @@
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
@@ -83,7 +89,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
@@ -104,7 +112,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="null" failure="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
@@ -125,7 +135,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="Not object" failure="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
@@ -146,7 +158,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt; 4" failure="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
@@ -167,7 +181,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 4"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No" failure="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No" failure="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
@@ -188,7 +204,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 4"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="null" failure="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
@@ -209,7 +227,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 4"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="Not string" failure="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
@@ -230,7 +250,9 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&lt;= 4"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No" failure="true"/>

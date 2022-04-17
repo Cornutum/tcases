@@ -1,0 +1,382 @@
+
+[
+    {
+        "id": 0,
+        "name": "param0.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "param0.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "param0.Value.Property-Count='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Big *#@$!-ing Number": {
+                            "type": "number",
+                            "value": -4273563035268397094.6
+                        },
+                        "Hello, world!": {
+                            "type": "string",
+                            "value": ")$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r"
+                        },
+                        "jbdfzaymkdzgga": {
+                            "type": "number",
+                            "value": -808.1
+                        },
+                        "ny": {
+                            "type": "boolean",
+                            "value": true
+                        },
+                        "zbz": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "avN2IsK"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "param0.Value.Properties.Hello-world.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Hello, world!": {
+                            "type": "string",
+                            "value": ""
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "param0.Value.Properties.Big--ing-Number.Value.Is='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Big *#@$!-ing Number": {
+                            "type": "number",
+                            "value": 0
+                        },
+                        "xmczosccg": {
+                            "type": "integer",
+                            "value": -178,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "param0.Value.Properties.Big--ing-Number.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Big *#@$!-ing Number": {
+                            "type": "number",
+                            "value": 366221916275990301.5
+                        },
+                        "Hello, world!": {
+                            "type": "string",
+                            "value": "?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "param0.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=null"
+    },
+    {
+        "id": 7,
+        "name": "param0.Type='Not object'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 8,
+        "name": "param0.Value.Properties.Hello-world.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Hello, world!": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "iohme": {
+                            "type": "number",
+                            "value": 720.8
+                        },
+                        "eiygxojx": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Hello-world.Type=null"
+    },
+    {
+        "id": 9,
+        "name": "param0.Value.Properties.Hello-world.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Hello, world!": {
+                            "type": "integer",
+                            "value": -208,
+                            "format": "int32"
+                        },
+                        "iummgqkajnn": {
+                            "type": "object",
+                            "value": {
+                                "cnzo": {
+                                    "type": "number",
+                                    "value": 461.0
+                                },
+                                "ujogjixineeufck": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Hello-world.Type=Not string"
+    },
+    {
+        "id": 10,
+        "name": "param0.Value.Properties.Big--ing-Number.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Big *#@$!-ing Number": {
+                            "type": "null",
+                            "value": null
+                        },
+                        "xltsmpyfisrhuuo": {
+                            "type": "number",
+                            "value": -414.8
+                        },
+                        "mdlgpibwbtvmzb": {
+                            "type": "integer",
+                            "value": -649,
+                            "format": "int32"
+                        },
+                        "nacrhl": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Big--ing-Number.Type=null"
+    },
+    {
+        "id": 11,
+        "name": "param0.Value.Properties.Big--ing-Number.Type='Not number'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Big *#@$!-ing Number": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "vdyoerszye": {
+                            "type": "string",
+                            "value": "Y"
+                        }
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Big--ing-Number.Type=Not number"
+    }
+]

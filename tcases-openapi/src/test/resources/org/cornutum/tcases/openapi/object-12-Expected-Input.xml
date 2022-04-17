@@ -31,6 +31,7 @@
           <VarSet name="Properties">
             <VarSet name="Additional">
               <Var name="Defined">
+                <Has name="propertyName" value="Additional"/>
                 <Value name="Yes" property="param0Additional, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>

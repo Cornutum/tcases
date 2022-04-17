@@ -95,6 +95,7 @@
               <VarSet name="Properties">
                 <VarSet name="Additional">
                   <Var name="Defined">
+                    <Has name="propertyName" value="Additional"/>
                     <Value name="Yes" property="200application-jsonAdditional, 200application-jsonProperties"/>
                     <Value name="No"/>
                   </Var>
@@ -131,6 +132,7 @@
               <VarSet name="Properties">
                 <VarSet name="Additional">
                   <Var name="Defined">
+                    <Has name="propertyName" value="Additional"/>
                     <Value name="Yes" property="200text-javascriptAdditional, 200text-javascriptProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>

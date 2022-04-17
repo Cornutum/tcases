@@ -97,6 +97,7 @@
             <VarSet name="Properties">
               <VarSet name="name">
                 <Var name="Defined">
+                  <Has name="propertyName" value="name"/>
                   <Value name="Yes" property="application-jsonName, application-jsonProperties"/>
                   <Value name="No" failure="true"/>
                 </Var>
@@ -114,6 +115,7 @@
               </VarSet>
               <VarSet name="tag">
                 <Var name="Defined">
+                  <Has name="propertyName" value="tag"/>
                   <Value name="Yes" property="application-jsonProperties, application-jsonTag"/>
                   <Value name="No"/>
                 </Var>

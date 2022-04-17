@@ -501,10 +501,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" value="&gt; 0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
@@ -523,10 +527,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" value="0"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -545,10 +553,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" value="&gt; 0"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" value="0"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="Yes"/>
@@ -564,10 +576,14 @@
         <Var name="Body.Defined" value="No" failure="true"/>
         <Var name="Body.Media-Type" NA="true"/>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -586,10 +602,14 @@
           <Has name="excluded" value="&apos;application/json&apos;"/>
         </Var>
         <Var name="Body.application-json.Type" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -608,10 +628,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="null" failure="true"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -630,10 +654,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="Not object" failure="true"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" NA="true">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" NA="true">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" NA="true"/>
@@ -652,10 +680,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="No" failure="true"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="No" failure="true">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -674,10 +706,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -696,10 +732,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="Not string" failure="true"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" NA="true"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="No">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" NA="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -718,10 +758,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" value="0"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" value="null" failure="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>
@@ -740,10 +784,14 @@
           <Has name="mediaType" value="application/json"/>
         </Var>
         <Var name="Body.application-json.Type" value="object"/>
-        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.name.Defined" value="Yes">
+          <Has name="propertyName" value="name"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.name.Type" value="string"/>
         <Var name="Body.application-json.Value.Properties.name.Value.Length" value="0"/>
-        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes"/>
+        <Var name="Body.application-json.Value.Properties.tag.Defined" value="Yes">
+          <Has name="propertyName" value="tag"/>
+        </Var>
         <Var name="Body.application-json.Value.Properties.tag.Type" value="Not string" failure="true"/>
         <Var name="Body.application-json.Value.Properties.tag.Value.Length" NA="true"/>
         <Var name="Body.application-json.Value.Properties.Additional" value="No"/>

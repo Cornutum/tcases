@@ -37,6 +37,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -46,6 +47,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -55,6 +57,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -97,6 +100,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -106,6 +110,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -115,6 +120,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -158,6 +164,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -167,6 +174,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -176,6 +184,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -220,6 +229,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -229,6 +239,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -238,6 +249,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -281,6 +293,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -290,6 +303,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -299,6 +313,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -343,6 +358,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -352,6 +368,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" value="boolean">
           <Has name="paramName" value="param0"/>
@@ -361,6 +378,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" value="string">
           <Has name="paramName" value="param0"/>
@@ -404,6 +422,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.alpha.Type" value="integer">
           <Has name="paramName" value="param0"/>
@@ -413,6 +432,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="bravo"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.bravo.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -422,6 +442,7 @@
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Defined" value="No">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="param0.Items.Contains.Value.Properties.charlie.Type" NA="true">
           <Has name="paramName" value="param0"/>

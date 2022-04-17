@@ -30,12 +30,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="Not string">
           <Has name="paramName" value="param0"/>
@@ -62,12 +64,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -95,12 +99,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -128,12 +134,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" NA="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -161,12 +169,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="No" failure="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="Not string">
           <Has name="paramName" value="param0"/>
@@ -194,12 +204,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="Not string">
           <Has name="paramName" value="param0"/>
@@ -227,12 +239,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="integer" failure="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="Not string">
           <Has name="paramName" value="param0"/>
@@ -260,12 +274,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="No" failure="true">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" NA="true">
           <Has name="paramName" value="param0"/>
@@ -293,12 +309,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="null" failure="true">
           <Has name="paramName" value="param0"/>
@@ -326,12 +344,14 @@
         </Var>
         <Var name="param0.Value.Properties.alpha.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="alpha"/>
         </Var>
         <Var name="param0.Value.Properties.alpha.Type" value="Not integer">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Additional"/>
         </Var>
         <Var name="param0.Value.Properties.Additional.Type" value="string" failure="true">
           <Has name="paramName" value="param0"/>

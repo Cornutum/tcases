@@ -34,12 +34,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="0"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="No">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -73,12 +77,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
@@ -116,12 +124,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -157,12 +169,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -198,12 +214,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="&lt; 0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -239,12 +259,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="false"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -280,12 +304,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="No"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="No">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -321,12 +349,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -362,12 +394,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="&gt; 0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -401,12 +437,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
@@ -444,12 +484,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -485,12 +529,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -526,12 +574,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -567,12 +619,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -608,12 +664,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="boolean"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" value="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -647,12 +707,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -688,12 +752,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -729,12 +797,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="null" failure="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -770,12 +842,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="Not object" failure="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -811,12 +887,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&gt; 1" failure="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="number"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" value="&lt; 0"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -852,12 +932,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="null" failure="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -893,12 +977,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" value="object"/>
         <Var name="200.Content.application-json.Value.Property-Count" value="&lt;= 1"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" value="Not number" failure="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -934,12 +1022,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="null" failure="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -975,12 +1067,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="Not object" failure="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -1016,12 +1112,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="No" failure="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="No" failure="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -1057,12 +1157,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="null" failure="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -1098,12 +1202,16 @@
         </Var>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" value="object"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" value="&gt;= 1"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" value="Yes">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" value="Not boolean" failure="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" NA="true"/>
@@ -1137,12 +1245,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="No" failure="true"/>
@@ -1176,12 +1288,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
@@ -1217,12 +1333,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>
@@ -1258,12 +1378,16 @@
         <Var name="200.Content.Media-Type" NA="true"/>
         <Var name="200.Content.application-json.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.application-json.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.application-json.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.application-json.Value.Properties.Additional.Value.Is" NA="true"/>
         <Var name="200.Content.text-javascript.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Property-Count" NA="true"/>
-        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true"/>
+        <Var name="200.Content.text-javascript.Value.Properties.Additional.Defined" NA="true">
+          <Has name="propertyName" value="Additional"/>
+        </Var>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Type" NA="true"/>
         <Var name="200.Content.text-javascript.Value.Properties.Additional.Value" NA="true"/>
         <Var name="4XX.Content.Defined" value="Yes"/>

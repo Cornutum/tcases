@@ -12,7 +12,7 @@
     <TestCase id="0" name="param.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -27,6 +27,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -36,6 +37,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>
@@ -65,6 +67,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" NA="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -74,6 +77,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" NA="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -89,7 +93,7 @@
     <TestCase id="2" name="param.Value.Properties.id.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagNotEmpty,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -104,6 +108,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -113,6 +118,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>
@@ -143,6 +149,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" NA="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -152,6 +159,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" NA="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -182,6 +190,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" NA="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -191,6 +200,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" NA="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -206,7 +216,7 @@
     <TestCase id="5" failure="true" name="param.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -221,6 +231,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="No" failure="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -230,6 +241,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>
@@ -245,7 +257,7 @@
     <TestCase id="6" failure="true" name="param.Value.Properties.id.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramId,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramId,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -260,6 +272,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="null" failure="true">
           <Has name="paramName" value="param"/>
@@ -269,6 +282,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>
@@ -284,7 +298,7 @@
     <TestCase id="7" failure="true" name="param.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramId,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramId,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -299,6 +313,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="Not integer" failure="true">
           <Has name="paramName" value="param"/>
@@ -308,6 +323,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>
@@ -323,7 +339,7 @@
     <TestCase id="8" failure="true" name="param.Value.Properties.id.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -338,6 +354,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -347,6 +364,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>
@@ -377,6 +395,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -386,6 +405,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="No" failure="true">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" NA="true">
           <Has name="paramName" value="param"/>
@@ -416,6 +436,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -425,6 +446,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="null" failure="true">
           <Has name="paramName" value="param"/>
@@ -455,6 +477,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -464,6 +487,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="Not string" failure="true">
           <Has name="paramName" value="param"/>
@@ -479,7 +503,7 @@
     <TestCase id="12" failure="true" name="param.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagValue,paramValue"/>
+      <Has name="properties" value="param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -494,6 +518,7 @@
         </Var>
         <Var name="param.Value.Properties.id.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="id"/>
         </Var>
         <Var name="param.Value.Properties.id.Type" value="integer">
           <Has name="paramName" value="param"/>
@@ -503,6 +528,7 @@
         </Var>
         <Var name="param.Value.Properties.tag.Defined" value="Yes">
           <Has name="paramName" value="param"/>
+          <Has name="propertyName" value="tag"/>
         </Var>
         <Var name="param.Value.Properties.tag.Type" value="string">
           <Has name="paramName" value="param"/>

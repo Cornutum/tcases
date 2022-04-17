@@ -2706,16 +2706,24 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
           VarSetBuilder.with( propertyVarName)
           .has( "excludedType", Optional.ofNullable( propertySchema.getType()).orElse( "Not null"))
-          .members( instanceDefinedVar( propertyVarTag, Definition.EXCLUDED))
+          .members( withPropertyName( propertyName, instanceDefinedVar( propertyVarTag, Definition.EXCLUDED)))
           .build() :
           
           VarSetBuilder.with( propertyVarName)
-          .members( instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag)))
+          .members( withPropertyName( propertyName, instanceDefinedVar( propertyVarTag, required, objectPropertiesProperty( instanceVarTag))))
           .members( instanceSchemaVars( propertyVarTag, propertySchema))
           .build();
         });
     }
-  
+
+  /**
+   * Returns the given input variable annotated with the given property name.
+   */
+  private VarDef withPropertyName( String propertyName, VarDef var)
+    {
+    return VarDefBuilder.with( var).has( "propertyName", propertyName).build();
+    }
+
   /**
    * Returns the {@link IVarDef input variable} representing the additional properties of an object instance.
    */

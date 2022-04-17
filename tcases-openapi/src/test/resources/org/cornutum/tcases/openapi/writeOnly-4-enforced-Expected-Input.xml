@@ -35,6 +35,7 @@
                 <VarSet name="alpha">
                   <Has name="excludedType" value="string"/>
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" failure="true"/>
                     <Value name="No"/>
                   </Var>

@@ -22,17 +22,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -52,17 +58,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="No">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -82,17 +94,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="&gt; 0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -112,17 +130,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="&gt; 0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="No">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -140,17 +164,23 @@
         <Var name="Other.Content.Media-Type" NA="true"/>
         <Var name="Other.Content.application-json.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
@@ -170,17 +200,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
@@ -200,17 +236,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="null" failure="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
@@ -230,17 +272,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="Not object" failure="true"/>
         <Var name="Other.Content.application-json.Value.Property-Count" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" NA="true">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" NA="true">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" NA="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" NA="true"/>
       </Input>
@@ -260,17 +308,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="null" failure="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -290,17 +344,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="Not string" failure="true"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" NA="true"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -320,17 +380,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="null" failure="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -350,17 +416,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="Not string" failure="true"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" NA="true"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -380,17 +452,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="Yes" failure="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -410,17 +488,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="Yes" failure="true">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="Yes"/>
       </Input>
@@ -440,17 +524,23 @@
         </Var>
         <Var name="Other.Content.application-json.Type" value="object"/>
         <Var name="Other.Content.application-json.Value.Property-Count" value="&gt;= 3"/>
-        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.alpha.Defined" value="Yes">
+          <Has name="propertyName" value="alpha"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.alpha.Value.Length" value="0"/>
-        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes"/>
+        <Var name="Other.Content.application-json.Value.Properties.bravo.Defined" value="Yes">
+          <Has name="propertyName" value="bravo"/>
+        </Var>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Type" value="string"/>
         <Var name="Other.Content.application-json.Value.Properties.bravo.Value.Length" value="0"/>
         <Var name="Other.Content.application-json.Value.Properties.charlie.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="charlie"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.delta.Defined" value="No">
           <Has name="excludedType" value="string"/>
+          <Has name="propertyName" value="delta"/>
         </Var>
         <Var name="Other.Content.application-json.Value.Properties.Additional" value="No" failure="true"/>
       </Input>

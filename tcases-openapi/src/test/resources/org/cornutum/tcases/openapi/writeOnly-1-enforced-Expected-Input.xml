@@ -46,6 +46,7 @@
               <VarSet name="Properties">
                 <VarSet name="alpha">
                   <Var name="Defined">
+                    <Has name="propertyName" value="alpha"/>
                     <Value name="Yes" property="defaultapplication-jsonAlpha, defaultapplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
@@ -63,6 +64,7 @@
                 </VarSet>
                 <VarSet name="bravo">
                   <Var name="Defined">
+                    <Has name="propertyName" value="bravo"/>
                     <Value name="Yes" property="defaultapplication-jsonBravo, defaultapplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
@@ -81,6 +83,7 @@
                 <VarSet name="charlie">
                   <Has name="excludedType" value="string"/>
                   <Var name="Defined">
+                    <Has name="propertyName" value="charlie"/>
                     <Value name="Yes" failure="true"/>
                     <Value name="No"/>
                   </Var>
@@ -88,6 +91,7 @@
                 <VarSet name="delta">
                   <Has name="excludedType" value="string"/>
                   <Var name="Defined">
+                    <Has name="propertyName" value="delta"/>
                     <Value name="Yes" failure="true"/>
                     <Value name="No"/>
                   </Var>

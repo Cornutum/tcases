@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+<TestCases system="Object">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Object"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_object">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/object"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Object"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="param0.Value.Property-Count=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Big--ing-Number,param0Big--ing-NumberValue,param0Hello-world,param0Hello-worldLengthValid,param0Hello-worldNotEmpty,param0Hello-worldValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" name="param0.Value.Properties.Hello-world.Value.Length=&apos;0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Hello-world,param0Hello-worldLengthValid,param0Hello-worldValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" name="param0.Value.Properties.Big--ing-Number.Value.Is=&apos;0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Big--ing-Number,param0Big--ing-NumberValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" value="0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" name="param0.Value.Properties.Big--ing-Number.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Big--ing-Number,param0Big--ing-NumberValue,param0Hello-world,param0Hello-worldLengthValid,param0Hello-worldNotEmpty,param0Hello-worldValue,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" value="string">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="param0.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="param0.Type=&apos;Not object&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not object" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" NA="true">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="param0.Value.Properties.Hello-world.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Hello-world,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="param0.Value.Properties.Hello-world.Type=&apos;Not string&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Hello-world,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true" name="param0.Value.Properties.Big--ing-Number.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Big--ing-Number,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true" name="param0.Value.Properties.Big--ing-Number.Type=&apos;Not number&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Big--ing-Number,param0Properties,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Hello, world!"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Hello-world.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="Big *#@$!-ing Number"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Big--ing-Number.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

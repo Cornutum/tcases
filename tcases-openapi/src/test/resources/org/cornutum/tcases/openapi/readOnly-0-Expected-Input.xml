@@ -41,6 +41,7 @@
           <VarSet name="Properties">
             <VarSet name="myString">
               <Var name="Defined">
+                <Has name="propertyName" value="myString"/>
                 <Value name="Yes" property="param0MyString, param0Properties"/>
                 <Value name="No"/>
               </Var>

@@ -12,7 +12,7 @@
     <TestCase id="0" name="param.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedLengthValid,application-x-www-form-urlencodedNotEmpty,application-x-www-form-urlencodedValue,Content,param,paramLengthValid,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -24,7 +24,7 @@
         <Var name="param.Type" value="string">
           <Has name="paramName" value="param"/>
         </Var>
-        <Var name="param.Value.Length" value="1">
+        <Var name="param.Value.Length" value="0">
           <Has name="paramName" value="param"/>
         </Var>
       </Input>
@@ -65,7 +65,7 @@
     <TestCase id="2" name="param.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedLengthValid,application-x-www-form-urlencodedNotEmpty,application-x-www-form-urlencodedValue,Content,param"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -90,10 +90,10 @@
         <Var name="Body.application-x-www-form-urlencoded.Value.Length" value="&gt; 1"/>
       </Input>
     </TestCase>
-    <TestCase id="3" name="param.Value.Length=&apos;&gt; 1&apos;">
+    <TestCase id="3" name="param.Value.Length=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="param,paramValue"/>
+      <Has name="properties" value="param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -105,7 +105,7 @@
         <Var name="param.Type" value="string">
           <Has name="paramName" value="param"/>
         </Var>
-        <Var name="param.Value.Length" value="&gt; 1">
+        <Var name="param.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param"/>
         </Var>
       </Input>
@@ -119,7 +119,7 @@
     <TestCase id="4" failure="true" name="param.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param"/>
+      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedLengthValid,application-x-www-form-urlencodedNotEmpty,application-x-www-form-urlencodedValue,Content,param"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -144,35 +144,7 @@
         <Var name="Body.application-x-www-form-urlencoded.Value.Length" value="1"/>
       </Input>
     </TestCase>
-    <TestCase id="5" failure="true" name="param.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content,param,paramValue"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="realize"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="param.Defined" value="Yes">
-          <Has name="paramName" value="param"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="param.Type" value="string">
-          <Has name="paramName" value="param"/>
-        </Var>
-        <Var name="param.Value.Length" value="0" failure="true">
-          <Has name="paramName" value="param"/>
-        </Var>
-      </Input>
-      <Input type="request">
-        <Var name="Body.Defined" value="Yes"/>
-        <Var name="Body.Media-Type" value="application-x-www-form-urlencoded">
-          <Has name="mediaType" value="application/x-www-form-urlencoded"/>
-        </Var>
-        <Var name="Body.application-x-www-form-urlencoded.Type" value="string"/>
-        <Var name="Body.application-x-www-form-urlencoded.Value.Length" value="1"/>
-      </Input>
-    </TestCase>
-    <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
+    <TestCase id="5" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
       <Has name="properties" value="Content"/>
@@ -200,7 +172,7 @@
         <Var name="Body.application-x-www-form-urlencoded.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="Body.application-x-www-form-urlencoded.Type=null">
+    <TestCase id="6" failure="true" name="Body.application-x-www-form-urlencoded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
       <Has name="properties" value="application-x-www-form-urlencoded,Content"/>
@@ -228,7 +200,7 @@
         <Var name="Body.application-x-www-form-urlencoded.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="Body.application-x-www-form-urlencoded.Type=&apos;Not string&apos;">
+    <TestCase id="7" failure="true" name="Body.application-x-www-form-urlencoded.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
       <Has name="properties" value="application-x-www-form-urlencoded,Content"/>
@@ -256,7 +228,7 @@
         <Var name="Body.application-x-www-form-urlencoded.Value.Length" NA="true"/>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="Body.application-x-www-form-urlencoded.Value.Length=&apos;0&apos;">
+    <TestCase id="8" failure="true" name="Body.application-x-www-form-urlencoded.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
       <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedValue,Content"/>

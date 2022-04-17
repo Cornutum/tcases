@@ -24,6 +24,7 @@
           <VarSet name="Properties">
             <VarSet name="alpha">
               <Var name="Defined">
+                <Has name="propertyName" value="alpha"/>
                 <Value name="Yes" property="param0Alpha, param0Properties"/>
                 <Value name="No" failure="true"/>
               </Var>

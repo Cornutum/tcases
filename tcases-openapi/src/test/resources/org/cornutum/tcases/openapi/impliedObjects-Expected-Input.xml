@@ -88,6 +88,7 @@
           <VarSet name="Properties">
             <VarSet name="alpha">
               <Var name="Defined">
+                <Has name="propertyName" value="alpha"/>
                 <Value name="Yes" property="param2Alpha, param2Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
@@ -98,6 +99,7 @@
             </VarSet>
             <VarSet name="bravo">
               <Var name="Defined">
+                <Has name="propertyName" value="bravo"/>
                 <Value name="Yes" property="param2Bravo, param2Properties"/>
                 <Value name="No" failure="true"/>
               </Var>
@@ -134,6 +136,7 @@
           <VarSet name="Properties">
             <VarSet name="alpha">
               <Var name="Defined">
+                <Has name="propertyName" value="alpha"/>
                 <Value name="Yes" property="param3Alpha, param3Properties"/>
                 <Value name="No"/>
               </Var>
@@ -153,6 +156,7 @@
             </VarSet>
             <VarSet name="bravo">
               <Var name="Defined">
+                <Has name="propertyName" value="bravo"/>
                 <Value name="Yes" property="param3Bravo, param3Properties"/>
                 <Value name="No"/>
               </Var>

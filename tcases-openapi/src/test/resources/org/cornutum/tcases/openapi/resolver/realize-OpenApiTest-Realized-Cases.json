@@ -4985,7 +4985,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5012,7 +5012,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "Typical User"
                         }
@@ -5039,7 +5039,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5066,7 +5066,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5093,7 +5093,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5120,7 +5120,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "Typical User"
                         }
@@ -5147,7 +5147,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5194,7 +5194,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5244,7 +5244,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5294,7 +5294,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5345,7 +5345,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5372,7 +5372,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "null",
                             "value": null
                         }
@@ -5400,7 +5400,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5427,7 +5427,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "~3\"P(Ys|!DI,F) >*$t{egzYY<JB](%E4N9BRTWHzX(0o|HhJW4M.w(:\"QB6?Nu^7M%pKSwr/BFl6m7V$v2vn mLDewSA>qQZ=`bnm^hT=[M~LM]2iAtQ*{M*H< yoM\\Z<]t%QO{7_`&p"
                         }
@@ -5455,7 +5455,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5482,7 +5482,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         },
@@ -5553,7 +5553,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5592,7 +5592,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5631,7 +5631,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5671,7 +5671,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5699,7 +5699,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "null",
                             "value": null
                         }
@@ -5715,7 +5715,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5743,7 +5743,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "object",
                             "value": {
                                 "temzkzwckz": {
@@ -5769,7 +5769,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5797,7 +5797,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5819,7 +5819,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5847,7 +5847,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5879,7 +5879,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5907,7 +5907,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5933,7 +5933,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -5961,7 +5961,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -5987,7 +5987,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -6015,7 +6015,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -6042,7 +6042,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -6070,7 +6070,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -6097,7 +6097,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -6125,7 +6125,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "post-references": {
+                        "post references": {
                             "type": "array",
                             "value": [
                                 {
@@ -6182,7 +6182,7 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "user-type": {
+                        "user type": {
                             "type": "string",
                             "value": "VIP!"
                         }
@@ -6860,5 +6860,14 @@
             }
         ],
         "invalidInput": "approved.Value.Is=Other"
+    },
+    {
+        "id": 0,
+        "name": "None.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OpenAPI Request Test Cases",
+        "path": "/users",
+        "operation": "GET"
     }
 ]

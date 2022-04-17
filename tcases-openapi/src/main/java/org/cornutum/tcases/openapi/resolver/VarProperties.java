@@ -637,7 +637,11 @@ public final class VarProperties
         objDomain.setPropertyDomains(
           properties.keySet().stream()
           .filter( p -> !p.equals( "Additional"))
-          .map( p -> new SimpleEntry<String,ValueDomain<?>>( p, toPropertyDomain( expectPropertyValues( properties, p), chars)))
+          .map( p -> {
+            Map<String,Object> propertyVarBindings = expectPropertyValues( properties, p);
+            String propertyName = getPropertyName( p, propertyVarBindings);
+            return new SimpleEntry<String,ValueDomain<?>>( propertyName, toPropertyDomain( propertyVarBindings, chars));
+            })
           .filter( e -> e.getValue() != null)
           .collect( toMap( SimpleEntry::getKey, SimpleEntry::getValue)));
 
@@ -690,6 +694,16 @@ public final class VarProperties
       "Yes".equals( expectVarBinding( propertyValues, "Defined").getValue())
       ? toValueDomain( propertyValues, chars)
       : null;
+    }
+
+  /**
+   * Returns the object property name specified by the given object property input bindings.
+   */
+  private static String getPropertyName( String propertyVarName, Map<String,Object> propertyValues)
+    {
+    return
+      Optional.ofNullable( expectVarBinding( propertyValues, "Defined").getAnnotation( "propertyName"))
+      .orElseThrow( () -> new IllegalStateException( String.format( "No property name defined for variable=%s", propertyVarName))) ;
     }
 
   /**
