@@ -1,0 +1,1375 @@
+<?xml version="1.0"?>
+<System name="encodings">
+  <Has name="server" value="/"/>
+  <Has name="title" value="encodings"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_encodings_1">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_1"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="propertyName" value="excluded?"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="propertyName" value="elevation"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="propertyName" value="lat/long"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="propertyName" value="address"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="propertyName" value="country"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_encodings_3">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_3"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="excluded?"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="elevation"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="lat/long"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="propertyName" value="address"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="propertyName" value="country"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_encodings_4">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_4"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="propertyName" value="excluded?"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="propertyName" value="elevation"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="propertyName" value="lat/long"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="address"/>
+                  <Has name="style" value="deepObject"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="country"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_encodings_8">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_8"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="excluded?"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="elevation"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="propertyName" value="lat/long"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="explode" value="false"/>
+                  <Has name="propertyName" value="address"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="propertyName" value="country"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_encodings_9">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_9"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="propertyName" value="excluded?"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="propertyName" value="elevation"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="explode" value="false"/>
+                  <Has name="propertyName" value="lat/long"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="propertyName" value="address"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="country"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_encodings_10">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_10"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="excluded?"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="elevation"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="lat/long"/>
+                  <Has name="style" value="spaceDelimited"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="propertyName" value="address"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="propertyName" value="country"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+  <Function name="POST_encodings_11">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/encodings_11"/>
+    <Input type="request">
+      <VarSet name="Body">
+        <Var name="Defined">
+          <Value name="Yes" property="Content"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Media-Type" when="Content">
+          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+            <Has name="mediaType" value="application/x-www-form-urlencoded"/>
+          </Value>
+          <Value name="Other" failure="true">
+            <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
+          </Value>
+        </Var>
+        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+          <Var name="Type">
+            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="null" failure="true"/>
+            <Value name="Not object" failure="true"/>
+          </Var>
+          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+            <Var name="Property-Count">
+              <Value name="0" once="true" whenNot="application-x-www-form-urlencodedProperties"/>
+              <Value name="&gt; 0" when="application-x-www-form-urlencodedProperties"/>
+            </Var>
+            <VarSet name="Properties">
+              <VarSet name="excluded">
+                <Var name="Defined">
+                  <Has name="propertyName" value="excluded?"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedExcluded">
+                  <Value name="boolean" property="application-x-www-form-urlencodedExcludedValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not boolean" failure="true"/>
+                </Var>
+                <Var name="Value" when="application-x-www-form-urlencodedExcludedValue">
+                  <Value name="true"/>
+                  <Value name="false"/>
+                </Var>
+              </VarSet>
+              <VarSet name="elevation">
+                <Var name="Defined">
+                  <Has name="propertyName" value="elevation"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedElevation">
+                  <Value name="number" property="application-x-www-form-urlencodedElevationValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not number" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedElevationValue">
+                  <Var name="Is">
+                    <Value name="&lt; 0"/>
+                    <Value name="0"/>
+                    <Value name="&gt; 0"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="latlong">
+                <Var name="Defined">
+                  <Has name="explode" value="false"/>
+                  <Has name="propertyName" value="lat/long"/>
+                  <Has name="style" value="pipeDelimited"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedLatlong">
+                  <Value name="array" property="application-x-www-form-urlencodedLatlongValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not array" failure="true"/>
+                </Var>
+                <VarSet name="Items" when="application-x-www-form-urlencodedLatlongValue">
+                  <Var name="Size">
+                    <Value name="1" failure="true"/>
+                    <Value name="2" property="application-x-www-form-urlencodedLatlongItemsMany"/>
+                    <Value name="3" failure="true"/>
+                  </Var>
+                  <VarSet name="Contains">
+                    <Var name="Type">
+                      <Has name="itemType" value="number"/>
+                      <Value name="number" property="application-x-www-form-urlencodedLatlongItemsValue"/>
+                      <Value name="null" failure="true"/>
+                      <Value name="Not number" failure="true"/>
+                    </Var>
+                    <VarSet name="Value" when="application-x-www-form-urlencodedLatlongItemsValue">
+                      <Var name="Is">
+                        <Value name="&lt; 0"/>
+                        <Value name="0"/>
+                        <Value name="&gt; 0"/>
+                      </Var>
+                    </VarSet>
+                  </VarSet>
+                  <Var name="Unique" when="application-x-www-form-urlencodedLatlongItemsMany">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <VarSet name="address">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="address"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedAddress">
+                  <Value name="object" property="application-x-www-form-urlencodedAddressValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not object" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedAddressValue">
+                  <Var name="Property-Count">
+                    <Value name="0" once="true" whenNot="application-x-www-form-urlencodedAddressProperties"/>
+                    <Value name="&gt; 0" when="application-x-www-form-urlencodedAddressProperties"/>
+                  </Var>
+                  <VarSet name="Properties">
+                    <VarSet name="city">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="city"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCity, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCity">
+                        <Value name="string" property="application-x-www-form-urlencodedAddressCityValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not string" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCityValue">
+                        <Var name="Length">
+                          <Value name="&gt; 0" property="application-x-www-form-urlencodedAddressCityLengthValid, application-x-www-form-urlencodedAddressCityNotEmpty"/>
+                          <Value name="0" property="application-x-www-form-urlencodedAddressCityLengthValid"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <VarSet name="code">
+                      <Var name="Defined">
+                        <Has name="propertyName" value="code"/>
+                        <Value name="Yes" property="application-x-www-form-urlencodedAddressCode, application-x-www-form-urlencodedAddressProperties"/>
+                        <Value name="No"/>
+                      </Var>
+                      <Var name="Type" when="application-x-www-form-urlencodedAddressCode">
+                        <Value name="integer" property="application-x-www-form-urlencodedAddressCodeValue"/>
+                        <Value name="null" failure="true"/>
+                        <Value name="Not integer" failure="true"/>
+                      </Var>
+                      <VarSet name="Value" when="application-x-www-form-urlencodedAddressCodeValue">
+                        <Var name="Is">
+                          <Value name="0" failure="true"/>
+                          <Value name="1"/>
+                          <Value name="&gt; 1"/>
+                        </Var>
+                      </VarSet>
+                    </VarSet>
+                    <Var name="Additional">
+                      <Value name="Yes" property="application-x-www-form-urlencodedAddressProperties"/>
+                      <Value name="No"/>
+                    </Var>
+                  </VarSet>
+                </VarSet>
+              </VarSet>
+              <VarSet name="country">
+                <Var name="Defined">
+                  <Has name="explode" value="true"/>
+                  <Has name="propertyName" value="country"/>
+                  <Has name="style" value="form"/>
+                  <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
+                  <Value name="No"/>
+                </Var>
+                <Var name="Type" when="application-x-www-form-urlencodedCountry">
+                  <Value name="string" property="application-x-www-form-urlencodedCountryValue"/>
+                  <Value name="null" failure="true"/>
+                  <Value name="Not string" failure="true"/>
+                </Var>
+                <VarSet name="Value" when="application-x-www-form-urlencodedCountryValue">
+                  <Var name="Length">
+                    <Value name="&gt; 0" property="application-x-www-form-urlencodedCountryLengthValid, application-x-www-form-urlencodedCountryNotEmpty"/>
+                    <Value name="0" property="application-x-www-form-urlencodedCountryLengthValid"/>
+                  </Var>
+                </VarSet>
+              </VarSet>
+              <Var name="Additional">
+                <Value name="Yes" property="application-x-www-form-urlencodedProperties"/>
+                <Value name="No"/>
+              </Var>
+            </VarSet>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

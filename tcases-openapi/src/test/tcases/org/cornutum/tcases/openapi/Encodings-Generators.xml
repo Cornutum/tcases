@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="Encodings" seed="5246990940908490752" tuples="1">
+    <Combine tuples="2">
+      <Include var="Encodings.Properties.boolean.Defined"/>
+      <Include var="MediaType"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Encodings.Properties.number.Defined"/>
+      <Include var="MediaType"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Encodings.Properties.array.Defined"/>
+      <Include var="MediaType"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Encodings.Properties.object.Defined"/>
+      <Include var="MediaType"/>
+    </Combine>
+    <Combine tuples="2">
+      <Include var="Encodings.Properties.string.Defined"/>
+      <Include var="MediaType"/>
+    </Combine>
+  </TupleGenerator>
+</Generators>

@@ -1,0 +1,428 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "encodings",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/encodings_0": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "excluded?": {
+                                        "type": "boolean"
+                                    },
+                                    "elevation": {
+                                        "type": "number"
+                                    },
+                                    "lat/long": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        }
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "excluded?": {
+                                },
+                                "country": {
+                                    "contentType": "text/plain"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/encodings_2": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "excluded?": {
+                                        "type": "boolean"
+                                    },
+                                    "elevation": {
+                                        "type": "number"
+                                    },
+                                    "lat/long": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        }
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "elevation": {
+                                    "contentType": "application/json"
+                                },
+                                "lat/long": {
+                                },
+                                "address": {
+                                    "contentType": "text/plain",
+                                    "headers": {
+                                        "X-Active": {
+                                            "schema": {
+                                                "type": "integer",
+                                                "enum": [ 0, 1 ]
+                                            }
+                                        },
+                                        "X-Ignored": {
+                                            "schema": {
+                                                "type": "string",
+                                                "enum": [ "Yes", "No" ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/encodings_5": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "excluded?": {
+                                        "type": "boolean"
+                                    },
+                                    "elevation": {
+                                        "type": "number"
+                                    },
+                                    "lat/long": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        }
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "excluded?": {
+                                    "contentType": "text/plain"
+                                },
+                                "lat/long": {
+                                    "contentType": "application/json"
+                                },
+                                "country": {
+                                    "contentType": "application/json"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/encodings_6": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "excluded?": {
+                                        "type": "boolean"
+                                    },
+                                    "elevation": {
+                                        "type": "number"
+                                    },
+                                    "lat/long": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        }
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "elevation": {
+                                    "contentType": "text/plain"
+                                },
+                                "address": {
+                                    "contentType": "application/www-urlencoded",
+                                    "headers": {
+                                        "X-Ignored": {
+                                            "schema": {
+                                                "type": "string",
+                                                "enum": [ "Yes", "No" ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/encodings_7": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "excluded?": {
+                                        "type": "boolean"
+                                    },
+                                    "elevation": {
+                                        "type": "number"
+                                    },
+                                    "lat/long": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        }
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "excluded?": {
+                                    "contentType": "application/json"
+                                },
+                                "lat/long": {
+                                    "contentType": "text/plain"
+                                },
+                                "address": {
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        "/encodings_12": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "excluded?": {
+                                        "type": "boolean"
+                                    },
+                                    "elevation": {
+                                        "type": "number"
+                                    },
+                                    "lat/long": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "address": {
+                                        "type": "object",
+                                        "properties": {
+                                            "city": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        }
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "elevation": {
+                                },
+                                "address": {
+                                    "contentType": "application/json"
+                                },
+                                "country": {
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

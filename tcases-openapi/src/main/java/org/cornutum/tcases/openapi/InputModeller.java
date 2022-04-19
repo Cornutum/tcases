@@ -29,6 +29,7 @@ import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.BooleanSchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
+import io.swagger.v3.oas.models.media.Encoding;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -530,6 +531,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         contentDef ->
         {
         String mediaType = contentDef.getKey();
+        MediaType mediaTypeDef = contentDef.getValue();
 
         return
           resultFor( mediaType,
@@ -537,17 +539,24 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             {
             String mediaTypeVarName = mediaTypeVarName( mediaType);
             String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaType);
-            
-            VarSetBuilder contentVar =
-              VarSetBuilder.with( mediaTypeVarName)
-              .when( has( mediaTypeVarTag));
 
             Schema<?> mediaTypeSchema =
-              Optional.ofNullable( contentDef.getValue().getSchema())
-              .orElseGet( () -> { notifyWarning( "No schema defined"); return emptySchema();});
-            contentVar.members( instanceSchemaVars( mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
-
-            return contentVar.build();
+              analyzeSchema(
+                api,
+                Optional.ofNullable( mediaTypeDef.getSchema())
+                .orElseGet( () -> { notifyWarning( "No schema defined"); return emptySchema();}));
+            
+            VarSet mediaTypeVar =
+              VarSetBuilder.with( mediaTypeVarName)
+              .when( has( mediaTypeVarTag))
+              .members( instanceSchemaVars( mediaTypeVarTag, false, mediaTypeSchema))
+              .build();
+          
+            return
+              Optional.ofNullable( mediaTypeDef.getEncoding())
+              .filter( encodings -> "object".equals( mediaTypeSchema.getType()))
+              .map( encodings -> withEncodings( mediaTypeVar, mediaType, encodings))
+              .orElse( mediaTypeVar);
             });
         });
     }
@@ -562,27 +571,90 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       .map(
         contentDef ->
         {
-        String mediaTypeName = contentDef.getKey();
+        String mediaType = contentDef.getKey();
+        MediaType mediaTypeDef = contentDef.getValue();
 
         return
-          resultFor( mediaTypeName,
+          resultFor( mediaType,
             () -> {
-            String mediaTypeVarName = mediaTypeVarName( mediaTypeName);
-            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaTypeName);
-            MediaType mediaType = contentDef.getValue();
+            String mediaTypeVarName = mediaTypeVarName( mediaType);
+            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaType);
 
             Schema<?> mediaTypeSchema =
-              Optional.ofNullable( mediaType.getSchema())
-              .map( s -> exampleSchemaFor( mediaType.getExample(), mediaType.getExamples(), analyzeSchema( api, s)))
+              Optional.ofNullable( mediaTypeDef.getSchema())
+              .map( s -> exampleSchemaFor( mediaTypeDef.getExample(), mediaTypeDef.getExamples(), analyzeSchema( api, s)))
               .orElse( null);
 
-            return
+            VarSet mediaTypeVar =
               VarSetBuilder.with( mediaTypeVarName)
               .when( has( mediaTypeVarTag))
               .members( instanceSchemaVars( mediaTypeVarTag, false, mediaTypeSchema))
               .build();
+          
+            return
+              Optional.ofNullable( mediaTypeDef.getEncoding())
+              .filter( encodings -> "object".equals( mediaTypeSchema.getType()))
+              .map( encodings -> withEncodings( mediaTypeVar, mediaType, encodings))
+              .orElse( mediaTypeVar);
             });
         });
+    }
+
+  /**
+   * Returns the given media type content variable with additions for any object property encodings.
+   */
+  private VarSet withEncodings( VarSet mediaTypeVar, String mediaType, Map<String,Encoding> encodings)
+    {
+    return
+      resultFor( "encoding",
+        () ->
+        "application/x-www-form-urlencoded".equals( mediaType)?
+        withFormUrlEncodings( mediaTypeVar, encodings) :
+
+        "multipart/form-data".equals( mediaType)?
+        withMultipartEncodings( mediaTypeVar, encodings) :
+      
+        mediaTypeVar);
+    }
+
+  /**
+   * Returns the given media type content variable with additions for any <CODE>application/x-www-form-urlencoded</CODE> encodings.
+   */
+  private VarSet withFormUrlEncodings( VarSet mediaTypeVar, Map<String,Encoding> encodings)
+    {
+    encodings.forEach(
+      (property,encoding) -> {
+        VarDef definedVar = objectPropertyDefinedVar( mediaTypeVar, property);
+        definedVar.setAnnotation( "style", Objects.toString( encoding.getStyle(), "form"));
+        definedVar.setAnnotation( "explode", Objects.toString( encoding.getExplode(), String.valueOf( "form".equals( definedVar.getAnnotation( "style")))));
+      });
+    
+    return mediaTypeVar;
+    }
+
+  /**
+   * Returns the given media type content variable with additions for any <CODE>multipart/form-data</CODE> encodings.
+   */
+  private VarSet withMultipartEncodings( VarSet mediaTypeVar, Map<String,Encoding> encodings)
+    {
+    encodings.forEach(
+      (property,encoding) -> {
+        VarDef definedVar = objectPropertyDefinedVar( mediaTypeVar, property);
+        definedVar.setAnnotation( "contentType", Objects.toString( encoding.getContentType(), null));
+      });
+    
+    return mediaTypeVar;
+    }
+
+  /**
+   * Returns the input variable for the given object property for the given media type content.
+   */
+  private VarDef objectPropertyDefinedVar( VarSet mediaTypeVar, String property)
+    {
+    return
+      (VarDef)
+      Optional.ofNullable( mediaTypeVar.find( "Value", "Properties", toIdentifier( property), "Defined"))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Object schema does not define property=%s", property)));
     }
 
   /**
