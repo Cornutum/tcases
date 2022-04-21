@@ -625,8 +625,8 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     encodings.forEach(
       (property,encoding) -> {
         VarDef definedVar = objectPropertyDefinedVar( mediaTypeVar, property);
-        definedVar.setAnnotation( "style", Objects.toString( encoding.getStyle(), "form"));
-        definedVar.setAnnotation( "explode", Objects.toString( encoding.getExplode(), String.valueOf( "form".equals( definedVar.getAnnotation( "style")))));
+        definedVar.setAnnotation( "style", Objects.toString( encoding.getStyle(), null));
+        definedVar.setAnnotation( "explode", Objects.toString( encoding.getExplode(), null));
       });
     
     return mediaTypeVar;

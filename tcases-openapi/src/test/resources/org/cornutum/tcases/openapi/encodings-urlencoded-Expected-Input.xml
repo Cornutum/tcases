@@ -225,7 +225,6 @@
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="excluded?"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
@@ -243,7 +242,6 @@
               </VarSet>
               <VarSet name="elevation">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="elevation"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
@@ -264,7 +262,6 @@
               </VarSet>
               <VarSet name="latlong">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="lat/long"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
@@ -558,7 +555,6 @@
               </VarSet>
               <VarSet name="country">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="country"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
@@ -617,7 +613,6 @@
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="excluded?"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
@@ -635,7 +630,6 @@
               </VarSet>
               <VarSet name="elevation">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="elevation"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
@@ -950,7 +944,6 @@
               </VarSet>
               <VarSet name="country">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="country"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
@@ -1009,7 +1002,6 @@
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="excluded?"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedExcluded, application-x-www-form-urlencodedProperties"/>
@@ -1027,7 +1019,6 @@
               </VarSet>
               <VarSet name="elevation">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="elevation"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedElevation, application-x-www-form-urlencodedProperties"/>
@@ -1241,7 +1232,6 @@
               </VarSet>
               <VarSet name="latlong">
                 <Var name="Defined">
-                  <Has name="explode" value="false"/>
                   <Has name="propertyName" value="lat/long"/>
                   <Has name="style" value="pipeDelimited"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedLatlong, application-x-www-form-urlencodedProperties"/>
@@ -1281,7 +1271,6 @@
               </VarSet>
               <VarSet name="address">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="address"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedAddress, application-x-www-form-urlencodedProperties"/>
@@ -1344,7 +1333,6 @@
               </VarSet>
               <VarSet name="country">
                 <Var name="Defined">
-                  <Has name="explode" value="true"/>
                   <Has name="propertyName" value="country"/>
                   <Has name="style" value="form"/>
                   <Value name="Yes" property="application-x-www-form-urlencodedCountry, application-x-www-form-urlencodedProperties"/>
