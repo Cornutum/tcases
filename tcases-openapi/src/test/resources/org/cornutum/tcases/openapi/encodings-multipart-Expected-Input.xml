@@ -687,7 +687,7 @@
               </VarSet>
               <VarSet name="address">
                 <Var name="Defined">
-                  <Has name="contentType" value="application/www-urlencoded"/>
+                  <Has name="contentType" value="application/x-www-urlencoded"/>
                   <Has name="propertyName" value="address"/>
                   <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
                   <Value name="No"/>

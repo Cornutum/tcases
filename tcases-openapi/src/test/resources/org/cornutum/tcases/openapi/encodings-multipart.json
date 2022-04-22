@@ -251,7 +251,7 @@
                                     "contentType": "text/plain"
                                 },
                                 "address": {
-                                    "contentType": "application/www-urlencoded",
+                                    "contentType": "application/x-www-urlencoded",
                                     "headers": {
                                         "X-Ignored": {
                                             "schema": {
