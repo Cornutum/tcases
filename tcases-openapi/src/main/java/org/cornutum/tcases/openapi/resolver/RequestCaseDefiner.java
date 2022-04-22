@@ -328,7 +328,15 @@ public class RequestCaseDefiner
       mediaTypesExcluded
       .map( excluded -> (ValueDomain<String>) MediaTypeDomain.except( excluded))
       .orElse( mediaTypeSpecified.map( StringConstant::new).orElse( null)));
-      
+
+    mediaTypeSpecified.
+      ifPresent( mt -> {
+        if( DataValue.Type.OBJECT.equals( valueDef.getDomain().getType()))
+          {
+          valueDef.setEncodings( getEncodings( mt, propertyValues));
+          }
+        });
+    
     return valueDef;
     }
 
