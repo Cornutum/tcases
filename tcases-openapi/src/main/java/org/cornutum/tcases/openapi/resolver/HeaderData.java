@@ -7,20 +7,31 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.util.ToString;
 
+import java.util.Objects;
+
 /**
- * Describes an instance of a request header.
+ * Defines a request header data object.
  */
-public class HeaderDef extends ParamDef
+public class HeaderData extends ParamData
   {
   /**
-   * Creates a new HeaderDef instance.
+   * Creates a new HeaderData instance.
    */
-  public HeaderDef( String name)
+  public HeaderData( String name, MessageData headerData)
     {
-    super( name);
-    setLocation( Location.HEADER);
+    this( name, headerData.getValue(), headerData.getMediaType(), headerData.isValid());
+    }
+  
+  /**
+   * Creates a new HeaderData instance.
+   */
+  public HeaderData( String name, DataValue<?> value,  String mediaType, boolean valid)
+    {
+    super( name, value, mediaType, valid);
+    setLocation( ParamDef.Location.HEADER);
     setStyle( "simple");
     }
 
@@ -49,12 +60,32 @@ public class HeaderDef extends ParamDef
     }
 
   @Override
+  public boolean equals( Object object)
+    {
+    HeaderData other =
+      object instanceof HeaderData
+      ? (HeaderData) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.getName(), getName());
+    }
+
+  @Override
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getName());
+    }
+  
+  @Override
   public String toString()
     {
     return
       ToString.getBuilder( this)
-      .append( getName())
-      .append( getValue())
+      .appendSuper( super.toString())
       .toString();
     }
   }

@@ -115,6 +115,12 @@
                 },
                 "valid": {
                     "type": "boolean"
+                },
+                "encodings": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/encoding"
+                    }
                 }
             },
             "required": [ "data", "valid" ],
@@ -256,6 +262,61 @@
                 }
             ],
             "required": [ "type", "value" ]
+        },
+
+        "encoding": {
+            "description": "For object values with a multipart media type, defines the encoding for a property value",
+            "type": "object",
+            "properties": {
+                "style": {
+                    "type": "string",
+                    "enum": [
+                        "form",
+                        "spaceDelimited",
+                        "pipeDelimited",
+                        "deepObject"
+                    ]
+                },
+                "explode": {
+                    "type": "boolean"
+                },
+                "contentType": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/header"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+
+        "header": {
+            "description": "Defines an API request header value",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "explode": {
+                    "type": "boolean"
+                },
+                "mediaType": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "data": {
+                    "$ref": "#/definitions/dataValue"
+                },
+                "valid": {
+                    "type": "boolean"
+                }
+            },
+            "required": [ "name", "data", "valid" ],
+            "additionalProperties": false
         },
 
         "authDef": {

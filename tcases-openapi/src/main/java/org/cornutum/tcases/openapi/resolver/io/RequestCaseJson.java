@@ -132,7 +132,65 @@ public final class RequestCaseJson
     builder.add( DATA, dataValue);
     
     builder.add( VALID, messageData.isValid());
+
+    if( !messageData.getEncodings().isEmpty())
+      {
+      JsonObjectBuilder encodings = Json.createObjectBuilder();
+      messageData.getEncodings().forEach( (property,encoding) -> encodings.add( property, toJson( messageData.getMediaType(), encoding)));
+      builder.add( ENCODINGS, encodings.build());
+      }
+    
     return builder;
+    }
+
+  /**
+   * Adds a form part encoding to the given JSON object builder.
+   */
+  private static JsonObject toJson( String mediaType, EncodingData encoding)
+    {
+    JsonObject json;
+
+    if( "application/x-www-form-urlencoded".equals( mediaType))
+      {
+      json = 
+        Json.createObjectBuilder()
+        .add( STYLE, encoding.getStyle())
+        .add( EXPLODE, encoding.isExploded())
+        .build();      
+      }
+    else if( "multipart/form-data".equals( mediaType))
+      {
+      JsonObjectBuilder builder = Json.createObjectBuilder();
+      builder.add( CONTENT_TYPE, encoding.getContentType());
+
+      if( !encoding.getHeaders().isEmpty())
+        {
+        JsonArrayBuilder headersBuilder = Json.createArrayBuilder();
+        encoding.getHeaders().forEach( header -> headersBuilder.add( toJson( header)));
+        builder.add( HEADERS, headersBuilder.build());
+        }
+
+      json = builder.build();
+      }
+    else
+      {
+      throw new RequestCaseException( String.format( "Part encodings not defined for mediaType=%s", mediaType));
+      }
+
+    return json;
+    }
+
+  /**
+   * Returns the JSON object that represents the given header data.
+   */
+  private static JsonObject toJson( HeaderData headerData)
+    {
+    JsonObjectBuilder builder = 
+      Json.createObjectBuilder()
+      .add( NAME, headerData.getName())
+      .add( EXPLODE, headerData.isExploded()) ;
+
+    return addMessageData( builder, headerData).build();
     }
 
   /**
@@ -553,9 +611,12 @@ public final class RequestCaseJson
   private static final String AUTH = "auth";
   private static final String AUTH_FAILURE = "authFailure";
   private static final String BODY = "body";
+  private static final String CONTENT_TYPE = "contentType";
   private static final String DATA = "data";
+  private static final String ENCODINGS = "encodings";
   private static final String EXPLODE = "explode";
   private static final String FORMAT = "format";
+  private static final String HEADERS = "headers";
   private static final String ID = "id";
   private static final String IN = "in";
   private static final String INVALID_INPUT = "invalidInput";

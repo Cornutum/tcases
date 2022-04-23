@@ -11,7 +11,11 @@ import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
+import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines a data object exchanged in an API request or response.
@@ -26,6 +30,7 @@ public class MessageData
     value_ = value;
     mediaType_ = mediaType;
     valid_ = valid;
+    setEncodings( null);
     }
 
   /**
@@ -60,6 +65,27 @@ public class MessageData
     return mediaType_;
     }
 
+  /**
+   * Changes the encodings for object value properties.
+   */
+  public void setEncodings( Map<String,EncodingData> encodings)
+    {
+    encodings_ =
+      Optional.ofNullable( encodings)
+      .map( Map::keySet)
+      .orElse( emptySet())
+      .stream()
+      .collect( toMap( property -> property, property -> encodings.get( property), (v1,v2) -> v1, LinkedHashMap::new));
+    }
+
+  /**
+   * Returns the encodings for object value properties.
+   */
+  public Map<String,EncodingData> getEncodings()
+    {
+    return encodings_;
+    }
+
   @Override
   public String toString()
     {
@@ -80,4 +106,5 @@ public class MessageData
   private final DataValue<?> value_;
   private final String mediaType_;
   private final boolean valid_;
+  private Map<String,EncodingData> encodings_;
   }
