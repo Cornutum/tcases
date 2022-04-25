@@ -12,6 +12,7 @@ import org.cornutum.tcases.util.ToString;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import static java.util.Collections.emptyList;
 
@@ -85,6 +86,29 @@ public class EncodingData
   public void setHeaders( List<HeaderData> headers)
     {
     headers_ = Optional.ofNullable( headers).orElse( emptyList());
+    }
+
+  @Override
+  public boolean equals( Object object)
+    {
+    EncodingData other =
+      object instanceof EncodingData
+      ? (EncodingData) object
+      : null;
+
+    return
+      other != null
+      && Objects.equals( other.getStyle(), getStyle())
+      && Objects.equals( other.getContentType(), getContentType());
+    }
+
+  @Override
+  public int hashCode()
+    {
+    return
+      getClass().hashCode()
+      ^ Objects.hashCode( getStyle())
+      ^ Objects.hashCode( getContentType());
     }
 
   @Override
