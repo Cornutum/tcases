@@ -47,7 +47,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         }
     },
     {
@@ -133,7 +143,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         }
     },
     {
@@ -614,7 +634,13 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.id.Defined=No"
     },
@@ -664,7 +690,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.id.Type=null"
     },
@@ -720,7 +756,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.id.Type=Not integer"
     },
@@ -771,7 +817,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is=-1"
     },
@@ -818,7 +874,13 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined=No"
     },
@@ -869,7 +931,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.tag.Type=null"
     },
@@ -924,7 +996,21 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                },
+                "u": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.Additional=Yes"
     }

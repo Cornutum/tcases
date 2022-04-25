@@ -4796,7 +4796,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         }
     },
     {
@@ -4835,7 +4845,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         }
     },
     {
@@ -4874,7 +4894,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         }
     },
     {
@@ -4910,7 +4940,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "postId.Defined=No"
     },
@@ -4950,7 +4990,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "postId.Type=null"
     },
@@ -4996,7 +5046,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "postId.Type=Not number"
     },
@@ -5036,7 +5096,17 @@
                     }
                 }
             },
-            "valid": true
+            "valid": true,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "postId.Value.Is=-1"
     },
@@ -5197,7 +5267,13 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined=No"
     },
@@ -5237,7 +5313,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=null"
     },
@@ -5292,7 +5378,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=Not boolean"
     },
@@ -5328,7 +5424,13 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined=No"
     },
@@ -5368,7 +5470,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null"
     },
@@ -5409,7 +5521,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=Not string"
     },
@@ -5449,7 +5571,17 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value=Other"
     },
@@ -5499,7 +5631,21 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "approved": {
+                    "style": "form",
+                    "explode": true
+                },
+                "reviewer": {
+                    "style": "form",
+                    "explode": true
+                },
+                "iwhhssz": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.Additional=Yes"
     },

@@ -272,7 +272,21 @@
                     }
                 }
             },
-            "valid": false
+            "valid": false,
+            "encodings": {
+                "glmzhvriwgnlf": {
+                    "style": "form",
+                    "explode": true
+                },
+                "lvz": {
+                    "style": "form",
+                    "explode": true
+                },
+                "erecohwzkwg": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
         },
         "invalidInput": "Body.application-x-www-form-urlencoded.Type=Not string"
     }
