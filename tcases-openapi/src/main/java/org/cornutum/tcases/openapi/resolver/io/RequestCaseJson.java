@@ -14,6 +14,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import javax.json.Json;
@@ -22,8 +23,9 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonNumber;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
 import javax.json.JsonValue.ValueType;
+import javax.json.JsonValue;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
@@ -285,7 +287,11 @@ public final class RequestCaseJson
     String mediaType = context.resultFor( MEDIA_TYPE, () -> json.getString( MEDIA_TYPE, null));
     boolean valid = context.resultFor( VALID, () -> json.getBoolean( VALID));
     DataValue<?> value = context.resultFor( DATA, () -> Optional.ofNullable( json.get( DATA)).map( v -> asDataValue( context, v)).orElse( null));
-    return new MessageData( value, mediaType, valid);
+
+    MessageData messageData = new MessageData( value, mediaType, valid);
+    messageData.setEncodings( context.resultFor( ENCODINGS, () -> Optional.ofNullable( json.getJsonObject( ENCODINGS)).map( e -> asEncodings( context, e)).orElse( null)));
+
+    return messageData;
     }
 
   /**
@@ -335,6 +341,61 @@ public final class RequestCaseJson
       }
     
     return data;
+    }
+
+  /**
+   * Returns the data part encodings represented by the given JSON object.
+   */
+  private static Map<String,EncodingData> asEncodings( RequestCaseContext context, JsonObject json)
+    {
+    return
+      json.keySet().stream()
+      .collect(
+        toMap(
+          property -> property,
+          property -> context.resultFor( property, () -> asEncodingData( context, json.getJsonObject( property))),
+          (v1, v2) -> v1,
+          LinkedHashMap::new));
+    }
+
+  /**
+   * Returns the EncodingData represented by the given JSON object.
+   */
+  private static EncodingData asEncodingData( RequestCaseContext context, JsonObject json)
+    {
+    String style = context.resultFor( STYLE, () -> json.getString( STYLE, null));
+    Boolean exploded = context.resultFor( EXPLODE, () -> json.containsKey( EXPLODE)? json.getBoolean( EXPLODE, false) : null);
+    String contentType = context.resultFor( CONTENT_TYPE, () -> json.getString( CONTENT_TYPE, null));
+
+    List<HeaderData> headers =
+      context.resultFor( HEADERS,
+        () -> {
+          return
+            Optional.ofNullable( json.getJsonArray( HEADERS))
+            .map( array -> array.getValuesAs( JsonObject.class))
+            .orElse( emptyList())
+            .stream()
+            .map( v -> asHeaderData( context, v)).collect( toList());
+        });
+
+    return
+      style != null?
+      new EncodingData( style, exploded) :
+      new EncodingData( contentType, headers);
+    }
+
+  /**
+   * Returns the HeaderData represented by the given JSON object.
+   */
+  private static HeaderData asHeaderData( RequestCaseContext context, JsonObject json)
+    {
+    JsonValue name = json.get( NAME);
+    return
+      context.resultFor( String.valueOf( name), () -> {
+        HeaderData headerData = new HeaderData( json.getString( NAME), asMessageData( context, json));
+        headerData.setExploded( context.resultFor( EXPLODE, () -> json.getBoolean( EXPLODE, false)));
+        return headerData;
+        });
     }
 
   /**
