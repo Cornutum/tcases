@@ -62,43 +62,43 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="2XXContent">
-            <Value name="application-json" property="2XXapplication-json">
+            <Value name="application-json" property="2XXApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="text-javascript" property="2XXtext-javascript">
+            <Value name="text-javascript" property="2XXText-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="2XXapplication-json">
+          <VarSet name="application-json" when="2XXApplication-json">
             <Var name="Type">
-              <Value name="string" property="2XXapplication-jsonValue"/>
+              <Value name="string" property="2XXApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not string" failure="true"/>
             </Var>
-            <VarSet name="Value" when="2XXapplication-jsonValue">
+            <VarSet name="Value" when="2XXApplication-jsonValue">
               <Var name="Length">
                 <Value name="15" failure="true"/>
-                <Value name="16" property="2XXapplication-jsonLengthValid, 2XXapplication-jsonNotEmpty"/>
-                <Value name="255" property="2XXapplication-jsonLengthValid, 2XXapplication-jsonNotEmpty"/>
+                <Value name="16" property="2XXApplication-jsonLengthValid, 2XXApplication-jsonNotEmpty"/>
+                <Value name="255" property="2XXApplication-jsonLengthValid, 2XXApplication-jsonNotEmpty"/>
                 <Value name="256" failure="true"/>
               </Var>
             </VarSet>
           </VarSet>
-          <VarSet name="text-javascript" when="2XXtext-javascript">
+          <VarSet name="text-javascript" when="2XXText-javascript">
             <Var name="Type">
-              <Value name="string" property="2XXtext-javascriptValue"/>
+              <Value name="string" property="2XXText-javascriptValue"/>
               <Value name="null" once="true"/>
               <Value name="Not string" failure="true"/>
             </Var>
-            <VarSet name="Value" when="2XXtext-javascriptValue">
+            <VarSet name="Value" when="2XXText-javascriptValue">
               <Var name="Length">
-                <Value name="0" property="2XXtext-javascriptLengthValid"/>
-                <Value name="16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty"/>
+                <Value name="0" property="2XXText-javascriptLengthValid"/>
+                <Value name="16" property="2XXText-javascriptLengthValid, 2XXText-javascriptNotEmpty"/>
                 <Value name="17" failure="true"/>
-                <Value name="&lt; 16" property="2XXtext-javascriptLengthValid, 2XXtext-javascriptNotEmpty">
+                <Value name="&lt; 16" property="2XXText-javascriptLengthValid, 2XXText-javascriptNotEmpty">
                   <Has name="rangeMin" value="1"/>
                 </Value>
               </Var>

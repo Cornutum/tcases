@@ -455,7 +455,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
-          String contentVarTag = "Content";
+          String contentVarTag = contentVarTag( "body");
           Map<String,MediaType> mediaTypes = expectedValueOf( ifNotEmpty( b.getContent()).orElse( null), "Request body content");
           return
             VarSetBuilder.with( "Body")
@@ -480,7 +480,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
-          String contentVarTag = "Content";
+          String contentVarTag = contentVarTag( "body");
           Map<String,MediaType> mediaTypes = expectedValueOf( ifNotEmpty( b.getContent()).orElse( null), "Request body content");
           return
             VarSetBuilder.with( "Body")
@@ -1351,7 +1351,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private IVarDef responseContentVar( OpenAPI api, String status, ApiResponse response)
     {
     String contentVarName = "Content";
-    String contentVarTag = status + contentVarName;
+    String contentVarTag = contentVarTag( status);
     return
       resultFor( "content",
         () ->
@@ -3483,11 +3483,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns input variable tag for request input content
+   */
+  private String contentVarTag( String inputName)
+    {
+    return inputName + "Content";
+    }
+
+  /**
    * Returns input variable tag for the given media type
    */
   private String mediaTypeVarTag( String contentVarTag, String mediaType)
     {
-    return contentVarTag.replace( "Content", "") + mediaTypeVarName( mediaType);
+    return contentVarTag.replace( "Content", "") + StringUtils.capitalize( mediaTypeVarName( mediaType));
     }
 
   /**

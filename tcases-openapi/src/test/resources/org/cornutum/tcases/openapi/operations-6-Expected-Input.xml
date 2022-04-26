@@ -71,27 +71,27 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-json" property="application-json">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-json" property="bodyApplication-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;application/json&apos;"/>
           </Value>
         </Var>
-        <VarSet name="application-json" when="application-json">
+        <VarSet name="application-json" when="bodyApplication-json">
           <Var name="Type">
-            <Value name="object" property="application-jsonValue"/>
+            <Value name="object" property="bodyApplication-jsonValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="application-jsonValue">
+          <VarSet name="Value" when="bodyApplication-jsonValue">
             <VarSet name="Properties">
               <Var name="Additional">
-                <Value name="Yes" property="application-jsonProperties"/>
+                <Value name="Yes" property="bodyApplication-jsonProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>

@@ -12,7 +12,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -41,7 +41,7 @@
     <TestCase id="2" name="Body.application-json.Value.Is=&apos;0.0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -57,7 +57,7 @@
     <TestCase id="3" name="Body.application-json.Value.Is=&apos;-0.9876&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>

@@ -426,7 +426,7 @@
     <TestCase id="0" name="postId.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -487,7 +487,7 @@
     <TestCase id="1" name="postId.Value.Properties.country.Value.Length=&apos;16&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextNotEmpty,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextNotEmpty,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -548,7 +548,7 @@
     <TestCase id="2" failure="true" name="postId.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -609,7 +609,7 @@
     <TestCase id="3" failure="true" name="postId.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -670,7 +670,7 @@
     <TestCase id="4" failure="true" name="postId.Type=&apos;Not object&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -731,7 +731,7 @@
     <TestCase id="5" failure="true" name="postId.Value.Properties.country.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -792,7 +792,7 @@
     <TestCase id="6" failure="true" name="postId.Value.Properties.country.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -853,7 +853,7 @@
     <TestCase id="7" failure="true" name="postId.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -914,7 +914,7 @@
     <TestCase id="8" failure="true" name="postId.Value.Properties.country.Value.Length=&apos;0&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -975,7 +975,7 @@
     <TestCase id="9" failure="true" name="postId.Value.Properties.country.Value.Length=&apos;17&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1036,7 +1036,7 @@
     <TestCase id="10" failure="true" name="postId.Value.Properties.region.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1097,7 +1097,7 @@
     <TestCase id="11" failure="true" name="postId.Value.Properties.region.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1158,7 +1158,7 @@
     <TestCase id="12" failure="true" name="postId.Value.Properties.region.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1219,7 +1219,7 @@
     <TestCase id="13" failure="true" name="postId.Value.Properties.region.Value.Length=&apos;0&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1280,7 +1280,7 @@
     <TestCase id="14" failure="true" name="postId.Value.Properties.region.Value.Length=&apos;17&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1341,7 +1341,7 @@
     <TestCase id="15" failure="true" name="postId.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1461,7 +1461,7 @@
     <TestCase id="17" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
+      <Has name="properties" value="bodyContent,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1522,7 +1522,7 @@
     <TestCase id="18" failure="true" name="Body.text-plain.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1583,7 +1583,7 @@
     <TestCase id="19" failure="true" name="Body.text-plain.Type=&apos;Not object&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1644,7 +1644,7 @@
     <TestCase id="20" failure="true" name="Body.text-plain.Value.Properties.email.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1705,7 +1705,7 @@
     <TestCase id="21" failure="true" name="Body.text-plain.Value.Properties.email.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1766,7 +1766,7 @@
     <TestCase id="22" failure="true" name="Body.text-plain.Value.Properties.email.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1827,7 +1827,7 @@
     <TestCase id="23" failure="true" name="Body.text-plain.Value.Properties.email.Value.Length=&apos;6&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1888,7 +1888,7 @@
     <TestCase id="24" failure="true" name="Body.text-plain.Value.Properties.email.Value.Length=&apos;33&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -1949,7 +1949,7 @@
     <TestCase id="25" failure="true" name="Body.text-plain.Value.Properties.text.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2010,7 +2010,7 @@
     <TestCase id="26" failure="true" name="Body.text-plain.Value.Properties.text.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2071,7 +2071,7 @@
     <TestCase id="27" failure="true" name="Body.text-plain.Value.Properties.text.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2132,7 +2132,7 @@
     <TestCase id="28" failure="true" name="Body.text-plain.Value.Properties.text.Value.Length=&apos;65&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2193,7 +2193,7 @@
     <TestCase id="29" failure="true" name="Body.text-plain.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="Content,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue,text-plain,text-plainEmail,text-plainEmailLengthValid,text-plainEmailNotEmpty,text-plainEmailValue,text-plainProperties,text-plainText,text-plainTextLengthValid,text-plainTextValue,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainEmail,bodyText-plainEmailLengthValid,bodyText-plainEmailNotEmpty,bodyText-plainEmailValue,bodyText-plainProperties,bodyText-plainText,bodyText-plainTextLengthValid,bodyText-plainTextValue,bodyText-plainValue,postId,postIdCountry,postIdCountryLengthValid,postIdCountryNotEmpty,postIdCountryValue,postIdProperties,postIdRegion,postIdRegionLengthValid,postIdRegionNotEmpty,postIdRegionValue,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2261,7 +2261,7 @@
     <TestCase id="0" name="approved.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2339,7 +2339,7 @@
     <TestCase id="2" name="Body.application-json.Value.Properties.email.Value.Length=&apos;32&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextNotEmpty,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextNotEmpty,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2492,7 +2492,7 @@
     <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2532,7 +2532,7 @@
     <TestCase id="7" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2572,7 +2572,7 @@
     <TestCase id="8" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2612,7 +2612,7 @@
     <TestCase id="9" failure="true" name="Body.application-json.Value.Properties.email.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2652,7 +2652,7 @@
     <TestCase id="10" failure="true" name="Body.application-json.Value.Properties.email.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2692,7 +2692,7 @@
     <TestCase id="11" failure="true" name="Body.application-json.Value.Properties.email.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2732,7 +2732,7 @@
     <TestCase id="12" failure="true" name="Body.application-json.Value.Properties.email.Value.Length=&apos;6&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2772,7 +2772,7 @@
     <TestCase id="13" failure="true" name="Body.application-json.Value.Properties.email.Value.Length=&apos;33&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2812,7 +2812,7 @@
     <TestCase id="14" failure="true" name="Body.application-json.Value.Properties.text.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2852,7 +2852,7 @@
     <TestCase id="15" failure="true" name="Body.application-json.Value.Properties.text.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2892,7 +2892,7 @@
     <TestCase id="16" failure="true" name="Body.application-json.Value.Properties.text.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2932,7 +2932,7 @@
     <TestCase id="17" failure="true" name="Body.application-json.Value.Properties.text.Value.Length=&apos;65&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -2972,7 +2972,7 @@
     <TestCase id="18" failure="true" name="Body.application-json.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/posts"/>
-      <Has name="properties" value="application-json,application-jsonEmail,application-jsonEmailLengthValid,application-jsonEmailNotEmpty,application-jsonEmailValue,application-jsonProperties,application-jsonText,application-jsonTextLengthValid,application-jsonTextValue,application-jsonValue,approved,approvedValue,Content"/>
+      <Has name="properties" value="approved,approvedValue,bodyApplication-json,bodyApplication-jsonEmail,bodyApplication-jsonEmailLengthValid,bodyApplication-jsonEmailNotEmpty,bodyApplication-jsonEmailValue,bodyApplication-jsonProperties,bodyApplication-jsonText,bodyApplication-jsonTextLengthValid,bodyApplication-jsonTextValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -5917,7 +5917,7 @@
     <TestCase id="0" name="postId.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -5955,7 +5955,7 @@
     <TestCase id="1" name="postId.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -5993,7 +5993,7 @@
     <TestCase id="2" name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value=&apos;Me+You&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6031,7 +6031,7 @@
     <TestCase id="3" failure="true" name="postId.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6069,7 +6069,7 @@
     <TestCase id="4" failure="true" name="postId.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6107,7 +6107,7 @@
     <TestCase id="5" failure="true" name="postId.Type=&apos;Not number&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6145,7 +6145,7 @@
     <TestCase id="6" failure="true" name="postId.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6219,7 +6219,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6257,7 +6257,7 @@
     <TestCase id="9" failure="true" name="Body.application-x-www-form-urlencoded.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6295,7 +6295,7 @@
     <TestCase id="10" failure="true" name="Body.application-x-www-form-urlencoded.Type=&apos;Not object&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6333,7 +6333,7 @@
     <TestCase id="11" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6371,7 +6371,7 @@
     <TestCase id="12" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6409,7 +6409,7 @@
     <TestCase id="13" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.approved.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6447,7 +6447,7 @@
     <TestCase id="14" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Defined=&apos;No&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6485,7 +6485,7 @@
     <TestCase id="15" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=null">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6523,7 +6523,7 @@
     <TestCase id="16" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Type=&apos;Not string&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6561,7 +6561,7 @@
     <TestCase id="17" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.reviewer.Value=&apos;Other&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>
@@ -6601,7 +6601,7 @@
     <TestCase id="18" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="PUT"/>
       <Has name="path" value="/post"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedApproved,application-x-www-form-urlencodedApprovedValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedReviewer,application-x-www-form-urlencodedReviewerValue,application-x-www-form-urlencodedValue,Content,postId,postIdValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedApproved,bodyApplication-x-www-form-urlencodedApprovedValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedReviewer,bodyApplication-x-www-form-urlencodedReviewerValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,postId,postIdValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="OpenAPI Request Test Cases"/>
       <Has name="version" value="0.0.0"/>

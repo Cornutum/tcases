@@ -12,7 +12,7 @@
     <TestCase id="0" name="param.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -50,7 +50,7 @@
     <TestCase id="1" name="param.Value.Length=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -88,7 +88,7 @@
     <TestCase id="2" failure="true" name="param.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -126,7 +126,7 @@
     <TestCase id="3" failure="true" name="param.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -164,7 +164,7 @@
     <TestCase id="4" failure="true" name="param.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -202,7 +202,7 @@
     <TestCase id="5" failure="true" name="param.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -276,7 +276,7 @@
     <TestCase id="7" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -314,7 +314,7 @@
     <TestCase id="8" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -352,7 +352,7 @@
     <TestCase id="9" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -390,7 +390,7 @@
     <TestCase id="10" failure="true" name="Body.application-json.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -428,7 +428,7 @@
     <TestCase id="11" failure="true" name="Body.application-json.Value.Properties.id.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -466,7 +466,7 @@
     <TestCase id="12" failure="true" name="Body.application-json.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -504,7 +504,7 @@
     <TestCase id="13" failure="true" name="Body.application-json.Value.Properties.id.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -542,7 +542,7 @@
     <TestCase id="14" failure="true" name="Body.application-json.Value.Properties.tag.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -580,7 +580,7 @@
     <TestCase id="15" failure="true" name="Body.application-json.Value.Properties.tag.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -618,7 +618,7 @@
     <TestCase id="16" failure="true" name="Body.application-json.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -656,7 +656,7 @@
     <TestCase id="17" failure="true" name="Body.application-json.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -694,7 +694,7 @@
     <TestCase id="18" failure="true" name="Body.application-json.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize/{param}"/>
-      <Has name="properties" value="application-json,application-jsonId,application-jsonIdValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content,param,paramLengthValid,paramNotEmpty,paramValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonId,bodyApplication-jsonIdValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent,param,paramLengthValid,paramNotEmpty,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>

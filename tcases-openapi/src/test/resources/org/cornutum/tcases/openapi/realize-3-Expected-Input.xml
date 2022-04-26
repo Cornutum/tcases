@@ -31,37 +31,37 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-json" property="application-json">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-json" property="bodyApplication-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;application/json&apos;"/>
           </Value>
         </Var>
-        <VarSet name="application-json" when="application-json">
+        <VarSet name="application-json" when="bodyApplication-json">
           <Var name="Type">
-            <Value name="object" property="application-jsonValue"/>
+            <Value name="object" property="bodyApplication-jsonValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="application-jsonValue">
+          <VarSet name="Value" when="bodyApplication-jsonValue">
             <VarSet name="Properties">
               <VarSet name="id">
                 <Var name="Defined">
                   <Has name="propertyName" value="id"/>
-                  <Value name="Yes" property="application-jsonId, application-jsonProperties"/>
+                  <Value name="Yes" property="bodyApplication-jsonId, bodyApplication-jsonProperties"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="application-jsonId">
-                  <Value name="integer" property="application-jsonIdValue"/>
+                <Var name="Type" when="bodyApplication-jsonId">
+                  <Value name="integer" property="bodyApplication-jsonIdValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not integer" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="application-jsonIdValue">
+                <VarSet name="Value" when="bodyApplication-jsonIdValue">
                   <Var name="Is">
                     <Value name="-1" failure="true"/>
                     <Value name="0"/>
@@ -72,19 +72,19 @@
               <VarSet name="tag">
                 <Var name="Defined">
                   <Has name="propertyName" value="tag"/>
-                  <Value name="Yes" property="application-jsonProperties, application-jsonTag"/>
+                  <Value name="Yes" property="bodyApplication-jsonProperties, bodyApplication-jsonTag"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="application-jsonTag">
-                  <Value name="string" property="application-jsonTagValue"/>
+                <Var name="Type" when="bodyApplication-jsonTag">
+                  <Value name="string" property="bodyApplication-jsonTagValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="application-jsonTagValue">
+                <VarSet name="Value" when="bodyApplication-jsonTagValue">
                   <Var name="Length">
                     <Value name="0" failure="true"/>
-                    <Value name="1" property="application-jsonTagLengthValid, application-jsonTagNotEmpty"/>
-                    <Value name="&gt; 1" property="application-jsonTagLengthValid, application-jsonTagNotEmpty"/>
+                    <Value name="1" property="bodyApplication-jsonTagLengthValid, bodyApplication-jsonTagNotEmpty"/>
+                    <Value name="&gt; 1" property="bodyApplication-jsonTagLengthValid, bodyApplication-jsonTagNotEmpty"/>
                   </Var>
                 </VarSet>
               </VarSet>

@@ -281,7 +281,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -310,7 +310,7 @@
     <TestCase id="2" name="Body.application-json.Value.Properties.Additional=&apos;No&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -326,7 +326,7 @@
     <TestCase id="3" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -342,7 +342,7 @@
     <TestCase id="4" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -358,7 +358,7 @@
     <TestCase id="5" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -507,7 +507,7 @@
     <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -560,7 +560,7 @@
     <TestCase id="2" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -614,7 +614,7 @@
     <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -642,7 +642,7 @@
     <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -670,7 +670,7 @@
     <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -698,7 +698,7 @@
     <TestCase id="7" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -726,7 +726,7 @@
     <TestCase id="8" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="PATCH"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -761,7 +761,7 @@
     <TestCase id="0" name="id.Defined=&apos;Yes&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id,idValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -814,7 +814,7 @@
     <TestCase id="2" name="id.Value.Is=&apos;0&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,id,idValue"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,id,idValue"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -868,7 +868,7 @@
     <TestCase id="4" failure="true" name="id.Type=null">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -896,7 +896,7 @@
     <TestCase id="5" failure="true" name="id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,id"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,id"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -924,7 +924,7 @@
     <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -952,7 +952,7 @@
     <TestCase id="7" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -980,7 +980,7 @@
     <TestCase id="8" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="TRACE"/>
       <Has name="path" value="/operationNew"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://www.cornutum.org/tcases/api"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>

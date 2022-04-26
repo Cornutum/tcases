@@ -12,7 +12,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -71,7 +71,7 @@
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -130,7 +130,7 @@
     <TestCase id="2" name="Body.multipart-form-data.Value.Properties.excluded.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -189,7 +189,7 @@
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -248,7 +248,7 @@
     <TestCase id="4" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -307,7 +307,7 @@
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -366,7 +366,7 @@
     <TestCase id="6" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -481,7 +481,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -540,7 +540,7 @@
     <TestCase id="9" failure="true" name="Body.multipart-form-data.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -599,7 +599,7 @@
     <TestCase id="10" failure="true" name="Body.multipart-form-data.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -658,7 +658,7 @@
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -717,7 +717,7 @@
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -776,7 +776,7 @@
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -835,7 +835,7 @@
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -894,7 +894,7 @@
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -953,7 +953,7 @@
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1012,7 +1012,7 @@
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1071,7 +1071,7 @@
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1130,7 +1130,7 @@
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1189,7 +1189,7 @@
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1248,7 +1248,7 @@
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1307,7 +1307,7 @@
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1366,7 +1366,7 @@
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1425,7 +1425,7 @@
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1484,7 +1484,7 @@
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1543,7 +1543,7 @@
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1602,7 +1602,7 @@
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1661,7 +1661,7 @@
     <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1720,7 +1720,7 @@
     <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_0"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1786,7 +1786,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1846,7 +1846,7 @@
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1906,7 +1906,7 @@
     <TestCase id="2" name="Body.multipart-form-data.Value.Properties.excluded.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -1966,7 +1966,7 @@
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2026,7 +2026,7 @@
     <TestCase id="4" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2086,7 +2086,7 @@
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2146,7 +2146,7 @@
     <TestCase id="6" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2263,7 +2263,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2323,7 +2323,7 @@
     <TestCase id="9" failure="true" name="Body.multipart-form-data.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2383,7 +2383,7 @@
     <TestCase id="10" failure="true" name="Body.multipart-form-data.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2443,7 +2443,7 @@
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2503,7 +2503,7 @@
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2563,7 +2563,7 @@
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2623,7 +2623,7 @@
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2683,7 +2683,7 @@
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2743,7 +2743,7 @@
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2803,7 +2803,7 @@
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2863,7 +2863,7 @@
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2923,7 +2923,7 @@
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -2983,7 +2983,7 @@
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3043,7 +3043,7 @@
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3103,7 +3103,7 @@
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3163,7 +3163,7 @@
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3223,7 +3223,7 @@
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3283,7 +3283,7 @@
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3343,7 +3343,7 @@
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3403,7 +3403,7 @@
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3463,7 +3463,7 @@
     <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3523,7 +3523,7 @@
     <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_2"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3590,7 +3590,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3651,7 +3651,7 @@
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3712,7 +3712,7 @@
     <TestCase id="2" name="Body.multipart-form-data.Value.Properties.excluded.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3773,7 +3773,7 @@
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3834,7 +3834,7 @@
     <TestCase id="4" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3895,7 +3895,7 @@
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -3956,7 +3956,7 @@
     <TestCase id="6" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4075,7 +4075,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4136,7 +4136,7 @@
     <TestCase id="9" failure="true" name="Body.multipart-form-data.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4197,7 +4197,7 @@
     <TestCase id="10" failure="true" name="Body.multipart-form-data.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4258,7 +4258,7 @@
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4319,7 +4319,7 @@
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4380,7 +4380,7 @@
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4441,7 +4441,7 @@
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4502,7 +4502,7 @@
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4563,7 +4563,7 @@
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4624,7 +4624,7 @@
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4685,7 +4685,7 @@
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4746,7 +4746,7 @@
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4807,7 +4807,7 @@
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4868,7 +4868,7 @@
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4929,7 +4929,7 @@
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -4990,7 +4990,7 @@
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5051,7 +5051,7 @@
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5112,7 +5112,7 @@
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5173,7 +5173,7 @@
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5234,7 +5234,7 @@
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5295,7 +5295,7 @@
     <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5356,7 +5356,7 @@
     <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_5"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5424,7 +5424,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5484,7 +5484,7 @@
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5544,7 +5544,7 @@
     <TestCase id="2" name="Body.multipart-form-data.Value.Properties.excluded.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5604,7 +5604,7 @@
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5664,7 +5664,7 @@
     <TestCase id="4" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5724,7 +5724,7 @@
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5784,7 +5784,7 @@
     <TestCase id="6" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5901,7 +5901,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -5961,7 +5961,7 @@
     <TestCase id="9" failure="true" name="Body.multipart-form-data.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6021,7 +6021,7 @@
     <TestCase id="10" failure="true" name="Body.multipart-form-data.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6081,7 +6081,7 @@
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6141,7 +6141,7 @@
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6201,7 +6201,7 @@
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6261,7 +6261,7 @@
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6321,7 +6321,7 @@
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6381,7 +6381,7 @@
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6441,7 +6441,7 @@
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6501,7 +6501,7 @@
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6561,7 +6561,7 @@
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6621,7 +6621,7 @@
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6681,7 +6681,7 @@
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6741,7 +6741,7 @@
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6801,7 +6801,7 @@
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6861,7 +6861,7 @@
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6921,7 +6921,7 @@
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -6981,7 +6981,7 @@
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7041,7 +7041,7 @@
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7101,7 +7101,7 @@
     <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7161,7 +7161,7 @@
     <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_6"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7228,7 +7228,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7288,7 +7288,7 @@
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7348,7 +7348,7 @@
     <TestCase id="2" name="Body.multipart-form-data.Value.Properties.excluded.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7408,7 +7408,7 @@
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7468,7 +7468,7 @@
     <TestCase id="4" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7528,7 +7528,7 @@
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7588,7 +7588,7 @@
     <TestCase id="6" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7705,7 +7705,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7765,7 +7765,7 @@
     <TestCase id="9" failure="true" name="Body.multipart-form-data.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7825,7 +7825,7 @@
     <TestCase id="10" failure="true" name="Body.multipart-form-data.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7885,7 +7885,7 @@
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -7945,7 +7945,7 @@
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8005,7 +8005,7 @@
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8065,7 +8065,7 @@
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8125,7 +8125,7 @@
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8185,7 +8185,7 @@
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8245,7 +8245,7 @@
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8305,7 +8305,7 @@
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8365,7 +8365,7 @@
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8425,7 +8425,7 @@
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8485,7 +8485,7 @@
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8545,7 +8545,7 @@
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8605,7 +8605,7 @@
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8665,7 +8665,7 @@
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8725,7 +8725,7 @@
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8785,7 +8785,7 @@
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8845,7 +8845,7 @@
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8905,7 +8905,7 @@
     <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -8965,7 +8965,7 @@
     <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9032,7 +9032,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9091,7 +9091,7 @@
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9150,7 +9150,7 @@
     <TestCase id="2" name="Body.multipart-form-data.Value.Properties.excluded.Value=&apos;false&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9209,7 +9209,7 @@
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9268,7 +9268,7 @@
     <TestCase id="4" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9327,7 +9327,7 @@
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryNotEmpty,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9386,7 +9386,7 @@
     <TestCase id="6" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;&gt; 1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataElevation,multipart-form-dataElevationValue,multipart-form-dataExcluded,multipart-form-dataExcludedValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9501,7 +9501,7 @@
     <TestCase id="8" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9560,7 +9560,7 @@
     <TestCase id="9" failure="true" name="Body.multipart-form-data.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9619,7 +9619,7 @@
     <TestCase id="10" failure="true" name="Body.multipart-form-data.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9678,7 +9678,7 @@
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9737,7 +9737,7 @@
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataExcluded,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9796,7 +9796,7 @@
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9855,7 +9855,7 @@
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataElevation,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9914,7 +9914,7 @@
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -9973,7 +9973,7 @@
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10032,7 +10032,7 @@
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10091,7 +10091,7 @@
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10150,7 +10150,7 @@
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10209,7 +10209,7 @@
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10268,7 +10268,7 @@
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10327,7 +10327,7 @@
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10386,7 +10386,7 @@
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10445,7 +10445,7 @@
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10504,7 +10504,7 @@
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10563,7 +10563,7 @@
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10622,7 +10622,7 @@
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataAddress,multipart-form-dataAddressCity,multipart-form-dataAddressCityLengthValid,multipart-form-dataAddressCityNotEmpty,multipart-form-dataAddressCityValue,multipart-form-dataAddressCode,multipart-form-dataAddressCodeValue,multipart-form-dataAddressProperties,multipart-form-dataAddressValue,multipart-form-dataCountry,multipart-form-dataCountryLengthValid,multipart-form-dataCountryValue,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10681,7 +10681,7 @@
     <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10740,7 +10740,7 @@
     <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_12"/>
-      <Has name="properties" value="Content,multipart-form-data,multipart-form-dataCountry,multipart-form-dataLatlong,multipart-form-dataLatlongItemsMany,multipart-form-dataLatlongItemsValue,multipart-form-dataLatlongValue,multipart-form-dataProperties,multipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>

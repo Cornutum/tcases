@@ -8,7 +8,7 @@
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0" name="Status-Code=&apos;2XX&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonLengthValid,2XXapplication-jsonNotEmpty,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerNotEmpty,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonLengthValid,2XXApplication-jsonNotEmpty,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerNotEmpty,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -70,7 +70,7 @@
       </Input>
     </TestCase>
     <TestCase id="2" name="2XX.Headers.x-standard-header.Defined=&apos;No&apos;">
-      <Has name="properties" value="2XXContent,2XXtext-javascript,2XXtext-javascriptLengthValid,2XXtext-javascriptValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXText-javascript,2XXText-javascriptLengthValid,2XXText-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -101,7 +101,7 @@
       </Input>
     </TestCase>
     <TestCase id="3" name="2XX.Headers.x-standard-header.Value.Length=&apos;0&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonLengthValid,2XXapplication-jsonNotEmpty,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonLengthValid,2XXApplication-jsonNotEmpty,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -132,7 +132,7 @@
       </Input>
     </TestCase>
     <TestCase id="4" name="2XX.Content.text-javascript.Type=null">
-      <Has name="properties" value="2XXContent,2XXtext-javascript,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXText-javascript,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -163,7 +163,7 @@
       </Input>
     </TestCase>
     <TestCase id="5" name="2XX.Content.text-javascript.Value.Length=&apos;16&apos;">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerNotEmpty,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptLengthValid,2XXtext-javascriptNotEmpty,2XXtext-javascriptValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerProperties,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerNotEmpty,2XXHeaderX-standard-headerValue,2XXText-javascript,2XXText-javascriptLengthValid,2XXText-javascriptNotEmpty,2XXText-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -194,7 +194,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" name="2XX.Content.text-javascript.Value.Length=&apos;&lt; 16&apos;">
-      <Has name="properties" value="2XXContent,2XXtext-javascript,2XXtext-javascriptLengthValid,2XXtext-javascriptNotEmpty,2XXtext-javascriptValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXText-javascript,2XXText-javascriptLengthValid,2XXText-javascriptNotEmpty,2XXText-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -227,7 +227,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true" name="2XX.Headers.x-standard-header.Type=null">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonLengthValid,2XXapplication-jsonNotEmpty,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonLengthValid,2XXApplication-jsonNotEmpty,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -258,7 +258,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true" name="2XX.Headers.x-standard-header.Type=&apos;Not string&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonLengthValid,2XXapplication-jsonNotEmpty,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonLengthValid,2XXApplication-jsonNotEmpty,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -289,7 +289,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true" name="2XX.Headers.x-extra-header.Type=null">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonLengthValid,2XXapplication-jsonNotEmpty,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonLengthValid,2XXApplication-jsonNotEmpty,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -320,7 +320,7 @@
       </Input>
     </TestCase>
     <TestCase id="10" failure="true" name="2XX.Headers.x-extra-header.Type=&apos;Not object&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonLengthValid,2XXapplication-jsonNotEmpty,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonLengthValid,2XXApplication-jsonNotEmpty,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -411,7 +411,7 @@
       </Input>
     </TestCase>
     <TestCase id="13" failure="true" name="2XX.Content.application-json.Type=null">
-      <Has name="properties" value="2XXapplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -442,7 +442,7 @@
       </Input>
     </TestCase>
     <TestCase id="14" failure="true" name="2XX.Content.application-json.Type=&apos;Not string&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -473,7 +473,7 @@
       </Input>
     </TestCase>
     <TestCase id="15" failure="true" name="2XX.Content.application-json.Value.Length=&apos;15&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -504,7 +504,7 @@
       </Input>
     </TestCase>
     <TestCase id="16" failure="true" name="2XX.Content.application-json.Value.Length=&apos;256&apos;">
-      <Has name="properties" value="2XXapplication-json,2XXapplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
+      <Has name="properties" value="2XXApplication-json,2XXApplication-jsonValue,2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -535,7 +535,7 @@
       </Input>
     </TestCase>
     <TestCase id="17" failure="true" name="2XX.Content.text-javascript.Type=&apos;Not string&apos;">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,2XXtext-javascript,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,2XXText-javascript,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -566,7 +566,7 @@
       </Input>
     </TestCase>
     <TestCase id="18" failure="true" name="2XX.Content.text-javascript.Value.Length=&apos;17&apos;">
-      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,2XXtext-javascript,2XXtext-javascriptValue,status2XX"/>
+      <Has name="properties" value="2XXContent,2XXHeaderX-extra-header,2XXHeaderX-extra-headerValue,2XXHeaderX-standard-header,2XXHeaderX-standard-headerLengthValid,2XXHeaderX-standard-headerValue,2XXText-javascript,2XXText-javascriptValue,status2XX"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>

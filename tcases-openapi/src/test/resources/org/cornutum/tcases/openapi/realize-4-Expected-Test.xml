@@ -12,7 +12,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,text-plain,text-plainLengthValid,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainLengthValid,bodyText-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -28,7 +28,7 @@
     <TestCase id="1" name="Body.text-plain.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,text-plain"/>
+      <Has name="properties" value="bodyContent,bodyText-plain"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -44,7 +44,7 @@
     <TestCase id="2" name="Body.text-plain.Value.Length=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,text-plain,text-plainLengthValid,text-plainNotEmpty,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainLengthValid,bodyText-plainNotEmpty,bodyText-plainValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -73,7 +73,7 @@
     <TestCase id="4" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -89,7 +89,7 @@
     <TestCase id="5" failure="true" name="Body.text-plain.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,text-plain"/>
+      <Has name="properties" value="bodyContent,bodyText-plain"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>

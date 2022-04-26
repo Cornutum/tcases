@@ -9,41 +9,41 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="multipart-form-data" property="multipart-form-data">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="multipart-form-data" property="bodyMultipart-form-data">
             <Has name="mediaType" value="multipart/form-data"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;multipart/form-data&apos;"/>
           </Value>
         </Var>
-        <VarSet name="multipart-form-data" when="multipart-form-data">
+        <VarSet name="multipart-form-data" when="bodyMultipart-form-data">
           <Var name="Type">
-            <Value name="object" property="multipart-form-dataValue"/>
+            <Value name="object" property="bodyMultipart-form-dataValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="multipart-form-dataValue">
+          <VarSet name="Value" when="bodyMultipart-form-dataValue">
             <Var name="Property-Count">
-              <Value name="0" once="true" whenNot="multipart-form-dataProperties"/>
-              <Value name="&gt; 0" when="multipart-form-dataProperties"/>
+              <Value name="0" once="true" whenNot="bodyMultipart-form-dataProperties"/>
+              <Value name="&gt; 0" when="bodyMultipart-form-dataProperties"/>
             </Var>
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
                   <Has name="propertyName" value="excluded?"/>
-                  <Value name="Yes" property="multipart-form-dataExcluded, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataExcluded, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataExcluded">
-                  <Value name="boolean" property="multipart-form-dataExcludedValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataExcluded">
+                  <Value name="boolean" property="bodyMultipart-form-dataExcludedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="multipart-form-dataExcludedValue">
+                <Var name="Value" when="bodyMultipart-form-dataExcludedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -51,15 +51,15 @@
               <VarSet name="elevation">
                 <Var name="Defined">
                   <Has name="propertyName" value="elevation"/>
-                  <Value name="Yes" property="multipart-form-dataElevation, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataElevation, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataElevation">
-                  <Value name="number" property="multipart-form-dataElevationValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataElevation">
+                  <Value name="number" property="bodyMultipart-form-dataElevationValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataElevationValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataElevationValue">
                   <Var name="Is">
                     <Value name="&lt; 0"/>
                     <Value name="0"/>
@@ -70,28 +70,28 @@
               <VarSet name="latlong">
                 <Var name="Defined">
                   <Has name="propertyName" value="lat/long"/>
-                  <Value name="Yes" property="multipart-form-dataLatlong, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataLatlong, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataLatlong">
-                  <Value name="array" property="multipart-form-dataLatlongValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataLatlong">
+                  <Value name="array" property="bodyMultipart-form-dataLatlongValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not array" failure="true"/>
                 </Var>
-                <VarSet name="Items" when="multipart-form-dataLatlongValue">
+                <VarSet name="Items" when="bodyMultipart-form-dataLatlongValue">
                   <Var name="Size">
                     <Value name="1" failure="true"/>
-                    <Value name="2" property="multipart-form-dataLatlongItemsMany"/>
+                    <Value name="2" property="bodyMultipart-form-dataLatlongItemsMany"/>
                     <Value name="3" failure="true"/>
                   </Var>
                   <VarSet name="Contains">
                     <Var name="Type">
                       <Has name="itemType" value="number"/>
-                      <Value name="number" property="multipart-form-dataLatlongItemsValue"/>
+                      <Value name="number" property="bodyMultipart-form-dataLatlongItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not number" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="multipart-form-dataLatlongItemsValue">
+                    <VarSet name="Value" when="bodyMultipart-form-dataLatlongItemsValue">
                       <Var name="Is">
                         <Value name="&lt; 0"/>
                         <Value name="0"/>
@@ -99,7 +99,7 @@
                       </Var>
                     </VarSet>
                   </VarSet>
-                  <Var name="Unique" when="multipart-form-dataLatlongItemsMany">
+                  <Var name="Unique" when="bodyMultipart-form-dataLatlongItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
@@ -108,50 +108,50 @@
               <VarSet name="address">
                 <Var name="Defined">
                   <Has name="propertyName" value="address"/>
-                  <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataAddress, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataAddress">
-                  <Value name="object" property="multipart-form-dataAddressValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataAddress">
+                  <Value name="object" property="bodyMultipart-form-dataAddressValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataAddressValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataAddressValue">
                   <Var name="Property-Count">
-                    <Value name="0" once="true" whenNot="multipart-form-dataAddressProperties"/>
-                    <Value name="&gt; 0" when="multipart-form-dataAddressProperties"/>
+                    <Value name="0" once="true" whenNot="bodyMultipart-form-dataAddressProperties"/>
+                    <Value name="&gt; 0" when="bodyMultipart-form-dataAddressProperties"/>
                   </Var>
                   <VarSet name="Properties">
                     <VarSet name="city">
                       <Var name="Defined">
                         <Has name="propertyName" value="city"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCity, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCity, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCity">
-                        <Value name="string" property="multipart-form-dataAddressCityValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCity">
+                        <Value name="string" property="bodyMultipart-form-dataAddressCityValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCityValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCityValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="multipart-form-dataAddressCityLengthValid, multipart-form-dataAddressCityNotEmpty"/>
-                          <Value name="0" property="multipart-form-dataAddressCityLengthValid"/>
+                          <Value name="&gt; 0" property="bodyMultipart-form-dataAddressCityLengthValid, bodyMultipart-form-dataAddressCityNotEmpty"/>
+                          <Value name="0" property="bodyMultipart-form-dataAddressCityLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="code">
                       <Var name="Defined">
                         <Has name="propertyName" value="code"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCode, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCode, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCode">
-                        <Value name="integer" property="multipart-form-dataAddressCodeValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCode">
+                        <Value name="integer" property="bodyMultipart-form-dataAddressCodeValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCodeValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCodeValue">
                         <Var name="Is">
                           <Value name="0" failure="true"/>
                           <Value name="1"/>
@@ -160,7 +160,7 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="multipart-form-dataAddressProperties"/>
+                      <Value name="Yes" property="bodyMultipart-form-dataAddressProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
@@ -170,23 +170,23 @@
                 <Var name="Defined">
                   <Has name="contentType" value="text/plain"/>
                   <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="multipart-form-dataCountry, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataCountry">
-                  <Value name="string" property="multipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataCountry">
+                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
                   <Var name="Length">
-                    <Value name="&gt; 0" property="multipart-form-dataCountryLengthValid, multipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="multipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
               <Var name="Additional">
-                <Value name="Yes" property="multipart-form-dataProperties"/>
+                <Value name="Yes" property="bodyMultipart-form-dataProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
@@ -201,41 +201,41 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="multipart-form-data" property="multipart-form-data">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="multipart-form-data" property="bodyMultipart-form-data">
             <Has name="mediaType" value="multipart/form-data"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;multipart/form-data&apos;"/>
           </Value>
         </Var>
-        <VarSet name="multipart-form-data" when="multipart-form-data">
+        <VarSet name="multipart-form-data" when="bodyMultipart-form-data">
           <Var name="Type">
-            <Value name="object" property="multipart-form-dataValue"/>
+            <Value name="object" property="bodyMultipart-form-dataValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="multipart-form-dataValue">
+          <VarSet name="Value" when="bodyMultipart-form-dataValue">
             <Var name="Property-Count">
-              <Value name="0" once="true" whenNot="multipart-form-dataProperties"/>
-              <Value name="&gt; 0" when="multipart-form-dataProperties"/>
+              <Value name="0" once="true" whenNot="bodyMultipart-form-dataProperties"/>
+              <Value name="&gt; 0" when="bodyMultipart-form-dataProperties"/>
             </Var>
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
                   <Has name="propertyName" value="excluded?"/>
-                  <Value name="Yes" property="multipart-form-dataExcluded, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataExcluded, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataExcluded">
-                  <Value name="boolean" property="multipart-form-dataExcludedValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataExcluded">
+                  <Value name="boolean" property="bodyMultipart-form-dataExcludedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="multipart-form-dataExcludedValue">
+                <Var name="Value" when="bodyMultipart-form-dataExcludedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -244,15 +244,15 @@
                 <Var name="Defined">
                   <Has name="contentType" value="application/json"/>
                   <Has name="propertyName" value="elevation"/>
-                  <Value name="Yes" property="multipart-form-dataElevation, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataElevation, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataElevation">
-                  <Value name="number" property="multipart-form-dataElevationValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataElevation">
+                  <Value name="number" property="bodyMultipart-form-dataElevationValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataElevationValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataElevationValue">
                   <Var name="Is">
                     <Value name="&lt; 0"/>
                     <Value name="0"/>
@@ -263,28 +263,28 @@
               <VarSet name="latlong">
                 <Var name="Defined">
                   <Has name="propertyName" value="lat/long"/>
-                  <Value name="Yes" property="multipart-form-dataLatlong, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataLatlong, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataLatlong">
-                  <Value name="array" property="multipart-form-dataLatlongValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataLatlong">
+                  <Value name="array" property="bodyMultipart-form-dataLatlongValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not array" failure="true"/>
                 </Var>
-                <VarSet name="Items" when="multipart-form-dataLatlongValue">
+                <VarSet name="Items" when="bodyMultipart-form-dataLatlongValue">
                   <Var name="Size">
                     <Value name="1" failure="true"/>
-                    <Value name="2" property="multipart-form-dataLatlongItemsMany"/>
+                    <Value name="2" property="bodyMultipart-form-dataLatlongItemsMany"/>
                     <Value name="3" failure="true"/>
                   </Var>
                   <VarSet name="Contains">
                     <Var name="Type">
                       <Has name="itemType" value="number"/>
-                      <Value name="number" property="multipart-form-dataLatlongItemsValue"/>
+                      <Value name="number" property="bodyMultipart-form-dataLatlongItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not number" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="multipart-form-dataLatlongItemsValue">
+                    <VarSet name="Value" when="bodyMultipart-form-dataLatlongItemsValue">
                       <Var name="Is">
                         <Value name="&lt; 0"/>
                         <Value name="0"/>
@@ -292,7 +292,7 @@
                       </Var>
                     </VarSet>
                   </VarSet>
-                  <Var name="Unique" when="multipart-form-dataLatlongItemsMany">
+                  <Var name="Unique" when="bodyMultipart-form-dataLatlongItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
@@ -302,50 +302,50 @@
                 <Var name="Defined">
                   <Has name="contentType" value="text/plain"/>
                   <Has name="propertyName" value="address"/>
-                  <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataAddress, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataAddress">
-                  <Value name="object" property="multipart-form-dataAddressValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataAddress">
+                  <Value name="object" property="bodyMultipart-form-dataAddressValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataAddressValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataAddressValue">
                   <Var name="Property-Count">
-                    <Value name="0" once="true" whenNot="multipart-form-dataAddressProperties"/>
-                    <Value name="&gt; 0" when="multipart-form-dataAddressProperties"/>
+                    <Value name="0" once="true" whenNot="bodyMultipart-form-dataAddressProperties"/>
+                    <Value name="&gt; 0" when="bodyMultipart-form-dataAddressProperties"/>
                   </Var>
                   <VarSet name="Properties">
                     <VarSet name="city">
                       <Var name="Defined">
                         <Has name="propertyName" value="city"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCity, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCity, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCity">
-                        <Value name="string" property="multipart-form-dataAddressCityValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCity">
+                        <Value name="string" property="bodyMultipart-form-dataAddressCityValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCityValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCityValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="multipart-form-dataAddressCityLengthValid, multipart-form-dataAddressCityNotEmpty"/>
-                          <Value name="0" property="multipart-form-dataAddressCityLengthValid"/>
+                          <Value name="&gt; 0" property="bodyMultipart-form-dataAddressCityLengthValid, bodyMultipart-form-dataAddressCityNotEmpty"/>
+                          <Value name="0" property="bodyMultipart-form-dataAddressCityLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="code">
                       <Var name="Defined">
                         <Has name="propertyName" value="code"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCode, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCode, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCode">
-                        <Value name="integer" property="multipart-form-dataAddressCodeValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCode">
+                        <Value name="integer" property="bodyMultipart-form-dataAddressCodeValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCodeValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCodeValue">
                         <Var name="Is">
                           <Value name="0" failure="true"/>
                           <Value name="1"/>
@@ -354,7 +354,7 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="multipart-form-dataAddressProperties"/>
+                      <Value name="Yes" property="bodyMultipart-form-dataAddressProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
@@ -363,23 +363,23 @@
               <VarSet name="country">
                 <Var name="Defined">
                   <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="multipart-form-dataCountry, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataCountry">
-                  <Value name="string" property="multipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataCountry">
+                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
                   <Var name="Length">
-                    <Value name="&gt; 0" property="multipart-form-dataCountryLengthValid, multipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="multipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
               <Var name="Additional">
-                <Value name="Yes" property="multipart-form-dataProperties"/>
+                <Value name="Yes" property="bodyMultipart-form-dataProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
@@ -394,42 +394,42 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="multipart-form-data" property="multipart-form-data">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="multipart-form-data" property="bodyMultipart-form-data">
             <Has name="mediaType" value="multipart/form-data"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;multipart/form-data&apos;"/>
           </Value>
         </Var>
-        <VarSet name="multipart-form-data" when="multipart-form-data">
+        <VarSet name="multipart-form-data" when="bodyMultipart-form-data">
           <Var name="Type">
-            <Value name="object" property="multipart-form-dataValue"/>
+            <Value name="object" property="bodyMultipart-form-dataValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="multipart-form-dataValue">
+          <VarSet name="Value" when="bodyMultipart-form-dataValue">
             <Var name="Property-Count">
-              <Value name="0" once="true" whenNot="multipart-form-dataProperties"/>
-              <Value name="&gt; 0" when="multipart-form-dataProperties"/>
+              <Value name="0" once="true" whenNot="bodyMultipart-form-dataProperties"/>
+              <Value name="&gt; 0" when="bodyMultipart-form-dataProperties"/>
             </Var>
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
                   <Has name="contentType" value="text/plain"/>
                   <Has name="propertyName" value="excluded?"/>
-                  <Value name="Yes" property="multipart-form-dataExcluded, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataExcluded, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataExcluded">
-                  <Value name="boolean" property="multipart-form-dataExcludedValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataExcluded">
+                  <Value name="boolean" property="bodyMultipart-form-dataExcludedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="multipart-form-dataExcludedValue">
+                <Var name="Value" when="bodyMultipart-form-dataExcludedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -437,15 +437,15 @@
               <VarSet name="elevation">
                 <Var name="Defined">
                   <Has name="propertyName" value="elevation"/>
-                  <Value name="Yes" property="multipart-form-dataElevation, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataElevation, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataElevation">
-                  <Value name="number" property="multipart-form-dataElevationValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataElevation">
+                  <Value name="number" property="bodyMultipart-form-dataElevationValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataElevationValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataElevationValue">
                   <Var name="Is">
                     <Value name="&lt; 0"/>
                     <Value name="0"/>
@@ -457,28 +457,28 @@
                 <Var name="Defined">
                   <Has name="contentType" value="application/json"/>
                   <Has name="propertyName" value="lat/long"/>
-                  <Value name="Yes" property="multipart-form-dataLatlong, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataLatlong, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataLatlong">
-                  <Value name="array" property="multipart-form-dataLatlongValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataLatlong">
+                  <Value name="array" property="bodyMultipart-form-dataLatlongValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not array" failure="true"/>
                 </Var>
-                <VarSet name="Items" when="multipart-form-dataLatlongValue">
+                <VarSet name="Items" when="bodyMultipart-form-dataLatlongValue">
                   <Var name="Size">
                     <Value name="1" failure="true"/>
-                    <Value name="2" property="multipart-form-dataLatlongItemsMany"/>
+                    <Value name="2" property="bodyMultipart-form-dataLatlongItemsMany"/>
                     <Value name="3" failure="true"/>
                   </Var>
                   <VarSet name="Contains">
                     <Var name="Type">
                       <Has name="itemType" value="number"/>
-                      <Value name="number" property="multipart-form-dataLatlongItemsValue"/>
+                      <Value name="number" property="bodyMultipart-form-dataLatlongItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not number" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="multipart-form-dataLatlongItemsValue">
+                    <VarSet name="Value" when="bodyMultipart-form-dataLatlongItemsValue">
                       <Var name="Is">
                         <Value name="&lt; 0"/>
                         <Value name="0"/>
@@ -486,7 +486,7 @@
                       </Var>
                     </VarSet>
                   </VarSet>
-                  <Var name="Unique" when="multipart-form-dataLatlongItemsMany">
+                  <Var name="Unique" when="bodyMultipart-form-dataLatlongItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
@@ -495,50 +495,50 @@
               <VarSet name="address">
                 <Var name="Defined">
                   <Has name="propertyName" value="address"/>
-                  <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataAddress, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataAddress">
-                  <Value name="object" property="multipart-form-dataAddressValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataAddress">
+                  <Value name="object" property="bodyMultipart-form-dataAddressValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataAddressValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataAddressValue">
                   <Var name="Property-Count">
-                    <Value name="0" once="true" whenNot="multipart-form-dataAddressProperties"/>
-                    <Value name="&gt; 0" when="multipart-form-dataAddressProperties"/>
+                    <Value name="0" once="true" whenNot="bodyMultipart-form-dataAddressProperties"/>
+                    <Value name="&gt; 0" when="bodyMultipart-form-dataAddressProperties"/>
                   </Var>
                   <VarSet name="Properties">
                     <VarSet name="city">
                       <Var name="Defined">
                         <Has name="propertyName" value="city"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCity, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCity, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCity">
-                        <Value name="string" property="multipart-form-dataAddressCityValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCity">
+                        <Value name="string" property="bodyMultipart-form-dataAddressCityValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCityValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCityValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="multipart-form-dataAddressCityLengthValid, multipart-form-dataAddressCityNotEmpty"/>
-                          <Value name="0" property="multipart-form-dataAddressCityLengthValid"/>
+                          <Value name="&gt; 0" property="bodyMultipart-form-dataAddressCityLengthValid, bodyMultipart-form-dataAddressCityNotEmpty"/>
+                          <Value name="0" property="bodyMultipart-form-dataAddressCityLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="code">
                       <Var name="Defined">
                         <Has name="propertyName" value="code"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCode, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCode, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCode">
-                        <Value name="integer" property="multipart-form-dataAddressCodeValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCode">
+                        <Value name="integer" property="bodyMultipart-form-dataAddressCodeValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCodeValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCodeValue">
                         <Var name="Is">
                           <Value name="0" failure="true"/>
                           <Value name="1"/>
@@ -547,7 +547,7 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="multipart-form-dataAddressProperties"/>
+                      <Value name="Yes" property="bodyMultipart-form-dataAddressProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
@@ -557,23 +557,23 @@
                 <Var name="Defined">
                   <Has name="contentType" value="application/json"/>
                   <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="multipart-form-dataCountry, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataCountry">
-                  <Value name="string" property="multipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataCountry">
+                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
                   <Var name="Length">
-                    <Value name="&gt; 0" property="multipart-form-dataCountryLengthValid, multipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="multipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
               <Var name="Additional">
-                <Value name="Yes" property="multipart-form-dataProperties"/>
+                <Value name="Yes" property="bodyMultipart-form-dataProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
@@ -588,41 +588,41 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="multipart-form-data" property="multipart-form-data">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="multipart-form-data" property="bodyMultipart-form-data">
             <Has name="mediaType" value="multipart/form-data"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;multipart/form-data&apos;"/>
           </Value>
         </Var>
-        <VarSet name="multipart-form-data" when="multipart-form-data">
+        <VarSet name="multipart-form-data" when="bodyMultipart-form-data">
           <Var name="Type">
-            <Value name="object" property="multipart-form-dataValue"/>
+            <Value name="object" property="bodyMultipart-form-dataValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="multipart-form-dataValue">
+          <VarSet name="Value" when="bodyMultipart-form-dataValue">
             <Var name="Property-Count">
-              <Value name="0" once="true" whenNot="multipart-form-dataProperties"/>
-              <Value name="&gt; 0" when="multipart-form-dataProperties"/>
+              <Value name="0" once="true" whenNot="bodyMultipart-form-dataProperties"/>
+              <Value name="&gt; 0" when="bodyMultipart-form-dataProperties"/>
             </Var>
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
                   <Has name="propertyName" value="excluded?"/>
-                  <Value name="Yes" property="multipart-form-dataExcluded, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataExcluded, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataExcluded">
-                  <Value name="boolean" property="multipart-form-dataExcludedValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataExcluded">
+                  <Value name="boolean" property="bodyMultipart-form-dataExcludedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="multipart-form-dataExcludedValue">
+                <Var name="Value" when="bodyMultipart-form-dataExcludedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -631,15 +631,15 @@
                 <Var name="Defined">
                   <Has name="contentType" value="text/plain"/>
                   <Has name="propertyName" value="elevation"/>
-                  <Value name="Yes" property="multipart-form-dataElevation, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataElevation, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataElevation">
-                  <Value name="number" property="multipart-form-dataElevationValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataElevation">
+                  <Value name="number" property="bodyMultipart-form-dataElevationValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataElevationValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataElevationValue">
                   <Var name="Is">
                     <Value name="&lt; 0"/>
                     <Value name="0"/>
@@ -650,28 +650,28 @@
               <VarSet name="latlong">
                 <Var name="Defined">
                   <Has name="propertyName" value="lat/long"/>
-                  <Value name="Yes" property="multipart-form-dataLatlong, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataLatlong, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataLatlong">
-                  <Value name="array" property="multipart-form-dataLatlongValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataLatlong">
+                  <Value name="array" property="bodyMultipart-form-dataLatlongValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not array" failure="true"/>
                 </Var>
-                <VarSet name="Items" when="multipart-form-dataLatlongValue">
+                <VarSet name="Items" when="bodyMultipart-form-dataLatlongValue">
                   <Var name="Size">
                     <Value name="1" failure="true"/>
-                    <Value name="2" property="multipart-form-dataLatlongItemsMany"/>
+                    <Value name="2" property="bodyMultipart-form-dataLatlongItemsMany"/>
                     <Value name="3" failure="true"/>
                   </Var>
                   <VarSet name="Contains">
                     <Var name="Type">
                       <Has name="itemType" value="number"/>
-                      <Value name="number" property="multipart-form-dataLatlongItemsValue"/>
+                      <Value name="number" property="bodyMultipart-form-dataLatlongItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not number" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="multipart-form-dataLatlongItemsValue">
+                    <VarSet name="Value" when="bodyMultipart-form-dataLatlongItemsValue">
                       <Var name="Is">
                         <Value name="&lt; 0"/>
                         <Value name="0"/>
@@ -679,7 +679,7 @@
                       </Var>
                     </VarSet>
                   </VarSet>
-                  <Var name="Unique" when="multipart-form-dataLatlongItemsMany">
+                  <Var name="Unique" when="bodyMultipart-form-dataLatlongItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
@@ -689,50 +689,50 @@
                 <Var name="Defined">
                   <Has name="contentType" value="application/x-www-urlencoded"/>
                   <Has name="propertyName" value="address"/>
-                  <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataAddress, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataAddress">
-                  <Value name="object" property="multipart-form-dataAddressValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataAddress">
+                  <Value name="object" property="bodyMultipart-form-dataAddressValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataAddressValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataAddressValue">
                   <Var name="Property-Count">
-                    <Value name="0" once="true" whenNot="multipart-form-dataAddressProperties"/>
-                    <Value name="&gt; 0" when="multipart-form-dataAddressProperties"/>
+                    <Value name="0" once="true" whenNot="bodyMultipart-form-dataAddressProperties"/>
+                    <Value name="&gt; 0" when="bodyMultipart-form-dataAddressProperties"/>
                   </Var>
                   <VarSet name="Properties">
                     <VarSet name="city">
                       <Var name="Defined">
                         <Has name="propertyName" value="city"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCity, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCity, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCity">
-                        <Value name="string" property="multipart-form-dataAddressCityValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCity">
+                        <Value name="string" property="bodyMultipart-form-dataAddressCityValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCityValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCityValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="multipart-form-dataAddressCityLengthValid, multipart-form-dataAddressCityNotEmpty"/>
-                          <Value name="0" property="multipart-form-dataAddressCityLengthValid"/>
+                          <Value name="&gt; 0" property="bodyMultipart-form-dataAddressCityLengthValid, bodyMultipart-form-dataAddressCityNotEmpty"/>
+                          <Value name="0" property="bodyMultipart-form-dataAddressCityLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="code">
                       <Var name="Defined">
                         <Has name="propertyName" value="code"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCode, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCode, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCode">
-                        <Value name="integer" property="multipart-form-dataAddressCodeValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCode">
+                        <Value name="integer" property="bodyMultipart-form-dataAddressCodeValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCodeValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCodeValue">
                         <Var name="Is">
                           <Value name="0" failure="true"/>
                           <Value name="1"/>
@@ -741,7 +741,7 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="multipart-form-dataAddressProperties"/>
+                      <Value name="Yes" property="bodyMultipart-form-dataAddressProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
@@ -750,23 +750,23 @@
               <VarSet name="country">
                 <Var name="Defined">
                   <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="multipart-form-dataCountry, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataCountry">
-                  <Value name="string" property="multipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataCountry">
+                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
                   <Var name="Length">
-                    <Value name="&gt; 0" property="multipart-form-dataCountryLengthValid, multipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="multipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
               <Var name="Additional">
-                <Value name="Yes" property="multipart-form-dataProperties"/>
+                <Value name="Yes" property="bodyMultipart-form-dataProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
@@ -781,42 +781,42 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="multipart-form-data" property="multipart-form-data">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="multipart-form-data" property="bodyMultipart-form-data">
             <Has name="mediaType" value="multipart/form-data"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;multipart/form-data&apos;"/>
           </Value>
         </Var>
-        <VarSet name="multipart-form-data" when="multipart-form-data">
+        <VarSet name="multipart-form-data" when="bodyMultipart-form-data">
           <Var name="Type">
-            <Value name="object" property="multipart-form-dataValue"/>
+            <Value name="object" property="bodyMultipart-form-dataValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="multipart-form-dataValue">
+          <VarSet name="Value" when="bodyMultipart-form-dataValue">
             <Var name="Property-Count">
-              <Value name="0" once="true" whenNot="multipart-form-dataProperties"/>
-              <Value name="&gt; 0" when="multipart-form-dataProperties"/>
+              <Value name="0" once="true" whenNot="bodyMultipart-form-dataProperties"/>
+              <Value name="&gt; 0" when="bodyMultipart-form-dataProperties"/>
             </Var>
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
                   <Has name="contentType" value="application/json"/>
                   <Has name="propertyName" value="excluded?"/>
-                  <Value name="Yes" property="multipart-form-dataExcluded, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataExcluded, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataExcluded">
-                  <Value name="boolean" property="multipart-form-dataExcludedValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataExcluded">
+                  <Value name="boolean" property="bodyMultipart-form-dataExcludedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="multipart-form-dataExcludedValue">
+                <Var name="Value" when="bodyMultipart-form-dataExcludedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -824,15 +824,15 @@
               <VarSet name="elevation">
                 <Var name="Defined">
                   <Has name="propertyName" value="elevation"/>
-                  <Value name="Yes" property="multipart-form-dataElevation, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataElevation, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataElevation">
-                  <Value name="number" property="multipart-form-dataElevationValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataElevation">
+                  <Value name="number" property="bodyMultipart-form-dataElevationValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataElevationValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataElevationValue">
                   <Var name="Is">
                     <Value name="&lt; 0"/>
                     <Value name="0"/>
@@ -844,28 +844,28 @@
                 <Var name="Defined">
                   <Has name="contentType" value="text/plain"/>
                   <Has name="propertyName" value="lat/long"/>
-                  <Value name="Yes" property="multipart-form-dataLatlong, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataLatlong, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataLatlong">
-                  <Value name="array" property="multipart-form-dataLatlongValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataLatlong">
+                  <Value name="array" property="bodyMultipart-form-dataLatlongValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not array" failure="true"/>
                 </Var>
-                <VarSet name="Items" when="multipart-form-dataLatlongValue">
+                <VarSet name="Items" when="bodyMultipart-form-dataLatlongValue">
                   <Var name="Size">
                     <Value name="1" failure="true"/>
-                    <Value name="2" property="multipart-form-dataLatlongItemsMany"/>
+                    <Value name="2" property="bodyMultipart-form-dataLatlongItemsMany"/>
                     <Value name="3" failure="true"/>
                   </Var>
                   <VarSet name="Contains">
                     <Var name="Type">
                       <Has name="itemType" value="number"/>
-                      <Value name="number" property="multipart-form-dataLatlongItemsValue"/>
+                      <Value name="number" property="bodyMultipart-form-dataLatlongItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not number" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="multipart-form-dataLatlongItemsValue">
+                    <VarSet name="Value" when="bodyMultipart-form-dataLatlongItemsValue">
                       <Var name="Is">
                         <Value name="&lt; 0"/>
                         <Value name="0"/>
@@ -873,7 +873,7 @@
                       </Var>
                     </VarSet>
                   </VarSet>
-                  <Var name="Unique" when="multipart-form-dataLatlongItemsMany">
+                  <Var name="Unique" when="bodyMultipart-form-dataLatlongItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
@@ -882,50 +882,50 @@
               <VarSet name="address">
                 <Var name="Defined">
                   <Has name="propertyName" value="address"/>
-                  <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataAddress, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataAddress">
-                  <Value name="object" property="multipart-form-dataAddressValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataAddress">
+                  <Value name="object" property="bodyMultipart-form-dataAddressValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataAddressValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataAddressValue">
                   <Var name="Property-Count">
-                    <Value name="0" once="true" whenNot="multipart-form-dataAddressProperties"/>
-                    <Value name="&gt; 0" when="multipart-form-dataAddressProperties"/>
+                    <Value name="0" once="true" whenNot="bodyMultipart-form-dataAddressProperties"/>
+                    <Value name="&gt; 0" when="bodyMultipart-form-dataAddressProperties"/>
                   </Var>
                   <VarSet name="Properties">
                     <VarSet name="city">
                       <Var name="Defined">
                         <Has name="propertyName" value="city"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCity, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCity, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCity">
-                        <Value name="string" property="multipart-form-dataAddressCityValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCity">
+                        <Value name="string" property="bodyMultipart-form-dataAddressCityValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCityValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCityValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="multipart-form-dataAddressCityLengthValid, multipart-form-dataAddressCityNotEmpty"/>
-                          <Value name="0" property="multipart-form-dataAddressCityLengthValid"/>
+                          <Value name="&gt; 0" property="bodyMultipart-form-dataAddressCityLengthValid, bodyMultipart-form-dataAddressCityNotEmpty"/>
+                          <Value name="0" property="bodyMultipart-form-dataAddressCityLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="code">
                       <Var name="Defined">
                         <Has name="propertyName" value="code"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCode, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCode, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCode">
-                        <Value name="integer" property="multipart-form-dataAddressCodeValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCode">
+                        <Value name="integer" property="bodyMultipart-form-dataAddressCodeValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCodeValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCodeValue">
                         <Var name="Is">
                           <Value name="0" failure="true"/>
                           <Value name="1"/>
@@ -934,7 +934,7 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="multipart-form-dataAddressProperties"/>
+                      <Value name="Yes" property="bodyMultipart-form-dataAddressProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
@@ -943,23 +943,23 @@
               <VarSet name="country">
                 <Var name="Defined">
                   <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="multipart-form-dataCountry, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataCountry">
-                  <Value name="string" property="multipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataCountry">
+                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
                   <Var name="Length">
-                    <Value name="&gt; 0" property="multipart-form-dataCountryLengthValid, multipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="multipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
               <Var name="Additional">
-                <Value name="Yes" property="multipart-form-dataProperties"/>
+                <Value name="Yes" property="bodyMultipart-form-dataProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>
@@ -974,41 +974,41 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="multipart-form-data" property="multipart-form-data">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="multipart-form-data" property="bodyMultipart-form-data">
             <Has name="mediaType" value="multipart/form-data"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;multipart/form-data&apos;"/>
           </Value>
         </Var>
-        <VarSet name="multipart-form-data" when="multipart-form-data">
+        <VarSet name="multipart-form-data" when="bodyMultipart-form-data">
           <Var name="Type">
-            <Value name="object" property="multipart-form-dataValue"/>
+            <Value name="object" property="bodyMultipart-form-dataValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="multipart-form-dataValue">
+          <VarSet name="Value" when="bodyMultipart-form-dataValue">
             <Var name="Property-Count">
-              <Value name="0" once="true" whenNot="multipart-form-dataProperties"/>
-              <Value name="&gt; 0" when="multipart-form-dataProperties"/>
+              <Value name="0" once="true" whenNot="bodyMultipart-form-dataProperties"/>
+              <Value name="&gt; 0" when="bodyMultipart-form-dataProperties"/>
             </Var>
             <VarSet name="Properties">
               <VarSet name="excluded">
                 <Var name="Defined">
                   <Has name="propertyName" value="excluded?"/>
-                  <Value name="Yes" property="multipart-form-dataExcluded, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataExcluded, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataExcluded">
-                  <Value name="boolean" property="multipart-form-dataExcludedValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataExcluded">
+                  <Value name="boolean" property="bodyMultipart-form-dataExcludedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="multipart-form-dataExcludedValue">
+                <Var name="Value" when="bodyMultipart-form-dataExcludedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -1016,15 +1016,15 @@
               <VarSet name="elevation">
                 <Var name="Defined">
                   <Has name="propertyName" value="elevation"/>
-                  <Value name="Yes" property="multipart-form-dataElevation, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataElevation, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataElevation">
-                  <Value name="number" property="multipart-form-dataElevationValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataElevation">
+                  <Value name="number" property="bodyMultipart-form-dataElevationValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not number" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataElevationValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataElevationValue">
                   <Var name="Is">
                     <Value name="&lt; 0"/>
                     <Value name="0"/>
@@ -1035,28 +1035,28 @@
               <VarSet name="latlong">
                 <Var name="Defined">
                   <Has name="propertyName" value="lat/long"/>
-                  <Value name="Yes" property="multipart-form-dataLatlong, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataLatlong, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataLatlong">
-                  <Value name="array" property="multipart-form-dataLatlongValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataLatlong">
+                  <Value name="array" property="bodyMultipart-form-dataLatlongValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not array" failure="true"/>
                 </Var>
-                <VarSet name="Items" when="multipart-form-dataLatlongValue">
+                <VarSet name="Items" when="bodyMultipart-form-dataLatlongValue">
                   <Var name="Size">
                     <Value name="1" failure="true"/>
-                    <Value name="2" property="multipart-form-dataLatlongItemsMany"/>
+                    <Value name="2" property="bodyMultipart-form-dataLatlongItemsMany"/>
                     <Value name="3" failure="true"/>
                   </Var>
                   <VarSet name="Contains">
                     <Var name="Type">
                       <Has name="itemType" value="number"/>
-                      <Value name="number" property="multipart-form-dataLatlongItemsValue"/>
+                      <Value name="number" property="bodyMultipart-form-dataLatlongItemsValue"/>
                       <Value name="null" failure="true"/>
                       <Value name="Not number" failure="true"/>
                     </Var>
-                    <VarSet name="Value" when="multipart-form-dataLatlongItemsValue">
+                    <VarSet name="Value" when="bodyMultipart-form-dataLatlongItemsValue">
                       <Var name="Is">
                         <Value name="&lt; 0"/>
                         <Value name="0"/>
@@ -1064,7 +1064,7 @@
                       </Var>
                     </VarSet>
                   </VarSet>
-                  <Var name="Unique" when="multipart-form-dataLatlongItemsMany">
+                  <Var name="Unique" when="bodyMultipart-form-dataLatlongItemsMany">
                     <Value name="Yes"/>
                     <Value name="No"/>
                   </Var>
@@ -1074,50 +1074,50 @@
                 <Var name="Defined">
                   <Has name="contentType" value="application/json"/>
                   <Has name="propertyName" value="address"/>
-                  <Value name="Yes" property="multipart-form-dataAddress, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataAddress, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataAddress">
-                  <Value name="object" property="multipart-form-dataAddressValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataAddress">
+                  <Value name="object" property="bodyMultipart-form-dataAddressValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataAddressValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataAddressValue">
                   <Var name="Property-Count">
-                    <Value name="0" once="true" whenNot="multipart-form-dataAddressProperties"/>
-                    <Value name="&gt; 0" when="multipart-form-dataAddressProperties"/>
+                    <Value name="0" once="true" whenNot="bodyMultipart-form-dataAddressProperties"/>
+                    <Value name="&gt; 0" when="bodyMultipart-form-dataAddressProperties"/>
                   </Var>
                   <VarSet name="Properties">
                     <VarSet name="city">
                       <Var name="Defined">
                         <Has name="propertyName" value="city"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCity, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCity, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCity">
-                        <Value name="string" property="multipart-form-dataAddressCityValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCity">
+                        <Value name="string" property="bodyMultipart-form-dataAddressCityValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCityValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCityValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="multipart-form-dataAddressCityLengthValid, multipart-form-dataAddressCityNotEmpty"/>
-                          <Value name="0" property="multipart-form-dataAddressCityLengthValid"/>
+                          <Value name="&gt; 0" property="bodyMultipart-form-dataAddressCityLengthValid, bodyMultipart-form-dataAddressCityNotEmpty"/>
+                          <Value name="0" property="bodyMultipart-form-dataAddressCityLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="code">
                       <Var name="Defined">
                         <Has name="propertyName" value="code"/>
-                        <Value name="Yes" property="multipart-form-dataAddressCode, multipart-form-dataAddressProperties"/>
+                        <Value name="Yes" property="bodyMultipart-form-dataAddressCode, bodyMultipart-form-dataAddressProperties"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="multipart-form-dataAddressCode">
-                        <Value name="integer" property="multipart-form-dataAddressCodeValue"/>
+                      <Var name="Type" when="bodyMultipart-form-dataAddressCode">
+                        <Value name="integer" property="bodyMultipart-form-dataAddressCodeValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="multipart-form-dataAddressCodeValue">
+                      <VarSet name="Value" when="bodyMultipart-form-dataAddressCodeValue">
                         <Var name="Is">
                           <Value name="0" failure="true"/>
                           <Value name="1"/>
@@ -1126,7 +1126,7 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="multipart-form-dataAddressProperties"/>
+                      <Value name="Yes" property="bodyMultipart-form-dataAddressProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
@@ -1135,23 +1135,23 @@
               <VarSet name="country">
                 <Var name="Defined">
                   <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="multipart-form-dataCountry, multipart-form-dataProperties"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="multipart-form-dataCountry">
-                  <Value name="string" property="multipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataCountry">
+                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="multipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
                   <Var name="Length">
-                    <Value name="&gt; 0" property="multipart-form-dataCountryLengthValid, multipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="multipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>
               <Var name="Additional">
-                <Value name="Yes" property="multipart-form-dataProperties"/>
+                <Value name="Yes" property="bodyMultipart-form-dataProperties"/>
                 <Value name="No"/>
               </Var>
             </VarSet>

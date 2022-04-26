@@ -491,7 +491,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameNotEmpty,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagNotEmpty,application-jsonTagValue,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameNotEmpty,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagNotEmpty,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -517,7 +517,7 @@
     <TestCase id="1" name="Body.application-json.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameValue,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -543,7 +543,7 @@
     <TestCase id="2" name="Body.application-json.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameNotEmpty,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonTagLengthValid,application-jsonTagValue,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameNotEmpty,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonTagLengthValid,bodyApplication-jsonTagValue,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -592,7 +592,7 @@
     <TestCase id="4" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -618,7 +618,7 @@
     <TestCase id="5" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -644,7 +644,7 @@
     <TestCase id="6" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -670,7 +670,7 @@
     <TestCase id="7" failure="true" name="Body.application-json.Value.Properties.name.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -696,7 +696,7 @@
     <TestCase id="8" failure="true" name="Body.application-json.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -722,7 +722,7 @@
     <TestCase id="9" failure="true" name="Body.application-json.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -748,7 +748,7 @@
     <TestCase id="10" failure="true" name="Body.application-json.Value.Properties.tag.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
@@ -774,7 +774,7 @@
     <TestCase id="11" failure="true" name="Body.application-json.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/pets"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameValue,application-jsonProperties,application-jsonTag,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonTag,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="http://petstore.swagger.io/api"/>
       <Has name="title" value="Swagger Petstore"/>
       <Has name="version" value="1.0.0"/>
