@@ -251,12 +251,25 @@
                                     "contentType": "text/plain"
                                 },
                                 "address": {
-                                    "contentType": "application/x-www-urlencoded",
+                                    "contentType": "application/x-www-form-urlencoded",
                                     "headers": {
                                         "X-Ignored": {
+                                            "explode": true,
                                             "schema": {
-                                                "type": "string",
-                                                "enum": [ "Yes", "No" ]
+                                                "type": "object",
+                                                "properties": {
+                                                    "allowed": {
+                                                        "type": "string",
+                                                        "enum": [ "Yes", "No" ]
+                                                    },
+                                                    "langs": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "enum": [ "EN", "ES", "FR" ]
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }

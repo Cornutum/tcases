@@ -22,7 +22,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -333,11 +335,112 @@ public class RequestCaseDefiner
       ifPresent( mt -> {
         if( DataValue.Type.OBJECT.equals( valueDef.getDomain().getType()))
           {
-          valueDef.setEncodings( getEncodings( mt, propertyValues));
+          valueDef.setEncodings( toEncodings( mt, propertyValues));
           }
         });
     
     return valueDef;
+    }
+
+  /**
+   * Returns the value encodings specified by the given properties for the given media type.
+   */
+  private Map<String,EncodingDef> toEncodings( String mediaType, Map<String,Object> propertyValues)
+    {
+    return
+      "application/x-www-form-urlencoded".equals( mediaType)?
+      toUrlEncodedFormEncodings( propertyValues) :
+
+      "multipart/form-data".equals( mediaType)?
+      toMultipartFormEncodings( propertyValues) :
+
+      null;
+    }
+
+  /**
+   * Returns the <CODE>application/x-www-form-urlencoded</CODE> encodings specified by the given properties.
+   */
+  @SuppressWarnings("unchecked")
+  private Map<String,EncodingDef> toUrlEncodedFormEncodings( Map<String,Object> propertyValues)
+    {
+    return
+      getDefinedProperties( propertyValues)
+      .entrySet().stream()
+      .collect(
+        toMap(
+          propBinding -> propBinding.getKey(),
+
+          propBinding -> {
+          Map<String,Object> propDef = (Map<String,Object>) propBinding.getValue();
+          VarBinding defined = getVarBinding( propDef, "Defined");
+          return
+            EncodingDef.forUrlEncodedForm(
+              defined.getAnnotation( "style"),
+              Optional.ofNullable( defined.getAnnotation( "explode")).map( explode -> Boolean.valueOf( explode)).orElse( null));
+          }));
+    }
+
+  /**
+   * Returns the <CODE>multipart/form-data</CODE> encodings specified by the given properties.
+   */
+  @SuppressWarnings("unchecked")
+  private Map<String,EncodingDef> toMultipartFormEncodings( Map<String,Object> propertyValues)
+    {
+    return
+      getDefinedProperties( propertyValues)
+      .entrySet().stream()
+      .collect((
+        toMap(
+          propBinding -> propBinding.getKey(),
+
+          propBinding -> {
+            Map<String,Object> propDef = (Map<String,Object>) propBinding.getValue();
+            VarBinding defined = getVarBinding( propDef, "Defined");
+
+            String contentType = defined.getAnnotation( "contentType");
+          
+            List<HeaderDef> headers =
+              Optional.ofNullable( getPropertyValues( propDef, "Headers"))
+              .orElse( emptyMap())
+              .values().stream()
+              .filter( headerDef -> "Yes".equals( getVarBinding( (Map<String,Object>) headerDef, "Defined").getValue()))
+              .map( headerDef -> toHeaderDef( (Map<String,Object>) headerDef))
+              .collect( toList());
+                
+            return EncodingDef.forMultipartForm( contentType, headers);
+          })));
+    }
+
+
+  /**
+   * Returns the request header definition specified by the given properties.
+   */
+  private HeaderDef toHeaderDef( Map<String,Object> propertyValues)
+    {
+    VarBinding defined = expectVarBinding( propertyValues, "Defined");
+
+    HeaderDef headerDef = new HeaderDef( defined.getAnnotation( "headerName"));
+    headerDef.setExploded( Boolean.parseBoolean( defined.getAnnotation( "explode")));
+    headerDef.setValue( toValueDef( defined, null, propertyValues, Characters.ANY));
+    
+    return headerDef;
+    }
+  /**
+   * Returns the properties for each object property defined by the given property values.
+   */
+  @SuppressWarnings("unchecked")
+  private Map<String,Object> getDefinedProperties( Map<String,Object> propertyValues)
+    {
+    return
+      getPropertyValues( propertyValues, "Value.Properties")
+      .entrySet().stream()
+      .filter( propBindings -> !"Additional".equals( propBindings.getKey()))
+      .map( propBindings -> propBindings.getValue())
+      .filter( propDef -> "Yes".equals( getVarBinding( (Map<String,Object>) propDef, "Defined").getValue()))
+      .collect(
+        toMap(
+          propDef -> getVarBinding( (Map<String,Object>) propDef, "Defined").getAnnotation( "propertyName"),
+          propDef -> propDef));
     }
 
   }
