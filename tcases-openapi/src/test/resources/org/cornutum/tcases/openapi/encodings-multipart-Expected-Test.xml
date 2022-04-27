@@ -10173,18 +10173,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="No">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="No">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="1" name="Body.multipart-form-data.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataExcludedValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataNotEmpty,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10233,11 +10235,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="&gt; 0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="&gt; 0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
@@ -10293,18 +10297,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="No">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="No">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="3" name="Body.multipart-form-data.Value.Properties.elevation.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataElevationValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10353,11 +10359,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" value="integer"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" value="1"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="Yes"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
@@ -10413,18 +10421,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="No">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="No">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
     <TestCase id="5" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryNotEmpty,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataNotEmpty,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10473,11 +10483,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="&gt; 0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="&gt; 0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
@@ -10533,11 +10545,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" value="integer"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" value="&gt; 1"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="Yes"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="No">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="No">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="No"/>
       </Input>
     </TestCase>
@@ -10590,11 +10604,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" NA="true">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" NA="true">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -10650,11 +10666,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" NA="true">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" NA="true">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -10710,11 +10728,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" NA="true">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" NA="true">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
@@ -10770,18 +10790,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" NA="true">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" NA="true">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" NA="true"/>
       </Input>
     </TestCase>
     <TestCase id="11" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10830,18 +10852,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="12" failure="true" name="Body.multipart-form-data.Value.Properties.excluded.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataExcluded,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10890,18 +10914,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="13" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -10950,18 +10976,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="14" failure="true" name="Body.multipart-form-data.Value.Properties.elevation.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataElevation,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11010,18 +11038,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="15" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11070,18 +11100,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="16" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11130,18 +11162,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="17" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11190,18 +11224,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="18" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11250,18 +11286,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="19" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11310,18 +11348,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="20" failure="true" name="Body.multipart-form-data.Value.Properties.latlong.Items.Contains.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11370,18 +11410,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="21" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11430,18 +11472,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="22" failure="true" name="Body.multipart-form-data.Value.Properties.address.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11490,18 +11534,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="23" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11550,18 +11596,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="24" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.city.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11610,18 +11658,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="25" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11670,18 +11720,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" value="null" failure="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="26" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11730,18 +11782,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" value="Not integer" failure="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
     <TestCase id="27" failure="true" name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataCountry,bodyMultipart-form-dataCountryLengthValid,bodyMultipart-form-dataCountryValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataAddress,bodyMultipart-form-dataAddressCity,bodyMultipart-form-dataAddressCityLengthValid,bodyMultipart-form-dataAddressCityNotEmpty,bodyMultipart-form-dataAddressCityValue,bodyMultipart-form-dataAddressCode,bodyMultipart-form-dataAddressCodeValue,bodyMultipart-form-dataAddressProperties,bodyMultipart-form-dataAddressValue,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataMapDataLengthValid,bodyMultipart-form-dataMapDataValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11790,18 +11844,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" value="integer"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" value="0" failure="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" value="No"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="string"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" value="0"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="string"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" value="0">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=null">
+    <TestCase id="28" failure="true" name="Body.multipart-form-data.Value.Properties.mapData.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11850,18 +11906,20 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="null" failure="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="null" failure="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>
-    <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.country.Type=&apos;Not string&apos;">
+    <TestCase id="29" failure="true" name="Body.multipart-form-data.Value.Properties.mapData.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/encodings_7"/>
-      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataCountry,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
+      <Has name="properties" value="bodyContent,bodyMultipart-form-data,bodyMultipart-form-dataLatlong,bodyMultipart-form-dataLatlongItemsMany,bodyMultipart-form-dataLatlongItemsValue,bodyMultipart-form-dataLatlongValue,bodyMultipart-form-dataMapData,bodyMultipart-form-dataProperties,bodyMultipart-form-dataValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="encodings"/>
       <Has name="version" value="0.0.0"/>
@@ -11910,11 +11968,13 @@
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Type" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.code.Value.Is" NA="true"/>
         <Var name="Body.multipart-form-data.Value.Properties.address.Value.Properties.Additional" NA="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Defined" value="Yes">
-          <Has name="propertyName" value="country"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Defined" value="Yes">
+          <Has name="propertyName" value="mapData"/>
         </Var>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Type" value="Not string" failure="true"/>
-        <Var name="Body.multipart-form-data.Value.Properties.country.Value.Length" NA="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Type" value="Not string" failure="true"/>
+        <Var name="Body.multipart-form-data.Value.Properties.mapData.Value.Length" NA="true">
+          <Has name="format" value="byte"/>
+        </Var>
         <Var name="Body.multipart-form-data.Value.Properties.Additional" value="Yes"/>
       </Input>
     </TestCase>

@@ -1073,21 +1073,22 @@
                   </VarSet>
                 </VarSet>
               </VarSet>
-              <VarSet name="country">
+              <VarSet name="mapData">
                 <Var name="Defined">
-                  <Has name="propertyName" value="country"/>
-                  <Value name="Yes" property="bodyMultipart-form-dataCountry, bodyMultipart-form-dataProperties"/>
+                  <Has name="propertyName" value="mapData"/>
+                  <Value name="Yes" property="bodyMultipart-form-dataMapData, bodyMultipart-form-dataProperties"/>
                   <Value name="No"/>
                 </Var>
-                <Var name="Type" when="bodyMultipart-form-dataCountry">
-                  <Value name="string" property="bodyMultipart-form-dataCountryValue"/>
+                <Var name="Type" when="bodyMultipart-form-dataMapData">
+                  <Value name="string" property="bodyMultipart-form-dataMapDataValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="bodyMultipart-form-dataCountryValue">
+                <VarSet name="Value" when="bodyMultipart-form-dataMapDataValue">
+                  <Has name="format" value="byte"/>
                   <Var name="Length">
-                    <Value name="&gt; 0" property="bodyMultipart-form-dataCountryLengthValid, bodyMultipart-form-dataCountryNotEmpty"/>
-                    <Value name="0" property="bodyMultipart-form-dataCountryLengthValid"/>
+                    <Value name="&gt; 0" property="bodyMultipart-form-dataMapDataLengthValid, bodyMultipart-form-dataMapDataNotEmpty"/>
+                    <Value name="0" property="bodyMultipart-form-dataMapDataLengthValid"/>
                   </Var>
                 </VarSet>
               </VarSet>

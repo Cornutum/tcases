@@ -323,8 +323,9 @@
                                             }
                                         }
                                     },
-                                    "country": {
-                                        "type": "string"
+                                    "mapData": {
+                                        "type": "string",
+                                        "format": "byte"
                                     }
                                 }
                             },

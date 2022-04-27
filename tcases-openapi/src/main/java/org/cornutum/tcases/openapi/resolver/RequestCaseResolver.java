@@ -293,7 +293,7 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
         {
         contentType =
           Optional.ofNullable( partValue.getFormat())
-          .filter( format -> "base64".equals( format)  || "binary".equals( format) )
+          .filter( format -> "byte".equals( format)  || "binary".equals( format) )
           .map( format -> "application/octet-stream")
           .orElse( "text/plain");
         break;
