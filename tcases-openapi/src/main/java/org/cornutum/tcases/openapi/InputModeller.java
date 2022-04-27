@@ -609,7 +609,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       resultFor( "encoding",
         () ->
         "application/x-www-form-urlencoded".equals( mediaType)?
-        withFormUrlEncodings( api, mediaTypeVar, mediaTypeVarTag, encodings) :
+        withFormUrlEncodings( mediaTypeVar, encodings) :
 
         "multipart/form-data".equals( mediaType)?
         withMultipartEncodings( api, mediaTypeVar, mediaTypeVarTag, encodings) :
@@ -620,7 +620,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns the given media type content variable with additions for any <CODE>application/x-www-form-urlencoded</CODE> encodings.
    */
-  private VarSet withFormUrlEncodings( OpenAPI api, VarSet mediaTypeVar, String mediaTypeVarTag, Map<String,Encoding> encodings)
+  private VarSet withFormUrlEncodings( VarSet mediaTypeVar, Map<String,Encoding> encodings)
     {
     encodings.forEach(
       (property,encoding) -> {

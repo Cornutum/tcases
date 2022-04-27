@@ -372,7 +372,7 @@ public class RequestCaseDefiner
 
           propBinding -> {
           Map<String,Object> propDef = (Map<String,Object>) propBinding.getValue();
-          VarBinding defined = getVarBinding( propDef, "Defined");
+          VarBinding defined = expectVarBinding( propDef, "Defined");
           return
             EncodingDef.forUrlEncodedForm(
               defined.getAnnotation( "style"),
@@ -389,13 +389,13 @@ public class RequestCaseDefiner
     return
       getDefinedProperties( propertyValues)
       .entrySet().stream()
-      .collect((
+      .collect(
         toMap(
           propBinding -> propBinding.getKey(),
 
           propBinding -> {
             Map<String,Object> propDef = (Map<String,Object>) propBinding.getValue();
-            VarBinding defined = getVarBinding( propDef, "Defined");
+            VarBinding defined = expectVarBinding( propDef, "Defined");
 
             String contentType = defined.getAnnotation( "contentType");
           
@@ -403,12 +403,12 @@ public class RequestCaseDefiner
               Optional.ofNullable( getPropertyValues( propDef, "Headers"))
               .orElse( emptyMap())
               .values().stream()
-              .filter( headerDef -> "Yes".equals( getVarBinding( (Map<String,Object>) headerDef, "Defined").getValue()))
+              .filter( headerDef -> "Yes".equals( expectVarBinding( (Map<String,Object>) headerDef, "Defined").getValue()))
               .map( headerDef -> toHeaderDef( (Map<String,Object>) headerDef))
               .collect( toList());
                 
             return EncodingDef.forMultipartForm( contentType, headers);
-          })));
+          }));
     }
 
 
@@ -432,14 +432,15 @@ public class RequestCaseDefiner
   private Map<String,Object> getDefinedProperties( Map<String,Object> propertyValues)
     {
     return
-      getPropertyValues( propertyValues, "Value.Properties")
+      Optional.ofNullable( getPropertyValues( propertyValues, "Value.Properties"))
+      .orElse( emptyMap())
       .entrySet().stream()
       .filter( propBindings -> !"Additional".equals( propBindings.getKey()))
       .map( propBindings -> propBindings.getValue())
-      .filter( propDef -> "Yes".equals( getVarBinding( (Map<String,Object>) propDef, "Defined").getValue()))
+      .filter( propDef -> "Yes".equals( expectVarBinding( (Map<String,Object>) propDef, "Defined").getValue()))
       .collect(
         toMap(
-          propDef -> getVarBinding( (Map<String,Object>) propDef, "Defined").getAnnotation( "propertyName"),
+          propDef -> expectVarBinding( (Map<String,Object>) propDef, "Defined").getAnnotation( "propertyName"),
           propDef -> propDef));
     }
 
