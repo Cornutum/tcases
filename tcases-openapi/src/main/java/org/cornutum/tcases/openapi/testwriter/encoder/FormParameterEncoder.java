@@ -41,16 +41,29 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
    */
   private FormParameterEncoder( ParamData param, Component component)
     {
+    this( param.getName(), param.getStyle(), param.isExploded(), param.getValue(), component);
+    }
+  
+  /**
+   * Creates a new FormParameterEncoder instance.
+   */
+  private FormParameterEncoder( String name, String style, boolean exploded, DataValue<?> value, Component component)
+    {
     super( component);
-    name_ = param.getName();
-    style_ = param.getStyle();
-    exploded_ = param.isExploded();
-    value_ = param.getValue();
+    name_ = name;
+    style_ = style;
+    exploded_ = exploded;
+    value_ = value;
     }
 
   public static List<Map.Entry<String,String>> encode( ParamData param, Component component)
     {
     return new FormParameterEncoder( param, component).accepted();
+    }
+
+  public static List<Map.Entry<String,String>> encode( String name, String style, boolean exploded, DataValue<?> value)
+    {
+    return new FormParameterEncoder( name, style, exploded, value, Component.NONE).accepted();
     }
 
   private List<Map.Entry<String,String>> accepted()

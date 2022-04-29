@@ -942,7 +942,7 @@ public class AllPaths_PostTest {
                 .baseUri( forTestServer())
                 .queryParam( "postId", "847512139010470218.2")
                 .contentType( "application/x-www-form-urlencoded")
-                .formParam( "approved", "eytx,7ea{")
+                .formParam( "eytx", "7ea{")
                 .formParam( "reviewer", "Larry Moe")
             .when()
                 .request( "PUT", "/post")

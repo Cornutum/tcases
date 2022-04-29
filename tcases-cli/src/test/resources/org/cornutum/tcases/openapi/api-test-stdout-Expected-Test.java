@@ -1029,7 +1029,7 @@ public class OpenAPIRequestTestCasesTest {
                 .contentType( "application/x-www-form-urlencoded")
                 .formParam( "approved", "false")
                 .formParam( "reviewer", "Larry Moe")
-                .formParam( "gjosghzwtdqokjpw", "xntquexllpz,473")
+                .formParam( "xntquexllpz", "473")
             .when()
                 .request( "PUT", "/post")
             .then()

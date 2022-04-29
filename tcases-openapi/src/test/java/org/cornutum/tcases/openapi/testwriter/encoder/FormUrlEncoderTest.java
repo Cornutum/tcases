@@ -9,7 +9,11 @@ package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.Base64Domain;
 import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.openapi.resolver.EncodingData;
+import org.cornutum.tcases.openapi.resolver.EncodingDataBuilder;
 import org.cornutum.tcases.util.ListBuilder;
+import org.cornutum.tcases.util.MapBuilder;
+
 import static org.cornutum.tcases.openapi.resolver.DataValues.*;
 
 import org.junit.Test;
@@ -211,8 +215,10 @@ public class FormUrlEncoderTest
       bindings,
       listsMembers(
         form()
-        .with( "What%3F", "Me%3F%2CWorry%3F")
-        .with( "Some+Numbers", "-1%2C0%2C1")
+        .with( "Me%3F", "Worry%3F")
+        .with( "Some+Numbers", "-1")
+        .with( "Some+Numbers", "0")
+        .with( "Some+Numbers", "1")
         .with( "Nothing", null)
         .build()));
 
@@ -220,7 +226,70 @@ public class FormUrlEncoderTest
     String content = FormUrlEncoder.toForm( value);
 
     // Then...
-    assertThat( "Content", content, is( "What%3F=Me%3F%2CWorry%3F&Some+Numbers=-1%2C0%2C1&Nothing"));
+    assertThat( "Content", content, is( "Me%3F=Worry%3F&Some+Numbers=-1&Some+Numbers=0&Some+Numbers=1&Nothing"));
+    }
+
+  @Test
+  public void whenEncodings()
+    {
+    // Given...
+    DataValue<?> value =
+      object()
+      .with(
+        "Name",
+        object()
+        .with( "First", stringOf( "Alfred"))
+        .with( "Last", stringOf( "Newman"))
+        .with( "Nicknames", arrayOf( stringOf( "Al"), stringOf( "E-dawg")))
+        .build())
+
+      .with(
+        "Address",
+        object()
+        .with( "Street", stringOf( "123 Mad Tower"))
+        .with( "City", stringOf( "New York"))
+        .with( "State", stringOf( "NY"))
+        .build())
+      
+      .with(
+        "Langs",
+        arrayOf( stringOf( "EN"), stringOf( "DE"), stringOf( "FR")))
+      
+      .with(
+        "Hobbies",
+        arrayOf( stringOf( "yo-yo"), stringOf( "?")))
+
+      .with(
+        "Occupation",
+        stringOf( "Mascot"))
+      
+      .build();
+
+    Map<String,EncodingData> encodings =
+      new MapBuilder<String,EncodingData>()
+      .put( "Name", EncodingDataBuilder.urlencoded().style( "deepObject").build())
+      .put( "Address", EncodingDataBuilder.urlencoded().style( "form").exploded( false).build())
+      .put( "Langs", EncodingDataBuilder.urlencoded().style( "pipeDelimited").exploded( false).build())
+      .put( "Hobbies", EncodingDataBuilder.urlencoded().style( "spaceDelimited").exploded( false).build())
+      .build();
+    
+    // When...
+    List<Map.Entry<String,String>> bindings = FormUrlEncoder.encode( value, encodings, false);
+    
+    // Then...
+    assertThat(
+      "Object",
+      bindings,
+      listsMembers(
+        form()
+        .with( "Name[First]", "Alfred")
+        .with( "Name[Last]", "Newman")
+        .with( "Name[Nicknames]", "Al,E-dawg")
+        .with( "Address", "Street,123 Mad Tower,City,New York,State,NY")
+        .with( "Langs", "EN|DE|FR")
+        .with( "Hobbies", "yo-yo ?")
+        .with( "Occupation", "Mascot")
+        .build()));
     }
 
   @Test
