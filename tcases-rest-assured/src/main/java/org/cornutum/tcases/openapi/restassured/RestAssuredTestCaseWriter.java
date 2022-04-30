@@ -24,6 +24,8 @@ import org.cornutum.tcases.openapi.testwriter.TestWriterException;
 import org.cornutum.tcases.openapi.testwriter.ValidatingTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
+
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 import static org.cornutum.tcases.openapi.testwriter.java.TestCaseWriterUtils.*;
 
@@ -523,8 +525,18 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println( String.format( "new MultiPartSpecBuilder( %s)", stringLiteral( partData)));      
       }
     
-    targetWriter.println( String.format( ".mimeType( %s)", stringLiteral( contentType)));
     targetWriter.println( String.format( ".controlName( %s)", stringLiteral( property)));
+    targetWriter.println( String.format( ".mimeType( %s)", stringLiteral( contentType)));
+
+    encoding.getHeaders().stream()
+      .forEach( headerData -> {
+        targetWriter.println(
+          String.format(
+            ".header( %s, %s)",
+            stringLiteral( headerData.getName()),
+            stringLiteral( SimpleValueEncoder.encode( headerData.getValue(), headerData.isExploded()))));
+        });
+    
     targetWriter.println( ".emptyFileName()");
     targetWriter.println( ".build())");
     targetWriter.unindent();

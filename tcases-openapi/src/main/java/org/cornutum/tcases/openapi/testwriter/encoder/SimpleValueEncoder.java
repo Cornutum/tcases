@@ -51,6 +51,11 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     return encode( value, false, component);
     }
 
+  public static String encode( DataValue<?> value, boolean exploded)
+    {
+    return encode( value, exploded, Component.NONE);
+    }
+
   public static String encode( DataValue<?> value, boolean exploded, Component component)
     {
     return new SimpleValueEncoder( value, exploded, component).accepted();
