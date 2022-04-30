@@ -2477,7 +2477,7 @@ public class OpenAPIRequestTestCasesTest {
                 .cookie( "country", "|")
                 .cookie( "region", "E")
                 .contentType( "text/plain")
-                .request().body( "null")
+                .request().body( "")
             .when()
                 .request( "PUT", "/posts")
             .then()
