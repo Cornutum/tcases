@@ -2,7 +2,7 @@
     <Function name="Encodings">
         <Input>
             <Var name="MediaType">
-                <Value name="application/www-urlencoded" property="urlencoded"/>
+                <Value name="application/x-www-form-urlencoded" property="urlencoded"/>
                 <Value name="multipart/form-data" property="multipart"/>
             </Var>
             <VarSet name="Encodings">
@@ -90,7 +90,7 @@
                             <Value name="Default"/>
                             <Value name="text/plain"/>
                             <Value name="application/json"/>
-                            <Value name="application/www-urlencoded"/>
+                            <Value name="application/x-www-form-urlencoded"/>
                         </Var>
                         <Var name="Headers" when="typeObject, multipart">
                             <Value name="0"/>
