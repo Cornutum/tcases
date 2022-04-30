@@ -11,12 +11,21 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 
 import java.net.URI;
+import java.util.List;
 
 /**
  * Writes the source code for test cases that execute API requests.
  */
 public interface TestCaseWriter
   {
+  /**
+   * Prepare this writer to handle the given request cases.
+   */
+  default void prepareTestCases( List<RequestCase> requestCases)
+    {
+    // By default, nothing to do.
+    }
+  
   /**
    * Writes the dependencies for target test cases to the given stream.
    */

@@ -50,6 +50,24 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     }
   
   /**
+   * Prepare this writer to handle the given request cases.
+   */
+  @Override
+  public void prepareTestCases( List<RequestCase> requestCases)
+    {
+    requiresMultiPart_ =
+      requestCases.stream()
+      .map( RequestCase::getBody)
+      .anyMatch(
+        body -> 
+        Optional.ofNullable( body)
+        .map( MessageData::getMediaType)
+        .map( mediaType -> "multipart/form-data".equals( MediaRange.of( mediaType).base()))
+        .orElse( false));
+      
+    }
+  
+  /**
    * Writes the dependencies for target test cases to the given stream.
    */
   @Override
@@ -63,6 +81,11 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println();
       targetWriter.println( "import io.restassured.http.Header;");
       targetWriter.println( "import io.restassured.response.Response;");
+      targetWriter.println();
+      }
+    if( requiresMultiPart_)
+      {
+      targetWriter.println( "import io.restassured.builder.MultiPartSpecBuilder;");
       targetWriter.println();
       }
     targetWriter.println( "import org.hamcrest.Matcher;");
@@ -502,6 +525,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     
     targetWriter.println( String.format( ".mimeType( %s)", stringLiteral( contentType)));
     targetWriter.println( String.format( ".controlName( %s)", stringLiteral( property)));
+    targetWriter.println( ".emptyFileName()");
     targetWriter.println( ".build())");
     targetWriter.unindent();
     }
@@ -572,6 +596,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     }
 
   private Depends depends_;
+  private boolean requiresMultiPart_;
   private AuthDependsVisitor authDependsVisitor_ = new AuthDependsVisitor();
 
   /**
@@ -579,7 +604,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
    */
   private class AuthDependsVisitor implements AuthDefVisitor
     {
-
     @Override
     public void visit( ApiKeyDef authDef)
       {
@@ -598,5 +622,4 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       depends_.setDependsHttpBearer();
       }
     }
-
   }

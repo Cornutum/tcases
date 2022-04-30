@@ -73,6 +73,7 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
       targetWriter = new IndentedWriter( targetStream);
       targetWriter.setIndent( 4);
 
+      prepareTestCases( source.getRequestCases());
       writeProlog( target, testName, targetWriter);
       writeTestCases( target, testName, source.getRequestCases(), targetWriter);
       writeEpilog( target, testName, targetWriter);
@@ -189,6 +190,14 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
       targetFile :
       
       new File( targetDir, targetFile.getPath());
+    }
+  
+  /**
+   * Prepare this writer to handle the given request cases.
+   */
+  protected void prepareTestCases( List<RequestCase> requestCases)
+    {
+    getTestCaseWriter().prepareTestCases( requestCases);
     }
 
   /**
