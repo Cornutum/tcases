@@ -9,30 +9,30 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-json" property="application-json">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-json" property="bodyApplication-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;application/json&apos;"/>
           </Value>
         </Var>
-        <VarSet name="application-json" when="application-json">
+        <VarSet name="application-json" when="bodyApplication-json">
           <VarSet name="Alternative">
             <Var name="Used">
-              <Value name="0" property="application-jsonAlternative0"/>
-              <Value name="1" property="application-jsonAlternative1"/>
+              <Value name="0" property="bodyApplication-jsonAlternative0"/>
+              <Value name="1" property="bodyApplication-jsonAlternative1"/>
             </Var>
-            <VarSet name="0" when="application-jsonAlternative0">
+            <VarSet name="0" when="bodyApplication-jsonAlternative0">
               <Var name="Type">
-                <Value name="number" property="application-jsonValue"/>
+                <Value name="number" property="bodyApplication-jsonValue"/>
                 <Value name="null" once="true"/>
                 <Value name="Not number" failure="true"/>
               </Var>
-              <VarSet name="Value" when="application-jsonValue">
+              <VarSet name="Value" when="bodyApplication-jsonValue">
                 <Var name="Is">
                   <Value name="-0.1" failure="true"/>
                   <Value name="0.0"/>
@@ -41,11 +41,11 @@
                 </Var>
               </VarSet>
             </VarSet>
-            <VarSet name="1" when="application-jsonAlternative1">
+            <VarSet name="1" when="bodyApplication-jsonAlternative1">
               <Var name="Type">
-                <Value name="number" property="application-jsonValue"/>
+                <Value name="number" property="bodyApplication-jsonValue"/>
               </Var>
-              <VarSet name="Value" when="application-jsonValue">
+              <VarSet name="Value" when="bodyApplication-jsonValue">
                 <Var name="Is">
                   <Value name="-0.1"/>
                   <Value name="0.0" failure="true"/>

@@ -39,19 +39,19 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-json" property="application-json">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-json" property="bodyApplication-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
         </Var>
-        <VarSet name="application-json" when="application-json">
+        <VarSet name="application-json" when="bodyApplication-json">
           <Var name="Type">
-            <Value name="string" property="application-jsonValue"/>
+            <Value name="string" property="bodyApplication-jsonValue"/>
           </Var>
-          <Var name="Value" when="application-jsonValue">
+          <Var name="Value" when="bodyApplication-jsonValue">
             <Value name=".1234"/>
             <Value name="0.0"/>
             <Value name="-0.9876"/>

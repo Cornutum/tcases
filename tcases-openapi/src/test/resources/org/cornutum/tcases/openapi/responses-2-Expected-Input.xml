@@ -62,33 +62,33 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="200Content">
-            <Value name="application-json" property="200application-json">
+            <Value name="application-json" property="200Application-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="text-javascript" property="200text-javascript">
+            <Value name="text-javascript" property="200Text-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="200application-json">
+          <VarSet name="application-json" when="200Application-json">
             <Var name="Type">
-              <Value name="object" property="200application-jsonValue"/>
+              <Value name="object" property="200Application-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="200application-jsonValue">
+            <VarSet name="Value" when="200Application-jsonValue">
               <Var name="Property-Count">
-                <Value name="0" once="true" whenNot="200application-jsonProperties"/>
+                <Value name="0" once="true" whenNot="200Application-jsonProperties"/>
                 <Value name="&lt;= 1">
                   <When>
-                    <NotMoreThan property="200application-jsonProperties" max="1"/>
+                    <NotMoreThan property="200Application-jsonProperties" max="1"/>
                   </When>
                 </Value>
                 <Value name="&gt; 1" failure="true">
                   <When>
-                    <MoreThan property="200application-jsonProperties" min="0"/>
+                    <MoreThan property="200Application-jsonProperties" min="0"/>
                   </When>
                 </Value>
               </Var>
@@ -96,15 +96,15 @@
                 <VarSet name="Additional">
                   <Var name="Defined">
                     <Has name="propertyName" value="Additional"/>
-                    <Value name="Yes" property="200application-jsonAdditional, 200application-jsonProperties"/>
+                    <Value name="Yes" property="200Application-jsonAdditional, 200Application-jsonProperties"/>
                     <Value name="No"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonAdditional">
-                    <Value name="number" property="200application-jsonAdditionalValue"/>
+                  <Var name="Type" when="200Application-jsonAdditional">
+                    <Value name="number" property="200Application-jsonAdditionalValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not number" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonAdditionalValue">
+                  <VarSet name="Value" when="200Application-jsonAdditionalValue">
                     <Var name="Is">
                       <Value name="&lt; 0"/>
                       <Value name="0"/>
@@ -115,17 +115,17 @@
               </VarSet>
             </VarSet>
           </VarSet>
-          <VarSet name="text-javascript" when="200text-javascript">
+          <VarSet name="text-javascript" when="200Text-javascript">
             <Var name="Type">
-              <Value name="object" property="200text-javascriptValue"/>
+              <Value name="object" property="200Text-javascriptValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="200text-javascriptValue">
+            <VarSet name="Value" when="200Text-javascriptValue">
               <Var name="Property-Count">
                 <Value name="&gt;= 1">
                   <When>
-                    <NotLessThan property="200text-javascriptProperties" min="0"/>
+                    <NotLessThan property="200Text-javascriptProperties" min="0"/>
                   </When>
                 </Value>
               </Var>
@@ -133,15 +133,15 @@
                 <VarSet name="Additional">
                   <Var name="Defined">
                     <Has name="propertyName" value="Additional"/>
-                    <Value name="Yes" property="200text-javascriptAdditional, 200text-javascriptProperties"/>
+                    <Value name="Yes" property="200Text-javascriptAdditional, 200Text-javascriptProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="200text-javascriptAdditional">
-                    <Value name="boolean" property="200text-javascriptAdditionalValue"/>
+                  <Var name="Type" when="200Text-javascriptAdditional">
+                    <Value name="boolean" property="200Text-javascriptAdditionalValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not boolean" failure="true"/>
                   </Var>
-                  <Var name="Value" when="200text-javascriptAdditionalValue">
+                  <Var name="Value" when="200Text-javascriptAdditionalValue">
                     <Value name="true"/>
                     <Value name="false"/>
                   </Var>
@@ -158,23 +158,23 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="4XXContent">
-            <Value name="application-json" property="4XXapplication-json">
+            <Value name="application-json" property="4XXApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="4XXapplication-json">
+          <VarSet name="application-json" when="4XXApplication-json">
             <Var name="Type">
-              <Value name="object" property="4XXapplication-jsonValue"/>
+              <Value name="object" property="4XXApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="4XXapplication-jsonValue">
+            <VarSet name="Value" when="4XXApplication-jsonValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" property="4XXapplication-jsonProperties"/>
+                  <Value name="Yes" property="4XXApplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

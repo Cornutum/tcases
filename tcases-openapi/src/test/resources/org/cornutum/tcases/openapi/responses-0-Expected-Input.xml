@@ -18,20 +18,20 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="200Content">
-            <Value name="application-json" property="200application-json">
+            <Value name="application-json" property="200Application-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="200application-json">
+          <VarSet name="application-json" when="200Application-json">
             <Var name="Type">
-              <Value name="integer" property="200application-jsonValue"/>
+              <Value name="integer" property="200Application-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not integer" failure="true"/>
             </Var>
-            <VarSet name="Value" when="200application-jsonValue">
+            <VarSet name="Value" when="200Application-jsonValue">
               <Var name="Is">
                 <Value name="-1" failure="true"/>
                 <Value name="0"/>
@@ -49,23 +49,23 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="object" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" property="defaultapplication-jsonProperties"/>
+                  <Value name="Yes" property="defaultApplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

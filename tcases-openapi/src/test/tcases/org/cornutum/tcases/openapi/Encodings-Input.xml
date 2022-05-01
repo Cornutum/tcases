@@ -1,0 +1,120 @@
+<System name="Content">
+    <Function name="Encodings">
+        <Input>
+            <Var name="MediaType">
+                <Value name="application/x-www-form-urlencoded" property="urlencoded"/>
+                <Value name="multipart/form-data" property="multipart"/>
+            </Var>
+            <VarSet name="Encodings">
+                <Var name="Count">
+                    <Value name="None">
+                        <When>
+                            <Equals property="encoding" count="0"/>
+                        </When>
+                    </Value>
+                    <Value name="Some">
+                        <When>
+                            <Between property="encoding" min="1" max="3"/>
+                        </When>                        
+                    </Value>
+                </Var>
+                <VarSet name="Properties">
+                    <VarSet name="boolean">
+                        <Var name="Defined">
+                            <Value name="Yes" property="encoding,typeBoolean"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Style" when="typeBoolean, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="form"/>
+                        </Var>
+                        <Var name="ContentType" when="typeBoolean, multipart">
+                            <Value name="Default"/>
+                            <Value name="text/plain"/>
+                            <Value name="application/json"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="number">
+                        <Var name="Defined">
+                            <Value name="Yes" property="encoding,typeNumber"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Style" when="typeNumber, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="form"/>
+                        </Var>
+                        <Var name="ContentType" when="typeNumber, multipart">
+                            <Value name="Default"/>
+                            <Value name="text/plain"/>
+                            <Value name="application/json"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="array">
+                        <Var name="Defined">
+                            <Value name="Yes" property="encoding,typeArray"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Style" when="typeArray, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="form"/>
+                            <Value name="spaceDelimited"/>
+                            <Value name="pipeDelimited"/>
+                        </Var>
+                        <Var name="Explode" when="typeArray, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="true"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="ContentType" when="typeArray, multipart">
+                            <Value name="Default"/>
+                            <Value name="text/plain"/>
+                            <Value name="application/json"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="object">
+                        <Var name="Defined">
+                            <Value name="Yes" property="encoding,typeObject"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Style" when="typeObject, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="form"/>
+                            <Value name="deepObject"/>
+                        </Var>
+                        <Var name="Explode" when="typeObject, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="true"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="ContentType" when="typeObject, multipart">
+                            <Value name="Default"/>
+                            <Value name="text/plain"/>
+                            <Value name="application/json"/>
+                            <Value name="application/x-www-form-urlencoded"/>
+                        </Var>
+                        <Var name="Headers" when="typeObject, multipart">
+                            <Value name="0"/>
+                            <Value name="1" once="true"/>
+                            <Value name="Many" once="true"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="string">
+                        <Var name="Defined">
+                            <Value name="Yes" property="encoding,typeString"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="Style" when="typeString, urlencoded">
+                            <Value name="Default"/>
+                            <Value name="form"/>
+                        </Var>
+                        <Var name="ContentType" when="typeString, multipart">
+                            <Value name="Default"/>
+                            <Value name="text/plain"/>
+                            <Value name="application/json"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

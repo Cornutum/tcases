@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="Content,param0,param0Value,text-plain,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainValue,param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -59,7 +59,7 @@
     <TestCase id="2" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="Content,param0,text-plain,text-plainValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,bodyText-plainValue,param0"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -84,7 +84,7 @@
     <TestCase id="3" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="Content,param0,param0Value"/>
+      <Has name="properties" value="bodyContent,param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -109,7 +109,7 @@
     <TestCase id="4" failure="true" name="Body.text-plain.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations"/>
-      <Has name="properties" value="Content,param0,param0Value,text-plain"/>
+      <Has name="properties" value="bodyContent,bodyText-plain,param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>

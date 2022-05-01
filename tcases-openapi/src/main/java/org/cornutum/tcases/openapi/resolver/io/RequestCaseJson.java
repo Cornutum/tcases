@@ -14,6 +14,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import javax.json.Json;
@@ -22,8 +23,9 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonNumber;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
 import javax.json.JsonValue.ValueType;
+import javax.json.JsonValue;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
@@ -132,7 +134,65 @@ public final class RequestCaseJson
     builder.add( DATA, dataValue);
     
     builder.add( VALID, messageData.isValid());
+
+    if( !messageData.getEncodings().isEmpty())
+      {
+      JsonObjectBuilder encodings = Json.createObjectBuilder();
+      messageData.getEncodings().forEach( (property,encoding) -> encodings.add( property, toJson( messageData.getMediaType(), encoding)));
+      builder.add( ENCODINGS, encodings.build());
+      }
+    
     return builder;
+    }
+
+  /**
+   * Adds a form part encoding to the given JSON object builder.
+   */
+  private static JsonObject toJson( String mediaType, EncodingData encoding)
+    {
+    JsonObject json;
+
+    if( "application/x-www-form-urlencoded".equals( mediaType))
+      {
+      json = 
+        Json.createObjectBuilder()
+        .add( STYLE, encoding.getStyle())
+        .add( EXPLODE, encoding.isExploded())
+        .build();      
+      }
+    else if( "multipart/form-data".equals( mediaType))
+      {
+      JsonObjectBuilder builder = Json.createObjectBuilder();
+      builder.add( CONTENT_TYPE, encoding.getContentType());
+
+      if( !encoding.getHeaders().isEmpty())
+        {
+        JsonArrayBuilder headersBuilder = Json.createArrayBuilder();
+        encoding.getHeaders().forEach( header -> headersBuilder.add( toJson( header)));
+        builder.add( HEADERS, headersBuilder.build());
+        }
+
+      json = builder.build();
+      }
+    else
+      {
+      throw new RequestCaseException( String.format( "Part encodings not defined for mediaType=%s", mediaType));
+      }
+
+    return json;
+    }
+
+  /**
+   * Returns the JSON object that represents the given header data.
+   */
+  private static JsonObject toJson( HeaderData headerData)
+    {
+    JsonObjectBuilder builder = 
+      Json.createObjectBuilder()
+      .add( NAME, headerData.getName())
+      .add( EXPLODE, headerData.isExploded()) ;
+
+    return addMessageData( builder, headerData).build();
     }
 
   /**
@@ -227,7 +287,11 @@ public final class RequestCaseJson
     String mediaType = context.resultFor( MEDIA_TYPE, () -> json.getString( MEDIA_TYPE, null));
     boolean valid = context.resultFor( VALID, () -> json.getBoolean( VALID));
     DataValue<?> value = context.resultFor( DATA, () -> Optional.ofNullable( json.get( DATA)).map( v -> asDataValue( context, v)).orElse( null));
-    return new MessageData( value, mediaType, valid);
+
+    MessageData messageData = new MessageData( value, mediaType, valid);
+    messageData.setEncodings( context.resultFor( ENCODINGS, () -> Optional.ofNullable( json.getJsonObject( ENCODINGS)).map( e -> asEncodings( context, e)).orElse( null)));
+
+    return messageData;
     }
 
   /**
@@ -277,6 +341,61 @@ public final class RequestCaseJson
       }
     
     return data;
+    }
+
+  /**
+   * Returns the data part encodings represented by the given JSON object.
+   */
+  private static Map<String,EncodingData> asEncodings( RequestCaseContext context, JsonObject json)
+    {
+    return
+      json.keySet().stream()
+      .collect(
+        toMap(
+          property -> property,
+          property -> context.resultFor( property, () -> asEncodingData( context, json.getJsonObject( property))),
+          (v1, v2) -> v1,
+          LinkedHashMap::new));
+    }
+
+  /**
+   * Returns the EncodingData represented by the given JSON object.
+   */
+  private static EncodingData asEncodingData( RequestCaseContext context, JsonObject json)
+    {
+    String style = context.resultFor( STYLE, () -> json.getString( STYLE, null));
+    Boolean exploded = context.resultFor( EXPLODE, () -> json.containsKey( EXPLODE)? json.getBoolean( EXPLODE, false) : null);
+    String contentType = context.resultFor( CONTENT_TYPE, () -> json.getString( CONTENT_TYPE, null));
+
+    List<HeaderData> headers =
+      context.resultFor( HEADERS,
+        () -> {
+          return
+            Optional.ofNullable( json.getJsonArray( HEADERS))
+            .map( array -> array.getValuesAs( JsonObject.class))
+            .orElse( emptyList())
+            .stream()
+            .map( v -> asHeaderData( context, v)).collect( toList());
+        });
+
+    return
+      style != null?
+      new EncodingData( style, exploded) :
+      new EncodingData( contentType, headers);
+    }
+
+  /**
+   * Returns the HeaderData represented by the given JSON object.
+   */
+  private static HeaderData asHeaderData( RequestCaseContext context, JsonObject json)
+    {
+    JsonValue name = json.get( NAME);
+    return
+      context.resultFor( String.valueOf( name), () -> {
+        HeaderData headerData = new HeaderData( json.getString( NAME), asMessageData( context, json));
+        headerData.setExploded( context.resultFor( EXPLODE, () -> json.getBoolean( EXPLODE, false)));
+        return headerData;
+        });
     }
 
   /**
@@ -553,9 +672,12 @@ public final class RequestCaseJson
   private static final String AUTH = "auth";
   private static final String AUTH_FAILURE = "authFailure";
   private static final String BODY = "body";
+  private static final String CONTENT_TYPE = "contentType";
   private static final String DATA = "data";
+  private static final String ENCODINGS = "encodings";
   private static final String EXPLODE = "explode";
   private static final String FORMAT = "format";
+  private static final String HEADERS = "headers";
   private static final String ID = "id";
   private static final String IN = "in";
   private static final String INVALID_INPUT = "invalidInput";

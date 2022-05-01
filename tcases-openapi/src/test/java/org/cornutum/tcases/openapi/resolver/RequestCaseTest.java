@@ -139,6 +139,7 @@ public class RequestCaseTest
     "array",
     "auth",
     "emptySchema",
+    "encodings",
     "integer",
     "not",
     "number",

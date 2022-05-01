@@ -54,6 +54,7 @@ A `MessageData` object specifies the value and encoding of a request input data 
 | data          | [`DataValue`](#datavalue) | :registered:    | Defines the value of this data item |
 | valid         | boolean | :registered:            | Defines if the value for this data item is valid or invalid (i.e. failure response expected) |
 | mediaType     | string |                          | The media type used to represent the value of this data item |
+| encodings     | [`Encodings`](#encodings) | | When `mediaType` is `application/x-www-form-urlencoded` or `multipart/form-data`, maps each `data` object property to its encoding settings |
 
 ## `DataValue` ##
 
@@ -64,6 +65,36 @@ A `DataValue` object specifies the type, format, and value of a request input da
 | type          | string  | :registered:    | The type of this data value |
 | value         | JSON value | :registered: | The JSON representation of this data value |
 | format        | string |                  | The format of this data value |
+
+## `Encodings` ##
+
+An `Encodings` object maps each `MessageData` object property to its encoding settings. Specified only for `MessageData` with
+`application/x-www-form-urlencoded` or `multipart/form-data` media type.
+
+| Field         | Type |                    | Description |
+| ---           | ---  | ---                | ---         |
+| *(propertyName)* | [`EncodingData`](#encodingdata) | | The encoding settings for this `MessageData` object property |
+
+## `EncodingData` ##
+
+An `EncodingData` object defines the encoding settings for a `MessageData` object property.
+
+| Field         | Type |                    | Description |
+| ---           | ---  | ---                | ---         |
+| style | string | | For a property of an `application/x-www-form-urlencoded` object, defines how this property value will be serialized |
+| explode | boolean | | For a property of an `application/x-www-form-urlencoded` object, specifies if this property value will be serialized in exploded form |
+| contentType | string | | For a property of a `multipart/form-data` object, specifies the media type for this form part |
+| headers | \[[`HeaderData`](#headerdata)\] | | For a property of a `multipart/form-data` object, specifies the headers for this form part |
+
+## `HeaderData` ##
+
+A `HeaderData` object specifies the name, value, and encoding of a request header. A `HeaderData` object is the same as a `MessageData` object,
+with the following additional fields.
+
+| Field         | Type |                            | Description |
+| ---           | ---  | ---                        | ---         |
+| name          | string  | :registered:            | The name of this header |
+| explode       | boolean             |             | For headers of type array or object, specifies if elements will be serialized in exploded form |
 
 ## `AuthDef` ##
 

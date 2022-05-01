@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -108,7 +108,7 @@
     <TestCase id="2" name="param0.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -204,7 +204,7 @@
     <TestCase id="4" failure="true" name="param0.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -253,7 +253,7 @@
     <TestCase id="5" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -302,7 +302,7 @@
     <TestCase id="6" failure="true" name="param0.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -351,7 +351,7 @@
     <TestCase id="7" failure="true" name="param1.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -400,7 +400,7 @@
     <TestCase id="8" failure="true" name="param1.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -449,7 +449,7 @@
     <TestCase id="9" failure="true" name="param1.Type=&apos;Not array&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -498,7 +498,7 @@
     <TestCase id="10" failure="true" name="param1.Items.Size=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -547,7 +547,7 @@
     <TestCase id="11" failure="true" name="param1.Items.Contains.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -596,7 +596,7 @@
     <TestCase id="12" failure="true" name="param1.Items.Contains.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -645,7 +645,7 @@
     <TestCase id="13" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyContent,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -694,7 +694,7 @@
     <TestCase id="14" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>
@@ -743,7 +743,7 @@
     <TestCase id="15" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/operations/${param1}/${param0}"/>
-      <Has name="properties" value="application-json,Content,param0,param0Value,param1,param1ItemsValue,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent,param0,param0Value,param1,param1ItemsValue,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Operations"/>
       <Has name="version" value="0.0.0"/>

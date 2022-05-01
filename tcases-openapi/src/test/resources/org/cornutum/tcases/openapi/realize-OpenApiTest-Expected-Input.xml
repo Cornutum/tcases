@@ -124,42 +124,42 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="text-plain" property="text-plain">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="text-plain" property="bodyText-plain">
             <Has name="mediaType" value="text/plain"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;text/plain&apos;"/>
           </Value>
         </Var>
-        <VarSet name="text-plain" when="text-plain">
+        <VarSet name="text-plain" when="bodyText-plain">
           <Var name="Type">
-            <Value name="object" property="text-plainValue"/>
+            <Value name="object" property="bodyText-plainValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="text-plainValue">
+          <VarSet name="Value" when="bodyText-plainValue">
             <VarSet name="Properties">
               <VarSet name="email">
                 <Var name="Defined">
                   <Has name="propertyName" value="email"/>
-                  <Value name="Yes" property="text-plainEmail, text-plainProperties"/>
+                  <Value name="Yes" property="bodyText-plainEmail, bodyText-plainProperties"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="text-plainEmail">
-                  <Value name="string" property="text-plainEmailValue"/>
+                <Var name="Type" when="bodyText-plainEmail">
+                  <Value name="string" property="bodyText-plainEmailValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="text-plainEmailValue">
+                <VarSet name="Value" when="bodyText-plainEmailValue">
                   <Has name="format" value="email"/>
                   <Var name="Length">
                     <Value name="6" failure="true"/>
-                    <Value name="7" property="text-plainEmailLengthValid, text-plainEmailNotEmpty"/>
-                    <Value name="32" property="text-plainEmailLengthValid, text-plainEmailNotEmpty"/>
+                    <Value name="7" property="bodyText-plainEmailLengthValid, bodyText-plainEmailNotEmpty"/>
+                    <Value name="32" property="bodyText-plainEmailLengthValid, bodyText-plainEmailNotEmpty"/>
                     <Value name="33" failure="true"/>
                   </Var>
                 </VarSet>
@@ -167,18 +167,18 @@
               <VarSet name="text">
                 <Var name="Defined">
                   <Has name="propertyName" value="text"/>
-                  <Value name="Yes" property="text-plainProperties, text-plainText"/>
+                  <Value name="Yes" property="bodyText-plainProperties, bodyText-plainText"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="text-plainText">
-                  <Value name="string" property="text-plainTextValue"/>
+                <Var name="Type" when="bodyText-plainText">
+                  <Value name="string" property="bodyText-plainTextValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="text-plainTextValue">
+                <VarSet name="Value" when="bodyText-plainTextValue">
                   <Var name="Length">
-                    <Value name="0" property="text-plainTextLengthValid"/>
-                    <Value name="64" property="text-plainTextLengthValid, text-plainTextNotEmpty"/>
+                    <Value name="0" property="bodyText-plainTextLengthValid"/>
+                    <Value name="64" property="bodyText-plainTextLengthValid, bodyText-plainTextNotEmpty"/>
                     <Value name="65" failure="true"/>
                   </Var>
                 </VarSet>
@@ -218,42 +218,42 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-json" property="application-json">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-json" property="bodyApplication-json">
             <Has name="mediaType" value="application/json"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;application/json&apos;"/>
           </Value>
         </Var>
-        <VarSet name="application-json" when="application-json">
+        <VarSet name="application-json" when="bodyApplication-json">
           <Var name="Type">
-            <Value name="object" property="application-jsonValue"/>
+            <Value name="object" property="bodyApplication-jsonValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="application-jsonValue">
+          <VarSet name="Value" when="bodyApplication-jsonValue">
             <VarSet name="Properties">
               <VarSet name="email">
                 <Var name="Defined">
                   <Has name="propertyName" value="email"/>
-                  <Value name="Yes" property="application-jsonEmail, application-jsonProperties"/>
+                  <Value name="Yes" property="bodyApplication-jsonEmail, bodyApplication-jsonProperties"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="application-jsonEmail">
-                  <Value name="string" property="application-jsonEmailValue"/>
+                <Var name="Type" when="bodyApplication-jsonEmail">
+                  <Value name="string" property="bodyApplication-jsonEmailValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="application-jsonEmailValue">
+                <VarSet name="Value" when="bodyApplication-jsonEmailValue">
                   <Has name="format" value="email"/>
                   <Var name="Length">
                     <Value name="6" failure="true"/>
-                    <Value name="7" property="application-jsonEmailLengthValid, application-jsonEmailNotEmpty"/>
-                    <Value name="32" property="application-jsonEmailLengthValid, application-jsonEmailNotEmpty"/>
+                    <Value name="7" property="bodyApplication-jsonEmailLengthValid, bodyApplication-jsonEmailNotEmpty"/>
+                    <Value name="32" property="bodyApplication-jsonEmailLengthValid, bodyApplication-jsonEmailNotEmpty"/>
                     <Value name="33" failure="true"/>
                   </Var>
                 </VarSet>
@@ -261,18 +261,18 @@
               <VarSet name="text">
                 <Var name="Defined">
                   <Has name="propertyName" value="text"/>
-                  <Value name="Yes" property="application-jsonProperties, application-jsonText"/>
+                  <Value name="Yes" property="bodyApplication-jsonProperties, bodyApplication-jsonText"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="application-jsonText">
-                  <Value name="string" property="application-jsonTextValue"/>
+                <Var name="Type" when="bodyApplication-jsonText">
+                  <Value name="string" property="bodyApplication-jsonTextValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="application-jsonTextValue">
+                <VarSet name="Value" when="bodyApplication-jsonTextValue">
                   <Var name="Length">
-                    <Value name="0" property="application-jsonTextLengthValid"/>
-                    <Value name="64" property="application-jsonTextLengthValid, application-jsonTextNotEmpty"/>
+                    <Value name="0" property="bodyApplication-jsonTextLengthValid"/>
+                    <Value name="64" property="bodyApplication-jsonTextLengthValid, bodyApplication-jsonTextNotEmpty"/>
                     <Value name="65" failure="true"/>
                   </Var>
                 </VarSet>
@@ -613,37 +613,37 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-x-www-form-urlencoded" property="bodyApplication-x-www-form-urlencoded">
             <Has name="mediaType" value="application/x-www-form-urlencoded"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
           </Value>
         </Var>
-        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+        <VarSet name="application-x-www-form-urlencoded" when="bodyApplication-x-www-form-urlencoded">
           <Var name="Type">
-            <Value name="object" property="application-x-www-form-urlencodedValue"/>
+            <Value name="object" property="bodyApplication-x-www-form-urlencodedValue"/>
             <Value name="null" failure="true"/>
             <Value name="Not object" failure="true"/>
           </Var>
-          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+          <VarSet name="Value" when="bodyApplication-x-www-form-urlencodedValue">
             <VarSet name="Properties">
               <VarSet name="approved">
                 <Var name="Defined">
                   <Has name="propertyName" value="approved"/>
-                  <Value name="Yes" property="application-x-www-form-urlencodedApproved, application-x-www-form-urlencodedProperties"/>
+                  <Value name="Yes" property="bodyApplication-x-www-form-urlencodedApproved, bodyApplication-x-www-form-urlencodedProperties"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="application-x-www-form-urlencodedApproved">
-                  <Value name="boolean" property="application-x-www-form-urlencodedApprovedValue"/>
+                <Var name="Type" when="bodyApplication-x-www-form-urlencodedApproved">
+                  <Value name="boolean" property="bodyApplication-x-www-form-urlencodedApprovedValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="application-x-www-form-urlencodedApprovedValue">
+                <Var name="Value" when="bodyApplication-x-www-form-urlencodedApprovedValue">
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
@@ -651,15 +651,15 @@
               <VarSet name="reviewer">
                 <Var name="Defined">
                   <Has name="propertyName" value="reviewer"/>
-                  <Value name="Yes" property="application-x-www-form-urlencodedProperties, application-x-www-form-urlencodedReviewer"/>
+                  <Value name="Yes" property="bodyApplication-x-www-form-urlencodedProperties, bodyApplication-x-www-form-urlencodedReviewer"/>
                   <Value name="No" failure="true"/>
                 </Var>
-                <Var name="Type" when="application-x-www-form-urlencodedReviewer">
-                  <Value name="string" property="application-x-www-form-urlencodedReviewerValue"/>
+                <Var name="Type" when="bodyApplication-x-www-form-urlencodedReviewer">
+                  <Value name="string" property="bodyApplication-x-www-form-urlencodedReviewerValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not string" failure="true"/>
                 </Var>
-                <Var name="Value" when="application-x-www-form-urlencodedReviewerValue">
+                <Var name="Value" when="bodyApplication-x-www-form-urlencodedReviewerValue">
                   <Value name="Larry Moe"/>
                   <Value name="(?)"/>
                   <Value name="Me+You"/>

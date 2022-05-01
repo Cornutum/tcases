@@ -31,24 +31,24 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="application-x-www-form-urlencoded" property="application-x-www-form-urlencoded">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="application-x-www-form-urlencoded" property="bodyApplication-x-www-form-urlencoded">
             <Has name="mediaType" value="application/x-www-form-urlencoded"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;application/x-www-form-urlencoded&apos;"/>
           </Value>
         </Var>
-        <VarSet name="application-x-www-form-urlencoded" when="application-x-www-form-urlencoded">
+        <VarSet name="application-x-www-form-urlencoded" when="bodyApplication-x-www-form-urlencoded">
           <Var name="Type">
-            <Value name="integer" property="application-x-www-form-urlencodedValue"/>
+            <Value name="integer" property="bodyApplication-x-www-form-urlencodedValue"/>
             <Value name="null" once="true"/>
             <Value name="Not integer" failure="true"/>
           </Var>
-          <VarSet name="Value" when="application-x-www-form-urlencodedValue">
+          <VarSet name="Value" when="bodyApplication-x-www-form-urlencodedValue">
             <Var name="Is">
               <Value name="&lt; 0"/>
               <Value name="0"/>

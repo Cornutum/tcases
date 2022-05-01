@@ -17,29 +17,29 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="object" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <Var name="Property-Count">
                 <Value name="&lt;= 4">
                   <When>
-                    <NotMoreThan property="defaultapplication-jsonProperties" max="2"/>
+                    <NotMoreThan property="defaultApplication-jsonProperties" max="2"/>
                   </When>
                 </Value>
                 <Value name="&gt; 4" failure="true">
                   <When>
-                    <MoreThan property="defaultapplication-jsonProperties" min="1"/>
+                    <MoreThan property="defaultApplication-jsonProperties" min="1"/>
                   </When>
                 </Value>
               </Var>
@@ -47,23 +47,23 @@
                 <VarSet name="alpha">
                   <Var name="Defined">
                     <Has name="propertyName" value="alpha"/>
-                    <Value name="Yes" property="defaultapplication-jsonAlpha, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonAlpha, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonAlpha">
-                    <Value name="string" property="defaultapplication-jsonAlphaValue"/>
+                  <Var name="Type" when="defaultApplication-jsonAlpha">
+                    <Value name="string" property="defaultApplication-jsonAlphaValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonAlphaValue">
+                  <VarSet name="Value" when="defaultApplication-jsonAlphaValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonAlphaLengthValid, defaultapplication-jsonAlphaNotEmpty"/>
-                      <Value name="0" property="defaultapplication-jsonAlphaLengthValid"/>
+                      <Value name="&gt; 0" property="defaultApplication-jsonAlphaLengthValid, defaultApplication-jsonAlphaNotEmpty"/>
+                      <Value name="0" property="defaultApplication-jsonAlphaLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="defaultapplication-jsonProperties"/>
+                  <Value name="Yes" property="defaultApplication-jsonProperties"/>
                   <Value name="No" failure="true"/>
                 </Var>
               </VarSet>

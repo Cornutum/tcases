@@ -1237,7 +1237,7 @@ public class MyTest extends MyBaseClass {
                 .cookie( "country", "b")
                 .cookie( "region", "c")
                 .contentType( "text/plain")
-                .request().body( "null")
+                .request().body( "")
             .when()
                 .request( "PUT", "/posts")
             .then()

@@ -17,23 +17,23 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
-            <Value name="text-javascript" property="defaulttext-javascript">
+            <Value name="text-javascript" property="defaultText-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;,&apos;text/javascript&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="integer" property="defaultapplication-jsonValue"/>
+              <Value name="integer" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not integer" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <Var name="Is">
                 <Value name="15" failure="true"/>
                 <Value name="16"/>
@@ -41,13 +41,13 @@
               </Var>
             </VarSet>
           </VarSet>
-          <VarSet name="text-javascript" when="defaulttext-javascript">
+          <VarSet name="text-javascript" when="defaultText-javascript">
             <Var name="Type">
-              <Value name="integer" property="defaulttext-javascriptValue"/>
+              <Value name="integer" property="defaultText-javascriptValue"/>
               <Value name="null" once="true"/>
               <Value name="Not integer" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaulttext-javascriptValue">
+            <VarSet name="Value" when="defaultText-javascriptValue">
               <Var name="Is">
                 <Value name="&lt; 0"/>
                 <Value name="0"/>
@@ -122,39 +122,39 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="2XXContent">
-            <Value name="text-plain" property="2XXtext-plain">
+            <Value name="text-plain" property="2XXText-plain">
               <Has name="mediaType" value="text/plain"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;text/plain&apos;"/>
             </Value>
           </Var>
-          <VarSet name="text-plain" when="2XXtext-plain">
+          <VarSet name="text-plain" when="2XXText-plain">
             <Var name="Type">
-              <Value name="array" property="2XXtext-plainValue"/>
+              <Value name="array" property="2XXText-plainValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not array" failure="true"/>
             </Var>
-            <VarSet name="Items" when="2XXtext-plainValue">
+            <VarSet name="Items" when="2XXText-plainValue">
               <Var name="Size">
-                <Value name="0" property="2XXtext-plainItemsNone"/>
+                <Value name="0" property="2XXText-plainItemsNone"/>
                 <Value name="1"/>
-                <Value name="&gt; 1" property="2XXtext-plainItemsMany"/>
+                <Value name="&gt; 1" property="2XXText-plainItemsMany"/>
               </Var>
-              <VarSet name="Contains" whenNot="2XXtext-plainItemsNone">
+              <VarSet name="Contains" whenNot="2XXText-plainItemsNone">
                 <Var name="Type">
                   <Has name="itemType" value="boolean"/>
-                  <Value name="boolean" property="2XXtext-plainItemsValue"/>
+                  <Value name="boolean" property="2XXText-plainItemsValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not boolean" failure="true"/>
                 </Var>
-                <Var name="Value" when="2XXtext-plainItemsValue">
+                <Var name="Value" when="2XXText-plainItemsValue">
                   <Has name="itemEnums" value="&apos;true&apos;,&apos;false&apos;"/>
                   <Value name="true"/>
                   <Value name="false"/>
                 </Var>
               </VarSet>
-              <Var name="Unique" when="2XXtext-plainItemsMany">
+              <Var name="Unique" when="2XXText-plainItemsMany">
                 <Value name="Yes"/>
                 <Value name="No"/>
               </Var>
@@ -169,23 +169,23 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="4XXContent">
-            <Value name="text-plain" property="4XXtext-plain">
+            <Value name="text-plain" property="4XXText-plain">
               <Has name="mediaType" value="text/plain"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;text/plain&apos;"/>
             </Value>
           </Var>
-          <VarSet name="text-plain" when="4XXtext-plain">
+          <VarSet name="text-plain" when="4XXText-plain">
             <Var name="Type">
-              <Value name="string" property="4XXtext-plainValue"/>
+              <Value name="string" property="4XXText-plainValue"/>
               <Value name="null" once="true"/>
               <Value name="Not string" failure="true"/>
             </Var>
-            <VarSet name="Value" when="4XXtext-plainValue">
+            <VarSet name="Value" when="4XXText-plainValue">
               <Var name="Length">
-                <Value name="&gt; 0" property="4XXtext-plainLengthValid, 4XXtext-plainNotEmpty"/>
-                <Value name="0" property="4XXtext-plainLengthValid"/>
+                <Value name="&gt; 0" property="4XXText-plainLengthValid, 4XXText-plainNotEmpty"/>
+                <Value name="0" property="4XXText-plainLengthValid"/>
               </Var>
             </VarSet>
           </VarSet>
@@ -232,23 +232,23 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="202Content">
-            <Value name="text-javascript" property="202text-javascript">
+            <Value name="text-javascript" property="202Text-javascript">
               <Has name="mediaType" value="text/javascript"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;text/javascript&apos;"/>
             </Value>
           </Var>
-          <VarSet name="text-javascript" when="202text-javascript">
+          <VarSet name="text-javascript" when="202Text-javascript">
             <Var name="Type">
-              <Value name="object" property="202text-javascriptValue"/>
+              <Value name="object" property="202Text-javascriptValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="202text-javascriptValue">
+            <VarSet name="Value" when="202Text-javascriptValue">
               <VarSet name="Properties">
                 <Var name="Additional">
-                  <Value name="Yes" property="202text-javascriptProperties"/>
+                  <Value name="Yes" property="202Text-javascriptProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

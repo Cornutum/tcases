@@ -29,6 +29,7 @@ import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.BooleanSchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
+import io.swagger.v3.oas.models.media.Encoding;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.NumberSchema;
 import io.swagger.v3.oas.models.media.Schema;
@@ -454,7 +455,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
-          String contentVarTag = "Content";
+          String contentVarTag = contentVarTag( "body");
           Map<String,MediaType> mediaTypes = expectedValueOf( ifNotEmpty( b.getContent()).orElse( null), "Request body content");
           return
             VarSetBuilder.with( "Body")
@@ -479,7 +480,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         Optional.ofNullable( body)
         .map( b -> resolveRequestBody( api, b))
         .map( b -> {
-          String contentVarTag = "Content";
+          String contentVarTag = contentVarTag( "body");
           Map<String,MediaType> mediaTypes = expectedValueOf( ifNotEmpty( b.getContent()).orElse( null), "Request body content");
           return
             VarSetBuilder.with( "Body")
@@ -530,6 +531,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
         contentDef ->
         {
         String mediaType = contentDef.getKey();
+        MediaType mediaTypeDef = contentDef.getValue();
 
         return
           resultFor( mediaType,
@@ -537,17 +539,24 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
             {
             String mediaTypeVarName = mediaTypeVarName( mediaType);
             String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaType);
-            
-            VarSetBuilder contentVar =
-              VarSetBuilder.with( mediaTypeVarName)
-              .when( has( mediaTypeVarTag));
 
             Schema<?> mediaTypeSchema =
-              Optional.ofNullable( contentDef.getValue().getSchema())
-              .orElseGet( () -> { notifyWarning( "No schema defined"); return emptySchema();});
-            contentVar.members( instanceSchemaVars( mediaTypeVarTag, false, analyzeSchema( api, mediaTypeSchema)));
-
-            return contentVar.build();
+              analyzeSchema(
+                api,
+                Optional.ofNullable( mediaTypeDef.getSchema())
+                .orElseGet( () -> { notifyWarning( "No schema defined"); return emptySchema();}));
+            
+            VarSet mediaTypeVar =
+              VarSetBuilder.with( mediaTypeVarName)
+              .when( has( mediaTypeVarTag))
+              .members( instanceSchemaVars( mediaTypeVarTag, false, mediaTypeSchema))
+              .build();
+          
+            return
+              Optional.ofNullable( mediaTypeDef.getEncoding())
+              .filter( encodings -> "object".equals( mediaTypeSchema.getType()))
+              .map( encodings -> withEncodings( api, mediaTypeVar, mediaTypeVarTag, mediaType, encodings))
+              .orElse( mediaTypeVar);
             });
         });
     }
@@ -562,27 +571,109 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       .map(
         contentDef ->
         {
-        String mediaTypeName = contentDef.getKey();
+        String mediaType = contentDef.getKey();
+        MediaType mediaTypeDef = contentDef.getValue();
 
         return
-          resultFor( mediaTypeName,
+          resultFor( mediaType,
             () -> {
-            String mediaTypeVarName = mediaTypeVarName( mediaTypeName);
-            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaTypeName);
-            MediaType mediaType = contentDef.getValue();
+            String mediaTypeVarName = mediaTypeVarName( mediaType);
+            String mediaTypeVarTag = mediaTypeVarTag( contentVarTag, mediaType);
 
             Schema<?> mediaTypeSchema =
-              Optional.ofNullable( mediaType.getSchema())
-              .map( s -> exampleSchemaFor( mediaType.getExample(), mediaType.getExamples(), analyzeSchema( api, s)))
+              Optional.ofNullable( mediaTypeDef.getSchema())
+              .map( s -> exampleSchemaFor( mediaTypeDef.getExample(), mediaTypeDef.getExamples(), analyzeSchema( api, s)))
               .orElse( null);
 
-            return
+            VarSet mediaTypeVar =
               VarSetBuilder.with( mediaTypeVarName)
               .when( has( mediaTypeVarTag))
               .members( instanceSchemaVars( mediaTypeVarTag, false, mediaTypeSchema))
               .build();
+          
+            return
+              Optional.ofNullable( mediaTypeDef.getEncoding())
+              .filter( encodings -> "object".equals( mediaTypeSchema.getType()))
+              .map( encodings -> withEncodings( api, mediaTypeVar, mediaTypeVarTag, mediaType, encodings))
+              .orElse( mediaTypeVar);
             });
         });
+    }
+
+  /**
+   * Returns the given media type content variable with additions for any object property encodings.
+   */
+  private VarSet withEncodings( OpenAPI api, VarSet mediaTypeVar, String mediaTypeVarTag, String mediaType, Map<String,Encoding> encodings)
+    {
+    return
+      resultFor( "encoding",
+        () ->
+        "application/x-www-form-urlencoded".equals( mediaType)?
+        withFormUrlEncodings( mediaTypeVar, encodings) :
+
+        "multipart/form-data".equals( mediaType)?
+        withMultipartEncodings( api, mediaTypeVar, mediaTypeVarTag, encodings) :
+      
+        mediaTypeVar);
+    }
+
+  /**
+   * Returns the given media type content variable with additions for any <CODE>application/x-www-form-urlencoded</CODE> encodings.
+   */
+  private VarSet withFormUrlEncodings( VarSet mediaTypeVar, Map<String,Encoding> encodings)
+    {
+    encodings.forEach(
+      (property,encoding) -> {
+        VarSet propertyVar = getObjectPropertyVar( mediaTypeVar, property);
+        VarDef definedVar = (VarDef) propertyVar.find( "Defined");
+        definedVar.setAnnotation( "style", Objects.toString( encoding.getStyle(), null));
+        definedVar.setAnnotation( "explode", Objects.toString( encoding.getExplode(), null));
+      });
+    
+    return mediaTypeVar;
+    }
+
+  /**
+   * Returns the given media type content variable with additions for any <CODE>multipart/form-data</CODE> encodings.
+   */
+  private VarSet withMultipartEncodings( OpenAPI api, VarSet mediaTypeVar, String mediaTypeVarTag, Map<String,Encoding> encodings)
+    {
+    encodings.forEach(
+      (property,encoding) -> {
+        doFor( property, () -> {
+          VarSet propertyVar = getObjectPropertyVar( mediaTypeVar, property);
+          VarDef definedVar = (VarDef) propertyVar.find( "Defined");
+          definedVar.setAnnotation( "contentType", Objects.toString( encoding.getContentType(), null));
+
+          String propertyVarTag = mediaTypeVarTag + StringUtils.capitalize( toIdentifier( property));
+          headersVar( api, propertyVarTag, encoding.getHeaders())
+            .ifPresent( headers -> {
+              VarDef typeVar = (VarDef) propertyVar.find( "Type");
+              String valueDefined = 
+                toStream( typeVar.getValidValues())
+                .findFirst()
+                .flatMap( value -> toStream( value.getProperties()).findFirst())
+                .orElseThrow( () -> new IllegalStateException( "Can't find condition for headers"));
+            
+              propertyVar.addMember(
+                VarSetBuilder.with( (VarSet) headers)
+                .when( has( valueDefined)).build());
+              });
+          });
+      });
+    
+    return mediaTypeVar;
+    }
+
+  /**
+   * Returns the input variable for the given object property for the given media type content.
+   */
+  private VarSet getObjectPropertyVar( VarSet mediaTypeVar, String property)
+    {
+    return
+      (VarSet)
+      Optional.ofNullable( mediaTypeVar.find( "Value", "Properties", toIdentifier( property)))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Object schema does not define property=%s", property)));
     }
 
   /**
@@ -1207,7 +1298,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               VarSetBuilder.with( statusValueName)
               .when( has( statusCodeProperty( statusValueName)))
               .type( "response")
-              .members( iterableOf( responseHeadersVar( api, status, response)))
+              .members( iterableOf( headersVar( api, status, response.getHeaders())))
               .members( responseContentVar( api, status, response))
               .build();
             });
@@ -1215,16 +1306,16 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
-   * Returns the variable definition(s) for headers in the given response.
+   * Returns the variable definition(s) for the given headers.
    */
-  private Optional<IVarDef> responseHeadersVar( OpenAPI api, String status, ApiResponse response)
+  private Optional<IVarDef> headersVar( OpenAPI api, String instanceVarTag, Map<String,Header> headers)
     {
     return
       resultFor( "headers",
         () -> {
         List<String> headerNames =
-          Optional.ofNullable( response.getHeaders())
-          .map( headers -> headers.keySet().stream().filter( name -> !name.equals( "Content-Type")).collect( toList()))
+          Optional.ofNullable( headers)
+          .map( headerDefs -> headerDefs.keySet().stream().filter( name -> !name.equals( "Content-Type")).collect( toList()))
           .orElse( emptyList());
 
         return
@@ -1234,22 +1325,22 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
               VarSetBuilder.with( "Headers")
               .members(
                 names.stream()
-                .map( name -> responseHeaderVar( api, status, name, resolveHeader( api, response.getHeaders().get( name)))))
+                .map( name -> headerVar( api, instanceVarTag, name, resolveHeader( api, headers.get( name)))))
               .build();
             });
         });
     }
 
   /**
-   * Returns the variable definition for the given response header.
+   * Returns the variable definition for the given header.
    */
-  private IVarDef responseHeaderVar( OpenAPI api, String status, String headerName, Header header)
+  private IVarDef headerVar( OpenAPI api, String instanceVarTag, String headerName, Header header)
     {
     return
       resultFor( headerName,
         () -> {
         String headerVarName = toIdentifier( headerName);
-        String headerVarTag = status + "Header" + StringUtils.capitalize( headerVarName);
+        String headerVarTag = instanceVarTag + "Header" + StringUtils.capitalize( headerVarName);
         Schema<?> headerSchema = analyzeSchema( api, header.getSchema());
 
         return
@@ -1279,7 +1370,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private IVarDef responseContentVar( OpenAPI api, String status, ApiResponse response)
     {
     String contentVarName = "Content";
-    String contentVarTag = status + contentVarName;
+    String contentVarTag = contentVarTag( status);
     return
       resultFor( "content",
         () ->
@@ -3411,11 +3502,19 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     }
 
   /**
+   * Returns input variable tag for request input content
+   */
+  private String contentVarTag( String inputName)
+    {
+    return inputName + "Content";
+    }
+
+  /**
    * Returns input variable tag for the given media type
    */
   private String mediaTypeVarTag( String contentVarTag, String mediaType)
     {
-    return contentVarTag.replace( "Content", "") + mediaTypeVarName( mediaType);
+    return contentVarTag.replace( "Content", "") + StringUtils.capitalize( mediaTypeVarName( mediaType));
     }
 
   /**

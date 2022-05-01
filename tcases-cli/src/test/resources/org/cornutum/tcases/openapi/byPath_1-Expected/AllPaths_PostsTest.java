@@ -1235,7 +1235,7 @@ public class AllPaths_PostsTest {
                 .cookie( "country", "t")
                 .cookie( "region", ".")
                 .contentType( "text/plain")
-                .request().body( "null")
+                .request().body( "")
             .when()
                 .request( "PUT", "/posts")
             .then()

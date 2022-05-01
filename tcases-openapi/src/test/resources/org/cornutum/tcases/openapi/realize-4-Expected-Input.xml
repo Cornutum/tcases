@@ -9,27 +9,27 @@
     <Input type="request">
       <VarSet name="Body">
         <Var name="Defined">
-          <Value name="Yes" property="Content"/>
+          <Value name="Yes" property="bodyContent"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Media-Type" when="Content">
-          <Value name="text-plain" property="text-plain">
+        <Var name="Media-Type" when="bodyContent">
+          <Value name="text-plain" property="bodyText-plain">
             <Has name="mediaType" value="text/plain"/>
           </Value>
           <Value name="Other" failure="true">
             <Has name="excluded" value="&apos;text/plain&apos;"/>
           </Value>
         </Var>
-        <VarSet name="text-plain" when="text-plain">
+        <VarSet name="text-plain" when="bodyText-plain">
           <Var name="Type">
-            <Value name="string" property="text-plainValue"/>
+            <Value name="string" property="bodyText-plainValue"/>
             <Value name="null" once="true"/>
             <Value name="Not string" failure="true"/>
           </Var>
-          <VarSet name="Value" when="text-plainValue">
+          <VarSet name="Value" when="bodyText-plainValue">
             <Var name="Length">
-              <Value name="0" property="text-plainLengthValid"/>
-              <Value name="&gt; 0" property="text-plainLengthValid, text-plainNotEmpty"/>
+              <Value name="0" property="bodyText-plainLengthValid"/>
+              <Value name="&gt; 0" property="bodyText-plainLengthValid, bodyText-plainNotEmpty"/>
             </Var>
           </VarSet>
         </VarSet>

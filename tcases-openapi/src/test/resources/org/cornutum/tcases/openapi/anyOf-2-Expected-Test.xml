@@ -12,7 +12,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative0,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -31,7 +31,7 @@
     <TestCase id="1" name="Body.application-json.Alternative.Used=&apos;1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative1,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -50,7 +50,7 @@
     <TestCase id="2" name="Body.application-json.Alternative.0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative0,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -69,7 +69,7 @@
     <TestCase id="3" name="Body.application-json.Alternative.0.Value.Is=&apos;100.0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative0,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -88,7 +88,7 @@
     <TestCase id="4" name="Body.application-json.Alternative.1.Value.Is=&apos;&lt; -0.1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative1,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -123,7 +123,7 @@
     <TestCase id="6" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -142,7 +142,7 @@
     <TestCase id="7" failure="true" name="Body.application-json.Alternative.0.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative0,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -161,7 +161,7 @@
     <TestCase id="8" failure="true" name="Body.application-json.Alternative.0.Value.Is=&apos;-0.1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative0,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -180,7 +180,7 @@
     <TestCase id="9" failure="true" name="Body.application-json.Alternative.0.Value.Is=&apos;100.1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative0,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative0,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>
@@ -199,7 +199,7 @@
     <TestCase id="10" failure="true" name="Body.application-json.Alternative.1.Value.Is=&apos;0.0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/anyOf"/>
-      <Has name="properties" value="application-json,application-jsonAlternative1,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonAlternative1,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="AnyOf"/>
       <Has name="version" value="0.0.0"/>

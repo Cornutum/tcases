@@ -11,22 +11,29 @@ import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.ApiKeyDef;
 import org.cornutum.tcases.openapi.resolver.AuthDef;
 import org.cornutum.tcases.openapi.resolver.AuthDefVisitor;
-import org.cornutum.tcases.openapi.resolver.BinaryValue;
 import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.openapi.resolver.EncodingData;
 import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
 import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
+import org.cornutum.tcases.openapi.resolver.MessageData;
+import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
+import org.cornutum.tcases.openapi.test.MediaRange;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
 import org.cornutum.tcases.openapi.testwriter.ValidatingTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
+
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 import static org.cornutum.tcases.openapi.testwriter.java.TestCaseWriterUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -45,6 +52,24 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     }
   
   /**
+   * Prepare this writer to handle the given request cases.
+   */
+  @Override
+  public void prepareTestCases( List<RequestCase> requestCases)
+    {
+    requiresMultiPart_ =
+      requestCases.stream()
+      .map( RequestCase::getBody)
+      .anyMatch(
+        body -> 
+        Optional.ofNullable( body)
+        .map( MessageData::getMediaType)
+        .map( mediaType -> "multipart/form-data".equals( MediaRange.of( mediaType).base()))
+        .orElse( false));
+      
+    }
+  
+  /**
    * Writes the dependencies for target test cases to the given stream.
    */
   @Override
@@ -60,6 +85,11 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println( "import io.restassured.response.Response;");
       targetWriter.println();
       }
+    if( requiresMultiPart_)
+      {
+      targetWriter.println( "import io.restassured.builder.MultiPartSpecBuilder;");
+      targetWriter.println();
+      }
     targetWriter.println( "import org.hamcrest.Matcher;");
     targetWriter.println( "import static io.restassured.RestAssured.*;");
     targetWriter.println( "import static org.hamcrest.Matchers.*;");
@@ -73,7 +103,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   @Override
   public void writeDeclarations( String testName, IndentedWriter targetWriter)
     {
-    
     }
   
   /**
@@ -335,26 +364,28 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
         Optional.ofNullable( body.getValue())
           .ifPresent( value -> {
 
-            String mediaType = body.getMediaType();
+            MediaRange mediaType = MediaRange.of( body.getMediaType());
             targetWriter.println( String.format( ".contentType( %s)", stringLiteral( mediaType)));
 
-            byte[] bytes = 
-              "application/octet-stream".equals( mediaType) || (mediaType == null && value.getClass().equals( BinaryValue.class))
-              ? DataValueBinary.toBytes( value)
-              : null;
-
             // Write binary value?
-            if( bytes != null)
+            if( "application/octet-stream".equals( mediaType.base()))
               {
               // Yes
-              writeBodyBinary( testName, bytes, targetWriter);
+              writeBodyBinary( testName, value, targetWriter);
               }
 
             // Write form value?
-            else if( "application/x-www-form-urlencoded".equals( mediaType))
+            else if( "application/x-www-form-urlencoded".equals( mediaType.base()))
               {
-              writeBodyForm( testName, value, targetWriter);
+              writeBodyForm( testName, body, targetWriter);
               }
+
+            // Write multipart form value?
+            else if( "multipart/form-data".equals( mediaType.base()))
+              {
+              writeBodyMultipart( testName, body, targetWriter);
+              }
+
             else
               {
               // No, serialize body value according to media type
@@ -373,14 +404,15 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   /**
    * Writes the request body as a byte array for a target test case to the given stream.
    */
-  protected void writeBodyBinary( String testName, byte[] bytes, IndentedWriter targetWriter)
+  protected void writeBodyBinary( String testName, DataValue<?> value, IndentedWriter targetWriter)
     {
+    List<String> segments = byteInitializerFor( value);
+
     // If small value...
-    final int lineSize = 16;
-    if( bytes.length <= lineSize)
+    if( segments.size() == 1)
       {
       // ... write a single line
-      targetWriter.println( String.format( ".request().body( new byte[]{%s})", initializerFor( bytes, 0, bytes.length)));
+      targetWriter.println( String.format( ".request().body( new byte[]{%s})", segments.get(0)));
       }
     else
       {
@@ -388,27 +420,25 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println( ".request().body(");
       targetWriter.indent();
       targetWriter.println( "new byte[] {");
-      targetWriter.indent();
 
-      int from;
-      for( from = 0; bytes.length - from > lineSize; from += lineSize)
+      targetWriter.indent();
+      for( String segment : segments)
         {
-        targetWriter.println( String.format( "%s,", initializerFor( bytes, from, from + lineSize)));
+        targetWriter.println( segment);
         }
-      targetWriter.println( initializerFor( bytes, from, bytes.length));
-        
       targetWriter.unindent();
+        
       targetWriter.println( "})");
       targetWriter.unindent();
       }
     }
   
   /**
-   * Writes the request body as an x-www-form-urlencoded form for a target test case to the given stream.
+   * Writes the request body as an <CODE>application/x-www-form-urlencoded</CODE> form for a target test case to the given stream.
    */
-  protected void writeBodyForm( String testName, DataValue<?> value, IndentedWriter targetWriter)
+  protected void writeBodyForm( String testName, MessageData body, IndentedWriter targetWriter)
     {
-    FormUrlEncoder.encode( value, false)
+    FormUrlEncoder.encode( body.getValue(), body.getEncodings(), false)
       .stream()
       .forEach( entry -> {
         String formParamFormat =
@@ -423,11 +453,119 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
             stringLiteral( entry.getValue())));
         });
     }
+  
+  /**
+   * Writes the request body as <CODE>multipart/form-data</CODE> form for a target test case to the given stream.
+   */
+  protected void writeBodyMultipart( String testName, MessageData body, IndentedWriter targetWriter)
+    {
+    // Multipart forms apply only to object values. Non-object values, which may be supplied by failure test cases, are all
+    // handled as "empty body".
+    if( body.getValue().getType() == DataValue.Type.OBJECT)
+      {
+      ObjectValue objectValue = (ObjectValue) body.getValue();
+      objectValue.getValue().forEach( (property, value) -> writeMultipartPart( property, value, body.getEncodings().get( property), targetWriter));
+      }
+    }
+  
+  /**
+   * Writes the content of the <CODE>multipart/form-data</CODE> part for the given body object property.
+   */
+  protected void writeMultipartPart( String property, DataValue<?> value, EncodingData encoding, IndentedWriter targetWriter)
+    {
+    MediaRange contentType = MediaRange.of( encoding.getContentType());
+    
+    targetWriter.println( ".multiPart(");
+    targetWriter.indent();
+
+    if( "application/octet-stream".equals( contentType.base()))
+      {
+      List<String> segments = byteInitializerFor( value);
+
+      // If small value...
+      if( segments.size() == 1)
+        {
+        // ... write a single line
+        targetWriter.println( String.format( "new MultiPartSpecBuilder( new byte[]{%s})", segments.get(0)));
+        }
+      else
+        {
+        // Otherwise, write as multiple lines.
+        targetWriter.println( "new MultiPartSpecBuilder(");
+        targetWriter.indent();
+        targetWriter.println( "new byte[] {");
+
+        targetWriter.indent();
+        for( String segment : segments)
+          {
+          targetWriter.println( segment);
+          }
+        targetWriter.unindent();
+        
+        targetWriter.println( "})");
+        targetWriter.unindent();
+        }
+      }
+
+    else
+      {
+      String partData;
+      if( "application/x-www-form-urlencoded".equals( contentType.base()))
+        {
+        partData = FormUrlEncoder.toForm( value);
+        }
+      else
+        {
+        partData =
+          getConverter( contentType)
+          .orElseThrow( () -> new TestWriterException( String.format( "No serializer defined for contentType=%s", contentType)))
+          .convert( value);
+        }
+
+      targetWriter.println( String.format( "new MultiPartSpecBuilder( %s)", stringLiteral( partData)));      
+      }
+    
+    targetWriter.println( String.format( ".controlName( %s)", stringLiteral( property)));
+    targetWriter.println( String.format( ".mimeType( %s)", stringLiteral( contentType)));
+
+    encoding.getHeaders().stream()
+      .forEach( headerData -> {
+        targetWriter.println(
+          String.format(
+            ".header( %s, %s)",
+            stringLiteral( headerData.getName()),
+            stringLiteral( SimpleValueEncoder.encode( headerData.getValue(), headerData.isExploded()))));
+        });
+    
+    targetWriter.println( ".emptyFileName()");
+    targetWriter.println( ".build())");
+    targetWriter.unindent();
+    }
+
+  /**
+   * Returns the initializer code for the byte array representing the given data value.
+   */
+  private List<String> byteInitializerFor( DataValue<?> value)
+    {
+    final int lineSize = 16;
+
+    List<String> segments = new ArrayList<String>();
+    byte[] bytes = DataValueBinary.toBytes( value);
+
+    int from;
+    for( from = 0; bytes.length - from > lineSize; from += lineSize)
+      {
+      segments.add( String.format( "%s,", byteInitializerFor( bytes, from, from + lineSize)));
+      }
+    segments.add( byteInitializerFor( bytes, from, bytes.length));
+
+    return segments;
+    }
 
   /**
    * Returns the initializer code for the given byte array segment.
    */
-  private String initializerFor( byte[] bytes, int start, int end)
+  private String byteInitializerFor( byte[] bytes, int start, int end)
     {
     return
       IntStream.range( start, end)
@@ -470,6 +608,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     }
 
   private Depends depends_;
+  private boolean requiresMultiPart_;
   private AuthDependsVisitor authDependsVisitor_ = new AuthDependsVisitor();
 
   /**
@@ -477,7 +616,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
    */
   private class AuthDependsVisitor implements AuthDefVisitor
     {
-
     @Override
     public void visit( ApiKeyDef authDef)
       {
@@ -496,5 +634,4 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       depends_.setDependsHttpBearer();
       }
     }
-
   }

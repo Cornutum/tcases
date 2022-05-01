@@ -18,82 +18,82 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="200Content">
-            <Value name="application-json" property="200application-json">
+            <Value name="application-json" property="200Application-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="200application-json">
+          <VarSet name="application-json" when="200Application-json">
             <Var name="Type">
-              <Value name="array" property="200application-jsonValue"/>
+              <Value name="array" property="200Application-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not array" failure="true"/>
             </Var>
-            <VarSet name="Items" when="200application-jsonValue">
+            <VarSet name="Items" when="200Application-jsonValue">
               <Var name="Size">
-                <Value name="0" property="200application-jsonItemsNone"/>
+                <Value name="0" property="200Application-jsonItemsNone"/>
                 <Value name="1"/>
-                <Value name="&gt; 1" property="200application-jsonItemsMany"/>
+                <Value name="&gt; 1" property="200Application-jsonItemsMany"/>
               </Var>
-              <VarSet name="Contains" whenNot="200application-jsonItemsNone">
+              <VarSet name="Contains" whenNot="200Application-jsonItemsNone">
                 <Var name="Type">
                   <Has name="itemType" value="object"/>
-                  <Value name="object" property="200application-jsonItemsValue"/>
+                  <Value name="object" property="200Application-jsonItemsValue"/>
                   <Value name="null" failure="true"/>
                   <Value name="Not object" failure="true"/>
                 </Var>
-                <VarSet name="Value" when="200application-jsonItemsValue">
+                <VarSet name="Value" when="200Application-jsonItemsValue">
                   <VarSet name="Properties">
                     <VarSet name="name">
                       <Var name="Defined">
                         <Has name="propertyName" value="name"/>
-                        <Value name="Yes" property="200application-jsonItemsName, 200application-jsonItemsProperties"/>
+                        <Value name="Yes" property="200Application-jsonItemsName, 200Application-jsonItemsProperties"/>
                         <Value name="No" failure="true"/>
                       </Var>
-                      <Var name="Type" when="200application-jsonItemsName">
-                        <Value name="string" property="200application-jsonItemsNameValue"/>
+                      <Var name="Type" when="200Application-jsonItemsName">
+                        <Value name="string" property="200Application-jsonItemsNameValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="200application-jsonItemsNameValue">
+                      <VarSet name="Value" when="200Application-jsonItemsNameValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="200application-jsonItemsNameLengthValid, 200application-jsonItemsNameNotEmpty"/>
-                          <Value name="0" property="200application-jsonItemsNameLengthValid"/>
+                          <Value name="&gt; 0" property="200Application-jsonItemsNameLengthValid, 200Application-jsonItemsNameNotEmpty"/>
+                          <Value name="0" property="200Application-jsonItemsNameLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="tag">
                       <Var name="Defined">
                         <Has name="propertyName" value="tag"/>
-                        <Value name="Yes" property="200application-jsonItemsProperties, 200application-jsonItemsTag"/>
+                        <Value name="Yes" property="200Application-jsonItemsProperties, 200Application-jsonItemsTag"/>
                         <Value name="No"/>
                       </Var>
-                      <Var name="Type" when="200application-jsonItemsTag">
-                        <Value name="string" property="200application-jsonItemsTagValue"/>
+                      <Var name="Type" when="200Application-jsonItemsTag">
+                        <Value name="string" property="200Application-jsonItemsTagValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not string" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="200application-jsonItemsTagValue">
+                      <VarSet name="Value" when="200Application-jsonItemsTagValue">
                         <Var name="Length">
-                          <Value name="&gt; 0" property="200application-jsonItemsTagLengthValid, 200application-jsonItemsTagNotEmpty"/>
-                          <Value name="0" property="200application-jsonItemsTagLengthValid"/>
+                          <Value name="&gt; 0" property="200Application-jsonItemsTagLengthValid, 200Application-jsonItemsTagNotEmpty"/>
+                          <Value name="0" property="200Application-jsonItemsTagLengthValid"/>
                         </Var>
                       </VarSet>
                     </VarSet>
                     <VarSet name="id">
                       <Var name="Defined">
                         <Has name="propertyName" value="id"/>
-                        <Value name="Yes" property="200application-jsonItemsId, 200application-jsonItemsProperties"/>
+                        <Value name="Yes" property="200Application-jsonItemsId, 200Application-jsonItemsProperties"/>
                         <Value name="No" failure="true"/>
                       </Var>
-                      <Var name="Type" when="200application-jsonItemsId">
-                        <Value name="integer" property="200application-jsonItemsIdValue"/>
+                      <Var name="Type" when="200Application-jsonItemsId">
+                        <Value name="integer" property="200Application-jsonItemsIdValue"/>
                         <Value name="null" failure="true"/>
                         <Value name="Not integer" failure="true"/>
                       </Var>
-                      <VarSet name="Value" when="200application-jsonItemsIdValue">
+                      <VarSet name="Value" when="200Application-jsonItemsIdValue">
                         <Has name="format" value="int64"/>
                         <Var name="Is">
                           <Value name="&lt; 0"/>
@@ -103,13 +103,13 @@
                       </VarSet>
                     </VarSet>
                     <Var name="Additional">
-                      <Value name="Yes" property="200application-jsonItemsProperties"/>
+                      <Value name="Yes" property="200Application-jsonItemsProperties"/>
                       <Value name="No"/>
                     </Var>
                   </VarSet>
                 </VarSet>
               </VarSet>
-              <Var name="Unique" when="200application-jsonItemsMany">
+              <Var name="Unique" when="200Application-jsonItemsMany">
                 <Value name="Yes"/>
                 <Value name="No"/>
               </Var>
@@ -124,33 +124,33 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="object" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <VarSet name="Properties">
                 <VarSet name="code">
                   <Var name="Defined">
                     <Has name="propertyName" value="code"/>
-                    <Value name="Yes" property="defaultapplication-jsonCode, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonCode, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonCode">
-                    <Value name="integer" property="defaultapplication-jsonCodeValue"/>
+                  <Var name="Type" when="defaultApplication-jsonCode">
+                    <Value name="integer" property="defaultApplication-jsonCodeValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonCodeValue">
+                  <VarSet name="Value" when="defaultApplication-jsonCodeValue">
                     <Has name="format" value="int32"/>
                     <Var name="Is">
                       <Value name="&lt; 0"/>
@@ -162,23 +162,23 @@
                 <VarSet name="message">
                   <Var name="Defined">
                     <Has name="propertyName" value="message"/>
-                    <Value name="Yes" property="defaultapplication-jsonMessage, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonMessage, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonMessage">
-                    <Value name="string" property="defaultapplication-jsonMessageValue"/>
+                  <Var name="Type" when="defaultApplication-jsonMessage">
+                    <Value name="string" property="defaultApplication-jsonMessageValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonMessageValue">
+                  <VarSet name="Value" when="defaultApplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid, defaultapplication-jsonMessageNotEmpty"/>
-                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="&gt; 0" property="defaultApplication-jsonMessageLengthValid, defaultApplication-jsonMessageNotEmpty"/>
+                      <Value name="0" property="defaultApplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="defaultapplication-jsonProperties"/>
+                  <Value name="Yes" property="defaultApplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -203,69 +203,69 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="200Content">
-            <Value name="application-json" property="200application-json">
+            <Value name="application-json" property="200Application-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="200application-json">
+          <VarSet name="application-json" when="200Application-json">
             <Var name="Type">
-              <Value name="object" property="200application-jsonValue"/>
+              <Value name="object" property="200Application-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="200application-jsonValue">
+            <VarSet name="Value" when="200Application-jsonValue">
               <VarSet name="Properties">
                 <VarSet name="name">
                   <Var name="Defined">
                     <Has name="propertyName" value="name"/>
-                    <Value name="Yes" property="200application-jsonName, 200application-jsonProperties"/>
+                    <Value name="Yes" property="200Application-jsonName, 200Application-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonName">
-                    <Value name="string" property="200application-jsonNameValue"/>
+                  <Var name="Type" when="200Application-jsonName">
+                    <Value name="string" property="200Application-jsonNameValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonNameValue">
+                  <VarSet name="Value" when="200Application-jsonNameValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="200application-jsonNameLengthValid, 200application-jsonNameNotEmpty"/>
-                      <Value name="0" property="200application-jsonNameLengthValid"/>
+                      <Value name="&gt; 0" property="200Application-jsonNameLengthValid, 200Application-jsonNameNotEmpty"/>
+                      <Value name="0" property="200Application-jsonNameLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <VarSet name="tag">
                   <Var name="Defined">
                     <Has name="propertyName" value="tag"/>
-                    <Value name="Yes" property="200application-jsonProperties, 200application-jsonTag"/>
+                    <Value name="Yes" property="200Application-jsonProperties, 200Application-jsonTag"/>
                     <Value name="No"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonTag">
-                    <Value name="string" property="200application-jsonTagValue"/>
+                  <Var name="Type" when="200Application-jsonTag">
+                    <Value name="string" property="200Application-jsonTagValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonTagValue">
+                  <VarSet name="Value" when="200Application-jsonTagValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="200application-jsonTagLengthValid, 200application-jsonTagNotEmpty"/>
-                      <Value name="0" property="200application-jsonTagLengthValid"/>
+                      <Value name="&gt; 0" property="200Application-jsonTagLengthValid, 200Application-jsonTagNotEmpty"/>
+                      <Value name="0" property="200Application-jsonTagLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <VarSet name="id">
                   <Var name="Defined">
                     <Has name="propertyName" value="id"/>
-                    <Value name="Yes" property="200application-jsonId, 200application-jsonProperties"/>
+                    <Value name="Yes" property="200Application-jsonId, 200Application-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonId">
-                    <Value name="integer" property="200application-jsonIdValue"/>
+                  <Var name="Type" when="200Application-jsonId">
+                    <Value name="integer" property="200Application-jsonIdValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonIdValue">
+                  <VarSet name="Value" when="200Application-jsonIdValue">
                     <Has name="format" value="int64"/>
                     <Var name="Is">
                       <Value name="&lt; 0"/>
@@ -275,7 +275,7 @@
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="200application-jsonProperties"/>
+                  <Value name="Yes" property="200Application-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -290,33 +290,33 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="object" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <VarSet name="Properties">
                 <VarSet name="code">
                   <Var name="Defined">
                     <Has name="propertyName" value="code"/>
-                    <Value name="Yes" property="defaultapplication-jsonCode, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonCode, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonCode">
-                    <Value name="integer" property="defaultapplication-jsonCodeValue"/>
+                  <Var name="Type" when="defaultApplication-jsonCode">
+                    <Value name="integer" property="defaultApplication-jsonCodeValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonCodeValue">
+                  <VarSet name="Value" when="defaultApplication-jsonCodeValue">
                     <Has name="format" value="int32"/>
                     <Var name="Is">
                       <Value name="&lt; 0"/>
@@ -328,23 +328,23 @@
                 <VarSet name="message">
                   <Var name="Defined">
                     <Has name="propertyName" value="message"/>
-                    <Value name="Yes" property="defaultapplication-jsonMessage, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonMessage, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonMessage">
-                    <Value name="string" property="defaultapplication-jsonMessageValue"/>
+                  <Var name="Type" when="defaultApplication-jsonMessage">
+                    <Value name="string" property="defaultApplication-jsonMessageValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonMessageValue">
+                  <VarSet name="Value" when="defaultApplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid, defaultapplication-jsonMessageNotEmpty"/>
-                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="&gt; 0" property="defaultApplication-jsonMessageLengthValid, defaultApplication-jsonMessageNotEmpty"/>
+                      <Value name="0" property="defaultApplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="defaultapplication-jsonProperties"/>
+                  <Value name="Yes" property="defaultApplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -369,69 +369,69 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="200Content">
-            <Value name="application-json" property="200application-json">
+            <Value name="application-json" property="200Application-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="200application-json">
+          <VarSet name="application-json" when="200Application-json">
             <Var name="Type">
-              <Value name="object" property="200application-jsonValue"/>
+              <Value name="object" property="200Application-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="200application-jsonValue">
+            <VarSet name="Value" when="200Application-jsonValue">
               <VarSet name="Properties">
                 <VarSet name="name">
                   <Var name="Defined">
                     <Has name="propertyName" value="name"/>
-                    <Value name="Yes" property="200application-jsonName, 200application-jsonProperties"/>
+                    <Value name="Yes" property="200Application-jsonName, 200Application-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonName">
-                    <Value name="string" property="200application-jsonNameValue"/>
+                  <Var name="Type" when="200Application-jsonName">
+                    <Value name="string" property="200Application-jsonNameValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonNameValue">
+                  <VarSet name="Value" when="200Application-jsonNameValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="200application-jsonNameLengthValid, 200application-jsonNameNotEmpty"/>
-                      <Value name="0" property="200application-jsonNameLengthValid"/>
+                      <Value name="&gt; 0" property="200Application-jsonNameLengthValid, 200Application-jsonNameNotEmpty"/>
+                      <Value name="0" property="200Application-jsonNameLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <VarSet name="tag">
                   <Var name="Defined">
                     <Has name="propertyName" value="tag"/>
-                    <Value name="Yes" property="200application-jsonProperties, 200application-jsonTag"/>
+                    <Value name="Yes" property="200Application-jsonProperties, 200Application-jsonTag"/>
                     <Value name="No"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonTag">
-                    <Value name="string" property="200application-jsonTagValue"/>
+                  <Var name="Type" when="200Application-jsonTag">
+                    <Value name="string" property="200Application-jsonTagValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonTagValue">
+                  <VarSet name="Value" when="200Application-jsonTagValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="200application-jsonTagLengthValid, 200application-jsonTagNotEmpty"/>
-                      <Value name="0" property="200application-jsonTagLengthValid"/>
+                      <Value name="&gt; 0" property="200Application-jsonTagLengthValid, 200Application-jsonTagNotEmpty"/>
+                      <Value name="0" property="200Application-jsonTagLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <VarSet name="id">
                   <Var name="Defined">
                     <Has name="propertyName" value="id"/>
-                    <Value name="Yes" property="200application-jsonId, 200application-jsonProperties"/>
+                    <Value name="Yes" property="200Application-jsonId, 200Application-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="200application-jsonId">
-                    <Value name="integer" property="200application-jsonIdValue"/>
+                  <Var name="Type" when="200Application-jsonId">
+                    <Value name="integer" property="200Application-jsonIdValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="200application-jsonIdValue">
+                  <VarSet name="Value" when="200Application-jsonIdValue">
                     <Has name="format" value="int64"/>
                     <Var name="Is">
                       <Value name="&lt; 0"/>
@@ -441,7 +441,7 @@
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="200application-jsonProperties"/>
+                  <Value name="Yes" property="200Application-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -456,33 +456,33 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="object" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <VarSet name="Properties">
                 <VarSet name="code">
                   <Var name="Defined">
                     <Has name="propertyName" value="code"/>
-                    <Value name="Yes" property="defaultapplication-jsonCode, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonCode, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonCode">
-                    <Value name="integer" property="defaultapplication-jsonCodeValue"/>
+                  <Var name="Type" when="defaultApplication-jsonCode">
+                    <Value name="integer" property="defaultApplication-jsonCodeValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonCodeValue">
+                  <VarSet name="Value" when="defaultApplication-jsonCodeValue">
                     <Has name="format" value="int32"/>
                     <Var name="Is">
                       <Value name="&lt; 0"/>
@@ -494,23 +494,23 @@
                 <VarSet name="message">
                   <Var name="Defined">
                     <Has name="propertyName" value="message"/>
-                    <Value name="Yes" property="defaultapplication-jsonMessage, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonMessage, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonMessage">
-                    <Value name="string" property="defaultapplication-jsonMessageValue"/>
+                  <Var name="Type" when="defaultApplication-jsonMessage">
+                    <Value name="string" property="defaultApplication-jsonMessageValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonMessageValue">
+                  <VarSet name="Value" when="defaultApplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid, defaultapplication-jsonMessageNotEmpty"/>
-                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="&gt; 0" property="defaultApplication-jsonMessageLengthValid, defaultApplication-jsonMessageNotEmpty"/>
+                      <Value name="0" property="defaultApplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="defaultapplication-jsonProperties"/>
+                  <Value name="Yes" property="defaultApplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>
@@ -542,33 +542,33 @@
             <Value name="No" failure="true"/>
           </Var>
           <Var name="Media-Type" when="defaultContent">
-            <Value name="application-json" property="defaultapplication-json">
+            <Value name="application-json" property="defaultApplication-json">
               <Has name="mediaType" value="application/json"/>
             </Value>
             <Value name="Other" failure="true">
               <Has name="excluded" value="&apos;application/json&apos;"/>
             </Value>
           </Var>
-          <VarSet name="application-json" when="defaultapplication-json">
+          <VarSet name="application-json" when="defaultApplication-json">
             <Var name="Type">
-              <Value name="object" property="defaultapplication-jsonValue"/>
+              <Value name="object" property="defaultApplication-jsonValue"/>
               <Value name="null" failure="true"/>
               <Value name="Not object" failure="true"/>
             </Var>
-            <VarSet name="Value" when="defaultapplication-jsonValue">
+            <VarSet name="Value" when="defaultApplication-jsonValue">
               <VarSet name="Properties">
                 <VarSet name="code">
                   <Var name="Defined">
                     <Has name="propertyName" value="code"/>
-                    <Value name="Yes" property="defaultapplication-jsonCode, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonCode, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonCode">
-                    <Value name="integer" property="defaultapplication-jsonCodeValue"/>
+                  <Var name="Type" when="defaultApplication-jsonCode">
+                    <Value name="integer" property="defaultApplication-jsonCodeValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not integer" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonCodeValue">
+                  <VarSet name="Value" when="defaultApplication-jsonCodeValue">
                     <Has name="format" value="int32"/>
                     <Var name="Is">
                       <Value name="&lt; 0"/>
@@ -580,23 +580,23 @@
                 <VarSet name="message">
                   <Var name="Defined">
                     <Has name="propertyName" value="message"/>
-                    <Value name="Yes" property="defaultapplication-jsonMessage, defaultapplication-jsonProperties"/>
+                    <Value name="Yes" property="defaultApplication-jsonMessage, defaultApplication-jsonProperties"/>
                     <Value name="No" failure="true"/>
                   </Var>
-                  <Var name="Type" when="defaultapplication-jsonMessage">
-                    <Value name="string" property="defaultapplication-jsonMessageValue"/>
+                  <Var name="Type" when="defaultApplication-jsonMessage">
+                    <Value name="string" property="defaultApplication-jsonMessageValue"/>
                     <Value name="null" failure="true"/>
                     <Value name="Not string" failure="true"/>
                   </Var>
-                  <VarSet name="Value" when="defaultapplication-jsonMessageValue">
+                  <VarSet name="Value" when="defaultApplication-jsonMessageValue">
                     <Var name="Length">
-                      <Value name="&gt; 0" property="defaultapplication-jsonMessageLengthValid, defaultapplication-jsonMessageNotEmpty"/>
-                      <Value name="0" property="defaultapplication-jsonMessageLengthValid"/>
+                      <Value name="&gt; 0" property="defaultApplication-jsonMessageLengthValid, defaultApplication-jsonMessageNotEmpty"/>
+                      <Value name="0" property="defaultApplication-jsonMessageLengthValid"/>
                     </Var>
                   </VarSet>
                 </VarSet>
                 <Var name="Additional">
-                  <Value name="Yes" property="defaultapplication-jsonProperties"/>
+                  <Value name="Yes" property="defaultApplication-jsonProperties"/>
                   <Value name="No"/>
                 </Var>
               </VarSet>

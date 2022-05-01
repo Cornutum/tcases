@@ -29,7 +29,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,secRecOpKeyQuery"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,secRecOpKeyQuery"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>
@@ -51,7 +51,7 @@
     <TestCase id="1" name="Body.application-json.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,secRecOpKeyQuery"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,secRecOpKeyQuery"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>
@@ -93,7 +93,7 @@
     <TestCase id="3" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="Content,secRecOpKeyQuery"/>
+      <Has name="properties" value="bodyContent,secRecOpKeyQuery"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>
@@ -115,7 +115,7 @@
     <TestCase id="4" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="application-json,Content,secRecOpKeyQuery"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent,secRecOpKeyQuery"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>
@@ -137,7 +137,7 @@
     <TestCase id="5" failure="true" name="Body.application-json.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="application-json,Content,secRecOpKeyQuery"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent,secRecOpKeyQuery"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>
@@ -159,7 +159,7 @@
     <TestCase id="6" failure="true" name="Body.application-json.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,secRecOpKeyQuery"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,secRecOpKeyQuery"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>
@@ -181,7 +181,7 @@
     <TestCase id="7" failure="true" name="Auth.opKeyQuery.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/resource"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Authenticated"/>
       <Has name="version" value="0.0.0"/>

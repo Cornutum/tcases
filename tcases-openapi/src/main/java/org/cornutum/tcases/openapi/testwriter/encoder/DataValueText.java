@@ -39,9 +39,13 @@ public class DataValueText implements DataValueConverter<String>
     ValueType type = Optional.ofNullable( jsonValue).map( JsonValue::getValueType).orElse( null);
 
     return
-      type == ValueType.STRING
-      ? ((JsonString) jsonValue).getString()
-      : Objects.toString( jsonValue, "");
+      type == ValueType.NULL?
+      "" :
+
+      type == ValueType.STRING?
+      ((JsonString) jsonValue).getString() :
+      
+      Objects.toString( jsonValue, "");
     }
 
   private DataValueJsonValue convertJsonValue_ = new DataValueJsonValue(); 

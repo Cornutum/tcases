@@ -8,7 +8,7 @@
     <Has name="title" value="Responses"/>
     <Has name="version" value="0.0.0"/>
     <TestCase id="0" name="Status-Code=&apos;200&apos;">
-      <Has name="properties" value="200application-json,200application-jsonValue,200Content,status200"/>
+      <Has name="properties" value="200Application-json,200Application-jsonValue,200Content,status200"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -27,7 +27,7 @@
       </Input>
     </TestCase>
     <TestCase id="1" name="Status-Code=&apos;Other&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonProperties,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultApplication-json,defaultApplication-jsonProperties,defaultApplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -48,7 +48,7 @@
       </Input>
     </TestCase>
     <TestCase id="2" name="200.Content.application-json.Value.Is=&apos;10&apos;">
-      <Has name="properties" value="200application-json,200application-jsonValue,200Content,status200"/>
+      <Has name="properties" value="200Application-json,200Application-jsonValue,200Content,status200"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -67,7 +67,7 @@
       </Input>
     </TestCase>
     <TestCase id="3" name="Other.Content.application-json.Value.Properties.Additional=&apos;No&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultapplication-jsonValue,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultApplication-json,defaultApplication-jsonValue,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -124,7 +124,7 @@
       </Input>
     </TestCase>
     <TestCase id="6" failure="true" name="200.Content.application-json.Type=null">
-      <Has name="properties" value="200application-json,200Content,status200"/>
+      <Has name="properties" value="200Application-json,200Content,status200"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -143,7 +143,7 @@
       </Input>
     </TestCase>
     <TestCase id="7" failure="true" name="200.Content.application-json.Type=&apos;Not integer&apos;">
-      <Has name="properties" value="200application-json,200Content,status200"/>
+      <Has name="properties" value="200Application-json,200Content,status200"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -162,7 +162,7 @@
       </Input>
     </TestCase>
     <TestCase id="8" failure="true" name="200.Content.application-json.Value.Is=&apos;-1&apos;">
-      <Has name="properties" value="200application-json,200application-jsonValue,200Content,status200"/>
+      <Has name="properties" value="200Application-json,200Application-jsonValue,200Content,status200"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -181,7 +181,7 @@
       </Input>
     </TestCase>
     <TestCase id="9" failure="true" name="200.Content.application-json.Value.Is=&apos;11&apos;">
-      <Has name="properties" value="200application-json,200application-jsonValue,200Content,status200"/>
+      <Has name="properties" value="200Application-json,200Application-jsonValue,200Content,status200"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -240,7 +240,7 @@
       </Input>
     </TestCase>
     <TestCase id="12" failure="true" name="Other.Content.application-json.Type=null">
-      <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultApplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>
@@ -261,7 +261,7 @@
       </Input>
     </TestCase>
     <TestCase id="13" failure="true" name="Other.Content.application-json.Type=&apos;Not object&apos;">
-      <Has name="properties" value="defaultapplication-json,defaultContent,statusOther"/>
+      <Has name="properties" value="defaultApplication-json,defaultContent,statusOther"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Responses"/>
       <Has name="version" value="0.0.0"/>

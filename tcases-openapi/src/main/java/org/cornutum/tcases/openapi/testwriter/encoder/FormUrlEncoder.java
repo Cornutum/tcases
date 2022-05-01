@@ -14,6 +14,7 @@ import org.cornutum.tcases.openapi.resolver.BooleanValue;
 import org.cornutum.tcases.openapi.resolver.DataValue;
 import org.cornutum.tcases.openapi.resolver.DataValueVisitor;
 import org.cornutum.tcases.openapi.resolver.DecimalValue;
+import org.cornutum.tcases.openapi.resolver.EncodingData;
 import org.cornutum.tcases.openapi.resolver.IntegerValue;
 import org.cornutum.tcases.openapi.resolver.LongValue;
 import org.cornutum.tcases.openapi.resolver.NullValue;
@@ -29,6 +30,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.joining;
 
 import java.net.URLEncoder;
@@ -41,10 +43,21 @@ public class FormUrlEncoder implements DataValueVisitor
   /**
    * Creates a new FormUrlEncoder instance.
    */
-  private FormUrlEncoder( DataValue<?> value, boolean encoded)
+  private FormUrlEncoder( DataValue<?> value, Map<String,EncodingData> propertyEncodings, boolean encoded)
     {
     value_ = value;
+    propertyEncodings_ = Optional.ofNullable( propertyEncodings).orElse( emptyMap());
     encoded_ = encoded;
+    }
+
+  /**
+   * Returns the name/value pairs that encode the given {@link DataValue}. If <CODE>encoded</CODE>
+   * is true, apply the <CODE>application/x-www-form-urlencoded</CODE> encoding to all pairs.
+   * For an {@link ObjectValue}, use the given encodings to serialize each property value.
+   */
+  public static List<Map.Entry<String,String>> encode( DataValue<?> value, Map<String,EncodingData> propertyEncodings, boolean encoded)
+    {
+    return new FormUrlEncoder( value, propertyEncodings, encoded).accepted();
     }
 
   /**
@@ -53,7 +66,7 @@ public class FormUrlEncoder implements DataValueVisitor
    */
   public static List<Map.Entry<String,String>> encode( DataValue<?> value, boolean encoded)
     {
-    return new FormUrlEncoder( value, encoded).accepted();
+    return encode( value, null, encoded);
     }
 
   /**
@@ -168,7 +181,12 @@ public class FormUrlEncoder implements DataValueVisitor
   @Override
   public void visit( ObjectValue data)
     {
-    data.getValue().forEach( (property,value) -> bindMember( property, value));
+    data.getValue()
+      .forEach( (property,value) -> {
+        EncodingData encoding = Optional.ofNullable( propertyEncodings_.get( property)).orElse( new EncodingData( "form", true));
+        FormParameterEncoder.encode( property, encoding.getStyle(), encoding.isExploded(), value)
+          .forEach( entry -> bind( entry.getKey(), entry.getValue()));
+        });
     }
 
   @Override
@@ -179,5 +197,6 @@ public class FormUrlEncoder implements DataValueVisitor
   
   private final DataValue<?> value_;
   private final boolean encoded_;
+  private final Map<String,EncodingData> propertyEncodings_;
   private final List<Map.Entry<String,String>> bindings_ = new ArrayList<Map.Entry<String,String>>();
   }

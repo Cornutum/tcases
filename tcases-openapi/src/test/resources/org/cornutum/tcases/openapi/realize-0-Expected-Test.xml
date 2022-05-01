@@ -12,7 +12,7 @@
     <TestCase id="0" name="param.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -128,7 +128,7 @@
     <TestCase id="2" name="param.Value.Properties.tag.Value.Length=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagNotEmpty,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagNotEmpty,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -756,7 +756,7 @@
     <TestCase id="13" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -815,7 +815,7 @@
     <TestCase id="14" failure="true" name="Body.application-x-www-form-urlencoded.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -874,7 +874,7 @@
     <TestCase id="15" failure="true" name="Body.application-x-www-form-urlencoded.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -933,7 +933,7 @@
     <TestCase id="16" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -992,7 +992,7 @@
     <TestCase id="17" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1051,7 +1051,7 @@
     <TestCase id="18" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1110,7 +1110,7 @@
     <TestCase id="19" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.id.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1169,7 +1169,7 @@
     <TestCase id="20" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1228,7 +1228,7 @@
     <TestCase id="21" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1287,7 +1287,7 @@
     <TestCase id="22" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1346,7 +1346,7 @@
     <TestCase id="23" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>
@@ -1405,7 +1405,7 @@
     <TestCase id="24" failure="true" name="Body.application-x-www-form-urlencoded.Value.Properties.Additional=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/realize"/>
-      <Has name="properties" value="application-x-www-form-urlencoded,application-x-www-form-urlencodedId,application-x-www-form-urlencodedIdValue,application-x-www-form-urlencodedProperties,application-x-www-form-urlencodedTag,application-x-www-form-urlencodedTagLengthValid,application-x-www-form-urlencodedTagNotEmpty,application-x-www-form-urlencodedTagValue,application-x-www-form-urlencodedValue,Content,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
+      <Has name="properties" value="bodyApplication-x-www-form-urlencoded,bodyApplication-x-www-form-urlencodedId,bodyApplication-x-www-form-urlencodedIdValue,bodyApplication-x-www-form-urlencodedProperties,bodyApplication-x-www-form-urlencodedTag,bodyApplication-x-www-form-urlencodedTagLengthValid,bodyApplication-x-www-form-urlencodedTagNotEmpty,bodyApplication-x-www-form-urlencodedTagValue,bodyApplication-x-www-form-urlencodedValue,bodyContent,param,paramId,paramIdValue,paramProperties,paramTag,paramTagLengthValid,paramTagValue,paramValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="realize"/>
       <Has name="version" value="0.0.0"/>

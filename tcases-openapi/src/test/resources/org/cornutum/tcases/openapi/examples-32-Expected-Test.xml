@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -50,7 +50,7 @@
     <TestCase id="1" name="param1.Value.Is=&apos;2&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -88,7 +88,7 @@
     <TestCase id="2" name="param1.Value.Is=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>
@@ -126,7 +126,7 @@
     <TestCase id="3" name="param1.Value.Is=&apos;5&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,Content,param0,param0Value,param1,param1Value"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyContent,param0,param0Value,param1,param1Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="examples"/>
       <Has name="version" value="0.0.0"/>

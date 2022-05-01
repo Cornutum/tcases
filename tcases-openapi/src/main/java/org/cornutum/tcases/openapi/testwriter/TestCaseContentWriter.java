@@ -68,16 +68,14 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
     }
 
   /**
-   * Returns the serializer used for the given media type. The <CODE>mediaType</CODE> must be a specific
+   * Returns the serializer used for the given media type. The <CODE>mediaRange</CODE> must be a specific
    * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">media-range</a> with no wild cards.
-   * Returns the serializer registered for the media type that most closely matches the given media type.
+   * Returns the serializer registered for the media type that most closely matches the given media range.
    */
-  public Optional<DataValueConverter<String>> getConverter( String mediaType)
+  public Optional<DataValueConverter<String>> getConverter( MediaRange mediaRange)
     {
-    MediaRange mediaRange = MediaRange.of( mediaType);
-
     Object[] alternatives = new Object[]{
-      mediaType,
+      mediaRange.toString(),
       mediaRange.baseStructured(),
       MediaRange.anyOf( mediaRange.type(), mediaRange.suffix()),
       mediaRange.base(),
@@ -90,6 +88,16 @@ public abstract class TestCaseContentWriter implements TestCaseWriter
       .filter( alternative -> converters_.containsKey( alternative))
       .map( alternative -> converters_.get( alternative))
       .findFirst();
+    }
+
+  /**
+   * Returns the serializer used for the given media type. The <CODE>mediaType</CODE> must be a specific
+   * <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">media-range</a> with no wild cards.
+   * Returns the serializer registered for the media type that most closely matches the given media type.
+   */
+  public Optional<DataValueConverter<String>> getConverter( String mediaType)
+    {
+    return getConverter( MediaRange.of( mediaType));
     }
   
   /**

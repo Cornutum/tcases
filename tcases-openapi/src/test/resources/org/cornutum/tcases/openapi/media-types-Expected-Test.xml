@@ -12,7 +12,7 @@
     <TestCase id="0" name="Body.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WValue,example-WValueLengthValid,example-WValueNotEmpty,example-WValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WValue,bodyExample-WValueLengthValid,bodyExample-WValueNotEmpty,bodyExample-WValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -245,7 +245,7 @@
     <TestCase id="2" name="Body.Media-Type=&apos;text-WPlangEgb&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbValue,text-WPlangEgbValueLengthValid,text-WPlangEgbValueNotEmpty,text-WPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbValue,bodyText-WPlangEgbValueLengthValid,bodyText-WPlangEgbValueNotEmpty,bodyText-WPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -363,7 +363,7 @@
     <TestCase id="3" name="Body.Media-Type=&apos;application-WSjson&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonValue,application-WSjsonValueLengthValid,application-WSjsonValueNotEmpty,application-WSjsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonValue,bodyApplication-WSjsonValueLengthValid,bodyApplication-WSjsonValueNotEmpty,bodyApplication-WSjsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -481,7 +481,7 @@
     <TestCase id="4" name="Body.Media-Type=&apos;model-WSjsonPlangEgbPencEutf8&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Value,model-WSjsonPlangEgbPencEutf8ValueLengthValid,model-WSjsonPlangEgbPencEutf8ValueNotEmpty,model-WSjsonPlangEgbPencEutf8ValueValue"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Value,bodyModel-WSjsonPlangEgbPencEutf8ValueLengthValid,bodyModel-WSjsonPlangEgbPencEutf8ValueNotEmpty,bodyModel-WSjsonPlangEgbPencEutf8ValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -599,7 +599,7 @@
     <TestCase id="5" name="Body.Media-Type=&apos;application-json&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonValue,application-jsonValueLengthValid,application-jsonValueNotEmpty,application-jsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonValue,bodyApplication-jsonValueLengthValid,bodyApplication-jsonValueNotEmpty,bodyApplication-jsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -717,7 +717,7 @@
     <TestCase id="6" name="Body.Media-Type=&apos;example-jsonPlangEgb&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbValue,example-jsonPlangEgbValueLengthValid,example-jsonPlangEgbValueNotEmpty,example-jsonPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbValue,bodyExample-jsonPlangEgbValueLengthValid,bodyExample-jsonPlangEgbValueNotEmpty,bodyExample-jsonPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -835,7 +835,7 @@
     <TestCase id="7" name="Body.Media-Type=&apos;text-plainSxml&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlValue,text-plainSxmlValueLengthValid,text-plainSxmlValueNotEmpty,text-plainSxmlValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlValue,bodyText-plainSxmlValueLengthValid,bodyText-plainSxmlValueNotEmpty,bodyText-plainSxmlValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -953,7 +953,7 @@
     <TestCase id="8" name="Body.Media-Type=&apos;text-xmlSxmlPlangEgb&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbValue,text-xmlSxmlPlangEgbValueLengthValid,text-xmlSxmlPlangEgbValueNotEmpty,text-xmlSxmlPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbValue,bodyText-xmlSxmlPlangEgbValueLengthValid,bodyText-xmlSxmlPlangEgbValueNotEmpty,bodyText-xmlSxmlPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1071,7 +1071,7 @@
     <TestCase id="9" name="Body.example-W.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WName,example-WNameLengthValid,example-WNameNotEmpty,example-WNameValue,example-WProperties,example-WValue,example-WValueLengthValid,example-WValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WName,bodyExample-WNameLengthValid,bodyExample-WNameNotEmpty,bodyExample-WNameValue,bodyExample-WProperties,bodyExample-WValue,bodyExample-WValueLengthValid,bodyExample-WValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1189,7 +1189,7 @@
     <TestCase id="10" name="Body.example-W.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WName,example-WNameLengthValid,example-WNameValue,example-WProperties,example-WValue,example-WValueLengthValid,example-WValueNotEmpty,example-WValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WName,bodyExample-WNameLengthValid,bodyExample-WNameValue,bodyExample-WProperties,bodyExample-WValue,bodyExample-WValueLengthValid,bodyExample-WValueNotEmpty,bodyExample-WValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1307,7 +1307,7 @@
     <TestCase id="11" name="Body.text-WPlangEgb.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbName,text-WPlangEgbNameLengthValid,text-WPlangEgbNameNotEmpty,text-WPlangEgbNameValue,text-WPlangEgbProperties,text-WPlangEgbValue,text-WPlangEgbValueLengthValid,text-WPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbName,bodyText-WPlangEgbNameLengthValid,bodyText-WPlangEgbNameNotEmpty,bodyText-WPlangEgbNameValue,bodyText-WPlangEgbProperties,bodyText-WPlangEgbValue,bodyText-WPlangEgbValueLengthValid,bodyText-WPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1425,7 +1425,7 @@
     <TestCase id="12" name="Body.text-WPlangEgb.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbName,text-WPlangEgbNameLengthValid,text-WPlangEgbNameValue,text-WPlangEgbProperties,text-WPlangEgbValue,text-WPlangEgbValueLengthValid,text-WPlangEgbValueNotEmpty,text-WPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbName,bodyText-WPlangEgbNameLengthValid,bodyText-WPlangEgbNameValue,bodyText-WPlangEgbProperties,bodyText-WPlangEgbValue,bodyText-WPlangEgbValueLengthValid,bodyText-WPlangEgbValueNotEmpty,bodyText-WPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1543,7 +1543,7 @@
     <TestCase id="13" name="Body.application-WSjson.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonName,application-WSjsonNameLengthValid,application-WSjsonNameNotEmpty,application-WSjsonNameValue,application-WSjsonProperties,application-WSjsonValue,application-WSjsonValueLengthValid,application-WSjsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonName,bodyApplication-WSjsonNameLengthValid,bodyApplication-WSjsonNameNotEmpty,bodyApplication-WSjsonNameValue,bodyApplication-WSjsonProperties,bodyApplication-WSjsonValue,bodyApplication-WSjsonValueLengthValid,bodyApplication-WSjsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1661,7 +1661,7 @@
     <TestCase id="14" name="Body.application-WSjson.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonName,application-WSjsonNameLengthValid,application-WSjsonNameValue,application-WSjsonProperties,application-WSjsonValue,application-WSjsonValueLengthValid,application-WSjsonValueNotEmpty,application-WSjsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonName,bodyApplication-WSjsonNameLengthValid,bodyApplication-WSjsonNameValue,bodyApplication-WSjsonProperties,bodyApplication-WSjsonValue,bodyApplication-WSjsonValueLengthValid,bodyApplication-WSjsonValueNotEmpty,bodyApplication-WSjsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1779,7 +1779,7 @@
     <TestCase id="15" name="Body.model-WSjsonPlangEgbPencEutf8.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Name,model-WSjsonPlangEgbPencEutf8NameLengthValid,model-WSjsonPlangEgbPencEutf8NameNotEmpty,model-WSjsonPlangEgbPencEutf8NameValue,model-WSjsonPlangEgbPencEutf8Properties,model-WSjsonPlangEgbPencEutf8Value,model-WSjsonPlangEgbPencEutf8ValueLengthValid,model-WSjsonPlangEgbPencEutf8ValueValue"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Name,bodyModel-WSjsonPlangEgbPencEutf8NameLengthValid,bodyModel-WSjsonPlangEgbPencEutf8NameNotEmpty,bodyModel-WSjsonPlangEgbPencEutf8NameValue,bodyModel-WSjsonPlangEgbPencEutf8Properties,bodyModel-WSjsonPlangEgbPencEutf8Value,bodyModel-WSjsonPlangEgbPencEutf8ValueLengthValid,bodyModel-WSjsonPlangEgbPencEutf8ValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -1897,7 +1897,7 @@
     <TestCase id="16" name="Body.model-WSjsonPlangEgbPencEutf8.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Name,model-WSjsonPlangEgbPencEutf8NameLengthValid,model-WSjsonPlangEgbPencEutf8NameValue,model-WSjsonPlangEgbPencEutf8Properties,model-WSjsonPlangEgbPencEutf8Value,model-WSjsonPlangEgbPencEutf8ValueLengthValid,model-WSjsonPlangEgbPencEutf8ValueNotEmpty,model-WSjsonPlangEgbPencEutf8ValueValue"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Name,bodyModel-WSjsonPlangEgbPencEutf8NameLengthValid,bodyModel-WSjsonPlangEgbPencEutf8NameValue,bodyModel-WSjsonPlangEgbPencEutf8Properties,bodyModel-WSjsonPlangEgbPencEutf8Value,bodyModel-WSjsonPlangEgbPencEutf8ValueLengthValid,bodyModel-WSjsonPlangEgbPencEutf8ValueNotEmpty,bodyModel-WSjsonPlangEgbPencEutf8ValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2015,7 +2015,7 @@
     <TestCase id="17" name="Body.application-json.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameNotEmpty,application-jsonNameValue,application-jsonProperties,application-jsonValue,application-jsonValueLengthValid,application-jsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameNotEmpty,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyApplication-jsonValueLengthValid,bodyApplication-jsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2133,7 +2133,7 @@
     <TestCase id="18" name="Body.application-json.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonNameLengthValid,application-jsonNameValue,application-jsonProperties,application-jsonValue,application-jsonValueLengthValid,application-jsonValueNotEmpty,application-jsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonNameLengthValid,bodyApplication-jsonNameValue,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyApplication-jsonValueLengthValid,bodyApplication-jsonValueNotEmpty,bodyApplication-jsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2251,7 +2251,7 @@
     <TestCase id="19" name="Body.example-jsonPlangEgb.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbName,example-jsonPlangEgbNameLengthValid,example-jsonPlangEgbNameNotEmpty,example-jsonPlangEgbNameValue,example-jsonPlangEgbProperties,example-jsonPlangEgbValue,example-jsonPlangEgbValueLengthValid,example-jsonPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbName,bodyExample-jsonPlangEgbNameLengthValid,bodyExample-jsonPlangEgbNameNotEmpty,bodyExample-jsonPlangEgbNameValue,bodyExample-jsonPlangEgbProperties,bodyExample-jsonPlangEgbValue,bodyExample-jsonPlangEgbValueLengthValid,bodyExample-jsonPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2369,7 +2369,7 @@
     <TestCase id="20" name="Body.example-jsonPlangEgb.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbName,example-jsonPlangEgbNameLengthValid,example-jsonPlangEgbNameValue,example-jsonPlangEgbProperties,example-jsonPlangEgbValue,example-jsonPlangEgbValueLengthValid,example-jsonPlangEgbValueNotEmpty,example-jsonPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbName,bodyExample-jsonPlangEgbNameLengthValid,bodyExample-jsonPlangEgbNameValue,bodyExample-jsonPlangEgbProperties,bodyExample-jsonPlangEgbValue,bodyExample-jsonPlangEgbValueLengthValid,bodyExample-jsonPlangEgbValueNotEmpty,bodyExample-jsonPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2487,7 +2487,7 @@
     <TestCase id="21" name="Body.text-plainSxml.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlName,text-plainSxmlNameLengthValid,text-plainSxmlNameNotEmpty,text-plainSxmlNameValue,text-plainSxmlProperties,text-plainSxmlValue,text-plainSxmlValueLengthValid,text-plainSxmlValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlName,bodyText-plainSxmlNameLengthValid,bodyText-plainSxmlNameNotEmpty,bodyText-plainSxmlNameValue,bodyText-plainSxmlProperties,bodyText-plainSxmlValue,bodyText-plainSxmlValueLengthValid,bodyText-plainSxmlValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2605,7 +2605,7 @@
     <TestCase id="22" name="Body.text-plainSxml.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlName,text-plainSxmlNameLengthValid,text-plainSxmlNameValue,text-plainSxmlProperties,text-plainSxmlValue,text-plainSxmlValueLengthValid,text-plainSxmlValueNotEmpty,text-plainSxmlValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlName,bodyText-plainSxmlNameLengthValid,bodyText-plainSxmlNameValue,bodyText-plainSxmlProperties,bodyText-plainSxmlValue,bodyText-plainSxmlValueLengthValid,bodyText-plainSxmlValueNotEmpty,bodyText-plainSxmlValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2723,7 +2723,7 @@
     <TestCase id="23" name="Body.text-xmlSxmlPlangEgb.Value.Property-Count=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbName,text-xmlSxmlPlangEgbNameLengthValid,text-xmlSxmlPlangEgbNameNotEmpty,text-xmlSxmlPlangEgbNameValue,text-xmlSxmlPlangEgbProperties,text-xmlSxmlPlangEgbValue,text-xmlSxmlPlangEgbValueLengthValid,text-xmlSxmlPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbName,bodyText-xmlSxmlPlangEgbNameLengthValid,bodyText-xmlSxmlPlangEgbNameNotEmpty,bodyText-xmlSxmlPlangEgbNameValue,bodyText-xmlSxmlPlangEgbProperties,bodyText-xmlSxmlPlangEgbValue,bodyText-xmlSxmlPlangEgbValueLengthValid,bodyText-xmlSxmlPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2841,7 +2841,7 @@
     <TestCase id="24" name="Body.text-xmlSxmlPlangEgb.Value.Properties.name.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbName,text-xmlSxmlPlangEgbNameLengthValid,text-xmlSxmlPlangEgbNameValue,text-xmlSxmlPlangEgbProperties,text-xmlSxmlPlangEgbValue,text-xmlSxmlPlangEgbValueLengthValid,text-xmlSxmlPlangEgbValueNotEmpty,text-xmlSxmlPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbName,bodyText-xmlSxmlPlangEgbNameLengthValid,bodyText-xmlSxmlPlangEgbNameValue,bodyText-xmlSxmlPlangEgbProperties,bodyText-xmlSxmlPlangEgbValue,bodyText-xmlSxmlPlangEgbValueLengthValid,bodyText-xmlSxmlPlangEgbValueNotEmpty,bodyText-xmlSxmlPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -2959,7 +2959,7 @@
     <TestCase id="25" failure="true" name="Body.Media-Type=&apos;Other&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content"/>
+      <Has name="properties" value="bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3077,7 +3077,7 @@
     <TestCase id="26" failure="true" name="Body.example-W.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W"/>
+      <Has name="properties" value="bodyContent,bodyExample-W"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3195,7 +3195,7 @@
     <TestCase id="27" failure="true" name="Body.example-W.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W"/>
+      <Has name="properties" value="bodyContent,bodyExample-W"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3313,7 +3313,7 @@
     <TestCase id="28" failure="true" name="Body.example-W.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WName,example-WProperties,example-WValue,example-WValueLengthValid,example-WValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WName,bodyExample-WProperties,bodyExample-WValue,bodyExample-WValueLengthValid,bodyExample-WValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3431,7 +3431,7 @@
     <TestCase id="29" failure="true" name="Body.example-W.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WName,example-WProperties,example-WValue,example-WValueLengthValid,example-WValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WName,bodyExample-WProperties,bodyExample-WValue,bodyExample-WValueLengthValid,bodyExample-WValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3549,7 +3549,7 @@
     <TestCase id="30" failure="true" name="Body.example-W.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WProperties,example-WValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WProperties,bodyExample-WValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3667,7 +3667,7 @@
     <TestCase id="31" failure="true" name="Body.example-W.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-W,example-WProperties,example-WValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-W,bodyExample-WProperties,bodyExample-WValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3785,7 +3785,7 @@
     <TestCase id="32" failure="true" name="Body.text-WPlangEgb.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -3903,7 +3903,7 @@
     <TestCase id="33" failure="true" name="Body.text-WPlangEgb.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4021,7 +4021,7 @@
     <TestCase id="34" failure="true" name="Body.text-WPlangEgb.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbName,text-WPlangEgbProperties,text-WPlangEgbValue,text-WPlangEgbValueLengthValid,text-WPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbName,bodyText-WPlangEgbProperties,bodyText-WPlangEgbValue,bodyText-WPlangEgbValueLengthValid,bodyText-WPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4139,7 +4139,7 @@
     <TestCase id="35" failure="true" name="Body.text-WPlangEgb.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbName,text-WPlangEgbProperties,text-WPlangEgbValue,text-WPlangEgbValueLengthValid,text-WPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbName,bodyText-WPlangEgbProperties,bodyText-WPlangEgbValue,bodyText-WPlangEgbValueLengthValid,bodyText-WPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4257,7 +4257,7 @@
     <TestCase id="36" failure="true" name="Body.text-WPlangEgb.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbProperties,text-WPlangEgbValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbProperties,bodyText-WPlangEgbValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4375,7 +4375,7 @@
     <TestCase id="37" failure="true" name="Body.text-WPlangEgb.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-WPlangEgb,text-WPlangEgbProperties,text-WPlangEgbValue"/>
+      <Has name="properties" value="bodyContent,bodyText-WPlangEgb,bodyText-WPlangEgbProperties,bodyText-WPlangEgbValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4493,7 +4493,7 @@
     <TestCase id="38" failure="true" name="Body.application-WSjson.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4611,7 +4611,7 @@
     <TestCase id="39" failure="true" name="Body.application-WSjson.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4729,7 +4729,7 @@
     <TestCase id="40" failure="true" name="Body.application-WSjson.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonName,application-WSjsonProperties,application-WSjsonValue,application-WSjsonValueLengthValid,application-WSjsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonName,bodyApplication-WSjsonProperties,bodyApplication-WSjsonValue,bodyApplication-WSjsonValueLengthValid,bodyApplication-WSjsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4847,7 +4847,7 @@
     <TestCase id="41" failure="true" name="Body.application-WSjson.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonName,application-WSjsonProperties,application-WSjsonValue,application-WSjsonValueLengthValid,application-WSjsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonName,bodyApplication-WSjsonProperties,bodyApplication-WSjsonValue,bodyApplication-WSjsonValueLengthValid,bodyApplication-WSjsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -4965,7 +4965,7 @@
     <TestCase id="42" failure="true" name="Body.application-WSjson.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonProperties,application-WSjsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonProperties,bodyApplication-WSjsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5083,7 +5083,7 @@
     <TestCase id="43" failure="true" name="Body.application-WSjson.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-WSjson,application-WSjsonProperties,application-WSjsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-WSjson,bodyApplication-WSjsonProperties,bodyApplication-WSjsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5201,7 +5201,7 @@
     <TestCase id="44" failure="true" name="Body.model-WSjsonPlangEgbPencEutf8.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5319,7 +5319,7 @@
     <TestCase id="45" failure="true" name="Body.model-WSjsonPlangEgbPencEutf8.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5437,7 +5437,7 @@
     <TestCase id="46" failure="true" name="Body.model-WSjsonPlangEgbPencEutf8.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Name,model-WSjsonPlangEgbPencEutf8Properties,model-WSjsonPlangEgbPencEutf8Value,model-WSjsonPlangEgbPencEutf8ValueLengthValid,model-WSjsonPlangEgbPencEutf8ValueValue"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Name,bodyModel-WSjsonPlangEgbPencEutf8Properties,bodyModel-WSjsonPlangEgbPencEutf8Value,bodyModel-WSjsonPlangEgbPencEutf8ValueLengthValid,bodyModel-WSjsonPlangEgbPencEutf8ValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5555,7 +5555,7 @@
     <TestCase id="47" failure="true" name="Body.model-WSjsonPlangEgbPencEutf8.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Name,model-WSjsonPlangEgbPencEutf8Properties,model-WSjsonPlangEgbPencEutf8Value,model-WSjsonPlangEgbPencEutf8ValueLengthValid,model-WSjsonPlangEgbPencEutf8ValueValue"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Name,bodyModel-WSjsonPlangEgbPencEutf8Properties,bodyModel-WSjsonPlangEgbPencEutf8Value,bodyModel-WSjsonPlangEgbPencEutf8ValueLengthValid,bodyModel-WSjsonPlangEgbPencEutf8ValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5673,7 +5673,7 @@
     <TestCase id="48" failure="true" name="Body.model-WSjsonPlangEgbPencEutf8.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Properties,model-WSjsonPlangEgbPencEutf8Value"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Properties,bodyModel-WSjsonPlangEgbPencEutf8Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5791,7 +5791,7 @@
     <TestCase id="49" failure="true" name="Body.model-WSjsonPlangEgbPencEutf8.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,model-WSjsonPlangEgbPencEutf8,model-WSjsonPlangEgbPencEutf8Properties,model-WSjsonPlangEgbPencEutf8Value"/>
+      <Has name="properties" value="bodyContent,bodyModel-WSjsonPlangEgbPencEutf8,bodyModel-WSjsonPlangEgbPencEutf8Properties,bodyModel-WSjsonPlangEgbPencEutf8Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -5909,7 +5909,7 @@
     <TestCase id="50" failure="true" name="Body.application-json.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6027,7 +6027,7 @@
     <TestCase id="51" failure="true" name="Body.application-json.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6145,7 +6145,7 @@
     <TestCase id="52" failure="true" name="Body.application-json.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,application-jsonValueLengthValid,application-jsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyApplication-jsonValueLengthValid,bodyApplication-jsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6263,7 +6263,7 @@
     <TestCase id="53" failure="true" name="Body.application-json.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonName,application-jsonProperties,application-jsonValue,application-jsonValueLengthValid,application-jsonValueValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonName,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyApplication-jsonValueLengthValid,bodyApplication-jsonValueValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6381,7 +6381,7 @@
     <TestCase id="54" failure="true" name="Body.application-json.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6499,7 +6499,7 @@
     <TestCase id="55" failure="true" name="Body.application-json.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="application-json,application-jsonProperties,application-jsonValue,Content"/>
+      <Has name="properties" value="bodyApplication-json,bodyApplication-jsonProperties,bodyApplication-jsonValue,bodyContent"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6617,7 +6617,7 @@
     <TestCase id="56" failure="true" name="Body.example-jsonPlangEgb.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6735,7 +6735,7 @@
     <TestCase id="57" failure="true" name="Body.example-jsonPlangEgb.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6853,7 +6853,7 @@
     <TestCase id="58" failure="true" name="Body.example-jsonPlangEgb.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbName,example-jsonPlangEgbProperties,example-jsonPlangEgbValue,example-jsonPlangEgbValueLengthValid,example-jsonPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbName,bodyExample-jsonPlangEgbProperties,bodyExample-jsonPlangEgbValue,bodyExample-jsonPlangEgbValueLengthValid,bodyExample-jsonPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -6971,7 +6971,7 @@
     <TestCase id="59" failure="true" name="Body.example-jsonPlangEgb.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbName,example-jsonPlangEgbProperties,example-jsonPlangEgbValue,example-jsonPlangEgbValueLengthValid,example-jsonPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbName,bodyExample-jsonPlangEgbProperties,bodyExample-jsonPlangEgbValue,bodyExample-jsonPlangEgbValueLengthValid,bodyExample-jsonPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7089,7 +7089,7 @@
     <TestCase id="60" failure="true" name="Body.example-jsonPlangEgb.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbProperties,example-jsonPlangEgbValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbProperties,bodyExample-jsonPlangEgbValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7207,7 +7207,7 @@
     <TestCase id="61" failure="true" name="Body.example-jsonPlangEgb.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,example-jsonPlangEgb,example-jsonPlangEgbProperties,example-jsonPlangEgbValue"/>
+      <Has name="properties" value="bodyContent,bodyExample-jsonPlangEgb,bodyExample-jsonPlangEgbProperties,bodyExample-jsonPlangEgbValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7325,7 +7325,7 @@
     <TestCase id="62" failure="true" name="Body.text-plainSxml.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7443,7 +7443,7 @@
     <TestCase id="63" failure="true" name="Body.text-plainSxml.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7561,7 +7561,7 @@
     <TestCase id="64" failure="true" name="Body.text-plainSxml.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlName,text-plainSxmlProperties,text-plainSxmlValue,text-plainSxmlValueLengthValid,text-plainSxmlValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlName,bodyText-plainSxmlProperties,bodyText-plainSxmlValue,bodyText-plainSxmlValueLengthValid,bodyText-plainSxmlValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7679,7 +7679,7 @@
     <TestCase id="65" failure="true" name="Body.text-plainSxml.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlName,text-plainSxmlProperties,text-plainSxmlValue,text-plainSxmlValueLengthValid,text-plainSxmlValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlName,bodyText-plainSxmlProperties,bodyText-plainSxmlValue,bodyText-plainSxmlValueLengthValid,bodyText-plainSxmlValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7797,7 +7797,7 @@
     <TestCase id="66" failure="true" name="Body.text-plainSxml.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlProperties,text-plainSxmlValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlProperties,bodyText-plainSxmlValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -7915,7 +7915,7 @@
     <TestCase id="67" failure="true" name="Body.text-plainSxml.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-plainSxml,text-plainSxmlProperties,text-plainSxmlValue"/>
+      <Has name="properties" value="bodyContent,bodyText-plainSxml,bodyText-plainSxmlProperties,bodyText-plainSxmlValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -8033,7 +8033,7 @@
     <TestCase id="68" failure="true" name="Body.text-xmlSxmlPlangEgb.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -8151,7 +8151,7 @@
     <TestCase id="69" failure="true" name="Body.text-xmlSxmlPlangEgb.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -8269,7 +8269,7 @@
     <TestCase id="70" failure="true" name="Body.text-xmlSxmlPlangEgb.Value.Properties.name.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbName,text-xmlSxmlPlangEgbProperties,text-xmlSxmlPlangEgbValue,text-xmlSxmlPlangEgbValueLengthValid,text-xmlSxmlPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbName,bodyText-xmlSxmlPlangEgbProperties,bodyText-xmlSxmlPlangEgbValue,bodyText-xmlSxmlPlangEgbValueLengthValid,bodyText-xmlSxmlPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -8387,7 +8387,7 @@
     <TestCase id="71" failure="true" name="Body.text-xmlSxmlPlangEgb.Value.Properties.name.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbName,text-xmlSxmlPlangEgbProperties,text-xmlSxmlPlangEgbValue,text-xmlSxmlPlangEgbValueLengthValid,text-xmlSxmlPlangEgbValueValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbName,bodyText-xmlSxmlPlangEgbProperties,bodyText-xmlSxmlPlangEgbValue,bodyText-xmlSxmlPlangEgbValueLengthValid,bodyText-xmlSxmlPlangEgbValueValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -8505,7 +8505,7 @@
     <TestCase id="72" failure="true" name="Body.text-xmlSxmlPlangEgb.Value.Properties.value.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbProperties,text-xmlSxmlPlangEgbValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbProperties,bodyText-xmlSxmlPlangEgbValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>
@@ -8623,7 +8623,7 @@
     <TestCase id="73" failure="true" name="Body.text-xmlSxmlPlangEgb.Value.Properties.value.Type=&apos;Not string&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/examples"/>
-      <Has name="properties" value="Content,text-xmlSxmlPlangEgb,text-xmlSxmlPlangEgbProperties,text-xmlSxmlPlangEgbValue"/>
+      <Has name="properties" value="bodyContent,bodyText-xmlSxmlPlangEgb,bodyText-xmlSxmlPlangEgbProperties,bodyText-xmlSxmlPlangEgbValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Media Types"/>
       <Has name="version" value="0.0.0"/>

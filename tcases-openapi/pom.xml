@@ -154,6 +154,8 @@
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiTest-Request-Cases.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiAuth.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiAuth-Request-Cases.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/OpenApiEncodings.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/OpenApiEncodings-Request-Cases.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/normalize-*.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/normalize-*-Request-Cases.json</include>
                             </includes>

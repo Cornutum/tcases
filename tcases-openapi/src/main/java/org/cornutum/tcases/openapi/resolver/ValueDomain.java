@@ -57,9 +57,21 @@ public interface ValueDomain<T>
     }
 
   /**
-   * Return the type(s) of values that belong to this domain.
+   * Returns the type(s) of values that belong to this domain.
    */
   public Type[] getTypes();
+
+  /**
+   * If this domain contains only values of a single type, returns that type. Otherwise, returns null.
+   */
+  default public Type getType()
+    {
+    return
+      Optional.of( getTypes())
+      .filter( types -> types.length == 1)
+      .map( types -> types[0])
+      .orElse( null);
+    }
 
   /**
    * Returns a random value from this domain.
