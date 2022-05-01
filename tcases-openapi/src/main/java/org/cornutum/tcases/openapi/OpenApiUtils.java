@@ -385,7 +385,7 @@ public final class OpenApiUtils
         case PIPEDELIMITED:
         case SPACEDELIMITED:
           {
-          if( !( "array".equals( type) || "null".equals( type)))
+          if( !( "object".equals( type) || "array".equals( type) || "null".equals( type)))
             {
             applicable = FORM;
             throw

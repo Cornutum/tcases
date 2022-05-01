@@ -3776,7 +3776,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3787,8 +3787,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3835,7 +3835,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3886,8 +3886,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "null",
                     "value": null
@@ -3975,7 +3975,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3990,8 +3990,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4014,7 +4014,7 @@
                                 },
                                 {
                                     "type": "string",
-                                    "value": "\"&0"
+                                    "value": "hkK"
                                 }
                             ]
                         },
@@ -4073,7 +4073,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4107,8 +4107,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4193,7 +4193,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4209,8 +4209,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4283,7 +4283,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4316,8 +4316,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4407,7 +4407,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4423,8 +4423,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4440,7 +4440,7 @@
                         },
                         "bbptfpytc": {
                             "type": "string",
-                            "value": "SVmj8~t"
+                            "value": "pE!Pn?3"
                         },
                         "ibptsudv": {
                             "type": "object",
@@ -4500,7 +4500,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4534,8 +4534,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4594,7 +4594,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4630,8 +4630,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4697,7 +4697,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4730,8 +4730,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4797,7 +4797,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4830,8 +4830,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4910,7 +4910,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -4935,8 +4935,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5017,7 +5017,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5045,8 +5045,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5122,7 +5122,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5142,8 +5142,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5219,7 +5219,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5239,8 +5239,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": null,
                 "valid": false
             },
@@ -5310,7 +5310,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5365,10 +5365,10 @@
                 "name": "nullable",
                 "in": "query",
                 "style": "form",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "G0PxZFw"
+                    "value": "O~Q38QS"
                 },
                 "valid": false
             },
@@ -5440,7 +5440,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5474,8 +5474,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5580,7 +5580,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5617,8 +5617,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5714,7 +5714,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5758,8 +5758,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5886,7 +5886,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -5911,8 +5911,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6002,7 +6002,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6026,8 +6026,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6085,7 +6085,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6114,8 +6114,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6195,7 +6195,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6229,8 +6229,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6296,7 +6296,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6334,8 +6334,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6450,7 +6450,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6475,8 +6475,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6575,7 +6575,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6604,8 +6604,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6693,7 +6693,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6713,8 +6713,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6825,15 +6825,15 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": null,
                 "valid": false
             },
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -6918,7 +6918,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "null",
                     "value": null
@@ -6928,8 +6928,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7040,7 +7040,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "boolean",
                     "value": true
@@ -7050,8 +7050,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7137,7 +7137,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7183,8 +7183,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7295,7 +7295,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7329,8 +7329,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7424,7 +7424,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7444,8 +7444,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7517,7 +7517,7 @@
                 "name": "deep",
                 "in": "query",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -7574,8 +7574,8 @@
             {
                 "name": "nullable",
                 "in": "query",
-                "style": "form",
-                "explode": true,
+                "style": "spaceDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11358,7 +11358,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11369,8 +11369,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11417,7 +11417,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11452,8 +11452,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "null",
                     "value": null
@@ -11550,7 +11550,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11565,8 +11565,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11585,7 +11585,7 @@
                             "value": {
                                 "ppmqtgj": {
                                     "type": "string",
-                                    "value": "kVU"
+                                    "value": "2E5"
                                 },
                                 "xhk": {
                                     "type": "number",
@@ -11652,7 +11652,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11712,8 +11712,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11795,7 +11795,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11811,8 +11811,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11822,7 +11822,7 @@
                         },
                         "jqruj": {
                             "type": "string",
-                            "value": "b7QN"
+                            "value": "luI`"
                         },
                         "n": {
                             "type": "string",
@@ -11885,7 +11885,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -11905,8 +11905,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12005,7 +12005,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12021,8 +12021,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12050,7 +12050,7 @@
                         },
                         "ptifryawqwqvqy": {
                             "type": "string",
-                            "value": "g&F"
+                            "value": "8-b"
                         }
                     }
                 },
@@ -12105,7 +12105,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12138,8 +12138,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12228,7 +12228,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12261,8 +12261,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12329,7 +12329,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12349,8 +12349,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12420,7 +12420,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12441,8 +12441,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12539,7 +12539,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12569,8 +12569,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12642,7 +12642,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12671,8 +12671,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12756,7 +12756,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12794,8 +12794,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12889,7 +12889,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -12918,8 +12918,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": null,
                 "valid": false
             },
@@ -13014,7 +13014,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13046,7 +13046,7 @@
                 "name": "nullable",
                 "in": "cookie",
                 "style": "form",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "integer",
                     "value": 517,
@@ -13138,7 +13138,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13159,8 +13159,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13243,7 +13243,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13263,8 +13263,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13345,7 +13345,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13384,8 +13384,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13396,7 +13396,7 @@
                         },
                         "height": {
                             "type": "string",
-                            "value": "kmu2+"
+                            "value": "n!KAC"
                         }
                     }
                 },
@@ -13487,7 +13487,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13521,8 +13521,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13624,7 +13624,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13657,8 +13657,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13717,7 +13717,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13771,8 +13771,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13842,7 +13842,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13870,8 +13870,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -13969,7 +13969,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14006,8 +14006,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14106,7 +14106,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14148,8 +14148,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14230,7 +14230,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14250,8 +14250,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14340,7 +14340,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14365,8 +14365,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14478,15 +14478,15 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": null,
                 "valid": false
             },
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14566,7 +14566,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "null",
                     "value": null
@@ -14576,8 +14576,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14661,7 +14661,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "form",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "integer",
                     "value": 32,
@@ -14672,8 +14672,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14807,7 +14807,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14850,8 +14850,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14935,7 +14935,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -14969,8 +14969,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -15065,7 +15065,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -15099,8 +15099,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -15194,7 +15194,7 @@
                 "name": "deep",
                 "in": "cookie",
                 "style": "deepObject",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -15223,8 +15223,8 @@
             {
                 "name": "nullable",
                 "in": "cookie",
-                "style": "form",
-                "explode": true,
+                "style": "pipeDelimited",
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
