@@ -304,8 +304,8 @@
       <VarSet name="nullable">
         <Has name="paramName" value="nullable"/>
         <Var name="Defined">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="explode" value="false"/>
+          <Has name="style" value="spaceDelimited"/>
           <Value name="Yes" property="nullable"/>
           <Value name="No" failure="true"/>
         </Var>
@@ -432,7 +432,7 @@
       <VarSet name="deep">
         <Has name="paramName" value="deep"/>
         <Var name="Defined">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="style" value="deepObject"/>
           <Value name="Yes" property="deep"/>
           <Value name="No" failure="true"/>
@@ -796,8 +796,8 @@
       <VarSet name="nullable">
         <Has name="paramName" value="nullable"/>
         <Var name="Defined">
-          <Has name="explode" value="true"/>
-          <Has name="style" value="form"/>
+          <Has name="explode" value="false"/>
+          <Has name="style" value="pipeDelimited"/>
           <Value name="Yes" property="nullable"/>
           <Value name="No" failure="true"/>
         </Var>
@@ -924,7 +924,7 @@
       <VarSet name="deep">
         <Has name="paramName" value="deep"/>
         <Var name="Defined">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="style" value="deepObject"/>
           <Value name="Yes" property="deep"/>
           <Value name="No" failure="true"/>

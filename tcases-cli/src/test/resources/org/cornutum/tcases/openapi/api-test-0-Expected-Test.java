@@ -97,7 +97,7 @@ public class MyTest extends MyBaseClass {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "ids", "n,-879,b,-720,kmfrupntmmanfxx,Y;;")
+                .queryParam( "ids", "n|-879|b|-720|kmfrupntmmanfxx|Y;;")
             .when()
                 .request( "GET", "/posts")
             .then()

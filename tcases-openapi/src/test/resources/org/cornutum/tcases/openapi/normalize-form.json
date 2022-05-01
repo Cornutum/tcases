@@ -145,7 +145,7 @@
                         "name": "nullable",
                         "in": "query",
                         "required": true,
-                        "style": "form",
+                        "style": "spaceDelimited",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -190,6 +190,7 @@
                         "in": "query",
                         "required": true,
                         "style": "deepObject",
+                        "explode": true,
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -357,7 +358,7 @@
                         "name": "nullable",
                         "in": "cookie",
                         "required": true,
-                        "style": "form",
+                        "style": "pipeDelimited",
                         "schema": {
                             "type": "object",
                             "properties": {
@@ -402,6 +403,7 @@
                         "in": "cookie",
                         "required": true,
                         "style": "deepObject",
+                        "explode": true,
                         "schema": {
                             "type": "object",
                             "properties": {
