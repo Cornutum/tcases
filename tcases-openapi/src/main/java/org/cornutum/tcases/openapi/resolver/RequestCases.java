@@ -176,8 +176,7 @@ public final class RequestCases
     }
 
   /**
-   * If the given request case represents an unexpected null value failure, returns the id of the failure input.
-   * Otherwise, returns null.
+   * Returns true if the given request case represents an unexpected null value failure.
    */
   private static boolean isNullFailure( RequestCase requestCase)
     {
