@@ -518,6 +518,122 @@ public class QueryParameterEncoderTest
     }
   
   @Test
+  public void whenQueryPipeDelimitedObject()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( QUERY)
+      .style( "pipeDelimited")
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
+      .build();
+
+    // When...
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .encoding( "myParam", "nick name|X|sex|?|income||worth|")
+        .build()));
+
+    // Given...
+    param =
+      param( "myParam")
+      .location( QUERY)
+      .style( "pipeDelimited")
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
+      .exploded()
+      .build();
+
+    // When...
+    params = TestWriterUtils.getQueryParameters( param);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .binding( "nick name", "X")
+        .binding( "sex", "?")
+        .binding( "income", null)
+        .binding( "worth", "")
+        .build()));
+    }
+  
+  @Test
+  public void whenQuerySpaceDelimitedObject()
+    {
+    // Given...
+    ParamData param =
+      param( "myParam")
+      .location( QUERY)
+      .style( "spaceDelimited")
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
+      .build();
+
+    // When...
+    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .encoding( "myParam", "nick name X sex ? income  worth ")
+        .build()));
+
+    // Given...
+    param =
+      param( "myParam")
+      .location( QUERY)
+      .style( "spaceDelimited")
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
+      .exploded()
+      .build();
+
+    // When...
+    params = TestWriterUtils.getQueryParameters( param);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .binding( "nick name", "X")
+        .binding( "sex", "?")
+        .binding( "income", null)
+        .binding( "worth", "")
+        .build()));
+    }
+  
+  @Test
   public void whenQueryDeepObjectObject()
     {
     // Given...
@@ -542,10 +658,7 @@ public class QueryParameterEncoderTest
       params,
       containsMembers(
         params()
-        .encodingDeep( "myParam", "nick name", "X")
-        .encodingDeep( "myParam", "sex", "?")
-        .encodingDeep( "myParam", "income", null)
-        .encodingDeep( "myParam", "worth", "")
+        .encoding( "myParam", "nick name,X,sex,?,income,,worth,")
         .build()));
 
     // Given...
@@ -575,6 +688,35 @@ public class QueryParameterEncoderTest
         .binding( "myParam[sex]", "?")
         .binding( "myParam[income]", null)
         .binding( "myParam[worth]", "")
+        .build()));
+
+    // Given...
+    param =
+      param( "My Wee Param")
+      .location( QUERY)
+      .style( "deepObject")
+      .objectData(
+        object()
+        .with( "nick name", stringOf( "X"))
+        .with( "sex", stringOf( "?"))
+        .with( "income", noValue())
+        .with( "worth", stringOf( "")))
+      .exploded()
+      .build();
+
+    // When...
+    params = TestWriterUtils.getQueryParameters( param, true);
+    
+    // Then...
+    assertThat(
+      "Parameters",
+      params,
+      containsMembers(
+        params()
+        .encodingDeep( "My Wee Param", "nick name", "X")
+        .encodingDeep( "My Wee Param", "sex", "?")
+        .encodingDeep( "My Wee Param", "income", null)
+        .encodingDeep( "My Wee Param", "worth", "")
         .build()));
     }
 

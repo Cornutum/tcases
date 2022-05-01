@@ -171,22 +171,24 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
   @Override
   public void visit( ObjectValue data)
     {
-    if( "deepObject".equals( style_))
+    if( !exploded_)
+      {
+      String delim = "pipeDelimited".equals( style_)? "|" : "spaceDelimited".equals( style_)? " " : ",";
+      
+      bindParam(
+        data.getValue().entrySet().stream()
+        .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), Component.NONE)).stream())
+        .collect( joining( delim)));
+      }
+    else if( "deepObject".equals( style_))
       {
       data.getValue()
         .forEach( (property, value) -> bindDeep( property, value));
       }
-    else if( exploded_)
+    else
       {
       data.getValue()
         .forEach( (property, value) -> bindMember( property, value));
-      }
-    else
-      {
-      bindParam(
-        data.getValue().entrySet().stream()
-        .flatMap( entry -> Arrays.asList( entry.getKey(), SimpleValueEncoder.encode( entry.getValue(), Component.NONE)).stream())
-        .collect( joining( ",")));
       }
     }
 

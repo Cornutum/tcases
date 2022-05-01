@@ -529,7 +529,7 @@
                         "required": true,
                         "in": "query",
                         "style": "deepObject",
-                        "explode": false,
+                        "explode": true,
                         "schema": {
                             "type": "object",
                             "properties": {

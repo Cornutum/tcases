@@ -2708,9 +2708,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -2776,7 +2776,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -2854,9 +2854,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="null">
           <Has name="paramName" value="nullable"/>
@@ -2922,7 +2922,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3000,9 +3000,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3068,7 +3068,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3146,9 +3146,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3214,7 +3214,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3292,9 +3292,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3360,7 +3360,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3438,9 +3438,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3506,7 +3506,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3584,9 +3584,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3652,7 +3652,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3730,9 +3730,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3798,7 +3798,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -3876,9 +3876,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -3944,7 +3944,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4022,9 +4022,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -4090,7 +4090,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4168,9 +4168,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -4236,7 +4236,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4314,9 +4314,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -4382,7 +4382,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4460,9 +4460,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -4528,7 +4528,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4606,9 +4606,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -4674,7 +4674,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4752,9 +4752,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="No" failure="true">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" NA="true">
           <Has name="paramName" value="nullable"/>
@@ -4820,7 +4820,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -4898,9 +4898,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="Not object" failure="true">
           <Has name="paramName" value="nullable"/>
@@ -4966,7 +4966,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5044,9 +5044,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5112,7 +5112,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5190,9 +5190,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5258,7 +5258,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5336,9 +5336,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5404,7 +5404,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5482,9 +5482,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5550,7 +5550,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5628,9 +5628,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5696,7 +5696,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5774,9 +5774,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5842,7 +5842,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -5920,9 +5920,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -5988,7 +5988,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6066,9 +6066,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -6134,7 +6134,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6212,9 +6212,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -6280,7 +6280,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6358,9 +6358,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -6426,7 +6426,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6504,9 +6504,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -6572,7 +6572,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6650,9 +6650,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -6718,7 +6718,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="No" failure="true">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6796,9 +6796,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -6864,7 +6864,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -6942,9 +6942,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -7010,7 +7010,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -7088,9 +7088,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -7156,7 +7156,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -7234,9 +7234,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -7302,7 +7302,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -7380,9 +7380,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -7448,7 +7448,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -7526,9 +7526,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="spaceDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -7594,7 +7594,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -10335,9 +10335,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -10403,7 +10403,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -10481,9 +10481,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="null">
           <Has name="paramName" value="nullable"/>
@@ -10549,7 +10549,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -10627,9 +10627,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -10695,7 +10695,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -10773,9 +10773,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -10841,7 +10841,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -10919,9 +10919,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -10987,7 +10987,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11065,9 +11065,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -11133,7 +11133,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11211,9 +11211,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -11279,7 +11279,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11357,9 +11357,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -11425,7 +11425,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11503,9 +11503,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -11571,7 +11571,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11649,9 +11649,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -11717,7 +11717,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11795,9 +11795,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -11863,7 +11863,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -11941,9 +11941,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -12009,7 +12009,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12087,9 +12087,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -12155,7 +12155,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12233,9 +12233,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -12301,7 +12301,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12379,9 +12379,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="No" failure="true">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" NA="true">
           <Has name="paramName" value="nullable"/>
@@ -12447,7 +12447,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12525,9 +12525,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="Not object" failure="true">
           <Has name="paramName" value="nullable"/>
@@ -12593,7 +12593,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12671,9 +12671,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -12739,7 +12739,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12817,9 +12817,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -12885,7 +12885,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -12963,9 +12963,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13031,7 +13031,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13109,9 +13109,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13177,7 +13177,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13255,9 +13255,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13323,7 +13323,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13401,9 +13401,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13469,7 +13469,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13547,9 +13547,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13615,7 +13615,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13693,9 +13693,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13761,7 +13761,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13839,9 +13839,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -13907,7 +13907,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -13985,9 +13985,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14053,7 +14053,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -14131,9 +14131,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14199,7 +14199,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -14277,9 +14277,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14345,7 +14345,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="No" failure="true">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -14423,9 +14423,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14491,7 +14491,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -14569,9 +14569,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14637,7 +14637,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -14715,9 +14715,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14783,7 +14783,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -14861,9 +14861,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -14929,7 +14929,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -15007,9 +15007,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -15075,7 +15075,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
@@ -15153,9 +15153,9 @@
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="true"/>
+          <Has name="explode" value="false"/>
           <Has name="paramName" value="nullable"/>
-          <Has name="style" value="form"/>
+          <Has name="style" value="pipeDelimited"/>
         </Var>
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
@@ -15221,7 +15221,7 @@
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="deep.Defined" value="Yes">
-          <Has name="explode" value="false"/>
+          <Has name="explode" value="true"/>
           <Has name="paramName" value="deep"/>
           <Has name="style" value="deepObject"/>
         </Var>
