@@ -7,8 +7,10 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import static org.cornutum.tcases.openapi.test.CollectionUtils.*;
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
+
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonPointer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -17,21 +19,10 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.StringJoiner;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines the responses for requests described by an OpenAPI definition.
@@ -340,94 +331,6 @@ public class ResponsesDef
     }
 
   /**
-   * Returns the given JSON node as an object node.
-   */
-  private ObjectNode asObject( JsonNode node)
-    {
-    return
-      Optional.ofNullable( node)
-      .filter( notNull -> !notNull.isMissingNode())
-
-      .map(
-        notMissing ->
-        Optional.of( notMissing)
-        .filter( JsonNode::isObject)
-        .map( object -> (ObjectNode) object)
-        .orElseThrow( () -> new IllegalStateException( String.format( "Expected type=OBJECT, found type=%s", node.getNodeType()))))
-
-      .orElse( null);
-    }
-
-  /**
-   * Returns a JSON pointer for the given path
-   */
-  private JsonPointer pointer( String... path)
-    {
-    StringJoiner joiner = new StringJoiner( "/", "/", "");
-    for( String name : path)
-      {
-      joiner.add( pointerSegment( name));
-      }
-
-    return JsonPointer.compile( joiner.toString());
-    }
-
-  /**
-   * Returns the given name as JSON Pointer segment, escaping special characters as defined in <A href="https://datatracker.ietf.org/doc/html/rfc6901">RFC6901</A>.
-   */
-  private String pointerSegment( String name)
-    {
-    Matcher matcher = POINTER_ESCAPES.matcher( name);
-    StringBuffer escaped = new StringBuffer();
-    while( matcher.find())
-      {
-      matcher.appendReplacement(
-        escaped,
-        matcher.group(1) != null? "~0" : "~1");
-      }
-    matcher.appendTail( escaped);
-    return escaped.toString();
-    }
-
-  /**
-   * Returns a stream that produces the sequence defined by the given Iterator.
-   */
-  private static <T> Stream<T> toStream( Iterator<T> iterator)
-    {
-    return
-      Optional.ofNullable( iterator)
-      .map( i -> {
-        Iterable<T> iterable = () -> i;
-        return toStream( iterable);
-        })
-      .orElse( null);
-    }
-
-  /**
-   * Returns a stream that produces the sequence defined by the given Iterable.
-   */
-  private static <T> Stream<T> toStream( Iterable<T> iterable)
-    {
-    return
-      Optional.ofNullable( iterable)
-      .map( i -> StreamSupport.stream( i.spliterator(), false))
-      .orElse( null);
-    }
-
-  /**
-   * A collector that produces a map sorted in insertion order.
-   */
-  private static <T,V> Collector<T,?,Map<String,V>> toOrderedMap( Function<T,String> keyMapper, Function<T,V> valueMapper)
-    {
-    return
-      toMap(
-        keyMapper,
-        valueMapper,
-        (v1, v2) -> v1,
-        LinkedHashMap::new);
-    }
-
-  /**
    * Writes a JSON representation of response definitions to the given output stream.
    */
   public static void write( ResponsesDef responses, Writer writer)
@@ -492,6 +395,4 @@ public class ResponsesDef
     }
   
   private final ObjectNode root_;
-
-  private static final Pattern POINTER_ESCAPES = Pattern.compile( "(~)|(/)");
   }
