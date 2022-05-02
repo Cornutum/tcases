@@ -8,10 +8,13 @@
 package org.cornutum.tcases.openapi.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.BigIntegerNode;
 import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.DecimalNode;
 import com.fasterxml.jackson.databind.node.NullNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.math.BigDecimal;
@@ -174,5 +177,22 @@ public abstract class AbstractDecoder
       }
     }
 
+  /**
+   * Returns a new empty ObjectNode.
+   */
+  protected ObjectNode createObjectNode()
+    {
+    return mapper_.createObjectNode();
+    }
+
+  /**
+   * Returns a new empty ArrayNode.
+   */
+  protected ArrayNode createArrayNode()
+    {
+    return mapper_.createArrayNode();
+    }
+
   private final boolean explode_;
+  private final ObjectMapper mapper_ = new ObjectMapper();        
   }
