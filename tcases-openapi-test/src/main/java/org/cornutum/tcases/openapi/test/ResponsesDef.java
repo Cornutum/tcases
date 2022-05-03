@@ -12,7 +12,6 @@ import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.Reader;
@@ -43,7 +42,7 @@ public class ResponsesDef
    */
   public ResponsesDef forPaths( Collection<String> paths)
     {
-    ObjectNode view = new ObjectMapper().createObjectNode();
+    ObjectNode view = createObjectNode();
     Optional<Collection<String>> includedPaths = Optional.ofNullable( paths).filter( p -> !p.isEmpty());
 
     toStream( root_.fieldNames())
@@ -68,8 +67,7 @@ public class ResponsesDef
    */
   public ResponsesDef forOps( Collection<String> ops)
     {
-    ObjectMapper mapper =new ObjectMapper();
-    ObjectNode view = mapper.createObjectNode();
+    ObjectNode view = createObjectNode();
     Optional<Collection<String>> includedOps = Optional.ofNullable( ops).filter( o -> !o.isEmpty());
 
     toStream( root_.fields())
@@ -79,7 +77,7 @@ public class ResponsesDef
           
           pathDef -> {
             ObjectNode opsDef = (ObjectNode) pathDef.getValue();
-            ObjectNode opsView = mapper.createObjectNode();
+            ObjectNode opsView = createObjectNode();
             toStream( opsDef.fieldNames())
               .filter( op -> includedOps.map( includes -> includes.stream().anyMatch( include -> op.equalsIgnoreCase( include))).orElse( true))
               .forEach( op -> opsView.set( op, opsDef.get( op)));
@@ -335,10 +333,9 @@ public class ResponsesDef
    */
   public static void write( ResponsesDef responses, Writer writer)
     {
-    ObjectMapper mapper = new ObjectMapper();
-    try( JsonGenerator generator = mapper.writerWithDefaultPrettyPrinter().createGenerator( writer))
+    try( JsonGenerator generator = mapper().writerWithDefaultPrettyPrinter().createGenerator( writer))
       {
-      mapper.writeTree( generator, responses.root_);
+      mapper().writeTree( generator, responses.root_);
       }
     catch( Exception e)
       {
@@ -353,10 +350,9 @@ public class ResponsesDef
     {
     try
       {
-      ObjectMapper mapper = new ObjectMapper();
       return
         new ResponsesDef(
-          Optional.of( mapper.readTree( reader))
+          Optional.of( mapper().readTree( reader))
           .filter( JsonNode::isObject)
           .map( root -> (ObjectNode) root)
           .orElseThrow( () -> new IllegalStateException( "Expected JSON type=object")));

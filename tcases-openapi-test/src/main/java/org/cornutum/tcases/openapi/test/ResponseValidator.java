@@ -7,8 +7,9 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import static org.cornutum.tcases.openapi.test.JsonUtils.mapper;
+
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.openapi4j.core.validation.ValidationSeverity;
 import org.openapi4j.schema.validator.ValidationData;
@@ -325,7 +326,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeJson( String content) throws Exception
     {
-    return singletonList( new ObjectMapper().readTree( new StringReader( content)));
+    return singletonList( mapper().readTree( new StringReader( content)));
     }
 
   /**

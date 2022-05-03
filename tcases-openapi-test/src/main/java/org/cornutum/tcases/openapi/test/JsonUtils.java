@@ -9,6 +9,8 @@ package org.cornutum.tcases.openapi.test;
 
 import com.fasterxml.jackson.core.JsonPointer;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.Optional;
@@ -79,5 +81,30 @@ public final class JsonUtils
     return escaped.toString();
     }
 
+  /**
+   * Returns a new empty ObjectNode.
+   */
+  public static ObjectNode createObjectNode()
+    {
+    return mapper().createObjectNode();
+    }
+
+  /**
+   * Returns a new empty ArrayNode.
+   */
+  public static ArrayNode createArrayNode()
+    {
+    return mapper().createArrayNode();
+    }
+
+  /**
+   * Returns a JSON ObjectMapper.
+   */
+  public static ObjectMapper mapper()
+    {
+    return mapper_;
+    }
+
   private static final Pattern POINTER_ESCAPES = Pattern.compile( "(~)|(/)");
+  private static final ObjectMapper mapper_ = new ObjectMapper();
   }

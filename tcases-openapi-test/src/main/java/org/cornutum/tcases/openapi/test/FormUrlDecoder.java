@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.test;
 
 import static org.cornutum.tcases.openapi.test.CollectionUtils.toOrderedMap;
+import static org.cornutum.tcases.openapi.test.JsonUtils.createObjectNode;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
