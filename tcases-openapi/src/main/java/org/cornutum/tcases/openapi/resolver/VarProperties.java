@@ -251,7 +251,7 @@ public final class VarProperties
     return
       Optional.ofNullable( propertyValues)
       .flatMap( properties -> Optional.ofNullable( getPropertyValues( properties, "Alternative")))
-      .map( alternatives -> getPropertyValues( alternatives, String.valueOf( getVarBinding( alternatives, "Used").getValue())))
+      .map( alts -> getPropertyValues( alts, Optional.ofNullable( getVarBinding( alts, "Used").getValue()).map( String::valueOf).orElse( "0")))
       .orElse( propertyValues);
     }
 
