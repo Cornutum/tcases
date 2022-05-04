@@ -237,17 +237,266 @@
 
             "201" : {
                 "description" : "Success",
-                "schema" : {
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "W0": {
+                                        "type": "integer",
+                                        "writeOnly": true
+                                    }
+                                },
+                                "oneOf": [
+                                    {
+                                        "properties": {
+                                            "X": {
+                                                "type": "integer"
+                                            },
+                                            "W1": {
+                                                "type": "integer",
+                                                "writeOnly": true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "properties": {
+                                            "Z": {
+                                                "type": "integer"
+                                            },
+                                            "W2": {
+                                                "type": "integer",
+                                                "writeOnly": true
+                                            }
+                                        }
+                                    }
+                                ]
+                                
+                            }
+                        }
+                    }
                 }
             },
 
             "default": {
                 "description" : "Default",
-                "schema" : {
-                    "type": "integer",
-                    "enum": [ -1, 0, 1 ]
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "integer",
+                            "enum": [ -1, 0, 1 ]
+                        }
+                    }
                 }
-            }                
+            }
+        }
+    },
+
+    "/object_1": {
+        "get": {
+            "default": {
+                "description": "Default",
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "minimum": 0
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "writeOnly": true
+                                            }
+                                        },
+                                        "required": [ "id", "value" ],
+                                        "additionalProperties": false
+                                    }
+                                }
+                            },
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "AP1": {
+                                        "type": "string",
+                                        "writeOnly": true
+                                    },
+                                    "AP2": {
+                                        "type": "string" 
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "/object_2": {
+        "get": {
+            "default": {
+                "description": "Default",
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "object",
+                            "properties": {
+                                "AW": {
+                                    "type": "array",
+                                    "writeOnly": true,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "minimum": 0
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "writeOnly": true
+                                            }
+                                        },
+                                        "required": [ "id", "value" ],
+                                        "additionalProperties": false
+                                    }
+                                }
+                            },
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "AP1": {
+                                        "type": "string",
+                                        "writeOnly": true
+                                    },
+                                    "AP2": {
+                                        "type": "string" 
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    
+    "/object_3": {
+        "get": {
+            "default": {
+                "description": "Default",
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "object",
+                            "properties": {
+                                "O": {
+                                    "type": "object",
+                                    "writeOnly": false,
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "K": {
+                                                    "type": "number",
+                                                    "writeOnly": true
+                                                }
+                                            },
+                                            "additionalProperties": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "X": {
+                                                        "type": "number"
+                                                    },
+                                                    "W": {
+                                                        "type": "number",
+                                                        "writeOnly": true
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        {
+                                            "allOf": [
+                                                {
+                                                    "minProperties": 1
+                                                },
+                                                {
+                                                    "properties": {
+                                                        "Q": {
+                                                            "type": "number",
+                                                            "writeOnly": true
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "/array": {
+        "get": {
+            "default": {
+                "description": "Default",
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "W0": {
+                                        "type": "integer",
+                                        "writeOnly": true
+                                    }
+                                },
+                                "oneOf": [
+                                    {
+                                        "properties": {
+                                            "X": {
+                                                "type": "integer"
+                                            },
+                                            "W1": {
+                                                "type": "integer",
+                                                "writeOnly": true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "properties": {
+                                            "Z": {
+                                                "type": "integer"
+                                            },
+                                            "W2": {
+                                                "type": "integer",
+                                                "writeOnly": true
+                                            }
+                                        }
+                                    }
+                                ],
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

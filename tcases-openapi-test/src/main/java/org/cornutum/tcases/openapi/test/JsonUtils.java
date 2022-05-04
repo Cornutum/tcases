@@ -14,10 +14,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Defines methods for processing JSON values.
@@ -77,6 +80,22 @@ public final class JsonUtils
     }
 
   /**
+   * Returns true if the given string represents an integer
+   */
+  public static boolean isInteger( String value)
+    {
+    try
+      {
+      Integer.parseInt( value);
+      return true;
+      }
+    catch( Exception e)
+      {
+      return false;
+      }
+    }
+
+  /**
    * Returns a JSON pointer for the given path
    */
   public static JsonPointer pointer( String... path)
@@ -116,6 +135,47 @@ public final class JsonUtils
     }
 
   /**
+   * Returns the final segment of the given JSON pointer.
+   */
+  public static String tailOf( JsonPointer pointer)
+    {
+    return
+      Optional.of( pathOf( pointer))
+      .filter( path -> !path.isEmpty())
+      .map( path -> path.get( path.size() - 1))
+      .orElse( "");
+    }
+
+  /**
+   * Returns the path represented by the given JSON pointer.
+   */
+  public static List<String> pathOf( JsonPointer pointer)
+    {
+    String[] segments = String.valueOf( pointer).split( "/", 0);
+    return
+      IntStream.range( 1, segments.length)
+      .mapToObj( i -> pathElementOf( segments[i]))
+      .collect( toList());
+    }
+
+  /**
+   * Returns the path element represented by the given JSON pointer segment.
+   */
+  private static String pathElementOf( String segment)
+    {
+    Matcher matcher = POINTER_ESCAPED.matcher( segment);
+    StringBuffer unescaped = new StringBuffer();
+    while( matcher.find())
+      {
+      matcher.appendReplacement(
+        unescaped,
+        matcher.group(1) != null? "~" : "/");
+      }
+    matcher.appendTail( unescaped);
+    return unescaped.toString();
+    }
+
+  /**
    * Returns a new empty ObjectNode.
    */
   public static ObjectNode createObjectNode()
@@ -140,5 +200,6 @@ public final class JsonUtils
     }
 
   private static final Pattern POINTER_ESCAPES = Pattern.compile( "(~)|(/)");
+  private static final Pattern POINTER_ESCAPED = Pattern.compile( "(~0)|(~1)");
   private static final ObjectMapper mapper_ = new ObjectMapper();
   }

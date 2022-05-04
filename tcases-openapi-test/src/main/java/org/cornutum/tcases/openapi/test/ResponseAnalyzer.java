@@ -12,6 +12,7 @@ import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
 import com.fasterxml.jackson.core.JsonPointer;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.openapi4j.core.validation.ValidationSeverity;
 import org.openapi4j.schema.validator.ValidationData;
@@ -23,6 +24,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
@@ -131,7 +133,11 @@ public final class ResponseAnalyzer
    */
   public static List<JsonPointer> contentWriteOnly( JsonNode content, List<JsonPointer> schemaWriteOnly)
     {
-    return null;
+    return
+      schemaWriteOnly.stream()
+      .flatMap( location -> matchesAt( content, location).stream())
+      .filter( location -> !content.at( location).isMissingNode())
+      .collect( toList());
     }
 
   /**
@@ -139,7 +145,29 @@ public final class ResponseAnalyzer
    */
   public static JsonNode schemaWithoutWriteOnly( JsonNode schema, List<JsonPointer> schemaWriteOnly)
     {
-    return null;
+    schemaWriteOnly
+      .forEach( location -> {
+        // Remove writeOnly property definition
+        JsonPointer locationProperties = location.head();
+        ObjectNode properties = expectObject( schema.at( locationProperties));
+        String property = tailOf( location);
+        properties.remove( property);
+
+        // Ensure writeOnly property not required.
+        ObjectNode objectSchema = expectObject( schema.at( locationProperties.head()));
+        if( objectSchema.has( "required"))
+          {
+          objectSchema.set(
+            "required",
+            createArrayNode()
+            .addAll(
+              toStream( objectSchema.get( "required").elements())
+              .filter( required -> !property.equals( required.asText()))
+              .collect( toList())));
+          }
+        });
+
+    return schema;
     }
 
   /**
@@ -242,6 +270,118 @@ public final class ResponseAnalyzer
           .collect( toList());
         });
       
+    }
+
+  /**
+   * Returns the locations in the given content that matches the given schema location.
+   */
+  private static List<JsonPointer> matchesAt( JsonNode content, JsonPointer schemaLocation)
+    {
+    return matchesAt( content, pathOf( schemaLocation));
+    }
+
+  /**
+   * Returns the locations in the given content that matches the given schema location.
+   */
+  private static List<JsonPointer> matchesAt( JsonNode content, List<String> schemaPath)
+    {
+    int start;
+    for( start = 0;
+
+         start < schemaPath.size() - 1
+           && ("allOf".equals( schemaPath.get(start)) || "anyOf".equals( schemaPath.get(start)) || "oneOf".equals( schemaPath.get(start)))
+           && isInteger( schemaPath.get(start+1));
+
+         start += 2);
+
+    List<String> path = schemaPath.subList( start, schemaPath.size());
+    return
+      path.isEmpty()?
+      emptyList() :
+
+      path.get(0).equals( "items")?
+      matchesItemsAt( content, path) :
+
+      path.get(0).equals( "additionalProperties")?
+      matchesAdditionalAt( content, path) :
+
+      matchesPropertyAt( content, path);
+    }
+
+  /**
+   * Returns the locations in the given content that matches the given property location.
+   */
+  private static List<JsonPointer> matchesPropertyAt( JsonNode content, List<String> schemaPath)
+    {
+    JsonPointer propertyLocation = pointer( schemaPath.get(1));
+    JsonNode propertyValue = content.at( propertyLocation);
+    List<String> pathFrom = schemaPath.subList( 2, schemaPath.size());
+
+    return
+      propertyValue.isMissingNode()?
+      emptyList() :
+
+      pathFrom.isEmpty()?
+      singletonList( propertyLocation) :
+
+      matchesAt( propertyValue, pathFrom)
+      .stream()
+      .map( location -> propertyLocation.append( location))
+      .collect( toList());
+    }
+
+  /**
+   * Returns the locations in the given content that matches the given array location.
+   */
+  private static List<JsonPointer> matchesItemsAt( JsonNode content, List<String> schemaPath)
+    {
+    List<String> pathFrom = schemaPath.subList( 1, schemaPath.size());
+
+    return
+      asArray( content)
+
+      .map( array -> {
+        return
+          IntStream.range( 0, array.size())
+          .mapToObj( i -> {
+            return
+              matchesAt( array.get(i), pathFrom)
+              .stream()
+              .map( location -> pointer( String.valueOf( i)).append( location))
+              .collect( toList());
+            })
+          .flatMap( List::stream)
+          .collect( toList());
+        })
+      
+      .orElse( emptyList());
+    }
+
+  /**
+   * Returns the locations in the given content that matches additional properties of the given object location.
+   */
+  private static List<JsonPointer> matchesAdditionalAt( JsonNode content, List<String> schemaPath)
+    {
+    List<String> pathFrom = schemaPath.subList( 1, schemaPath.size());
+
+    return
+      asObject( content)
+
+      .map( object -> {
+        return
+          toStream( object.fieldNames())
+          .map( property -> {
+            return
+              matchesAt( object.get( property), pathFrom)
+              .stream()
+              .map( location -> pointer( property).append( location))
+              .collect( toList());
+            })
+          .flatMap( List::stream)
+          .collect( toList());
+        })
+      
+      .orElse( emptyList());
     }
 
   /**

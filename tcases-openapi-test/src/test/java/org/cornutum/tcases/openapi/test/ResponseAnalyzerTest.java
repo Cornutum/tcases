@@ -64,5 +64,124 @@ public class ResponseAnalyzerTest extends ResponseTest
         "/properties/O/oneOf/1/allOf/1/anyOf/0/additionalProperties/properties/M",
         "/properties/O/oneOf/1/allOf/2/properties/Q",
         "/additionalProperties/properties/AP1"));
+
+    // When...
+    JsonNode schemaWithoutWriteOnly = ResponseAnalyzer.schemaWithoutWriteOnly( schema, locations);
+
+    // Then...
+    assertThat( "Locations", ResponseAnalyzer.schemaWriteOnly( schemaWithoutWriteOnly), is( empty()));
+    }
+
+  @Test
+  public void schemaWriteOnlyArray()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-writeOnly");
+    JsonNode schema =
+      responses.contentSchema( "get", "/writeOnly", 201, "application/json")
+      .orElse( null);
+
+    // When...
+    List<JsonPointer> locations = ResponseAnalyzer.schemaWriteOnly( schema);
+      
+    // Then...
+    locations
+      .forEach( location -> {
+        Optional<ObjectNode> propertySchema = asObject( schema.at( location));
+        assertThat( location + " schema defined", propertySchema.isPresent(), is( true));
+        assertThat( location + " writeOnly", propertySchema.map( s -> s.get( "writeOnly")).orElse( null), is( BooleanNode.valueOf( true)));
+        });
+
+    assertThat(
+      "locations",
+      locations.stream().map( String::valueOf).collect( toList()),
+      containsMembers(
+        "/items/properties/W0",
+        "/items/oneOf/0/properties/W1",
+        "/items/oneOf/1/properties/W2"));
+
+    // When...
+    JsonNode schemaWithoutWriteOnly = ResponseAnalyzer.schemaWithoutWriteOnly( schema, locations);
+
+    // Then...
+    assertThat( "Locations", ResponseAnalyzer.schemaWriteOnly( schemaWithoutWriteOnly), is( empty()));
+    }
+
+  @Test
+  public void schemaWriteOnlyNone()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-writeOnly");
+    JsonNode schema =
+      responses.contentSchema( "get", "/writeOnly", 400, "application/json")
+      .orElse( null);
+
+    // When...
+    List<JsonPointer> locations = ResponseAnalyzer.schemaWriteOnly( schema);
+      
+    // Then...
+    assertThat( "Locations", locations, is( empty()));
+    }
+
+  @Test
+  public void contentWriteOnlyObject_1()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-writeOnly");
+    JsonNode schema = responses.contentSchema( "get", "/object_1", 200, "application/json").orElse( null);
+    List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
+
+    {
+    // When...
+    JsonNode content = toJson( "{}");
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+      
+    // Then...
+    assertThat( "Locations", contentLocations, is( empty()));
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+    }
+    {
+    // When...
+    JsonNode content = toJson( "{\"A\": [{\"id\": 0, \"value\": -4120082543660235000}]}") ;
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+      
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+    }
+    {
+    // When...
+    JsonNode content = toJson(
+      "{"
+      + "  \"A\": ["
+      + "      {"
+      + "          \"id\": 201951564,"
+      + "          \"value\": -4162210996959620600"
+      + "      },"
+      + "      {"
+      + "          \"id\": 201951564,"
+      + "          \"value\": -4162210996959620600"
+      + "      }"
+      + "    ],"
+      + "  \"wgnlflrbhlv\": {"
+      + "      \"AP1\": \"\""
+      + "    },"
+      + "  \"mgsfx\": {"
+      + "      \"AP2\": \"\""
+      + "    }"
+      + "}") ;
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+      
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+    }
     }
   }
