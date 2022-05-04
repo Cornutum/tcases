@@ -162,7 +162,7 @@ public class ResponsesDef
     {
     return
       opStatusContent( op, path, statusCode, contentType)
-      .flatMap( content -> Optional.ofNullable( asObject( content.get( "schema"))));
+      .flatMap( content -> Optional.ofNullable( expectObject( content.get( "schema"))));
     }
 
   /**
@@ -218,11 +218,11 @@ public class ResponsesDef
     Optional<ObjectNode> content =
       opStatusHeaderContent( op, path, statusCode, headerName)
       .flatMap( mediaTypes -> toStream( mediaTypes.elements()).findFirst())
-      .map( contentType -> asObject( contentType));
+      .map( contentType -> expectObject( contentType));
 
     return
       (content.isPresent()? content : opStatusHeader( op, path, statusCode, headerName))
-      .flatMap( header -> Optional.ofNullable( asObject( header.get( "schema"))));
+      .flatMap( header -> Optional.ofNullable( expectObject( header.get( "schema"))));
     }
 
   /**
@@ -242,7 +242,7 @@ public class ResponsesDef
     {
     return
       opStatusResponse( op, path, statusCode)
-      .flatMap( response -> Optional.ofNullable( asObject( response.get( "content"))))
+      .flatMap( response -> Optional.ofNullable( expectObject( response.get( "content"))))
       .filter( content -> content.size() > 0);
     }
 
@@ -266,7 +266,7 @@ public class ResponsesDef
 
         return
           Arrays.stream( alternatives)
-          .map( type -> asObject( content.get( String.valueOf( type))))
+          .map( type -> expectObject( content.get( String.valueOf( type))))
           .filter( Objects::nonNull)
           .findFirst();
         })
@@ -280,7 +280,7 @@ public class ResponsesDef
     {
     return
       opStatusResponse( op, path, statusCode)
-      .flatMap( response -> Optional.ofNullable( asObject( response.get( "headers"))))
+      .flatMap( response -> Optional.ofNullable( expectObject( response.get( "headers"))))
       .filter( headers -> headers.size() > 0);
     }
 
@@ -291,7 +291,7 @@ public class ResponsesDef
     {
     return
       opStatusHeaders( op, path, statusCode)
-      .flatMap( headers -> Optional.ofNullable( asObject( headers.get( headerName))));
+      .flatMap( headers -> Optional.ofNullable( expectObject( headers.get( headerName))));
     }
 
   /**
@@ -301,7 +301,7 @@ public class ResponsesDef
     {
     return
       opStatusHeader( op, path, statusCode, headerName)
-      .flatMap( header -> Optional.ofNullable( asObject( header.get( "content"))));
+      .flatMap( header -> Optional.ofNullable( expectObject( header.get( "content"))));
     }
 
   /**
@@ -315,7 +315,7 @@ public class ResponsesDef
 
     return
       Arrays.asList( statusKey, statusRangeKey, "default").stream()
-      .map( key -> asObject( opResponses.get( key)))
+      .map( key -> expectObject( opResponses.get( key)))
       .filter( Objects::nonNull)
       .findFirst();
     }
@@ -325,7 +325,7 @@ public class ResponsesDef
    */
   private Optional<ObjectNode> objectAt( String... path)
     {
-    return Optional.ofNullable( asObject( root_.at( pointer( path))));
+    return Optional.ofNullable( expectObject( root_.at( pointer( path))));
     }
 
   /**

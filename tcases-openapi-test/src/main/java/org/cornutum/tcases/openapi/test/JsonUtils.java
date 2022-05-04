@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.regex.Matcher;
@@ -34,26 +35,59 @@ public final class JsonUtils
   /**
    * Returns the given JSON node as an object node.
    */
-  public static ObjectNode asObject( JsonNode node)
+  public static ObjectNode expectObject( JsonNode node)
+    {
+    return
+      isMissing( node)
+      ? null
+      : asObject( node).orElseThrow( () -> new IllegalStateException( String.format( "Expected type=OBJECT, found type=%s", node.getNodeType())));
+    }
+
+  /**
+   * Returns the given JSON node if it is an object node. Otherwise returns {@link Optional#empty}.
+   */
+  public static Optional<ObjectNode> asObject( JsonNode node)
+    {
+    return
+      isMissing( node)
+      ? Optional.empty()
+      : Optional.of( node).filter( JsonNode::isObject).map( object -> (ObjectNode) object);
+    }
+
+  /**
+   * Returns the given JSON node if it is an array node. Otherwise returns {@link Optional#empty}.
+   */
+  public static Optional<ArrayNode> asArray( JsonNode node)
+    {
+    return
+      isMissing( node)
+      ? Optional.empty()
+      : Optional.of( node).filter( JsonNode::isArray).map( array -> (ArrayNode) array);
+    }
+
+  /**
+   * Returns true if the given JSON node is null or missing.
+   */
+  public static boolean isMissing( JsonNode node)
     {
     return
       Optional.ofNullable( node)
-      .filter( notNull -> !notNull.isMissingNode())
-
-      .map(
-        notMissing ->
-        Optional.of( notMissing)
-        .filter( JsonNode::isObject)
-        .map( object -> (ObjectNode) object)
-        .orElseThrow( () -> new IllegalStateException( String.format( "Expected type=OBJECT, found type=%s", node.getNodeType()))))
-
-      .orElse( null);
+      .map( JsonNode::isMissingNode)
+      .orElse( true);
     }
 
   /**
    * Returns a JSON pointer for the given path
    */
   public static JsonPointer pointer( String... path)
+    {
+    return pointer( Arrays.asList( path));
+    }
+
+  /**
+   * Returns a JSON pointer for the given path
+   */
+  public static JsonPointer pointer( Iterable<String> path)
     {
     StringJoiner joiner = new StringJoiner( "/", "/", "");
     for( String name : path)
