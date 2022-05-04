@@ -13,12 +13,10 @@ import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import java.io.FileReader;
-
 /**
  * Runs tests for {@link ResponsesDef}.
  */
-public class ResponsesDefTest
+public class ResponsesDefTest extends ResponseTest
   {
   @Test
   public void responses_0()
@@ -196,20 +194,5 @@ public class ResponsesDefTest
     assertThat( "/responses ops", view.ops( "/responses"), listsMembers( "head"));
     assertThat( "/respondingly ops", view.ops( "/respondingly"), listsMembers( "head"));
     assertThat( "/respond ops", view.ops( "/respond"), is( empty()));
-    }
-
-  /**
-   * Reads response definitions from a resource file.
-   */
-  private ResponsesDef readResponses( String resource)
-    {
-    try( FileReader reader = new FileReader( getClass().getResource( resource + ".json").getFile()))
-      {
-      return ResponsesDef.read( reader);
-      }
-    catch( Exception e)
-      {
-      throw new IllegalStateException( "Can't read ResponsesDef", e);
-      }
     }
   }
