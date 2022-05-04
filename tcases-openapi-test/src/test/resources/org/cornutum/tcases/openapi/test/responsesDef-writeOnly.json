@@ -1,0 +1,253 @@
+{
+    "/writeOnly" : {
+        "get" : {
+            "200" : {
+                "description" : "Success",
+                "content": {
+                    "application/json": {
+                        "schema" : {
+                            "type": "object",
+                            "properties": {
+                                "A": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "minimum": 0
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "writeOnly": true
+                                            }
+                                        },
+                                        "required": [ "id", "value" ]
+                                    }
+                                },
+                                "AW": {
+                                    "type": "array",
+                                    "writeOnly": true,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "minimum": 0
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "writeOnly": true
+                                            }
+                                        },
+                                        "required": [ "id", "value" ]
+                                    }
+                                },
+                                "B": {
+                                    "type": "boolean",
+                                    "writeOnly": false
+                                },
+                                "I": {
+                                    "type": "integer",
+                                    "writeOnly": true,
+                                    "minimum": 0,
+                                    "maximum": 100
+                                },
+                                "N": {
+                                    "type": "number",
+                                    "enum": [ -1.23, 0.00, 4.56]
+                                },
+                                "O": {
+                                    "type": "object",
+                                    "writeOnly": false,
+                                    "properties": {
+                                        "A": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    "value": {
+                                                        "type": "number",
+                                                        "writeOnly": true
+                                                    }
+                                                },
+                                                "required": [ "id", "value" ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "AW": {
+                                            "type": "array",
+                                            "writeOnly": true,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "minimum": 0
+                                                    },
+                                                    "value": {
+                                                        "type": "number",
+                                                        "writeOnly": true
+                                                    }
+                                                },
+                                                "required": [ "id", "value" ],
+                                                "additionalProperties": false
+                                            }
+                                        },
+                                        "B": {
+                                            "type": "boolean"
+                                        },
+                                        "I": {
+                                            "type": "integer",
+                                            "writeOnly": false,
+                                            "minimum": 0,
+                                            "maximum": 100
+                                        },
+                                        "N": {
+                                            "writeOnly": true,
+                                            "type": "number",
+                                            "enum": [ -5.67, 0.00, 7.89]
+                                        },
+                                        "O": {
+                                            "type": "object",
+                                            "properties": {
+                                                "X": {
+                                                    "type": "number"
+                                                },
+                                                "Y": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "required": [ "X", "Y" ]
+                                        },
+                                        "S": {
+                                            "type": "string",
+                                            "writeOnly": false,
+                                            "format": "date"
+                                        }
+                                    },
+                                    "required": [ "A", "AW", "B", "I", "N", "O", "OW", "S"],
+                                    "additionalProperties": {
+                                        "type": "object",
+                                        "properties": {
+                                            "X": {
+                                                "type": "number"
+                                            },
+                                            "Y": {
+                                                "type": "number"
+                                            },
+                                            "Z": {
+                                                "type": "number",
+                                                "writeOnly": true
+                                            }
+                                        },
+                                        "required": [ "X", "Y" ]
+                                    },
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "K": {
+                                                    "type": "number",
+                                                    "writeOnly": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "allOf": [
+                                                {
+                                                    "minProperties": 1
+                                                },
+                                                {
+                                                    "anyOf": [
+                                                        {
+                                                            "additionalProperties": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "L": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "M": {
+                                                                        "type": "string",
+                                                                        "writeOnly": true
+                                                                    }
+                                                                }
+                                                            }                                                                
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "properties": {
+                                                        "Q": {
+                                                            "type": "number",
+                                                            "writeOnly": true
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "OW": {
+                                    "type": "object",
+                                    "writeOnly": true,
+                                    "additionalProperties": {
+                                        "type": "object",
+                                        "properties": {
+                                            "X": {
+                                                "type": "number"
+                                            },
+                                            "Y": {
+                                                "type": "number"
+                                            },
+                                            "Z": {
+                                                "type": "number",
+                                                "writeOnly": true
+                                            }
+                                        },
+                                        "required": [ "X", "Y" ]
+                                    }
+                                },
+                                "S": {
+                                    "type": "string",
+                                    "enum": [ "Eenie", "Meenie" ]
+                                }
+                            },
+                            "required": [ "A", "AW", "B", "I", "N", "O", "OW", "S"],
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "AP1": {
+                                        "type": "string",
+                                        "writeOnly": true
+                                    },
+                                    "AP2": {
+                                        "type": "string" 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "201" : {
+                "description" : "Success",
+                "schema" : {
+                }
+            },
+
+            "default": {
+                "description" : "Default",
+                "schema" : {
+                    "type": "integer",
+                    "enum": [ -1, 0, 1 ]
+                }
+            }                
+        }
+    }
+}
