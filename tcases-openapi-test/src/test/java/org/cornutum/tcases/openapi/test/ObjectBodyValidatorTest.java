@@ -207,4 +207,84 @@ public class ObjectBodyValidatorTest extends ResponseValidatorTest
           "#additionalProperties/type: Type expected 'string', found 'integer'.");
         });
     }
+
+  @Test
+  public void whenWriteOnlyInvalid()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-writeOnly", FAIL_ALL);
+
+    String op = "get";
+    String path = "/object_1";
+    int statusCode = 200;
+    String bodyContentType = "application/json";
+
+    {
+    // When...no writeOnly property values
+    String bodyContent = "{ \"A\": [], \"xyz\": { \"AP2\": \"Howdy\"}}";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    {
+    // When...no writeOnly property values
+    String bodyContent = "{}";
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        // No writeOnly property values, but some validation errors
+        String bodyContent = "{ \"A\": 1.23, \"xyz\": { \"AP2\": null}}";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /object_1 (200), body: invalid response",
+          "AP2#nullable: Null value is not allowed.",
+          "A#type: Type expected 'array', found 'number'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        // Some writeOnly property values, and some validation errors
+        String bodyContent = "{ \"A\": [{ \"id\": 1.23, \"value\": 5.67}]}";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /object_1 (200), body: invalid response",
+          "A.0.id#type: Type expected 'integer', found 'number'.",
+          "A/0/value#writeOnly: 'writeOnly' property not allowed in response");
+        });
+
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        // Only writeOnly property value errors
+        String bodyContent = "{ \"A\": [{ \"id\": 123, \"value\": 5.67}], \"xyz\": { \"AP1\": \"Hello\", \"AP2\": \"Howdy\"}}";
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "get /object_1 (200), body: invalid response",
+          "A/0/value#writeOnly: 'writeOnly' property not allowed in response",
+          "xyz/AP1#writeOnly: 'writeOnly' property not allowed in response");
+        });
+
+    {
+    // When...writeOnly property errors ignored
+    String bodyContent = "{ \"A\": [{ \"id\": 123, \"value\": 5.67}], \"xyz\": { \"AP1\": \"Hello\", \"AP2\": \"Howdy\"}}";
+    validator.writeOnlyInvalid( false);
+
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+    }
+    }
   }

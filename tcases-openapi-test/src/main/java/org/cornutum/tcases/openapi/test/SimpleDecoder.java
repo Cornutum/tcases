@@ -7,8 +7,11 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import static org.cornutum.tcases.openapi.test.CollectionUtils.toOrderedMap;
+import static org.cornutum.tcases.openapi.test.JsonUtils.createArrayNode;
+import static org.cornutum.tcases.openapi.test.JsonUtils.createObjectNode;
+
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -86,7 +89,7 @@ public class SimpleDecoder extends AbstractDecoder
     {
     return
       properties.isEmpty()?
-      singletonList( mapper_.createObjectNode()) :
+      singletonList( createObjectNode()) :
 
       // To preserve input order, recursively traverse entries depth-first.
       decodeObject( properties.subList( 0, properties.size() - 1)).stream()
@@ -95,7 +98,7 @@ public class SimpleDecoder extends AbstractDecoder
         return
           decodeValue( properties.get( properties.size() - 1).getValue()).stream()
           .map( jsonNode -> {
-            ObjectNode nextObject = mapper_.createObjectNode();
+            ObjectNode nextObject = createObjectNode();
             nextObject = nextObject.setAll( prevObject);
             nextObject = nextObject.set( properties.get( properties.size() - 1).getKey(), jsonNode);
             return nextObject;
@@ -124,7 +127,7 @@ public class SimpleDecoder extends AbstractDecoder
     {
     return
       members.length == 0?
-      singletonList( mapper_.createArrayNode()) :
+      singletonList( createArrayNode()) :
 
       // To preserve input order, recursively traverse members depth-first.
       decodeArray( Arrays.copyOfRange( members, 0, members.length - 1)).stream()
@@ -132,10 +135,8 @@ public class SimpleDecoder extends AbstractDecoder
       .flatMap( prevArray -> {
         return
           decodeValue( members[ members.length - 1]).stream()
-          .map( jsonNode -> mapper_.createArrayNode().addAll( prevArray).add( jsonNode));
+          .map( jsonNode -> createArrayNode().addAll( prevArray).add( jsonNode));
         })
       .collect( toList());
     }
-
-  private final ObjectMapper mapper_ = new ObjectMapper();        
   }

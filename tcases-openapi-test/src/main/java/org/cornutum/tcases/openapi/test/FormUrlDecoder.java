@@ -7,8 +7,10 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import static org.cornutum.tcases.openapi.test.CollectionUtils.toOrderedMap;
+import static org.cornutum.tcases.openapi.test.JsonUtils.createObjectNode;
+
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.Arrays;
@@ -122,7 +124,7 @@ public class FormUrlDecoder extends AbstractDecoder
     {
     return
       properties.isEmpty()?
-      singletonList( mapper_.createObjectNode()) :
+      singletonList( createObjectNode()) :
 
       // To preserve input order, recursively traverse entries depth-first.
       decodeObject( properties.subList( 0, properties.size() - 1)).stream()
@@ -131,7 +133,7 @@ public class FormUrlDecoder extends AbstractDecoder
         return
           valueDecoder_.decode( properties.get( properties.size() - 1).getValue()).stream()
           .map( jsonNode -> {
-            ObjectNode nextObject = mapper_.createObjectNode();
+            ObjectNode nextObject = createObjectNode();
             nextObject = nextObject.setAll( prevObject);
             nextObject = nextObject.set( properties.get( properties.size() - 1).getKey(), jsonNode);
             return nextObject;
@@ -141,5 +143,4 @@ public class FormUrlDecoder extends AbstractDecoder
     }
 
   private final SimpleDecoder valueDecoder_;
-  private final ObjectMapper mapper_ = new ObjectMapper();        
   }

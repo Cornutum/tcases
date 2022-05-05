@@ -7,31 +7,21 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import static org.cornutum.tcases.openapi.test.CollectionUtils.*;
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
+
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonPointer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.StringJoiner;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines the responses for requests described by an OpenAPI definition.
@@ -52,7 +42,7 @@ public class ResponsesDef
    */
   public ResponsesDef forPaths( Collection<String> paths)
     {
-    ObjectNode view = new ObjectMapper().createObjectNode();
+    ObjectNode view = createObjectNode();
     Optional<Collection<String>> includedPaths = Optional.ofNullable( paths).filter( p -> !p.isEmpty());
 
     toStream( root_.fieldNames())
@@ -77,8 +67,7 @@ public class ResponsesDef
    */
   public ResponsesDef forOps( Collection<String> ops)
     {
-    ObjectMapper mapper =new ObjectMapper();
-    ObjectNode view = mapper.createObjectNode();
+    ObjectNode view = createObjectNode();
     Optional<Collection<String>> includedOps = Optional.ofNullable( ops).filter( o -> !o.isEmpty());
 
     toStream( root_.fields())
@@ -88,7 +77,7 @@ public class ResponsesDef
           
           pathDef -> {
             ObjectNode opsDef = (ObjectNode) pathDef.getValue();
-            ObjectNode opsView = mapper.createObjectNode();
+            ObjectNode opsView = createObjectNode();
             toStream( opsDef.fieldNames())
               .filter( op -> includedOps.map( includes -> includes.stream().anyMatch( include -> op.equalsIgnoreCase( include))).orElse( true))
               .forEach( op -> opsView.set( op, opsDef.get( op)));
@@ -173,7 +162,7 @@ public class ResponsesDef
     {
     return
       opStatusContent( op, path, statusCode, contentType)
-      .flatMap( content -> Optional.ofNullable( asObject( content.get( "schema"))));
+      .flatMap( content -> Optional.ofNullable( expectObject( content.get( "schema"))));
     }
 
   /**
@@ -229,11 +218,11 @@ public class ResponsesDef
     Optional<ObjectNode> content =
       opStatusHeaderContent( op, path, statusCode, headerName)
       .flatMap( mediaTypes -> toStream( mediaTypes.elements()).findFirst())
-      .map( contentType -> asObject( contentType));
+      .map( contentType -> expectObject( contentType));
 
     return
       (content.isPresent()? content : opStatusHeader( op, path, statusCode, headerName))
-      .flatMap( header -> Optional.ofNullable( asObject( header.get( "schema"))));
+      .flatMap( header -> Optional.ofNullable( expectObject( header.get( "schema"))));
     }
 
   /**
@@ -253,7 +242,7 @@ public class ResponsesDef
     {
     return
       opStatusResponse( op, path, statusCode)
-      .flatMap( response -> Optional.ofNullable( asObject( response.get( "content"))))
+      .flatMap( response -> Optional.ofNullable( expectObject( response.get( "content"))))
       .filter( content -> content.size() > 0);
     }
 
@@ -277,7 +266,7 @@ public class ResponsesDef
 
         return
           Arrays.stream( alternatives)
-          .map( type -> asObject( content.get( String.valueOf( type))))
+          .map( type -> expectObject( content.get( String.valueOf( type))))
           .filter( Objects::nonNull)
           .findFirst();
         })
@@ -291,7 +280,7 @@ public class ResponsesDef
     {
     return
       opStatusResponse( op, path, statusCode)
-      .flatMap( response -> Optional.ofNullable( asObject( response.get( "headers"))))
+      .flatMap( response -> Optional.ofNullable( expectObject( response.get( "headers"))))
       .filter( headers -> headers.size() > 0);
     }
 
@@ -302,7 +291,7 @@ public class ResponsesDef
     {
     return
       opStatusHeaders( op, path, statusCode)
-      .flatMap( headers -> Optional.ofNullable( asObject( headers.get( headerName))));
+      .flatMap( headers -> Optional.ofNullable( expectObject( headers.get( headerName))));
     }
 
   /**
@@ -312,7 +301,7 @@ public class ResponsesDef
     {
     return
       opStatusHeader( op, path, statusCode, headerName)
-      .flatMap( header -> Optional.ofNullable( asObject( header.get( "content"))));
+      .flatMap( header -> Optional.ofNullable( expectObject( header.get( "content"))));
     }
 
   /**
@@ -326,7 +315,7 @@ public class ResponsesDef
 
     return
       Arrays.asList( statusKey, statusRangeKey, "default").stream()
-      .map( key -> asObject( opResponses.get( key)))
+      .map( key -> expectObject( opResponses.get( key)))
       .filter( Objects::nonNull)
       .findFirst();
     }
@@ -336,95 +325,7 @@ public class ResponsesDef
    */
   private Optional<ObjectNode> objectAt( String... path)
     {
-    return Optional.ofNullable( asObject( root_.at( pointer( path))));
-    }
-
-  /**
-   * Returns the given JSON node as an object node.
-   */
-  private ObjectNode asObject( JsonNode node)
-    {
-    return
-      Optional.ofNullable( node)
-      .filter( notNull -> !notNull.isMissingNode())
-
-      .map(
-        notMissing ->
-        Optional.of( notMissing)
-        .filter( JsonNode::isObject)
-        .map( object -> (ObjectNode) object)
-        .orElseThrow( () -> new IllegalStateException( String.format( "Expected type=OBJECT, found type=%s", node.getNodeType()))))
-
-      .orElse( null);
-    }
-
-  /**
-   * Returns a JSON pointer for the given path
-   */
-  private JsonPointer pointer( String... path)
-    {
-    StringJoiner joiner = new StringJoiner( "/", "/", "");
-    for( String name : path)
-      {
-      joiner.add( pointerSegment( name));
-      }
-
-    return JsonPointer.compile( joiner.toString());
-    }
-
-  /**
-   * Returns the given name as JSON Pointer segment, escaping special characters as defined in <A href="https://datatracker.ietf.org/doc/html/rfc6901">RFC6901</A>.
-   */
-  private String pointerSegment( String name)
-    {
-    Matcher matcher = POINTER_ESCAPES.matcher( name);
-    StringBuffer escaped = new StringBuffer();
-    while( matcher.find())
-      {
-      matcher.appendReplacement(
-        escaped,
-        matcher.group(1) != null? "~0" : "~1");
-      }
-    matcher.appendTail( escaped);
-    return escaped.toString();
-    }
-
-  /**
-   * Returns a stream that produces the sequence defined by the given Iterator.
-   */
-  private static <T> Stream<T> toStream( Iterator<T> iterator)
-    {
-    return
-      Optional.ofNullable( iterator)
-      .map( i -> {
-        Iterable<T> iterable = () -> i;
-        return toStream( iterable);
-        })
-      .orElse( null);
-    }
-
-  /**
-   * Returns a stream that produces the sequence defined by the given Iterable.
-   */
-  private static <T> Stream<T> toStream( Iterable<T> iterable)
-    {
-    return
-      Optional.ofNullable( iterable)
-      .map( i -> StreamSupport.stream( i.spliterator(), false))
-      .orElse( null);
-    }
-
-  /**
-   * A collector that produces a map sorted in insertion order.
-   */
-  private static <T,V> Collector<T,?,Map<String,V>> toOrderedMap( Function<T,String> keyMapper, Function<T,V> valueMapper)
-    {
-    return
-      toMap(
-        keyMapper,
-        valueMapper,
-        (v1, v2) -> v1,
-        LinkedHashMap::new);
+    return Optional.ofNullable( expectObject( root_.at( pointer( path))));
     }
 
   /**
@@ -432,10 +333,9 @@ public class ResponsesDef
    */
   public static void write( ResponsesDef responses, Writer writer)
     {
-    ObjectMapper mapper = new ObjectMapper();
-    try( JsonGenerator generator = mapper.writerWithDefaultPrettyPrinter().createGenerator( writer))
+    try( JsonGenerator generator = mapper().writerWithDefaultPrettyPrinter().createGenerator( writer))
       {
-      mapper.writeTree( generator, responses.root_);
+      mapper().writeTree( generator, responses.root_);
       }
     catch( Exception e)
       {
@@ -450,10 +350,9 @@ public class ResponsesDef
     {
     try
       {
-      ObjectMapper mapper = new ObjectMapper();
       return
         new ResponsesDef(
-          Optional.of( mapper.readTree( reader))
+          Optional.of( mapper().readTree( reader))
           .filter( JsonNode::isObject)
           .map( root -> (ObjectNode) root)
           .orElseThrow( () -> new IllegalStateException( "Expected JSON type=object")));
@@ -492,6 +391,4 @@ public class ResponsesDef
     }
   
   private final ObjectNode root_;
-
-  private static final Pattern POINTER_ESCAPES = Pattern.compile( "(~)|(/)");
   }

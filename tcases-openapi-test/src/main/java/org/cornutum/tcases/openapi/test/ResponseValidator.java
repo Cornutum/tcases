@@ -7,12 +7,9 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.cornutum.tcases.openapi.test.JsonUtils.mapper;
 
-import org.openapi4j.core.validation.ValidationSeverity;
-import org.openapi4j.schema.validator.ValidationData;
-import org.openapi4j.schema.validator.v3.SchemaValidator;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,7 +26,6 @@ import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Verifies that request responses conform to the form described by an OpenAPI definition.
@@ -50,7 +46,7 @@ public class ResponseValidator
   public ResponseValidator( Class<?> testClass, String resourceName)
     {
     this( streamFor( testClass, resourceName));
-    notifying( validationHanderFor( testClass).orElse( null));
+    notifying( validationHandlerFor( testClass).orElse( null));
     }
   
   /**
@@ -66,6 +62,8 @@ public class ResponseValidator
    */
   public ResponseValidator( Reader responses)
     {
+    writeOnlyInvalid( writeOnlyInvalid().orElse( true));
+    
     try
       {
       responses_ = ResponsesDef.read( responses);
@@ -91,6 +89,25 @@ public class ResponseValidator
     {
     validationHandler_ = Optional.ofNullable( handler).orElse( ResponseValidationHandler.EXPECT_CONFORM);
     return this;
+    }
+
+  /**
+   * Changes if a response containing a "writeOnly" object property is invalid. If false,
+   * "writeOnly" properties are ignored during validation.
+   */
+  public ResponseValidator writeOnlyInvalid( boolean invalid)
+    {
+    writeOnlyInvalid_ = invalid;
+    return this;
+    }
+
+  /**
+   * Returns if a response containing a "writeOnly" object property is invalid. If false,
+   * "writeOnly" properties are ignored during validation.
+   */
+  public boolean isWriteOnlyInvalid()
+    {
+    return writeOnlyInvalid_;
     }
 
   /**
@@ -148,8 +165,7 @@ public class ResponseValidator
         Optional<List<SchemaValidationError>> validationErrors;
         try
           {
-          SchemaValidator schemaValidator = new SchemaValidator( null, schema);
-          validationErrors = validateSchema( schemaValidator, bodyContentJson);
+          validationErrors = ResponseAnalyzer.validate( schema, bodyContentJson, isWriteOnlyInvalid());
           }
         catch( Exception e)
           {
@@ -215,8 +231,7 @@ public class ResponseValidator
               Optional<List<SchemaValidationError>> validationErrors;
               try
                 {
-                SchemaValidator schemaValidator = new SchemaValidator( null, schema);
-                validationErrors = validateSchema( schemaValidator, headerContentJson);
+                validationErrors = ResponseAnalyzer.validate( schema, headerContentJson, isWriteOnlyInvalid());
                 }
               catch( Exception e)
                 {
@@ -241,43 +256,6 @@ public class ResponseValidator
       {
       notify( invalid);
       }
-    }
-
-  /**
-   * Returns the results of applying the given schema validator to the given alternative content representations.
-   * If at least one alternative is valid, returns {@link Optional#empty}. Otherwise, returns a list of
-   * validation errors.
-   */
-  private Optional<List<SchemaValidationError>> validateSchema( SchemaValidator schemaValidator, List<JsonNode> content) throws Exception
-    {
-    List<List<SchemaValidationError>> alternativeErrors =
-      content.stream()
-      .map( alternate -> {
-          ValidationData<Void> validation = new ValidationData<>();
-          schemaValidator.validate( alternate, validation);
-          return validationErrors( validation);
-        })
-      .collect( toList());
-
-
-    List<SchemaValidationError> result =
-      // Is any alternative valid?
-      alternativeErrors.stream().anyMatch( List::isEmpty)?
-
-      // Yes, no errors to return
-      null :
-
-      // No, return the errors for...
-      alternativeErrors.stream()
-
-      // ... an alternative that has the expected type...
-      .filter( errors -> errors.stream().noneMatch( error -> "#type".equals( error.getLocation())))
-      .findFirst()
-
-      // ... or the first alternative
-      .orElse( alternativeErrors.get(0));
-
-    return Optional.ofNullable( result);
     }
 
   /**
@@ -325,7 +303,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeJson( String content) throws Exception
     {
-    return singletonList( new ObjectMapper().readTree( new StringReader( content)));
+    return singletonList( mapper().readTree( new StringReader( content)));
     }
 
   /**
@@ -358,45 +336,6 @@ public class ResponseValidator
   private void notify( ResponseValidationException invalid)
     {
     validationHandler_.handleInvalid( invalid);
-    }
-
-  /**
-   * Returns the errors described by the given schema validation results.
-   */
-  private List<SchemaValidationError> validationErrors( ValidationData<Void> validation)
-    {
-    return
-      validation.results().items( ValidationSeverity.ERROR).stream()
-      .map( item -> {
-        // Extract JSON pointer fragment for the location of the failed schema assertion
-        StringBuilder schemaKeys = new StringBuilder();
-        String crumbs = item.schemaCrumbs();
-        int keyEnd = crumbs.lastIndexOf( '>');
-        boolean moreSchemaKeys = keyEnd >= 0;
-
-        while( moreSchemaKeys)
-          {
-          int keyStart = crumbs.lastIndexOf( '<', keyEnd);
-          moreSchemaKeys = keyStart >= 0;
-          if( moreSchemaKeys)
-            {
-            schemaKeys.insert( 0, crumbs.substring( keyStart + 1, keyEnd));
-            keyEnd = keyStart - 2;
-            }
-
-          moreSchemaKeys =
-            moreSchemaKeys
-            && keyEnd > 0
-            && crumbs.substring( keyEnd, keyStart).equals( ">.");
-          if( moreSchemaKeys)
-            {
-            schemaKeys.insert( 0, "/");
-            }
-          }
-
-        return new SchemaValidationError( item.dataCrumbs(), schemaKeys.toString(), item.message());
-        })
-      .collect( toList());
     }
 
   /**
@@ -464,7 +403,7 @@ public class ResponseValidator
   /**
    * Returns the {@link ResponseValidationHandler} specified at runtime, if any.
    */
-  private Optional<ResponseValidationHandler> validationHanderFor( Class<?> testClass)
+  private Optional<ResponseValidationHandler> validationHandlerFor( Class<?> testClass)
     {
     return
       // System property defines a handler class?
@@ -509,6 +448,17 @@ public class ResponseValidator
     }
 
   /**
+   * Returns the {@link #writeOnlyInvalid writeOnlyInvalid() setting} specified at runtime, if any.
+   */
+  private Optional<Boolean> writeOnlyInvalid()
+    {
+    return
+      Optional.of( Objects.toString( System.getProperty( "tcasesApiWriteOnlyInvalid"), "").trim())
+      .filter( invalid -> !invalid.isEmpty())
+      .map( invalid -> Boolean.valueOf( invalid));
+    }
+
+  /**
    * Returns a ResponseValidationHandler constructor for the given argument types.
    */
   private Constructor<ResponseValidationHandler> handlerConstructor( Class<ResponseValidationHandler> handlerClass, Class<?>... argTypes)
@@ -525,4 +475,5 @@ public class ResponseValidator
 
   private final ResponsesDef responses_;
   private ResponseValidationHandler validationHandler_ = ResponseValidationHandler.EXPECT_CONFORM;
+  private boolean writeOnlyInvalid_ = true;
   }

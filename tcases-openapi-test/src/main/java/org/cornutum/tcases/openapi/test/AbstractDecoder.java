@@ -18,15 +18,10 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Base class for response content decoders.
@@ -159,19 +154,6 @@ public abstract class AbstractDecoder
       Optional.of( Objects.toString( content, ""))
       .filter( String::isEmpty)
       .map( empty -> NullNode.instance);
-    }
-
-  /**
-   * A collector that produces a map sorted in insertion order.
-   */
-  protected static <T> Collector<T,?,Map<String,String>> toOrderedMap( Function<T,String> keyMapper, Function<T,String> valueMapper)
-    {
-    return
-      toMap(
-        keyMapper,
-        valueMapper,
-        (v1, v2) -> v1,
-        LinkedHashMap::new);
     }
 
   /**
