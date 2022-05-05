@@ -27,7 +27,6 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Analyzes the schema and content for an API response.
@@ -147,13 +146,9 @@ public final class ResponseAnalyzer
     {
     schemaWriteOnly
       .forEach( location -> {
-        // Remove writeOnly property definition
-        JsonPointer locationProperties = location.head();
-        ObjectNode properties = expectObject( schema.at( locationProperties));
-        String property = tailOf( location);
-        properties.remove( property);
-
         // Ensure writeOnly property not required.
+        String property = tailOf( location);
+        JsonPointer locationProperties = location.head();
         ObjectNode objectSchema = expectObject( schema.at( locationProperties.head()));
         if( objectSchema.has( "required"))
           {
@@ -195,7 +190,10 @@ public final class ResponseAnalyzer
   public static Optional<List<SchemaValidationError>> validate( JsonNode schema, List<JsonNode> contentAlternatives, boolean writeOnlyInvalid) throws Exception
     {
     // Given a schema that may define "writeOnly" properties...
-    List<JsonPointer> schemaWriteOnly = schemaWriteOnly( schema);
+    List<JsonPointer> schemaWriteOnly =
+      writeOnlyInvalid
+      ? schemaWriteOnly( schema)
+      : emptyList();
 
     // ...apply a schema without "writeOnly" properties...
     JsonNode schemaWithoutWriteOnly = schemaWithoutWriteOnly( schema, schemaWriteOnly);
@@ -204,12 +202,12 @@ public final class ResponseAnalyzer
     Map<JsonNode,List<JsonPointer>> content =
       contentAlternatives.stream()
       .collect(
-        toMap(
+        toOrderedMap(
           json -> json,
           json -> contentWriteOnly( json, schemaWriteOnly)))
       .entrySet().stream()
       .collect(
-        toMap(
+        toOrderedMap(
           e -> contentWithoutWriteOnly( e.getKey(), e.getValue()),
           e -> e.getValue()));
 
@@ -219,7 +217,7 @@ public final class ResponseAnalyzer
       content
       .entrySet().stream()
       .collect(
-        toMap(
+        toOrderedMap(
           e -> e.getKey(),
           e -> {
           ValidationData<Void> validation = new ValidationData<>();
@@ -238,14 +236,17 @@ public final class ResponseAnalyzer
     // ...those with no errors of any type...
     Optional<JsonNode> contentValid =
       contentWriteOnly.stream()
-      .filter( json -> !writeOnlyInvalid || content.get( json).isEmpty())
+      .filter( json -> content.get( json).isEmpty())
       .findFirst();
 
-    // ...and those with some errors of some type...
+    // ...and those with some errors of some type (fewest errors first)...
     List<JsonNode> contentInvalid =
-      contentValid.isPresent()
-      ? emptyList()
-      : contentErrors.keySet().stream().collect( toList());
+      contentValid.isPresent()?
+      emptyList() :
+
+      contentErrors.keySet().stream()
+      .sorted( (json1, json2) -> Integer.compare( contentErrors.get( json1).size(), contentErrors.get( json2).size()))
+      .collect( toList());
     
     JsonNode withErrors =
       // Is there a content alternative with no errors?
@@ -271,11 +272,7 @@ public final class ResponseAnalyzer
         return
           Stream.concat(
             contentErrors.get( json).stream(),
-            
-            writeOnlyInvalid
-            ? writeOnlyErrors( content.get( json)).stream()
-            : Stream.empty())
-          
+            writeOnlyErrors( content.get( json)).stream())
           .collect( toList());
         });
       
@@ -437,6 +434,10 @@ public final class ResponseAnalyzer
    */
   private static List<SchemaValidationError> writeOnlyErrors( List<JsonPointer> contentWriteOnly)
     {
-    return null;
+    return
+      contentWriteOnly.stream()
+      .map( location -> location.toString().substring( 1))
+      .map( dataLocation -> new SchemaValidationError( dataLocation, "writeOnly", "'writeOnly' property not allowed in response"))
+      .collect( toList());
     }    
   }

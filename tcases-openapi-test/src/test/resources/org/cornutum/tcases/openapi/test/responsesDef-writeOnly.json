@@ -465,13 +465,20 @@
                                     "W0": {
                                         "type": "integer",
                                         "writeOnly": true
+                                    },
+                                    "X": {
+                                        "type": "integer"
+                                    },
+                                    "Z": {
+                                        "type": "integer"
                                     }
                                 },
-                                "oneOf": [
+                                "anyOf": [
                                     {
                                         "properties": {
                                             "X": {
-                                                "type": "integer"
+                                                "type": "integer",
+                                                "minimum": 0
                                             },
                                             "W1": {
                                                 "type": "integer",
@@ -482,7 +489,8 @@
                                     {
                                         "properties": {
                                             "Z": {
-                                                "type": "integer"
+                                                "type": "integer",
+                                                "minimum": 0
                                             },
                                             "W2": {
                                                 "type": "integer",
@@ -490,8 +498,7 @@
                                             }
                                         }
                                     }
-                                ],
-                                "additionalProperties": false
+                                ]
                             }
                         }
                     }

@@ -7,9 +7,12 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.JsonUtils.mapper;
+import static org.cornutum.tcases.openapi.test.CollectionUtils.*;
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
+import com.fasterxml.jackson.core.JsonPointer;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.FileReader;
 import java.io.Reader;
@@ -60,4 +63,20 @@ public abstract class ResponseTest
       throw new IllegalStateException( "Can't read JSON value", e);
       }
     }
+
+  /**
+   * Returns if the given schema specifies that the property defined at the given location is "required".
+   */
+  protected boolean isRequired( JsonNode schema, JsonPointer propertyLocation)
+    {
+    String property = tailOf( propertyLocation);
+    JsonPointer propertiesLocation = propertyLocation.head();
+    ObjectNode objectSchema = expectObject( schema.at( propertiesLocation.head()));
+
+    return
+      asArray( objectSchema.get( "required"))
+      .map( required -> toStream( required.elements()).anyMatch( e -> property.equals( e.asText())))
+      .orElse( false);
+    }
+
   }

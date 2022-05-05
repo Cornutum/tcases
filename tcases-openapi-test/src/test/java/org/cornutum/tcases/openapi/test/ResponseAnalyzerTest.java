@@ -69,7 +69,11 @@ public class ResponseAnalyzerTest extends ResponseTest
     JsonNode schemaWithoutWriteOnly = ResponseAnalyzer.schemaWithoutWriteOnly( schema, locations);
 
     // Then...
-    assertThat( "Locations", ResponseAnalyzer.schemaWriteOnly( schemaWithoutWriteOnly), is( empty()));
+    locations
+      .forEach( location -> {
+        assertThat( location + " property defined", !schemaWithoutWriteOnly.at( location).isMissingNode(), is( true));
+        assertThat( location + " property required", isRequired( schemaWithoutWriteOnly, location), is( false));
+        });
     }
 
   @Test
@@ -104,7 +108,11 @@ public class ResponseAnalyzerTest extends ResponseTest
     JsonNode schemaWithoutWriteOnly = ResponseAnalyzer.schemaWithoutWriteOnly( schema, locations);
 
     // Then...
-    assertThat( "Locations", ResponseAnalyzer.schemaWriteOnly( schemaWithoutWriteOnly), is( empty()));
+    locations
+      .forEach( location -> {
+        assertThat( location + " property defined", !schemaWithoutWriteOnly.at( location).isMissingNode(), is( true));
+        assertThat( location + " property required", isRequired( schemaWithoutWriteOnly, location), is( false));
+        });
     }
 
   @Test

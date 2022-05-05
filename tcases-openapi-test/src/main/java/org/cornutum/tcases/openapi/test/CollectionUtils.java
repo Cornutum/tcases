@@ -62,7 +62,7 @@ public final class CollectionUtils
   /**
    * A collector that produces a map sorted in insertion order.
    */
-  public static <T,V> Collector<T,?,Map<String,V>> toOrderedMap( Function<T,String> keyMapper, Function<T,V> valueMapper)
+  public static <T,K,V> Collector<T,?,Map<K,V>> toOrderedMap( Function<T,K> keyMapper, Function<T,V> valueMapper)
     {
     return
       toMap(
