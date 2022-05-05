@@ -138,11 +138,8 @@ public class ResponseAnalyzerTest extends ResponseTest
       
     // Then...
     assertThat( "Locations", contentLocations, is( empty()));
-    contentLocations
-      .forEach( location -> {
-        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
-        });
     }
+
     {
     // When...
     JsonNode content = toJson( "{\"A\": [{\"id\": 0, \"value\": -4120082543660235000}]}") ;
@@ -153,7 +150,14 @@ public class ResponseAnalyzerTest extends ResponseTest
       .forEach( location -> {
         assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
         });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "{\"A\":[{\"id\":0}]}"));
     }
+    
     {
     // When...
     JsonNode content = toJson(
@@ -182,6 +186,206 @@ public class ResponseAnalyzerTest extends ResponseTest
       .forEach( location -> {
         assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
         });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "{\"A\":[{\"id\":201951564},{\"id\":201951564}],\"wgnlflrbhlv\":{},\"mgsfx\":{\"AP2\":\"\"}}"));
+    }
+    }
+
+  @Test
+  public void contentWriteOnlyObject_2()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-writeOnly");
+    JsonNode schema = responses.contentSchema( "get", "/object_2", 200, "application/json").orElse( null);
+    List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
+
+    {
+    // When...
+    JsonNode content = toJson(
+      "{"
+      + "  \"AW\": ["
+      + "    {"
+      + "      \"id\": 544627845,"
+      + "      \"value\": -4287465815440130600"
+      + "    },"
+      + "    {}"
+      + "  ],"
+      + "  \"vdd\": {"
+      + "    \"AP1\": \"\""
+      + "  },"
+      + "  \"w\": {"
+      + "    \"AP1\": \"?\","
+      + "    \"AP2\": \"??\""
+      + "  },"
+      + "  \"kbhqob\": {}"
+      + "}");
+
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "{\"vdd\":{},\"w\":{\"AP2\":\"??\"},\"kbhqob\":{}}"));
+    }
+    }
+
+  @Test
+  public void contentWriteOnlyObject_3()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-writeOnly");
+    JsonNode schema = responses.contentSchema( "get", "/object_3", 200, "application/json").orElse( null);
+    List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
+
+    {
+    // When...
+    JsonNode content = toJson(
+      "{"
+      + "  \"O\": {"
+      + "    \"Q\": \"(}Tn[\","
+      + "    \"K\": -4025866082958271000,"
+      + "    \"qlmatldlbgnmlcfz\": {},"
+      + "    \"ehbhmjwf\": {}"
+      + "  },"
+      + "  \"ahuuzljs\": 821"
+      + "}");
+
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "{\"O\":{\"qlmatldlbgnmlcfz\":{},\"ehbhmjwf\":{}},\"ahuuzljs\":821}"));
+    }
+    {
+    // When...
+    JsonNode content = toJson(
+      "{"
+      + "  \"O\": {"
+      + "    \"Q\": -4242234795304463000,"
+      + "    \"msknkca\": {"
+      + "      \"W\": -3706223701876914700,"
+      + "      \"pt\": \"U\","
+      + "      \"hyhz\": ["
+      + "        \"\""
+      + "      ]"
+      + "    }"
+      + "  }"
+      + "}");
+
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "{\"O\":{\"msknkca\":{\"pt\":\"U\",\"hyhz\":[\"\"]}}}"));
+    }
+    }
+
+  @Test
+  public void contentWriteOnlyArray()
+    {
+    // Given...
+    ResponsesDef responses = readResponses( "responsesDef-writeOnly");
+    JsonNode schema = responses.contentSchema( "get", "/array", 200, "application/json").orElse( null);
+    List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
+
+    {
+    // When...
+    JsonNode content = toJson( "[]");
+
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+
+    // Then...
+    assertThat( "Locations", contentLocations, is( empty()));
+    }
+
+    {
+    // When...
+    JsonNode content = toJson(
+      "["
+      + "  {"
+      + "    \"X\": -738884913,"
+      + "    \"W0\": -860194096,"
+      + "    \"Z\": {"
+      + "      \"rwxvksae\": -221,"
+      + "      \"zlyjkzo\": \"vEC\""
+      + "    },"
+      + "    \"W1\": -12577651"
+      + "  }"
+      + "]");
+
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "[{\"X\":-738884913,\"Z\":{\"rwxvksae\":-221,\"zlyjkzo\":\"vEC\"}}]"));
+    }
+
+    {
+    // When...
+    JsonNode content = toJson(
+      "["
+      + "  {"
+      + "    \"X\": true,"
+      + "    \"W0\": -386477299,"
+      + "    \"Z\": -539092744,"
+      + "    \"W2\": -715121890"
+      + "  },"
+      + "  {"
+      + "    \"W0\": -864774627,"
+      + "    \"W1\": true,"
+      + "    \"Z\": -190523888,"
+      + "    \"W2\": -763518715"
+      + "  }"
+      + "]");
+
+    List<JsonPointer> contentLocations = ResponseAnalyzer.contentWriteOnly( content, schemaLocations);
+
+    // Then...
+    contentLocations
+      .forEach( location -> {
+        assertThat( location + " property defined", !content.at( location).isMissingNode(), is( true));
+        });
+
+    // Then...
+    assertThat(
+      "Without writeOnly",
+      String.valueOf( ResponseAnalyzer.contentWithoutWriteOnly( content, contentLocations)),
+      is( "[{\"X\":true,\"Z\":-539092744},{\"Z\":-190523888}]"));
     }
     }
   }

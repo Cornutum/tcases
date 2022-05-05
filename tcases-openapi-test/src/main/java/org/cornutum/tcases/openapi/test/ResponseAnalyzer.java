@@ -175,7 +175,16 @@ public final class ResponseAnalyzer
    */
   public static JsonNode contentWithoutWriteOnly( JsonNode content, List<JsonPointer> contentWriteOnly)
     {
-    return null;
+    contentWriteOnly
+      .forEach( location -> {
+        // Remove writeOnly property value
+        JsonPointer locationProperties = location.head();
+        ObjectNode properties = expectObject( content.at( locationProperties));
+        String property = tailOf( location);
+        properties.remove( property);
+        });
+
+    return content;
     }
 
   /**
