@@ -40,6 +40,12 @@ public interface ResponseValidationHandler
         {
         // Ignore this condition.
         }
+
+      @Override
+      public String toString()
+        {
+        return "EXPECT_CONFORM";
+        }
       };
 
   /**
@@ -59,6 +65,12 @@ public interface ResponseValidationHandler
         {
         // Ignore this condition.
         }
+
+      @Override
+      public String toString()
+        {
+        return "IGNORE_ALL";
+        }
       };
 
   /**
@@ -77,6 +89,12 @@ public interface ResponseValidationHandler
       public void handleUnvalidated( ResponseUnvalidatedException condition)
         {
         throw condition;
+        }
+
+      @Override
+      public String toString()
+        {
+        return "FAIL_ALL";
         }
       };
   }

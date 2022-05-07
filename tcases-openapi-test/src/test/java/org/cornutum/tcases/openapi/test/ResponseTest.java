@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.FileReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.Optional;
 
 /**
  * Base class for response tests
@@ -79,4 +80,23 @@ public abstract class ResponseTest
       .orElse( false);
     }
 
+  /**
+   * Returns the schema for the response body for the given status code for the given operation on the API resource at the given path.
+   */
+  protected Optional<ObjectNode> getResponseBodySchema( ResponsesDef responses, String op, String path, int statusCode, String contentType)
+    {
+    return
+      responses.bodyContentDef( op, path, statusCode, contentType)
+      .flatMap( contentDef -> Optional.ofNullable( contentDef.getSchema()));
+    }
+
+  /**
+   * Returns the schema for the response body for the given status code for the given operation on the API resource at the given path.
+   */
+  protected ObjectNode expectResponseBodySchema( ResponsesDef responses, String op, String path, int statusCode, String contentType)
+    {
+    return
+      getResponseBodySchema( responses, op, path, statusCode, contentType)
+      .orElseThrow( () -> new IllegalStateException( "No response body schema found"));
+    }
   }

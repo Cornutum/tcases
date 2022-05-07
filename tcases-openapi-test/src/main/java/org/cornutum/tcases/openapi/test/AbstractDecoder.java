@@ -27,21 +27,13 @@ import static java.util.stream.Collectors.toList;
  * Base class for response content decoders.
  */
 public abstract class AbstractDecoder
-  {
+  {  
   /**
    * Creates a new AbstractDecoder instance.
    */
-  protected AbstractDecoder()
+  protected AbstractDecoder( ContentDef contentDef)
     {
-    this( false);
-    }
-  
-  /**
-   * Creates a new AbstractDecoder instance.
-   */
-  protected AbstractDecoder( boolean explode)
-    {
-    explode_ = explode;
+    contentDef_ = contentDef;
     }
 
   /**
@@ -49,7 +41,15 @@ public abstract class AbstractDecoder
    */
   public boolean isExplode()
     {
-    return explode_;
+    return getContentDef().isExploded();
+    }
+
+  /**
+   * Returns the content definition for this header.
+   */
+  public ContentDef getContentDef()
+    {
+    return contentDef_;
     }
 
   /**
@@ -174,5 +174,5 @@ public abstract class AbstractDecoder
       }
     }
 
-  private final boolean explode_;
+  private final ContentDef contentDef_;
   }

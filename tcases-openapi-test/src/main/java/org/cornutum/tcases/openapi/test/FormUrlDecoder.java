@@ -30,10 +30,10 @@ public class FormUrlDecoder extends AbstractDecoder
   /**
    * Creates a new FormUrlDecoder instance.
    */
-  public FormUrlDecoder( boolean explode)
+  public FormUrlDecoder( ContentDef contentDef)
     {
-    super( explode);
-    valueDecoder_ = new SimpleDecoder( explode);
+    super( contentDef);
+    valueDecoder_ = new SimpleDecoder( contentDef);
     }
 
   /**

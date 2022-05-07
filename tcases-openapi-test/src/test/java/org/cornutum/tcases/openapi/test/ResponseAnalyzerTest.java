@@ -33,9 +33,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema =
-      responses.contentSchema( "get", "/writeOnly", 200, "application/json")
-      .orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/writeOnly", 200, "application/json");
 
     // When...
     List<JsonPointer> locations = ResponseAnalyzer.schemaWriteOnly( schema);
@@ -81,9 +79,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema =
-      responses.contentSchema( "get", "/writeOnly", 201, "application/json")
-      .orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/writeOnly", 201, "application/json");
 
     // When...
     List<JsonPointer> locations = ResponseAnalyzer.schemaWriteOnly( schema);
@@ -120,9 +116,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema =
-      responses.contentSchema( "get", "/writeOnly", 400, "application/json")
-      .orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/writeOnly", 400, "application/json");
 
     // When...
     List<JsonPointer> locations = ResponseAnalyzer.schemaWriteOnly( schema);
@@ -136,7 +130,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema = responses.contentSchema( "get", "/object_1", 200, "application/json").orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/object_1", 200, "application/json");
     List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
 
     {
@@ -208,7 +202,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema = responses.contentSchema( "get", "/object_2", 200, "application/json").orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/object_2", 200, "application/json");
     List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
 
     {
@@ -253,7 +247,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema = responses.contentSchema( "get", "/object_3", 200, "application/json").orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/object_3", 200, "application/json");
     List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
 
     {
@@ -320,7 +314,7 @@ public class ResponseAnalyzerTest extends ResponseTest
     {
     // Given...
     ResponsesDef responses = readResponses( "responsesDef-writeOnly");
-    JsonNode schema = responses.contentSchema( "get", "/array", 200, "application/json").orElse( null);
+    ObjectNode schema = expectResponseBodySchema( responses, "get", "/array", 200, "application/json");
     List<JsonPointer> schemaLocations = ResponseAnalyzer.schemaWriteOnly( schema);
 
     {

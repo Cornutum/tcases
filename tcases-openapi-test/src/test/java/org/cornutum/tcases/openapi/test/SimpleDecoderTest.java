@@ -25,8 +25,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenNotExplodedObject()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded( false)
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
 
     // When...
@@ -83,8 +88,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenExplodedObject()
     {
     // Given...
-    boolean explode = true;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded()
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
 
     // When...
@@ -159,8 +169,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenArray()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded( false)
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
 
     // When...
@@ -220,8 +235,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenValue()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded( false)
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
 
     // When...
@@ -268,8 +288,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenAny()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded( false)
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
 
     // When...
@@ -324,8 +349,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenBoolean()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded( false)
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
     Optional<JsonNode> jsonNode;
     
@@ -380,8 +410,13 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenNumber()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "text/plain")
+      .exploded( false)
+      .build();
+
+    SimpleDecoder decoder = new SimpleDecoder( contentDef);
+
     String content;
     Optional<JsonNode> jsonNode;
     

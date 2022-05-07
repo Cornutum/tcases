@@ -32,9 +32,9 @@ public class SimpleDecoder extends AbstractDecoder
   /**
    * Creates a new SimpleDecoder instance.
    */
-  public SimpleDecoder( boolean explode)
+  public SimpleDecoder( ContentDef contentDef)
     {
-    super( explode);
+    super( contentDef);
     }
 
   /**

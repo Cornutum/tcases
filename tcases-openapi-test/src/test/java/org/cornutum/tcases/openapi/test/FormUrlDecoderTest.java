@@ -21,8 +21,13 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormExploded()
     {
     // Given...
-    boolean explode = true;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded()
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
     String content;
 
     // When...
@@ -54,8 +59,13 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormUnexploded()
     {
     // Given...
-    boolean explode = false;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded( false)
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
     String content;
 
     // When...
@@ -93,8 +103,13 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormNumbers()
     {
     // Given...
-    boolean explode = false;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded( false)
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
     String content;
 
     // When...
@@ -130,8 +145,13 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormStrings()
     {
     // Given...
-    boolean explode = false;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded( false)
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
     String content;
 
     // When...
@@ -159,8 +179,13 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormBoolean()
     {
     // Given...
-    boolean explode = false;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded( false)
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
     String content;
 
     // When...
@@ -183,8 +208,13 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormEmpty()
     {
     // Given...
-    boolean explode = false;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded( false)
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
     String content;
 
     // When...
@@ -202,8 +232,12 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
   public void whenFormInvalid()
     {
     // Given...
-    boolean explode = true;
-    FormUrlDecoder decoder = new FormUrlDecoder( explode);
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .exploded()
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
 
     expectFailure( IllegalArgumentException.class)
       .when( () -> decoder.decode( "12.34"))
