@@ -44,30 +44,25 @@ public class ContentDefBuilder
     return this;
     }
 
-  public ContentDefBuilder exploded()
+  public ContentDefBuilder encodeValue( EncodingDef valueEncoding)
     {
-    return exploded( true);
-    }
-
-  public ContentDefBuilder exploded( Boolean exploded)
-    {
-    exploded_ = exploded;
+    valueEncoding_ = valueEncoding;
     return this;
     }
 
-  public ContentDefBuilder encode( String property, EncodingDef encoding)
+  public ContentDefBuilder encodeProperty( String property, EncodingDef encoding)
     {
-    encodings_.put( property, encoding);
+    propertyEncodings_.put( property, encoding);
     return this;
     }
 
   public ContentDef build()
     {
-    return new ContentDef( contentType_, schema_, exploded_, encodings_);
+    return new ContentDef( contentType_, schema_, valueEncoding_, propertyEncodings_);
     }
 
   private String contentType_;
   private ObjectNode schema_;
-  private Boolean exploded_;
-  private Map<String,EncodingDef> encodings_ = new LinkedHashMap<String,EncodingDef>();
+  private EncodingDef valueEncoding_;
+  private Map<String,EncodingDef> propertyEncodings_ = new LinkedHashMap<String,EncodingDef>();
   }

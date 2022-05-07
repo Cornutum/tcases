@@ -31,25 +31,25 @@ public abstract class AbstractDecoder
   /**
    * Creates a new AbstractDecoder instance.
    */
-  protected AbstractDecoder( ContentDef contentDef)
+  protected AbstractDecoder( EncodingDef encodingDef)
     {
-    contentDef_ = contentDef;
+    encodingDef_ = encodingDef;
     }
 
   /**
    * Returns true if this decoder expects objects to be encoded in exploded form.
    */
-  public boolean isExplode()
+  public boolean isExploded()
     {
-    return getContentDef().isExploded();
+    return getEncodingDef().isExploded();
     }
 
   /**
-   * Returns the content definition for this header.
+   * Returns the content definition for this decoder.
    */
-  public ContentDef getContentDef()
+  public EncodingDef getEncodingDef()
     {
-    return contentDef_;
+    return encodingDef_;
     }
 
   /**
@@ -174,5 +174,5 @@ public abstract class AbstractDecoder
       }
     }
 
-  private final ContentDef contentDef_;
+  private final EncodingDef encodingDef_;
   }

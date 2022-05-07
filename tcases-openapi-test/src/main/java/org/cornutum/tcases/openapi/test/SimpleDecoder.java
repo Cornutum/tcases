@@ -32,9 +32,9 @@ public class SimpleDecoder extends AbstractDecoder
   /**
    * Creates a new SimpleDecoder instance.
    */
-  public SimpleDecoder( ContentDef contentDef)
+  public SimpleDecoder( EncodingDef encoding)
     {
-    super( contentDef);
+    super( encoding);
     }
 
   /**
@@ -49,13 +49,13 @@ public class SimpleDecoder extends AbstractDecoder
       .map( text -> text.isEmpty()? new String[0] : text.split( ",", -1))
 
       // ...either exploded key=value pairs or a sequence of key,value elements?
-      .filter( members -> isExplode() || members.length % 2 == 0)
+      .filter( members -> isExploded() || members.length % 2 == 0)
       
       .map( members -> {
 
         Map<String,String> properties =
           // Non-exploded property mappings?
-          !isExplode()?
+          !isExploded()?
           IntStream.range( 0, members.length / 2)
           .mapToObj( Integer::valueOf)
           .collect( toOrderedMap( i -> members[ 2*i], i -> members[ 2*i + 1])) :

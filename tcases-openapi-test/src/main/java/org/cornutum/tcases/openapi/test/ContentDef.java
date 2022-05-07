@@ -20,12 +20,12 @@ public class ContentDef
   /**
    * Creates a new ContentDef instance.
    */
-  public ContentDef( String contentType, ObjectNode schema, Boolean exploded, Map<String,EncodingDef> encodings)
+  public ContentDef( String contentType, ObjectNode schema, EncodingDef valueEncoding, Map<String,EncodingDef> propertyEncodings)
     {
     contentType_ = contentType;
     schema_ = schema;
-    exploded_ = Optional.ofNullable( exploded).orElse( false);
-    encodings_ = encodings;
+    valueEncoding_ = Optional.ofNullable( valueEncoding).orElse( EncodingDef.forSimpleValue( false));
+    propertyEncodings_ = propertyEncodings;
     }
 
   /**
@@ -49,15 +49,23 @@ public class ContentDef
    */
   public boolean isExploded()
     {
-    return exploded_;
+    return getValueEncoding().isExploded();
     }
 
   /**
-   * Returns the content encodings.
+   * Returns the content value encoding.
    */
-  public Map<String,EncodingDef> getEncodings()
+  public EncodingDef getValueEncoding()
     {
-    return encodings_;
+    return valueEncoding_;
+    }
+
+  /**
+   * Returns the content object property encodings.
+   */
+  public Map<String,EncodingDef> getPropertyEncodings()
+    {
+    return propertyEncodings_;
     }
 
   @Override
@@ -67,12 +75,12 @@ public class ContentDef
       ToString.builder( getClass())
       .add( "contentType", getContentType())
       .addIf( "dataType", Optional.ofNullable( getSchema()).flatMap( s -> Optional.ofNullable( s.get( "type").asText())))
-      .addIf( "exploded=", Optional.of( isExploded()).filter( e -> e))
+      .add( "valueEncoding=", getValueEncoding())
       .toString();
     }
   
   private final String contentType_;
   private final ObjectNode schema_;
-  private final boolean exploded_;
-  private final Map<String,EncodingDef> encodings_;
+  private final EncodingDef valueEncoding_;
+  private final Map<String,EncodingDef> propertyEncodings_;
   }

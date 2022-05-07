@@ -309,7 +309,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeSimple( String content, ContentDef contentDef) throws Exception
     {
-    return new SimpleDecoder( contentDef).decode( content);
+    return new SimpleDecoder( contentDef.getValueEncoding()).decode( content);
     }
 
   /**

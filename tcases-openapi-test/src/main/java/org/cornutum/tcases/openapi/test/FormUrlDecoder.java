@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
+
 import static org.cornutum.tcases.openapi.test.CollectionUtils.toOrderedMap;
 import static org.cornutum.tcases.openapi.test.JsonUtils.createObjectNode;
 
@@ -32,8 +34,8 @@ public class FormUrlDecoder extends AbstractDecoder
    */
   public FormUrlDecoder( ContentDef contentDef)
     {
-    super( contentDef);
-    valueDecoder_ = new SimpleDecoder( contentDef);
+    super( contentDef.getValueEncoding());
+    contentDef_ = contentDef;
     }
 
   /**
@@ -107,10 +109,7 @@ public class FormUrlDecoder extends AbstractDecoder
               mapping -> decodeUrl( mapping[1])));
 
         // Return JSON representations for these object properties.
-        return
-          Optional.ofNullable( properties)
-          .map( map -> decodeObject( map.entrySet().stream().collect( toList())))
-          .orElse( emptyList());
+        return decodeObject( properties.entrySet().stream().collect( toList()));
         })
 
       // No, not recognizable as an object
@@ -128,19 +127,45 @@ public class FormUrlDecoder extends AbstractDecoder
 
       // To preserve input order, recursively traverse entries depth-first.
       decodeObject( properties.subList( 0, properties.size() - 1)).stream()
-      .map( jsonNode -> (ObjectNode) jsonNode)
+      .map( jsonNode -> expectObject( jsonNode))
       .flatMap( prevObject -> {
+        String propertyName = properties.get( properties.size() - 1).getKey();
+        String propertyContent = properties.get( properties.size() - 1).getValue();
         return
-          valueDecoder_.decode( properties.get( properties.size() - 1).getValue()).stream()
+          getValueDecoder( propertyName).decode( propertyContent).stream()
           .map( jsonNode -> {
             ObjectNode nextObject = createObjectNode();
             nextObject = nextObject.setAll( prevObject);
-            nextObject = nextObject.set( properties.get( properties.size() - 1).getKey(), jsonNode);
+            nextObject = nextObject.set( propertyName, jsonNode);
             return nextObject;
             });
         })
       .collect( toList());
     }
 
-  private final SimpleDecoder valueDecoder_;
+  /**
+   * Returns the content object property encodings.
+   */
+  public Map<String,EncodingDef> getPropertyEncodings()
+    {
+    return contentDef_.getPropertyEncodings();
+    }
+
+  /**
+   * Returns the content definition for this decoder.
+   */
+  private ContentDef getContentDef()
+    {
+    return contentDef_;
+    }
+
+  /**
+   * Returns the value decoder for the given form property.
+   */
+  private SimpleDecoder getValueDecoder( String property)
+    {
+    return new SimpleDecoder( getContentDef().getValueEncoding());
+    }
+
+  private final ContentDef contentDef_;
   }

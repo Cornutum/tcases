@@ -17,6 +17,14 @@ import static java.util.Collections.emptyList;
 public class EncodingDef
   {
   /**
+   * Returns an {@link EncodingDef} for a "simple" style value.
+   */
+  public static EncodingDef forSimpleValue( Boolean exploded)
+    {
+    return new EncodingDef( "simple", Optional.ofNullable( exploded).orElse( false), null, null);
+    }
+  
+  /**
    * Returns an {@link EncodingDef} for an <CODE>application/x-www-form-urlencoded</CODE> part.
    */
   public static EncodingDef forUrlEncodedForm( String style, Boolean exploded)
@@ -82,7 +90,7 @@ public class EncodingDef
       ToString.builder( getClass())
       .addIf( "style", Optional.ofNullable( getStyle()))
       .addIf( "exploded", Optional.ofNullable( isExploded()))
-      .addIf( "exploded", Optional.ofNullable( getContentType()))
+      .addIf( "contentType", Optional.ofNullable( getContentType()))
       .toString();
     }
 

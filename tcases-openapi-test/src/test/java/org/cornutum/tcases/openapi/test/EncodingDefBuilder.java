@@ -21,6 +21,14 @@ public class EncodingDefBuilder
     }
 
   /**
+   * Returns a builder for a simple value encoding.
+   */
+  public static EncodingDefBuilder simple()
+    {
+    return new EncodingDefBuilder( false).style( "simple");
+    }
+
+  /**
    * Returns a builder for an <CODE>application/x-www-form-urlencoded</CODE> encoding.
    */
   public static EncodingDefBuilder urlencoded()

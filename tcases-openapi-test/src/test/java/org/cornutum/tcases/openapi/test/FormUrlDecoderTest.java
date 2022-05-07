@@ -23,7 +23,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded()
+      .encodeValue( EncodingDefBuilder.simple().exploded().build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -61,7 +61,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded( false)
+      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -105,7 +105,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded( false)
+      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -147,7 +147,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded( false)
+      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -181,7 +181,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded( false)
+      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -210,7 +210,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded( false)
+      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -234,7 +234,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .exploded()
+      .encodeValue( EncodingDefBuilder.simple().exploded().build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);

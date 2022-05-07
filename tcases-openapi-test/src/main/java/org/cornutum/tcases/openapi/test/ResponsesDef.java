@@ -286,12 +286,14 @@ public class ResponsesDef
           .map( c -> expectObject( c.get( "schema")))
           .orElse( expectObject( def.get( "schema")));
 
-        Map<String,EncodingDef> encodings =
+        Map<String,EncodingDef> propertyEncodings =
           headerContent
           .map( this::contentEncodings)
           .orElse( emptyMap());
 
-        return new HeaderDef( name, required, new ContentDef( contentType, schema, exploded, encodings));
+        EncodingDef valueEncoding = EncodingDef.forSimpleValue( exploded);
+        
+        return new HeaderDef( name, required, new ContentDef( contentType, schema, valueEncoding, propertyEncodings));
         })
       .collect( toList());      
     }
