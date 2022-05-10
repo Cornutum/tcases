@@ -347,9 +347,8 @@ public class ResponsesDef
       {
       return
         new ResponsesDef(
-          Optional.of( mapper().readTree( reader))
-          .filter( JsonNode::isObject)
-          .map( root -> (ObjectNode) root)
+          Optional.of( readJson( reader))
+          .flatMap( root -> asObject( root))
           .orElseThrow( () -> new IllegalStateException( "Expected JSON type=object")));
       }
     catch( Exception e)

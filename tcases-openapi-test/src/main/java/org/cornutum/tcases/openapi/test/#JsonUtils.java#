@@ -13,9 +13,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +21,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
+
+import java.io.Reader;
+import java.io.StringReader;
 
 /**
  * Defines methods for processing JSON values.
@@ -254,15 +254,15 @@ public final class JsonUtils
   /**
    * Returns the JSON value represented by the given content.
    */
-  public static JsonNode readJson( String content) throws IOException
+  public static JsonNode readJson( String content)
     {
-    return readJson( new StringReader( content));
+    return readTree( new StringReader( content));
     }
 
   /**
    * Returns the JSON value represented by content from the given Reader.
    */
-  public static JsonNode readJson( Reader content) throws IOException
+  public static JsonNode readJson( Reader content) throws IOExceptio
     {
     return mapper().readTree( content);
     }

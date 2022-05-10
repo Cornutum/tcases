@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.JsonUtils.mapper;
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -17,7 +17,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringReader;
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Map;
@@ -301,7 +300,7 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeJson( String content) throws Exception
     {
-    return singletonList( mapper().readTree( new StringReader( content)));
+    return singletonList( readJson( content));
     }
 
   /**
