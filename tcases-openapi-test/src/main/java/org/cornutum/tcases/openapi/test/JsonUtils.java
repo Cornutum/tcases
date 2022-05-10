@@ -114,10 +114,7 @@ public final class JsonUtils
    */
   public static ArrayNode appendArray( ArrayNode array, ArrayNode otherArray)
     {
-    ArrayNode appended = createArrayNode();
-    appended.addAll( array);
-    appended.addAll( otherArray);
-    return appended;
+    return createArrayNode().addAll( array).addAll( otherArray);
     }
 
   /**
