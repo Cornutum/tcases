@@ -21,7 +21,15 @@ public class EncodingDef
    */
   public static EncodingDef forSimpleValue( Boolean exploded)
     {
-    return new EncodingDef( "simple", Optional.ofNullable( exploded).orElse( false), null, null);
+    return forSimpleValue( "simple", exploded);
+    }
+  
+  /**
+   * Returns an {@link EncodingDef} for a "simple" style value.
+   */
+  public static EncodingDef forSimpleValue( String style, Boolean exploded)
+    {
+    return new EncodingDef( style, Optional.ofNullable( exploded).orElse( false), null, null);
     }
   
   /**
@@ -29,7 +37,17 @@ public class EncodingDef
    */
   public static EncodingDef forUrlEncodedForm( String style, Boolean exploded)
     {
-    return new EncodingDef( style, exploded, null, null);
+    String styleApplied = Optional.ofNullable( style).orElse( "form");
+    boolean explodedApplied = Optional.ofNullable( exploded).orElse( "form".equals( styleApplied));
+    return new EncodingDef( styleApplied, explodedApplied, null, null);
+    }
+  
+  /**
+   * Returns a default {@link EncodingDef} for an <CODE>application/x-www-form-urlencoded</CODE> part.
+   */
+  public static EncodingDef forUrlEncodedForm()
+    {
+    return forUrlEncodedForm( null, null);
     }
 
   /**

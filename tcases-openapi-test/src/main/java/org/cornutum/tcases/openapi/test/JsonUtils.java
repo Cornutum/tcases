@@ -58,6 +58,36 @@ public final class JsonUtils
     }
 
   /**
+   * Returns a new ObjectNode containing given field value.
+   */
+  public static ObjectNode newObject( String field, JsonNode value)
+    {
+    return createObjectNode().set( field, value);
+    }
+
+  /**
+   * Returns a new ObjectNode that is the same as the given object but adds all fields of the other object.
+   */
+  public static ObjectNode appendObject( ObjectNode object, ObjectNode otherObject)
+    {
+    ObjectNode appended = createObjectNode();
+    appended.setAll( object);
+    appended.setAll( otherObject);
+    return appended;
+    }
+
+  /**
+   * Returns the given JSON node as an array node.
+   */
+  public static ArrayNode expectArray( JsonNode node)
+    {
+    return
+      isMissing( node)
+      ? null
+      : asArray( node).orElseThrow( () -> new IllegalStateException( String.format( "Expected type=ARRAY, found type=%s", node.getNodeType())));
+    }
+
+  /**
    * Returns the given JSON node if it is an array node. Otherwise returns {@link Optional#empty}.
    */
   public static Optional<ArrayNode> asArray( JsonNode node)
@@ -66,6 +96,25 @@ public final class JsonUtils
       isMissing( node)
       ? Optional.empty()
       : Optional.of( node).filter( JsonNode::isArray).map( array -> (ArrayNode) array);
+    }
+
+  /**
+   * Returns a new ArrayNode containing given element
+   */
+  public static ArrayNode newArray( JsonNode element)
+    {
+    return createArrayNode().add( element);
+    }
+
+  /**
+   * Returns a new ArrayNode that is the same as the given array but adds all elements of the other array.
+   */
+  public static ArrayNode appendArray( ArrayNode array, ArrayNode otherArray)
+    {
+    ArrayNode appended = createArrayNode();
+    appended.addAll( array);
+    appended.addAll( otherArray);
+    return appended;
     }
 
   /**

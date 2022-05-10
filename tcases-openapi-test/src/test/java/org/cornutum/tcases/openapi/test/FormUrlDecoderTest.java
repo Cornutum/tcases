@@ -18,50 +18,11 @@ import static org.hamcrest.Matchers.*;
 public class FormUrlDecoderTest extends AbstractDecoderTest
   {
   @Test
-  public void whenFormExploded()
+  public void whenFormComposites()
     {
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded().build())
-      .build();
-
-    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
-
-    String content;
-
-    // When...
-    content =
-      FormUrlBuilder.with()
-      .field( "O", "X=-1,Y=1")
-      .field( "A", "A,B,C")
-      .build();
-    
-    // Then...
-    assertJsonNodes(
-      "Decoded",
-      objectNodes( decoder.decode( content)),
-      "{\"O\":{\"X\":-1,\"Y\":1},\"A\":[\"A\",\"B\",\"C\"]}",
-      "{\"O\":{\"X\":-1,\"Y\":1},\"A\":\"A,B,C\"}",
-      "{\"O\":{\"X\":-1,\"Y\":\"1\"},\"A\":[\"A\",\"B\",\"C\"]}",
-      "{\"O\":{\"X\":-1,\"Y\":\"1\"},\"A\":\"A,B,C\"}",
-      "{\"O\":{\"X\":\"-1\",\"Y\":1},\"A\":[\"A\",\"B\",\"C\"]}",
-      "{\"O\":{\"X\":\"-1\",\"Y\":1},\"A\":\"A,B,C\"}",
-      "{\"O\":{\"X\":\"-1\",\"Y\":\"1\"},\"A\":[\"A\",\"B\",\"C\"]}",
-      "{\"O\":{\"X\":\"-1\",\"Y\":\"1\"},\"A\":\"A,B,C\"}",
-      "{\"O\":[\"X=-1\",\"Y=1\"],\"A\":[\"A\",\"B\",\"C\"]}",
-      "{\"O\":[\"X=-1\",\"Y=1\"],\"A\":\"A,B,C\"}",
-      "{\"O\":\"X=-1,Y=1\",\"A\":[\"A\",\"B\",\"C\"]}",
-      "{\"O\":\"X=-1,Y=1\",\"A\":\"A,B,C\"}");
-    }
-  
-  @Test
-  public void whenFormUnexploded()
-    {
-    // Given...
-    ContentDef contentDef =
-      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -105,7 +66,6 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -147,7 +107,6 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -181,7 +140,6 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -210,7 +168,6 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded( false).build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
@@ -234,12 +191,11 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
     // Given...
     ContentDef contentDef =
       ContentDefBuilder.forType( "application/x-www-form-urlencoded")
-      .encodeValue( EncodingDefBuilder.simple().exploded().build())
       .build();
 
     FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
 
-    expectFailure( IllegalArgumentException.class)
+    expectFailure( IllegalStateException.class)
       .when( () -> decoder.decode( "12.34"))
       .then( failure -> {
         assertThat( "Failure", failure.getMessage(), is( "'12.34' is not a valid key/value pair"));

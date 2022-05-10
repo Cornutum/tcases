@@ -158,35 +158,36 @@ public class ResponsesDef
     {
     return
       opStatusContent( op, path, statusCode, contentType)
-      .map( content -> new ContentDef( contentType, expectObject( content.get( "schema")), null, contentEncodings( content)));
+      .map( content -> new ContentDef( contentType, expectObject( content.get( "schema")), null, contentEncodings( contentType, content)));
     }
 
   /**
    * Returns the encodings for properties of the given response content.
    */
-  private Map<String,EncodingDef> contentEncodings( JsonNode content)
+  private Map<String,EncodingDef> contentEncodings( String contentType, JsonNode content)
     {
     return
       Optional.ofNullable( expectObject( content.get( "encoding")))
       .map( encodings -> toStream( encodings.fields()))
       .orElse( Stream.empty())
-      .collect( toOrderedMap( encoding -> encoding.getKey(), encoding -> contentEncodingDef( expectObject( encoding.getValue()))));
+      .collect( toOrderedMap( encoding -> encoding.getKey(), encoding -> contentEncodingDef( contentType, expectObject( encoding.getValue()))));
     }
 
   /**
    * Returns the encoding for the value of a property of a response object for the given status code and content type for the
    * given operation on the API resource at the given path.
    */
-  private EncodingDef contentEncodingDef( ObjectNode encoding)
+  private EncodingDef contentEncodingDef( String mediaType, ObjectNode encoding)
     {
     String style = Optional.ofNullable( encoding.get( "style")).map( JsonNode::asText).orElse( null);
     Boolean exploded = Optional.ofNullable( encoding.get( "explode")).map( JsonNode::asBoolean).orElse( null);
     String contentType = Optional.ofNullable( encoding.get( "contentType")).map( JsonNode::asText).orElse( null);
+    List<HeaderDef> headers = contentHeaders( encoding);
 
     return
-      Optional.ofNullable( style)
-      .map( partStyle -> EncodingDef.forUrlEncodedForm( style, exploded))
-      .orElse( EncodingDef.forMultipartForm( contentType, null));
+      "multipart/form-data".equals( mediaType)
+      ? EncodingDef.forMultipartForm( contentType, headers)
+      : EncodingDef.forUrlEncodedForm( style, exploded);
     }
 
   /**
@@ -288,7 +289,7 @@ public class ResponsesDef
 
         Map<String,EncodingDef> propertyEncodings =
           headerContent
-          .map( this::contentEncodings)
+          .map( hc -> contentEncodings( contentType, hc))
           .orElse( emptyMap());
 
         EncodingDef valueEncoding = EncodingDef.forSimpleValue( exploded);
