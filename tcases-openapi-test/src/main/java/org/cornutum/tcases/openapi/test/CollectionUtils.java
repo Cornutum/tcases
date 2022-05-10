@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.test;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -70,6 +71,14 @@ public final class CollectionUtils
         valueMapper,
         (v1, v2) -> v1,
         LinkedHashMap::new);
+    }
+
+  /**
+   * Returns a mapping of the given value to the given key.
+   */
+  public static <K,V> Map.Entry<K,V> mapping( K key, V value)
+    {
+    return new SimpleEntry<K,V>( key, value);
     }
 
   /**

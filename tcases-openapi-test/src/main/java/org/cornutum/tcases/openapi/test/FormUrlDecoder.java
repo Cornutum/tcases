@@ -9,7 +9,7 @@ package org.cornutum.tcases.openapi.test;
 
 import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
-import static org.cornutum.tcases.openapi.test.CollectionUtils.toOrderedMap;
+import static org.cornutum.tcases.openapi.test.CollectionUtils.mapping;
 import static org.cornutum.tcases.openapi.test.CollectionUtils.toStream;
 import static org.cornutum.tcases.openapi.test.JsonUtils.createObjectNode;
 
@@ -106,20 +106,13 @@ public class FormUrlDecoder extends AbstractDecoder
                 Arrays.stream( mapping).collect( joining( "="))));
             });
         
-        Map<String,String> bindings =
+        List<Map.Entry<Key,String>> bindings =
           mappings.stream()
-          .collect(
-            toOrderedMap(
-              mapping -> decodeUrl( mapping[0]),
-              mapping -> decodeUrl( mapping[1])));
+          .map( mapping -> mapping( Key.of( getContentDef(), decodeUrl( mapping[0])), decodeUrl( mapping[1])))
+          .collect( toList());
 
-        // Return JSON representations for these object bindings.
-        return
-          decodeObject(
-            bindings.entrySet().stream()
-            .collect( toOrderedMap( binding -> Key.of( getContentDef(), binding.getKey()), binding -> binding.getValue()))
-            .entrySet().stream()
-            .collect( toList()));
+        // Return JSON representations for these form bindings.
+        return decodeObject( bindings);
         })
 
       // No, not recognizable as an object
@@ -200,7 +193,7 @@ public class FormUrlDecoder extends AbstractDecoder
     
     if( bindings.isEmpty())
       {
-      decoded = emptyList();
+      decoded = singletonList( createObjectNode());
       }
     else
       {

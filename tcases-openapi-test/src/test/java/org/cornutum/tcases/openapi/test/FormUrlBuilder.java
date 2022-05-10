@@ -1,7 +1,9 @@
 package org.cornutum.tcases.openapi.test;
 
 import java.net.URLEncoder;
-import java.util.LinkedHashMap;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import static java.util.stream.Collectors.joining;
 
@@ -30,7 +32,7 @@ public class FormUrlBuilder
    */
   public FormUrlBuilder field( String name, String value)
     {
-    fields_.put( encodeUrl( name), encodeUrl( value));
+    fields_.add( new SimpleEntry<String, String>( encodeUrl( name), encodeUrl( value)));
     return this;
     }
 
@@ -40,7 +42,7 @@ public class FormUrlBuilder
   public String build()
     {
     return
-      fields_.entrySet().stream()
+      fields_.stream()
       .map( field -> String.format( "%s=%s", field.getKey(), field.getValue()))
       .collect( joining( "&"));
     }
@@ -63,5 +65,5 @@ public class FormUrlBuilder
       }
     }
 
-  private Map<String,String> fields_ = new LinkedHashMap<String,String>();
+  private List<Map.Entry<String,String>> fields_ = new ArrayList<Map.Entry<String,String>>();
   }

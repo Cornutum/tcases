@@ -201,4 +201,73 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
         assertThat( "Failure", failure.getMessage(), is( "'12.34' is not a valid key/value pair"));
         });
     }
+
+  @Test
+  public void whenFormExploded()
+    {
+    // Given...
+    ContentDef contentDef =
+      ContentDefBuilder.forType( "application/x-www-form-urlencoded")
+      .schema(
+        "{"
+        + "  \"type\": \"object\","
+        + "  \"properties\": {"
+        + "    \"O\": {"
+        + "      \"type\": \"object\","
+        + "      \"properties\": {"
+        + "        \"X\": {"
+        + "          \"type\": \"string\""
+        + "        },"
+        + "        \"Y\": {"
+        + "          \"type\": \"string\""
+        + "        },"
+        + "        \"Z\": {"
+        + "          \"type\": \"string\""
+        + "        }"
+        + "      }"
+        + "    },"
+        + "    \"A\": {"
+        + "      \"type\": \"array\""
+        + "    }"
+        + "  }"
+        + "}")
+      .build();
+
+    FormUrlDecoder decoder = new FormUrlDecoder( contentDef);
+
+    String content;
+
+    // When...
+    content =
+      FormUrlBuilder.with()
+      .field( "X", "f1")
+      .field( "Y", "f2")
+      .field( "A", "e0")
+      .field( "A", "e1")
+      .build();
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      objectNodes( decoder.decode( content)),
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":[\"f2\"]},\"A\":[[\"e0\"],[\"e1\"]]}",
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":[\"f2\"]},\"A\":[[\"e0\"],\"e1\"]}",
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":[\"f2\"]},\"A\":[\"e0\",[\"e1\"]]}",
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":[\"f2\"]},\"A\":[\"e0\",\"e1\"]}",
+
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":\"f2\"},\"A\":[[\"e0\"],[\"e1\"]]}",
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":\"f2\"},\"A\":[[\"e0\"],\"e1\"]}",
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":\"f2\"},\"A\":[\"e0\",[\"e1\"]]}",
+      "{\"O\":{\"X\":[\"f1\"],\"Y\":\"f2\"},\"A\":[\"e0\",\"e1\"]}",
+
+      "{\"O\":{\"X\":\"f1\",\"Y\":[\"f2\"]},\"A\":[[\"e0\"],[\"e1\"]]}",
+      "{\"O\":{\"X\":\"f1\",\"Y\":[\"f2\"]},\"A\":[[\"e0\"],\"e1\"]}",
+      "{\"O\":{\"X\":\"f1\",\"Y\":[\"f2\"]},\"A\":[\"e0\",[\"e1\"]]}",
+      "{\"O\":{\"X\":\"f1\",\"Y\":[\"f2\"]},\"A\":[\"e0\",\"e1\"]}",
+
+      "{\"O\":{\"X\":\"f1\",\"Y\":\"f2\"},\"A\":[[\"e0\"],[\"e1\"]]}",
+      "{\"O\":{\"X\":\"f1\",\"Y\":\"f2\"},\"A\":[[\"e0\"],\"e1\"]}",
+      "{\"O\":{\"X\":\"f1\",\"Y\":\"f2\"},\"A\":[\"e0\",[\"e1\"]]}",
+      "{\"O\":{\"X\":\"f1\",\"Y\":\"f2\"},\"A\":[\"e0\",\"e1\"]}");
+    }
   }
