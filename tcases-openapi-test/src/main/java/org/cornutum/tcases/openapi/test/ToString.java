@@ -41,6 +41,14 @@ public class ToString
     }
 
   /**
+   * Returns a ToString builder for the given class name.
+   */
+  public static ToString builder( String className)
+    {
+    return new ToString( className);
+    }
+
+  /**
    * Adds a non-null element to the result string.
    */
   public <T> ToString add( T element)
