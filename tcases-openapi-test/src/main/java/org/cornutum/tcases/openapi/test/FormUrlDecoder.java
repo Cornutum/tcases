@@ -169,19 +169,25 @@ public class FormUrlDecoder extends AbstractDecoder
     EncodingDef encoding = getPropertyEncoding( formProperty);
 
     return
+      !encoding.isExploded()?
+      Optional.of( bindings)
+      .filter( singleton -> singleton.size() == 1)
+      .map( singleton -> singleton.get(0))
+      .map( binding -> {
+        return
+          forFormProperty( binding)
+          .map( property -> decodeValue( encoding.getStyle(), property.getValue()))
+          .orElseThrow( () -> new IllegalStateException( String.format( "Unexpected value for exploded property=%s", binding.getKey())));
+        })
+      .orElseThrow( () -> new IllegalStateException( String.format( "Expected explode=false for property='%s' but found %s bindings", formProperty, bindings.size()))) :
+      
       "deepObject".equals( encoding.getStyle())?
       decodeExplodedObject(
         Optional.of( bindings)
         .filter( deepBindings -> isExplodedObject( "deepObject", deepBindings))
         .orElseThrow( () -> new IllegalStateException( String.format( "Expected style=deepObject for property='%s' not found", formProperty)))) :
 
-      encoding.isExploded()?
-      decodeExploded( encoding.getStyle(), bindings) :
-      
-      Optional.of( bindings)
-      .filter( singleton -> singleton.size() == 1)
-      .map( singleton -> decodeValue( encoding.getStyle(), singleton.get(0).getValue()))
-      .orElseThrow( () -> new IllegalStateException( String.format( "Expected explode=false for property='%s' but found %s bindings", formProperty, bindings.size())));
+      decodeExploded( encoding.getStyle(), bindings);
     }
 
   /**
@@ -215,6 +221,15 @@ public class FormUrlDecoder extends AbstractDecoder
       }
 
     return decoded;
+    }
+
+  /**
+   * If the given binding if for a simple (unexploded) property of the form, returns the binding.
+   * Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private Optional<Map.Entry<Key,String>> forFormProperty( Map.Entry<Key,String> binding)
+    {
+    return Optional.of( binding).filter(  b -> b.getKey().getValueProperty() == null);
     }
 
   /**

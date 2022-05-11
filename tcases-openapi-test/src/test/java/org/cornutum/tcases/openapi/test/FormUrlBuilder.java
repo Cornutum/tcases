@@ -37,6 +37,14 @@ public class FormUrlBuilder
     }
 
   /**
+   * Adds a "deepObject" field value to this form.
+   */
+  public FormUrlBuilder deepField( String property, String name, String value)
+    {
+    return field( String.format( "%s[%s]", property, name), value);
+    }
+
+  /**
    * Returns the encoded form string.
    */
   public String build()

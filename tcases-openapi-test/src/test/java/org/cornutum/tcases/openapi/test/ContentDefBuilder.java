@@ -7,10 +7,13 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import static org.cornutum.tcases.openapi.test.JsonUtils.expectObject;
+import static org.cornutum.tcases.openapi.test.JsonUtils.readJson;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Builds a {@link ContentDef} instance.
@@ -44,16 +47,58 @@ public class ContentDefBuilder
     return this;
     }
 
+  public ContentDefBuilder schema( String schema)
+    {
+    try
+      {
+      return schema( expectObject( readJson( schema)));
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( "Can't read schema", e);
+      }
+    }
+
   public ContentDefBuilder encodeValue( EncodingDef valueEncoding)
     {
     valueEncoding_ = valueEncoding;
     return this;
     }
 
+  public ContentDefBuilder encodeValue( String style, boolean exploded)
+    {
+    return encodeValue( EncodingDefBuilder.urlencoded().style( style).exploded( exploded).build());
+    }
+
+  public ContentDefBuilder encodeValue( String style)
+    {
+    return encodeValue( EncodingDefBuilder.urlencoded().style( style).build());
+    }
+
+  public ContentDefBuilder encodeValue( boolean exploded)
+    {
+    return encodeValue( "simple", exploded);
+    }
+
   public ContentDefBuilder encodeProperty( String property, EncodingDef encoding)
     {
     propertyEncodings_.put( property, encoding);
     return this;
+    }
+
+  public ContentDefBuilder encodeProperty( String property, String style, boolean exploded)
+    {
+    return encodeProperty( property, EncodingDefBuilder.urlencoded().style( style).exploded( exploded).build());
+    }
+
+  public ContentDefBuilder encodeProperty( String property, String style)
+    {
+    return encodeProperty( property, EncodingDefBuilder.urlencoded().style( style).build());
+    }
+
+  public ContentDefBuilder encodeProperty( String property, boolean exploded)
+    {
+    return encodeProperty( property, null, exploded);
     }
 
   public ContentDef build()
