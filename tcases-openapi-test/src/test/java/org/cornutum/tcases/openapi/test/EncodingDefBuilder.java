@@ -103,7 +103,7 @@ public class EncodingDefBuilder
 
   private final boolean multipart_;
   private String style_;
-  private boolean exploded_ = true;
+  private Boolean exploded_;
   private String contentType_;
   private List<HeaderDef> headers_ = new ArrayList<HeaderDef>();
   }

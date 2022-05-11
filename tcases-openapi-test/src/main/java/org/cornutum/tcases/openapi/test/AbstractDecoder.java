@@ -33,7 +33,7 @@ public abstract class AbstractDecoder
    */
   protected AbstractDecoder( EncodingDef encodingDef)
     {
-    encodingDef_ = encodingDef;
+    encodingDef_ = Optional.ofNullable( encodingDef).orElse( EncodingDef.forSimpleValue( false));
     }
 
   /**
@@ -42,6 +42,14 @@ public abstract class AbstractDecoder
   public boolean isExploded()
     {
     return getEncodingDef().isExploded();
+    }
+
+  /**
+   * Returns the serialization style of this decoder.
+   */
+  public String getStyle()
+    {
+    return getEncodingDef().getStyle();
     }
 
   /**

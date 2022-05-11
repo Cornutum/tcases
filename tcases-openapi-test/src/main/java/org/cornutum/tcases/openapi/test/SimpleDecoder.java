@@ -7,14 +7,11 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.CollectionUtils.toOrderedMap;
-import static org.cornutum.tcases.openapi.test.JsonUtils.createArrayNode;
-import static org.cornutum.tcases.openapi.test.JsonUtils.createObjectNode;
+import static org.cornutum.tcases.openapi.test.CollectionUtils.mapping;
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +32,15 @@ public class SimpleDecoder extends AbstractDecoder
   public SimpleDecoder( EncodingDef encoding)
     {
     super( encoding);
+
+    delimiter_ =
+      "pipeDelimited".equals( getStyle())?
+      "\\|" :
+
+      "spaceDelimited".equals( getStyle())?
+      " " :
+
+      ",";
     }
 
   /**
@@ -46,19 +52,19 @@ public class SimpleDecoder extends AbstractDecoder
     return
       // Is this a (possibly empty) list of array elements?...
       Optional.ofNullable( content)
-      .map( text -> text.isEmpty()? new String[0] : text.split( ",", -1))
+      .map( text -> text.isEmpty()? new String[0] : text.split( delimiter_, -1))
 
       // ...either exploded key=value pairs or a sequence of key,value elements?
       .filter( members -> isExploded() || members.length % 2 == 0)
       
       .map( members -> {
-
-        Map<String,String> properties =
+        // Yes, return JSON representations for these object properties.
+        List<Map.Entry<String,String>> properties =
           // Non-exploded property mappings?
           !isExploded()?
           IntStream.range( 0, members.length / 2)
-          .mapToObj( Integer::valueOf)
-          .collect( toOrderedMap( i -> members[ 2*i], i -> members[ 2*i + 1])) :
+          .mapToObj( i -> mapping( members[ 2*i], members[ 2*i + 1]))
+          .collect( toList()) :
 
           // Exploded property mappings?
           Optional.of(
@@ -66,15 +72,14 @@ public class SimpleDecoder extends AbstractDecoder
             .map( member -> member.split( "=", -1))
             .collect( toList()))
           .filter( pairs -> pairs.stream().allMatch( pair -> pair.length == 2))
-          .map( mappings -> mappings.stream().collect( toOrderedMap( mapping -> mapping[0], mapping -> mapping[1])))
+          .map( mappings -> mappings.stream().map( mapping -> mapping( mapping[0], mapping[1])).collect( toList()))
 
           // Otherwise, no object recognized
           .orElse( null);
-
-        // Return JSON representations for these object properties.
+          
         return
           Optional.ofNullable( properties)
-          .map( map -> decodeObject( map.entrySet().stream().collect( toList())))
+          .map( mappings -> decodeObject( mappings))
           .orElse( emptyList());
         })
 
@@ -91,18 +96,13 @@ public class SimpleDecoder extends AbstractDecoder
       properties.isEmpty()?
       singletonList( createObjectNode()) :
 
-      // To preserve input order, recursively traverse entries depth-first.
-      decodeObject( properties.subList( 0, properties.size() - 1)).stream()
-      .map( jsonNode -> (ObjectNode) jsonNode)
-      .flatMap( prevObject -> {
+      decodeValue( properties.get(0).getValue()).stream()
+      .map( jsonNode -> newObject( properties.get(0).getKey(), jsonNode))
+      .flatMap( firstProperty -> {
         return
-          decodeValue( properties.get( properties.size() - 1).getValue()).stream()
-          .map( jsonNode -> {
-            ObjectNode nextObject = createObjectNode();
-            nextObject = nextObject.setAll( prevObject);
-            nextObject = nextObject.set( properties.get( properties.size() - 1).getKey(), jsonNode);
-            return nextObject;
-            });
+          decodeObject( properties.subList( 1, properties.size())).stream()
+          .map( JsonUtils::expectObject)
+          .map( otherProperties -> appendObject( firstProperty, otherProperties));
         })
       .collect( toList());
     }
@@ -115,7 +115,7 @@ public class SimpleDecoder extends AbstractDecoder
     {
     return
       Optional.ofNullable( content)
-      .map( text -> text.isEmpty()? new String[0] : text.split( ",", -1))
+      .map( text -> text.isEmpty()? new String[0] : text.split( delimiter_, -1))
       .map( members -> decodeArray( members))
       .orElse( emptyList());
     }
@@ -139,4 +139,6 @@ public class SimpleDecoder extends AbstractDecoder
         })
       .collect( toList());
     }
+
+  private final String delimiter_;
   }
