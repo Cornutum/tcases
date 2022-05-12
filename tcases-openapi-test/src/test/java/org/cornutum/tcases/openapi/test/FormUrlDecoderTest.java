@@ -360,7 +360,7 @@ public class FormUrlDecoderTest extends AbstractDecoderTest
           .build());
         })
       .then( failure -> {
-        assertThat( "Failure", failure.getMessage(), is( "Unexpected value for exploded property=Key[Uo,X]"));
+        assertThat( "Failure", failure.getMessage(), is( "Unexpected value for DeepObject[Uo,X]"));
         });
     }
 

@@ -342,4 +342,158 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
           "'X==0' is not a valid key/value pair");
         });
     }
+
+  @Test
+  public void whenFormEncodings()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-body", FAIL_ALL);
+    String op = "put";
+    String path = "/responses";
+    int statusCode = 201;
+    String bodyContentType = "application/x-www-form-urlencoded";
+
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .deepField( "Do", "Dx", "00")
+      .deepField( "Do", "Dy", "01")
+      .field( "Ea", "10")
+      .field( "Ea", "11")
+      .build();
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "Po", "Px|20|Py|21")
+      .field( "Ex", "10")
+      .field( "Ey", "11")
+      .field( "Sa", "40 41")
+      .build();
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+    }
+    {
+    // When...
+    String content =
+      FormUrlBuilder.with()
+      .field( "Uo", "Ux,30,Uy,31")
+      .field( "Ua", "30,31")
+      .field( "Pa", "20")
+      .field( "Pa", "21")
+      .build();
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+    }
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "Do", "Dx,0,Dy,1")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (201), body: Can't decode as contentType=application/x-www-form-urlencoded",
+          "Expected style=deepObject for property='Do' not found");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "Dx", "0")
+          .field( "Dy", "1")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (201), body: Can't decode as contentType=application/x-www-form-urlencoded",
+          "Expected style=deepObject for property=Do but found value for ExplodedObject[Do,Dx]");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .deepField( "Eo", "Ex", "1.234")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (201), body: Can't decode as contentType=application/x-www-form-urlencoded",
+          "Expected style=form for property=Eo but found value for DeepObject[Eo,Ex]");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "Ux", "30")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (201), body: Can't decode as contentType=application/x-www-form-urlencoded",
+          "Unexpected value for ExplodedObject[Uo,Ux]");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "Eo", "10")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (201), body: invalid response",
+          "Eo#type: Type expected 'object', found 'array'.");
+        });
+
+    // Then...
+    expectFailure( ResponseValidationException.class)
+      .when( () -> {
+        String content =
+          FormUrlBuilder.with()
+          .field( "Ea", "10")
+          .build();
+
+        validator.assertBodyValid( op, path, statusCode, bodyContentType, content);
+        })
+      .then( failure -> {
+        assertValidationErrors(
+          failure,
+          "put /responses (201), body: invalid response",
+          "Ea#minItems: Min items is '2', found '1'.");
+        });
+    }
   }

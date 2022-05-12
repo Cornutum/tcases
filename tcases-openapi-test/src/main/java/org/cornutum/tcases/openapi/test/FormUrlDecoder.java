@@ -177,7 +177,7 @@ public class FormUrlDecoder extends AbstractDecoder
         return
           forFormProperty( binding)
           .map( property -> decodeValue( encoding.getStyle(), property.getValue()))
-          .orElseThrow( () -> new IllegalStateException( String.format( "Unexpected value for exploded property=%s", binding.getKey())));
+          .orElseThrow( () -> new IllegalStateException( String.format( "Unexpected value for %s", binding.getKey())));
         })
       .orElseThrow( () -> new IllegalStateException( String.format( "Expected explode=false for property='%s' but found %s bindings", formProperty, bindings.size()))) :
       
@@ -229,7 +229,7 @@ public class FormUrlDecoder extends AbstractDecoder
    */
   private Optional<Map.Entry<Key,String>> forFormProperty( Map.Entry<Key,String> binding)
     {
-    return Optional.of( binding).filter(  b -> b.getKey().getValueProperty() == null);
+    return Optional.of( binding).filter(  b -> b.getKey().isFormProperty());
     }
 
   /**
@@ -239,7 +239,7 @@ public class FormUrlDecoder extends AbstractDecoder
     {
     Map<String,List<Map.Entry<Key,String>>> explodedTypes = byExplodedType( bindings);
 
-    return
+    boolean object =
       Optional.of( explodedTypes)
       .filter( types -> types.size() == 1)
       .map( types -> types.containsKey( "object"))
@@ -250,10 +250,24 @@ public class FormUrlDecoder extends AbstractDecoder
           "No exploded property bindings found" :
 
           String.format(
-            "Inconsistent bindings for style=%s: found bindings for array=%s and object=%s",
+            "Inconsistent bindings for style=%s: found bindings for %s and %s",
             style,
             explodedTypes.get( "array").get(0).getKey(),
-            explodedTypes.get( "object").get(0).getKey())));      
+            explodedTypes.get( "object").get(0).getKey())));
+
+    if( object)
+      {
+      boolean expectDeep = "deepObject".equals( style);
+      bindings.stream()
+        .filter( binding -> expectDeep != binding.getKey().isDeepObjectProperty())
+        .findFirst()
+        .map( Map.Entry::getKey)
+        .ifPresent( unexpected -> {
+          throw new IllegalStateException( String.format( "Expected style=%s for property=%s but found value for %s", style, unexpected.getFormProperty(), unexpected));
+          });
+      }
+      
+    return object;
     }
 
   /**
@@ -265,7 +279,7 @@ public class FormUrlDecoder extends AbstractDecoder
       bindings.stream()
       .collect(
         groupingBy(
-          binding -> binding.getKey().getValueProperty() == null? "array" : "object"));
+          binding -> binding.getKey().isFormProperty()? "array" : "object"));
     }
 
   /**
@@ -370,7 +384,7 @@ public class FormUrlDecoder extends AbstractDecoder
      */
     public static Key of( ContentDef contentDef, String name)
       {
-      return deepKeyOf( name).orElseGet( () -> explodedKeyOf( contentDef, name).orElseGet( () -> new Key( name, null)));
+      return deepKeyOf( name).orElseGet( () -> explodedKeyOf( contentDef, name).orElseGet( () -> new Key( name)));
       }
     
     /**
@@ -381,7 +395,7 @@ public class FormUrlDecoder extends AbstractDecoder
       return
         Optional.of( DEEP_PROPERTY.matcher( name))
         .filter( matcher -> matcher.matches())
-        .map( matcher -> new Key( matcher.group(1), matcher.group(2)));      
+        .map( matcher -> new Key( matcher.group(1), matcher.group(2), true));      
       }
 
     /**
@@ -410,7 +424,7 @@ public class FormUrlDecoder extends AbstractDecoder
                 .anyMatch( Q -> Q.equals( name));
               })
             .findFirst()
-            .map( P -> new Key( P.getKey(), name));
+            .map( P -> new Key( P.getKey(), name, false));
           });
       }
 
@@ -429,16 +443,25 @@ public class FormUrlDecoder extends AbstractDecoder
     /**
      * Creates a new Key instance.
      */
-    private Key( String formProperty, String valueProperty)
+    private Key( String formProperty, String valueProperty, boolean deep)
       {
       formProperty_ = formProperty;
       valueProperty_ = valueProperty;
+      deep_ = deep;
+      }
+
+    /**
+     * Creates a new Key instance.
+     */
+    private Key( String formProperty)
+      {
+      this( formProperty, null, false);
       }
 
     /**
      * Returns a form property name.
      */
-    private String getFormProperty()
+    public String getFormProperty()
       {
       return formProperty_;
       }
@@ -446,9 +469,33 @@ public class FormUrlDecoder extends AbstractDecoder
     /**
      * Returns a property name of the object that is the value of the {@link getObjectProperty form property}.
      */
-    private String getValueProperty()
+    public String getValueProperty()
       {
       return valueProperty_;
+      }
+
+    /**
+     * Returns true if this key identifies a foem property.
+     */
+    public boolean isFormProperty()
+      {
+      return getValueProperty() == null;
+      }
+
+    /**
+     * Returns true if this key identifies an exploded object property.
+     */
+    public boolean isExplodedObjectProperty()
+      {
+      return !(isFormProperty() || isDeepObjectProperty());
+      }
+
+    /**
+     * Returns true if this key identifies a "deepObject" property.
+     */
+    public boolean isDeepObjectProperty()
+      {
+      return deep_;
       }
 
     @Override
@@ -457,7 +504,8 @@ public class FormUrlDecoder extends AbstractDecoder
       return
         getClass().hashCode()
         ^ Objects.hashCode( getFormProperty())
-        ^ Objects.hashCode( getValueProperty());
+        ^ Objects.hashCode( getValueProperty())
+        ^ Objects.hashCode( isDeepObjectProperty());
       }
 
     /**
@@ -479,21 +527,32 @@ public class FormUrlDecoder extends AbstractDecoder
       return
         other != null
         && equalsFormProperty( other)
-        && Objects.equals( getValueProperty(), other.getValueProperty());
+        && Objects.equals( getValueProperty(), other.getValueProperty())
+        && Objects.equals( isDeepObjectProperty(), other.isDeepObjectProperty());
       }
 
     @Override
     public String toString()
       {
+      String name =
+        isDeepObjectProperty()?
+        "DeepObject" :
+
+        isExplodedObjectProperty()?
+        "ExplodedObject" :
+
+        "Form";
+      
       return
-        ToString.builder( "Key")
+        ToString.builder( name)
         .add( getFormProperty())
         .addIf( Optional.ofNullable( getValueProperty()))
         .toString();
       }
     
     private final String formProperty_; 
-    private final String valueProperty_; 
+    private final String valueProperty_;
+    private final boolean deep_;
     private static final Pattern DEEP_PROPERTY = Pattern.compile( "([^\\[]*)\\[([^\\]]*)\\]");
     }
   }
