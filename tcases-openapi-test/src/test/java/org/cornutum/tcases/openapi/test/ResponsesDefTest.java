@@ -27,9 +27,9 @@ public class ResponsesDefTest extends ResponseTest
     // Then...
     assertThat( "Defined", responses.defined( "DELETE", "/responses", 200), is( true));
     assertThat( "Has body", responses.hasBody( "DELETE", "/responses", 200), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "DELETE", "/responses", 200, "application/json"), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "DELETE", "/responses", 200, "application/xml"), is( false));
-    assertThat( "Schema defined", responses.contentSchema( "DELETE", "/responses", 200, "application/json").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "DELETE", "/responses", 200, "application/json").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "DELETE", "/responses", 200, "application/xml").isPresent(), is( false));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "DELETE", "/responses", 200, "application/json").isPresent(), is( true));
     assertThat( "Defined", responses.defined( "DELETE", "/responses", 500), is( true));
     }
 
@@ -62,14 +62,14 @@ public class ResponsesDefTest extends ResponseTest
     // Then...
     assertThat( "Defined", responses.defined( "patch", "/responses", 200), is( true));
     assertThat( "Has body", responses.hasBody( "patch", "/responses", 200), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "patch", "/responses", 200, "text/javascript"), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "patch", "/responses", 200, "application/xml"), is( false));
-    assertThat( "Schema defined", responses.contentSchema( "patch", "/responses", 200, "text/javascript").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "patch", "/responses", 200, "text/javascript").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "patch", "/responses", 200, "application/xml").isPresent(), is( false));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "patch", "/responses", 200, "text/javascript").isPresent(), is( true));
 
     assertThat( "Defined", responses.defined( "patch", "/responses", 404), is( true));
     assertThat( "Has body", responses.hasBody( "patch", "/responses", 404), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "patch", "/responses", 404, "application/json"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "patch", "/responses", 404, "application/json").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "patch", "/responses", 404, "application/json").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "patch", "/responses", 404, "application/json").isPresent(), is( true));
 
     assertThat( "Defined", responses.defined( "patch", "/responses", 500), is( false));
     }
@@ -115,19 +115,19 @@ public class ResponsesDefTest extends ResponseTest
 
     assertThat( "Defined", responses.defined( "PUT", "/responses", 405), is( true));
     assertThat( "Has body", responses.hasBody( "PUT", "/responses", 405), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "PUT", "/responses", 405, "text/plain"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "PUT", "/responses", 405, "text/plain").isPresent(), is( false));
-    assertThat( "Content type defined", responses.contentTypeDefined( "PUT", "/responses", 405, "text/xml"), is( false));
-    assertThat( "Schema defined", responses.contentSchema( "PUT", "/responses", 405, "text/xml").isPresent(), is( false));
+    assertThat( "Content type defined", responses.bodyContentDef( "PUT", "/responses", 405, "text/plain").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "PUT", "/responses", 405, "text/plain").isPresent(), is( false));
+    assertThat( "Content type defined", responses.bodyContentDef( "PUT", "/responses", 405, "text/xml").isPresent(), is( false));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "PUT", "/responses", 405, "text/xml").isPresent(), is( false));
 
     assertThat( "Defined", responses.defined( "PUT", "/responses", 500), is( true));
     assertThat( "Has body", responses.hasBody( "PUT", "/responses", 500), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "PUT", "/responses", 500, "text/plain"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "PUT", "/responses", 500, "text/plain").isPresent(), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "PUT", "/responses", 500, "text/xml"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "PUT", "/responses", 500, "text/xml").isPresent(), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "PUT", "/responses", 500, "application/json"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "PUT", "/responses", 500, "application/json").isPresent(), is( false));
+    assertThat( "Content type defined", responses.bodyContentDef( "PUT", "/responses", 500, "text/plain").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "PUT", "/responses", 500, "text/plain").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "PUT", "/responses", 500, "text/xml").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "PUT", "/responses", 500, "text/xml").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "PUT", "/responses", 500, "application/json").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "PUT", "/responses", 500, "application/json").isPresent(), is( false));
     }
 
   @Test
@@ -139,10 +139,10 @@ public class ResponsesDefTest extends ResponseTest
     // Then...
     assertThat( "Defined", responses.defined( "trace", "/responses", 201), is( true));
     assertThat( "Has body", responses.hasBody( "trace", "/responses", 201), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "trace", "/responses", 201, "application/json"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "trace", "/responses", 201, "application/json").isPresent(), is( true));
-    assertThat( "Content type defined", responses.contentTypeDefined( "trace", "/responses", 201, "text/javascript"), is( true));
-    assertThat( "Schema defined", responses.contentSchema( "trace", "/responses", 201, "text/javascript").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "trace", "/responses", 201, "application/json").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "trace", "/responses", 201, "application/json").isPresent(), is( true));
+    assertThat( "Content type defined", responses.bodyContentDef( "trace", "/responses", 201, "text/javascript").isPresent(), is( true));
+    assertThat( "Schema defined", getResponseBodySchema( responses, "trace", "/responses", 201, "text/javascript").isPresent(), is( true));
 
     assertThat( "Defined", responses.defined( "trace", "/responses", 500), is( false));
     }

@@ -27,29 +27,37 @@ import static java.util.stream.Collectors.toList;
  * Base class for response content decoders.
  */
 public abstract class AbstractDecoder
-  {
+  {  
   /**
    * Creates a new AbstractDecoder instance.
    */
-  protected AbstractDecoder()
+  protected AbstractDecoder( EncodingDef encodingDef)
     {
-    this( false);
-    }
-  
-  /**
-   * Creates a new AbstractDecoder instance.
-   */
-  protected AbstractDecoder( boolean explode)
-    {
-    explode_ = explode;
+    encodingDef_ = Optional.ofNullable( encodingDef).orElse( EncodingDef.forSimpleValue( false));
     }
 
   /**
    * Returns true if this decoder expects objects to be encoded in exploded form.
    */
-  public boolean isExplode()
+  public boolean isExploded()
     {
-    return explode_;
+    return getEncodingDef().isExploded();
+    }
+
+  /**
+   * Returns the serialization style of this decoder.
+   */
+  public String getStyle()
+    {
+    return getEncodingDef().getStyle();
+    }
+
+  /**
+   * Returns the content definition for this decoder.
+   */
+  public EncodingDef getEncodingDef()
+    {
+    return encodingDef_;
     }
 
   /**
@@ -174,5 +182,5 @@ public abstract class AbstractDecoder
       }
     }
 
-  private final boolean explode_;
+  private final EncodingDef encodingDef_;
   }

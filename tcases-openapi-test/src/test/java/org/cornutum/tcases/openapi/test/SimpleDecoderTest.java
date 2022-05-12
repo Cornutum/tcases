@@ -17,7 +17,7 @@ import java.math.BigInteger;
 import java.util.Optional;
 
 /**
- * Runs {@link SimpleDecoder} tests.
+ * Runs {@link SimpleDecoder} tests.u
  */
 public class SimpleDecoderTest extends AbstractDecoderTest
   {
@@ -25,8 +25,8 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenNotExplodedObject()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
 
     // When...
@@ -83,8 +83,8 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenExplodedObject()
     {
     // Given...
-    boolean explode = true;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().exploded().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
 
     // When...
@@ -154,13 +154,71 @@ public class SimpleDecoderTest extends AbstractDecoderTest
     // Then...
     assertJsonNodes( "Decoded", objectNodes( decoder.decodeObject( content)));
     }
+
+  @Test
+  public void whenObjectPipeDelimited()
+    {
+    // Given...
+    EncodingDef encodingDef = EncodingDefBuilder.simple().style( "pipeDelimited").build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
+    String content;
+
+    // When...
+    content = "A|1|B|-2.0|C|3";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decodeObject( content),
+      "{\"A\":1,\"B\":-2.0,\"C\":3}",
+      "{\"A\":1,\"B\":-2.0,\"C\":\"3\"}",
+      "{\"A\":1,\"B\":\"-2.0\",\"C\":3}",
+      "{\"A\":1,\"B\":\"-2.0\",\"C\":\"3\"}",
+      "{\"A\":\"1\",\"B\":-2.0,\"C\":3}",
+      "{\"A\":\"1\",\"B\":-2.0,\"C\":\"3\"}",
+      "{\"A\":\"1\",\"B\":\"-2.0\",\"C\":3}",
+      "{\"A\":\"1\",\"B\":\"-2.0\",\"C\":\"3\"}");
+
+    // When...
+    content = "1|A|-2.0||3|";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      objectNodes( decoder.decodeObject( content)),
+      "{\"1\":\"A\",\"-2.0\":\"\",\"3\":\"\"}",
+      "{\"1\":\"A\",\"-2.0\":\"\",\"3\":null}",
+      "{\"1\":\"A\",\"-2.0\":null,\"3\":\"\"}",
+      "{\"1\":\"A\",\"-2.0\":null,\"3\":null}");
+
+    // When...
+    content = "";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      objectNodes( decoder.decodeObject( content)),
+      "{}");
+
+    // When...
+    content = "A";
+    
+    // Then...
+    assertJsonNodes( "Decoded", objectNodes( decoder.decodeObject( content)));
+
+    // When...
+    content = "A,,B";
+    
+    // Then...
+    assertJsonNodes( "Decoded", objectNodes( decoder.decodeObject( content)));
+    }
   
   @Test
   public void whenArray()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
 
     // When...
@@ -217,11 +275,72 @@ public class SimpleDecoderTest extends AbstractDecoderTest
     }
   
   @Test
+  public void whenArraySpaceDelimited()
+    {
+    // Given...
+    EncodingDef encodingDef = EncodingDefBuilder.simple().style( "spaceDelimited").build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
+    String content;
+
+    // When...
+    content = "A B C";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      decoder.decodeArray( content),
+      "[\"A\",\"B\",\"C\"]");
+
+    // When...
+    content = "1  -2.34 ";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      arrayNodes( decoder.decodeArray( content)),
+      "[1,\"\",-2.34,\"\"]",
+      "[1,\"\",-2.34,null]",
+      "[1,\"\",\"-2.34\",\"\"]",
+      "[1,\"\",\"-2.34\",null]",
+      "[1,null,-2.34,\"\"]",
+      "[1,null,-2.34,null]",
+      "[1,null,\"-2.34\",\"\"]",
+      "[1,null,\"-2.34\",null]",
+      "[\"1\",\"\",-2.34,\"\"]",
+      "[\"1\",\"\",-2.34,null]",
+      "[\"1\",\"\",\"-2.34\",\"\"]",
+      "[\"1\",\"\",\"-2.34\",null]",
+      "[\"1\",null,-2.34,\"\"]",
+      "[\"1\",null,-2.34,null]",
+      "[\"1\",null,\"-2.34\",\"\"]",
+      "[\"1\",null,\"-2.34\",null]");
+
+    // When...
+    content = "";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      arrayNodes( decoder.decodeArray( content)),
+      "[]");
+
+    // When...
+    content = "-2.34";
+    
+    // Then...
+    assertJsonNodes(
+      "Decoded",
+      arrayNodes( decoder.decodeArray( content)),
+      "[-2.34]",
+      "[\"-2.34\"]");
+    }
+  
+  @Test
   public void whenValue()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
 
     // When...
@@ -268,8 +387,8 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenAny()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
 
     // When...
@@ -324,8 +443,8 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenBoolean()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
     Optional<JsonNode> jsonNode;
     
@@ -380,8 +499,8 @@ public class SimpleDecoderTest extends AbstractDecoderTest
   public void whenNumber()
     {
     // Given...
-    boolean explode = false;
-    SimpleDecoder decoder = new SimpleDecoder( explode);
+    EncodingDef encodingDef = EncodingDefBuilder.simple().build();
+    SimpleDecoder decoder = new SimpleDecoder( encodingDef);
     String content;
     Optional<JsonNode> jsonNode;
     

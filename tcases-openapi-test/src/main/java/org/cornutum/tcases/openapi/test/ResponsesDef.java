@@ -19,8 +19,12 @@ import java.io.Writer;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -148,81 +152,53 @@ public class ResponsesDef
     }
 
   /**
-   * Returns true if the given content type is defined for the given status code for the given operation on the API resource at the given path.
+   * Returns the specified response body content definition for the given status code for the given operation on the API resource at the given path.
    */
-  public boolean contentTypeDefined( String op, String path, int statusCode, String contentType)
-    {
-    return opStatusContent( op, path, statusCode, contentType).isPresent();
-    }
-
-  /**
-   * Returns the response schema for the given status code and content type for the given operation on the API resource at the given path.
-   */
-  public Optional<ObjectNode> contentSchema( String op, String path, int statusCode, String contentType)
+  public Optional<ContentDef> bodyContentDef( String op, String path, int statusCode, String contentType)
     {
     return
       opStatusContent( op, path, statusCode, contentType)
-      .flatMap( content -> Optional.ofNullable( expectObject( content.get( "schema"))));
+      .map( content -> new ContentDef( contentType, expectObject( content.get( "schema")), null, contentEncodings( contentType, content)));
+    }
+
+  /**
+   * Returns the encodings for properties of the given response content.
+   */
+  private Map<String,EncodingDef> contentEncodings( String contentType, JsonNode content)
+    {
+    return
+      Optional.ofNullable( expectObject( content.get( "encoding")))
+      .map( encodings -> toStream( encodings.fields()))
+      .orElse( Stream.empty())
+      .collect( toOrderedMap( encoding -> encoding.getKey(), encoding -> contentEncodingDef( contentType, expectObject( encoding.getValue()))));
+    }
+
+  /**
+   * Returns the encoding for the value of a property of a response object for the given status code and content type for the
+   * given operation on the API resource at the given path.
+   */
+  private EncodingDef contentEncodingDef( String mediaType, ObjectNode encoding)
+    {
+    String style = Optional.ofNullable( encoding.get( "style")).map( JsonNode::asText).orElse( null);
+    Boolean exploded = Optional.ofNullable( encoding.get( "explode")).map( JsonNode::asBoolean).orElse( null);
+    String contentType = Optional.ofNullable( encoding.get( "contentType")).map( JsonNode::asText).orElse( null);
+    List<HeaderDef> headers = contentHeaders( encoding);
+
+    return
+      "multipart/form-data".equals( mediaType)
+      ? EncodingDef.forMultipartForm( contentType, headers)
+      : EncodingDef.forUrlEncodedForm( style, exploded);
     }
 
   /**
    * Returns the names of headers defined for the given status code for the given operation on the API resource at the given path.
    */
-  public String[] headers( String op, String path, int statusCode)
+  public List<HeaderDef> headerDefs( String op, String path, int statusCode)
     {
     return
-      opStatusHeaders( op, path, statusCode)
-      .map( headers -> toStream( headers.fieldNames()).toArray( String[]::new))
-      .orElse( new String[0]);
-    }
-
-  /**
-   * Returns true if the given header is required for the given status code for the given operation on the API resource at the given path.
-   */
-  public boolean headerRequired( String op, String path, int statusCode, String headerName)
-    {
-    return
-      opStatusHeader( op, path, statusCode, headerName)
-      .flatMap( header -> Optional.ofNullable( header.get( "required")))
-      .map( JsonNode::asBoolean)
-      .orElse( false);
-    }
-
-  /**
-   * Returns true if explode-encoding is used for the given header value for the given status code for the given operation on the API resource at the given path.
-   */
-  public boolean headerExplode( String op, String path, int statusCode, String headerName)
-    {
-    return
-      opStatusHeader( op, path, statusCode, headerName)
-      .flatMap( header -> Optional.ofNullable( header.get( "explode")))
-      .map( JsonNode::asBoolean)
-      .orElse( false);
-    }
-
-  /**
-   * Returns the content type for the given header value for the given status code for the given operation on the API resource at the given path.
-   */
-  public Optional<String> headerContentType( String op, String path, int statusCode, String headerName)
-    {
-    return
-      opStatusHeaderContent( op, path, statusCode, headerName)
-      .flatMap( content -> toStream( content.fieldNames()).findFirst());
-    }
-
-  /**
-   * Returns the schema used for the given header value for the given status code for the given operation on the API resource at the given path.
-   */
-  public Optional<ObjectNode> headerSchema( String op, String path, int statusCode, String headerName)
-    {
-    Optional<ObjectNode> content =
-      opStatusHeaderContent( op, path, statusCode, headerName)
-      .flatMap( mediaTypes -> toStream( mediaTypes.elements()).findFirst())
-      .map( contentType -> expectObject( contentType));
-
-    return
-      (content.isPresent()? content : opStatusHeader( op, path, statusCode, headerName))
-      .flatMap( header -> Optional.ofNullable( expectObject( header.get( "schema"))));
+      opStatusResponse( op, path, statusCode)
+      .map( this::contentHeaders)
+      .orElse( emptyList());
     }
 
   /**
@@ -269,39 +245,58 @@ public class ResponsesDef
           .map( type -> expectObject( content.get( String.valueOf( type))))
           .filter( Objects::nonNull)
           .findFirst();
+        });
+    }
+
+  /**
+   * Returns the header definitions for the given content.
+   */
+  private List<HeaderDef> contentHeaders( ObjectNode content)
+    {
+    return
+      Optional.ofNullable( expectObject( content.get( "headers")))
+      .map( headers -> toStream( headers.fields()))
+      .orElse( Stream.empty())
+      .map( headerDef -> {
+        String name = headerDef.getKey();
+        ObjectNode def = expectObject( headerDef.getValue());
+
+        Boolean required =
+          Optional.ofNullable( def.get( "required"))
+          .map( JsonNode::asBoolean)
+          .orElse( null);
+
+        Boolean exploded =
+          Optional.ofNullable( def.get( "explode"))
+          .map( JsonNode::asBoolean)
+          .orElse( null);
+        
+        Optional<ObjectNode> contentDef = Optional.ofNullable( expectObject( def.get( "content")));
+        String contentType =
+          contentDef
+          .map( ObjectNode::fieldNames)
+          .flatMap( contentTypes -> toStream( contentTypes).findFirst()) 
+          .orElse( "text/plain");
+
+        Optional<ObjectNode> headerContent =
+          contentDef
+          .map( c -> expectObject( c.get( contentType)));
+
+        ObjectNode schema =
+          headerContent
+          .map( c -> expectObject( c.get( "schema")))
+          .orElse( expectObject( def.get( "schema")));
+
+        Map<String,EncodingDef> propertyEncodings =
+          headerContent
+          .map( hc -> contentEncodings( contentType, hc))
+          .orElse( emptyMap());
+
+        EncodingDef valueEncoding = EncodingDef.forSimpleValue( exploded);
+        
+        return new HeaderDef( name, required, new ContentDef( contentType, schema, valueEncoding, propertyEncodings));
         })
-      ;
-    }
-
-  /**
-   * Returns the header definitions for the given status code for the given operation on the API resource at the given path.
-   */
-  private Optional<ObjectNode> opStatusHeaders( String op, String path, int statusCode)
-    {
-    return
-      opStatusResponse( op, path, statusCode)
-      .flatMap( response -> Optional.ofNullable( expectObject( response.get( "headers"))))
-      .filter( headers -> headers.size() > 0);
-    }
-
-  /**
-   * Returns the definition of the given header defined for the given status code for the given operation on the API resource at the given path.
-   */
-  private Optional<ObjectNode> opStatusHeader( String op, String path, int statusCode, String headerName)
-    {
-    return
-      opStatusHeaders( op, path, statusCode)
-      .flatMap( headers -> Optional.ofNullable( expectObject( headers.get( headerName))));
-    }
-
-  /**
-   * Returns the definition of the given header content defined for the given status code for the given operation on the API resource at the given path.
-   */
-  private Optional<ObjectNode> opStatusHeaderContent( String op, String path, int statusCode, String headerName)
-    {
-    return
-      opStatusHeader( op, path, statusCode, headerName)
-      .flatMap( header -> Optional.ofNullable( expectObject( header.get( "content"))));
+      .collect( toList());      
     }
 
   /**
@@ -352,9 +347,8 @@ public class ResponsesDef
       {
       return
         new ResponsesDef(
-          Optional.of( mapper().readTree( reader))
-          .filter( JsonNode::isObject)
-          .map( root -> (ObjectNode) root)
+          Optional.of( readJson( reader))
+          .flatMap( root -> asObject( root))
           .orElseThrow( () -> new IllegalStateException( "Expected JSON type=object")));
       }
     catch( Exception e)
@@ -366,7 +360,7 @@ public class ResponsesDef
   @Override
   public String toString()
     {
-    return String.valueOf( root_);
+    return ToString.builder( getClass()).toString();
     }
 
   @Override

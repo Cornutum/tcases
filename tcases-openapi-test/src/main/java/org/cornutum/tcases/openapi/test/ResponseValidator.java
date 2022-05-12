@@ -7,18 +7,17 @@
 
 package org.cornutum.tcases.openapi.test;
 
-import static org.cornutum.tcases.openapi.test.JsonUtils.mapper;
+import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringReader;
 import java.lang.reflect.Constructor;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -144,13 +143,12 @@ public class ResponseValidator
 
       if( bodyContent != null)
         {
-        if( !responses_.contentTypeDefined( op, path, statusCode, bodyContentType))
-          {
-          throw new ResponseValidationException( op, path, statusCode, "body", String.format( "unexpected response contentType=%s", bodyContentType));
-          }
+        ContentDef bodyContentDef =
+          responses_.bodyContentDef( op, path, statusCode, bodyContentType)
+          .orElseThrow( () -> new ResponseValidationException( op, path, statusCode, "body", String.format( "unexpected response contentType=%s", bodyContentType)));
         
         // Compare actual body content...
-        List<JsonNode> bodyContentJson = bodyContentJson( op, path, statusCode, bodyContentType, bodyContent);
+        List<JsonNode> bodyContentJson = bodyContentJson( op, path, statusCode, bodyContentDef, bodyContent);
         if( bodyContentJson.isEmpty())
           {
           throw new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "contentType=%s can't be validated", bodyContentType));
@@ -158,7 +156,7 @@ public class ResponseValidator
 
         // ...with expected content schema...
         JsonNode schema =
-          responses_.contentSchema( op, path, statusCode, bodyContentType)
+          Optional.ofNullable( bodyContentDef.getSchema())
           .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, "body", String.format( "no schema defined for contentType=%s", bodyContentType)));
 
         // ...and report any non-conformance errors
@@ -202,29 +200,26 @@ public class ResponseValidator
         }
 
       // For each header defined for this response...
-      Arrays.stream( responses_.headers( op, path, statusCode))
-        .forEach( headerName -> {
+      responses_.headerDefs( op, path, statusCode)
+        .forEach( headerDef -> {
           // ... except Content-Type, which must be ignored...
+          String headerName = headerDef.getName();
           if( !"Content-Type".equals( headerName))
             {
             if( headers.containsKey( headerName))
               {
               // ...compare expected content schema...
-              JsonNode schema =
-                responses_.headerSchema( op, path, statusCode, headerName)
+              ContentDef headerContentDef = headerDef.getContentDef();
+
+              ObjectNode schema =
+                Optional.ofNullable( headerContentDef.getSchema())
                 .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, headerName, "no schema defined"));
 
               // ...with actual header content...
-              String contentType =
-                responses_.headerContentType( op, path, statusCode, headerName)
-                .orElse( "text/plain");
-
-              boolean explode = responses_.headerExplode( op, path, statusCode, headerName);
-              
-              List<JsonNode> headerContentJson = contentJson( op, path, statusCode, headerName, contentType, headers.get( headerName), explode);
+              List<JsonNode> headerContentJson = contentJson( op, path, statusCode, headerName, headerContentDef, headers.get( headerName));
               if( headerContentJson.isEmpty())
                 {
-                throw new ResponseUnvalidatedException( op, path, statusCode, headerName, String.format( "contentType=%s can't be validated", contentType));
+                throw new ResponseUnvalidatedException( op, path, statusCode, headerName, String.format( "contentType=%s can't be validated", headerContentDef.getContentType()));
                 }
 
               // ...and report any non-conformance errors
@@ -241,7 +236,7 @@ public class ResponseValidator
               validationErrors.ifPresent( errors -> reportValidationErrors( op, path, statusCode, headerName, "invalid value", errors));
               }
 
-            else if ( responses_.headerRequired( op, path, statusCode, headerName))
+            else if ( headerDef.isRequired())
               {
               throw new ResponseValidationException( op, path, statusCode, headerName, "required header not received");
               }
@@ -261,16 +256,18 @@ public class ResponseValidator
   /**
    * Returns JSON representations of the given body content. Returns {@link Optional#empty} if no JSON representation is possible.
    */
-  private List<JsonNode> bodyContentJson( String op, String path, int statusCode, String contentType, String bodyContent)
+  private List<JsonNode> bodyContentJson( String op, String path, int statusCode, ContentDef contentDef, String bodyContent)
     {
-    return contentJson( op, path, statusCode, "body", contentType, bodyContent, false);
+    return contentJson( op, path, statusCode, "body", contentDef, bodyContent);
     }
 
   /**
    * Returns JSON representations of the given content. Returns {@link Collections#emptyList} if no JSON representation is possible.
    */
-  private List<JsonNode> contentJson( String op, String path, int statusCode, String location, String contentType, String content, boolean explode)
+  private List<JsonNode> contentJson( String op, String path, int statusCode, String location, ContentDef contentDef, String content)
     {
+    String contentType = contentDef.getContentType();
+
     try
       {
       MediaRange media = MediaRange.of( contentType);
@@ -283,10 +280,10 @@ public class ResponseValidator
           .orElseThrow( () -> new IllegalArgumentException( "No JSON content found")):
 
           "text/plain".equals( media.base())?
-          decodeSimple( content, explode) :
+          decodeSimple( content, contentDef) :
 
           "application/x-www-form-urlencoded".equals( media.base())?
-          decodeFormUrl( content, explode) :
+          decodeFormUrl( content, contentDef) :
           
           null)
 
@@ -303,23 +300,23 @@ public class ResponseValidator
    */
   private List<JsonNode> decodeJson( String content) throws Exception
     {
-    return singletonList( mapper().readTree( new StringReader( content)));
+    return singletonList( readJson( content));
     }
 
   /**
    * Returns JSON representations of simple-encoded text content.
    */
-  private List<JsonNode> decodeSimple( String content, boolean explode) throws Exception
+  private List<JsonNode> decodeSimple( String content, ContentDef contentDef) throws Exception
     {
-    return new SimpleDecoder( explode).decode( content);
+    return new SimpleDecoder( contentDef.getValueEncoding()).decode( content);
     }
 
   /**
    * Returns JSON representation of application/x-www-form-urlencoded content.
    */
-  private List<JsonNode> decodeFormUrl( String content, boolean explode) throws Exception
+  private List<JsonNode> decodeFormUrl( String content, ContentDef contentDef) throws Exception
     {
-    return new FormUrlDecoder( explode).decode( content);
+    return new FormUrlDecoder( contentDef).decode( content);
     }
 
   /**
@@ -471,6 +468,16 @@ public class ResponseValidator
       {
       return null;
       }
+    }
+
+  @Override
+  public String toString()
+    {
+    return
+      ToString.builder( getClass())
+      .add( validationHandler_)
+      .addIf( "writeOnlyInvalid", Optional.of( writeOnlyInvalid_).filter( woi -> !woi))
+      .toString();
     }
 
   private final ResponsesDef responses_;

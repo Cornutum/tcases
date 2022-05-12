@@ -96,6 +96,129 @@
                         }
                     }
                 }
+            },
+            
+            "201": {
+                "description": "Success",
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Do": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Dx": "string",
+                                        "Dy": "string"
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "Eo": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Ex": "string",
+                                        "Ey": "string"
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "Po": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Px": "string",
+                                        "Py": "string"
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "So": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Sx": "string",
+                                        "Sy": "string"
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "Uo": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Ux": "string",
+                                        "Uy": "string"
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "Ea": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "minItems": 2
+                                },
+                                "Pa": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "minItems": 2
+                                },
+                                "Sa": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "minItems": 2
+                                },
+                                "Ua": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "minItems": 2
+                                },
+                                "N": {
+                                    "type": "number"
+                                },
+                                "S": {
+                                    "type": "string",
+                                    "nullable": "true",
+                                    "minLength": 1
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "encoding": {
+                            "Do": {
+                                "style": "deepObject",
+                                "explode": true
+                            },
+                            "Eo": {
+                                "style": "form"
+                            },
+                            "Po": {
+                                "style": "pipeDelimited"
+                            },
+                            "So": {
+                                "style": "spaceDelimited",
+                                "explode": true
+                            },
+                            "Uo": {
+                                "explode": false
+                            },
+                            "Pa": {
+                                "style": "pipeDelimited",
+                                "explode": true
+                            },
+                            "Sa": {
+                                "style": "spaceDelimited"
+                            },
+                            "Ua": {
+                                "explode": false
+                            },
+                            "N": {
+                                "style": "pipeDelimited",
+                                "explode": false
+                            }
+                        }
+                    }
+                }
             }
         }
     }
