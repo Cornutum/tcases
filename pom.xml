@@ -148,6 +148,9 @@
               <doclint>none</doclint>
               <links>
                 <link>http://www.cornutum.org/tcases/docs/api</link>
+                <link>https://javadoc.io/doc/io.swagger.core.v3/swagger-models/latest</link>
+                <link>https://www.javadoc.io/static/com.fasterxml.jackson.core/jackson-databind/2.12.1</link>
+                <link>https://www.javadoc.io/static/com.fasterxml.jackson.core/jackson-core/2.12.1</link>
               </links>
             </configuration>
           </execution>
