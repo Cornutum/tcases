@@ -464,7 +464,7 @@ public class FormUrlDecoder extends AbstractDecoder
       }
 
     /**
-     * Returns a property name of the object that is the value of the {@link getObjectProperty form property}.
+     * Returns a property name of the object that is the value of the {@link getFormProperty form property}.
      */
     public String getValueProperty()
       {
@@ -502,7 +502,7 @@ public class FormUrlDecoder extends AbstractDecoder
         getClass().hashCode()
         ^ Objects.hashCode( getFormProperty())
         ^ Objects.hashCode( getValueProperty())
-        ^ Objects.hashCode( isDeepObjectProperty());
+        ^ Boolean.hashCode( isDeepObjectProperty());
       }
 
     /**
@@ -525,7 +525,7 @@ public class FormUrlDecoder extends AbstractDecoder
         other != null
         && equalsFormProperty( other)
         && Objects.equals( getValueProperty(), other.getValueProperty())
-        && Objects.equals( isDeepObjectProperty(), other.isDeepObjectProperty());
+        && isDeepObjectProperty() == other.isDeepObjectProperty();
       }
 
     @Override
