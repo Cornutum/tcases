@@ -143,15 +143,13 @@ public class FormUrlDecoder extends AbstractDecoder
           .orElse( bindings.size()));
 
       String formProperty = key.getFormProperty();
-      List<JsonNode> decodedProperty = decodeProperty( formProperty, bindingsForProperty);
-      List<JsonNode> decodedRest = decodeObject( bindings.subList( bindingsForProperty.size(), bindings.size()));
 
       decoded =
-        decodedProperty.stream()
+        decodeProperty( formProperty, bindingsForProperty).stream()
         .map( propertyValue -> newObject( formProperty, propertyValue))
         .flatMap( firstProperty -> {
             return
-              decodedRest.stream()
+              decodeObject( bindings.subList( bindingsForProperty.size(), bindings.size())).stream()
               .map( JsonUtils::expectObject)
               .map( otherProperties -> appendObject( firstProperty, otherProperties));
           })
@@ -207,13 +205,12 @@ public class FormUrlDecoder extends AbstractDecoder
       String valueProperty = key.getValueProperty();
       String valuePropertyContent = bindings.get(0).getValue();
 
-      List<JsonNode> decodedRest = decodeExplodedObject( bindings.subList( 1, bindings.size()));
       decoded = 
         decodeValue( "simple", valuePropertyContent).stream()
         .map( json -> newObject( valueProperty, json))
         .flatMap( firstProperty -> {
           return
-            decodedRest.stream()
+            decodeExplodedObject( bindings.subList( 1, bindings.size())).stream()
             .map( json -> expectObject( json))
             .map( otherProperties -> appendObject( firstProperty, otherProperties));
           })

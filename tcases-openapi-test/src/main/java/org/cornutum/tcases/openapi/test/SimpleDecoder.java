@@ -11,7 +11,7 @@ import static org.cornutum.tcases.openapi.test.CollectionUtils.mapping;
 import static org.cornutum.tcases.openapi.test.JsonUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -129,13 +129,13 @@ public class SimpleDecoder extends AbstractDecoder
       members.length == 0?
       singletonList( createArrayNode()) :
 
-      // To preserve input order, recursively traverse members depth-first.
-      decodeArray( Arrays.copyOfRange( members, 0, members.length - 1)).stream()
-      .map( jsonNode -> (ArrayNode) jsonNode)
-      .flatMap( prevArray -> {
-        return
-          decodeValue( members[ members.length - 1]).stream()
-          .map( jsonNode -> createArrayNode().addAll( prevArray).add( jsonNode));
+      decodeValue( members[ 0]).stream()
+      .map( jsonNode -> newArray( jsonNode))
+      .flatMap( firstMember -> {
+          return
+            decodeArray( Arrays.copyOfRange( members, 1, members.length)).stream()
+            .map( JsonUtils::expectArray)
+            .map( otherMembers -> appendArray( firstMember, otherMembers));
         })
       .collect( toList());
     }
