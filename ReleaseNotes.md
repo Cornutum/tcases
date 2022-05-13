@@ -1,5 +1,42 @@
 # Release Notes #
 
+## 3.8.1 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Apply the encodings specified for the properties of request/response content**
+
+    For certain media types that describe complex objects, an OpenAPI definition can specify different serialization
+    [encodings](https://spec.openapis.org/oas/v3.0.2#media-type-object) for each object property. For example, encodings can be
+    defined for the properties of a request body or a response body that uses the `application/x-www-form-urlencoded` or
+    `multipart/form-data` media types.
+
+    Tcases for OpenAPI now recognizes these encodings and applies them when generating API test cases. Request body content is
+    generated correctly for both `application/x-www-form-urlencoded` or `multipart/form-data` media types.
+
+    Generated tests now also recognize these encodings when validating responses. Encoded response body content is correctly
+    validated for the `application/x-www-form-urlencoded` media type. (Validation of `multipart/form-data` response body content
+    is not yet supported.)
+
+  * **Options for handling `writeOnly` properties in response content** [[232](https://github.com/Cornutum/tcases/issues/232)]
+
+    According to the [OpenAPI spec](https://spec.openapis.org/oas/v3.0.2#fixed-fields-19), when response content is defined by
+    an object schema, any object properties that are designated as `writeOnly` "MAY be sent as part of a request but SHOULD NOT
+    be sent as part of the response." So is a response containing a value for a `writeOnly` property considered invalid?
+    Normally, yes. But this release provides an option to [skip that check](tcases-openapi/Running-Api-Test-Cases.md#handle-writeonly-property-validation).
+
+  * **`spaceDelimited` and `pipeDelimited` serialization styles supported for object values** [[230](https://github.com/Cornutum/tcases/issues/230)]
+
+    These serialization styles are now correctly supported for object values in requests and responses.
+
+  * **Names altered in the input model are recovered in generated test cases** [[227](https://github.com/Cornutum/tcases/issues/227)]
+
+    Variable names in the Tcases input model generated from an OpenAPI definition are often derived from, but different than,
+    names found in the API definition. In such cases, a derived Tcases-compatible identifier is used as the variable name, with
+    the original name attached as an annotation so that it can be recovered in generated test cases. This release no longer
+    fails to recover the original names for headers and object properties.
+
+
 ## 3.8.0 ##
 
 This release introduces an important new feature for Tcases for OpenAPI: response validation. By default, generated tests will

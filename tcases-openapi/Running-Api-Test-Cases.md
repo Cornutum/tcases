@@ -19,6 +19,7 @@
     - [Override the default API server](#override-the-default-api-server)
     - [Define credentials for request authorization](#define-credentials-for-request-authorization)
     - [Handle response validation conditions](#handle-response-validation-conditions)
+    - [Handle `writeOnly` property validation](#handle-writeonly-property-validation)
   - [Generating request inputs](#generating-request-inputs)
     - [Instead of input descriptions...](#instead-of-input-descriptions)
     - [Get actual input values...](#get-actual-input-values)
@@ -554,6 +555,23 @@ public class MyHandler implements ResponseValidationHandler {
 
   * If `MyHandler` is located in same package as the test class, the value of `tcasesApiValidationHandler` can be the simple
     class name. Otherwise, `tcasesApiValidationHandler` must be set to the fully-qualified name of the `MyHandler` class.
+
+### Handle `writeOnly` property validation ###
+
+According to the [OpenAPI spec](https://spec.openapis.org/oas/v3.0.2#fixed-fields-19), when response content is defined by an
+object schema, any object properties that are designated as `writeOnly` "MAY be sent as part of a request but SHOULD NOT be sent
+as part of the response." So is a response containing a value for a `writeOnly` property considered invalid? By default, yes --
+this is reported as an "invalid response" condition.  But "SHOULD NOT" means this rule is not absolute and your API is allowed
+to ignore it. In which case, you can disable validation for this rule when you run the tests.
+
+For Java tests, use the `tcasesApiWriteOnlyInvalid` system property to disable (or enable) validation of `writeOnly`
+properties. This setting can be defined in the `java` command that you run, either directly or via your IDE. Similarly, if you
+run tests using Maven, this setting can be defined in the `mvn` command. 
+
+```
+# Run the 'SwaggerPetstoreTest', ignoring any `writeOnly` property values in API responses.
+mvn test -Dtest=SwaggerPetstoreTest -DtcasesApiWriteOnlyInvalid=false
+```
 
 
 ## Generating request inputs ##
