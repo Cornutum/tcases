@@ -1,0 +1,299 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Form Encodings",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/urlencoded_default": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/geolocation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+
+        "/urlencoded_exploded": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/geolocation"
+                            },
+                            "encoding": {
+                                "elevation": {
+                                    "explode": true
+                                },
+                                "lat/long": {
+                                    "style": "pipeDelimited",
+                                    "explode": true
+                                },
+                                "address": {
+                                    "style": "deepObject",
+                                    "explode": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+
+        "/urlencoded_unexploded": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/geolocation"
+                            },
+                            "encoding": {
+                                "elevation": {
+                                    "explode": false
+                                },
+                                "lat/long": {
+                                    "style": "spaceDelimited",
+                                    "explode": false
+                                },
+                                "address": {
+                                    "explode": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+        
+        "/multipart_default": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/geolocation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+
+        "/multipart_contentTypes": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/geolocation"
+                            },
+                            "encoding": {
+                                "elevation": {
+                                    "contentType": "application/json"
+                                },
+                                "lat/long": {
+                                    "contentType": "application/x-www-form-urlencoded"
+                                },
+                                "address": {
+                                    "contentType": "application/x-www-form-urlencoded"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        },
+
+        "/multipart_headers": {
+            "post": {
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/geolocation"
+                            },
+                            "encoding": {
+                                "elevation": {
+                                    "contentType": "application/x-www-form-urlencoded"
+                                },
+                                "lat/long": {
+                                    "contentType": "text/plain",
+                                    "headers": {
+                                        "X-Lat-Long": {
+                                            "description": "Header for lat/long",
+                                            "schema": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "number"
+                                                }
+                                            }                                            
+                                        }
+                                    }
+                                },
+                                "address": {
+                                    "contentType": "text/plain",
+                                    "headers": {
+                                        "X-Address-Id": {
+                                            "description": "Header for address",
+                                            "schema": {
+                                                "type": "string",
+                                                "pattern": "^[A-Z]+$",
+                                                "minLength": 16,
+                                                "maxLength": 16
+                                            }                                            
+                                        },
+                                        "X-Address-Code": {
+                                            "description": "Header for address",
+                                            "schema": {
+                                                "type": "string",
+                                                "pattern": "^[0-9]+$",
+                                                "minLength": 16,
+                                                "maxLength": 16
+                                            }                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "geolocation": {
+                "type": "object",
+                "properties": {
+                    "elevation": {
+                        "type": "number"
+                    },
+                    "lat/long": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 2,
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "address": {
+                        "type": "object",
+                        "properties": {
+                            "city": {
+                                "type": "string",
+                                "maxLength": 16
+                            },
+                            "code": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "tags": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 3
+                                },
+                                "minItems": 1,
+                                "maxItems": 3
+                            }
+                        },
+                        "minProperties": 1,
+                        "additionalProperties": false
+                    },
+                    "map-digest": {
+                        "type": "string",
+                        "format": "byte",
+                        "minLength": 16,
+                        "maxLength": 16
+                    }
+                },
+                "minProperties": 1,
+                "additionalProperties": false
+            }
+        },
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
