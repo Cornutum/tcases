@@ -248,6 +248,21 @@
                                 "type": "integer",
                                 "minimum": 1
                             },
+                            "region": {
+                                "type": "object",
+                                "properties": {
+                                    "zip": {
+                                        "type": "string",
+                                        "minLength": 5,
+                                        "maxLength": 5,
+                                        "pattern": "^[0-9]+$"
+                                    },
+                                    "census": {
+                                        "type": "string",
+                                        "minLength": 1
+                                    }
+                                }
+                            },
                             "tags": {
                                 "type": "array",
                                 "items": {

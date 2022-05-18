@@ -1281,6 +1281,67 @@
         "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.tag.Type=null"
     },
     {
+        "id": 25,
+        "name": "Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "tag": {
+                            "type": "string",
+                            "value": ":"
+                        },
+                        "id": {
+                            "type": "integer",
+                            "value": 896903914,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "object",
+                "value": {
+                    "tag": {
+                        "type": "string",
+                        "value": ""
+                    },
+                    "id": {
+                        "type": "integer",
+                        "value": 634757152,
+                        "format": "int32"
+                    }
+                }
+            },
+            "valid": false,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
+        },
+        "invalidInput": "Body.application-x-www-form-urlencoded.Value.Properties.tag.Value.Length=0"
+    },
+    {
         "id": 26,
         "name": "Body.application-x-www-form-urlencoded.Value.Properties.Additional='Yes'",
         "server": "/",

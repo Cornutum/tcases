@@ -10,14 +10,19 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.openapi.test.MediaRange;
+
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
+
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
@@ -170,7 +175,7 @@ public final class RequestCases
         DataValue.Type idType = nullFailureTypes.get(id);
         return
           requestCases.stream()
-          .filter( rc -> isArrayEmptyFailureDup( rc, id) || isStringEmptyFailureDup( rc, id) || isUndefinedFailureDup( rc, id, idType));
+          .filter( rc -> isParamFailureDup( rc, id, idType) || isBodyFailureDup( rc, id, idType));
         })
       .collect( toList());
     }
@@ -200,25 +205,16 @@ public final class RequestCases
    */
   private static DataValue.Type nullFailureType( List<RequestCase> requestCases, RequestCase nullFailure)
     {
-    String paramName =
-      getFailureData( nullFailure)
-      .filter( failure -> failure instanceof ParamData)
-      .map( failure -> ((ParamData) failure).getName())
-      .orElse( null);
+    Optional<String> nullParam =
+      getParamFailureData( nullFailure)
+      .map( ParamData::getName);
 
     return
       requestCases.stream()
       .map( rc -> {
         return
-          Optional.ofNullable( paramName)
-          .map( p -> {
-            MessageData paramData =
-              toStream( rc.getParams())
-              .filter( param -> param.getName().equals( paramName))
-              .findFirst()
-              .get();
-            return paramData;
-            })
+          nullParam
+          .flatMap( name -> toStream( rc.getParams()).filter( pd -> pd.getName().equals( name)).findFirst().map( pd -> (MessageData) pd))
           .orElse( rc.getBody());
         })
       .filter( MessageData::isValid)
@@ -228,71 +224,222 @@ public final class RequestCases
     }
 
   /**
-   * Returns if the given request case represents a failure caused by an empty string that
+   * Returns if the given request case represents a failure caused by a parameter value that
    * duplicates a null value when serialized.
    */
-  private static boolean isStringEmptyFailureDup( RequestCase requestCase, String inputId)
+  private static boolean isParamFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
     {
     return
-      getFailureData( requestCase)
-      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId)))
-      .map( failure -> failure instanceof ParamData || !"application/json".equals( failure.getMediaType()))
-      .orElse( false);
-    }
-
-  /**
-   * Returns if the given request case represents a failure caused by an empty array that
-   * duplicates a null value when serialized.
-   */
-  private static boolean isArrayEmptyFailureDup( RequestCase requestCase, String inputId)
-    {
-    return
-      getFailureData( requestCase)
-      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId)))
-      .map( failure -> failure instanceof ParamData || !"application/json".equals( failure.getMediaType()))
-      .orElse( false);
-    }
-
-  /**
-   * Returns if the given request case represents a failure caused by an undefined value that
-   * duplicates a null value when serialized.
-   */
-  private static boolean isUndefinedFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
-    {
-    return
-      getFailureData( requestCase)
-      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId)))
-      .map( failure -> {
-        ParamData param =
-          failure instanceof ParamData
-          ? (ParamData) failure
-          : null;
-
+      getParamFailureData( requestCase)
+      .map( param -> {
         return
-          param != null
-          && param.getStyle().equals( "simple")
-          && param.getLocation() == Location.PATH
-          && (!inputType.isComposite() || inputId.equals( toIdentifier( param.getName())));
+          isParamObjectEmptyFailureDup( requestCase, param, inputId)
+          || isParamArrayEmptyFailureDup( requestCase, param, inputId)
+          || isParamStringEmptyFailureDup( requestCase, param, inputId)
+          || isParamUndefinedFailureDup( requestCase, param, inputId, inputType);
         })
       .orElse( false);
     }
 
   /**
-   * If the given request case is a failure case, return the data for the invalid input.
-   * Otherwise, returns null;
+   * Returns if the given request case represents a parameter failure caused by an empty object that
+   * duplicates a null value when serialized.
    */
-  private static Optional<MessageData> getFailureData( RequestCase requestCase)
+  private static boolean isParamObjectEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      // True for any invalid empty object value...
+      requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId))
+      && ((ObjectValue) param.getValue()).getValue().isEmpty()
+
+      // ... except for the value of a form-encoded object parameter
+      && !(inputId.equals( toIdentifier( param.getName()))
+           && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE));
+    }
+
+  /**
+   * Returns if the given request case represents a parameter failure caused by an empty array that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isParamArrayEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      // True for any invalid empty array value...
+      requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
+
+      // ... except for the value of a form-encoded array parameter
+      && !(inputId.equals( toIdentifier( param.getName()))
+           && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE));
+    }
+
+  /**
+   * Returns if the given request case represents a parameter failure caused by an empty string that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isParamStringEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      // True for any invalid empty string value...
+      requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
+
+      // ... except for the value of a form-encoded string parameter
+      && !(inputId.equals( toIdentifier( param.getName()))
+           && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE));
+    }
+
+  /**
+   * Returns if the given request case represents a parameter failure caused by an undefined value that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isParamUndefinedFailureDup( RequestCase requestCase, ParamData param, String inputId, DataValue.Type inputType)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId))
+      && inputId.equals( toIdentifier( param.getName()))
+      && param.getStyle().equals( "simple")
+      && param.getLocation() == Location.PATH;
+    }
+
+  /**
+   * If the given request case is a failure case with an invalid parameter value, return the invalid parameter data.
+   */
+  private static Optional<ParamData> getParamFailureData( RequestCase requestCase)
     {
     return
       Optional.of( requestCase)
       .filter( RequestCase::isFailure)
-      .map( rc -> {
+      .map( rc -> toStream( rc.getParams()))
+      .orElse( Stream.empty())
+      .filter( param -> !param.isValid())
+      .findFirst();
+    }
+
+  /**
+   * Returns if the given request case represents a failure caused by a body value that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
+    {
+    return
+      getBodyFailureData( requestCase)
+      .map( body -> {
         return
-          toStream( rc.getParams())
-          .filter( param -> !param.isValid())
-          .findFirst()
-          .map( param -> (MessageData) param)
-          .orElse( rc.getBody());
-        });
+          Optional.ofNullable( body.getMediaType())
+          .map( MediaRange::of)
+          .filter( mediaType -> !("application/json".equals( mediaType.base()) || "json".equals( mediaType.suffix())))
+          .map( mediaType -> {
+            return
+              isBodyObjectEmptyFailureDup( requestCase, body, inputId)
+              || isBodyArrayEmptyFailureDup( requestCase, body, inputId)
+              || isBodyStringEmptyFailureDup( requestCase, body, inputId);
+            })
+          .orElse( false);
+        })
+      .orElse( false);
+    }
+
+  /**
+   * Returns if the given request case represents a body failure caused by an empty object that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyObjectEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
+    {
+    Optional<ObjectValue> invalidObject =
+      Optional.of( body.getValue())
+      .filter( value -> requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId)))
+      .map( ObjectValue.class::cast);
+
+    return
+      invalidObject
+      .filter( object -> object.getValue().isEmpty())
+      .map( object -> !isFormProperty( body, inputId))
+      .orElse( false);
+    }
+
+  /**
+   * Returns if the given request case represents a body failure caused by an empty array that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyArrayEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
+      && !isFormProperty( body, inputId);
+    }
+
+  /**
+   * Returns if the given request case represents a body failure caused by an empty string that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyStringEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
+      && !isFormProperty( body, inputId);
+    }
+
+  /**
+   * Returns if the given request input is a property of an <CODE>application/x-www-form-urlencoded</CODE> object.
+   */
+  private static boolean isFormProperty( MessageData body, String inputId)
+    {
+    // Is this input a property of an object...?
+    return
+      objectWithProperty( Arrays.stream( inputId.split( "\\.", -1)).collect( toList()))
+      .map( objectPath -> {
+        return
+          // ... which is an application/x-www-form-urlencoded form?
+          objectPath.equals( Arrays.asList( "Body", "application-x-www-form-urlencoded"))
+          ||
+          // ... or is the object containing the property input itself a part of another object...?
+          objectWithProperty( objectPath)
+          .map( partPath -> {
+            return
+              objectWithProperty( partPath)
+              .map( formPath -> {
+                String partName = partPath.get( partPath.size() - 1);
+                return
+                  // ... which is a multipart/form-data form part...?
+                  formPath.equals( Arrays.asList( "Body", "multipart-form-data"))
+                  &&
+                  // ... that is an application/x-www-form-urlencoded form?
+                  body.getEncodings()
+                  .entrySet().stream()
+                  .filter( encoding -> partName.equals( toIdentifier( encoding.getKey())))
+                  .findFirst()
+                  .map( encoding -> "application/x-www-form-urlencoded".equals( encoding.getValue().getContentType()))
+                  .orElse( false);
+
+                })
+              .orElse( false);
+            })
+          .orElse( false);
+        })
+      .orElse( false);
+    }
+
+  /**
+   * If the given input path identifies an object property, returns the path to the object.
+   * Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<List<String>> objectWithProperty( List<String> inputPath)
+    {
+    return
+      Optional.ofNullable( inputPath)
+      .map( path -> path.subList( 0, path.size() - 1))
+      .filter( parent -> parent.size() >= 2 && parent.subList( parent.size() - 2, parent.size()).equals( Arrays.asList( "Value", "Properties"))) 
+      .map( parent -> parent.subList( 0, parent.size() - 2));
+    }
+
+  /**
+   * If the given request case is a failure case with an invalid body value, return the invalid body data.
+   */
+  private static Optional<MessageData> getBodyFailureData( RequestCase requestCase)
+    {
+    return
+      Optional.of( requestCase)
+      .filter( RequestCase::isFailure)
+      .filter( rc -> toStream( rc.getParams()).allMatch( MessageData::isValid))
+      .map( rc -> rc.getBody());
     }
   }

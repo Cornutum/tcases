@@ -250,6 +250,57 @@
         "invalidInput": "param.Type=null"
     },
     {
+        "id": 6,
+        "name": "param.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "realize",
+        "path": "/realize",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": false
+            }
+        ],
+        "body": {
+            "mediaType": "application/x-www-form-urlencoded",
+            "data": {
+                "type": "object",
+                "value": {
+                    "tag": {
+                        "type": "string",
+                        "value": "e"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "value": 815902356,
+                        "format": "int32"
+                    }
+                }
+            },
+            "valid": true,
+            "encodings": {
+                "tag": {
+                    "style": "form",
+                    "explode": true
+                },
+                "id": {
+                    "style": "form",
+                    "explode": true
+                }
+            }
+        },
+        "invalidInput": "param.Value.Length=0"
+    },
+    {
         "id": 7,
         "name": "Body.Defined='No'",
         "server": "/",

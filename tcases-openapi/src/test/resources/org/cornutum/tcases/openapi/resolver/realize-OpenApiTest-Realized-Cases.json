@@ -138,6 +138,30 @@
         "invalidInput": "ids.Type=Not array"
     },
     {
+        "id": 5,
+        "name": "ids.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OpenAPI Request Test Cases",
+        "path": "/posts",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "ids",
+                "in": "query",
+                "style": "pipeDelimited",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "ids.Items.Size=0"
+    },
+    {
         "id": 6,
         "name": "ids.Items.Size='5'",
         "server": "/",
@@ -2998,6 +3022,30 @@
         "invalidInput": "postId.Type=Not array"
     },
     {
+        "id": 6,
+        "name": "postId.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OpenAPI Request Test Cases",
+        "path": "/posts",
+        "operation": "TRACE",
+        "parameters": [
+            {
+                "name": "postId",
+                "in": "cookie",
+                "style": "pipeDelimited",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "postId.Items.Size=0"
+    },
+    {
         "id": 7,
         "name": "postId.Items.Size='3'",
         "server": "/",
@@ -3444,42 +3492,6 @@
             }
         ],
         "invalidInput": "attributes.Type=Not object"
-    },
-    {
-        "id": 10,
-        "name": "attributes.Value.Property-Count='< 1'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "OpenAPI Request Test Cases",
-        "path": "/posts/{userId}/{[attributes]}",
-        "operation": "DELETE",
-        "parameters": [
-            {
-                "name": "[attributes]",
-                "in": "path",
-                "style": "simple",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                    }
-                },
-                "valid": false
-            },
-            {
-                "name": "userId",
-                "in": "path",
-                "style": "simple",
-                "explode": false,
-                "data": {
-                    "type": "integer",
-                    "value": 429083698,
-                    "format": "int32"
-                },
-                "valid": true
-            }
-        ],
-        "invalidInput": "attributes.Value.Property-Count=< 1"
     },
     {
         "id": 11,
@@ -6518,6 +6530,30 @@
             }
         ],
         "invalidInput": "Post-Marks.Type=Not array"
+    },
+    {
+        "id": 7,
+        "name": "Post-Marks.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "OpenAPI Request Test Cases",
+        "path": "/post",
+        "operation": "PATCH",
+        "parameters": [
+            {
+                "name": "Post Marks",
+                "in": "query",
+                "style": "spaceDelimited",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "Post-Marks.Items.Size=0"
     },
     {
         "id": 8,
