@@ -10606,6 +10606,99 @@
         "invalidInput": "Body.multipart-form-data.Value.Properties.address.Value.Properties.region.Value.Properties.census.Type=null"
     },
     {
+        "id": 39,
+        "name": "Body.multipart-form-data.Value.Properties.address.Value.Properties.region.Value.Properties.census.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Form Encodings",
+        "path": "/multipart_default",
+        "operation": "POST",
+        "body": {
+            "mediaType": "multipart/form-data",
+            "data": {
+                "type": "object",
+                "value": {
+                    "address": {
+                        "type": "object",
+                        "value": {
+                            "code": {
+                                "type": "integer",
+                                "value": 1004381044,
+                                "format": "int32"
+                            },
+                            "region": {
+                                "type": "object",
+                                "value": {
+                                    "zip": {
+                                        "type": "string",
+                                        "value": "15568"
+                                    },
+                                    "census": {
+                                        "type": "string",
+                                        "value": ""
+                                    },
+                                    "vbnenksizircqiqz": {
+                                        "type": "object",
+                                        "value": {
+                                            "irbfisryxwyfgb": {
+                                                "type": "integer",
+                                                "value": 877,
+                                                "format": "int32"
+                                            },
+                                            "hczxgplhrhpku": {
+                                                "type": "number",
+                                                "value": 156.3
+                                            }
+                                        }
+                                    },
+                                    "ghyanqwdb": {
+                                        "type": "string",
+                                        "value": ";"
+                                    },
+                                    "lilofpcjhdk": {
+                                        "type": "string",
+                                        "value": "hx-sgp]Q"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "lat/long": {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type": "number",
+                                "value": 653638756728548203.6
+                            },
+                            {
+                                "type": "number",
+                                "value": -4200948584866847180.4
+                            }
+                        ]
+                    },
+                    "map-digest": {
+                        "type": "string",
+                        "value": "R4RpfJ2JAlrqXda+S8ELRQ==",
+                        "format": "byte"
+                    }
+                }
+            },
+            "valid": false,
+            "encodings": {
+                "address": {
+                    "contentType": "application/json"
+                },
+                "lat/long": {
+                    "contentType": "text/plain"
+                },
+                "map-digest": {
+                    "contentType": "application/octet-stream"
+                }
+            }
+        },
+        "invalidInput": "Body.multipart-form-data.Value.Properties.address.Value.Properties.region.Value.Properties.census.Value.Length=0"
+    },
+    {
         "id": 40,
         "name": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Type=null",
         "server": "/",
@@ -10793,6 +10886,91 @@
         "invalidInput": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Type=Not array"
     },
     {
+        "id": 42,
+        "name": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Items.Size='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Form Encodings",
+        "path": "/multipart_default",
+        "operation": "POST",
+        "body": {
+            "mediaType": "multipart/form-data",
+            "data": {
+                "type": "object",
+                "value": {
+                    "address": {
+                        "type": "object",
+                        "value": {
+                            "code": {
+                                "type": "integer",
+                                "value": 1002498791,
+                                "format": "int32"
+                            },
+                            "region": {
+                                "type": "object",
+                                "value": {
+                                    "zip": {
+                                        "type": "string",
+                                        "value": "57150"
+                                    },
+                                    "ppuzoatw": {
+                                        "type": "array",
+                                        "value": [
+                                            {
+                                                "type": "string",
+                                                "value": "(go"
+                                            }
+                                        ]
+                                    },
+                                    "qqhvwjyuimtnc": {
+                                        "type": "string",
+                                        "value": "WlNq0Tb"
+                                    }
+                                }
+                            },
+                            "tags": {
+                                "type": "array",
+                                "value": [
+                                ]
+                            }
+                        }
+                    },
+                    "lat/long": {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type": "number",
+                                "value": 127046210742822748.4
+                            },
+                            {
+                                "type": "number",
+                                "value": -4367878682386749253.1
+                            }
+                        ]
+                    },
+                    "map-digest": {
+                        "type": "string",
+                        "value": "1Y8ScQhP54EDrj+Lto0wmQ==",
+                        "format": "byte"
+                    }
+                }
+            },
+            "valid": false,
+            "encodings": {
+                "address": {
+                    "contentType": "application/json"
+                },
+                "lat/long": {
+                    "contentType": "text/plain"
+                },
+                "map-digest": {
+                    "contentType": "application/octet-stream"
+                }
+            }
+        },
+        "invalidInput": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Items.Size=0"
+    },
+    {
         "id": 43,
         "name": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Items.Size='4'",
         "server": "/",
@@ -10976,6 +11154,90 @@
             }
         },
         "invalidInput": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Items.Contains.Type=null"
+    },
+    {
+        "id": 46,
+        "name": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Items.Contains.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Form Encodings",
+        "path": "/multipart_default",
+        "operation": "POST",
+        "body": {
+            "mediaType": "multipart/form-data",
+            "data": {
+                "type": "object",
+                "value": {
+                    "address": {
+                        "type": "object",
+                        "value": {
+                            "code": {
+                                "type": "integer",
+                                "value": 332046651,
+                                "format": "int32"
+                            },
+                            "region": {
+                                "type": "object",
+                                "value": {
+                                    "zip": {
+                                        "type": "string",
+                                        "value": "50049"
+                                    },
+                                    "jehgxhxz": {
+                                        "type": "number",
+                                        "value": -250.5
+                                    },
+                                    "fltfxsdnozfyph": {
+                                        "type": "boolean",
+                                        "value": true
+                                    }
+                                }
+                            },
+                            "tags": {
+                                "type": "array",
+                                "value": [
+                                    {
+                                        "type": "string",
+                                        "value": ""
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "lat/long": {
+                        "type": "array",
+                        "value": [
+                            {
+                                "type": "number",
+                                "value": 301535804191763260.8
+                            },
+                            {
+                                "type": "number",
+                                "value": -4135059576033308183.6
+                            }
+                        ]
+                    },
+                    "map-digest": {
+                        "type": "string",
+                        "value": "b4nRvEQTkSaMt48nvuzimw==",
+                        "format": "byte"
+                    }
+                }
+            },
+            "valid": false,
+            "encodings": {
+                "address": {
+                    "contentType": "application/json"
+                },
+                "lat/long": {
+                    "contentType": "text/plain"
+                },
+                "map-digest": {
+                    "contentType": "application/octet-stream"
+                }
+            }
+        },
+        "invalidInput": "Body.multipart-form-data.Value.Properties.address.Value.Properties.tags.Items.Contains.Value.Length=0"
     },
     {
         "id": 47,

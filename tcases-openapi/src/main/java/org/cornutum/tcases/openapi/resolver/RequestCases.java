@@ -128,7 +128,7 @@ public final class RequestCases
     // ...unless the input is a JSON-encoded request body
     boolean invalidBodyJson =
       Optional.ofNullable( stringTypeFailure? requestCase.getBody() : null)
-      .map( body -> !body.isValid() && "application/json".equals( body.getMediaType()))
+      .map( body -> !body.isValid() && isJson( body.getMediaType()))
       .orElse( false);
 
     return !stringTypeFailure || invalidBodyJson;
@@ -324,16 +324,11 @@ public final class RequestCases
       getBodyFailureData( requestCase)
       .map( body -> {
         return
-          Optional.ofNullable( body.getMediaType())
-          .map( MediaRange::of)
-          .filter( mediaType -> !("application/json".equals( mediaType.base()) || "json".equals( mediaType.suffix())))
-          .map( mediaType -> {
-            return
-              isBodyObjectEmptyFailureDup( requestCase, body, inputId)
-              || isBodyArrayEmptyFailureDup( requestCase, body, inputId)
-              || isBodyStringEmptyFailureDup( requestCase, body, inputId);
-            })
-          .orElse( false);
+          !isJson( body.getMediaType())
+          &&
+          (isBodyObjectEmptyFailureDup( requestCase, body, inputId)
+           || isBodyArrayEmptyFailureDup( requestCase, body, inputId)
+           || isBodyStringEmptyFailureDup( requestCase, body, inputId));
         })
       .orElse( false);
     }
@@ -345,14 +340,14 @@ public final class RequestCases
   private static boolean isBodyObjectEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
     {
     Optional<ObjectValue> invalidObject =
-      Optional.of( body.getValue())
+      Optional.ofNullable( body.getValue())
       .filter( value -> requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId)))
       .map( ObjectValue.class::cast);
 
     return
       invalidObject
       .filter( object -> object.getValue().isEmpty())
-      .map( object -> !isFormProperty( body, inputId))
+      .map( object -> isSimpleEncoded( body, inputId))
       .orElse( false);
     }
 
@@ -364,7 +359,7 @@ public final class RequestCases
     {
     return
       requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
-      && !isFormProperty( body, inputId);
+      && isSimpleEncoded( body, inputId);
     }
 
   /**
@@ -375,17 +370,29 @@ public final class RequestCases
     {
     return
       requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
-      && !isFormProperty( body, inputId);
+      && isSimpleEncoded( body, inputId);
+    }
+
+  /**
+   * Returns if the given request input a "simple" serialization style. 
+   */
+  private static boolean isSimpleEncoded( MessageData body, String inputId)
+    {
+    List<String> inputPath = Arrays.stream( inputId.split( "\\.", -1)).collect( toList());
+    return
+      !isFormProperty( body, inputPath)
+      &&
+      !isMultipartJson( body, inputPath);
     }
 
   /**
    * Returns if the given request input is a property of an <CODE>application/x-www-form-urlencoded</CODE> object.
    */
-  private static boolean isFormProperty( MessageData body, String inputId)
+  private static boolean isFormProperty( MessageData body, List<String> inputPath)
     {
     // Is this input a property of an object...?
     return
-      objectWithProperty( Arrays.stream( inputId.split( "\\.", -1)).collect( toList()))
+      objectWithProperty( inputPath)
       .map( objectPath -> {
         return
           // ... which is an application/x-www-form-urlencoded form?
@@ -395,24 +402,43 @@ public final class RequestCases
           objectWithProperty( objectPath)
           .map( partPath -> {
             return
-              objectWithProperty( partPath)
-              .map( formPath -> {
-                String partName = partPath.get( partPath.size() - 1);
+              // ... which is a multipart/form-data form part...?
+              multiPartProperty( partPath)
+              .filter( formProperty -> formProperty.equals( partPath))
+
+              // ... that is an application/x-www-form-urlencoded form?
+              .map( formProperty -> {
+                String partName = formProperty.get( formProperty.size() - 1);
                 return
-                  // ... which is a multipart/form-data form part...?
-                  formPath.equals( Arrays.asList( "Body", "multipart-form-data"))
-                  &&
-                  // ... that is an application/x-www-form-urlencoded form?
                   body.getEncodings()
                   .entrySet().stream()
                   .filter( encoding -> partName.equals( toIdentifier( encoding.getKey())))
                   .findFirst()
                   .map( encoding -> "application/x-www-form-urlencoded".equals( encoding.getValue().getContentType()))
                   .orElse( false);
-
                 })
               .orElse( false);
             })
+          .orElse( false);
+        })
+      .orElse( false);
+    }
+
+  /**
+   * Returns if the given request input belongs to a JSON-encoded property of a <CODE>multipart/form-data</CODE> object.
+   */
+  private static boolean isMultipartJson( MessageData body, List<String> inputPath)
+    {
+    return
+      multiPartProperty( inputPath)
+      .map( formProperty -> {
+        String partName = formProperty.get( formProperty.size() - 1);
+        return
+          body.getEncodings()
+          .entrySet().stream()
+          .filter( encoding -> partName.equals( toIdentifier( encoding.getKey())))
+          .findFirst()
+          .map( encoding -> isJson( encoding.getValue().getContentType()))
           .orElse( false);
         })
       .orElse( false);
@@ -429,6 +455,31 @@ public final class RequestCases
       .map( path -> path.subList( 0, path.size() - 1))
       .filter( parent -> parent.size() >= 2 && parent.subList( parent.size() - 2, parent.size()).equals( Arrays.asList( "Value", "Properties"))) 
       .map( parent -> parent.subList( 0, parent.size() - 2));
+    }
+
+  /**
+   * If the given input path belongs to a <CODE>multipart/form-data</CODE> object property, returns the path to the object
+   * property.  Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<List<String>> multiPartProperty( List<String> inputPath)
+    {
+    return
+      Optional.ofNullable( inputPath)
+      .filter( path -> path.size() >= 5)
+      .filter( path -> path.subList( 0, 4).equals( Arrays.asList( "Body", "multipart-form-data", "Value", "Properties")))
+      .map( path -> path.subList( 0, 5));
+    }
+
+  /**
+   * Returns if the given media type denotes JSON-encoded content.
+   */
+  private static boolean isJson( String mediaType)
+    {
+    return
+      Optional.ofNullable( mediaType)
+      .map( MediaRange::of)
+      .map( media -> "application/json".equals( media.base()) || "json".equals( media.suffix()))
+      .orElse( false);
     }
 
   /**
