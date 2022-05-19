@@ -18,13 +18,11 @@ import static org.cornutum.tcases.util.CollectionUtils.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines methods for generating {@link RequestCase request test cases} from the {@link SystemTestDef test definitions} for
@@ -157,26 +155,11 @@ public final class RequestCases
    */
   private static List<RequestCase> getSerializedDups( List<RequestCase> requestCases)
     {
-    List<RequestCase> nullFailureCases =
+    return
       requestCases.stream()
       .filter( RequestCases::isNullFailure)
-      .collect( toList());
-
-    Map<String,DataValue.Type> nullFailureTypes =
-      nullFailureCases.stream()
-      .collect(
-        toMap(
-          rc -> nullFailureId( rc),
-          rc -> nullFailureType( requestCases, rc)));
-
-    return
-      nullFailureTypes.keySet().stream()
-      .flatMap( id -> {
-        DataValue.Type idType = nullFailureTypes.get(id);
-        return
-          requestCases.stream()
-          .filter( rc -> isParamFailureDup( rc, id, idType) || isBodyFailureDup( rc, id, idType));
-        })
+      .map( RequestCases::nullFailureId)
+      .flatMap( id -> requestCases.stream().filter( rc -> isParamFailureDup( rc, id) || isBodyFailureDup( rc, id)))
       .collect( toList());
     }
 
@@ -201,33 +184,10 @@ public final class RequestCases
     }
 
   /**
-   * For a null failure case, returns the type of the failure input.
-   */
-  private static DataValue.Type nullFailureType( List<RequestCase> requestCases, RequestCase nullFailure)
-    {
-    Optional<String> nullParam =
-      getParamFailureData( nullFailure)
-      .map( ParamData::getName);
-
-    return
-      requestCases.stream()
-      .map( rc -> {
-        return
-          nullParam
-          .flatMap( name -> toStream( rc.getParams()).filter( pd -> pd.getName().equals( name)).findFirst().map( pd -> (MessageData) pd))
-          .orElse( rc.getBody());
-        })
-      .filter( MessageData::isValid)
-      .findFirst()
-      .map( MessageData::getType)
-      .orElseThrow( () -> new IllegalStateException( String.format( "Can't find null failure type for %s", nullFailure)));
-    }
-
-  /**
    * Returns if the given request case represents a failure caused by a parameter value that
    * duplicates a null value when serialized.
    */
-  private static boolean isParamFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
+  private static boolean isParamFailureDup( RequestCase requestCase, String inputId)
     {
     return
       getParamFailureData( requestCase)
@@ -236,7 +196,7 @@ public final class RequestCases
           isParamObjectEmptyFailureDup( requestCase, param, inputId)
           || isParamArrayEmptyFailureDup( requestCase, param, inputId)
           || isParamStringEmptyFailureDup( requestCase, param, inputId)
-          || isParamUndefinedFailureDup( requestCase, param, inputId, inputType);
+          || isParamUndefinedFailureDup( requestCase, param, inputId);
         })
       .orElse( false);
     }
@@ -291,7 +251,7 @@ public final class RequestCases
    * Returns if the given request case represents a parameter failure caused by an undefined value that
    * duplicates a null value when serialized.
    */
-  private static boolean isParamUndefinedFailureDup( RequestCase requestCase, ParamData param, String inputId, DataValue.Type inputType)
+  private static boolean isParamUndefinedFailureDup( RequestCase requestCase, ParamData param, String inputId)
     {
     return
       requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId))
@@ -318,7 +278,7 @@ public final class RequestCases
    * Returns if the given request case represents a failure caused by a body value that
    * duplicates a null value when serialized.
    */
-  private static boolean isBodyFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
+  private static boolean isBodyFailureDup( RequestCase requestCase, String inputId)
     {
     return
       getBodyFailureData( requestCase)
