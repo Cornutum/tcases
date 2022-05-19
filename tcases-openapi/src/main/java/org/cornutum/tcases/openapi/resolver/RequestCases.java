@@ -13,7 +13,7 @@ import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.openapi.test.MediaRange;
 
 import static org.cornutum.tcases.DefUtils.toIdentifier;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
+import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -396,7 +396,7 @@ public final class RequestCases
       .map( objectPath -> {
         return
           // ... which is an application/x-www-form-urlencoded form?
-          objectPath.equals( Arrays.asList( "Body", "application-x-www-form-urlencoded"))
+          objectPath.equals( URLENCODED_FORM_PREFIX)
           ||
           // ... or is the object containing the property input itself a part of another object...?
           objectWithProperty( objectPath)
@@ -408,7 +408,7 @@ public final class RequestCases
 
               // ... that is an application/x-www-form-urlencoded form?
               .map( formProperty -> {
-                String partName = formProperty.get( formProperty.size() - 1);
+                String partName = lastOf( formProperty);
                 return
                   body.getEncodings()
                   .entrySet().stream()
@@ -432,7 +432,7 @@ public final class RequestCases
     return
       multiPartProperty( inputPath)
       .map( formProperty -> {
-        String partName = formProperty.get( formProperty.size() - 1);
+        String partName = lastOf( formProperty);
         return
           body.getEncodings()
           .entrySet().stream()
@@ -452,9 +452,9 @@ public final class RequestCases
     {
     return
       Optional.ofNullable( inputPath)
-      .map( path -> path.subList( 0, path.size() - 1))
-      .filter( parent -> parent.size() >= 2 && parent.subList( parent.size() - 2, parent.size()).equals( Arrays.asList( "Value", "Properties"))) 
-      .map( parent -> parent.subList( 0, parent.size() - 2));
+      .map( path -> headOf( path))
+      .filter( head -> tailOf( head, 2).equals( OBJECT_PROPERTY_SUFFIX)) 
+      .map( head -> headOf( head, 2));
     }
 
   /**
@@ -466,7 +466,7 @@ public final class RequestCases
     return
       Optional.ofNullable( inputPath)
       .filter( path -> path.size() >= 5)
-      .filter( path -> path.subList( 0, 4).equals( Arrays.asList( "Body", "multipart-form-data", "Value", "Properties")))
+      .filter( path -> path.subList( 0, 4).equals( MULTIPART_PROPERTY_PREFIX))
       .map( path -> path.subList( 0, 5));
     }
 
@@ -493,4 +493,8 @@ public final class RequestCases
       .filter( rc -> toStream( rc.getParams()).allMatch( MessageData::isValid))
       .map( rc -> rc.getBody());
     }
+
+  private static final List<String> MULTIPART_PROPERTY_PREFIX = Arrays.asList( "Body", "multipart-form-data", "Value", "Properties");
+  private static final List<String> OBJECT_PROPERTY_SUFFIX = Arrays.asList( "Value", "Properties");
+  private static final List<String> URLENCODED_FORM_PREFIX = Arrays.asList( "Body", "application-x-www-form-urlencoded");
   }
