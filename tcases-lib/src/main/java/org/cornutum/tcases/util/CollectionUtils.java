@@ -207,39 +207,4 @@ public final class CollectionUtils
       .mapToObj( i -> members.get(i))
       .collect( toList());
     }
-
-  /**
-   * Returns a list containing the last <CODE>size</CODE> members of the given list.
-   * Returns an empty list if there are fewer than <CODE>size</CODE> members.
-   */
-  public static <T> List<T> tailOf( List<T> members, int size)
-    {
-    int end = members.size();
-    int start = end - size;
-    return members.subList( start < 0? end : start, end);
-    }
-
-  /**
-   * Returns a list containing all but the last <CODE>tailSize</CODE> members of the given list.
-   */
-  public static <T> List<T> headOf( List<T> members, int tailSize)
-    {
-    return members.subList( 0, Math.max( members.size() - tailSize, 0));
-    }
-
-  /**
-   * Returns a list containing all but the last member of the given list.
-   */
-  public static <T> List<T> headOf( List<T> members)
-    {
-    return headOf( members, 1);
-    }
-
-  /**
-   * Returns the last member of the given list.
-   */
-  public static <T> T lastOf( List<T> members)
-    {
-    return members.get( members.size() - 1);
-    }
 }
