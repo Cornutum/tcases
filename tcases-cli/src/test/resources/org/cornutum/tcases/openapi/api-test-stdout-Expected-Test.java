@@ -603,6 +603,25 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void patchPost_PostMarksItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "Post Marks", "")
+            .when()
+                .request( "PATCH", "/post")
+            .then()
+                // Post-Marks.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PATCH", "/post", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PATCH", "/post", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         Response response =
             given()
@@ -1344,6 +1363,25 @@ public class OpenAPIRequestTestCasesTest {
                 .request( "GET", "/posts")
             .then()
                 // ids.Type=Not array
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
+    public void getPosts_IdsItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "ids", "")
+            .when()
+                .request( "GET", "/posts")
+            .then()
+                // ids.Items.Size=0
                 .statusCode( isBadRequest())
             .extract()
                 .response()
@@ -2800,6 +2838,25 @@ public class OpenAPIRequestTestCasesTest {
     }
 
     @Test
+    public void tracePosts_PostIdItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "postId", "")
+            .when()
+                .request( "TRACE", "/posts")
+            .then()
+                // postId.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "TRACE", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "TRACE", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void tracePosts_PostIdItemsSize_Is_3() {
         Response response =
             given()
@@ -3324,26 +3381,6 @@ public class OpenAPIRequestTestCasesTest {
                 .request( "DELETE", "/posts/{userId}/{[attributes]}")
             .then()
                 // attributes.Type=Not object
-                .statusCode( isBadRequest())
-            .extract()
-                .response()
-                ;
-
-        responseValidator.assertBodyValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), response.getContentType(), response.asString());
-        responseValidator.assertHeadersValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), responseHeaders( response));
-    }
-
-    @Test
-    public void deletePostsUserIdAttributes_AttributesValuePropertyCount_Is_Lt_1() {
-        Response response =
-            given()
-                .baseUri( forTestServer())
-                .pathParam( "[attributes]", "")
-                .pathParam( "userId", "841917001")
-            .when()
-                .request( "DELETE", "/posts/{userId}/{[attributes]}")
-            .then()
-                // attributes.Value.Property-Count=< 1
                 .statusCode( isBadRequest())
             .extract()
                 .response()

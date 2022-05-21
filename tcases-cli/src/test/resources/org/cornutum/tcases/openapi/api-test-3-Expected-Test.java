@@ -131,6 +131,25 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
     }
 
     @Test
+    public void tracePosts_PostIdItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .cookie( "postId", "")
+            .when()
+                .request( "TRACE", "/posts")
+            .then()
+                // postId.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "TRACE", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "TRACE", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void tracePosts_PostIdItemsSize_Is_3() {
         Response response =
             given()
