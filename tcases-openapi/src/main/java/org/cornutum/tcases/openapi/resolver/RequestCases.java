@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 // 
 //                    Copyright 2020, Cornutum Project
 //                             www.cornutum.org
@@ -20,8 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -208,13 +210,9 @@ public final class RequestCases
   private static boolean isParamObjectEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
     {
     return
-      // True for any invalid empty object value...
       requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId))
       && ((ObjectValue) param.getValue()).getValue().isEmpty()
-
-      // ... except for the value of a form-encoded object parameter
-      && !(inputId.equals( toIdentifier( param.getName()))
-           && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE));
+      && isSimpleEncoded( param, inputId);
     }
 
   /**
@@ -224,12 +222,8 @@ public final class RequestCases
   private static boolean isParamArrayEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
     {
     return
-      // True for any invalid empty array value...
       requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
-
-      // ... except for the value of a form-encoded array parameter
-      && !(inputId.equals( toIdentifier( param.getName()))
-           && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE));
+      && isSimpleEncoded( param, inputId);
     }
 
   /**
@@ -239,12 +233,8 @@ public final class RequestCases
   private static boolean isParamStringEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
     {
     return
-      // True for any invalid empty string value...
       requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
-
-      // ... except for the value of a form-encoded string parameter
-      && !(inputId.equals( toIdentifier( param.getName()))
-           && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE));
+      && isSimpleEncoded( param, inputId);
     }
 
   /**
@@ -299,16 +289,25 @@ public final class RequestCases
    */
   private static boolean isBodyObjectEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
     {
-    Optional<ObjectValue> invalidObject =
-      Optional.ofNullable( body.getValue())
-      .filter( value -> requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId)))
-      .map( ObjectValue.class::cast);
-
     return
-      invalidObject
-      .filter( object -> object.getValue().isEmpty())
-      .map( object -> isSimpleEncoded( body, inputId))
-      .orElse( false);
+      requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId))
+      && getInputObject( body, inputId).getValue().isEmpty()
+
+      && (isSimpleMediaType( body)
+          ||
+          isRoot( inputId)
+          ||
+          isSimpleIfUrlEncodedPropertyExploded( body, inputId)
+          .orElseGet(
+            () ->
+            isSimpleIfMultipartPart( body, inputId)
+            .orElseGet(
+              () ->
+              isSimpleIfMultipartPartPropertyExploded( body, inputId)
+              .orElseGet(
+                () ->
+                isSimpleIfDeepContent( body, inputId)
+                .orElse( false)))));
     }
 
   /**
@@ -319,7 +318,19 @@ public final class RequestCases
     {
     return
       requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
-      && isSimpleEncoded( body, inputId);
+
+      && (isSimpleMediaType( body)
+          ||
+          isRoot( inputId)
+          ||
+          isSimpleIfUrlEncodedProperty( body, inputId)
+          .orElseGet(
+            () ->
+            isSimpleIfMultipartPart( body, inputId)
+            .orElseGet(
+            () ->
+            isSimpleIfDeepContent( body, inputId)
+            .orElse( false))));
     }
 
   /**
@@ -330,104 +341,196 @@ public final class RequestCases
     {
     return
       requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
-      && isSimpleEncoded( body, inputId);
-    }
 
-  /**
-   * Returns if the given request input a "simple" serialization style. 
-   */
-  private static boolean isSimpleEncoded( MessageData body, String inputId)
-    {
-    List<String> inputPath = Arrays.stream( inputId.split( "\\.", -1)).collect( toList());
-    return
-      !isFormProperty( body, inputPath)
-      &&
-      !isMultipartJson( body, inputPath);
-    }
-
-  /**
-   * Returns if the given request input is a property of an <CODE>application/x-www-form-urlencoded</CODE> object.
-   */
-  private static boolean isFormProperty( MessageData body, List<String> inputPath)
-    {
-    // Is this input a property of an object...?
-    return
-      objectWithProperty( inputPath)
-      .map( objectPath -> {
-        return
-          // ... which is an application/x-www-form-urlencoded form?
-          objectPath.equals( URLENCODED_FORM_PREFIX)
+      && (isSimpleMediaType( body)
           ||
-          // ... or is the object containing the property input itself a part of another object...?
-          objectWithProperty( objectPath)
-          .map( partPath -> {
+          isRoot( inputId)
+          ||
+          isSimpleIfUrlEncodedProperty( body, inputId)
+          .orElseGet(
+            () ->
+            isSimpleIfMultipartPart( body, inputId)
+            .orElseGet(
+            () ->
+            isSimpleIfDeepContent( body, inputId)
+            .orElse( false))));
+    }
+
+  /**
+   * TBD
+   */
+  private static ObjectValue getInputObject( MessageData body, String inputId)
+    {
+    ObjectValue bodyObject = (ObjectValue) body.getValue();
+
+    return
+      Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .flatMap( matcher -> propertyValueFor( bodyObject, matcher.group(1)))
+      .map( value -> (ObjectValue) value)
+
+      .orElseGet(
+        () ->
+        Optional.of( MULTIPART_PART_ID.matcher( inputId))
+        .filter( matcher -> matcher.find())
+        .flatMap( matcher -> propertyValueFor( bodyObject, matcher.group(1)))
+        .map( value -> (ObjectValue) value)
+
+        .orElseGet(
+          () ->
+          Optional.of( MULTIPART_PART_PROPERTY_ID.matcher( inputId))
+          .filter( matcher -> matcher.find())
+          .flatMap( matcher -> {
             return
-              // ... which is a multipart/form-data form part...?
-              multiPartProperty( partPath)
-              .filter( formProperty -> formProperty.equals( partPath))
-
-              // ... that is an application/x-www-form-urlencoded form?
-              .map( formProperty -> {
-                String partName = lastOf( formProperty);
-                return
-                  body.getEncodings()
-                  .entrySet().stream()
-                  .filter( encoding -> partName.equals( toIdentifier( encoding.getKey())))
-                  .findFirst()
-                  .map( encoding -> "application/x-www-form-urlencoded".equals( encoding.getValue().getContentType()))
-                  .orElse( false);
-                })
-              .orElse( false);
+              propertyValueFor( bodyObject, matcher.group(1))
+              .map( value -> (ObjectValue) value)
+              .flatMap( part -> propertyValueFor( part, matcher.group(2)))
+              .map( value -> (ObjectValue) value);
             })
-          .orElse( false);
-        })
-      .orElse( false);
+
+          .orElse( bodyObject)));
     }
 
   /**
-   * Returns if the given request input belongs to a JSON-encoded property of a <CODE>multipart/form-data</CODE> object.
+   * If the given request case is a failure case with an invalid body value, return the invalid body data.
    */
-  private static boolean isMultipartJson( MessageData body, List<String> inputPath)
+  private static Optional<MessageData> getBodyFailureData( RequestCase requestCase)
     {
     return
-      multiPartProperty( inputPath)
-      .map( formProperty -> {
-        String partName = lastOf( formProperty);
+      Optional.of( requestCase)
+      .filter( RequestCase::isFailure)
+      .filter( rc -> toStream( rc.getParams()).allMatch( MessageData::isValid))
+      .map( rc -> rc.getBody());
+    }
+
+  /**
+   * Returns if the given request parameter input uses a "simple" serialization style. 
+   */
+  private static boolean isSimpleEncoded( ParamData param, String inputId)
+    {
+    // True except for the value of an unexploded form-encoded object parameter
+    return
+      !(inputId.equals( toIdentifier( param.getName()))
+        && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE)
+        && !param.isExploded());
+    }
+
+  /**
+   * Returns if the body has a simple media type.
+   */
+  private static boolean isSimpleMediaType( MessageData body)
+    {
+    return
+      Optional.ofNullable( body.getMediaType())
+      .map( mediaType -> !("application/x-www-form-urlencoded".equals( mediaType) || "multipart/form-data".equals( mediaType)))
+      .orElse( true);
+    }
+
+  /**
+   * Returns if the given input id identifies the root value of body content.
+   */
+  private static boolean isRoot( String inputId)
+    {
+    return ROOT_ID.matcher( inputId).find();
+    }
+
+  /**
+   * If the given input id identifies an exploded property of an <CODE>application/x-www-form-urlencoded</CODE> object,
+   * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfUrlEncodedPropertyExploded( MessageData body, String inputId)
+    {
+    return
+      Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> matcher.group(1))
+      .map( property -> encodingFor( body, property).map( EncodingData::isExploded).orElse( true));
+    }
+
+  /**
+   * If the given input id identifies a property of an <CODE>application/x-www-form-urlencoded</CODE> object,
+   * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfUrlEncodedProperty( MessageData body, String inputId)
+    {
+    return
+      Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> false);
+    }
+
+  /**
+   * If the given input id identifies a part of a <CODE>multipart/form-data</CODE> object,
+   * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>. 
+   */
+  private static Optional<Boolean> isSimpleIfMultipartPart( MessageData body, String inputId)
+    {
+    return
+      Optional.of( MULTIPART_PART_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> matcher.group(1))
+      .map( property -> encodingFor( body, property).map( EncodingData::getContentType).orElse( "text/plain"))
+      .map( contentType -> !isJson( contentType));
+    }
+
+  /**
+   * If the given input id identifies an exploded property of an <CODE>application/x-www-form-urlencoded</CODE> part of a
+   * <CODE>multipart/form-data</CODE> object, returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfMultipartPartPropertyExploded( MessageData body, String inputId)
+    {
+    return
+      Optional.of( MULTIPART_PART_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> matcher.group(1))
+      .map( property -> encodingFor( body, property).map( EncodingData::getContentType).orElse( "text/plain"))
+      .map( contentType -> "application/x-www-form-urlencoded".equals( contentType));
+    }
+
+  /**
+   * If the given input id identifies a deeply-nested value, returns if it is simple-encoded. Otherwise, returns
+   * <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfDeepContent( MessageData body, String inputId)
+    {
+    return
+      Optional.of( inputId)
+      .filter( id -> DEEP_CONTENT_ID.matcher( id).find())
+      .map( id -> {
         return
-          body.getEncodings()
-          .entrySet().stream()
-          .filter( encoding -> partName.equals( toIdentifier( encoding.getKey())))
-          .findFirst()
-          .map( encoding -> isJson( encoding.getValue().getContentType()))
-          .orElse( false);
-        })
-      .orElse( false);
+          Optional.of( MULTIPART_CONTENT_ID.matcher( id))
+          .filter( matcher -> matcher.find())
+          .map( matcher -> matcher.group(1))
+          .map( property -> encodingFor( body, property).map( EncodingData::getContentType).orElse( "text/plain"))
+          .map( contentType -> !isJson( contentType))
+          .orElse( true);
+        });
     }
 
   /**
-   * If the given input path identifies an object property, returns the path to the object.
-   * Otherwise, returns <CODE>Optional.empty()</CODE>.
+   * Returns the encoding for the given object property identified by the given property id.
    */
-  private static Optional<List<String>> objectWithProperty( List<String> inputPath)
+  private static Optional<EncodingData> encodingFor( MessageData body, String propertyId)
     {
     return
-      Optional.ofNullable( inputPath)
-      .map( path -> headOf( path))
-      .filter( head -> tailOf( head, 2).equals( OBJECT_PROPERTY_SUFFIX)) 
-      .map( head -> headOf( head, 2));
+      body.getEncodings()
+      .entrySet().stream()
+      .filter( encoding -> propertyId.equals( toIdentifier( encoding.getKey())))
+      .findFirst()
+      .map( encoding -> encoding.getValue());
     }
 
   /**
-   * If the given input path belongs to a <CODE>multipart/form-data</CODE> object property, returns the path to the object
-   * property.  Otherwise, returns <CODE>Optional.empty()</CODE>.
+   * Returns the value of the object property identified by the given property id.
    */
-  private static Optional<List<String>> multiPartProperty( List<String> inputPath)
+  private static Optional<DataValue<?>> propertyValueFor( ObjectValue object, String propertyId)
     {
     return
-      Optional.ofNullable( inputPath)
-      .filter( path -> path.size() >= 5)
-      .filter( path -> path.subList( 0, 4).equals( MULTIPART_PROPERTY_PREFIX))
-      .map( path -> path.subList( 0, 5));
+      object.getValue()
+      .entrySet().stream()
+      .filter( e -> propertyId.equals( toIdentifier( e.getKey())))
+      .findFirst()
+      .map( e -> e.getValue());
     }
 
   /**
@@ -443,18 +546,38 @@ public final class RequestCases
     }
 
   /**
-   * If the given request case is a failure case with an invalid body value, return the invalid body data.
+   * Returns a pattern that matches the begining of an body input id.
    */
-  private static Optional<MessageData> getBodyFailureData( RequestCase requestCase)
+  private static Pattern bodyIdPrefix( String... segments)
     {
-    return
-      Optional.of( requestCase)
-      .filter( RequestCase::isFailure)
-      .filter( rc -> toStream( rc.getParams()).allMatch( MessageData::isValid))
-      .map( rc -> rc.getBody());
+    return bodyIdPattern( false, segments);
     }
 
-  private static final List<String> MULTIPART_PROPERTY_PREFIX = Arrays.asList( "Body", "multipart-form-data", "Value", "Properties");
-  private static final List<String> OBJECT_PROPERTY_SUFFIX = Arrays.asList( "Value", "Properties");
-  private static final List<String> URLENCODED_FORM_PREFIX = Arrays.asList( "Body", "application-x-www-form-urlencoded");
+  /**
+   * Returns a pattern that matches an entire body input id. 
+   */
+  private static Pattern bodyIdPattern( String... segments)
+    {
+    return bodyIdPattern( true, segments);
+    }
+
+  /**
+   * Returns a pattern that matches a body input id. If <CODE>all</CODE> is true, returns a pattern that matches the entire
+   * id. Otherwise, returns a pattern that matches the beginning of the id.
+   */
+  private static Pattern bodyIdPattern( boolean all, String... segments)
+    {
+    return Pattern.compile( Arrays.stream( segments).collect( joining( "\\.", "^Body\\.", all? "$" : "")));
+    }
+
+  private static final String ANY_NAME = "([^\\.]+)";
+  private static final String ANY_NAMES = String.format( "%s(\\.%s)+", ANY_NAME, ANY_NAME);
+
+  private static final Pattern DEEP_CONTENT_ID = bodyIdPrefix( ANY_NAME, "Value", ANY_NAMES, "Value");
+  private static final Pattern MULTIPART_CONTENT_ID = bodyIdPrefix( "multipart-form-data", "Value", "Properties", ANY_NAME);
+  private static final Pattern MULTIPART_PART_ID = bodyIdPattern( "multipart-form-data", "Value", "Properties", ANY_NAME);
+  private static final Pattern MULTIPART_PART_PROPERTY_ID = bodyIdPattern( "multipart-form-data", "Value", "Properties", ANY_NAME, "Value", "Properties", ANY_NAME);
+  private static final Pattern ROOT_ID = bodyIdPattern( ANY_NAME);
+  private static final Pattern URLENCODED_PROPERTY_ID = bodyIdPattern( "application-x-www-form-urlencoded", "Value", "Properties", ANY_NAME);
+
   }
