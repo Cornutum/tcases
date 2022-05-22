@@ -323,7 +323,7 @@ public final class RequestCases
           ||
           isRoot( inputId)
           ||
-          isSimpleIfUrlEncodedProperty( body, inputId)
+          isSimpleIfUrlEncodedProperty( inputId)
           .orElseGet(
             () ->
             isSimpleIfMultipartPart( body, inputId)
@@ -346,7 +346,7 @@ public final class RequestCases
           ||
           isRoot( inputId)
           ||
-          isSimpleIfUrlEncodedProperty( body, inputId)
+          isSimpleIfUrlEncodedProperty( inputId)
           .orElseGet(
             () ->
             isSimpleIfMultipartPart( body, inputId)
@@ -451,7 +451,7 @@ public final class RequestCases
    * If the given input id identifies a property of an <CODE>application/x-www-form-urlencoded</CODE> object,
    * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
    */
-  private static Optional<Boolean> isSimpleIfUrlEncodedProperty( MessageData body, String inputId)
+  private static Optional<Boolean> isSimpleIfUrlEncodedProperty( String inputId)
     {
     return
       Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
