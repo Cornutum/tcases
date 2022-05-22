@@ -43,25 +43,6 @@
     },
     {
         "id": 1,
-        "name": "param0.Defined='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Object",
-        "path": "/object/${param0}",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "path",
-                "style": "matrix",
-                "explode": false,
-                "data": null,
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 2,
         "name": "param0.Value.Properties.Additional='No'",
         "server": "/",
         "version": "0.0.0",
@@ -82,6 +63,26 @@
                 "valid": true
             }
         ]
+    },
+    {
+        "id": 2,
+        "name": "param0.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object/${param0}",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "path",
+                "style": "matrix",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Defined=No"
     },
     {
         "id": 3,

@@ -40,37 +40,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/array/${param0}"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Array"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="path">
-        <Var name="param0.Defined" value="No">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="matrix"/>
-        </Var>
-        <Var name="param0.Type" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Size" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Type" NA="true">
-          <Has name="itemType" value="number"/>
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Contains.Value.Is" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Items.Unique" NA="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="2" name="param0.Items.Size=&apos;3&apos;">
+    <TestCase id="1" name="param0.Items.Size=&apos;3&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
@@ -101,7 +71,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" name="param0.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="2" name="param0.Items.Contains.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsValue,param0Value"/>
@@ -132,7 +102,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" name="param0.Items.Unique=&apos;No&apos;">
+    <TestCase id="3" name="param0.Items.Unique=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/array/${param0}"/>
       <Has name="properties" value="param0,param0ItemsMany,param0ItemsValue,param0Value"/>
@@ -159,6 +129,36 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Items.Unique" value="No">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="param0.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/array/${param0}"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Array"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="param0.Defined" value="No" failure="true">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="matrix"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Size" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Contains.Type" NA="true">
+          <Has name="itemType" value="number"/>
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Contains.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Items.Unique" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>

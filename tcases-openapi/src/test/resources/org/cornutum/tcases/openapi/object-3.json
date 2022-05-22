@@ -12,6 +12,7 @@
                         "name": "param0",
                         "in": "path",
                         "style": "label",
+                        "required": true,
 
                         "schema": {
                             "type": "object",

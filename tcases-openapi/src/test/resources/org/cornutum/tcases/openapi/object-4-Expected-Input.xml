@@ -13,7 +13,7 @@
           <Has name="explode" value="false"/>
           <Has name="style" value="matrix"/>
           <Value name="Yes" property="param0"/>
-          <Value name="No"/>
+          <Value name="No" failure="true"/>
         </Var>
         <Var name="Type" when="param0">
           <Value name="object" property="param0Value"/>

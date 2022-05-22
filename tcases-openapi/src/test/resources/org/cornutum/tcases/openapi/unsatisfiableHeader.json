@@ -42,16 +42,6 @@
     },
     "components": {
         "responses": {
-            "success": {
-                "description": "Success",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "$ref": "#/components/schemas/successContent"
-                        }
-                    }
-                }
-            },
             "failure": {
                 "description": "Error",
                 "content": {
