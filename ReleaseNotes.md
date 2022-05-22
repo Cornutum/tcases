@@ -1,5 +1,22 @@
 # Release Notes #
 
+## 3.8.2 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Handle parameter and body input encodings correctly when "realizing" test cases**
+
+    To avoid duplicate test cases, the `tcases-api-test` command (and, for Maven, the `tcases:api-test` goal) eliminates test
+    cases that can't be uniquely "realized". For example, such duplicates can occur when null, empty, or undefined values
+    are the same when serialized as strings. (See issue #133.) This release updates the "realization" logic to correctly
+    identify duplicates, in particular when considering the encodings specified for media types like
+    `application/x-www-form-urlencoded`.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.0.33.
+
+
 ## 3.8.1 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
