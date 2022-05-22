@@ -177,26 +177,6 @@ public class AllPaths_PostsUseridAttributesTest {
     }
 
     @Test
-    public void deletePostsUserIdAttributes_AttributesValuePropertyCount_Is_Lt_1() {
-        Response response =
-            given()
-                .baseUri( forTestServer())
-                .pathParam( "[attributes]", "")
-                .pathParam( "userId", "944897639")
-            .when()
-                .request( "DELETE", "/posts/{userId}/{[attributes]}")
-            .then()
-                // attributes.Value.Property-Count=< 1
-                .statusCode( isBadRequest())
-            .extract()
-                .response()
-                ;
-
-        responseValidator.assertBodyValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), response.getContentType(), response.asString());
-        responseValidator.assertHeadersValid( "DELETE", "/posts/{userId}/{[attributes]}", response.statusCode(), responseHeaders( response));
-    }
-
-    @Test
     public void deletePostsUserIdAttributes_AttributesValuePropertiesApprovedType_Is_Null() {
         Response response =
             given()

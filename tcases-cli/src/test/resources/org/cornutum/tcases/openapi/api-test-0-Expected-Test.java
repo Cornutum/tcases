@@ -112,6 +112,25 @@ public class MyTest extends MyBaseClass {
     }
 
     @Test
+    public void getPosts_IdsItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .queryParam( "ids", "")
+            .when()
+                .request( "GET", "/posts")
+            .then()
+                // ids.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "GET", "/posts", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "GET", "/posts", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void getPosts_IdsItemsSize_Is_5() {
         Response response =
             given()

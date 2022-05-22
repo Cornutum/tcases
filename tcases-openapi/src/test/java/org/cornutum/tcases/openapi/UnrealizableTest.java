@@ -121,4 +121,10 @@ public class UnrealizableTest extends OpenApiTest
     {
     verifyRequestInputModel( "realize-OpenApiTest");
     }
+  
+  @Test
+  public void realize_OpenApiEncodings()
+    {
+    verifyRequestInputModel( "realize-OpenApiEncodings");
+    }
   }

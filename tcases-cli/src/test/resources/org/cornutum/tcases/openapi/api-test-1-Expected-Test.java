@@ -610,6 +610,25 @@ public class OpenAPIRequestTestCasesTest extends MyBaseClass {
     }
 
     @Test
+    public void patchPost_PostMarksItemsSize_Is_0() {
+        Response response =
+            given()
+                .baseUri( forTestServer( "http://localhost:12306"))
+                .queryParam( "Post Marks", "")
+            .when()
+                .request( "PATCH", "/post")
+            .then()
+                // Post-Marks.Items.Size=0
+                .statusCode( isBadRequest())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "PATCH", "/post", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "PATCH", "/post", response.statusCode(), responseHeaders( response));
+    }
+
+    @Test
     public void patchPost_PostMarksItemsSize_Is_4() {
         Response response =
             given()

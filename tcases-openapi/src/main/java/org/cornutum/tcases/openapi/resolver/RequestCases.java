@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 // 
 //                    Copyright 2020, Cornutum Project
 //                             www.cornutum.org
@@ -10,16 +10,21 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.openapi.test.MediaRange;
+
 import static org.cornutum.tcases.DefUtils.toIdentifier;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
+import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 /**
  * Defines methods for generating {@link RequestCase request test cases} from the {@link SystemTestDef test definitions} for
@@ -123,7 +128,7 @@ public final class RequestCases
     // ...unless the input is a JSON-encoded request body
     boolean invalidBodyJson =
       Optional.ofNullable( stringTypeFailure? requestCase.getBody() : null)
-      .map( body -> !body.isValid() && "application/json".equals( body.getMediaType()))
+      .map( body -> !body.isValid() && isJson( body.getMediaType()))
       .orElse( false);
 
     return !stringTypeFailure || invalidBodyJson;
@@ -152,26 +157,11 @@ public final class RequestCases
    */
   private static List<RequestCase> getSerializedDups( List<RequestCase> requestCases)
     {
-    List<RequestCase> nullFailureCases =
+    return
       requestCases.stream()
       .filter( RequestCases::isNullFailure)
-      .collect( toList());
-
-    Map<String,DataValue.Type> nullFailureTypes =
-      nullFailureCases.stream()
-      .collect(
-        toMap(
-          rc -> nullFailureId( rc),
-          rc -> nullFailureType( requestCases, rc)));
-
-    return
-      nullFailureTypes.keySet().stream()
-      .flatMap( id -> {
-        DataValue.Type idType = nullFailureTypes.get(id);
-        return
-          requestCases.stream()
-          .filter( rc -> isArrayEmptyFailureDup( rc, id) || isStringEmptyFailureDup( rc, id) || isUndefinedFailureDup( rc, id, idType));
-        })
+      .map( RequestCases::nullFailureId)
+      .flatMap( id -> requestCases.stream().filter( rc -> isParamFailureDup( rc, id) || isBodyFailureDup( rc, id)))
       .collect( toList());
     }
 
@@ -196,103 +186,398 @@ public final class RequestCases
     }
 
   /**
-   * For a null failure case, returns the type of the failure input.
+   * Returns if the given request case represents a failure caused by a parameter value that
+   * duplicates a null value when serialized.
    */
-  private static DataValue.Type nullFailureType( List<RequestCase> requestCases, RequestCase nullFailure)
+  private static boolean isParamFailureDup( RequestCase requestCase, String inputId)
     {
-    String paramName =
-      getFailureData( nullFailure)
-      .filter( failure -> failure instanceof ParamData)
-      .map( failure -> ((ParamData) failure).getName())
-      .orElse( null);
-
     return
-      requestCases.stream()
-      .map( rc -> {
+      getParamFailureData( requestCase)
+      .map( param -> {
         return
-          Optional.ofNullable( paramName)
-          .map( p -> {
-            MessageData paramData =
-              toStream( rc.getParams())
-              .filter( param -> param.getName().equals( paramName))
-              .findFirst()
-              .get();
-            return paramData;
-            })
-          .orElse( rc.getBody());
-        })
-      .filter( MessageData::isValid)
-      .findFirst()
-      .map( MessageData::getType)
-      .orElseThrow( () -> new IllegalStateException( String.format( "Can't find null failure type for %s", nullFailure)));
-    }
-
-  /**
-   * Returns if the given request case represents a failure caused by an empty string that
-   * duplicates a null value when serialized.
-   */
-  private static boolean isStringEmptyFailureDup( RequestCase requestCase, String inputId)
-    {
-    return
-      getFailureData( requestCase)
-      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId)))
-      .map( failure -> failure instanceof ParamData || !"application/json".equals( failure.getMediaType()))
-      .orElse( false);
-    }
-
-  /**
-   * Returns if the given request case represents a failure caused by an empty array that
-   * duplicates a null value when serialized.
-   */
-  private static boolean isArrayEmptyFailureDup( RequestCase requestCase, String inputId)
-    {
-    return
-      getFailureData( requestCase)
-      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId)))
-      .map( failure -> failure instanceof ParamData || !"application/json".equals( failure.getMediaType()))
-      .orElse( false);
-    }
-
-  /**
-   * Returns if the given request case represents a failure caused by an undefined value that
-   * duplicates a null value when serialized.
-   */
-  private static boolean isUndefinedFailureDup( RequestCase requestCase, String inputId, DataValue.Type inputType)
-    {
-    return
-      getFailureData( requestCase)
-      .filter( failure -> requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId)))
-      .map( failure -> {
-        ParamData param =
-          failure instanceof ParamData
-          ? (ParamData) failure
-          : null;
-
-        return
-          param != null
-          && param.getStyle().equals( "simple")
-          && param.getLocation() == Location.PATH
-          && (!inputType.isComposite() || inputId.equals( toIdentifier( param.getName())));
+          isParamObjectEmptyFailureDup( requestCase, param, inputId)
+          || isParamArrayEmptyFailureDup( requestCase, param, inputId)
+          || isParamStringEmptyFailureDup( requestCase, param, inputId)
+          || isParamUndefinedFailureDup( requestCase, param, inputId);
         })
       .orElse( false);
     }
 
   /**
-   * If the given request case is a failure case, return the data for the invalid input.
-   * Otherwise, returns null;
+   * Returns if the given request case represents a parameter failure caused by an empty object that
+   * duplicates a null value when serialized.
    */
-  private static Optional<MessageData> getFailureData( RequestCase requestCase)
+  private static boolean isParamObjectEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId))
+      && ((ObjectValue) param.getValue()).getValue().isEmpty()
+      && isSimpleEncoded( param, inputId);
+    }
+
+  /**
+   * Returns if the given request case represents a parameter failure caused by an empty array that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isParamArrayEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
+      && isSimpleEncoded( param, inputId);
+    }
+
+  /**
+   * Returns if the given request case represents a parameter failure caused by an empty string that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isParamStringEmptyFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
+      && isSimpleEncoded( param, inputId);
+    }
+
+  /**
+   * Returns if the given request case represents a parameter failure caused by an undefined value that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isParamUndefinedFailureDup( RequestCase requestCase, ParamData param, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Defined=No", inputId))
+      && inputId.equals( toIdentifier( param.getName()))
+      && param.getStyle().equals( "simple")
+      && param.getLocation() == Location.PATH;
+    }
+
+  /**
+   * If the given request case is a failure case with an invalid parameter value, return the invalid parameter data.
+   */
+  private static Optional<ParamData> getParamFailureData( RequestCase requestCase)
     {
     return
       Optional.of( requestCase)
       .filter( RequestCase::isFailure)
-      .map( rc -> {
+      .map( rc -> toStream( rc.getParams()))
+      .orElse( Stream.empty())
+      .filter( param -> !param.isValid())
+      .findFirst();
+    }
+
+  /**
+   * Returns if the given request case represents a failure caused by a body value that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyFailureDup( RequestCase requestCase, String inputId)
+    {
+    return
+      getBodyFailureData( requestCase)
+      .map( body -> {
         return
-          toStream( rc.getParams())
-          .filter( param -> !param.isValid())
-          .findFirst()
-          .map( param -> (MessageData) param)
-          .orElse( rc.getBody());
+          !isJson( body.getMediaType())
+          &&
+          (isBodyObjectEmptyFailureDup( requestCase, body, inputId)
+           || isBodyArrayEmptyFailureDup( requestCase, body, inputId)
+           || isBodyStringEmptyFailureDup( requestCase, body, inputId));
+        })
+      .orElse( false);
+    }
+
+  /**
+   * Returns if the given request case represents a body failure caused by an empty object that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyObjectEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().startsWith( String.format( "%s.Value.Property-Count=<", inputId))
+      && getInputObject( body, inputId).getValue().isEmpty()
+
+      && (isSimpleMediaType( body)
+          ||
+          isRoot( inputId)
+          ||
+          isSimpleIfUrlEncodedPropertyExploded( body, inputId)
+          .orElseGet(
+            () ->
+            isSimpleIfMultipartPart( body, inputId)
+            .orElseGet(
+              () ->
+              isSimpleIfMultipartPartPropertyExploded( body, inputId)
+              .orElseGet(
+                () ->
+                isSimpleIfDeepContent( body, inputId)
+                .orElse( false)))));
+    }
+
+  /**
+   * Returns if the given request case represents a body failure caused by an empty array that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyArrayEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Items.Size=0", inputId))
+
+      && (isSimpleMediaType( body)
+          ||
+          isRoot( inputId)
+          ||
+          isSimpleIfUrlEncodedProperty( inputId)
+          .orElseGet(
+            () ->
+            isSimpleIfMultipartPart( body, inputId)
+            .orElseGet(
+            () ->
+            isSimpleIfDeepContent( body, inputId)
+            .orElse( false))));
+    }
+
+  /**
+   * Returns if the given request case represents a body failure caused by an empty string that
+   * duplicates a null value when serialized.
+   */
+  private static boolean isBodyStringEmptyFailureDup( RequestCase requestCase, MessageData body, String inputId)
+    {
+    return
+      requestCase.getInvalidInput().equals( String.format( "%s.Value.Length=0", inputId))
+
+      && (isSimpleMediaType( body)
+          ||
+          isRoot( inputId)
+          ||
+          isSimpleIfUrlEncodedProperty( inputId)
+          .orElseGet(
+            () ->
+            isSimpleIfMultipartPart( body, inputId)
+            .orElseGet(
+            () ->
+            isSimpleIfDeepContent( body, inputId)
+            .orElse( false))));
+    }
+
+  /**
+   * TBD
+   */
+  private static ObjectValue getInputObject( MessageData body, String inputId)
+    {
+    ObjectValue bodyObject = (ObjectValue) body.getValue();
+
+    return
+      Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .flatMap( matcher -> propertyValueFor( bodyObject, matcher.group(1)))
+      .map( value -> (ObjectValue) value)
+
+      .orElseGet(
+        () ->
+        Optional.of( MULTIPART_PART_ID.matcher( inputId))
+        .filter( matcher -> matcher.find())
+        .flatMap( matcher -> propertyValueFor( bodyObject, matcher.group(1)))
+        .map( value -> (ObjectValue) value)
+
+        .orElseGet(
+          () ->
+          Optional.of( MULTIPART_PART_PROPERTY_ID.matcher( inputId))
+          .filter( matcher -> matcher.find())
+          .flatMap( matcher -> {
+            return
+              propertyValueFor( bodyObject, matcher.group(1))
+              .map( value -> (ObjectValue) value)
+              .flatMap( part -> propertyValueFor( part, matcher.group(2)))
+              .map( value -> (ObjectValue) value);
+            })
+
+          .orElse( bodyObject)));
+    }
+
+  /**
+   * If the given request case is a failure case with an invalid body value, return the invalid body data.
+   */
+  private static Optional<MessageData> getBodyFailureData( RequestCase requestCase)
+    {
+    return
+      Optional.of( requestCase)
+      .filter( RequestCase::isFailure)
+      .filter( rc -> toStream( rc.getParams()).allMatch( MessageData::isValid))
+      .map( rc -> rc.getBody());
+    }
+
+  /**
+   * Returns if the given request parameter input uses a "simple" serialization style. 
+   */
+  private static boolean isSimpleEncoded( ParamData param, String inputId)
+    {
+    // True except for the value of a form-encoded parameter (unless it is an exploded object value)
+    return
+      !(inputId.equals( toIdentifier( param.getName()))
+        && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE)
+        && !(param.getValue().getType() == DataValue.Type.OBJECT && param.isExploded()));
+    }
+
+  /**
+   * Returns if the body has a simple media type.
+   */
+  private static boolean isSimpleMediaType( MessageData body)
+    {
+    return
+      Optional.ofNullable( body.getMediaType())
+      .map( mediaType -> !("application/x-www-form-urlencoded".equals( mediaType) || "multipart/form-data".equals( mediaType)))
+      .orElse( true);
+    }
+
+  /**
+   * Returns if the given input id identifies the root value of body content.
+   */
+  private static boolean isRoot( String inputId)
+    {
+    return ROOT_ID.matcher( inputId).find();
+    }
+
+  /**
+   * If the given input id identifies an exploded property of an <CODE>application/x-www-form-urlencoded</CODE> object,
+   * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfUrlEncodedPropertyExploded( MessageData body, String inputId)
+    {
+    return
+      Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> matcher.group(1))
+      .map( property -> encodingFor( body, property).map( EncodingData::isExploded).orElse( true));
+    }
+
+  /**
+   * If the given input id identifies a property of an <CODE>application/x-www-form-urlencoded</CODE> object,
+   * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfUrlEncodedProperty( String inputId)
+    {
+    return
+      Optional.of( URLENCODED_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> false);
+    }
+
+  /**
+   * If the given input id identifies a part of a <CODE>multipart/form-data</CODE> object,
+   * returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>. 
+   */
+  private static Optional<Boolean> isSimpleIfMultipartPart( MessageData body, String inputId)
+    {
+    return
+      Optional.of( MULTIPART_PART_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> matcher.group(1))
+      .map( property -> encodingFor( body, property).map( EncodingData::getContentType).orElse( "text/plain"))
+      .map( contentType -> !isJson( contentType));
+    }
+
+  /**
+   * If the given input id identifies an exploded property of an <CODE>application/x-www-form-urlencoded</CODE> part of a
+   * <CODE>multipart/form-data</CODE> object, returns if it is simple-encoded. Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfMultipartPartPropertyExploded( MessageData body, String inputId)
+    {
+    return
+      Optional.of( MULTIPART_PART_PROPERTY_ID.matcher( inputId))
+      .filter( matcher -> matcher.find())
+      .map( matcher -> matcher.group(1))
+      .map( property -> encodingFor( body, property).map( EncodingData::getContentType).orElse( "text/plain"))
+      .map( contentType -> "application/x-www-form-urlencoded".equals( contentType));
+    }
+
+  /**
+   * If the given input id identifies a deeply-nested value, returns if it is simple-encoded. Otherwise, returns
+   * <CODE>Optional.empty()</CODE>.
+   */
+  private static Optional<Boolean> isSimpleIfDeepContent( MessageData body, String inputId)
+    {
+    return
+      Optional.of( inputId)
+      .filter( id -> DEEP_CONTENT_ID.matcher( id).find())
+      .map( id -> {
+        return
+          Optional.of( MULTIPART_CONTENT_ID.matcher( id))
+          .filter( matcher -> matcher.find())
+          .map( matcher -> matcher.group(1))
+          .map( property -> encodingFor( body, property).map( EncodingData::getContentType).orElse( "text/plain"))
+          .map( contentType -> !isJson( contentType))
+          .orElse( true);
         });
     }
+
+  /**
+   * Returns the encoding for the given object property identified by the given property id.
+   */
+  private static Optional<EncodingData> encodingFor( MessageData body, String propertyId)
+    {
+    return
+      body.getEncodings()
+      .entrySet().stream()
+      .filter( encoding -> propertyId.equals( toIdentifier( encoding.getKey())))
+      .findFirst()
+      .map( encoding -> encoding.getValue());
+    }
+
+  /**
+   * Returns the value of the object property identified by the given property id.
+   */
+  private static Optional<DataValue<?>> propertyValueFor( ObjectValue object, String propertyId)
+    {
+    return
+      object.getValue()
+      .entrySet().stream()
+      .filter( e -> propertyId.equals( toIdentifier( e.getKey())))
+      .findFirst()
+      .map( e -> e.getValue());
+    }
+
+  /**
+   * Returns if the given media type denotes JSON-encoded content.
+   */
+  private static boolean isJson( String mediaType)
+    {
+    return
+      Optional.ofNullable( mediaType)
+      .map( MediaRange::of)
+      .map( media -> "application/json".equals( media.base()) || "json".equals( media.suffix()))
+      .orElse( false);
+    }
+
+  /**
+   * Returns a pattern that matches the begining of an body input id.
+   */
+  private static Pattern bodyIdPrefix( String... segments)
+    {
+    return bodyIdPattern( false, segments);
+    }
+
+  /**
+   * Returns a pattern that matches an entire body input id. 
+   */
+  private static Pattern bodyIdPattern( String... segments)
+    {
+    return bodyIdPattern( true, segments);
+    }
+
+  /**
+   * Returns a pattern that matches a body input id. If <CODE>all</CODE> is true, returns a pattern that matches the entire
+   * id. Otherwise, returns a pattern that matches the beginning of the id.
+   */
+  private static Pattern bodyIdPattern( boolean all, String... segments)
+    {
+    return Pattern.compile( Arrays.stream( segments).collect( joining( "\\.", "^Body\\.", all? "$" : "")));
+    }
+
+  private static final String ANY_NAME = "([^\\.]+)";
+  private static final String ANY_NAMES = String.format( "%s(\\.%s)+", ANY_NAME, ANY_NAME);
+
+  private static final Pattern DEEP_CONTENT_ID = bodyIdPrefix( ANY_NAME, "Value", ANY_NAMES, "Value");
+  private static final Pattern MULTIPART_CONTENT_ID = bodyIdPrefix( "multipart-form-data", "Value", "Properties", ANY_NAME);
+  private static final Pattern MULTIPART_PART_ID = bodyIdPattern( "multipart-form-data", "Value", "Properties", ANY_NAME);
+  private static final Pattern MULTIPART_PART_PROPERTY_ID = bodyIdPattern( "multipart-form-data", "Value", "Properties", ANY_NAME, "Value", "Properties", ANY_NAME);
+  private static final Pattern ROOT_ID = bodyIdPattern( ANY_NAME);
+  private static final Pattern URLENCODED_PROPERTY_ID = bodyIdPattern( "application-x-www-form-urlencoded", "Value", "Properties", ANY_NAME);
+
   }
