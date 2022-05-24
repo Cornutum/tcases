@@ -12,6 +12,19 @@ This release provides the following improvements to Tcases for OpenAPI.
     identify duplicates, in particular when considering the encodings specified for media types like
     `application/x-www-form-urlencoded`.
 
+  * **Handle null vs. empty inconsistencies correctly**
+
+    Inconsistent test cases can emerge when null and empty values are serialized identically. (For details, see issue #201.)
+    This release now correctly resolves any such inconsistency with a warning, including for object values.
+
+    To avoid duplicate test cases, the `tcases-api-test` command (and, for Maven, the `tcases:api-test` goal) eliminates test
+
+  * **Handle LWS in media types correctly** [[232](https://github.com/Cornutum/tcases/issues/237)]
+
+    This changes fixes a defect in recognizing media type definitions, which can appear in OpenAPI definitions of
+    requests and responses and also in the `Content-Type` headers received from API servers. Media type definitions
+    containing "linear whitespace" (LWS) are now correctly decoded.
+
   * **Upgraded dependencies**
 
     Upgraded to swagger-parser 2.0.33.
