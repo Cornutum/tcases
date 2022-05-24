@@ -7,19 +7,20 @@ This release provides the following improvements to Tcases for OpenAPI.
   * **Handle parameter and body input encodings correctly when "realizing" test cases**
 
     To avoid duplicate test cases, the `tcases-api-test` command (and, for Maven, the `tcases:api-test` goal) eliminates test
-    cases that can't be uniquely "realized". For example, such duplicates can occur when null, empty, or undefined values
-    are the same when serialized as strings. (See issue #133.) This release updates the "realization" logic to correctly
-    identify duplicates, in particular when considering the encodings specified for media types like
-    `application/x-www-form-urlencoded`.
+    cases that can't be uniquely "realized". For example, such duplicates can occur when null, empty, or undefined values are
+    the same when serialized as strings. (See issue #[133](https://github.com/Cornutum/tcases/issues/133).) This release updates
+    the "realization" logic to correctly identify duplicates, in particular when considering the encodings specified for media
+    types like `application/x-www-form-urlencoded`.
 
   * **Handle null vs. empty inconsistencies correctly**
 
-    Inconsistent test cases can emerge when null and empty values are serialized identically. (For details, see issue #201.)
-    This release now correctly resolves any such inconsistency with a warning, including for object values.
+    Inconsistent test cases can emerge when null and empty values are serialized identically. (For details, see issue
+    #[201](https://github.com/Cornutum/tcases/issues/201).)  This release now correctly resolves any such inconsistency with a
+    warning, including for object values.
 
     To avoid duplicate test cases, the `tcases-api-test` command (and, for Maven, the `tcases:api-test` goal) eliminates test
 
-  * **Handle LWS in media types correctly** [[232](https://github.com/Cornutum/tcases/issues/237)]
+  * **Handle LWS in media types correctly** [[237](https://github.com/Cornutum/tcases/issues/237)]
 
     This changes fixes a defect in recognizing media type definitions, which can appear in OpenAPI definitions of
     requests and responses and also in the `Content-Type` headers received from API servers. Media type definitions
