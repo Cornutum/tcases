@@ -63,11 +63,16 @@ public class NormalizeTest extends OpenApiTest
         "Normalize,/path/array/{empty}/{nonEmpty}/{nullable}/{exploded},GET,empty: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
         "Normalize,/path/array/{empty}/{nonEmpty}/{nullable}/{exploded},GET,nullable: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
         "Normalize,/path/array/{empty}/{nonEmpty}/{nullable}/{exploded},GET,exploded: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
+        "Normalize,/path/object/{nonEmpty}/{nullable}/{exploded},GET,nonEmpty: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+        "Normalize,/path/object/{nonEmpty}/{nullable}/{exploded},GET,nullable: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+        "Normalize,/path/object/{nonEmpty}/{nullable}/{exploded},GET,exploded: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
         "Normalize,/header/string,GET,empty: Empty string values not allowed for non-nullable parameter -- using minLength=1.",
         "Normalize,/header/string,GET,nullableNonEmpty: Empty string values allowed for nullable parameter -- using minLength=0.",
         "Normalize,/header/array,GET,empty: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
         "Normalize,/header/array,GET,nullableNonEmpty: Empty array values allowed for nullable parameter -- using minItems=0.",
-        "Normalize,/header/array,GET,exploded: Empty array values not allowed for non-nullable parameter -- using minItems=1."),
+        "Normalize,/header/array,GET,exploded: Empty array values not allowed for non-nullable parameter -- using minItems=1.",
+        "Normalize,/header/object,GET,nonEmpty: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+        "Normalize,/header/object,GET,exploded: Empty object values not allowed for non-nullable parameter -- using minProperties=1."),
 
       Arrays.asList(
         "Normalize,/path/string/{empty}/{nonEmpty}/{nullable},GET,nullable: Null values not allowed. Using nullable=false.",
@@ -82,7 +87,13 @@ public class NormalizeTest extends OpenApiTest
     verifyRequestInputModel( "normalize-form");
     
     // Then...
-    assertConditions( Arrays.asList(), Arrays.asList());
+    assertWarnings(
+      "Normalize,/query/object,GET,nonEmpty: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+      "Normalize,/query/object,GET,exploded: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+      "Normalize,/query/object,GET,deep: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+      "Normalize,/cookie/object,GET,nonEmpty: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+      "Normalize,/cookie/object,GET,exploded: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
+      "Normalize,/cookie/object,GET,deep: Empty object values not allowed for non-nullable parameter -- using minProperties=1.");
     }
 
   /**

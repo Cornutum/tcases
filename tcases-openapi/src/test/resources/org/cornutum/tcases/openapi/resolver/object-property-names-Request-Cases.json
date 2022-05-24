@@ -17,48 +17,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                    }
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "name": "param0.Defined='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Object",
-        "path": "/object",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": null,
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "param0.Value.Property-Count='> 0'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Object",
-        "path": "/object",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
                         "Big *#@$!-ing Number": {
                             "type": "number",
                             "value": -4273563035268397094.6
@@ -91,6 +49,52 @@
         ]
     },
     {
+        "id": 1,
+        "name": "param0.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": null,
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "param0.Value.Properties.Hello-world.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "Big *#@$!-ing Number": {
+                            "type": "number",
+                            "value": 0
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
         "id": 3,
         "name": "param0.Value.Properties.Hello-world.Value.Length='0'",
         "server": "/",
@@ -110,33 +114,6 @@
                         "Hello, world!": {
                             "type": "string",
                             "value": ""
-                        }
-                    }
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "name": "param0.Value.Properties.Big--ing-Number.Value.Is='0'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Object",
-        "path": "/object",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "Big *#@$!-ing Number": {
-                            "type": "number",
-                            "value": 0
                         },
                         "xmczosccg": {
                             "type": "integer",
@@ -150,7 +127,7 @@
         ]
     },
     {
-        "id": 5,
+        "id": 4,
         "name": "param0.Value.Properties.Big--ing-Number.Value.Is='> 0'",
         "server": "/",
         "version": "0.0.0",
@@ -169,10 +146,6 @@
                         "Big *#@$!-ing Number": {
                             "type": "number",
                             "value": 366221916275990301.5
-                        },
-                        "Hello, world!": {
-                            "type": "string",
-                            "value": "?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z"
                         }
                     }
                 },
@@ -181,7 +154,7 @@
         ]
     },
     {
-        "id": 6,
+        "id": 5,
         "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -204,7 +177,7 @@
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 7,
+        "id": 6,
         "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
@@ -218,13 +191,37 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "number",
+                    "value": 93.3
                 },
                 "valid": false
             }
         ],
         "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 7,
+        "name": "param0.Value.Property-Count='< 1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Property-Count=< 1"
     },
     {
         "id": 8,
@@ -247,13 +244,56 @@
                             "type": "null",
                             "value": null
                         },
-                        "iohme": {
-                            "type": "number",
-                            "value": 720.8
-                        },
-                        "eiygxojx": {
+                        "azmmpqf": {
                             "type": "array",
                             "value": [
+                                {
+                                    "type": "string",
+                                    "value": "wp"
+                                }
+                            ]
+                        },
+                        "dihbxzmnaiwmybj": {
+                            "type": "object",
+                            "value": {
+                                "jbdhcmihwtlst": {
+                                    "type": "string",
+                                    "value": "}o"
+                                },
+                                "vi": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "`dep5Ftn"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "\":"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "D4:uw"
+                                        }
+                                    ]
+                                },
+                                "rezkjgmba": {
+                                    "type": "boolean",
+                                    "value": true
+                                }
+                            }
+                        },
+                        "ebjxevstlmn": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "&b?lK{2h"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                }
                             ]
                         }
                     }
@@ -282,21 +322,12 @@
                     "value": {
                         "Hello, world!": {
                             "type": "integer",
-                            "value": -208,
+                            "value": 339,
                             "format": "int32"
                         },
-                        "iummgqkajnn": {
-                            "type": "object",
-                            "value": {
-                                "cnzo": {
-                                    "type": "number",
-                                    "value": 461.0
-                                },
-                                "ujogjixineeufck": {
-                                    "type": "boolean",
-                                    "value": true
-                                }
-                            }
+                        "iygxoj": {
+                            "type": "number",
+                            "value": -968.0
                         }
                     }
                 },
@@ -326,18 +357,17 @@
                             "type": "null",
                             "value": null
                         },
-                        "xltsmpyfisrhuuo": {
+                        "Hello, world!": {
+                            "type": "string",
+                            "value": "y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{("
+                        },
+                        "ujtiudypcwm": {
+                            "type": "string",
+                            "value": ""
+                        },
+                        "wdwnevsfxp": {
                             "type": "number",
-                            "value": -414.8
-                        },
-                        "mdlgpibwbtvmzb": {
-                            "type": "integer",
-                            "value": -649,
-                            "format": "int32"
-                        },
-                        "nacrhl": {
-                            "type": "boolean",
-                            "value": true
+                            "value": -622.1
                         }
                     }
                 },
@@ -364,13 +394,21 @@
                     "type": "object",
                     "value": {
                         "Big *#@$!-ing Number": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        },
-                        "vdyoerszye": {
                             "type": "string",
-                            "value": "Y"
+                            "value": ""
+                        },
+                        "Hello, world!": {
+                            "type": "string",
+                            "value": "rLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX"
+                        },
+                        "ocslwsgotyzi": {
+                            "type": "integer",
+                            "value": -689,
+                            "format": "int32"
+                        },
+                        "aqfmjf": {
+                            "type": "string",
+                            "value": "0'"
                         }
                     }
                 },

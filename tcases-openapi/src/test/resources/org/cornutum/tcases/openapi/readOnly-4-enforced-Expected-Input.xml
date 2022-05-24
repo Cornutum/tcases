@@ -21,6 +21,13 @@
           <Value name="Not object" failure="true"/>
         </Var>
         <VarSet name="Value" when="param0Value">
+          <Var name="Property-Count">
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="param0Properties" min="0"/>
+              </When>
+            </Value>
+          </Var>
           <VarSet name="Properties">
             <VarSet name="alpha">
               <Has name="excludedType" value="string"/>
@@ -32,7 +39,7 @@
             </VarSet>
             <Var name="Additional">
               <Value name="Yes" property="param0Properties"/>
-              <Value name="No"/>
+              <Value name="No" failure="true"/>
             </Var>
           </VarSet>
         </VarSet>
