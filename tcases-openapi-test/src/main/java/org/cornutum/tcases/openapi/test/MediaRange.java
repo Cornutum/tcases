@@ -69,8 +69,8 @@ public class MediaRange
       .filter( param -> param.length == 2)
       .collect(
         toMap(
-          param -> param[0],
-          param -> param[1],
+          param -> param[0].trim(),
+          param -> param[1].trim(),
           (v1,v2) -> v1,
           LinkedHashMap::new));
     }
@@ -179,7 +179,7 @@ public class MediaRange
       baseType( type_, subtype_, suffix_)
       +
       Optional.ofNullable( parameters_)
-      .map( params -> params.entrySet().stream().map( param -> String.format( ";%s=%s", param.getKey(), param.getValue())).collect( joining()))
+      .map( params -> params.entrySet().stream().map( param -> String.format( "; %s=%s", param.getKey(), param.getValue())).collect( joining()))
       .orElse( "");          
     }
     
@@ -187,7 +187,18 @@ public class MediaRange
   private final String subtype_;
   private final String suffix_;
   private final Map<String,String> parameters_;
-    
-  private static final Pattern mediaRange_ = Pattern.compile( "([^\\s/]+)/([^\\s+;]+)(?:\\+([^\\s;]+))?((?:;[^\\s;=]+=(?:[^\\s\";=]+|\"(?:[^\\\"]|\\\\.)*\"))+)?");
+
+  private static final String DELIM = "\\h()<>@,;:\\\\\"/\\[\\]?={}";
+  private static final String TOKEN = String.format( "[^%s]+", DELIM);
+  private static final String STOKEN = String.format( "[^%s\\+]+", DELIM);
+  private static final String QSTRING = "\"(?:[^\\\"]|\\\\.)*\"";
+  private static final String LWS = "\\h*";
+
+  private static final String MEDIA_RANGE =
+    String.format(
+      "%s(%s)/(%s)(?:\\+(%s))?((?:%s;%s%s%s=%s(?:%s|%s)%s)+)?",
+      LWS, TOKEN, STOKEN, STOKEN, LWS, LWS, TOKEN, LWS, LWS, TOKEN, QSTRING, LWS);
+  
+  private static final Pattern mediaRange_ = Pattern.compile( MEDIA_RANGE);
   private static final Pattern quotedChar_ = Pattern.compile( "\\\\(.)");
   }
