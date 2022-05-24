@@ -62,29 +62,6 @@
     },
     {
         "id": 2,
-        "name": "param0.Value.Properties.Additional='No'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Object",
-        "path": "/object",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "header",
-                "style": "simple",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                    }
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 3,
         "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -107,7 +84,7 @@
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 4,
+        "id": 3,
         "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
@@ -128,5 +105,29 @@
             }
         ],
         "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 4,
+        "name": "param0.Value.Properties.Additional='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "header",
+                "style": "simple",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Additional=No"
     }
 ]

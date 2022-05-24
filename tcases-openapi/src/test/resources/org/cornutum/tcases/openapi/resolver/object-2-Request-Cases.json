@@ -17,6 +17,18 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "x": {
+                            "type": "string",
+                            "value": "$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwle"
+                        },
+                        "ccgaah": {
+                            "type": "string",
+                            "value": "7?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[N"
+                        },
+                        "lgpibwbtvmzbsy": {
+                            "type": "string",
+                            "value": "qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE"
+                        }
                     }
                 },
                 "valid": true
@@ -44,41 +56,6 @@
     },
     {
         "id": 2,
-        "name": "param0.Value.Property-Count='<= 3'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Object",
-        "path": "/object",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "x": {
-                            "type": "string",
-                            "value": "$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwle"
-                        },
-                        "ccgaah": {
-                            "type": "string",
-                            "value": "7?5 KJYu$s]/HfvwpDFT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[N"
-                        },
-                        "lgpibwbtvmzbsy": {
-                            "type": "string",
-                            "value": "qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE"
-                        }
-                    }
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 3,
         "name": "param0.Value.Properties.Additional.Value.Length='0'",
         "server": "/",
         "version": "0.0.0",
@@ -109,7 +86,7 @@
         ]
     },
     {
-        "id": 4,
+        "id": 3,
         "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -132,7 +109,7 @@
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 5,
+        "id": 4,
         "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
@@ -160,7 +137,7 @@
         "invalidInput": "param0.Type=Not object"
     },
     {
-        "id": 6,
+        "id": 5,
         "name": "param0.Value.Property-Count='> 3'",
         "server": "/",
         "version": "0.0.0",
@@ -202,6 +179,30 @@
             }
         ],
         "invalidInput": "param0.Value.Property-Count=> 3"
+    },
+    {
+        "id": 6,
+        "name": "param0.Value.Properties.Additional.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Object",
+        "path": "/object",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Value.Properties.Additional.Defined=No"
     },
     {
         "id": 7,

@@ -12,7 +12,7 @@
     <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringNotEmpty,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -25,47 +25,47 @@
         <Var name="param0.Type" value="object">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Property-Count" value="0">
+        <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="No">
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" NA="true">
+        <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myBoolean"/>
         </Var>
-        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+        <Var name="param0.Value.Properties.myBoolean.Value" value="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myNumber"/>
         </Var>
-        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+        <Var name="param0.Value.Properties.myNumber.Type" value="number">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myInteger.Defined" value="No">
+        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myInteger"/>
         </Var>
-        <Var name="param0.Value.Properties.myInteger.Type" NA="true">
+        <Var name="param0.Value.Properties.myInteger.Type" value="integer">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myInteger.Value.Is" NA="true">
+        <Var name="param0.Value.Properties.myInteger.Value.Is" value="&lt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" value="No">
@@ -136,10 +136,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2" name="param0.Value.Property-Count=&apos;&lt;= 4&apos;">
+    <TestCase id="2" name="param0.Value.Properties.myString.Defined=&apos;No&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringNotEmpty,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -155,78 +155,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="propertyName" value="myBoolean"/>
-        </Var>
-        <Var name="param0.Value.Properties.myBoolean.Type" value="boolean">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myBoolean.Value" value="true">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myNumber.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="propertyName" value="myNumber"/>
-        </Var>
-        <Var name="param0.Value.Properties.myNumber.Type" value="number">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myNumber.Value.Is" value="&lt; 0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myInteger.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="propertyName" value="myInteger"/>
-        </Var>
-        <Var name="param0.Value.Properties.myInteger.Type" value="integer">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myInteger.Value.Is" value="&lt; 0">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="param0"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="3" name="param0.Value.Properties.myString.Value.Length=&apos;0&apos;">
-      <Has name="operation" value="POST"/>
-      <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Object"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="cookie">
-        <Var name="param0.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="paramName" value="param0"/>
-          <Has name="style" value="form"/>
-        </Var>
-        <Var name="param0.Type" value="object">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Property-Count" value="&lt;= 4">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
-          <Has name="paramName" value="param0"/>
-          <Has name="propertyName" value="myString"/>
-        </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
-          <Has name="paramName" value="param0"/>
-        </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
@@ -264,10 +200,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" name="param0.Value.Properties.myBoolean.Value=&apos;false&apos;">
+    <TestCase id="3" name="param0.Value.Properties.myString.Value.Length=&apos;0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -283,14 +219,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="No">
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" NA="true">
+        <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
@@ -328,10 +264,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" name="param0.Value.Properties.myNumber.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="4" name="param0.Value.Properties.myNumber.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringNotEmpty,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -347,14 +283,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
@@ -392,10 +328,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" name="param0.Value.Properties.myInteger.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="5" name="param0.Value.Properties.myInteger.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyBooleanValue,param0MyInteger,param0MyIntegerValue,param0MyString,param0MyStringLengthValid,param0MyStringNotEmpty,param0MyStringValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -411,14 +347,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="No">
+        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" NA="true">
+        <Var name="param0.Value.Properties.myString.Type" value="string">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+        <Var name="param0.Value.Properties.myString.Value.Length" value="&gt; 0">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
@@ -456,7 +392,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="param0.Type=null">
+    <TestCase id="6" failure="true" name="param0.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
@@ -520,7 +456,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="param0.Type=&apos;Not object&apos;">
+    <TestCase id="7" failure="true" name="param0.Type=&apos;Not object&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
       <Has name="properties" value="param0"/>
@@ -580,6 +516,70 @@
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="param0.Value.Property-Count=&apos;&lt; 1&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/object"/>
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Object"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="object">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myString"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myBoolean"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myBoolean.Value" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myNumber"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myNumber.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myInteger.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="propertyName" value="myInteger"/>
+        </Var>
+        <Var name="param0.Value.Properties.myInteger.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.myInteger.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Properties.Additional" value="No">
           <Has name="paramName" value="param0"/>
         </Var>
       </Input>
@@ -779,7 +779,7 @@
     <TestCase id="12" failure="true" name="param0.Value.Properties.myBoolean.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -795,14 +795,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
@@ -843,7 +843,7 @@
     <TestCase id="13" failure="true" name="param0.Value.Properties.myBoolean.Type=&apos;Not boolean&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyBoolean,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -859,14 +859,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="Yes">
@@ -907,7 +907,7 @@
     <TestCase id="14" failure="true" name="param0.Value.Properties.myNumber.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyNumber,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyNumber,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -923,14 +923,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
@@ -971,7 +971,7 @@
     <TestCase id="15" failure="true" name="param0.Value.Properties.myNumber.Type=&apos;Not number&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyNumber,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyNumber,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -987,14 +987,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
@@ -1035,7 +1035,7 @@
     <TestCase id="16" failure="true" name="param0.Value.Properties.myInteger.Type=null">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1051,14 +1051,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">
@@ -1099,7 +1099,7 @@
     <TestCase id="17" failure="true" name="param0.Value.Properties.myInteger.Type=&apos;Not integer&apos;">
       <Has name="operation" value="POST"/>
       <Has name="path" value="/object"/>
-      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0MyString,param0MyStringLengthValid,param0MyStringValue,param0Properties,param0Value"/>
+      <Has name="properties" value="param0,param0MyInteger,param0MyNumber,param0MyNumberValue,param0Properties,param0Value"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Object"/>
       <Has name="version" value="0.0.0"/>
@@ -1115,14 +1115,14 @@
         <Var name="param0.Value.Property-Count" value="&lt;= 4">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Defined" value="Yes">
+        <Var name="param0.Value.Properties.myString.Defined" value="No">
           <Has name="paramName" value="param0"/>
           <Has name="propertyName" value="myString"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Type" value="string">
+        <Var name="param0.Value.Properties.myString.Type" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
-        <Var name="param0.Value.Properties.myString.Value.Length" value="0">
+        <Var name="param0.Value.Properties.myString.Value.Length" NA="true">
           <Has name="paramName" value="param0"/>
         </Var>
         <Var name="param0.Value.Properties.myBoolean.Defined" value="No">

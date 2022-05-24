@@ -1074,9 +1074,11 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     // Is this a simple string parameter?
     if( "string".equals( parameterSchema.getType()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
       {
+      int minLength = Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0);
+      boolean nullable = Optional.ofNullable( parameterSchema.getNullable()).orElse( false);
+
       // Is a valid empty value equivalent to an invalid null value?
-      if( Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) <= 0
-          && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
+      if( minLength <= 0 && !nullable)
         {
         // Yes, avoid inconsistent empty value
         if( parameterSchema.getEnum() != null)
@@ -1090,12 +1092,14 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
           {
           notifyWarning( "Empty string values not allowed for non-nullable parameter -- using minLength=1");
           parameterSchema.setMinLength( 1);
+          Optional.ofNullable( parameterSchema.getMaxLength())
+            .filter( max -> max < 1)
+            .ifPresent( max -> parameterSchema.setMaxLength( 1));
           }
         }
 
       // Is a valid null value equivalent to an invalid empty value?
-      else if( Optional.ofNullable( minStringFormat( parameterSchema.getFormat(), parameterSchema.getMinLength(), false)).orElse(0) == 1
-               && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
+      else if( minLength == 1 && nullable)
         {
         // Yes, avoid inconsistent empty value failure
         notifyWarning( "Empty string values allowed for nullable parameter -- using minLength=0");
@@ -1104,24 +1108,61 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       }
 
     // Is this a simple array parameter?
-    if( "array".equals( parameterSchema.getType()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
+    else if( "array".equals( parameterSchema.getType()) && Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle()))
       {
+      int minItems = Optional.ofNullable( parameterSchema.getMinItems()).orElse(0);
+      boolean nullable = Optional.ofNullable( parameterSchema.getNullable()).orElse( false);
+      
       // Is a valid empty value equivalent to an invalid null value?
-      if( Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) <= 0
-          && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == false)
+      if( minItems <= 0 && !nullable)
         {
         // Yes, avoid inconsistent empty value
         notifyWarning( "Empty array values not allowed for non-nullable parameter -- using minItems=1");
         parameterSchema.setMinItems( 1);
+        Optional.ofNullable( parameterSchema.getMaxItems())
+            .filter( max -> max < 1)
+            .ifPresent( max -> parameterSchema.setMaxItems( 1));
         }
 
       // Is a valid null value equivalent to an invalid empty value?
-      else if( Optional.ofNullable( parameterSchema.getMinItems()).orElse(0) == 1
-               && Optional.ofNullable( parameterSchema.getNullable()).orElse( false) == true)
+      else if( minItems == 1 && nullable)
         {
         // Yes, avoid inconsistent empty value failure
         notifyWarning( "Empty array values allowed for nullable parameter -- using minItems=0");
         parameterSchema.setMinItems( 0);
+        }
+      }
+
+    // Is this a simple object parameter?
+    else if( "object".equals( parameterSchema.getType())
+             &&
+             (Parameter.StyleEnum.SIMPLE.equals( parameter.getStyle())
+              || (("query".equals( parameter.getIn()) || "cookie".equals( parameter.getIn()) && parameter.getExplode()))))
+      {
+      int minProperties =
+        Math.max(
+          Optional.ofNullable( parameterSchema.getMinProperties()).orElse(0),
+          Optional.ofNullable( parameterSchema.getRequired()).map( List::size).orElse(0));
+      
+      boolean nullable = Optional.ofNullable( parameterSchema.getNullable()).orElse( false);
+      
+      // Is a valid empty value equivalent to an invalid null value?
+      if( minProperties <= 0 && !nullable)
+        {
+        // Yes, avoid inconsistent empty value
+        notifyWarning( "Empty object values not allowed for non-nullable parameter -- using minProperties=1");
+        parameterSchema.setMinProperties( 1);
+        Optional.ofNullable( parameterSchema.getMaxProperties())
+            .filter( max -> max < 1)
+            .ifPresent( max -> parameterSchema.setMaxProperties( 1));
+        }
+
+      // Is a valid null value equivalent to an invalid empty value?
+      else if( minProperties == 1 && nullable)
+        {
+        // Yes, avoid inconsistent empty value failure
+        notifyWarning( "Empty object values allowed for nullable parameter -- using minProperties=0");
+        parameterSchema.setMinProperties( 0);
         }
       }
     }

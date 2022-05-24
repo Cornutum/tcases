@@ -17,27 +17,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "number",
-                            "value": 3.14156
-                        },
-                        "alpha": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "X"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "Y"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "Z"
-                                }
-                            ]
-                        }
                     }
                 },
                 "valid": true
@@ -87,7 +66,7 @@
     },
     {
         "id": 3,
-        "name": "param0.Value.Properties.alpha.Defined='No'",
+        "name": "param0.Value.Property-Count='<= 2'",
         "server": "/",
         "version": "0.0.0",
         "api": "examples",
@@ -102,14 +81,26 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "charlie": {
-                            "type": "integer",
-                            "value": 42,
-                            "format": "int32"
+                        "bravo": {
+                            "type": "number",
+                            "value": 3.14156
                         },
-                        "exijwc": {
-                            "type": "string",
-                            "value": "A"
+                        "alpha": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "X"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Y"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Z"
+                                }
+                            ]
                         }
                     }
                 },
@@ -134,10 +125,6 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "bravo": {
-                            "type": "number",
-                            "value": 3.14156
-                        },
                         "alpha": {
                             "type": "array",
                             "value": [
@@ -146,6 +133,11 @@
                                     "value": "empty"
                                 }
                             ]
+                        },
+                        "charlie": {
+                            "type": "integer",
+                            "value": 42,
+                            "format": "int32"
                         }
                     }
                 },
@@ -155,7 +147,7 @@
     },
     {
         "id": 5,
-        "name": "param0.Value.Properties.Additional.Value='B'",
+        "name": "param0.Value.Properties.Additional.Defined='Yes'",
         "server": "/",
         "version": "0.0.0",
         "api": "examples",
@@ -170,14 +162,13 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "charlie": {
-                            "type": "integer",
-                            "value": 42,
-                            "format": "int32"
+                        "bravo": {
+                            "type": "number",
+                            "value": 3.14156
                         },
-                        "cjlymlw": {
+                        "exijwc": {
                             "type": "string",
-                            "value": "B"
+                            "value": "A"
                         }
                     }
                 },
@@ -187,7 +178,7 @@
     },
     {
         "id": 6,
-        "name": "param0.Value.Properties.Additional.Value='C'",
+        "name": "param0.Value.Properties.Additional.Value='B'",
         "server": "/",
         "version": "0.0.0",
         "api": "examples",
@@ -218,6 +209,37 @@
                                     "value": "Z"
                                 }
                             ]
+                        },
+                        "cjlymlw": {
+                            "type": "string",
+                            "value": "B"
+                        }
+                    }
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "param0.Value.Properties.Additional.Value='C'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "examples",
+        "path": "/examples",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "cookie",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "bravo": {
+                            "type": "number",
+                            "value": 3.14156
                         },
                         "x": {
                             "type": "string",

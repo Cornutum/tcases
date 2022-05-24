@@ -252,8 +252,16 @@
         </Var>
         <VarSet name="Value" when="nonEmptyValue">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="nonEmptyProperties"/>
-            <Value name="&gt; 0" when="nonEmptyProperties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="nonEmptyProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="nonEmptyProperties" max="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="width">
@@ -380,8 +388,16 @@
         </Var>
         <VarSet name="Value" when="explodedValue">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="explodedProperties"/>
-            <Value name="&gt; 0" when="explodedProperties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="explodedProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="explodedProperties" max="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="width">
@@ -444,8 +460,16 @@
         </Var>
         <VarSet name="Value" when="deepValue">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="deepProperties"/>
-            <Value name="&gt; 0" when="deepProperties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="deepProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="deepProperties" max="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="width">
@@ -744,8 +768,16 @@
         </Var>
         <VarSet name="Value" when="nonEmptyValue">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="nonEmptyProperties"/>
-            <Value name="&gt; 0" when="nonEmptyProperties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="nonEmptyProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="nonEmptyProperties" max="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="width">
@@ -872,8 +904,16 @@
         </Var>
         <VarSet name="Value" when="explodedValue">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="explodedProperties"/>
-            <Value name="&gt; 0" when="explodedProperties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="explodedProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="explodedProperties" max="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="width">
@@ -936,8 +976,16 @@
         </Var>
         <VarSet name="Value" when="deepValue">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="deepProperties"/>
-            <Value name="&gt; 0" when="deepProperties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="deepProperties" min="1"/>
+              </When>
+            </Value>
+            <Value name="&lt; 1" failure="true">
+              <When>
+                <LessThan property="deepProperties" max="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="width">

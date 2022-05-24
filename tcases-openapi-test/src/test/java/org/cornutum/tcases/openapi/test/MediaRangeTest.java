@@ -49,7 +49,7 @@ public class MediaRangeTest
     assertEquals( "Subtype", "svg", mediaRange.subtype());
     assertEquals( "Suffix", "xml", mediaRange.suffix());
     assertEquals( "Parameters", params().put( "height", "1024").put( "width", "768").build(), mediaRange.parameters());
-    assertEquals( "String", definition, mediaRange.toString());
+    assertEquals( "String", "image/svg+xml; height=1024; width=768", mediaRange.toString());
     }
 
   /**
@@ -107,7 +107,7 @@ public class MediaRangeTest
   public void Of_2()
     {
     // Given...
-    String definition = "*/*+json;version=1.0.0";
+    String definition = "*/*+json ; version = 1.0.0  ";
                                 
     // When...
     MediaRange mediaRange = MediaRange.of( definition);
@@ -117,7 +117,7 @@ public class MediaRangeTest
     assertEquals( "Subtype", "*", mediaRange.subtype());
     assertEquals( "Suffix", "json", mediaRange.suffix());
     assertEquals( "Parameters", params().put( "version", "1.0.0").build(), mediaRange.parameters());
-    assertEquals( "String", definition, mediaRange.toString());
+    assertEquals( "String", "*/*+json; version=1.0.0", mediaRange.toString());
     }
 
   /**
@@ -141,7 +141,7 @@ public class MediaRangeTest
   public void Of_3()
     {
     // Given...
-    String definition = "*/*;level=0;version=\"1.2.3\"";
+    String definition = "  */* ;level=0 ;version=\"1.2.3\"";
                                 
     // When...
     MediaRange mediaRange = MediaRange.of( definition);
@@ -151,7 +151,7 @@ public class MediaRangeTest
     assertEquals( "Subtype", "*", mediaRange.subtype());
     assertEquals( "Suffix", null, mediaRange.suffix());
     assertEquals( "Parameters", params().put( "level", "0").put( "version", "1.2.3").build(), mediaRange.parameters());
-    assertEquals( "String", definition, mediaRange.toString());
+    assertEquals( "String", "*/*; level=0; version=\"1.2.3\"", mediaRange.toString());
     }
 
   /**
@@ -185,7 +185,7 @@ public class MediaRangeTest
     assertEquals( "Subtype", "plain", mediaRange.subtype());
     assertEquals( "Suffix", null, mediaRange.suffix());
     assertEquals( "Parameters", params().put( "lang", "American (Standard) English").build(), mediaRange.parameters());
-    assertEquals( "String", definition, mediaRange.toString());
+    assertEquals( "String", "text/plain; lang=\"American \\(Standard\\) English\"", mediaRange.toString());
     }
 
   /**
