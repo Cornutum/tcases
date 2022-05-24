@@ -17,6 +17,68 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "bravo": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "alpha": {
+                            "type": "string",
+                            "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                        },
+                        "pizmfncghyfhgtx": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": " t^]}<M"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "_JfU29n"
+                                }
+                            ]
+                        },
+                        "zgvkyxeybmgpmhn": {
+                            "type": "object",
+                            "value": {
+                                "pkfdhpngydmvbj": {
+                                    "type": "number",
+                                    "value": 200.2
+                                },
+                                "m": {
+                                    "type": "integer",
+                                    "value": 657,
+                                    "format": "int32"
+                                },
+                                "rhachkurozdge": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "tB6)2"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "<2,{r[wp"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "dfzaymkdz": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "%5`"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "=w*aG)"
+                                }
+                            ]
+                        }
                     }
                 },
                 "valid": true
@@ -28,7 +90,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "AS0)$"
+                    "value": "@b&1a"
                 },
                 "valid": true
             }
@@ -63,7 +125,7 @@
     },
     {
         "id": 2,
-        "name": "param0.Value.Property-Count='> 0'",
+        "name": "param0.Value.Properties.alpha.Defined='No'",
         "server": "/",
         "version": "0.0.0",
         "api": "Not",
@@ -81,32 +143,11 @@
                         "bravo": {
                             "type": "array",
                             "value": [
-                            ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": "hhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5"
-                        },
-                        "zggalllinyhozb": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "rxblbqeyqwex": {
-                            "type": "object",
-                            "value": {
-                                "osccgaahwfe": {
-                                    "type": "boolean",
-                                    "value": true
-                                },
-                                "dazmmpqfusqjw": {
-                                    "type": "boolean",
-                                    "value": true
+                                {
+                                    "type": "string",
+                                    "value": "N2IsK#EWAwleN\"]Y,9fw7?5 KJYu$s]/HfvwpDFT "
                                 }
-                            }
-                        },
-                        "ihbxzm": {
-                            "type": "number",
-                            "value": -563.9
+                            ]
                         }
                     }
                 },
@@ -119,7 +160,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\""
+                    "value": "sdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3"
                 },
                 "valid": true
             }
@@ -145,6 +186,55 @@
                         "alpha": {
                             "type": "string",
                             "value": ""
+                        },
+                        "ummgqk": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "k*"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "a9A+*A,"
+                                }
+                            ]
+                        },
+                        "yujogjix": {
+                            "type": "array",
+                            "value": [
+                            ]
+                        },
+                        "eufckshuxlts": {
+                            "type": "object",
+                            "value": {
+                                "fisr": {
+                                    "type": "integer",
+                                    "value": -243,
+                                    "format": "int32"
+                                },
+                                "o": {
+                                    "type": "array",
+                                    "value": [
+                                        {
+                                            "type": "string",
+                                            "value": "[NgZ"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": " 9"
+                                        },
+                                        {
+                                            "type": "string",
+                                            "value": "3>cv"
+                                        }
+                                    ]
+                                },
+                                "zbsysnacrh": {
+                                    "type": "string",
+                                    "value": "C#rU"
+                                }
+                            }
                         }
                     }
                 },
@@ -162,67 +252,6 @@
     },
     {
         "id": 4,
-        "name": "param0.Value.Properties.bravo.Items.Size='1'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Not",
-        "path": "/not",
-        "operation": "POST",
-        "parameters": [
-            {
-                "name": "param0",
-                "in": "query",
-                "style": "form",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "bravo": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B"
-                                }
-                            ]
-                        },
-                        "jvohnhi": {
-                            "type": "object",
-                            "value": {
-                                "jqzo": {
-                                    "type": "array",
-                                    "value": [
-                                        {
-                                            "type": "string",
-                                            "value": "O"
-                                        },
-                                        {
-                                            "type": "string",
-                                            "value": "<zOh."
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                },
-                "valid": true
-            },
-            {
-                "name": "param1",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "ISql!"
-                },
-                "valid": true
-            }
-        ]
-    },
-    {
-        "id": 5,
         "name": "param0.Value.Properties.bravo.Items.Size='> 1'",
         "server": "/",
         "version": "0.0.0",
@@ -247,69 +276,9 @@
                                 },
                                 {
                                     "type": "string",
-                                    "value": "/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd+p>N0dO\\9hw3dRq9;79pOa~ZqI^em4Hd@2*2WW}8ow RJ=\"8Uu^|B}T\\<*e}$Yl!&( 3hQ.G3P{C_2`OKs914cJYO&=(T>{hfh'##I/*uigZ6GmM&Pm%` %DKf!jA,:\\(Dk"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "a \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3[cDuks&|t5vCKQjPAF_@KB&HOD7y]8s#C'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%rt)listU>?]sAviyah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n1bF%j|UIqx[@`~t0Y"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "b'x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "gsi}{1YsSiTi|>S:c`%\";D'[b&IY0S#=[fBQR|Yk_o#)?iw1sv09rscxxp8%X/#>V|=KN(ip@[:+&rEEMcN.P"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "rD\\.9M5:</v2\\t|3I;&@@K~$JU@ihst_E[pP)^oQ)x4U1!` `FGJ+1Z~3\"P(Ys|!DI,F) >*$t{egzYY<JB](%E4N9BRTWHzX(0o|HhJW4M.w(:\"QB6?Nu^7M%"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "KSwr/BFl6m7V$v2vn mLDewSA>qQZ=`bnm^hT=[M~LM]2iAtQ*{M*H< yoM\\Z<]t%QO{7_`&pEdwsXr3Fgmd J| =o_oc=[`Pal#.G`.4{wREEbl'H<q%|EdyDl"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "p`z<rpJWEwMgaqlhIs6/-b9X9sg~x>>tB%,/k~ c\"V_Ak1T=Jco~ D\\X2>_qzE`@c% Kg,)xak\\Q:bcGrj6(F(g8\\'gX'uf8ui~Y+F>-X(mg(f3NDGZW$sU\\l,8dK4Ush*wg5cupL@=wy5R:7{*B}O$/dmfFfe^>quwQw]Cb_@R\"-+\"mX(o!+EUV<<>`=CBg2d\"Ow:e6KT6;IUFdOY}vLS&K8^S:F+,*V$`"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "p.VlD}[!xuGEGh_MV$i:26U'~lb<#Ctwr~#\\d8l= SP^A6>|V@<p idGE`zGK-[#'o/K*#@mPxlw4ejJJBF<m?msiX,SRO\\FRR`~6E'JU(8+l\"o! G-M3VX_UxHz~rHo&3mshX&U{Bu9J_GI'ekwfY})Fo{JuFa}]]Sd8$&x9_%Bh,Bu3p}9%{Q,2e>=R/-)D`0Q;@f_"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "3+2Dys=ohR+{T8*hW$:%2Z7Udz)VMKq)8$Zc\\DOqfvFSDLh@^8BwBC)q*6(H](E4iEMT205M.w2pMI;$BwM\"4-/cp^f1W<R,',~~"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "E'{_>(ZTh_wt'k_.uo}b#<`j^P@xz&}?\"e,XS$plN ~[0E(:bVT}nN+D8~L7Ni'\\|_}g7N@:04p}o)\"&0 V|_3bYGA\"vho1:\"%13?BvplkOt4ublrE>JSCa+m&{#pK5{JxIb?+TH#eN7PJo\"Y[b-YBN"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "B~L{[#pc _qpTW]`v^=H{@2TJiVK2,f#x9fs\\z0U^n;3[,h7 -5)L7~N[?fj\"|_n]elp:aA?k5O}NCLA1\"7\"4n'#CeJ@`EJ+{HM/mwM`,.BR0A#!Z3Y!}Zg4DbmFZ;sjRz4\" X}x3Bpak+~?D:?5j_D&;leD)#wGUu?pED[.7c/\\B~P"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "T\\:4x7j+(}Tn[?V50smO.%s8!QXwg~b*]ALUF&CH~0V_Pd`-3xbZmws?v2Rpj/f1^i^2iVySVmj8~t++\".1L9Mk_d~2x&q}7Lf19C-A Kg~K4XfU^7i&{<p94(=j4*lDd@=q| o?%]s rPt/*vom*\\V:v/&5fr=P=Wa~"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "''#q\":CoWP^zw`E)Ss?gt@T+8''!Q7[>W$}xlw5C6xw}n975cB9C7d<1v[4&13(7giO~HtA7GA@;UM&<y/c^PS{u{j>X+c+mz=(BJ`)Q%Y?C~r2Y$Q^:~]7kY~)2XReg230od3D2"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "%rXN$wvKQOG\"UBx{D|=G#U_+$fF/-~Wv^Ij3QRe]QgSxqqIFk\"Y[cn<w:EYv3qSUy>{V@DVZ#y?]>?H^YNRWo,V67l'D{8AvIQT;wrW_2bSG0g"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "zV"
+                                    "value": "7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH"
                                 }
                             ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": "BzAVheOMT3RzN`fTSro.#'Ql*w'|x)7 i+Fs/fIf)U^d)oG\"y0ls;+4F0T?1&^fD}V]j-U~2g=dDBY2MZ{Kjd$>-T,V2Zpid~eSCkct=I%B2H_"
                         }
                     }
                 },
@@ -320,13 +289,16 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "[vC?>"
+                },
                 "valid": true
             }
         ]
     },
     {
-        "id": 6,
+        "id": 5,
         "name": "param0.Value.Properties.bravo.Items.Unique='No'",
         "server": "/",
         "version": "0.0.0",
@@ -347,69 +319,34 @@
                             "value": [
                                 {
                                     "type": "string",
-                                    "value": "tD^*b}mMlhvG/h+kgJ1|Rx^X<fl0>UO! -:}'OT7c(VNF8W6H@5HYFGoE`c@T\\Gq7oQ^LQ_kr{l~f-$mJSHA\\.TsZ#y,Rd>5V+#^f(Fn2!IV^~0]\\K#|k%mTt5y_bI&q:q1a ]DkTwZx7-AD3m,>56P~)=\\&QQsh0pC^0iZ][l9hgky;oYMI!>2AoP<x&V'tL2DG:tZX`sd3(d#D_jIn=h;hylj]hjD7SaoIG0PxZF"
+                                    "value": "^zKpUPb{ CO2qR"
                                 },
                                 {
                                     "type": "string",
-                                    "value": "4IEWD78](;}-T~CjbL+qt:p_74B*rt)(Tl`faB*GO|3>~N:L.WROM U[)6t|]a]_`hvb;"
+                                    "value": "^zKpUPb{ CO2qR"
                                 },
                                 {
                                     "type": "string",
-                                    "value": "k(ov:4,\"/w)v]B`VV /n\"LB0MuH\"Vt]W`{J{;Z73tB}7LL2Z}+iO3pFe\"^6&7XQZm85j,n,O<w"
+                                    "value": "rX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvzR;]Y#'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu"
                                 },
                                 {
                                     "type": "string",
-                                    "value": "kD)Awt0K93L=D4r>!=d`mRox8mx@e$0`6H~iAJ{,XtT=@)4W8r<_*]WTp_9;b?2:piu4RDl`UPTIE$A9=KuGLSrg}M.fErV+$@wZ$v7%D\\z5soZ<Hi|o^EIU!<rs+jt<}sEKs0:]x`Qv$S(P\\Q~Qkr]6L>}DXTz k$O,pt.z<#82?;$URwF$ VpxtPj\"aye\"\\g:hAWO#!{HloWxb$_`[x'0,m}qV$6|@WwWnU;KcSda5m\\l ND"
+                                    "value": "(P,&tLxMMRrgg;PU{$X/&13;Oq9"
                                 },
                                 {
                                     "type": "string",
-                                    "value": "7<jmHGOIwc*Eb+3;L=Axqz`&Q?D%tIK]JG+/:?U/WIyoq\\.U`o'gMllr+uCfq[O5+\\~c!%U~WkmaNOR+^*I!`zy}pD<,A'3@3h\"|uXQNd8yCU)ow`xSOFxIfrc] 7vY.YGU"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "Kc'2e)_:uH$clo$xDn`nk$U$&b\"JPJ5YeDxMR%(]necb|EU"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "[1zWu\\2y$,D_@7&swhL9~o(XbW-U=gv2|**b6;A`zNrty}j!qHxV"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "*j\"C?lsNptCBOuUr%$^|m=]z I3SY]ud.c3~SAY'D[yHHC'd)5x|Q4M*|:s;2C]6*W`hSOgR!WOv.`NVW~bmLQt;xE\"vuk *Tgu%?0VVt+\\{/hLP0GY/@xG=LFzsm;bVC"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "qIU=?KXIcQ*)(LRO=;"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "rs$(7hM+*Y kq>ueSUy ,wr2B*~x_x!ZFAb@QO>sj=IV'r?#C|*\\nk\"CS$4]BVTuU@R0Gq8xc}'mJq4o7D;WVKqu*6CV&=,8mrKV{;c+.xCN%\"_}s FcMKg9ok`=Plt6J~_fOgLwQ9IPH4v9}9|G!?Sdkj6i'o$1JrJ96'pyFgS=2'4!1H~Qi.X)p|`2#XkY[5{#_@&\\$<N]"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "=Q'F4#R*-j\\m\\j|j"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "3!ZfYWo{qEFoZ)DiMa(K/\\DW;"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "*j\"C?lsNptCBOuUr%$^|m=]z I3SY]ud.c3~SAY'D[yHHC'd)5x|Q4M*|:s;2C]6*W`hSOgR!WOv.`NVW~bmLQt;xE\"vuk *Tgu%?0VVt+\\{/hLP0GY/@xG=LFzsm;bVC"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "W/tcT8ViXXLfBR=eR6e]+kuUbl[\\nrPv/'!92NYcqkO(6dDZ9^~_!BA][Bx[[Q/YW9\\y:(MN*WazDVopn:{%!+H}aumWV^l*r$A)K@1r7Wx!hRflRfGvf9X3/"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "C|6h:Ci,~Qyg\"r2:$S)#e3"
+                                    "value": "]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd"
                                 }
                             ]
                         },
-                        "sppzbuof": {
+                        "alpha": {
                             "type": "string",
-                            "value": ""
+                            "value": "N0dO\\9hw3dRq9;79pOa~ZqI^em4Hd@2*2WW}8ow RJ=\"8Uu^|B}T\\<*e}$Yl!&( 3hQ.G3P{C_2`OKs914cJYO&=(T>{hfh'##I/*uigZ6GmM&Pm%` %DKf!jA,:\\(DkCa \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3[cDuks"
+                        },
+                        "tfnyeumxc": {
+                            "type": "array",
+                            "value": [
+                            ]
                         }
                     }
                 },
@@ -420,16 +357,13 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "\"r)FS/Z* ?o4wol8TB#J>UY]%+~vtHp$FXd`B0g4X|\\{K\\E/&sLj*!I7urAs13./#r#1,io.:N=YWu;b?(Z_cbh.G,MuF0XeE ~#!|"
-                },
+                "data": null,
                 "valid": true
             }
         ]
     },
     {
-        "id": 7,
+        "id": 6,
         "name": "param0.Type=null",
         "server": "/",
         "version": "0.0.0",
@@ -453,14 +387,17 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "KB&HOD7y]8s#C'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%rt)listU>?]sA"
+                },
                 "valid": true
             }
         ],
         "invalidInput": "param0.Type=null"
     },
     {
-        "id": 8,
+        "id": 7,
         "name": "param0.Type='Not object'",
         "server": "/",
         "version": "0.0.0",
@@ -474,17 +411,8 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "<[~Jf"
-                        },
-                        {
-                            "type": "string",
-                            "value": "W)HF"
-                        }
-                    ]
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": false
             },
@@ -493,11 +421,49 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "yah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n1bF%j|UIqx[@`~t0Yub'x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;vgsi}{1YsSiTi|>S:c`%\";D'[b&IY0S#=[fBQR|Yk_o#)?iw1sv09rscxxp8%X/#>V|=KN(ip@[:+&rEEMcN.PyrD\\.9M5:</v2\\t|3I;&@@K~$JU@ihst_E[pP)^oQ)x4U1!` `FGJ+1Z~3\"P(Ys|!DI,F) >*$t{"
+                },
                 "valid": true
             }
         ],
         "invalidInput": "param0.Type=Not object"
+    },
+    {
+        "id": 8,
+        "name": "param0.Value.Property-Count='< 1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "param1",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "gzYY<JB](%E4N9BRTWHzX(0o|HhJW4M.w(:\"QB6?Nu^7M%pKSwr/BFl6m7V$v2vn mLDewSA>qQZ=`bnm^hT=[M~LM]2iAtQ*{M*H< yoM\\Z<]t%QO{7_`&pEdwsXr3Fgmd J| =o_oc=[`Pal#.G`.4{wREEbl'H<q%|EdyDlPp`z<rp"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param0.Value.Property-Count=< 1"
     },
     {
         "id": 9,
@@ -529,7 +495,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "WEwMgaqlhIs6/-b9X9sg~x>>tB%,/k~ c\"V_Ak1T=Jco~ D\\X2>_qzE`@c% Kg,)xak\\Q:"
+                },
                 "valid": true
             }
         ],
@@ -553,21 +522,8 @@
                     "type": "object",
                     "value": {
                         "alpha": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": ") `"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "R$pYUUg"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "*mIf`Ij"
-                                }
-                            ]
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -578,7 +534,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "Grj6(F(g8\\'gX'uf8ui~Y+F>-X(mg(f3NDGZW$sU\\l,8dK4Ush*wg5cupL@=wy5R:7{*B}O$/dmfFfe^>quwQw]Cb_@R\"-+\"mX"
+                },
                 "valid": true
             }
         ],
@@ -603,7 +562,7 @@
                     "value": {
                         "alpha": {
                             "type": "string",
-                            "value": "X9,l9k6f])m{qle^74zeSR9{aNY4G 2#jtKv37$\\jT,L6KVsJ3YCiZ;57XZP{svzzo`Dt[,:5Mu**Hr#daxwST;zEvc&i`ez/#)nj/`bu_1=#te}sG^IGe3_[{zNsZ8Xd|c\"i6A-Wx!Rcb;RA-uYS6`u^_3h8q:pK&psPFAIT^CK&Y3{!m1rS.?UlY$Iz|\\t<1'\\dI~;1999-B_-^XuZ!z@+:YY'BEZiq\\2=UY"
+                            "value": "r~#\\d8l= SP^A6>|V@<p idGE`zGK-[#'o/K*#@mPxlw4ejJJBF<m?msiX,SRO\\FRR`~6E'JU(8+l\"o! G-M3VX_UxHz~rHo&3mshX&U{Bu9J_GI'ekwfY})Fo{JuFa}]]Sd8$&x9_%Bh,Bu3p}9%{Q,2e>=R/-)D`0Q;@f_~3+2Dys=ohR+{T1999-H](E4iEMT205M.w2pMI;$BwM\"4-/cp^f1W<R,',~~6E'{_>(Th_wt'k_."
                         }
                     }
                 },
@@ -614,7 +573,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "o}b#<`j^P@xz&}?\"e,XS$plN ~[0E(:bVT}nN+D8~L7Ni'\\|_}g7N@:04p}o)\"&0 V|_3bYGA\"vho1:\"%13?BvplkOt4ublrE>JSCa+m&{#pK5{JxIb?+TH#eN7PJo\"Y[b-YBNtB~L{[#pc _qpTW]`v^=H{@2TJiVK2,f#x9fs\\z0U^n;3[,h7 -5)L7~N[?fj\"|_n]elp:aA?k"
+                },
                 "valid": true
             }
         ],
@@ -640,10 +602,6 @@
                         "bravo": {
                             "type": "null",
                             "value": null
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -654,7 +612,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "O}NCLA1\"7\"4n'#CeJ@`EJ+{HM/mwM`,.BR0A#!Z3Y!}Zg4DbmFZ;sjRz4\" X}x3Bpak+~?D:?5j_D&;leD)#wGUu?pED[.7c/\\B~PaT\\:4x7j+(}Tn[?V50smO.%s8!QXwg~b*]ALUF&CH~0V_Pd`-3xbZmws?v2Rpj/f1^i^2iVySVmj8~t++\".1L9Mk_d~2x&q}7Lf19C-A Kg~K4XfU^7i&{<p94(=j"
+                },
                 "valid": true
             }
         ],
@@ -680,10 +641,6 @@
                         "bravo": {
                             "type": "boolean",
                             "value": true
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -694,7 +651,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "lDd@=q| o?%]s rPt/*vom*\\V:v/&5fr=P"
+                },
                 "valid": true
             }
         ],
@@ -725,10 +685,6 @@
                                     "value": null
                                 }
                             ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -739,7 +695,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "Wa~s''#q\":CoWP^zw`E)Ss?gt@T+8''!Q7[>W$}xlw5C6xw}n975cB9C7d<1v[4&13(7"
+                },
                 "valid": true
             }
         ],
@@ -766,32 +725,10 @@
                             "type": "array",
                             "value": [
                                 {
-                                    "type": "object",
-                                    "value": {
-                                        "weyaxvstucylnj": {
-                                            "type": "array",
-                                            "value": [
-                                                {
-                                                    "type": "string",
-                                                    "value": "[M{Y}@"
-                                                },
-                                                {
-                                                    "type": "string",
-                                                    "value": ""
-                                                }
-                                            ]
-                                        },
-                                        "mzik": {
-                                            "type": "boolean",
-                                            "value": true
-                                        }
-                                    }
+                                    "type": "boolean",
+                                    "value": true
                                 }
                             ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -802,7 +739,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "O~HtA7GA@;UM&<y/c^PS{u{j>X+c+mz=(BJ`)Q%Y?C~r2Y$Q^:~]7kY~)2XReg230od3D2R%rXN$wvKQOG\"UBx{D|=G#U_+$fF/-~Wv^Ij3QRe]QgSxqqIFk\"Y[cn<w:EYv3qSUy>{V@DVZ#y?]>?H^YNRWo,V67l'D{8AvIQT;wrW_2bSG0gNzVEBzAVheOMT3RzN`fTSro.#'Ql*w'|x)7 i+Fs/fIf)U^d)oG\"y0ls;+4F0T?1"
+                },
                 "valid": true
             }
         ],
@@ -833,10 +773,6 @@
                                     "value": "A"
                                 }
                             ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -847,7 +783,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "^fD}V]j-U~2g=dDBY2MZ{Kjd$>-T,V2Zpid~eSCkct=I%B2H_}OtD^*b}mMlhvG/h+kgJ1|Rx^X<fl0>UO! -:}'OT7c(VNF8W6H@5HYFGoE`c@T\\Gq7oQ^LQ_kr{l~f-$mJSH"
+                },
                 "valid": true
             }
         ],
@@ -878,10 +817,6 @@
                                     "value": "B"
                                 }
                             ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -892,7 +827,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "\\.TsZ#y,Rd>5V+#^f(Fn2!IV^~0]\\K#|k%mTt5y_bI&q:q1a ]DkTwZx7-AD3m,>56P~)=\\&QQsh0pC^0iZ"
+                },
                 "valid": true
             }
         ],
@@ -923,10 +861,6 @@
                                     "value": "C"
                                 }
                             ]
-                        },
-                        "alpha": {
-                            "type": "string",
-                            "value": ""
                         }
                     }
                 },
@@ -937,7 +871,10 @@
                 "in": "query",
                 "style": "form",
                 "explode": false,
-                "data": null,
+                "data": {
+                    "type": "string",
+                    "value": "[l9hgky;oYMI!>2AoP<x&V'tL2DG:tZX`sd3(d#D_jIn=h;hylj]hjD7SaoIG0PxZFw4IEWD78](;}-T~CjbL+qt:p_74B*rt)(Tl`"
+                },
                 "valid": true
             }
         ],
@@ -997,8 +934,13 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "*"
+                        }
+                    ]
                 },
                 "valid": false
             }
@@ -1029,7 +971,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "i=pr"
+                    "value": "GO|3"
                 },
                 "valid": false
             }
@@ -1060,7 +1002,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "'WTF}"
+                    "value": "m85j,n,O<w kD)Awt0K93L=D4r>WTFWTp_9;b?2:piu4RDl`UPTIE$A9=KuGLSrg}M.fErV+$@wZ$v7%D\\z5soZ<Hi|o^EIU!<rs+jt<}sEKs0:]x`Qv$S(P\\Q~Qkr]6L>}DXTz k$O,pt.z<#82?;$URwF$ VpxtPj\"aye\"\\g:hAWO#!{HloWxb$_`[x'0,m}qV$6|@WwWnU;KcSda5m\\l NDt7<jmHGO"
                 },
                 "valid": false
             }

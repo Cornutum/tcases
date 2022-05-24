@@ -2842,118 +2842,6 @@
     <TestCase id="0" name="nonEmpty.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedValue,nonEmpty,nonEmptyValue,nullable,nullableValue"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Normalize"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="path">
-        <Var name="nonEmpty.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="nonEmpty"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="nonEmpty.Type" value="object">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="0">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
-          <Has name="paramName" value="nonEmpty"/>
-          <Has name="propertyName" value="width"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
-          <Has name="paramName" value="nonEmpty"/>
-          <Has name="propertyName" value="height"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="nullable"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="nullable.Type" value="object">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Property-Count" value="0">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.width.Defined" value="No">
-          <Has name="paramName" value="nullable"/>
-          <Has name="propertyName" value="width"/>
-        </Var>
-        <Var name="nullable.Value.Properties.width.Type" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.width.Value.Is" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.height.Defined" value="No">
-          <Has name="paramName" value="nullable"/>
-          <Has name="propertyName" value="height"/>
-        </Var>
-        <Var name="nullable.Value.Properties.height.Type" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="exploded.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="paramName" value="exploded"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="exploded.Type" value="object">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Property-Count" value="0">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.width.Defined" value="No">
-          <Has name="paramName" value="exploded"/>
-          <Has name="propertyName" value="width"/>
-        </Var>
-        <Var name="exploded.Value.Properties.width.Type" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.height.Defined" value="No">
-          <Has name="paramName" value="exploded"/>
-          <Has name="propertyName" value="height"/>
-        </Var>
-        <Var name="exploded.Value.Properties.height.Type" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="1" name="nonEmpty.Value.Property-Count=&apos;&gt; 0&apos;">
-      <Has name="operation" value="GET"/>
-      <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
       <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
@@ -2967,7 +2855,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -3001,7 +2889,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3035,7 +2923,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3063,10 +2951,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="2" name="nonEmpty.Value.Properties.width.Type=null">
+    <TestCase id="1" name="nonEmpty.Value.Properties.width.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nullable,nullableProperties,nullableValue,nullableWidth"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -3079,24 +2967,24 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="null">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.height.Type" value="null">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
@@ -3113,7 +3001,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3147,7 +3035,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3175,10 +3063,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="3" name="nonEmpty.Value.Properties.width.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="2" name="nonEmpty.Value.Properties.width.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableProperties,nullableValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nullable,nullableHeight,nullableProperties,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -3191,24 +3079,24 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="null">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" value="null">
+        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
@@ -3225,7 +3113,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="No">
@@ -3259,7 +3147,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -3287,10 +3175,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="4" name="nonEmpty.Value.Properties.height.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="3" name="nonEmpty.Value.Properties.width.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -3303,17 +3191,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -3337,7 +3225,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3371,7 +3259,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3399,10 +3287,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" name="nullable.Value.Properties.height.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="4" name="nullable.Value.Properties.height.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -3415,17 +3303,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -3449,7 +3337,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="No">
@@ -3483,7 +3371,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -3511,7 +3399,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
+    <TestCase id="5" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
       <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
@@ -3561,7 +3449,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3595,7 +3483,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3623,7 +3511,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="nonEmpty.Type=null">
+    <TestCase id="6" failure="true" name="nonEmpty.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
       <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
@@ -3673,7 +3561,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3707,7 +3595,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3735,7 +3623,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="nonEmpty.Type=&apos;Not object&apos;">
+    <TestCase id="7" failure="true" name="nonEmpty.Type=&apos;Not object&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
       <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
@@ -3785,7 +3673,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3819,7 +3707,119 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="nonEmpty.Value.Property-Count=&apos;&lt; 1&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="object">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="object">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="object">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3863,7 +3863,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -3897,7 +3897,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -3931,7 +3931,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -3975,7 +3975,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -4009,7 +4009,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -4043,7 +4043,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4074,7 +4074,7 @@
     <TestCase id="11" failure="true" name="nonEmpty.Value.Properties.height.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4087,17 +4087,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4121,7 +4121,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -4155,7 +4155,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4186,7 +4186,7 @@
     <TestCase id="12" failure="true" name="nonEmpty.Value.Properties.height.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4199,17 +4199,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4233,7 +4233,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -4267,7 +4267,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4298,7 +4298,7 @@
     <TestCase id="13" failure="true" name="nullable.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4311,17 +4311,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4379,7 +4379,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4410,7 +4410,7 @@
     <TestCase id="14" failure="true" name="nullable.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4423,17 +4423,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4491,7 +4491,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4522,7 +4522,7 @@
     <TestCase id="15" failure="true" name="nullable.Type=&apos;Not object&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4535,17 +4535,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4603,7 +4603,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4631,10 +4631,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="16" failure="true" name="nullable.Value.Properties.width.Type=&apos;Not integer&apos;">
+    <TestCase id="16" failure="true" name="nullable.Value.Property-Count=&apos;&lt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4647,17 +4647,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4681,7 +4681,119 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="object">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="17" failure="true" name="nullable.Value.Properties.width.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="object">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Type" value="integer">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="object">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -4715,7 +4827,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4743,10 +4855,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="17" failure="true" name="nullable.Value.Properties.width.Value.Is=&apos;-1&apos;">
+    <TestCase id="18" failure="true" name="nullable.Value.Properties.width.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4759,17 +4871,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4793,7 +4905,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -4827,7 +4939,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4855,10 +4967,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="18" failure="true" name="nullable.Value.Properties.height.Type=&apos;Not integer&apos;">
+    <TestCase id="19" failure="true" name="nullable.Value.Properties.height.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4871,17 +4983,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -4905,7 +5017,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -4939,7 +5051,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -4967,10 +5079,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="19" failure="true" name="nullable.Value.Properties.height.Value.Is=&apos;-1&apos;">
+    <TestCase id="20" failure="true" name="nullable.Value.Properties.height.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -4983,17 +5095,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5017,7 +5129,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5051,7 +5163,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -5079,10 +5191,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="20" failure="true" name="exploded.Defined=&apos;No&apos;">
+    <TestCase id="21" failure="true" name="exploded.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5095,17 +5207,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5129,7 +5241,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5191,10 +5303,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="21" failure="true" name="exploded.Type=null">
+    <TestCase id="22" failure="true" name="exploded.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5207,17 +5319,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5241,7 +5353,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5303,10 +5415,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="22" failure="true" name="exploded.Type=&apos;Not object&apos;">
+    <TestCase id="23" failure="true" name="exploded.Type=&apos;Not object&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5319,17 +5431,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5353,7 +5465,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5415,10 +5527,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true" name="exploded.Value.Properties.width.Type=&apos;Not integer&apos;">
+    <TestCase id="24" failure="true" name="exploded.Value.Property-Count=&apos;&lt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5431,17 +5543,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5465,7 +5577,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5499,7 +5611,119 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="25" failure="true" name="exploded.Value.Properties.width.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="path">
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="object">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Type" value="integer">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" value="0">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="object">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="object">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -5527,10 +5751,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="24" failure="true" name="exploded.Value.Properties.width.Value.Is=&apos;-1&apos;">
+    <TestCase id="26" failure="true" name="exploded.Value.Properties.width.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5543,17 +5767,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5577,7 +5801,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5611,7 +5835,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -5639,10 +5863,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="25" failure="true" name="exploded.Value.Properties.height.Type=&apos;Not integer&apos;">
+    <TestCase id="27" failure="true" name="exploded.Value.Properties.height.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5655,17 +5879,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5689,7 +5913,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5723,7 +5947,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -5751,10 +5975,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="26" failure="true" name="exploded.Value.Properties.height.Value.Is=&apos;-1&apos;">
+    <TestCase id="28" failure="true" name="exploded.Value.Properties.height.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/path/object/{nonEmpty}/{nullable}/{exploded}"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -5767,17 +5991,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -5801,7 +6025,7 @@
         <Var name="nullable.Type" value="object">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+        <Var name="nullable.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.width.Defined" value="Yes">
@@ -5835,7 +6059,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -9972,7 +10196,7 @@
     <TestCase id="0" name="nonEmpty.Defined=&apos;Yes&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedValue,nonEmpty,nonEmptyValue,nullable,nullableValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -9985,30 +10209,30 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.height.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.Additional" value="No">
+        <Var name="nonEmpty.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
@@ -10053,38 +10277,38 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Defined" value="No">
+        <Var name="exploded.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="exploded"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Type" NA="true">
+        <Var name="exploded.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
+        <Var name="exploded.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Defined" value="No">
+        <Var name="exploded.Value.Properties.height.Defined" value="Yes">
           <Has name="paramName" value="exploded"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Type" NA="true">
+        <Var name="exploded.Value.Properties.height.Type" value="integer">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
+        <Var name="exploded.Value.Properties.height.Value.Is" value="0">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.Additional" value="No">
+        <Var name="exploded.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="exploded"/>
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="1" name="nonEmpty.Value.Property-Count=&apos;&gt; 0&apos;">
+    <TestCase id="1" name="nonEmpty.Value.Properties.width.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nullable"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -10097,30 +10321,30 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.height.Type" value="null">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Value.Is" value="0">
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.Additional" value="Yes">
+        <Var name="nonEmpty.Value.Properties.Additional" value="No">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
@@ -10165,30 +10389,30 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="exploded"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Type" value="integer">
+        <Var name="exploded.Value.Properties.width.Type" value="null">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Value.Is" value="0">
+        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Defined" value="Yes">
+        <Var name="exploded.Value.Properties.height.Defined" value="No">
           <Has name="paramName" value="exploded"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Type" value="integer">
+        <Var name="exploded.Value.Properties.height.Type" NA="true">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Value.Is" value="0">
+        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.Additional" value="Yes">
+        <Var name="exploded.Value.Properties.Additional" value="No">
           <Has name="paramName" value="exploded"/>
         </Var>
       </Input>
@@ -10196,7 +10420,7 @@
     <TestCase id="2" name="nonEmpty.Value.Properties.width.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -10209,7 +10433,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -10232,7 +10456,7 @@
         <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.Additional" value="No">
+        <Var name="nonEmpty.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
@@ -10277,30 +10501,30 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Defined" value="Yes">
+        <Var name="exploded.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="exploded"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="exploded.Value.Properties.width.Type" value="null">
+        <Var name="exploded.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Defined" value="No">
+        <Var name="exploded.Value.Properties.height.Defined" value="Yes">
           <Has name="paramName" value="exploded"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="exploded.Value.Properties.height.Type" NA="true">
+        <Var name="exploded.Value.Properties.height.Type" value="null">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Properties.Additional" value="No">
+        <Var name="exploded.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="exploded"/>
         </Var>
       </Input>
@@ -10308,7 +10532,7 @@
     <TestCase id="3" name="nonEmpty.Value.Properties.width.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -10321,7 +10545,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -10338,13 +10562,13 @@
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" value="null">
+        <Var name="nonEmpty.Value.Properties.height.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" value="&gt; 0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.Additional" value="Yes">
+        <Var name="nonEmpty.Value.Properties.Additional" value="No">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nullable.Defined" value="Yes">
@@ -10389,119 +10613,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.width.Defined" value="No">
-          <Has name="paramName" value="exploded"/>
-          <Has name="propertyName" value="width"/>
-        </Var>
-        <Var name="exploded.Value.Properties.width.Type" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.height.Defined" value="Yes">
-          <Has name="paramName" value="exploded"/>
-          <Has name="propertyName" value="height"/>
-        </Var>
-        <Var name="exploded.Value.Properties.height.Type" value="null">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Properties.Additional" value="Yes">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-      </Input>
-    </TestCase>
-    <TestCase id="4" name="nonEmpty.Value.Properties.height.Value.Is=&apos;&gt; 0&apos;">
-      <Has name="operation" value="GET"/>
-      <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableProperties,nullableValue"/>
-      <Has name="server" value="/"/>
-      <Has name="title" value="Normalize"/>
-      <Has name="version" value="0.0.0"/>
-      <Input type="header">
-        <Var name="nonEmpty.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="nonEmpty"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="nonEmpty.Type" value="object">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
-          <Has name="paramName" value="nonEmpty"/>
-          <Has name="propertyName" value="width"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
-          <Has name="paramName" value="nonEmpty"/>
-          <Has name="propertyName" value="height"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.height.Type" value="integer">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.height.Value.Is" value="&gt; 0">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nonEmpty.Value.Properties.Additional" value="No">
-          <Has name="paramName" value="nonEmpty"/>
-        </Var>
-        <Var name="nullable.Defined" value="Yes">
-          <Has name="explode" value="false"/>
-          <Has name="paramName" value="nullable"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="nullable.Type" value="object">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Property-Count" value="&gt; 0">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.width.Defined" value="No">
-          <Has name="paramName" value="nullable"/>
-          <Has name="propertyName" value="width"/>
-        </Var>
-        <Var name="nullable.Value.Properties.width.Type" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.width.Value.Is" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.height.Defined" value="Yes">
-          <Has name="paramName" value="nullable"/>
-          <Has name="propertyName" value="height"/>
-        </Var>
-        <Var name="nullable.Value.Properties.height.Type" value="null">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="nullable.Value.Properties.Additional" value="Yes">
-          <Has name="paramName" value="nullable"/>
-        </Var>
-        <Var name="exploded.Defined" value="Yes">
-          <Has name="explode" value="true"/>
-          <Has name="paramName" value="exploded"/>
-          <Has name="style" value="simple"/>
-        </Var>
-        <Var name="exploded.Type" value="object">
-          <Has name="paramName" value="exploded"/>
-        </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -10529,10 +10641,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="5" name="nullable.Value.Properties.width.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="4" name="nullable.Value.Properties.width.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -10545,17 +10657,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -10592,17 +10704,17 @@
         <Var name="nullable.Value.Properties.width.Value.Is" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.height.Defined" value="No">
+        <Var name="nullable.Value.Properties.height.Defined" value="Yes">
           <Has name="paramName" value="nullable"/>
           <Has name="propertyName" value="height"/>
         </Var>
-        <Var name="nullable.Value.Properties.height.Type" NA="true">
+        <Var name="nullable.Value.Properties.height.Type" value="null">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -10613,7 +10725,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -10641,10 +10753,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="6" name="nullable.Value.Properties.height.Value.Is=&apos;&gt; 0&apos;">
+    <TestCase id="5" name="nullable.Value.Properties.height.Value.Is=&apos;&gt; 0&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue"/>
+      <Has name="properties" value="exploded,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -10657,17 +10769,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="0">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -10714,7 +10826,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" value="&gt; 0">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="Yes">
+        <Var name="nullable.Value.Properties.Additional" value="No">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -10725,7 +10837,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -10753,7 +10865,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="7" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
+    <TestCase id="6" failure="true" name="nonEmpty.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
       <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
@@ -10826,7 +10938,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -10837,7 +10949,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -10865,7 +10977,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="8" failure="true" name="nonEmpty.Type=null">
+    <TestCase id="7" failure="true" name="nonEmpty.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
       <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
@@ -10938,7 +11050,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -10949,7 +11061,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -10977,7 +11089,7 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="9" failure="true" name="nonEmpty.Type=&apos;Not object&apos;">
+    <TestCase id="8" failure="true" name="nonEmpty.Type=&apos;Not object&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
       <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
@@ -11050,7 +11162,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11061,7 +11173,119 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Defined" value="Yes">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Type" value="integer">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Value.Is" value="0">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="nonEmpty.Value.Property-Count=&apos;&lt; 1&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/object"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="object">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="object">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="object">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11105,7 +11329,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -11162,7 +11386,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11173,7 +11397,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11217,7 +11441,7 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
@@ -11274,7 +11498,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11285,7 +11509,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11316,7 +11540,7 @@
     <TestCase id="12" failure="true" name="nonEmpty.Value.Properties.height.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -11329,17 +11553,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -11386,7 +11610,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11397,7 +11621,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11428,7 +11652,7 @@
     <TestCase id="13" failure="true" name="nonEmpty.Value.Properties.height.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyHeight,nonEmptyHeightValue,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -11441,17 +11665,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="Yes">
@@ -11498,7 +11722,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11509,7 +11733,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11540,7 +11764,7 @@
     <TestCase id="14" failure="true" name="nullable.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -11553,17 +11777,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -11621,7 +11845,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11652,7 +11876,7 @@
     <TestCase id="15" failure="true" name="nullable.Type=&apos;Not object&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -11665,17 +11889,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -11733,7 +11957,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11764,7 +11988,7 @@
     <TestCase id="16" failure="true" name="nullable.Value.Properties.width.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -11777,17 +12001,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -11834,7 +12058,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11845,7 +12069,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11876,7 +12100,7 @@
     <TestCase id="17" failure="true" name="nullable.Value.Properties.width.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -11889,17 +12113,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -11946,7 +12170,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -11957,7 +12181,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -11988,7 +12212,7 @@
     <TestCase id="18" failure="true" name="nullable.Value.Properties.height.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12001,17 +12225,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12058,7 +12282,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12069,7 +12293,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -12100,7 +12324,7 @@
     <TestCase id="19" failure="true" name="nullable.Value.Properties.height.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableHeight,nullableHeightValue,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12113,17 +12337,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12170,7 +12394,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" value="-1" failure="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12181,7 +12405,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -12212,7 +12436,7 @@
     <TestCase id="20" failure="true" name="exploded.Defined=&apos;No&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12225,17 +12449,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12282,7 +12506,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="No" failure="true">
@@ -12324,7 +12548,7 @@
     <TestCase id="21" failure="true" name="exploded.Type=null">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12337,17 +12561,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12394,7 +12618,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12436,7 +12660,7 @@
     <TestCase id="22" failure="true" name="exploded.Type=&apos;Not object&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12449,17 +12673,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12506,7 +12730,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12545,10 +12769,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="23" failure="true" name="exploded.Value.Properties.width.Type=&apos;Not integer&apos;">
+    <TestCase id="23" failure="true" name="exploded.Value.Property-Count=&apos;&lt; 1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12561,17 +12785,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12618,7 +12842,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12629,7 +12853,119 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="exploded"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="24" failure="true" name="exploded.Value.Properties.width.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/header/object"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Normalize"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="nonEmpty.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nonEmpty.Type" value="object">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nonEmpty"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nonEmpty.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="nonEmpty"/>
+        </Var>
+        <Var name="nullable.Defined" value="Yes">
+          <Has name="explode" value="false"/>
+          <Has name="paramName" value="nullable"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="nullable.Type" value="object">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Property-Count" value="&gt; 0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Defined" value="Yes">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="width"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Type" value="integer">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.width.Value.Is" value="0">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Defined" value="No">
+          <Has name="paramName" value="nullable"/>
+          <Has name="propertyName" value="height"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Type" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="nullable"/>
+        </Var>
+        <Var name="exploded.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="exploded"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="exploded.Type" value="object">
+          <Has name="paramName" value="exploded"/>
+        </Var>
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -12657,10 +12993,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="24" failure="true" name="exploded.Value.Properties.width.Value.Is=&apos;-1&apos;">
+    <TestCase id="25" failure="true" name="exploded.Value.Properties.width.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,explodedWidth,explodedWidthValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12673,17 +13009,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12730,7 +13066,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12741,7 +13077,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="Yes">
@@ -12769,10 +13105,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="25" failure="true" name="exploded.Value.Properties.height.Type=&apos;Not integer&apos;">
+    <TestCase id="26" failure="true" name="exploded.Value.Properties.height.Type=&apos;Not integer&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12785,17 +13121,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12842,7 +13178,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12853,7 +13189,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">
@@ -12881,10 +13217,10 @@
         </Var>
       </Input>
     </TestCase>
-    <TestCase id="26" failure="true" name="exploded.Value.Properties.height.Value.Is=&apos;-1&apos;">
+    <TestCase id="27" failure="true" name="exploded.Value.Properties.height.Value.Is=&apos;-1&apos;">
       <Has name="operation" value="GET"/>
       <Has name="path" value="/header/object"/>
-      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nonEmptyWidth,nonEmptyWidthValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
+      <Has name="properties" value="exploded,explodedHeight,explodedHeightValue,explodedProperties,explodedValue,nonEmpty,nonEmptyProperties,nonEmptyValue,nullable,nullableProperties,nullableValue,nullableWidth,nullableWidthValue"/>
       <Has name="server" value="/"/>
       <Has name="title" value="Normalize"/>
       <Has name="version" value="0.0.0"/>
@@ -12897,17 +13233,17 @@
         <Var name="nonEmpty.Type" value="object">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Property-Count" value="&gt; 0">
+        <Var name="nonEmpty.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Defined" value="Yes">
+        <Var name="nonEmpty.Value.Properties.width.Defined" value="No">
           <Has name="paramName" value="nonEmpty"/>
           <Has name="propertyName" value="width"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Type" value="integer">
+        <Var name="nonEmpty.Value.Properties.width.Type" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
-        <Var name="nonEmpty.Value.Properties.width.Value.Is" value="&gt; 0">
+        <Var name="nonEmpty.Value.Properties.width.Value.Is" NA="true">
           <Has name="paramName" value="nonEmpty"/>
         </Var>
         <Var name="nonEmpty.Value.Properties.height.Defined" value="No">
@@ -12954,7 +13290,7 @@
         <Var name="nullable.Value.Properties.height.Value.Is" NA="true">
           <Has name="paramName" value="nullable"/>
         </Var>
-        <Var name="nullable.Value.Properties.Additional" value="No">
+        <Var name="nullable.Value.Properties.Additional" value="Yes">
           <Has name="paramName" value="nullable"/>
         </Var>
         <Var name="exploded.Defined" value="Yes">
@@ -12965,7 +13301,7 @@
         <Var name="exploded.Type" value="object">
           <Has name="paramName" value="exploded"/>
         </Var>
-        <Var name="exploded.Value.Property-Count" value="&gt; 0">
+        <Var name="exploded.Value.Property-Count" value="&gt;= 1">
           <Has name="paramName" value="exploded"/>
         </Var>
         <Var name="exploded.Value.Properties.width.Defined" value="No">

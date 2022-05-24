@@ -31,8 +31,11 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="param0Properties"/>
-            <Value name="&gt; 0" when="param0Properties"/>
+            <Value name="&gt;= 1">
+              <When>
+                <NotLessThan property="param0Properties" min="1"/>
+              </When>
+            </Value>
           </Var>
           <VarSet name="Properties">
             <VarSet name="alpha">

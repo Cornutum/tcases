@@ -408,11 +408,20 @@ public final class RequestCases
    */
   private static boolean isSimpleEncoded( ParamData param, String inputId)
     {
-    // True except for the value of a form-encoded parameter (unless it is an exploded object value)
+    // True except for...
     return
-      !(inputId.equals( toIdentifier( param.getName()))
-        && (param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE)
-        && !(param.getValue().getType() == DataValue.Type.OBJECT && param.isExploded()));
+      !(// ... the value of a parameter...
+        inputId.equals( toIdentifier( param.getName()))
+        &&
+        (// ... that is matrix-encoded ...
+         "matrix".equals( param.getStyle())
+
+         // ... or label-encoded...
+         || "label".equals( param.getStyle())
+
+         // ... or is form-encoded but not an exploded object
+         || ((param.getLocation() == Location.QUERY || param.getLocation() == Location.COOKIE)
+             && !(param.getValue().getType() == DataValue.Type.OBJECT && param.isExploded()))));
     }
 
   /**

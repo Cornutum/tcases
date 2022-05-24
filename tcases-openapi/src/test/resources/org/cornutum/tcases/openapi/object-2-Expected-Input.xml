@@ -22,7 +22,6 @@
         </Var>
         <VarSet name="Value" when="param0Value">
           <Var name="Property-Count">
-            <Value name="0" once="true" whenNot="param0Properties"/>
             <Value name="&lt;= 3">
               <When>
                 <NotMoreThan property="param0Properties" max="1"/>
@@ -39,7 +38,7 @@
               <Var name="Defined">
                 <Has name="propertyName" value="Additional"/>
                 <Value name="Yes" property="param0Additional, param0Properties"/>
-                <Value name="No"/>
+                <Value name="No" failure="true"/>
               </Var>
               <Var name="Type" when="param0Additional">
                 <Value name="string" property="param0AdditionalValue"/>

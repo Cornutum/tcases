@@ -1626,6 +1626,7 @@ public class RequestExamplesTest extends OpenApiTest
     assertWarnings(
       "examples,/examples,POST,param0,anyOf[0]: 'null' is not a valid enumerated value for a non-nullable schema.",
       "examples,/examples,POST,param0,anyOf[0]: Example data unavailable -- no example defined for schema of type=object. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: Empty object values not allowed for non-nullable parameter -- using minProperties=1.",
       "examples,/examples,POST,param0: 'null' is not a valid enumerated value for a non-nullable schema.");
     }
 
@@ -1707,7 +1708,9 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_42()
     {
     verifyRequestExamplesModel( "examples-error-42");
-    assertWarnings( "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.");
+    assertWarnings(
+      "examples,/examples,POST,param0,charlie: Example data unavailable -- no example defined for schema of type=string. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: Empty object values not allowed for non-nullable parameter -- using minProperties=1.");
     }
 
   /**
@@ -1747,7 +1750,9 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_43()
     {
     verifyRequestExamplesModel( "examples-error-43");
-    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- if 'oneOf' defined, no other assertions allowed. Inputs will be defined by schema.");
+    assertWarnings(
+      "examples,/examples,POST,param0: Example data unavailable -- if 'oneOf' defined, no other assertions allowed. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: Empty object values not allowed for non-nullable parameter -- using minProperties=1.");
     }
 
   /**
@@ -1787,7 +1792,9 @@ public class RequestExamplesTest extends OpenApiTest
   public void Examples_44()
     {
     verifyRequestExamplesModel( "examples-error-44");
-    assertWarnings( "examples,/examples,POST,param0: Example data unavailable -- 'not' assertion defined. Inputs will be defined by schema.");
+    assertWarnings(
+      "examples,/examples,POST,param0: Example data unavailable -- 'not' assertion defined. Inputs will be defined by schema.",
+      "examples,/examples,POST,param0: Empty object values not allowed for non-nullable parameter -- using minProperties=1.");
     }
 
   /**
