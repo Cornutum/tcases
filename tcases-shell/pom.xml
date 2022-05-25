@@ -51,8 +51,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <build.timestamp>${maven.build.timestamp}</build.timestamp>
-    <maven.build.timestamp.format>MMM d, yyyy</maven.build.timestamp.format>
   </properties>
 
   <build>
@@ -104,7 +102,34 @@
             </configuration>
           </execution>
         </executions>
-    </plugin>
+      </plugin>
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+              <execution>
+                  <id>timestamp-date</id>
+                  <goals>
+                      <goal>timestamp-property</goal>
+                  </goals>
+                  <configuration>
+                      <name>build.date</name>
+                      <pattern>MMMM d, yyyy</pattern>
+                  </configuration>
+              </execution>
+              <execution>
+                  <id>timestamp-year</id>
+                  <goals>
+                      <goal>timestamp-property</goal>
+                  </goals>
+                  <configuration>
+                      <name>build.year</name>
+                      <pattern>yyyy</pattern>
+                  </configuration>
+              </execution>
+          </executions>
+      </plugin>
     </plugins>
   </build>
 
