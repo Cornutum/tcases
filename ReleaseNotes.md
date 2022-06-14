@@ -18,8 +18,6 @@ This release provides the following improvements to Tcases for OpenAPI.
     #[201](https://github.com/Cornutum/tcases/issues/201).)  This release now correctly resolves any such inconsistency with a
     warning, including for object values.
 
-    To avoid duplicate test cases, the `tcases-api-test` command (and, for Maven, the `tcases:api-test` goal) eliminates test
-
   * **Handle LWS in media types correctly** [[237](https://github.com/Cornutum/tcases/issues/237)]
 
     This changes fixes a defect in recognizing media type definitions, which can appear in OpenAPI definitions of
