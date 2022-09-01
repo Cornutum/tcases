@@ -294,7 +294,7 @@ public class OpenApiAuthTest {
     }
 
     private String tcasesApiBearerCredentials() {
-        return String.format( "Bearer %s", asToken64( tcasesApiBearer()));
+        return String.format( "Bearer %s", tcasesApiBearer());
     }
 
     private String tcasesApiUser() {
