@@ -121,7 +121,7 @@ public final class TestCaseWriterUtils
       targetWriter.println();
       targetWriter.println( "private String tcasesApiBearerCredentials() {");
       targetWriter.indent();
-      targetWriter.println( "return String.format( \"Bearer %s\", asToken64( tcasesApiBearer()));");
+      targetWriter.println( "return String.format( \"Bearer %s\", tcasesApiBearer());");
       targetWriter.unindent();
       targetWriter.println( "}");
       }
@@ -148,10 +148,6 @@ public final class TestCaseWriterUtils
       targetWriter.println( "return String.format( \"Basic %s\", asToken64( String.format( \"%s:%s\", tcasesApiUser(), tcasesApiPassword())));");
       targetWriter.unindent();
       targetWriter.println( "}");
-      }
-
-    if( dependencies.dependsAuthHttp())
-      {
       targetWriter.println();
       targetWriter.println( "private String asToken64( String value) {");
       targetWriter.indent();
