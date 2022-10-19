@@ -193,34 +193,45 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   private List<DataValue<T>> newArray( ResolverContext context)
     {
     List<DataValue<T>> items = new ArrayList<DataValue<T>>();
-    boolean itemsUnique = isItemsUnique();
-    DataValue<T> nextItem;
-
-    // Select array items, observing any uniqueness constraint
-    ValueDomain<T> nextItemValues = getItemValues();
-    ValueDomain<T> otherItemValues = Optional.ofNullable( getOtherItemValues()).orElse( nextItemValues);
-    for( int itemCount = getItemCount().selectValue( context);
-           
-         items.size() < itemCount;
-           
-         items.add( nextItem),
-           nextItemValues = otherItemValues)
+    int itemCount = getItemCount().selectValue( context);
+    if( itemCount > 0)
       {
-      nextItem = getNextItem( context, nextItemValues, itemCount, items, itemsUnique);
-      }
+      // Select array items, observing any uniqueness constraint
+      ValueDomain<T> nextItemValues = getItemValues();
+      ValueDomain<T> otherItemValues = Optional.ofNullable( getOtherItemValues()).orElse( nextItemValues);
+      
+      boolean itemsUnique =
+        Optional.of( isItemsUnique())
+        .filter( unique -> unique)
+        .map( unique -> {
+            boolean otherItemsNull = Optional.ofNullable( otherItemValues.getType()).map( type -> type == Type.NULL).orElse( false);
+            if( otherItemsNull)
+              {
+              context.warn( "Unable to generate unique non-null item objects -- all array items must be null");
+              }
+            return !otherItemsNull;
+          })
+        .orElse( false);
 
-    if( !itemsUnique && items.size() > 1)
-      {
-      // The first item, which satisifies required item assertions, must remain unchanged.
-      // But given a different random target item ...
-      int target = context.getRandom().nextInt( items.size() - 1) + 1;
+      while( items.size() < itemCount)
+        {
+        items.add( getNextItem( context, nextItemValues, itemCount, items, itemsUnique));
+        nextItemValues = otherItemValues;
+        }
 
-      // ...and a different source item...
-      int source;
-      while( (source = context.getRandom().nextInt( items.size())) == target);
+      if( !itemsUnique && items.size() > 1)
+        {
+        // The first item, which satisfies required item assertions, must remain unchanged.
+        // But given a different random target item ...
+        int target = context.getRandom().nextInt( items.size() - 1) + 1;
 
-      // ...ensure target item is a duplicate of the source item.
-      items.set( target, items.get( source));
+        // ...and a different source item...
+        int source;
+        while( (source = context.getRandom().nextInt( items.size())) == target);
+
+        // ...ensure target item is a duplicate of the source item.
+        items.set( target, items.get( source));
+        }
       }
     
     return items;
