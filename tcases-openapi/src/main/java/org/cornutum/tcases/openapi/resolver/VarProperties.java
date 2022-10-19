@@ -408,9 +408,6 @@ public final class VarProperties
       types[0] == Type.NUMBER?
       toNumberItemsDomain( Type.NUMBER, valueProperties) :
 
-      types[0] == Type.OBJECT?
-      new ObjectDomain( chars) :
-
       types[0] == Type.STRING?
       toStringItemsDomain( valueProperties, chars) :
 
@@ -440,27 +437,47 @@ public final class VarProperties
         }
       else
         {
-        Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
-        ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
-        ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
-        ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
-        arrayDomain = itemDomain.arrayOf();
-        arrayDomain.setOtherItemValues( otherItemValues);
+        arrayDomain = toArrayValues( items, chars);
 
         VarBinding size = expectVarBinding( items, "Size");
         arrayDomain.setItemCount( Range.of( size));
-
-        arrayDomain.setItemsUnique(
-          Optional.ofNullable( getVarBinding( items, "Unique"))
-          .filter( u -> !u.isValueNA())
-          .map( u -> "Yes".equals( u.getValue()))
-          .orElse( size.getAnnotation( "itemsUnique") != null));
         }
 
       domain = arrayDomain;
       }
     
     return domain;
+    }
+
+  /**
+   * Returns the array domain specified by the given properties.
+   */
+  private static ArrayDomain<?> toArrayValues( Map<String,Object> items, Characters chars)
+    {
+    Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
+    ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
+    ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
+
+    ValueDomain<?> itemDomain =
+      itemValues != null?
+      itemValues :
+
+      otherItemValues != null?
+      otherItemValues :
+
+      new NullDomain();
+
+    ArrayDomain<?> arrayDomain = itemDomain.arrayOf();
+    arrayDomain.setOtherItemValues( otherItemValues == null? itemDomain : otherItemValues);
+
+    VarBinding size = expectVarBinding( items, "Size");
+    arrayDomain.setItemsUnique(
+      Optional.ofNullable( getVarBinding( items, "Unique"))
+      .filter( u -> !u.isValueNA())
+      .map( u -> "Yes".equals( u.getValue()))
+      .orElse( size.getAnnotation( "itemsUnique") != null));
+
+    return arrayDomain;
     }
 
   /**
@@ -791,11 +808,7 @@ public final class VarProperties
       }
     else
       {
-      Map<String,Object> itemValueProperties = expectPropertyValues( items, "Contains");
-      ValueDomain<?> otherItemValues = toItemsDomain( itemValueProperties, chars);
-      ValueDomain<?> itemValues = toValueDomain( itemValueProperties, chars);
-      ValueDomain<?> itemDomain = itemValues == null? otherItemValues : itemValues;
-      domain = itemDomain.arrayOf();
+      domain = toArrayValues( items, chars);
 
       VarBinding size = expectVarBinding( items, "Size");
       domain.setItemCount(
