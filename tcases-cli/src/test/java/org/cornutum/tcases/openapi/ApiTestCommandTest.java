@@ -258,7 +258,7 @@ public class ApiTestCommandTest extends TestWriterTest
     {
     // Given...
     File apiFile = stdApiDef( "OpenApiTest");
-    File resourceDir = new File( "resources");
+    File resourceDir = new File( getResourceDir(), "responses");
     
     String[] args =
       {
@@ -280,8 +280,7 @@ public class ApiTestCommandTest extends TestWriterTest
     String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
     verifyTest( "api-test-3", testFileResults);
 
-    File responsesDir = new File( testFile.getParentFile(), resourceDir.getPath());
-    assertResponses( testFile, responsesDir, true);
+    assertResponses( testFile, resourceDir, true);
     }
 
   /**

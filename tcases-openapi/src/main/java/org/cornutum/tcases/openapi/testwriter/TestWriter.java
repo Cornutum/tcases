@@ -148,24 +148,16 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
    */
   protected File getTestResourceDir( File targetFile, File resourceDir)
     {
-    File targetResourceDir;
-    if( targetFile == null)
-      {
+    return
+      targetFile == null?
       // Test cases go to standard output when the OpenAPI definition comes from standard input.
       // In this case, the OpenAPI definition can't be reprocessed to generate resources.
-      targetResourceDir = null;
-      }
-    else
-      {
-      File targetDir = targetFile.getParentFile();
+      null :
 
-      targetResourceDir =
-        Optional.ofNullable( resourceDir)
-        .map( dir -> dir.isAbsolute() || targetDir == null? dir : new File( targetDir, dir.getPath()))
-        .orElse( targetDir);
-      }
-
-    return targetResourceDir;
+      Optional.ofNullable( resourceDir)
+      .orElse(
+        Optional.ofNullable( targetFile.getParentFile())
+        .orElse( new File( ".")));
     }
 
   /**
