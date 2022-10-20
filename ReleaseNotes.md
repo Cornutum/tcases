@@ -1,5 +1,28 @@
 # Release Notes #
 
+## 3.8.4 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Improved resolution for object array input values** [[245](https://github.com/Cornutum/tcases/issues/245)]
+
+    For an API request input value that is an array, a test case definition will explicitly specify
+    the data model only for one specific item, with annotations added to describe the values allowed
+    for other array items. In previous versions, these annotations were not sufficient to correctly
+    generate other array items of type `object`. Consequently, resolution of such input values
+    produced invalid array items or (when items must be unique) resolution failures. But this release
+    improves the resolution of object array values to avoid such failures.
+
+  * **Handle resource directory correctly for response definitions** 
+
+    For the `tcases-api-test` command, the `-d` option (or for the `mvn tcases:api-test` command,
+    the `resourceDir` parameter) that is used to specify the location of API response definitions
+    is now handled correctly.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.5.
+    
 ## 3.8.3 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
