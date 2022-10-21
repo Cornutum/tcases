@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.cornutum.tcases</groupId>
         <artifactId>tcases</artifactId>
-        <version>3.8.4-SNAPSHOT</version>
+        <version>3.8.4</version>
     </parent>
 
     <artifactId>tcases-io</artifactId>

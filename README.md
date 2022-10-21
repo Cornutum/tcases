@@ -4,10 +4,10 @@
 [![javadoc](https://javadoc.io/badge2/org.cornutum.tcases/tcases-shell/javadoc.svg?style=plastic)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
 
 ## What's New? ##
-  * The latest version ([Tcases 3.8.3](ReleaseNotes.md#383)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 3.8.4](ReleaseNotes.md#384)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * Tcases 3.8.3 updates Tcases for OpenAPI to ensure that OAuth bearer tokens are applied correctly. See the [release notes](ReleaseNotes.md#383) for details.
+  * Tcases 3.8.4 provides improvements to Tcases for OpenAPI. See the [release notes](ReleaseNotes.md#384) for details.
 
   * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 
