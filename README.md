@@ -54,7 +54,7 @@ JUnit or TestNG test class.
 
   * **More Info**
     * [Model-Driven Testing Using Tcases](ModelDrivenTestingForAgileTeams.md)
-    * Javadoc: [Tcases API](http://www.cornutum.org/tcases/docs/api/)
+    * Javadoc: [Tcases API](http://www.cornutum.org/tcases/docs/api/index.html)
 
 ## Contributors ##
 
