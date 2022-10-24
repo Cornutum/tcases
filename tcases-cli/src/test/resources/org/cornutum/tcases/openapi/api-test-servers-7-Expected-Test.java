@@ -1,8 +1,6 @@
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -10,6 +8,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;

@@ -369,7 +369,7 @@ domain-specific micro-languages like [REST Assured](https://github.com/rest-assu
 different execution interface, create a new implementation of the
 [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) interface.
 `TestCaseWriter` implementations often start with a subclass of
-[`TestCaseContentWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseContentWriter.html).
+[`BaseTestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.html).
 Several [helpful utilities](#some-helpful-utilities) are available to make this easier.
 
 #### Creating an API test, step-by-step ####
@@ -400,7 +400,7 @@ Here's a step-by-step outline of how to use the TestWriter API to convert an Ope
 
   - **To serialize request body data** using another media type specified in the OpenAPI definition, use a
     [`DataValueConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/DataValueConverter.html).
-    The `TestCaseContentWriter` class automatically registers converters for many common media types. Alternatively, create and register your own
+    The `BaseTestCaseWriter` class automatically registers converters for many common media types. Alternatively, create and register your own
     implementation.
 
 ## Running generated tests ##

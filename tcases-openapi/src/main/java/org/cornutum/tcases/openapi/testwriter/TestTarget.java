@@ -27,6 +27,7 @@ public class TestTarget
    */
   public TestTarget()
     {
+    setValidateResponses( true);
     }
 
   /**

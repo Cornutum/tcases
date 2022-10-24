@@ -1,8 +1,6 @@
 package org.cornutum.tcases.openapi.restassured;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import com.github.dreamhead.moco.junit.MocoJunitRunner;
@@ -15,16 +13,18 @@ import static java.util.stream.Collectors.toMap;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class OpenApiTestResponsesTest {
 
-    private ResponseValidator responseValidator = new ResponseValidator( getClass());
-
     @ClassRule
     public static MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, pathResource( "org/cornutum/tcases/openapi/moco/OpenApiTest-Moco.json"));
+
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
     public void headPost_UserAttributesDefined_Is_Yes() {

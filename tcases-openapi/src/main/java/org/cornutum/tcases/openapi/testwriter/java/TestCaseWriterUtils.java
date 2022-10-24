@@ -13,7 +13,7 @@ import org.cornutum.tcases.openapi.resolver.AuthDef;
 import org.cornutum.tcases.openapi.resolver.AuthDefVisitor;
 import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
 import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
-
+import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter.Depends;
 
 /**
  * Defines common methods for generating standard Java methods used by {@link org.cornutum.tcases.openapi.testwriter.TestCaseWriter} implementations.
@@ -29,6 +29,15 @@ public final class TestCaseWriterUtils
     }
 
   /**
+   * Writes the definition of standard response validator to the given stream.
+   */
+  public static void writeResponseValidatorDef( String testName, IndentedWriter targetWriter)
+    {
+    targetWriter.println();
+    targetWriter.println( "private ResponseValidator responseValidator = new ResponseValidator( getClass());");
+    }
+
+  /**
    * Writes the definition of standard status code matcher methods to the given stream. Note: this generates a runtime dependency
    * on <A href="http://hamcrest.org/JavaHamcrest/distributables#previous-versions-of-hamcrest">hamcrest.jar</A>.
    */
@@ -40,14 +49,18 @@ public final class TestCaseWriterUtils
     targetWriter.println( "return allOf( greaterThanOrEqualTo(200), lessThan(300));");
     targetWriter.unindent();
     targetWriter.println( "}");
-    targetWriter.println();
-    targetWriter.println( "private static Matcher<Integer> isBadRequest() {");
-    targetWriter.indent();
-    targetWriter.println( "return allOf( greaterThanOrEqualTo(400), lessThan(500));");
-    targetWriter.unindent();
-    targetWriter.println( "}");
 
-    if( dependencies.dependsAuth())
+    if( dependencies.dependsFailure())
+      {
+      targetWriter.println();
+      targetWriter.println( "private static Matcher<Integer> isBadRequest() {");
+      targetWriter.indent();
+      targetWriter.println( "return allOf( greaterThanOrEqualTo(400), lessThan(500));");
+      targetWriter.unindent();
+      targetWriter.println( "}");
+      }
+
+    if( dependencies.dependsAuthFailure())
       {
       targetWriter.println();
       targetWriter.println( "private static Matcher<Integer> isUnauthorized() {");
@@ -208,104 +221,5 @@ public final class TestCaseWriterUtils
       }
   
     private String value_;
-    }
-
-  /**
-   * Defines the compile-time dependencies on standard methods.
-   */
-  public static class Depends
-    {
-    /**
-     * Registers a dependency on a runtime API server definition.
-     */
-    public void setDependsServer()
-      {
-      dependsServer_ = true;
-      }
-    
-    /**
-     * Returns if there is a dependency on a runtime API server definition.
-     */
-    public boolean dependsServer()
-      {
-      return dependsServer_;
-      }
-    
-    /**
-     * Returns if there is a dependency on a runtime API authentication.
-     */
-    public boolean dependsAuth()
-      {
-      return dependsAuth_ > 0;
-      }
-    
-    /**
-     * Returns if there is a dependency on a runtime HTTP authentication.
-     */
-    public boolean dependsAuthHttp()
-      {
-      return dependsAuthHttp_ > 0;
-      }
-    
-    /**
-     * Registers a dependency on a runtime API key credential.
-     */
-    public void setDependsApiKey()
-      {
-      dependsAuth_++;
-      dependsApiKey_ = true;
-      }
-    
-    /**
-     * Returns if there is a dependency on a runtime API key credential.
-     */
-    public boolean dependsApiKey()
-      {
-      return dependsApiKey_;
-      }
-    
-    /**
-     * Registers a dependency on a runtime HTTP Basic credential.
-     */
-    public void setDependsHttpBasic()
-      {
-      dependsAuth_++;
-      dependsAuthHttp_++;
-      dependsHttpBasic_ = true;
-      }
-    
-    /**
-     * Returns if there is a dependency on a runtime HTTP Basic credential.
-     */
-    public boolean dependsHttpBasic()
-      {
-      return dependsHttpBasic_;
-      }
-
-    /**
-     * Registers a dependency on a runtime HTTP Bearer credential.
-     */
-    public void setDependsHttpBearer()
-      {
-      dependsAuth_++;
-      dependsAuthHttp_++;
-      dependsHttpBearer_ = true;
-      }
-    
-    /**
-     * Returns if there is a dependency on a runtime HTTP Bearer credential.
-     */
-    public boolean dependsHttpBearer()
-      {
-      return dependsHttpBearer_;
-      }
-
-    private boolean dependsServer_;
-
-    private int dependsAuth_;
-    private int dependsAuthHttp_;
-    private boolean dependsApiKey_;
-    private boolean dependsHttpBasic_;
-    private boolean dependsHttpBearer_;
     }
   }
