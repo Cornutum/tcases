@@ -30,7 +30,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.joining;
@@ -320,17 +319,8 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
    */
   protected void writeServer( String testName, URI testServer, RequestCase requestCase, IndentedWriter targetWriter)
     {
-    Optional<String> serverUri =
-      Optional.of(
-        StringUtils.stripEnd(
-        Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
-        "/"))
-      .filter( StringUtils::isNotBlank);
-
-    targetWriter.println
-      ( String.format(
-        ".baseUri( forTestServer(%s))",
-        serverUri.map( uri -> String.format( " %s", stringLiteral( uri))) .orElse( "")));
+    Optional<String> serverUri = serverUri( testServer, requestCase);
+    targetWriter.println( String.format(".baseUri( %s)", forTestServer( serverUri)));
 
     if( !serverUri.isPresent())
       {

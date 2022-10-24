@@ -13,7 +13,15 @@ import org.cornutum.tcases.openapi.resolver.AuthDef;
 import org.cornutum.tcases.openapi.resolver.AuthDefVisitor;
 import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
 import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
+import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter.Depends;
+import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.stringLiteral;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.net.URI;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Defines common methods for generating standard Java methods used by {@link org.cornutum.tcases.openapi.testwriter.TestCaseWriter} implementations.
@@ -177,6 +185,30 @@ public final class TestCaseWriterUtils
       targetWriter.unindent();
       targetWriter.println( "}");
       }
+    }
+
+  /**
+   * Returns the base URI defined for the given test case, if any.
+   */
+  public static Optional<String> serverUri( URI testServer, RequestCase requestCase)
+    {
+    return
+      Optional.of(
+        StringUtils.stripEnd(
+          Objects.toString( testServer, Objects.toString( requestCase.getServer(), "")),
+          "/"))
+      .filter( StringUtils::isNotBlank);
+    }
+
+  /**
+   * Returns the Java expression that returns the API server URI.
+   */
+  public static String forTestServer( Optional<String> serverUri)
+    {
+    return
+      String.format(
+        "forTestServer(%s)",
+        serverUri.map( uri -> String.format( " %s", stringLiteral( uri))) .orElse( ""));
     }
 
   /**
