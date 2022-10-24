@@ -1,8 +1,6 @@
 package org.cornutum.moco;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import com.github.dreamhead.moco.junit.MocoJunitRunner;
@@ -15,16 +13,18 @@ import static java.util.stream.Collectors.toMap;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 public class MyTestClassTest extends MyBaseClass {
 
-    private ResponseValidator responseValidator = new ResponseValidator( getClass());
-
     @ClassRule
     public static MocoJunitRunner runner = MocoJunitRunner.jsonRestRunner( 12306, file( "/Users/kerrykimbrough/repos/tcases/tcases-cli/target/test-classes/org/cornutum/tcases/openapi/myRestServerConfig.json"));
+
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
 
     @Test
     public void getPosts_IdsDefined_Is_Yes() {

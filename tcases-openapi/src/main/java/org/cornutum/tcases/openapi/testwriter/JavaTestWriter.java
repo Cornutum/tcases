@@ -78,12 +78,6 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
     Optional.ofNullable( target.getBaseClassPackage())
       .filter( basePkg -> !basePkg.equals( target.getTargetPackage()))
       .ifPresent( basePkg -> targetWriter.println( String.format( "import %s", target.getBaseClass())));
-
-    if( target.validateResponses())
-      {
-      targetWriter.println();
-      targetWriter.println( "import org.cornutum.tcases.openapi.test.ResponseValidator;");
-      }
     }
 
   /**
@@ -102,12 +96,6 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
     targetWriter.println();
     targetWriter.println( classDecl.toString());
     targetWriter.indent();
-    
-    if( target.validateResponses())
-      {
-      targetWriter.println();
-      targetWriter.println( "private ResponseValidator responseValidator = new ResponseValidator( getClass());");
-      }
     }
 
   /**

@@ -98,8 +98,6 @@ public class RestAssuredTestCaseWriterTest extends MocoServerTest
 
     MocoServerConfig serverConfig = MocoServerConfig.resource( stdMocoServerConfig( "OpenApiTest")).build();
     RestAssuredTestCaseWriter testCaseWriter = new RestAssuredTestCaseWriter();
-    testCaseWriter.setValidateResponses( true);
-
     MocoServerTestWriter testWriter = new RestServerTestWriter( serverConfig, testCaseWriter);
     
     // When...

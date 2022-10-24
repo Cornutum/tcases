@@ -8,20 +8,16 @@
 package org.cornutum.tcases.openapi.restassured;
 
 import org.cornutum.tcases.io.IndentedWriter;
-import org.cornutum.tcases.openapi.resolver.ApiKeyDef;
 import org.cornutum.tcases.openapi.resolver.AuthDef;
-import org.cornutum.tcases.openapi.resolver.AuthDefVisitor;
 import org.cornutum.tcases.openapi.resolver.DataValue;
 import org.cornutum.tcases.openapi.resolver.EncodingData;
-import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
-import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
 import org.cornutum.tcases.openapi.resolver.MessageData;
 import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.test.MediaRange;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
-import org.cornutum.tcases.openapi.testwriter.ValidatingTestCaseWriter;
+import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
@@ -42,7 +38,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * Writes the source code for REST Assured test cases that execute API requests.
  */
-public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
+public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
   {
   /**
    * Creates a new RestAssuredTestCaseWriter instance.
@@ -52,31 +48,13 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     }
   
   /**
-   * Prepare this writer to handle the given request cases.
-   */
-  @Override
-  public void prepareTestCases( List<RequestCase> requestCases)
-    {
-    requiresMultiPart_ =
-      requestCases.stream()
-      .map( RequestCase::getBody)
-      .anyMatch(
-        body -> 
-        Optional.ofNullable( body)
-        .map( MessageData::getMediaType)
-        .map( mediaType -> "multipart/form-data".equals( MediaRange.of( mediaType).base()))
-        .orElse( false));
-      
-    }
-  
-  /**
    * Writes the dependencies for target test cases to the given stream.
    */
   @Override
   public void writeDependencies( String testName, IndentedWriter targetWriter)
     {
     targetWriter.println();
-    if( validateResponses())
+    if( getDepends().validateResponses())
       {
       targetWriter.println( "import java.util.Map;");
       targetWriter.println( "import static java.util.stream.Collectors.toMap;");
@@ -84,8 +62,10 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println( "import io.restassured.http.Header;");
       targetWriter.println( "import io.restassured.response.Response;");
       targetWriter.println();
+      targetWriter.println( "import org.cornutum.tcases.openapi.test.ResponseValidator;");
+      targetWriter.println();
       }
-    if( requiresMultiPart_)
+    if( getDepends().dependsMultipart())
       {
       targetWriter.println( "import io.restassured.builder.MultiPartSpecBuilder;");
       targetWriter.println();
@@ -93,8 +73,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     targetWriter.println( "import org.hamcrest.Matcher;");
     targetWriter.println( "import static io.restassured.RestAssured.*;");
     targetWriter.println( "import static org.hamcrest.Matchers.*;");
-
-    depends_ = new Depends();
     }
 
   /**
@@ -103,6 +81,10 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   @Override
   public void writeDeclarations( String testName, IndentedWriter targetWriter)
     {
+    if( validateResponses())
+      {
+      writeResponseValidatorDef( testName, targetWriter);
+      }
     }
   
   /**
@@ -113,7 +95,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     {
     try
       {
-      if( validateResponses())
+      if( getDepends().validateResponses())
         {
         targetWriter.println( "Response response =");
         targetWriter.indent();
@@ -136,7 +118,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.indent();
       writeExpectResponse( testName, requestCase, targetWriter);
 
-      if( validateResponses())
+      if( getDepends().validateResponses())
         {
         targetWriter.unindent();
 
@@ -148,7 +130,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
       targetWriter.println( ";");
       targetWriter.unindent();
 
-      if( validateResponses())
+      if( getDepends().validateResponses())
         {
         targetWriter.unindent();
 
@@ -178,13 +160,29 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
   @Override
   public void writeClosing( String testName, IndentedWriter targetWriter)
     {
-    writeStatusCodeMatcherDef( testName, targetWriter, depends_);
-    writeTestServerDef( testName, targetWriter, depends_);
-    writeAuthCredentialsDef( testName, targetWriter, depends_);
+    writeStatusCodeMatcherDef( testName, targetWriter, getDepends());
+    writeTestServerDef( testName, targetWriter, getDepends());
+    writeAuthCredentialsDef( testName, targetWriter, getDepends());
+    writeResponseHeadersDef( testName, targetWriter, getDepends());
+    }
 
-    if( validateResponses())
+  /**
+   * Writes the definition of standard methods to extract response headers.
+   */
+  protected void writeResponseHeadersDef( String testName, IndentedWriter targetWriter, Depends dependencies)
+    {
+    if( dependencies.validateResponses())
       {
-      writeResponseHeadersDef( testName, targetWriter, depends_);
+      targetWriter.println();
+      targetWriter.println( "private static Map<String,String> responseHeaders( Response response) {");
+      targetWriter.indent();
+      targetWriter.println( "return");
+      targetWriter.indent();
+      targetWriter.println( "response.getHeaders().asList().stream()");
+      targetWriter.println( ".collect( toMap( Header::getName, Header::getValue));");
+      targetWriter.unindent();
+      targetWriter.unindent();
+      targetWriter.println( "}");
       }
     }
   
@@ -315,8 +313,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
         throw new IllegalStateException( String.format( "Invalid location for authentication value=%s", authDef));
         }
       }
-
-    authDef.accept( authDependsVisitor_);
     }
   
   /**
@@ -338,7 +334,7 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
 
     if( !serverUri.isPresent())
       {
-      depends_.setDependsServer();
+      getDepends().setDependsServer();
       }
     }
   
@@ -586,52 +582,6 @@ public class RestAssuredTestCaseWriter extends ValidatingTestCaseWriter
     else
       {
       targetWriter.println( ".statusCode( isSuccess())");
-      }
-    }
-
-  /**
-   * Writes the definition of standard status code matcher methods to the given stream. Note: this generates a runtime dependency
-   * on <A href="http://hamcrest.org/JavaHamcrest/distributables#previous-versions-of-hamcrest">hamcrest.jar</A>.
-   */
-  protected void writeResponseHeadersDef( String testName, IndentedWriter targetWriter, Depends dependencies)
-    {
-    targetWriter.println();
-    targetWriter.println( "private static Map<String,String> responseHeaders( Response response) {");
-    targetWriter.indent();
-    targetWriter.println( "return");
-    targetWriter.indent();
-    targetWriter.println( "response.getHeaders().asList().stream()");
-    targetWriter.println( ".collect( toMap( Header::getName, Header::getValue));");
-    targetWriter.unindent();
-    targetWriter.unindent();
-    targetWriter.println( "}");
-    }
-
-  private Depends depends_;
-  private boolean requiresMultiPart_;
-  private AuthDependsVisitor authDependsVisitor_ = new AuthDependsVisitor();
-
-  /**
-   * Records compile-time dependencies for an authentication definition.
-   */
-  private class AuthDependsVisitor implements AuthDefVisitor
-    {
-    @Override
-    public void visit( ApiKeyDef authDef)
-      {
-      depends_.setDependsApiKey();
-      }
-
-    @Override
-    public void visit( HttpBasicDef authDef)
-      {
-      depends_.setDependsHttpBasic();
-      }
-
-    @Override
-    public void visit( HttpBearerDef authDef)
-      {
-      depends_.setDependsHttpBearer();
       }
     }
   }

@@ -1,8 +1,6 @@
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -10,6 +8,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
@@ -1704,8 +1704,6 @@ public class OpenAPIRequestTestCases_PostsTest {
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -1713,6 +1711,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
@@ -2033,8 +2033,6 @@ public class OpenAPIRequestTestCases_PostsUseridAttributesTest {
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -2042,6 +2040,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
@@ -2386,8 +2386,6 @@ public class OpenAPIRequestTestCases_PostsAttributesTest {
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -2395,6 +2393,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
@@ -3485,8 +3485,6 @@ public class OpenAPIRequestTestCases_PostTest {
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -3494,6 +3492,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
@@ -3755,8 +3755,6 @@ public class OpenAPIRequestTestCases_PostUseridApprovedTest {
 package org.cornutum.examples;
 
 
-import org.cornutum.tcases.openapi.test.ResponseValidator;
-
 import org.junit.Test;
 
 import java.util.Map;
@@ -3764,6 +3762,8 @@ import static java.util.stream.Collectors.toMap;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
 
 import org.hamcrest.Matcher;
 import static io.restassured.RestAssured.*;
@@ -3792,10 +3792,6 @@ public class OpenAPIRequestTestCases_UsersTest {
 
     private static Matcher<Integer> isSuccess() {
         return allOf( greaterThanOrEqualTo(200), lessThan(300));
-    }
-
-    private static Matcher<Integer> isBadRequest() {
-        return allOf( greaterThanOrEqualTo(400), lessThan(500));
     }
 
     private static String forTestServer() {
