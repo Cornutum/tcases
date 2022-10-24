@@ -99,7 +99,7 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
     }
 
   /**
-   * Returns the default {@link #getConverter(String> converters} for this test case writer.
+   * Returns the default {@link #getConverter(String) converters} for this test case writer.
    */
   protected Map<String,DataValueConverter<String>> getDefaultConverters()
     {
