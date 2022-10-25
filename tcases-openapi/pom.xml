@@ -158,6 +158,7 @@
                                 <include>org/cornutum/tcases/openapi/testwriter/OpenApiEncodings-Request-Cases.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/normalize-*.json</include>
                                 <include>org/cornutum/tcases/openapi/testwriter/normalize-*-Request-Cases.json</include>
+                                <include>org/cornutum/tcases/openapi/testwriter/uspto-dsapi.json</include>
                             </includes>
                         </configuration>
                     </execution>

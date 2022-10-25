@@ -326,6 +326,11 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
       {
       getDepends().setDependsServer();
       }
+
+    if( getDepends().trustServer())
+      {
+      targetWriter.println( ".relaxedHTTPSValidation()");
+      }
     }
   
   /**
