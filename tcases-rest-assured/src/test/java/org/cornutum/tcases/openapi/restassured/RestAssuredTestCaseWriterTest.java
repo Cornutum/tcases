@@ -93,7 +93,6 @@ public class RestAssuredTestCaseWriterTest extends MocoServerTest
       JavaTestTarget.builder()
       .named( testDefName)
       .inDir( getGeneratedTestDir())
-      .validateResponses( true)
       .build();
 
     MocoServerConfig serverConfig = MocoServerConfig.resource( stdMocoServerConfig( "OpenApiTest")).build();
