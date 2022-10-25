@@ -293,6 +293,19 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-V</NOBR>
+   * </TD>
+   * <TD>
+   * If specified, generated HTTPS requests will connect to the API server without verifying the server
+   * certificate. Otherwise, by default, the API server must present a trusted certificate.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-T <I>contentType</I> </NOBR>
    * </TD>
    * <TD>
@@ -602,6 +615,11 @@ public class ApiTestCommand
           }
         }
 
+      else if( arg.equals( "-V"))
+        {
+        setServerTrusted( true);
+        }
+
       else if( arg.equals( "-c"))
         {
         i++;
@@ -791,6 +809,10 @@ public class ApiTestCommand
                "",
                "                   uri=<uri>",
                "                       Use the specified <uri>.",
+               "",
+               "  -V              If specified, generated HTTPS requests will connect to the API server without verifying",
+               "                  the server certificate. Otherwise, by default, the API server must present a trusted",
+               "                  certificate.",
                "",
                "  -T contentType  Defines the content type of the OpenApi definition. The contentType must be one",
                "                  of 'json', 'yaml', or 'yml'. If omitted, the default content type is derived from the",
@@ -1142,6 +1164,22 @@ public class ApiTestCommand
       }
 
     /**
+     * Changes if generated HTTPS requests will connect to the API server without verifying the server certificate.
+     */
+    public void setServerTrusted( boolean trusted)
+      {
+      serverTrusted_ = trusted;
+      }
+
+    /**
+     * Returns if generated HTTPS requests will connect to the API server without verifying the server certificate.
+     */
+    public boolean isServerTrusted()
+      {
+      return serverTrusted_;
+      }
+
+    /**
      * Changes the OpenApi definition file content type.
      */
     public void setContentType( String option)
@@ -1490,6 +1528,7 @@ public class ApiTestCommand
       {
       RestAssuredTestCaseWriter testCaseWriter = new RestAssuredTestCaseWriter();
       testCaseWriter.setValidateResponses( hasResources());
+      testCaseWriter.setTrustServer( isServerTrusted());
       return testCaseWriter;
       }
 
@@ -1555,6 +1594,7 @@ public class ApiTestCommand
     private File workingDir_;
     private boolean showVersion_;
     private Long randomSeed_;
+    private boolean serverTrusted_;
 
     private static final Pattern serverExprPattern_ = Pattern.compile( "(index|contains|uri)=(.+)");
       
@@ -1664,6 +1704,17 @@ public class ApiTestCommand
         {
         options_.setServerUri( serverExpr);
         return this;
+        }
+
+      public Builder serverTrusted( boolean trusted)
+        {
+        options_.setServerTrusted( trusted);
+        return this;
+        }
+
+      public Builder serverTrusted()
+        {
+        return serverTrusted( true);
         }
 
       public Builder contentType( String type)

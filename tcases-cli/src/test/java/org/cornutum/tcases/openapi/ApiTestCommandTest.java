@@ -985,6 +985,32 @@ public class ApiTestCommandTest extends TestWriterTest
     assertResponses( testFile, responsesDir, true);
     }
 
+  @Test
+  public void whenServerTrusted() throws Exception
+    {
+    // Given...
+    File apiFile = stdApiDef( "uspto-dsapi");
+    
+    String[] args =
+      {
+        "-X",
+        "-V",
+        "-n", "gov.uspto.DsApiTest",
+        apiFile.getPath()
+      };
+    
+    // When...
+    ApiTestCommand.run( new Options( args));
+        
+    // Then...
+    File testFile = new File( apiFile.getParentFile(), "DsApiTest.java");
+    String testFileResults = FileUtils.readFileToString( testFile, "UTF-8");
+    verifyTest( "api-test-trusted", testFileResults);
+
+    File responsesDir = testFile.getParentFile();
+    assertResponses( testFile, responsesDir, true);
+    }
+
   /**
    * Run Tcases with the given options, using the given standard input/output.
    * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.

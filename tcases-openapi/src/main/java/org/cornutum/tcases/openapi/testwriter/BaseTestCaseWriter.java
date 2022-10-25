@@ -39,6 +39,7 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
   protected BaseTestCaseWriter()
     {
     setValidateResponses( true);
+    setTrustServer( false);
     getDefaultConverters().forEach( (mediaType,converter) -> setConverter( mediaType, converter));
     }
   
@@ -56,6 +57,22 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
   public boolean validateResponses()
     {
     return validateResponses_;
+    }
+  
+  /**
+   * Changes if generated HTTPS requests will accept an untrusted API server.
+   */
+  public void setTrustServer( boolean trustServer)
+    {
+    trustServer_ = trustServer;
+    }
+
+  /**
+   * Returns if generated HTTPS requests will accept an untrusted API server.
+   */
+  public boolean trustServer()
+    {
+    return trustServer_;
     }
 
   /**
@@ -75,6 +92,7 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
     depends_ = new Depends();
 
     depends_.setValidateResponses( validateResponses());
+    depends_.setTrustServer( trustServer());
 
     AuthDependsVisitor authDependsVisitor = new AuthDependsVisitor();
     requestCases.stream()
@@ -185,6 +203,7 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
 
   private final Map<String,DataValueConverter<String>> converters_ = new HashMap<String,DataValueConverter<String>>();
   private boolean validateResponses_;
+  private boolean trustServer_;
   private Depends depends_;
 
   /**
@@ -198,6 +217,7 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
     public Depends()
       {
       setValidateResponses( true);
+      setTrustServer( false);
       }
   
     /**
@@ -214,6 +234,22 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
     public boolean validateResponses()
       {
       return validateResponses_;
+      }
+  
+    /**
+     * Changes if generated HTTPS requests will accept an untrusted API server.
+     */
+    public void setTrustServer( boolean trustServer)
+      {
+      trustServer_ = trustServer;
+      }
+
+    /**
+     * Returns if generated HTTPS requests will accept an untrusted API server.
+     */
+    public boolean trustServer()
+      {
+      return trustServer_;
       }
 
     /**
@@ -359,6 +395,7 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
     private boolean dependsMultipart_;
     private boolean dependsServer_;
     private boolean validateResponses_;
+    private boolean trustServer_;
     }
 
   /**

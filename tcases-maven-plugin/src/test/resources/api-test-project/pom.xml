@@ -42,6 +42,7 @@
             <testType>moco</testType>
             <timeout>12345</timeout>
             <withResources>false</withResources>
+            <trustServer>true</trustServer>
         </configuration>
       </plugin>
     </plugins>

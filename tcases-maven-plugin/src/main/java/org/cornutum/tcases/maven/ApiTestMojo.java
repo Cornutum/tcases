@@ -92,6 +92,7 @@ public class ApiTestMojo extends AbstractMojo
         options.setPaths( getPaths());
         options.setOperations( getOperations());
         options.setServerUri( getBaseUri());
+        options.setServerTrusted( getTrustServer());
         options.setContentType( getContentType());
         options.setOutDir( new File( getOutDirFile(), getPath( inputFile)));
         options.setResourceOutDir( getTestResourceDir());
@@ -564,6 +565,22 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
+   * Changes if generated HTTPS requests will connect to the API server without verifying the server certificate.
+   */
+  public void setTrustServer( boolean trusted)
+    {
+    trustServer = trusted;
+    }
+
+  /**
+   * Returns if generated HTTPS requests will connect to the API server without verifying the server certificate.
+   */
+  public boolean getTrustServer()
+    {
+    return trustServer;
+    }
+
+  /**
    * Defines a set of patterns that match the OpenAPI definition files read by Tcases for OpenAPI.
    * By default, Tcases for OpenAPI uses the single pattern defined by the <B><CODE>apiDef</CODE></B> parameter.
    */
@@ -759,6 +776,13 @@ public class ApiTestMojo extends AbstractMojo
    */
   @Parameter(property="baseUri",defaultValue="index=0")
   private String baseUri;
+
+  /**
+   * If true, generated HTTPS requests will connect to the API server without verifying the server
+   * certificate. Otherwise, by default, the API server must present a trusted certificate.
+   */
+  @Parameter(property="trustServer",defaultValue="false")
+  private boolean trustServer;
 
   @Parameter(readonly=true,defaultValue="${basedir}")
   private File baseDir_;
