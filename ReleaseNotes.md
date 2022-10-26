@@ -1,5 +1,35 @@
 # Release Notes #
 
+## 3.8.5 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **New option to handle untrusted API servers**
+
+    When generated tests perform API requests using HTTPS, the API server is normally required to
+    verify that it can be trusted by presenting a valid server certificate. But during testing, this
+    might not be possible. For example, the test server might not have a certificate, or it may not
+    be possible to verify that the certificate is trusted in the test environment. To handle this
+    situation, you can generate tests by running `tcases-api-test` with the new `-V` option (or, if
+    using Maven, by running `tcases:api-test` with the `-DtrustServer=true` parameter). This produces
+    tests that connect to the API without checking the server certificate.
+
+  * **Better message when schema type is inconsistent or ambiguous**
+
+    Tcases for OpenAPI doesn't accept an OpenAPI definition that contains a [type-ambiguous
+    schema](tcases-openapi/README.md#openapi-tips). For example, see [this
+    discussion](https://github.com/Cornutum/tcases/discussions/251). But if one is found, you'll now
+    see a more helpful error message that identifies the cause of the problem.
+
+  * **Better handling of generated helper methods**
+
+    The source code for generated tests includes certain helper methods, such as `isBadRequest()`, etc. In this
+    release, such methods are included only if they are needed -- no more "unused private method" warnings.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.6.
+
 ## 3.8.4 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
