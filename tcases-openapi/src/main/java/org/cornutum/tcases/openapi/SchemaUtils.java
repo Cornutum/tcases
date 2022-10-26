@@ -28,7 +28,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Stream;
 import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.joining;
@@ -221,49 +220,78 @@ public final class SchemaUtils
     {
     String declaredType = schema.getType();
     
-    List<String> impliedTypes = 
-    Stream.of(
-      impliedType( "array", schema, Schema::getMaxItems, Schema::getMinItems, Schema::getUniqueItems),
-      impliedType( "number", schema, Schema::getMaximum, Schema::getExclusiveMaximum, Schema::getMinimum, Schema::getExclusiveMinimum, Schema::getMultipleOf),
-      impliedType( "object", schema, Schema::getMaxProperties, Schema::getMinProperties, Schema::getRequired, Schema::getProperties, Schema::getAdditionalProperties),
-      impliedType( "string", schema, Schema::getMaxLength, Schema::getMinLength, Schema::getPattern))
+    List<String[]> impliedTypes = 
+      Stream.of(
+        impliedType( "array", schema, "items", "maxItems", "minItems", "uniqueItems"),
+        impliedType( "number", schema, "maximum", "exclusiveMaximum", "minimum", "exclusiveMinimum", "multipleOf"),
+        impliedType( "object", schema, "maxProperties", "minProperties", "required", "properties", "additionalProperties"),
+        impliedType( "string", schema, "maxLength", "minLength", "pattern"))
       .filter( Objects::nonNull)
       .collect( toList());
 
     if( impliedTypes.size() == 1)
       {
-      String impliedType = impliedTypes.get(0);
+      String impliedType = impliedTypes.get(0)[0];
       if( declaredType == null)
         {
         schema.setType( impliedType);
         }
       else if( !(impliedType.equals( declaredType) || (impliedType.equals( "number") && declaredType.equals( "integer"))))
         {
-        throw new IllegalStateException( String.format( "Schema declares type=%s but has implied type=%s", declaredType, impliedType));
+        throw
+          new IllegalStateException(
+            String.format(
+              "Schema declares type=%s but defines property=%s which implies type=%s",
+              declaredType,
+              impliedTypes.get(0)[1],
+              impliedType));
         }
       }
     else if( impliedTypes.size() > 1)
       {
-      throw new IllegalStateException( String.format( "Ambiguous schema type -- could be any of %s", impliedTypes.stream().collect( joining( ", "))));
+      throw
+        new IllegalStateException(
+          String.format(
+            "Ambiguous schema type -- defines properties=%s which implies types=%s",
+            impliedTypes.stream().map( typeProperty -> typeProperty[1]).collect( joining( ", ", "[", "]")),
+            impliedTypes.stream().map( typeProperty -> typeProperty[0]).collect( joining( ", ", "[", "]"))));
       }
       
     return schema;
     }
 
   /**
-   * Returns the given type if applying any of the given accessors to the given schema produces a non-null value.
+   * If the given schema defines a value for any of the given properties, returns an array of the form <CODE>[type,property]</CODE>.
    * Otherwise, returns null.
    */
   @SafeVarargs
-  private static String impliedType( String type, Schema<?> schema, Function<Schema<?>,Object>... accessors)
+  private static String[] impliedType( String type, Schema<?> schema, String... properties)
     {
     return
-      Stream.of( accessors)
-      .map( accessor -> accessor.apply( schema))
-      .filter( Objects::nonNull)
+      Stream.of( properties)
+      .filter( property -> hasProperty( schema, property))
       .findFirst()
-      .map( value -> type)
+      .map( property -> new String[]{ type, property})
       .orElse( null);
+    }
+
+  /**
+   * Returns true if the given schema defines a value for the given property.
+   */
+  private static boolean hasProperty( Schema<?> schema, String property)
+    {
+    try
+      {
+      return
+        schema.getClass()
+        .getMethod( String.format( "get%s", WordUtils.capitalize( property)))
+        .invoke( schema)
+        != null;
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( String.format( "Can't get property=%s for schema=%s", property, schema), e);
+      }
     }
 
   /**

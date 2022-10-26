@@ -51,7 +51,7 @@ public class ImpliedTypesTest extends OpenApiTest
     assertRequestInputModelFailure(
       "impliedTypeAmbiguous",
       "Error processing Type, /type, POST, param0",
-      "Ambiguous schema type -- could be any of array, number, object");
+      "Ambiguous schema type -- defines properties=[uniqueItems, maximum, required] which implies types=[array, number, object]");
     }
   
   @Test
@@ -60,6 +60,6 @@ public class ImpliedTypesTest extends OpenApiTest
     assertRequestInputModelFailure(
       "impliedTypeInconsistent",
       "Error processing Type, /type, POST, param0",
-      "Schema declares type=string but has implied type=object");
+      "Schema declares type=string but defines property=required which implies type=object");
     }
   }
