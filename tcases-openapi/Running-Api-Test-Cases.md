@@ -9,6 +9,7 @@
     - [Example: REST Assured and JUnit](#example-rest-assured-and-junit) 
     - [Example: Create a specific TestNG class](#example-create-a-specific-testng-class)
     - [Example: Select the API server used by generated tests](#example-select-the-api-server-used-by-generated-tests)
+    - [Example: Handle an untrusted API server](#example-handle-an-untrusted-api-server)
     - [Example: Organize tests by API resource path](#example-organize-tests-by-api-resource-path)
     - [Example: Create tests from examples](#example-create-tests-from-examples)
     - [Example: Exclude response validation](#example-exclude-response-validation)
@@ -253,6 +254,22 @@ tcases-api-test -p org.examples -B contains=Test petstore-expanded.yaml
 # Generate JUnit tests for requests defined in 'petstore-expanded.yaml',
 # using a specific API server URI.
 tcases-api-test -p org.examples -B uri=http://api.myserver.com petstore-expanded.yaml
+```
+
+### Example: Handle an untrusted API server ###
+
+When generated tests perform API requests using HTTPS, the API server is normally required to verify
+that it can be trusted by presenting a valid server certificate. But during testing, this might not
+be possible. For example, the test server might not have a certificate, or it may not be possible to
+verify that the certificate is trusted in the test environment. To handle this situation, you can
+generate tests by running `tcases-api-test` with the `-V` option (or, if using Maven, by running
+`tcases:api-test` with the `-DtrustServer=true` parameter). This produces tests that connect to the
+API without checking the server certificate.
+
+```bash
+# Generate JUnit tests for requests defined in 'petstore-expanded.yaml',
+# using an untrusted test server
+tcases-api-test -p org.examples -V -B uri=http://localhost petstore-expanded.yaml
 ```
 
 ### Example: Organize tests by API resource path ###
