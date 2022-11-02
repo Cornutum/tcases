@@ -126,7 +126,7 @@ public interface Characters
       }
 
     /**
-     * Return true if the given chararacter is printable.
+     * Return true if the given character is printable.
      */
     public static boolean isPrintable( char c)
       {

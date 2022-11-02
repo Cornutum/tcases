@@ -89,13 +89,10 @@ public interface IVarDef extends IConditional, IAnnotated, Comparable<IVarDef>
    * Returns the condition that defines when values for this variable are applicable.
    */
   @Override
-ICondition getCondition();
+  ICondition getCondition();
 
-  /**
-   * Returns the condition that defines when values for this variable are applicable.
-   */
   @Override
-default int compareTo( IVarDef other)
+  default int compareTo( IVarDef other)
     {
     return getPosition().compareTo( other.getPosition());
     }
