@@ -7,19 +7,19 @@
 
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import org.cornutum.tcases.openapi.resolver.ArrayValue;
 import org.cornutum.tcases.openapi.resolver.Base64Domain;
-import org.cornutum.tcases.openapi.resolver.BinaryValue;
-import org.cornutum.tcases.openapi.resolver.BooleanValue;
-import org.cornutum.tcases.openapi.resolver.DataValue;
-import org.cornutum.tcases.openapi.resolver.DataValueVisitor;
-import org.cornutum.tcases.openapi.resolver.DecimalValue;
-import org.cornutum.tcases.openapi.resolver.IntegerValue;
-import org.cornutum.tcases.openapi.resolver.LongValue;
-import org.cornutum.tcases.openapi.resolver.NullValue;
-import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
-import org.cornutum.tcases.openapi.resolver.StringValue;
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.BinaryValue;
+import org.cornutum.tcases.resolve.BooleanValue;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DataValueVisitor;
+import org.cornutum.tcases.resolve.DecimalValue;
+import org.cornutum.tcases.resolve.IntegerValue;
+import org.cornutum.tcases.resolve.LongValue;
+import org.cornutum.tcases.resolve.NullValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+import org.cornutum.tcases.resolve.StringValue;
 
 import java.util.Objects;
 import java.util.Optional;

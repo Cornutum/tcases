@@ -15,6 +15,11 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.LinkedHashMap;
+
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
   

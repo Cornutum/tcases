@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.resolve.Schema;
+
 import org.apache.commons.collections4.IteratorUtils;
 
 import java.util.ArrayList;
@@ -150,7 +152,24 @@ public class VarDef extends AbstractVarDef
     for( i = 0; i < valueCount && !Objects.equals( name, values_.get(i).getName()); i++);
     return i < valueCount? i : -1;
     }
-  
+
+  /**
+   * Changes the schema for values bound to this variable.
+   */
+  public void setSchema( Schema schema)
+    {
+    schema_ = schema;
+    }
+
+  /**
+   * Returns the schema for values bound to this variable.
+   */
+  public Schema getSchema()
+    {
+    return schema_;
+    }
+
   private List<VarValueDef> values_ = new ArrayList<VarValueDef>();
+  private Schema schema_;
   }
 

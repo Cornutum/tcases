@@ -9,6 +9,9 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.hamcrest.BaseCompositeMatcher;
 import org.cornutum.hamcrest.Composites;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+
 import java.util.Map;
 import java.util.function.Function;
 

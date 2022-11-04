@@ -7,8 +7,8 @@
 
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import org.cornutum.tcases.openapi.resolver.BinaryValue;
-import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.resolve.BinaryValue;
+import org.cornutum.tcases.resolve.DataValue;
 
 /**
  * Converts a DataValue into a byte array.

@@ -10,8 +10,8 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.resolve.DataValue.Type;
 import org.cornutum.tcases.openapi.Characters;
-import org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;

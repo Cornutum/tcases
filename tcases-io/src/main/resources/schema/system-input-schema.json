@@ -81,13 +81,17 @@
                     }
                 }
             },
-            "additionalProperties": false,
             "oneOf": [
                 {
                     "required": [ "values" ],
                     "properties": {
                         "members": false
-                    }
+                    },
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/schema"
+                        }
+                    ]
                 },
                 {
                     "required": [ "members" ],
@@ -122,7 +126,11 @@
                     }
                 }
             },
-            "additionalProperties": false
+            "allOf": [
+                {
+                    "$ref": "#/definitions/schema"
+                }
+            ]
         },
         "condition": {
             "description": "Defines a constraint on the values allowed for an input variable",
@@ -279,6 +287,68 @@
             "minProperties": 1,
             "maxProperties": 1,
             "additionalProperties": false
+        },
+        "schema": {
+            "description": "Defines requirements for the values allowed for an input variable",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [ "array", "boolean", "integer", "number", "string"]
+                },
+                "enum": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": [ "array", "boolean", "integer", "number", "string"]
+                    }
+                },
+                "const": {
+                    "type": [ "array", "boolean", "integer", "number", "string", "null"]
+                },
+                "format": {
+                    "type": "string"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "number"
+                },
+                "exclusiveMaximum": {
+                    "type": "number"
+                },
+                "multipleOf": {
+                    "type": "number"
+                },
+                "minLength": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maxLength": {
+                    "type": "integer"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "minItems": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maxItems": {
+                    "type": "integer"
+                },
+                "uniqueItems": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "$ref": "#/definitions/schema"
+                }
+            }
         }
     }
 }

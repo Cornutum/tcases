@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 /**
  * Defines the Visitor pattern for {@link DataValue} objects.

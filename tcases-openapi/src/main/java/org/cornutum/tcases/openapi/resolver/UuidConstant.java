@@ -9,6 +9,9 @@ package org.cornutum.tcases.openapi.resolver;
 
 import java.util.regex.Pattern;
 
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.UuidValue;
+
 /**
  * Defines a singleton UUID string value set.
  */

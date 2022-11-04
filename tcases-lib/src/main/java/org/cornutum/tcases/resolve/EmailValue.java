@@ -5,18 +5,18 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated base64 address value for a request case.
+ * Represents a generated email address value for a request case.
  */
-public class Base64Value extends StringValue
+public class EmailValue extends StringValue
   {
   /**
-   * Creates a new Base64Value instance.
+   * Creates a new EmailValue instance.
    */
-  public Base64Value( String value)
+  public EmailValue( String value)
     {
-    super( value, "byte");
+    super( value, "email");
     }
   }

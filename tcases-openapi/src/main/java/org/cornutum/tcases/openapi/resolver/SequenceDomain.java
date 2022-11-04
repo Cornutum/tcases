@@ -8,14 +8,15 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import static java.util.Collections.emptySet;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 /**
  * Base class for domains that define a set of byte/character sequences that can be used by a request.

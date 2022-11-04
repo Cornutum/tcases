@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.cornutum.tcases.resolve.DataValue;
 import org.hamcrest.Matchers;
 
 /**

@@ -7,24 +7,24 @@
 
 package org.cornutum.tcases.openapi.moco;
 
-import org.cornutum.tcases.openapi.resolver.ArrayValue;
 import org.cornutum.tcases.openapi.resolver.Base64Domain;
-import org.cornutum.tcases.openapi.resolver.BinaryValue;
-import org.cornutum.tcases.openapi.resolver.BooleanValue;
-import org.cornutum.tcases.openapi.resolver.DataValue;
-import org.cornutum.tcases.openapi.resolver.DataValueVisitor;
-import org.cornutum.tcases.openapi.resolver.DecimalValue;
-import org.cornutum.tcases.openapi.resolver.IntegerValue;
-import org.cornutum.tcases.openapi.resolver.LongValue;
-import org.cornutum.tcases.openapi.resolver.NullValue;
-import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
-import org.cornutum.tcases.openapi.resolver.StringValue;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.BinaryValue;
+import org.cornutum.tcases.resolve.BooleanValue;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DataValueVisitor;
+import org.cornutum.tcases.resolve.DecimalValue;
+import org.cornutum.tcases.resolve.IntegerValue;
+import org.cornutum.tcases.resolve.LongValue;
+import org.cornutum.tcases.resolve.NullValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+import org.cornutum.tcases.resolve.StringValue;
 import org.cornutum.tcases.util.MapBuilder;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;

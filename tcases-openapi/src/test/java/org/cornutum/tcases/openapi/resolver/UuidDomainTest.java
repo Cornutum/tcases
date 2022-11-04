@@ -9,13 +9,15 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBindingBuilder;
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.resolve.DataValue;
+
 import static org.cornutum.hamcrest.Composites.*;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.util.Arrays;
 import java.util.List;

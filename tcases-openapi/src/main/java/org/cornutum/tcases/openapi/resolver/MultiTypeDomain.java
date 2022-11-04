@@ -8,13 +8,14 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 /**
  * Defines the set of values with any of a given list of types.

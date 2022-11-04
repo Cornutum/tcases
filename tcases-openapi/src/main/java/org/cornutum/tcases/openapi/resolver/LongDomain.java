@@ -7,13 +7,16 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
-
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.LongValue;
+
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 /**
  * Defines a set of Long values that can be used by a request.

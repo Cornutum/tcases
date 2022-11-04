@@ -7,10 +7,11 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type.*;
-
 import org.cornutum.hamcrest.BaseCompositeMatcher;
+import org.cornutum.tcases.resolve.DataValue;
 import org.hamcrest.Matchers;
+
+import static org.cornutum.tcases.resolve.DataValue.Type.*;
 
 import java.util.List;
 import java.util.Map;

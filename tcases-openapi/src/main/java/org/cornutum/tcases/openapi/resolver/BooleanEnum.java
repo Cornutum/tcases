@@ -7,9 +7,12 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.util.Collection;
+
+import org.cornutum.tcases.resolve.BooleanValue;
+import org.cornutum.tcases.resolve.DataValue;
 
 /**
  * Defines an enumerated boolean value set.

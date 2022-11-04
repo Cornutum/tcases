@@ -5,18 +5,18 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated email address value for a request case.
+ * Represents a generated date string value for a request case.
  */
-public class EmailValue extends StringValue
+public class DateValue extends StringValue
   {
   /**
-   * Creates a new EmailValue instance.
+   * Creates a new DateValue instance.
    */
-  public EmailValue( String value)
+  public DateValue( String value)
     {
-    super( value, "email");
+    super( value, "date");
     }
   }

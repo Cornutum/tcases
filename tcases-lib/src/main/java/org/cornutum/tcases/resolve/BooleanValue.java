@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 /**
  * Represents a generated boolean value for a request case.

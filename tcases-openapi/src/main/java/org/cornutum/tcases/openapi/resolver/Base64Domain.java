@@ -8,6 +8,8 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.resolve.Base64Value;
+import org.cornutum.tcases.resolve.DataValue;
 
 import java.util.Base64;
 import java.util.Optional;

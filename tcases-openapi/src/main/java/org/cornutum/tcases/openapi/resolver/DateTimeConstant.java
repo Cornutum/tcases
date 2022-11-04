@@ -8,6 +8,8 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.FormattedString;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DateTimeValue;
 
 import java.util.Date;
 import java.util.regex.Matcher;

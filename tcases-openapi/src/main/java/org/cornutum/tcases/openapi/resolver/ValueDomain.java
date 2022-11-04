@@ -7,10 +7,12 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import org.cornutum.tcases.resolve.DataValue;
 
 /**
  * Defines a set of values that can be used by a request.

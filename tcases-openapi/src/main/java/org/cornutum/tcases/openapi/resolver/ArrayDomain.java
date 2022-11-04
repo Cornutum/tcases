@@ -8,14 +8,16 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.NumberDomain.Range;
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toSet;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 /**
  * Defines an array value set.

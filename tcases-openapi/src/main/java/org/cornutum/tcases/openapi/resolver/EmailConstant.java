@@ -8,6 +8,8 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.EmailValue;
 
 /**
  * Defines a singleton email string value set.

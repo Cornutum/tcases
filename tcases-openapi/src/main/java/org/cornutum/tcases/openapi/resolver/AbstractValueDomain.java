@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.resolve.DataValue;
+
 /**
  * Base class for {@link ValueDomain} implementations
  */

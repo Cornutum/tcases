@@ -5,29 +5,19 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
-
-import java.math.BigDecimal;
+package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated de value for a request case.
+ * Represents a generated integer value for a request case.
  */
-public class DecimalValue extends DataValue<BigDecimal>
+public class IntegerValue extends DataValue<Integer>
   {
   /**
-   * Creates a new DecimalValue instance.
+   * Creates a new IntegerValue instance.
    */
-  public DecimalValue( BigDecimal value, String format)
+  public IntegerValue( Integer value)
     {
-    super( value, Type.NUMBER, format);
-    }
-  
-  /**
-   * Creates a new DecimalValue instance.
-   */
-  public DecimalValue( BigDecimal value)
-    {
-    this( value, null);
+    super( value, Type.INTEGER, "int32");
     }
 
   /**

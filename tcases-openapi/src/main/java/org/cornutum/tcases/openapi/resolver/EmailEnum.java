@@ -8,6 +8,9 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.EmailValue;
+
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 /**

@@ -5,28 +5,26 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
-
-import java.util.List;
+package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated array value for a request case.
+ * Represents a generated long value for a request case.
  */
-public class ArrayValue<T> extends DataValue<List<DataValue<T>>>
+public class LongValue extends DataValue<Long>
   {
   /**
-   * Creates a new ArrayValue instance.
+   * Creates a new LongValue instance.
    */
-  public ArrayValue( List<DataValue<T>> value)
+  public LongValue( Long value)
     {
-    super( value, Type.ARRAY, null);
+    super( value, Type.INTEGER, "int64");
     }
 
   /**
    * Implements the Visitor pattern for this data value.
    */
   @Override
-    public void accept( DataValueVisitor visitor)
+  public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }

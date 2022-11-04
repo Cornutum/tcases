@@ -8,6 +8,9 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.FormattedString;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DateValue;
+
 import static org.cornutum.tcases.openapi.resolver.DateConstant.*;
 
 import java.util.Calendar;

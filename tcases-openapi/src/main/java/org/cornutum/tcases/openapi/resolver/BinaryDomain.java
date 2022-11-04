@@ -10,6 +10,10 @@ package org.cornutum.tcases.openapi.resolver;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import org.cornutum.tcases.resolve.BinaryValue;
+import org.cornutum.tcases.resolve.DataValue;
+
 import static java.util.stream.Collectors.toSet;
 
 /**

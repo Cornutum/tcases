@@ -9,10 +9,8 @@ package org.cornutum.tcases.openapi.restassured;
 
 import org.cornutum.tcases.io.IndentedWriter;
 import org.cornutum.tcases.openapi.resolver.AuthDef;
-import org.cornutum.tcases.openapi.resolver.DataValue;
 import org.cornutum.tcases.openapi.resolver.EncodingData;
 import org.cornutum.tcases.openapi.resolver.MessageData;
-import org.cornutum.tcases.openapi.resolver.ObjectValue;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.test.MediaRange;
@@ -21,6 +19,8 @@ import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
 
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 import static org.cornutum.tcases.openapi.testwriter.java.TestCaseWriterUtils.*;

@@ -11,6 +11,10 @@ import org.cornutum.tcases.openapi.ConditionReporter;
 import org.cornutum.tcases.openapi.InvalidStyleException;
 import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.LinkedHashMap;

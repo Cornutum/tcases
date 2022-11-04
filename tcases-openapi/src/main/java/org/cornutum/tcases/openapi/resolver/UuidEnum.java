@@ -9,6 +9,9 @@ package org.cornutum.tcases.openapi.resolver;
 
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.UuidValue;
+
 /**
  * Defines an enumerated UUID string value set.
  */

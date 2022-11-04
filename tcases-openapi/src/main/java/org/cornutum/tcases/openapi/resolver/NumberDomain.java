@@ -9,7 +9,6 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.VarBinding;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -18,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 import static java.util.stream.Collectors.joining;
 
 /**

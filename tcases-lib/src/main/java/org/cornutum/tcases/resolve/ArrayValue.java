@@ -5,26 +5,28 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
+
+import java.util.List;
 
 /**
- * Represents a generated integer value for a request case.
+ * Represents a generated array value for a request case.
  */
-public class IntegerValue extends DataValue<Integer>
+public class ArrayValue<T> extends DataValue<List<DataValue<T>>>
   {
   /**
-   * Creates a new IntegerValue instance.
+   * Creates a new ArrayValue instance.
    */
-  public IntegerValue( Integer value)
+  public ArrayValue( List<DataValue<T>> value)
     {
-    super( value, Type.INTEGER, "int32");
+    super( value, Type.ARRAY, null);
     }
 
   /**
    * Implements the Visitor pattern for this data value.
    */
   @Override
-  public void accept( DataValueVisitor visitor)
+    public void accept( DataValueVisitor visitor)
     {
     visitor.visit( this);
     }

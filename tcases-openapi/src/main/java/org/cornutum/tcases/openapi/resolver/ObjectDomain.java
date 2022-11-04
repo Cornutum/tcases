@@ -8,8 +8,9 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
 import static java.util.Collections.unmodifiableMap;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 /**
  * Defines the properties of a set of object values that can be used by a request.

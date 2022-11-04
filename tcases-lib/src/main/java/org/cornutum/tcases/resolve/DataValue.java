@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.util.ToString;
 

@@ -7,14 +7,16 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.openapi.resolver.DataValue.Type;
-
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DataValue.Type;
+
 import static java.util.stream.Collectors.toList;
 
 /**

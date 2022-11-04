@@ -12,6 +12,23 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.Base64Value;
+import org.cornutum.tcases.resolve.BinaryValue;
+import org.cornutum.tcases.resolve.BooleanValue;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DateTimeValue;
+import org.cornutum.tcases.resolve.DateValue;
+import org.cornutum.tcases.resolve.DecimalValue;
+import org.cornutum.tcases.resolve.EmailValue;
+import org.cornutum.tcases.resolve.IntegerValue;
+import org.cornutum.tcases.resolve.LongValue;
+import org.cornutum.tcases.resolve.NullValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+import org.cornutum.tcases.resolve.StringValue;
+import org.cornutum.tcases.resolve.UuidValue;
+
 import static java.util.stream.Collectors.toList;
 
 /**

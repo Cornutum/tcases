@@ -7,10 +7,13 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DecimalValue;
 
 /**
  * Defines an enumerated decimal value set.

@@ -5,18 +5,18 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated date string value for a request case.
+ * Represents a generated base64 address value for a request case.
  */
-public class DateValue extends StringValue
+public class Base64Value extends StringValue
   {
   /**
-   * Creates a new DateValue instance.
+   * Creates a new Base64Value instance.
    */
-  public DateValue( String value)
+  public Base64Value( String value)
     {
-    super( value, "date");
+    super( value, "byte");
     }
   }

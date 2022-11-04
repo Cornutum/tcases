@@ -7,9 +7,12 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.util.Collection;
+
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.IntegerValue;
 
 /**
  * Defines an enumerated integer value set.

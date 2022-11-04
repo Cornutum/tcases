@@ -7,8 +7,10 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.util.Objects;
 import java.util.stream.Stream;

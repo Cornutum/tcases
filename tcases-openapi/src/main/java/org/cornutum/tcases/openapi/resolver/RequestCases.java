@@ -11,6 +11,8 @@ import org.cornutum.tcases.FunctionTestDef;
 import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.openapi.test.MediaRange;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
 
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.util.CollectionUtils.*;

@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.resolve.DataValue;
 
 /**
  * Converts a {@link DataValue} into a different form.

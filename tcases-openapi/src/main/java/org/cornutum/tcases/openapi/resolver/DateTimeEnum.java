@@ -9,6 +9,9 @@ package org.cornutum.tcases.openapi.resolver;
 
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DateTimeValue;
+
 /**
  * Defines an enumerated date-time string value set.
  */

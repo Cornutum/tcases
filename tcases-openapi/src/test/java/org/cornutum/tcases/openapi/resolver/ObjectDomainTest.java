@@ -9,6 +9,11 @@ package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.FormattedString;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DecimalValue;
+import org.cornutum.tcases.resolve.IntegerValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+import org.cornutum.tcases.resolve.StringValue;
 import org.cornutum.tcases.util.MapBuilder;
 
 import org.junit.Test;

@@ -8,6 +8,9 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.FormattedString;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.DateTimeValue;
+
 import static org.cornutum.tcases.openapi.resolver.DateTimeConstant.*;
 
 import java.util.Date;

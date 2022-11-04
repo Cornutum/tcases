@@ -7,9 +7,12 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValue.Type;
+import static org.cornutum.tcases.resolve.DataValue.Type;
 
 import java.util.Map;
+
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
 
 /**
  * Defines a singleton Object value set.

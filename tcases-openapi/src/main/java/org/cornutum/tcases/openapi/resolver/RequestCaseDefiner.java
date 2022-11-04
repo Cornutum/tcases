@@ -11,6 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.resolve.DataValue;
 
 import static org.cornutum.tcases.openapi.resolver.VarProperties.*;
 import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
