@@ -120,9 +120,9 @@
                     "items": {
                         "type": "string"
                     }
-                },
+                }
+            },
             "additionalProperties": false
-            }
         },
         "condition": {
             "description": "Defines a constraint on the values allowed for an input variable",
