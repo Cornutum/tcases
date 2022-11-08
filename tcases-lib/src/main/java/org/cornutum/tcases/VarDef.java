@@ -158,6 +158,11 @@ public class VarDef extends AbstractVarDef
    */
   public void setSchema( Schema schema)
     {
+    if( schema != null && schema.getConstant() != null)
+      {
+      throw new IllegalStateException( "'const' schema not allowed for a variable definition");
+      }
+    
     schema_ = schema;
     }
 
