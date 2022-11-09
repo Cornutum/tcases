@@ -1,0 +1,20 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "members": {
+                    "stringVar": {
+                        "maxLength": 32,
+                        "values": {
+                            "stringValue": {
+                                "format": "uri",
+                                "const": null
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

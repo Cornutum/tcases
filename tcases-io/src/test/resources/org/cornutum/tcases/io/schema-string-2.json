@@ -1,0 +1,16 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVar": {
+                "values": {
+                    "stringValue": {
+                        "type": "string",
+                        "format": "uuid",
+                        "const": null
+                    }
+                }
+            }
+        }
+    }
+}

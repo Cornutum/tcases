@@ -8,9 +8,10 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.conditions.*;
-import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.DefUtils;
+import org.cornutum.tcases.conditions.*;
+import org.cornutum.tcases.resolve.*;
+import org.cornutum.tcases.util.ObjectUtils;
 import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
@@ -19,18 +20,23 @@ import org.apache.commons.collections4.IteratorUtils;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonNumber;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonString;
 import javax.json.JsonStructure;
+import javax.json.JsonValue;
 
 /**
  * Converts between a {@link SystemInputDef} and its corresponding {@link JsonObject}.
@@ -101,6 +107,9 @@ public final class SystemInputJson
       JsonObjectBuilder valuesBuilder = Json.createObjectBuilder();
       toStream( varDef.getValues()).forEach( value -> valuesBuilder.add( String.valueOf( value.getName()), toJson( value)));
       builder.add( VALUES_KEY, valuesBuilder.build());
+
+      Optional.ofNullable( ((VarDef) varDef).getSchema())
+        .ifPresent( schema -> addSchema( builder, schema));
       }
     else if( varDef.getMembers() != null)
       {
@@ -134,7 +143,45 @@ public final class SystemInputJson
       
     addProperties( builder, value);
 
+    Optional.ofNullable( value.getSchema())
+      .ifPresent( schema -> addSchema( builder, schema));
+      
     return builder.build();
+    }
+
+  /**
+   * Add the given schema definition to the given JsonObjectBuilder.
+   */
+  private static JsonObjectBuilder addSchema( JsonObjectBuilder builder, Schema schema)
+    {
+    Optional.of( schema.getType())
+      .filter( type -> !type.equals( DataValue.Type.NULL))
+      .ifPresent( type -> builder.add( TYPE_KEY, type.toString().toLowerCase()));
+
+    Optional.ofNullable( schema.getConstant()).ifPresent( constant -> builder.add( CONST_KEY, DataValueJson.toJson( constant)));
+    Optional.ofNullable( schema.getFormat()).ifPresent( format -> builder.add( FORMAT_KEY, format));
+    Optional.ofNullable( schema.getMinimum()).ifPresent( minimum -> builder.add( MINIMUM_KEY, minimum));
+    Optional.ofNullable( schema.getMaximum()).ifPresent( maximum -> builder.add( MAXIMUM_KEY, maximum));
+    Optional.ofNullable( schema.getExclusiveMinimum()).ifPresent( exclusiveMinimum -> builder.add( EXCLUSIVE_MINIMUM_KEY, exclusiveMinimum));
+    Optional.ofNullable( schema.getExclusiveMaximum()).ifPresent( exclusiveMaximum -> builder.add( EXCLUSIVE_MAXIMUM_KEY, exclusiveMaximum));
+    Optional.ofNullable( schema.getMultipleOf()).ifPresent( multipleOf -> builder.add( MULTIPLE_OF_KEY, multipleOf));
+    Optional.ofNullable( schema.getMinLength()).ifPresent( minLength -> builder.add( MIN_LENGTH_KEY, minLength));
+    Optional.ofNullable( schema.getMaxLength()).ifPresent( maxLength -> builder.add( MAX_LENGTH_KEY, maxLength));
+    Optional.ofNullable( schema.getPattern()).ifPresent( pattern -> builder.add( PATTERN_KEY, pattern));
+    Optional.ofNullable( schema.getMinItems()).ifPresent( minItems -> builder.add( MIN_ITEMS_KEY, minItems));
+    Optional.ofNullable( schema.getMaxItems()).ifPresent( maxItems -> builder.add( MAX_ITEMS_KEY, maxItems));
+    Optional.ofNullable( schema.getUniqueItems()).ifPresent( uniqueItems -> builder.add( UNIQUE_ITEMS_KEY, uniqueItems));
+    Optional.ofNullable( schema.getItems()).ifPresent( items -> builder.add( ITEMS_KEY, toJson( items)));
+
+    return builder;
+    }
+
+  /**
+   * Returns the JSON object that represents the given schema.
+   */
+  private static JsonObject toJson( Schema schema)
+    {
+    return addSchema( Json.createObjectBuilder(), schema).build();
     }
 
   /**
@@ -307,6 +354,10 @@ public final class SystemInputJson
       else
         {
         VarDef var = (VarDef) varDef;
+
+        // Get the schema for this variable
+        var.setSchema( getSchema( json));
+        
         getValueDefs( json.getJsonObject( VALUES_KEY))
           .forEach( valueDef -> var.addValue( valueDef));
 
@@ -371,6 +422,9 @@ public final class SystemInputJson
       Optional.ofNullable( json.getJsonArray( PROPERTIES_KEY))
         .map( properties -> toIdentifiers( properties)) 
         .ifPresent( properties -> valueDef.addProperties( properties)); 
+
+      // Get the schema for this variable
+      valueDef.setSchema( getSchema( json));
 
       return valueDef;
       }
@@ -605,6 +659,352 @@ public final class SystemInputJson
       .mapToObj( i -> asCondition( array.getJsonObject( i)))
       .collect( toList())
       .toArray( new ICondition[0]);
+    }
+
+  /**
+   * Returns the schema represented by the given JSON object.
+   */
+  private static Schema getSchema( JsonObject json)
+    {
+    return
+      getSchemaType( json)
+      .map( type -> getSchema( type, json))
+      .orElse( null);
+    }
+
+  /**
+   * Returns the schema represented by the given JSON object.
+   */
+  private static Schema getSchema( DataValue.Type type, JsonObject json)
+    {
+    Schema schema = new Schema( type);
+
+    if( json.containsKey( FORMAT_KEY))
+      {
+      schema.setFormat( json.getString( FORMAT_KEY));
+      }
+
+    switch( type)
+      {
+      case ARRAY:
+        {
+        break;
+        }
+
+      case BOOLEAN:
+        {
+        break;
+        }
+
+      case INTEGER:
+      case NUMBER:
+        {
+        break;
+        }
+
+      case STRING:
+        {        
+        if( json.containsKey( CONST_KEY))
+          {
+          schema.setConstant( asDataValue( json, CONST_KEY, "string", schema.getFormat()));
+          }
+        else
+          {
+          if( json.containsKey( MIN_LENGTH_KEY))
+            {
+            schema.setMinLength( json.getInt( MIN_LENGTH_KEY));
+            }
+          if( json.containsKey( MAX_LENGTH_KEY))
+            {
+            schema.setMaxLength( json.getInt( MAX_LENGTH_KEY));
+            }
+          if( json.containsKey( PATTERN_KEY))
+            {
+            schema.setPattern( json.getString( PATTERN_KEY));
+            }
+          }
+        break;
+        }
+
+      case NULL:
+        {        
+        if( json.containsKey( CONST_KEY))
+          {
+          schema.setConstant( asDataValue( json.get( CONST_KEY), schema.getFormat()));
+          }
+        break;
+        }
+
+      default:
+        {
+        break;
+        }
+      }
+    
+    return schema;
+    }
+
+  /**
+   * Returns the type of the schema represented by the given JSON object.
+   */
+  private static Optional<DataValue.Type> getSchemaType( JsonObject json)
+    {
+    String declaredType = json.getString( TYPE_KEY, null);
+
+    List<String[]> impliedTypes = 
+      Stream.of(
+        getImpliedType( "array", json, "items", "maxItems", "minItems", "uniqueItems"),
+        getImpliedType( "number", json, "maximum", "exclusiveMaximum", "minimum", "exclusiveMinimum", "multipleOf"),
+        getImpliedType( "string", json, "maxLength", "minLength", "pattern"))
+      .filter( Objects::nonNull)
+      .collect( toList());
+
+    // Do schema keywords imply a specific type?
+    String schemaType;
+    if( impliedTypes.size() == 1)
+      {
+      // Yes, reconcile implied type with declared type.
+      String impliedType = impliedTypes.get(0)[0];
+      if( declaredType == null)
+        {
+        schemaType = impliedType;
+        }
+      else if( impliedType.equals( declaredType) || (impliedType.equals( "number") && declaredType.equals( "integer")))
+        {
+        schemaType = declaredType;
+        }
+      else
+        {
+        throw
+          new IllegalStateException(
+            String.format(
+              "Schema declares type=%s but defines property=%s which implies type=%s",
+              declaredType,
+              impliedTypes.get(0)[1],
+              impliedType));
+        }
+      }
+
+    // Do schema keywords imply multiple types?
+    else if( impliedTypes.size() > 1)
+      {
+      // Yes, not allowed
+      throw
+        new IllegalStateException(
+          String.format(
+            "Ambiguous schema type -- defines properties=%s which implies types=%s",
+            impliedTypes.stream().map( typeProperty -> typeProperty[1]).collect( joining( ", ", "[", "]")),
+            impliedTypes.stream().map( typeProperty -> typeProperty[0]).collect( joining( ", ", "[", "]"))));
+      }
+
+    else
+      {
+      // No type-specific keywords defined.
+      schemaType = declaredType;
+      }
+
+    // Does the schema define a "const" value?
+    String constType = getConstType( json);
+    if( constType != null)
+      {
+      // Yes, reconcile const type with schema type.
+      if( schemaType == null)
+        {
+        schemaType = constType;
+        }
+      else if( !( constType.equals( schemaType) || constType.equals( "null") || (constType.equals( "number") && schemaType.equals( "integer"))))
+        {
+        throw
+          new IllegalStateException(
+            String.format(
+              "Schema has type=%s but defines a 'const' of type=%s",
+              schemaType,
+              constType));
+        }
+      }
+    
+    return
+      Optional.ofNullable( schemaType)
+      .map( type -> DataValue.Type.valueOf( type.toUpperCase()));
+    }
+
+  /**
+   * If the given JSON object defines a value for any of the given properties, returns an array of the form <CODE>[type,property]</CODE>.
+   * Otherwise, returns null.
+   */
+  private static String[] getImpliedType( String type, JsonObject json, String... properties)
+    {
+    return
+      Stream.of( properties)
+      .filter( property -> json.containsKey( property))
+      .findFirst()
+      .map( property -> new String[]{ type, property})
+      .orElse( null);
+    }
+
+  /**
+   * If the given JSON object defines a value for the "const" property, returns the type of the value.
+   * Otherwise, returns null.
+   */
+  private static String getConstType( JsonObject json)
+    {
+    return
+      Optional.of( json)
+      .filter( object -> object.containsKey( "const"))
+      .map( object -> getValueType( object.get( "const")))
+      .orElse( null);
+    }
+
+  /**
+   * Returns the schema type for the given JSON value.
+   */
+  private static String getValueType( JsonValue json)
+    {
+    String valueType;
+
+    switch( json.getValueType())
+      {
+      case ARRAY:
+        {
+        valueType = "array";
+        break;
+        }
+
+      case STRING:
+        {
+        valueType = "string";
+        break;
+        }
+      
+      case NUMBER:
+        {
+        valueType =
+          ((JsonNumber) json).isIntegral()
+          ? "integer"
+          : "number";
+        break;
+        }
+      
+      case TRUE:
+      case FALSE:
+        {
+        valueType = "boolean";
+        break;
+        }
+
+      case NULL:
+        {
+        valueType = "null";
+        break;
+        }
+
+      default:
+        {
+        valueType = null;
+        break;
+        }
+      }
+
+    return valueType;
+    }
+
+  /**
+   * If the given JSON object defines a value for the given key, returns the value.
+   * Otherwise, returns null.
+   */
+  private static DataValue<?> asDataValue( JsonObject json, String key, String expectedType, String format)
+    {
+    return
+      Optional.ofNullable( json.get( key))
+      .map( value -> {
+        Optional.ofNullable( expectedType)
+          .filter( expected -> {
+            String valueType = getValueType( value);
+            return expected != null && !(expected.equals( valueType) || "null".equals( valueType));
+            })
+          .ifPresent( expected -> {
+            throw
+              new SystemInputException(
+                String.format(
+                  "Expected '%s' value of type '%s', but found '%s'",
+                  key,
+                  expected,
+                  value));
+            });
+        return asDataValue( value, format);
+        })
+      .orElse( null);
+    }
+
+  /**
+   * Returns the DataValue represented by the given JSON value.
+   */
+  private static DataValue<?> asDataValue( JsonValue json, String format)
+    {
+    DataValue<?> value;
+    switch( json.getValueType())
+      {
+      case ARRAY:
+        {
+        value = null;
+        break;
+        }
+      case STRING:
+        {
+        value = asStringValue( json, format);
+        break;
+        }
+      case NUMBER:
+        {
+        value = null;
+        break;
+        }
+      case TRUE:    
+        {
+        value = new BooleanValue( true);
+        break;
+        }
+      case FALSE:
+        {
+        value = new BooleanValue( false);
+        break;
+        }
+      case NULL:
+        {
+        value = new NullValue();
+        break;
+        }
+      default:
+        {
+        value = null;
+        break;
+        }
+      }
+
+    return value;
+    }
+
+  /**
+   * Returns the StringValue for the given JSON value.
+   */
+  private static DataValue<?> asStringValue( JsonValue json, String format)
+    {
+    String valueString = ((JsonString) json).getString();
+
+    return
+      "date".equals( format)?
+      new DateValue( valueString) :
+
+      "date-time".equals( format)?
+      new DateTimeValue( valueString) :
+
+      "uuid".equals( format)?
+      new UuidValue( valueString) :
+
+      "email".equals( format)?
+      new EmailValue( valueString) :
+
+      new StringValue( valueString, format);
     }
 
   /**
@@ -844,6 +1244,75 @@ public final class SystemInputJson
     private JsonObject json_;
     }
 
+  private static class DataValueJson implements DataValueVisitor
+    {
+    private static JsonValue toJson( DataValue<?> data)
+      {
+      return new DataValueJson( data).toJson();
+      }
+    
+    private DataValueJson( DataValue<?> data)
+      {
+      data_ = data;
+      }
+    
+    private JsonValue toJson()
+      {
+      data_.accept( this);
+      return json_;
+      }
+
+    @Override
+	public void visit( ArrayValue<?> data)
+      {
+      }
+
+    @Override
+	public void visit( BinaryValue data)
+      {
+      }
+
+    @Override
+	public void visit( BooleanValue data)
+      {
+      }
+
+    @Override
+	public void visit( DecimalValue data)
+      {
+      }
+
+    @Override
+	public void visit( IntegerValue data)
+      {
+      }
+
+    @Override
+	public void visit( LongValue data)
+      {
+      }
+
+    @Override
+	public void visit( NullValue data)
+      {
+      json_ = JsonValue.NULL;
+      }
+
+    @Override
+	public void visit( ObjectValue data)
+      {
+      }
+
+    @Override
+	public void visit( StringValue data)
+      {
+      json_ = Json.createValue( data.getValue());
+      }
+  
+    private DataValue<?> data_;
+    private JsonValue json_;
+    }
+
   private static final String ALL_OF_KEY = "allOf";
   private static final String ANY_OF_KEY = "anyOf";
   private static final String BETWEEN_KEY = "between";
@@ -870,4 +1339,20 @@ public final class SystemInputJson
   private static final String SYSTEM_KEY = "system";
   private static final String VALUES_KEY = "values";
   private static final String WHEN_KEY = "when";
-  }
+
+  private static final String CONST_KEY = "const";
+  private static final String EXCLUSIVE_MAXIMUM_KEY = "exclusiveMaximum";
+  private static final String EXCLUSIVE_MINIMUM_KEY = "exclusiveMinimum";
+  private static final String FORMAT_KEY = "format";
+  private static final String ITEMS_KEY = "items";
+  private static final String MAXIMUM_KEY = "maximum";
+  private static final String MAX_ITEMS_KEY = "maxItems";
+  private static final String MAX_LENGTH_KEY = "maxLength";
+  private static final String MINIMUM_KEY = "minimum";
+  private static final String MIN_ITEMS_KEY = "minItems";
+  private static final String MIN_LENGTH_KEY = "minLength";
+  private static final String MULTIPLE_OF_KEY = "multipleOf";
+  private static final String PATTERN_KEY = "pattern";
+  private static final String TYPE_KEY = "type";
+  private static final String UNIQUE_ITEMS_KEY = "uniqueItems";
+}

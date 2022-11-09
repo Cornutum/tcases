@@ -10,6 +10,7 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.VarValueDef.Type;
 import org.cornutum.tcases.conditions.ICondition;
+import org.cornutum.tcases.resolve.Schema;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -142,6 +143,15 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
   public VarValueDefBuilder properties( Optional<String> property)
     {
     property.ifPresent( p -> varValueDef_.addProperties( p));
+    return this;
+    }
+
+  /**
+   * Adds a schema.
+   */
+  public VarValueDefBuilder Schema( Schema schema)
+    {
+    varValueDef_.setSchema( schema);
     return this;
     }
 

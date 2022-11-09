@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" seed="8882486418556899328" tuples="1">
+      <Combine tuples="2">
+          <Include var="VarDef.Value.Schema.type"/>
+          <Include var="VarDef.Value.Schema.const"/>
+      </Combine>
+  </TupleGenerator>
+</Generators>

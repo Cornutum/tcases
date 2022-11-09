@@ -9,6 +9,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
+import org.cornutum.tcases.resolve.Schema;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -147,6 +148,15 @@ public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
   public VarDefBuilder values( Stream<VarValueDef> values)
     {
     values.forEach( value -> varDef_.addValue( value));
+    return this;
+    }
+
+  /**
+   * Adds a schema.
+   */
+  public VarDefBuilder Schema( Schema schema)
+    {
+    varDef_.setSchema( schema);
     return this;
     }
 
