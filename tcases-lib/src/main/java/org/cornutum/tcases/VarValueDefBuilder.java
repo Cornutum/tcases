@@ -149,7 +149,7 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
   /**
    * Adds a schema.
    */
-  public VarValueDefBuilder Schema( Schema schema)
+  public VarValueDefBuilder schema( Schema schema)
     {
     varValueDef_.setSchema( schema);
     return this;

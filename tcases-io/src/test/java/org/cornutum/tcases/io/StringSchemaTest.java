@@ -7,6 +7,10 @@
 
 package org.cornutum.tcases.io;
 
+import org.cornutum.tcases.*;
+import org.cornutum.tcases.resolve.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
+
 import org.junit.Test;
 
 /**
@@ -42,7 +46,24 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_0()
     {
-    testSystemInputJsonResource( "schema-string-0.json");
+    expectSystemInputJson(
+      "schema-string-0.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarDefBuilder.with( "stringVar")
+          .values(
+            VarValueDefBuilder.with( "stringValue")
+            .schema(
+              SchemaBuilder.type( "string")
+              .constant( "date", "2023-02-04")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**
@@ -73,7 +94,32 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_1()
     {
-    testSystemInputJsonResource( "schema-string-1.json");
+    expectSystemInputJson(
+      "schema-string-1.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarSetBuilder.with( "stringVarSet")
+          .members(
+            VarDefBuilder.with( "stringVar")
+            .schema(
+              SchemaBuilder.type( "string")
+              .maxLength( 32)
+              .build())
+            .values(
+              VarValueDefBuilder.with( "stringValue")
+              .schema(
+                SchemaBuilder.generic()
+                .format( "uri")
+                .constant( nullValue())
+                .build())
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**
@@ -104,7 +150,25 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_2()
     {
-    testSystemInputJsonResource( "schema-string-2.json");
+    expectSystemInputJson(
+      "schema-string-2.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarDefBuilder.with( "stringVar")
+          .values(
+            VarValueDefBuilder.with( "stringValue")
+            .schema(
+              SchemaBuilder.type( "string")
+              .format( "uuid")
+              .constant( nullValue())
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**
@@ -135,7 +199,35 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_3()
     {
-    testSystemInputJsonResource( "schema-string-3.json");
+    expectSystemInputJson(
+      "schema-string-3.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarSetBuilder.with( "stringVarSet")
+          .members(
+            VarDefBuilder.with( "stringVar")
+            .schema(
+              SchemaBuilder.type( "string")
+              .format( "email")
+              .minLength( 1)
+              .pattern( "^[A-Z]+$")
+              .build())
+            .values(
+              VarValueDefBuilder.with( "stringValue")
+              .schema(
+                SchemaBuilder.type( "string")
+                .format( "date-time")
+                .minLength( 32)
+                .pattern( ".")
+                .build())
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**
@@ -166,7 +258,24 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_4()
     {
-    testSystemInputJsonResource( "schema-string-4.json");
+    expectSystemInputJson(
+      "schema-string-4.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarDefBuilder.with( "stringVar")
+          .values(
+            VarValueDefBuilder.with( "stringValue")
+            .schema(
+              SchemaBuilder.type( "string")
+              .constant( "email", "me@myself.org")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**
@@ -197,7 +306,31 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_5()
     {
-    testSystemInputJsonResource( "schema-string-5.json");
+    expectSystemInputJson(
+      "schema-string-5.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarSetBuilder.with( "stringVarSet")
+          .members(
+            VarDefBuilder.with( "stringVar")
+            .schema(
+              SchemaBuilder.type( "string")
+              .maxLength( 32)
+              .build())
+            .values(
+              VarValueDefBuilder.with( "stringValue")
+              .schema(
+                SchemaBuilder.type( "string")
+                .pattern( "^[0-9]$*")
+                .build())
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**
@@ -228,7 +361,20 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_6()
     {
-    testSystemInputJsonResource( "schema-string-6.json");
+    expectSystemInputJson(
+      "schema-string-6.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarDefBuilder.with( "stringVar")
+          .values(
+            VarValueDefBuilder.with( "stringValue")
+            .build())
+          .build())
+        .build())
+      .build());
     }
 
   /**

@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValues.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

@@ -30,17 +30,17 @@ import static java.util.stream.Collectors.toList;
  */
 public abstract class SystemInputJsonTest
   {
-  public void testSystemInputResource( String systemInputResource)
+  public SystemInputDef testSystemInputResource( String systemInputResource)
     {
-    testSystemInput( systemInputResource, systemInputResources_.read( systemInputResource));
+    return testSystemInput( systemInputResource, systemInputResources_.read( systemInputResource));
     }
   
-  public void testSystemInputJsonResource( String systemInputResource)
+  public SystemInputDef testSystemInputJsonResource( String systemInputResource)
     {
-    testSystemInput( systemInputResource, systemInputResources_.readJson( systemInputResource));
+    return testSystemInput( systemInputResource, systemInputResources_.readJson( systemInputResource));
     }
   
-  public void testSystemInput( String systemInputResource, SystemInputDef systemInputBefore)
+  public SystemInputDef testSystemInput( String systemInputResource, SystemInputDef systemInputBefore)
     {
     // When...
     ByteArrayOutputStream systemInputOut = new ByteArrayOutputStream();
@@ -58,6 +58,17 @@ public abstract class SystemInputJsonTest
 
     // Then...
     assertThat( "Output from definition=" + systemInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+
+    return systemInputAfter;
+    }
+
+  public void expectSystemInputJson( String systemInputResource, SystemInputDef inputDef)
+    {
+    // When...
+    SystemInputDef inputDefAfter = testSystemInputJsonResource( systemInputResource);
+
+    // Then...
+    assertThat( systemInputResource, inputDefAfter, matches( new SystemInputDefMatcher( inputDef)));
     }
 
   public void assertDefinitionError( String systemInputResource, String expected)

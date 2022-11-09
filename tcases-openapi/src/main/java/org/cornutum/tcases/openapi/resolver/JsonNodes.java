@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import static org.cornutum.tcases.openapi.resolver.DataValues.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
 import com.fasterxml.jackson.databind.JsonNode;

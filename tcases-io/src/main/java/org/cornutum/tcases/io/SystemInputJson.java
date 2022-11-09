@@ -13,6 +13,7 @@ import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.resolve.*;
 import org.cornutum.tcases.util.ObjectUtils;
 import static org.cornutum.tcases.VarValueDef.Type.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.collections4.IteratorUtils;
@@ -951,7 +952,7 @@ public final class SystemInputJson
         }
       case STRING:
         {
-        value = asStringValue( json, format);
+        value = stringOf( format, ((JsonString) json).getString());
         break;
         }
       case NUMBER:
@@ -961,17 +962,17 @@ public final class SystemInputJson
         }
       case TRUE:    
         {
-        value = new BooleanValue( true);
+        value = valueOf( true);
         break;
         }
       case FALSE:
         {
-        value = new BooleanValue( false);
+        value = valueOf( false);
         break;
         }
       case NULL:
         {
-        value = new NullValue();
+        value = nullValue();
         break;
         }
       default:
@@ -982,29 +983,6 @@ public final class SystemInputJson
       }
 
     return value;
-    }
-
-  /**
-   * Returns the StringValue for the given JSON value.
-   */
-  private static DataValue<?> asStringValue( JsonValue json, String format)
-    {
-    String valueString = ((JsonString) json).getString();
-
-    return
-      "date".equals( format)?
-      new DateValue( valueString) :
-
-      "date-time".equals( format)?
-      new DateTimeValue( valueString) :
-
-      "uuid".equals( format)?
-      new UuidValue( valueString) :
-
-      "email".equals( format)?
-      new EmailValue( valueString) :
-
-      new StringValue( valueString, format);
     }
 
   /**

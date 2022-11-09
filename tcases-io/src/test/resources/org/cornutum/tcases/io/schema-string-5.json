@@ -9,7 +9,7 @@
 
                         "values": {
                             "stringValue": {
-                                "maxLength": 128
+                                "pattern": "^[0-9]$*"
                             }
                         }
                     }

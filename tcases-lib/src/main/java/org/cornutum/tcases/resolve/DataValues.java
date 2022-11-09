@@ -5,29 +5,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi.resolver;
+package org.cornutum.tcases.resolve;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.cornutum.tcases.resolve.ArrayValue;
-import org.cornutum.tcases.resolve.Base64Value;
-import org.cornutum.tcases.resolve.BinaryValue;
-import org.cornutum.tcases.resolve.BooleanValue;
-import org.cornutum.tcases.resolve.DataValue;
-import org.cornutum.tcases.resolve.DateTimeValue;
-import org.cornutum.tcases.resolve.DateValue;
-import org.cornutum.tcases.resolve.DecimalValue;
-import org.cornutum.tcases.resolve.EmailValue;
-import org.cornutum.tcases.resolve.IntegerValue;
-import org.cornutum.tcases.resolve.LongValue;
-import org.cornutum.tcases.resolve.NullValue;
-import org.cornutum.tcases.resolve.ObjectValue;
-import org.cornutum.tcases.resolve.StringValue;
-import org.cornutum.tcases.resolve.UuidValue;
 
 import static java.util.stream.Collectors.toList;
 
@@ -124,6 +108,30 @@ public final class DataValues
   public static StringValue stringOf( String value)
     {
     return new StringValue( value);
+    }
+
+  /**
+   * Returns a new formatted {@link StringValue}.
+   */
+  public static StringValue stringOf( String format, String value)
+    {
+    return
+      "byte".equals( format)?
+      base64Of( value) :
+
+      "date-time".equals( format)?
+      dateTimeOf( value) :
+
+      "date".equals( format)?
+      dateOf( value) :
+
+      "email".equals( format)?
+      emailOf( value) :
+
+      "uuid".equals( format)?
+      uuidOf( value) :
+
+      stringOf( value);
     }
 
   /**
