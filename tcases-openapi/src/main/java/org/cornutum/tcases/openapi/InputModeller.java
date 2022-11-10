@@ -582,7 +582,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
             Schema<?> mediaTypeSchema =
               Optional.ofNullable( mediaTypeDef.getSchema())
-              .map( s -> exampleSchemaFor( mediaTypeDef.getExample(), mediaTypeDef.getExamples(), analyzeSchema( api, s)))
+              .map( s -> analyzeSchema( api, exampleSchemaFor( mediaTypeDef.getExample(), mediaTypeDef.getExamples(), analyzeSchema( api, s))))
               .orElse( null);
 
             VarSet mediaTypeVar =
