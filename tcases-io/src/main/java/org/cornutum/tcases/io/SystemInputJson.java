@@ -240,7 +240,7 @@ public final class SystemInputJson
 
       return systemInputDef;
       }
-    catch( SystemInputException e)
+    catch( Exception e)
       {
       throw new SystemInputException( String.format( "Error defining system=%s", systemName), e);
       }
@@ -285,7 +285,7 @@ public final class SystemInputJson
           });
 
       }
-    catch( SystemInputException e)
+    catch( Exception e)
       {
       throw new SystemInputException( String.format( "Error defining function=%s", functionName), e);
       }
@@ -311,7 +311,7 @@ public final class SystemInputJson
         .filter( key -> !key.equals( HAS_KEY))
         .map( varName -> asVarDef( varName, varType, groupAnnotations, json.getJsonObject( varName)));
       }
-    catch( SystemInputException e)
+    catch( Exception e)
       {
       throw new SystemInputException( String.format( "Error defining variables of type=%s", varType), e);
       }
@@ -344,6 +344,12 @@ public final class SystemInputJson
       if( json.containsKey( MEMBERS_KEY))
         {
         VarSet varSet = (VarSet) varDef;
+
+        if( getSchema( json) != null)
+          {
+          throw new SystemInputException( "A schema cannot be defined for a variable set");
+          }
+        
         getVarDefs( varType, json.getJsonObject( MEMBERS_KEY))
           .forEach( member -> varSet.addMember( member));
 
@@ -373,7 +379,7 @@ public final class SystemInputJson
 
       return varDef;
       }
-    catch( SystemInputException e)
+    catch( Exception e)
       {
       throw new SystemInputException( String.format( "Error defining variable=%s", varName), e);
       }
@@ -429,7 +435,7 @@ public final class SystemInputJson
 
       return valueDef;
       }
-    catch( SystemInputException e)
+    catch( Exception e)
       {
       throw new SystemInputException( String.format( "Error defining value=%s", valueName), e);
       }
@@ -444,7 +450,7 @@ public final class SystemInputJson
       {
       return asCondition( json);
       }
-    catch( SystemInputException e)
+    catch( Exception e)
       {
       throw new SystemInputException( "Invalid condition", e);
       }

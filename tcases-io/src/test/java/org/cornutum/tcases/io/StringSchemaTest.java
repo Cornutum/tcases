@@ -405,45 +405,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_7()
     {
-    // properties = valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = Undefined
-    //
-    //   VarDef.Value.Schema.minLength = Integer
-    //
-    //   VarDef.Value.Schema.maxLength = Undefined
-    //
-    //   VarDef.Value.Schema.pattern = Invalid
-    
-    // When...
-
-    // Then...
+    assertValidationFailure( "schema-string-7.json", "The value must be of string type, but actual type is null");
     }
 
   /**
@@ -474,45 +436,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_8()
     {
-    // properties = valueConst,valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Defined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = String
-    //
-    //   VarDef.Value.Schema.minLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.maxLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.pattern = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertDefinitionError( "schema-string-8.json", "'const' schema not allowed for a variable definition");
     }
 
   /**
@@ -543,45 +467,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_9()
     {
-    // properties = valueConst,valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = Invalid
-    //
-    //   VarDef.Value.Schema.const = String
-    //
-    //   VarDef.Value.Schema.minLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.maxLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.pattern = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertValidationFailure( "schema-string-9.json", "The value must be of string type, but actual type is boolean");
     }
 
   /**
@@ -612,45 +498,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_10()
     {
-    // properties = valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = Undefined
-    //
-    //   VarDef.Value.Schema.minLength = Invalid
-    //
-    //   VarDef.Value.Schema.maxLength = Undefined
-    //
-    //   VarDef.Value.Schema.pattern = String
-    
-    // When...
-
-    // Then...
+    assertValidationFailure( "schema-string-10.json", "The value must be of integer type, but actual type is number");
     }
 
   /**
@@ -681,45 +529,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_11()
     {
-    // properties = valueConst,valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = Invalid
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = null
-    //
-    //   VarDef.Value.Schema.minLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.maxLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.pattern = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertValidationFailure( "schema-string-11.json", "The value must be one of [\"array\", \"boolean\", \"integer\", \"number\", \"string\"].");
     }
 
   /**
@@ -750,45 +560,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_12()
     {
-    // properties = valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = Undefined
-    //
-    //   VarDef.Value.Schema.minLength = Integer
-    //
-    //   VarDef.Value.Schema.maxLength = Invalid
-    //
-    //   VarDef.Value.Schema.pattern = String
-    
-    // When...
-
-    // Then...
+    assertValidationFailure( "schema-string-12.json", "The value must be of integer type, but actual type is string");
     }
 
   /**
@@ -819,45 +591,7 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_13()
     {
-    // properties = valueConst,valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = String
-    //
-    //   VarDef.Value.Schema.minLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.maxLength = (not applicable)
-    //
-    //   VarDef.Value.Schema.pattern = (not applicable)
-    
-    // When...
-
-    // Then...
+    assertDefinitionError( "schema-string-13.json", "A schema cannot be defined for a variable set");
     }
 
   /**
@@ -888,44 +622,6 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_14()
     {
-    // properties = valueSchema,varParent,varSchema
-
-    // Given...
-    //
-    //   VarDef.Parent.Defined = Yes
-    //
-    //   VarDef.Parent.Schema.Defined = No
-    //
-    //   VarDef.Schema.Defined = Yes
-    //
-    //   VarDef.Schema.type = string
-    //
-    //   VarDef.Schema.format = Defined
-    //
-    //   VarDef.Schema.const = Undefined
-    //
-    //   VarDef.Schema.minLength = Integer
-    //
-    //   VarDef.Schema.maxLength = Undefined
-    //
-    //   VarDef.Schema.pattern = String
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = string
-    //
-    //   VarDef.Value.Schema.format = date
-    //
-    //   VarDef.Value.Schema.const = Invalid
-    //
-    //   VarDef.Value.Schema.minLength = Integer
-    //
-    //   VarDef.Value.Schema.maxLength = Undefined
-    //
-    //   VarDef.Value.Schema.pattern = String
-    
-    // When...
-
-    // Then...
+    assertDefinitionError( "schema-string-14.json", "Schema has type=string but defines a 'const' of type=array");
     }
   }

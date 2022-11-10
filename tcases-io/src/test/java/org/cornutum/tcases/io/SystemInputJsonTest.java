@@ -73,13 +73,13 @@ public abstract class SystemInputJsonTest
 
   public void assertDefinitionError( String systemInputResource, String expected)
     {
-    expectFailure( SystemInputException.class)
+    expectFailure( RuntimeException.class)
       .when( () -> systemInputResources_.readJson( systemInputResource), t -> t.getCause())
       .then( failure -> {
         while( failure.getCause() != null)
           {
-          assertThat( "Cause", failure.getCause().getClass(), equalTo( SystemInputException.class));
-          failure = (SystemInputException) failure.getCause();
+          assertThat( "Causes", failure.getClass(), equalTo( SystemInputException.class));
+          failure = (RuntimeException) failure.getCause();
           }
         assertThat( "Reason", failure.getMessage(), containsString( expected));
         });

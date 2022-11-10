@@ -1,0 +1,28 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "type": "string",
+                "pattern": "X",
+                
+                "members": {
+                    "stringVar": {
+                        "type": "string",
+                        "format": "uuid",
+                        "minLength": 1,
+                        "pattern": ".",
+                        
+                        "values": {
+                            "stringValue": {
+                                "type": "string",
+                                "format": "date",
+                                "const": "2023-04-05"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
