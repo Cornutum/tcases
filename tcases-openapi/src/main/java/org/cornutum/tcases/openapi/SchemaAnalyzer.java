@@ -1129,6 +1129,7 @@ public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
 
     // Not enums
     Optional.ofNullable( schema.getEnum())
+      .filter( enums -> !isExampleSchema( schema))
       .map( enums -> assertNot( schema, enums, (s,v) -> setNotEnums( s, v)))
       .ifPresent( s -> alternatives.add( s));
 
