@@ -2427,6 +2427,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       {
       exampleSchema = new Schema<Object>().type( exampleType).nullable( exampleNullable);
       exampleSchema.setEnum( exampleValues.stream().collect( toList()));
+      setExampleSchema( exampleSchema, true);
       }
     
     return exampleSchema;

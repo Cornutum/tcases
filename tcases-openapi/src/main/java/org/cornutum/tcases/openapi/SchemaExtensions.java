@@ -554,6 +554,23 @@ public final class SchemaExtensions
     }
 
   /**
+   * Returns if this is schema for an example value.
+   */
+  public static boolean isExampleSchema( Schema<?> schema)
+    {
+    Boolean forExample = getExtension( schema, EXT_EXAMPLE_SCHEMA);
+    return Optional.ofNullable( forExample).orElse( false);
+    }
+
+  /**
+   * Changes if this is schema for an example value.
+   */
+  public static void setExampleSchema( Schema<?> schema, boolean forExample)
+    {
+    setExtension( schema, EXT_EXAMPLE_SCHEMA, forExample);
+    }
+
+  /**
    * Returns true if the specified schema has a value for the given extension key.
    */
   private static boolean hasExtension( Schema<?> schema, String key)
@@ -600,6 +617,7 @@ public final class SchemaExtensions
     }
 
   static final String EXT_DNF = "x-tcases-dnf";
+  static final String EXT_EXAMPLE_SCHEMA = "x-tcases-example-schema";
   static final String EXT_MAX_VALUES = "x-tcases-max-values";
   static final String EXT_MODELLING_INPUT = "x-tcases-modelling-input";
   static final String EXT_NOT_ENUMS = "x-tcases-not-enums";
