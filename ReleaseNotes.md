@@ -1,5 +1,20 @@
 # Release Notes #
 
+## 3.8.6 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Generate tests from examples correctly for "composite" schemas** [[255](https://github.com/Cornutum/tcases/issues/255)]
+
+    This release fixes a [problem](https://github.com/Cornutum/tcases/issues/255) when generating API tests using the
+    [examples](./tcases-openapi/README.md#how-does-it-work) defined in an OpenAPI v3 definition. In previous versions,
+    many valid test cases went missing, especially for any API input defined by a "composite" schema that combines subschemas
+    using `oneOf` or `anyOf`. But in this release, all such test cases are generated correctly.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.8.
+
 ## 3.8.5 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
