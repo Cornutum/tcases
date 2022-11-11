@@ -700,6 +700,10 @@ public final class SystemInputJson
 
       case BOOLEAN:
         {
+        if( json.containsKey( CONST_KEY))
+          {
+          schema.setConstant( asDataValue( json, CONST_KEY, "boolean", schema.getFormat()));
+          }
         break;
         }
 
@@ -1259,6 +1263,7 @@ public final class SystemInputJson
     @Override
 	public void visit( BooleanValue data)
       {
+      json_ = data.getValue()? JsonValue.TRUE : JsonValue.FALSE;
       }
 
     @Override
