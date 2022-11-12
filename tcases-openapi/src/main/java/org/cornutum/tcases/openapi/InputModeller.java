@@ -582,7 +582,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
 
             Schema<?> mediaTypeSchema =
               Optional.ofNullable( mediaTypeDef.getSchema())
-              .map( s -> exampleSchemaFor( mediaTypeDef.getExample(), mediaTypeDef.getExamples(), analyzeSchema( api, s)))
+              .map( s -> analyzeSchema( api, exampleSchemaFor( mediaTypeDef.getExample(), mediaTypeDef.getExamples(), analyzeSchema( api, s))))
               .orElse( null);
 
             VarSet mediaTypeVar =
@@ -2317,7 +2317,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Schema<?> exampleSchemaFor( Object instanceExample, Map<String,Example> instanceExamples, Schema<?> instanceSchema)
     {
     String exampleType = Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null);
-    boolean exampleNullable = Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false);
+    Boolean exampleNullable = Optional.ofNullable( instanceSchema).map( Schema::getNullable).orElse( null);
 
     Optional<Object> exampleObject = Optional.ofNullable( instanceExample);
 
@@ -2343,13 +2343,13 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       exampleSchemaFor(
         instanceSchema,
         Optional.ofNullable( instanceSchema).map( Schema::getType).orElse( null),
-        Optional.ofNullable( instanceSchema).flatMap( s -> Optional.ofNullable( s.getNullable())).orElse( false));
+        Optional.ofNullable( instanceSchema).map( Schema::getNullable).orElse( null));
     }
 
   /**
    * Returns a new schema that validates examples described by the given schema.
    */
-  private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType, boolean exampleNullable)
+  private Schema<?> exampleSchemaFor( Schema<?> instanceSchema, String exampleType, Boolean exampleNullable)
     {
     Optional<Object> exampleObject;
     Set<Object> exampleEnum;
@@ -2370,7 +2370,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   /**
    * Returns a new schema that validates only the given example value.
    */
-  private Schema<?> exampleSchemaFor( Object exampleValue, String exampleType, boolean exampleNullable)
+  private Schema<?> exampleSchemaFor( Object exampleValue, String exampleType, Boolean exampleNullable)
     {
     Set<Object> exampleEnum = nullableEnums( asOrderedSet( Arrays.asList( exampleValue)), exampleNullable);
     return exampleSchemaForEnum( exampleEnum, exampleType, exampleNullable);
@@ -2380,7 +2380,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns a new schema that validates only the given example values.
    */
   @SuppressWarnings("rawtypes")
-  private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType, boolean exampleNullable)
+  private Schema<?> exampleSchemaFor( List<Object> exampleValues, String exampleType, Boolean exampleNullable)
     {
     Map<String,List<Object>> exampleEnums =
       nullableEnums( asOrderedSet( exampleValues), exampleNullable)
@@ -2416,7 +2416,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
    * Returns a new schema that validates only the given example values.
    */
   @SuppressWarnings("unchecked")
-  private Schema<?> exampleSchemaForEnum( Set<Object> exampleValues, String exampleType, boolean exampleNullable)
+  private Schema<?> exampleSchemaForEnum( Set<Object> exampleValues, String exampleType, Boolean exampleNullable)
     {
     Schema<Object> exampleSchema;
     if( exampleValues.isEmpty())
@@ -2427,6 +2427,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
       {
       exampleSchema = new Schema<Object>().type( exampleType).nullable( exampleNullable);
       exampleSchema.setEnum( exampleValues.stream().collect( toList()));
+      setExampleSchema( exampleSchema, true);
       }
     
     return exampleSchema;
