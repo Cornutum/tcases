@@ -115,7 +115,7 @@ public class SchemaBuilder
     return minimum( new BigDecimal( minimum));
     }
   
-  public SchemaBuilder minimum( double minimum)
+  public SchemaBuilder minimum( String minimum)
     {
     return minimum( new BigDecimal( minimum));
     }
@@ -136,7 +136,7 @@ public class SchemaBuilder
     return maximum( new BigDecimal( maximum));
     }
   
-  public SchemaBuilder maximum( double maximum)
+  public SchemaBuilder maximum( String maximum)
     {
     return maximum( new BigDecimal( maximum));
     }
@@ -157,7 +157,7 @@ public class SchemaBuilder
     return exclusiveMinimum( new BigDecimal( exclusiveMinimum));
     }
   
-  public SchemaBuilder exclusiveMinimum( double exclusiveMinimum)
+  public SchemaBuilder exclusiveMinimum( String exclusiveMinimum)
     {
     return exclusiveMinimum( new BigDecimal( exclusiveMinimum));
     }
@@ -178,7 +178,7 @@ public class SchemaBuilder
     return exclusiveMaximum( new BigDecimal( exclusiveMaximum));
     }
   
-  public SchemaBuilder exclusiveMaximum( double exclusiveMaximum)
+  public SchemaBuilder exclusiveMaximum( String exclusiveMaximum)
     {
     return exclusiveMaximum( new BigDecimal( exclusiveMaximum));
     }
@@ -199,7 +199,7 @@ public class SchemaBuilder
     return multipleOf( new BigDecimal( multipleOf));
     }
   
-  public SchemaBuilder multipleOf( double multipleOf)
+  public SchemaBuilder multipleOf( String multipleOf)
     {
     return multipleOf( new BigDecimal( multipleOf));
     }

@@ -326,9 +326,9 @@ public class Schema
   private void assertValueType( String property, DataValue<?> value)
     {
     Type valueType = Optional.ofNullable( value).map( DataValue::getType).orElse( null);
-    if( !(valueType == getType() || valueType == NULL))
+    if( !(valueType == getType() || valueType == NULL || (getType() == NUMBER && valueType == INTEGER)))
       {
-      throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, getType()));
+      throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, valueType, getType()));
       }
     }
 

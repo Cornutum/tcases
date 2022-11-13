@@ -174,6 +174,14 @@ public final class DataValues
     return new UuidValue( value);
     }
 
+  /**
+   * Returns a new {@link BigDecimal}.
+   */
+  public static BigDecimal bigDecimalOf( String value)
+    {
+    return new BigDecimal( value);
+    }
+
   public static class ObjectValueBuilder
     {
     public ObjectValueBuilder with( String name, DataValue<?> value)
