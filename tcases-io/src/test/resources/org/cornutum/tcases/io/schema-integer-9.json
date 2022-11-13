@@ -1,0 +1,16 @@
+{
+    "system": "Schema",
+    "integer": {
+        "arg": {
+            "integerVar": {
+                "values": {
+                    "integerValue": {
+                        "format": "int32",
+                        "maximum": 234,
+                        "multipleOf": 2
+                    }
+                }
+            }
+        }
+    }
+}

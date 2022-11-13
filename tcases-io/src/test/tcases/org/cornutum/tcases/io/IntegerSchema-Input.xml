@@ -1,0 +1,91 @@
+<System name="IntegerSchema">
+    <Function name="Schemas">
+        <Input>
+            <VarSet name="VarDef">
+                <VarSet name="Schema">
+                    <Var name="Defined">
+                        <Value name="Yes" property="varSchema"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="type" when="varSchema">
+                        <Value name="integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="format" when="varSchema">
+                        <Value name="Defined"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="minimum" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="maximum" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="exclusiveMinimum" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="exclusiveMaximum" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="multipleOf" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Value">
+                    <VarSet name="Schema">
+                        <Var name="Defined">
+                            <Value name="Yes" property="valueSchema"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="type" when="valueSchema">
+                            <Value name="integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="format" when="valueSchema, valueTypeDefined">
+                            <Value name="int32"/>
+                            <Value name="int64"/>
+                            <Value name="Other"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="const" when="valueSchema">
+                            <Value name="Integer" property="valueConst, valueTypeDefined"/>
+                            <Value name="null" property="valueConst"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="minimum" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="maximum" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="exclusiveMinimum" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="exclusiveMaximum" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="multipleOf" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

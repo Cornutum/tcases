@@ -1,0 +1,21 @@
+{
+    "system": "Schema",
+    "integer": {
+        "arg": {
+            "integerVar": {
+                "type": "integer",
+                "minimum": 100,
+                "exclusiveMinimum": 100,
+                
+                "values": {
+                    "integerValue": {
+                        "type": "integer",
+                        "minimum": 234,
+                        "exclusiveMinimum": 456,
+                        "exclusiveMaximum": 789
+                    }
+                }
+            }
+        }
+    }
+}

@@ -65,32 +65,27 @@ public class SchemaBuilder
 
   public SchemaBuilder constant( Boolean value)
     {
-    schema_.setConstant( valueOf( value));
-    return this;
+    return constant( valueOf( value));
     }
 
   public SchemaBuilder constant( BigDecimal value)
     {
-    schema_.setConstant( valueOf( value));
-    return this;
+    return constant( valueOf( value));
     }
 
   public SchemaBuilder constant( int value)
     {
-    schema_.setConstant( valueOf( value));
-    return this;
+    return constant( valueOf( value));
     }
 
   public SchemaBuilder constant( long value)
     {
-    schema_.setConstant( valueOf( value));
-    return this;
+    return constant( valueOf( value));
     }
 
   public SchemaBuilder constant( String value)
     {
-    schema_.setConstant( stringOf( value));
-    return this;
+    return constant( stringOf( value));
     }
 
   public SchemaBuilder constant( String format, String value)
@@ -110,10 +105,40 @@ public class SchemaBuilder
     return this;
     }
   
+  public SchemaBuilder minimum( int minimum)
+    {
+    return minimum( new BigDecimal( minimum));
+    }
+  
+  public SchemaBuilder minimum( long minimum)
+    {
+    return minimum( new BigDecimal( minimum));
+    }
+  
+  public SchemaBuilder minimum( double minimum)
+    {
+    return minimum( new BigDecimal( minimum));
+    }
+  
   public SchemaBuilder maximum( BigDecimal maximum)
     {
     schema_.setMaximum( maximum);
     return this;
+    }
+  
+  public SchemaBuilder maximum( int maximum)
+    {
+    return maximum( new BigDecimal( maximum));
+    }
+  
+  public SchemaBuilder maximum( long maximum)
+    {
+    return maximum( new BigDecimal( maximum));
+    }
+  
+  public SchemaBuilder maximum( double maximum)
+    {
+    return maximum( new BigDecimal( maximum));
     }
   
   public SchemaBuilder exclusiveMinimum( BigDecimal exclusiveMinimum)
@@ -122,16 +147,61 @@ public class SchemaBuilder
     return this;
     }
   
+  public SchemaBuilder exclusiveMinimum( int exclusiveMinimum)
+    {
+    return exclusiveMinimum( new BigDecimal( exclusiveMinimum));
+    }
+  
+  public SchemaBuilder exclusiveMinimum( long exclusiveMinimum)
+    {
+    return exclusiveMinimum( new BigDecimal( exclusiveMinimum));
+    }
+  
+  public SchemaBuilder exclusiveMinimum( double exclusiveMinimum)
+    {
+    return exclusiveMinimum( new BigDecimal( exclusiveMinimum));
+    }
+  
   public SchemaBuilder exclusiveMaximum( BigDecimal exclusiveMaximum)
     {
     schema_.setExclusiveMaximum( exclusiveMaximum);
     return this;
     }
   
+  public SchemaBuilder exclusiveMaximum( int exclusiveMaximum)
+    {
+    return exclusiveMaximum( new BigDecimal( exclusiveMaximum));
+    }
+  
+  public SchemaBuilder exclusiveMaximum( long exclusiveMaximum)
+    {
+    return exclusiveMaximum( new BigDecimal( exclusiveMaximum));
+    }
+  
+  public SchemaBuilder exclusiveMaximum( double exclusiveMaximum)
+    {
+    return exclusiveMaximum( new BigDecimal( exclusiveMaximum));
+    }
+  
   public SchemaBuilder multipleOf( BigDecimal multipleOf)
     {
     schema_.setMultipleOf( multipleOf);
     return this;
+    }
+  
+  public SchemaBuilder multipleOf( int multipleOf)
+    {
+    return multipleOf( new BigDecimal( multipleOf));
+    }
+  
+  public SchemaBuilder multipleOf( long multipleOf)
+    {
+    return multipleOf( new BigDecimal( multipleOf));
+    }
+  
+  public SchemaBuilder multipleOf( double multipleOf)
+    {
+    return multipleOf( new BigDecimal( multipleOf));
     }
   
   public SchemaBuilder minLength( Integer minLength)

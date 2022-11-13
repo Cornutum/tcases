@@ -18,6 +18,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.collections4.IteratorUtils;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -702,7 +703,7 @@ public final class SystemInputJson
         {
         if( json.containsKey( CONST_KEY))
           {
-          schema.setConstant( asDataValue( json, CONST_KEY, "boolean", schema.getFormat()));
+          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
           }
         break;
         }
@@ -710,14 +711,26 @@ public final class SystemInputJson
       case INTEGER:
       case NUMBER:
         {
+        if( json.containsKey( CONST_KEY))
+          {
+          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
+          }
+        else
+          {
+          schema.setMinimum( asBigDecimal( json, MINIMUM_KEY, type, schema.getFormat()));
+          schema.setMaximum( asBigDecimal( json, MAXIMUM_KEY, type, schema.getFormat()));
+          schema.setExclusiveMinimum( asBigDecimal( json, EXCLUSIVE_MINIMUM_KEY, type, schema.getFormat()));
+          schema.setExclusiveMaximum( asBigDecimal( json, EXCLUSIVE_MAXIMUM_KEY, type, schema.getFormat()));
+          schema.setMultipleOf( asBigDecimal( json, MULTIPLE_OF_KEY, type, schema.getFormat()));
+          }
         break;
         }
 
       case STRING:
-        {        
+        {
         if( json.containsKey( CONST_KEY))
           {
-          schema.setConstant( asDataValue( json, CONST_KEY, "string", schema.getFormat()));
+          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
           }
         else
           {
@@ -738,10 +751,10 @@ public final class SystemInputJson
         }
 
       case NULL:
-        {        
+        {
         if( json.containsKey( CONST_KEY))
           {
-          schema.setConstant( asDataValue( json.get( CONST_KEY), schema.getFormat()));
+          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
           }
         break;
         }
@@ -764,9 +777,9 @@ public final class SystemInputJson
 
     List<String[]> impliedTypes = 
       Stream.of(
-        getImpliedType( "array", json, "items", "maxItems", "minItems", "uniqueItems"),
-        getImpliedType( "number", json, "maximum", "exclusiveMaximum", "minimum", "exclusiveMinimum", "multipleOf"),
-        getImpliedType( "string", json, "maxLength", "minLength", "pattern"))
+        getImpliedType( "array", json, ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY),
+        getImpliedType( "number", json, MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY),
+        getImpliedType( "string", json, MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))
       .filter( Objects::nonNull)
       .collect( toList());
 
@@ -814,6 +827,31 @@ public final class SystemInputJson
       schemaType = declaredType;
       }
 
+    // Does the schema define a "format" value?
+    String formatType = getFormatType( json);
+    if( formatType != null)
+      {
+      // Yes, reconcile format type with schema type.
+      if( schemaType == null)
+        {
+        schemaType = formatType;
+        }
+      else if( declaredType == null && schemaType.equals( "number") && formatType.equals( "integer"))
+        {
+        schemaType = formatType;
+        }
+      else if( !formatType.equals( schemaType))
+        {
+        throw
+          new IllegalStateException(
+            String.format(
+              "Schema has type=%s but defines a '%s' of type=%s",
+              schemaType,
+              FORMAT_KEY,
+              formatType));
+        }
+      }
+
     // Does the schema define a "const" value?
     String constType = getConstType( json);
     if( constType != null)
@@ -823,13 +861,14 @@ public final class SystemInputJson
         {
         schemaType = constType;
         }
-      else if( !( constType.equals( schemaType) || constType.equals( "null") || (constType.equals( "number") && schemaType.equals( "integer"))))
+      else if( !( constType.equals( schemaType) || constType.equals( "null") || (constType.equals( "integer") && schemaType.equals( "number"))))
         {
         throw
           new IllegalStateException(
             String.format(
-              "Schema has type=%s but defines a 'const' of type=%s",
+              "Schema has type=%s but defines a '%s' of type=%s",
               schemaType,
+              CONST_KEY,
               constType));
         }
       }
@@ -854,95 +893,74 @@ public final class SystemInputJson
     }
 
   /**
+   * If the given JSON object defines a format that implied a specific data type, returns the type.
+   * Otherwise, returns null.
+   */
+  private static String getFormatType( JsonObject json)
+    {
+    return getFormatType( "integer", json, "int32", "int64");
+    }
+
+  /**
+   * If the given JSON object defines one of the given format values, returns the given type.
+   * Otherwise, returns null.
+   */
+  private static String getFormatType( String type, JsonObject json, String... formats)
+    {
+    return
+      Optional.ofNullable( json.getString( FORMAT_KEY, null))
+      .filter( format -> Arrays.stream( formats).anyMatch( f -> f.equals( format)))
+      .map( format -> type)
+      .orElse( null);
+    }
+
+  /**
    * If the given JSON object defines a value for the "const" property, returns the type of the value.
    * Otherwise, returns null.
    */
   private static String getConstType( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( object -> object.containsKey( "const"))
-      .map( object -> getValueType( object.get( "const")))
+      Optional.ofNullable( asDataValue( json, CONST_KEY, DataValue.Type.NULL, json.getString( FORMAT_KEY, null)))
+      .map( value -> value.getType().toString().toLowerCase())
       .orElse( null);
-    }
-
-  /**
-   * Returns the schema type for the given JSON value.
-   */
-  private static String getValueType( JsonValue json)
-    {
-    String valueType;
-
-    switch( json.getValueType())
-      {
-      case ARRAY:
-        {
-        valueType = "array";
-        break;
-        }
-
-      case STRING:
-        {
-        valueType = "string";
-        break;
-        }
-      
-      case NUMBER:
-        {
-        valueType =
-          ((JsonNumber) json).isIntegral()
-          ? "integer"
-          : "number";
-        break;
-        }
-      
-      case TRUE:
-      case FALSE:
-        {
-        valueType = "boolean";
-        break;
-        }
-
-      case NULL:
-        {
-        valueType = "null";
-        break;
-        }
-
-      default:
-        {
-        valueType = null;
-        break;
-        }
-      }
-
-    return valueType;
     }
 
   /**
    * If the given JSON object defines a value for the given key, returns the value.
    * Otherwise, returns null.
    */
-  private static DataValue<?> asDataValue( JsonObject json, String key, String expectedType, String format)
+  private static DataValue<?> asDataValue( JsonObject json, String key, DataValue.Type expectedType, String format)
     {
     return
       Optional.ofNullable( json.get( key))
       .map( value -> {
-        Optional.ofNullable( expectedType)
-          .filter( expected -> {
-            String valueType = getValueType( value);
-            return expected != null && !(expected.equals( valueType) || "null".equals( valueType));
-            })
-          .ifPresent( expected -> {
+        try
+          {
+          DataValue<?> dataValue = asDataValue( value, format);
+        
+          if( !(expectedType == DataValue.Type.NULL
+                ||
+                expectedType == dataValue.getType()
+                ||
+                dataValue.getType() == DataValue.Type.NULL
+                ||
+                (expectedType == DataValue.Type.NUMBER && dataValue.getType() == DataValue.Type.INTEGER)))
+            {
             throw
               new SystemInputException(
                 String.format(
-                  "Expected '%s' value of type '%s', but found '%s'",
-                  key,
-                  expected,
+                  "Expected value of type %s, but found '%s'",
+                  expectedType,
                   value));
-            });
-        return asDataValue( value, format);
+            }
+
+          return dataValue;
+          }
+        catch( Exception e)
+          {
+          throw new SystemInputException( String.format( "Error defining '%s' value", key), e);
+          }
         })
       .orElse( null);
     }
@@ -957,7 +975,7 @@ public final class SystemInputJson
       {
       case ARRAY:
         {
-        value = null;
+        value = arrayOfAny( ((JsonArray)json).stream().map( item -> asDataValue( item, null)).collect( toList()));
         break;
         }
       case STRING:
@@ -967,7 +985,22 @@ public final class SystemInputJson
         }
       case NUMBER:
         {
-        value = null;
+        JsonNumber number = (JsonNumber) json;
+        IntegerValue integerValue;
+        LongValue longValue;
+        
+        value =
+          !number.isIntegral()?
+          valueOf( number.bigDecimalValue()) :
+
+          (integerValue = asIntegerValue( number, format)) != null?
+          integerValue :
+
+          (longValue = asLongValue( number, format)) != null?
+          longValue :
+
+          valueOf( number.bigDecimalValue());
+            
         break;
         }
       case TRUE:    
@@ -993,6 +1026,93 @@ public final class SystemInputJson
       }
 
     return value;
+    }
+
+  /**
+   * Returns the IntegerValue represented by the given JSON value.
+   * Returns null if this value is not an Integer.
+   */
+  private static IntegerValue asIntegerValue( JsonNumber number, String format)
+    {
+    try
+      {
+      return
+        "int64".equals( format)
+        ? null
+        : valueOf( number.intValueExact());
+      }
+    catch( Exception e)
+      {
+      if( "int32".equals( format))
+        {
+        throw new IllegalArgumentException( String.format( "Expected an int32 value but found %s", number));
+        }
+      return null;
+      }
+    }
+
+  /**
+   * Returns the LongValue represented by the given JSON value.
+   * Returns null if this value is not a Long.
+   */
+  private static LongValue asLongValue( JsonNumber number, String format)
+    {
+    try
+      {
+      return
+        "int32".equals( format)
+        ? null
+        : valueOf( number.longValueExact());
+      }
+    catch( Exception e)
+      {
+      if( "int64".equals( format))
+        {
+        throw new IllegalArgumentException( String.format( "Expected an int64 value but found %s", number));
+        }
+      return null;
+      }
+    }
+
+  /**
+   * If the given JSON object defines a value for the given key, returns the value as a BigDecimal.
+   * Otherwise, returns null.
+   */
+  private static BigDecimal asBigDecimal( JsonObject json, String key, DataValue.Type expectedType, String format)
+    {
+    DataValue<?> value = asDataValue( json, key, expectedType, format);
+
+    try
+      {
+      BigDecimal decimal;
+
+      if( value == null)
+        {
+        decimal = null;
+        }
+      else if( value.getClass().equals( IntegerValue.class))
+        {
+        decimal = new BigDecimal( ((IntegerValue) value).getValue());
+        }
+      else if( value.getClass().equals( LongValue.class))
+        {
+        decimal = new BigDecimal( ((LongValue) value).getValue());
+        }
+      else if( value.getClass().equals( DecimalValue.class))
+        {
+        decimal = ((DecimalValue) value).getValue();
+        }
+      else
+        {
+        throw new IllegalArgumentException( String.format( "Expected numeric value but found %s", json.get( key)));
+        }
+
+      return decimal;
+      }
+    catch( Exception e)
+      {
+      throw new SystemInputException( String.format( "Error defining '%s' value", key), e);
+      }
     }
 
   /**
@@ -1258,6 +1378,7 @@ public final class SystemInputJson
     @Override
 	public void visit( BinaryValue data)
       {
+      throw new UnsupportedOperationException( "Binary data not supported");
       }
 
     @Override
@@ -1269,16 +1390,19 @@ public final class SystemInputJson
     @Override
 	public void visit( DecimalValue data)
       {
+      json_ = Json.createValue( data.getValue());
       }
 
     @Override
 	public void visit( IntegerValue data)
       {
+      json_ = Json.createValue( data.getValue());
       }
 
     @Override
 	public void visit( LongValue data)
       {
+      json_ = Json.createValue( data.getValue());
       }
 
     @Override
@@ -1290,6 +1414,7 @@ public final class SystemInputJson
     @Override
 	public void visit( ObjectValue data)
       {
+      throw new UnsupportedOperationException( "type=object is not supported");
       }
 
     @Override
