@@ -706,7 +706,7 @@ public final class SystemInputJson
           {
           schema.setMinItems( asInteger( json, MIN_ITEMS_KEY));
           schema.setMaxItems( asInteger( json, MAX_ITEMS_KEY));
-          schema.setUniqueItems( asBoolean( json, MAX_ITEMS_KEY));
+          schema.setUniqueItems( asBoolean( json, UNIQUE_ITEMS_KEY));
           schema.setItems( asSchema( json, ITEMS_KEY));
           }
         break;
@@ -1124,21 +1124,27 @@ public final class SystemInputJson
     {
     try
       {
-      return
-        !json.containsKey( key)?
-        null :
+      JsonObject schemaJson = 
+        json.containsKey( key)
+        ? json.getJsonObject( key)
+        : null;
 
-        Optional.ofNullable( getSchema( json.getJsonObject( key)))
-        .orElseThrow( () -> {
+      return
+        Optional.ofNullable( schemaJson)
+        .map( schemaDef -> {
+
+          schemaDef.keySet().stream()
+            .filter( k -> schemaKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
+            .findFirst()
+            .ifPresent( k -> {
+              throw new SystemInputException( String.format( "Unknown schema key '%s'", k));
+              });
+          
           return
-            new SystemInputException(
-              json.getJsonObject( key).keySet()
-              .stream()
-              .filter( k -> schemaKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
-              .findFirst()
-              .map( k -> String.format( "Unknown schema key '%s'", k))
-              .orElse( "Incomplete schema definition"));
-          });
+            Optional.ofNullable( getSchema( schemaDef))
+            .orElseThrow( () -> new SystemInputException( "Incomplete schema definition")); 
+          })
+        .orElse( null);
       }
     catch( Exception e)
       {
@@ -1445,6 +1451,9 @@ public final class SystemInputJson
     @Override
 	public void visit( ArrayValue<?> data)
       {
+      JsonArrayBuilder items = Json.createArrayBuilder();
+      data.getValue().forEach( item -> items.add( toJson( item)));
+      json_ = items.build();
       }
 
     @Override
@@ -1543,7 +1552,7 @@ public final class SystemInputJson
   private static final String UNIQUE_ITEMS_KEY = "uniqueItems";
 
   private static final Map<String,List<String>> schemaKeys_ =
-    MapBuilder.of( "", Arrays.asList( CONST_KEY, FORMAT_KEY))
+    MapBuilder.of( "", Arrays.asList( TYPE_KEY, CONST_KEY, FORMAT_KEY))
     .put( "array", Arrays.asList( ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY))
     .put( "number", Arrays.asList( MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY))
     .put( "string", Arrays.asList( MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))

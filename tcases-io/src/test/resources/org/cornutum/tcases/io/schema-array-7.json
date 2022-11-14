@@ -1,0 +1,17 @@
+{
+    "system": "Schema",
+    "array": {
+        "arg": {
+            "arrayVar": {
+                "values": {
+                    "arrayValue": {
+                        "type": "array",
+                        "const": 1.23,
+                        "maxItems": 8,
+                        "uniqueItems": true
+                    }
+                }
+            }
+        }
+    }
+}

@@ -240,6 +240,11 @@ public class SchemaBuilder
     return this;
     }
   
+  public SchemaBuilder uniqueItems()
+    {
+    return uniqueItems( true);
+    }
+  
   public SchemaBuilder items( Schema items)
     {
     schema_.setItems( items);

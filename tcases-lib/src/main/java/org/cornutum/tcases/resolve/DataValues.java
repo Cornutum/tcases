@@ -40,6 +40,74 @@ public final class DataValues
   /**
    * Returns a new {@link ArrayValue}.
    */
+  public static ArrayValue<String> arrayOf( String... items)
+    {
+    return arrayOf( null, items);
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
+  public static ArrayValue<String> arrayOf( String format, String... items)
+    {
+    return
+      new ArrayValue<String>(
+        Arrays.stream( items)
+        .map( item -> stringOf( format, item))
+        .collect( toList()));
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
+  public static ArrayValue<Integer> arrayOf( Integer... items)
+    {
+    return
+      new ArrayValue<Integer>(
+        Arrays.stream( items)
+        .map( item -> valueOf( item))
+        .collect( toList()));
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
+  public static ArrayValue<Long> arrayOf( Long... items)
+    {
+    return
+      new ArrayValue<Long>(
+        Arrays.stream( items)
+        .map( item -> valueOf( item))
+        .collect( toList()));
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
+  public static ArrayValue<Boolean> arrayOf( Boolean... items)
+    {
+    return
+      new ArrayValue<Boolean>(
+        Arrays.stream( items)
+        .map( item -> valueOf( item))
+        .collect( toList()));
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
+  public static ArrayValue<BigDecimal> arrayOf( BigDecimal... items)
+    {
+    return
+      new ArrayValue<BigDecimal>(
+        Arrays.stream( items)
+        .map( item -> valueOf( item))
+        .collect( toList()));
+    }
+
+  /**
+   * Returns a new {@link ArrayValue}.
+   */
   @SuppressWarnings("unchecked")
   public static ArrayValue<Object>  arrayOfAny( List<DataValue<?>> items)
     {
