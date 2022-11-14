@@ -11,6 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.resolve.*;
+import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.ObjectUtils;
 import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
@@ -22,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -696,6 +698,17 @@ public final class SystemInputJson
       {
       case ARRAY:
         {
+        if( json.containsKey( CONST_KEY))
+          {
+          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
+          }
+        else
+          {
+          schema.setMinItems( asInteger( json, MIN_ITEMS_KEY));
+          schema.setMaxItems( asInteger( json, MAX_ITEMS_KEY));
+          schema.setUniqueItems( asBoolean( json, MAX_ITEMS_KEY));
+          schema.setItems( asSchema( json, ITEMS_KEY));
+          }
         break;
         }
 
@@ -777,9 +790,9 @@ public final class SystemInputJson
 
     List<String[]> impliedTypes = 
       Stream.of(
-        getImpliedType( "array", json, ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY),
-        getImpliedType( "number", json, MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY),
-        getImpliedType( "string", json, MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))
+        getImpliedType( "array", json),
+        getImpliedType( "number", json),
+        getImpliedType( "string", json))
       .filter( Objects::nonNull)
       .collect( toList());
 
@@ -879,15 +892,14 @@ public final class SystemInputJson
     }
 
   /**
-   * If the given JSON object defines a value for any of the given properties, returns an array of the form <CODE>[type,property]</CODE>.
+   * If the given JSON object defines a value for any of the properties associated with the given type, returns an array of the form <CODE>[type,property]</CODE>.
    * Otherwise, returns null.
    */
-  private static String[] getImpliedType( String type, JsonObject json, String... properties)
+  private static String[] getImpliedType( String type, JsonObject json)
     {
     return
-      Stream.of( properties)
-      .filter( property -> json.containsKey( property))
-      .findFirst()
+      Optional.ofNullable( schemaKeys_.get( type))
+      .flatMap( properties -> properties.stream().filter( property -> json.containsKey( property)).findFirst())
       .map( property -> new String[]{ type, property})
       .orElse( null);
     }
@@ -898,7 +910,13 @@ public final class SystemInputJson
    */
   private static String getFormatType( JsonObject json)
     {
-    return getFormatType( "integer", json, "int32", "int64");
+    return
+      Stream.of(
+        getFormatType( "integer", json, "int32", "int64"),
+        getFormatType( "string", json, "date-time", "date", "email", "uuid"))
+      .filter( Objects::nonNull)
+      .findFirst()
+      .orElse( null);      
     }
 
   /**
@@ -1071,6 +1089,60 @@ public final class SystemInputJson
         throw new IllegalArgumentException( String.format( "Expected an int64 value but found %s", number));
         }
       return null;
+      }
+    }
+
+  /**
+   * If the given JSON object defines a value for the given key, returns the value as an Integer.
+   * Otherwise, returns null.
+   */
+  private static Integer asInteger( JsonObject json, String key)
+    {
+    return
+      Optional.ofNullable( asDataValue( json, key, DataValue.Type.INTEGER, "int32"))
+      .map( value -> ((IntegerValue) value).getValue())
+      .orElse( null);
+    }
+
+  /**
+   * If the given JSON object defines a value for the given key, returns the value as a Boolean.
+   * Otherwise, returns null.
+   */
+  private static Boolean asBoolean( JsonObject json, String key)
+    {
+    return
+      Optional.ofNullable( asDataValue( json, key, DataValue.Type.BOOLEAN, null))
+      .map( value -> ((BooleanValue) value).getValue())
+      .orElse( null);
+    }
+
+  /**
+   * If the given JSON object defines a value for the given key, returns the value as a Schema.
+   * Otherwise, returns null.
+   */
+  private static Schema asSchema( JsonObject json, String key)
+    {
+    try
+      {
+      return
+        !json.containsKey( key)?
+        null :
+
+        Optional.ofNullable( getSchema( json.getJsonObject( key)))
+        .orElseThrow( () -> {
+          return
+            new SystemInputException(
+              json.getJsonObject( key).keySet()
+              .stream()
+              .filter( k -> schemaKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
+              .findFirst()
+              .map( k -> String.format( "Unknown schema key '%s'", k))
+              .orElse( "Incomplete schema definition"));
+          });
+      }
+    catch( Exception e)
+      {
+      throw new SystemInputException( String.format( "Error defining '%s' value", key), e);
       }
     }
 
@@ -1469,4 +1541,11 @@ public final class SystemInputJson
   private static final String PATTERN_KEY = "pattern";
   private static final String TYPE_KEY = "type";
   private static final String UNIQUE_ITEMS_KEY = "uniqueItems";
+
+  private static final Map<String,List<String>> schemaKeys_ =
+    MapBuilder.of( "", Arrays.asList( CONST_KEY, FORMAT_KEY))
+    .put( "array", Arrays.asList( ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY))
+    .put( "number", Arrays.asList( MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY))
+    .put( "string", Arrays.asList( MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))
+    .build();
 }
