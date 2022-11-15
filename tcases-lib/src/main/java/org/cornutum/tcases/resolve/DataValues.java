@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -251,6 +252,28 @@ public final class DataValues
     }
 
   /**
+   * Returns a new integral {@link BigDecimal}.
+   */
+  public static BigDecimal roundDown( BigDecimal value)
+    {
+    return
+      Optional.ofNullable( value)
+      .map( decimal -> decimal.setScale( 0, BigDecimal.ROUND_FLOOR))
+      .orElse( null);
+    }
+
+  /**
+   * Returns a new integral {@link BigDecimal}.
+   */
+  public static BigDecimal roundUp( BigDecimal value)
+    {
+    return
+      Optional.ofNullable( value)
+      .map( decimal -> decimal.setScale( 0, BigDecimal.ROUND_CEILING))
+      .orElse( null);
+    }
+
+  /**
    * Returns a new {@link BigDecimal}.
    */
   public static BigDecimal bigDecimalOf( DataValue<?> value)
@@ -279,6 +302,14 @@ public final class DataValues
       }
 
     return decimal;
+    }
+
+  /**
+   * Returns a null {@link BigDecimal}.
+   */
+  public static BigDecimal bigDecimalNull()
+    {
+    return null;
     }
 
   public static class ObjectValueBuilder

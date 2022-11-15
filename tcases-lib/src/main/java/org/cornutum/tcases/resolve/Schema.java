@@ -9,7 +9,7 @@ package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.resolve.DataValue.Type;
 import org.cornutum.tcases.util.ToString;
-
+import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
 
 import java.math.BigDecimal;
@@ -50,6 +50,75 @@ public class Schema
     setMaxItems( other.getMaxItems());
     setUniqueItems( other.getUniqueItems());
     setItems( Optional.ofNullable( other.getItems()).map( Schema::new).orElse( null));
+    }
+
+  /**
+   * Creates a new schema by merging the contents of another schema, using this schema as the default.
+   */
+  public Schema merge( Schema other)
+    {
+    Schema merged =
+      new Schema(
+        Optional.of( other.getType())
+        .filter( type -> type != NULL)
+        .orElse( getType()));
+
+    if( merged.getType() == NULL)
+      {
+      merged.setFormat( Optional.ofNullable( other.getFormat()).orElse( getFormat()));
+      merged.setConstant( other.getConstant() != null? other.getConstant() :  getConstant());
+      }
+    else
+      {
+      merged.setFormat( Optional.ofNullable( other.getFormat()).orElse( getType() == other.getType()? getFormat() : null));
+      merged.setConstant( Optional.ofNullable( other.getConstant()).orElse( null));
+
+      if( merged.getConstant() == null)
+        {
+        switch( merged.getType())
+          {
+          case ARRAY:
+            {
+            merged.setMinItems( Optional.ofNullable( other.getMinItems()).orElse( getMinItems()));
+            merged.setMaxItems( Optional.ofNullable( other.getMaxItems()).orElse( getMaxItems()));
+            merged.setUniqueItems( Optional.ofNullable( other.getUniqueItems()).orElse( getUniqueItems()));
+            merged.setItems( Optional.ofNullable( other.getItems()).orElse( getItems()));
+            break;
+            }
+          case INTEGER:
+            {
+            merged.setMinimum( roundUp( Optional.ofNullable( other.getMinimum()).orElse( getMinimum())));
+            merged.setMaximum( roundDown( Optional.ofNullable( other.getMaximum()).orElse( getMaximum())));
+            merged.setExclusiveMinimum( roundDown( Optional.ofNullable( other.getExclusiveMinimum()).orElse( getExclusiveMinimum())));
+            merged.setExclusiveMaximum( roundUp( Optional.ofNullable( other.getExclusiveMaximum()).orElse( getExclusiveMaximum())));
+            merged.setMultipleOf( Optional.ofNullable( other.getMultipleOf()).orElse( getMultipleOf()));
+            break;
+            }
+          case NUMBER:
+            {
+            merged.setMinimum( Optional.ofNullable( other.getMinimum()).orElse( getMinimum()));
+            merged.setMaximum( Optional.ofNullable( other.getMaximum()).orElse( getMaximum()));
+            merged.setExclusiveMinimum( Optional.ofNullable( other.getExclusiveMinimum()).orElse( getExclusiveMinimum()));
+            merged.setExclusiveMaximum( Optional.ofNullable( other.getExclusiveMaximum()).orElse( getExclusiveMaximum()));
+            merged.setMultipleOf( Optional.ofNullable( other.getMultipleOf()).orElse( getMultipleOf()));
+            break;
+            }
+          case STRING:
+            {
+            merged.setMinLength( Optional.ofNullable( other.getMinLength()).orElse( getMinLength()));
+            merged.setMaxLength( Optional.ofNullable( other.getMaxLength()).orElse( getMaxLength()));
+            merged.setPattern( Optional.ofNullable( other.getPattern()).orElse( getPattern()));
+            break;
+            }
+          default:
+            {
+            break;
+            }
+          }
+        }
+      }
+
+    return merged;
     }
 
   /**
@@ -339,17 +408,27 @@ public class Schema
    */
   private Type assertValueType( String property, DataValue<?> value)
     {
-    Type valueType = Optional.ofNullable( value).map( DataValue::getType).orElse( null);
-    Type thisType = getType();
-    if( !(valueType == thisType || valueType == NULL || thisType == NULL || (thisType == NUMBER && valueType == INTEGER)))
+    Type type;
+    if( value == null)
       {
-      throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, valueType, thisType));
+      type = getType();
+      }
+    else
+      {
+      Type valueType = value.getType();
+      Type thisType = getType();
+      if( !(valueType == thisType || valueType == NULL || thisType == NULL || (thisType == NUMBER && valueType == INTEGER)))
+        {
+        throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, valueType, thisType));
+        }
+
+      type =
+        thisType == NULL
+        ? valueType
+        : thisType;
       }
 
-    return
-      thisType == NULL
-      ? valueType
-      : thisType;
+    return type;
     }
 
   @Override
