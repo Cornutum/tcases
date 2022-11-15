@@ -250,6 +250,37 @@ public final class DataValues
     return new BigDecimal( value);
     }
 
+  /**
+   * Returns a new {@link BigDecimal}.
+   */
+  public static BigDecimal bigDecimalOf( DataValue<?> value)
+    {
+    BigDecimal decimal;
+
+    if( value == null)
+      {
+      decimal = null;
+      }
+    else if( value.getClass().equals( IntegerValue.class))
+      {
+      decimal = new BigDecimal( ((IntegerValue) value).getValue());
+      }
+    else if( value.getClass().equals( LongValue.class))
+      {
+      decimal = new BigDecimal( ((LongValue) value).getValue());
+      }
+    else if( value.getClass().equals( DecimalValue.class))
+      {
+      decimal = ((DecimalValue) value).getValue();
+      }
+    else
+      {
+      throw new IllegalArgumentException( String.format( "Expected numeric value but found %s", value));
+      }
+
+    return decimal;
+    }
+
   public static class ObjectValueBuilder
     {
     public ObjectValueBuilder with( String name, DataValue<?> value)

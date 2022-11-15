@@ -1158,34 +1158,9 @@ public final class SystemInputJson
    */
   private static BigDecimal asBigDecimal( JsonObject json, String key, DataValue.Type expectedType, String format)
     {
-    DataValue<?> value = asDataValue( json, key, expectedType, format);
-
     try
       {
-      BigDecimal decimal;
-
-      if( value == null)
-        {
-        decimal = null;
-        }
-      else if( value.getClass().equals( IntegerValue.class))
-        {
-        decimal = new BigDecimal( ((IntegerValue) value).getValue());
-        }
-      else if( value.getClass().equals( LongValue.class))
-        {
-        decimal = new BigDecimal( ((LongValue) value).getValue());
-        }
-      else if( value.getClass().equals( DecimalValue.class))
-        {
-        decimal = ((DecimalValue) value).getValue();
-        }
-      else
-        {
-        throw new IllegalArgumentException( String.format( "Expected numeric value but found %s", json.get( key)));
-        }
-
-      return decimal;
+      return bigDecimalOf( asDataValue( json, key, expectedType, format));
       }
     catch( Exception e)
       {
