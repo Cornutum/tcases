@@ -27,8 +27,7 @@ public class Schema
    */
   public Schema( Type type)
     {
-    assertType( type);
-    type_ = type;
+    setType( assertType( type));
     }
   
   /**
@@ -54,6 +53,14 @@ public class Schema
     }
 
   /**
+   * Changes the type of input values.
+   */
+  private void setType( Type type)
+    {
+    type_ = type;
+    }
+
+  /**
    * Returns the type of input values.
    */
   public Type getType()
@@ -66,7 +73,7 @@ public class Schema
    */
   public void setConstant( DataValue<?> constant)
     {
-    assertValueType( "const", constant);
+    setType( assertValueType( "const", constant));
     constant_ = constant;
     }
 
@@ -99,7 +106,7 @@ public class Schema
    */
   public void setMinimum( BigDecimal minimum)
     {
-    assertRequiredType( "minimum", NUMBER, INTEGER);
+    setType( assertRequiredType( "minimum", NUMBER, INTEGER));
     minimum_ = minimum;
     }
 
@@ -116,7 +123,7 @@ public class Schema
    */
   public void setMaximum( BigDecimal maximum)
     {
-    assertRequiredType( "maximum", NUMBER, INTEGER);
+    setType( assertRequiredType( "maximum", NUMBER, INTEGER));
     maximum_ = maximum;
     }
 
@@ -133,7 +140,7 @@ public class Schema
    */
   public void setExclusiveMinimum( BigDecimal exclusiveMinimum)
     {
-    assertRequiredType( "exclusiveMinimum", NUMBER, INTEGER);
+    setType( assertRequiredType( "exclusiveMinimum", NUMBER, INTEGER));
     exclusiveMinimum_ = exclusiveMinimum;
     }
 
@@ -150,7 +157,7 @@ public class Schema
    */
   public void setExclusiveMaximum( BigDecimal exclusiveMaximum)
     {
-    assertRequiredType( "exclusiveMaximum", NUMBER, INTEGER);
+    setType( assertRequiredType( "exclusiveMaximum", NUMBER, INTEGER));
     exclusiveMaximum_ = exclusiveMaximum;
     }
 
@@ -167,7 +174,7 @@ public class Schema
    */
   public void setMultipleOf( BigDecimal multipleOf)
     {
-    assertRequiredType( "multipleOf", NUMBER, INTEGER);
+    setType( assertRequiredType( "multipleOf", NUMBER, INTEGER));
     multipleOf_ = multipleOf;
     }
 
@@ -184,7 +191,7 @@ public class Schema
    */
   public void setMinLength( Integer minLength)
     {
-    assertRequiredType( "minLength", STRING);
+    setType( assertRequiredType( "minLength", STRING));
     minLength_ = minLength;
     }
 
@@ -201,7 +208,7 @@ public class Schema
    */
   public void setMaxLength( Integer maxLength)
     {
-    assertRequiredType( "maxLength", STRING);
+    setType( assertRequiredType( "maxLength", STRING));
     maxLength_ = maxLength;
     }
 
@@ -218,7 +225,7 @@ public class Schema
    */
   public void setPattern( String pattern)
     {
-    assertRequiredType( "pattern", STRING);
+    setType( assertRequiredType( "pattern", STRING));
     pattern_ = pattern;
     }
 
@@ -235,7 +242,7 @@ public class Schema
    */
   public void setMinItems( Integer minItems)
     {
-    assertRequiredType( "minItems", ARRAY);
+    setType( assertRequiredType( "minItems", ARRAY));
     minItems_ = minItems;
     }
 
@@ -252,7 +259,7 @@ public class Schema
    */
   public void setMaxItems( Integer maxItems)
     {
-    assertRequiredType( "maxItems", ARRAY);
+    setType( assertRequiredType( "maxItems", ARRAY));
     maxItems_ = maxItems;
     }
 
@@ -269,7 +276,7 @@ public class Schema
    */
   public void setUniqueItems( Boolean uniqueItems)
     {
-    assertRequiredType( "uniqueItems", ARRAY);
+    setType( assertRequiredType( "uniqueItems", ARRAY));
     uniqueItems_ = uniqueItems;
     }
 
@@ -286,7 +293,7 @@ public class Schema
    */
   public void setItems( Schema items)
     {
-    assertRequiredType( "items", ARRAY);
+    setType( assertRequiredType( "items", ARRAY));
     items_ = items;
     }
 
@@ -301,35 +308,48 @@ public class Schema
   /**
    * Reports a failure if the given type is not defined.
    */
-  private void assertType( Type type)
+  private Type assertType( Type type)
     {
     if( type == null)
       {
       throw new IllegalArgumentException( "No schema type defined");
       }
+    return type;
     }
 
   /**
    * Reports a failure if this schema does not have one of the types required for the given property.
    */
-  private void assertRequiredType( String property, Type... requiredTypes)
+  private Type assertRequiredType( String property, Type... requiredTypes)
     {
     if( Arrays.stream( requiredTypes).noneMatch( type -> type == getType()))
       {
       throw new IllegalArgumentException( String.format( "Property=%s is not allowed for schema type=%s", property, getType()));
       }
+
+    Type thisType = getType();
+    return
+      thisType == NULL && requiredTypes.length > 0
+      ? requiredTypes[0]
+      : thisType;
     }
 
   /**
    * Reports a failure if this schema does not have the type required for the given value.
    */
-  private void assertValueType( String property, DataValue<?> value)
+  private Type assertValueType( String property, DataValue<?> value)
     {
     Type valueType = Optional.ofNullable( value).map( DataValue::getType).orElse( null);
-    if( !(valueType == getType() || valueType == NULL || (getType() == NUMBER && valueType == INTEGER)))
+    Type thisType = getType();
+    if( !(valueType == thisType || valueType == NULL || thisType == NULL || (thisType == NUMBER && valueType == INTEGER)))
       {
-      throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, valueType, getType()));
+      throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, valueType, thisType));
       }
+
+    return
+      thisType == NULL
+      ? valueType
+      : thisType;
     }
 
   @Override
@@ -392,7 +412,7 @@ public class Schema
       ;
     }
   
-  private final Type type_;
+  private Type type_;
   private DataValue<?> constant_;
   private String format_;
   private BigDecimal minimum_;
