@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.resolve.ArrayValue;
 import org.cornutum.tcases.resolve.BinaryValue;
@@ -20,6 +19,7 @@ import org.cornutum.tcases.resolve.LongValue;
 import org.cornutum.tcases.resolve.NullValue;
 import org.cornutum.tcases.resolve.ObjectValue;
 import org.cornutum.tcases.resolve.StringValue;
+import org.cornutum.tcases.util.Characters;
 import org.cornutum.tcases.util.ToString;
 
 import java.net.URI;

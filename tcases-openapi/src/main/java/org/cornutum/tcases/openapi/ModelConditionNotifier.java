@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.Notifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -9,6 +9,9 @@ package org.cornutum.tcases.openapi;
 
 import java.util.function.Supplier;
 
+import org.cornutum.tcases.util.ExecutionContext;
+import org.cornutum.tcases.util.Notifier;
+
 /**
  * Base class for objects that detect and report execution conditions.
  */

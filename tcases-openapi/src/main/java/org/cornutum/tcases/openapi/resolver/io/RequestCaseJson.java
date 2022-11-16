@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.resolver.io;
 import org.cornutum.tcases.openapi.resolver.*;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.Base64Domain;
 import org.cornutum.tcases.resolve.BinaryValue;
 import org.cornutum.tcases.resolve.BooleanValue;
 import org.cornutum.tcases.resolve.DataValue;

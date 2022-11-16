@@ -16,9 +16,9 @@ import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 import org.cornutum.tcases.openapi.resolver.RequestCases;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
-import org.cornutum.tcases.openapi.resolver.ResolverContext;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
 import org.cornutum.tcases.openapi.test.ResponsesDef;
+import org.cornutum.tcases.resolve.ResolverContext;
 
 import java.io.File;
 import java.io.InputStream;

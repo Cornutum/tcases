@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.openapi.moco;
 
-import org.cornutum.tcases.openapi.resolver.Base64Domain;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
@@ -15,6 +14,7 @@ import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.Base64Domain;
 import org.cornutum.tcases.resolve.BinaryValue;
 import org.cornutum.tcases.resolve.BooleanValue;
 import org.cornutum.tcases.resolve.DataValue;

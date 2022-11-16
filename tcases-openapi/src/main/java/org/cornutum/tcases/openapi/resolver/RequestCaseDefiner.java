@@ -8,10 +8,12 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.openapi.Characters;
 import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
 import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.StringConstant;
+import org.cornutum.tcases.resolve.ValueDomain;
+import org.cornutum.tcases.util.Characters;
 
 import static org.cornutum.tcases.openapi.resolver.VarProperties.*;
 import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
@@ -307,7 +309,7 @@ public class RequestCaseDefiner
 
     ValueDef<?> valueDef =
       valueDefined
-      ? toValueDomain( propertyValues, chars).valueOf()
+      ? valueOf( toValueDomain( propertyValues, chars))
       : new ValueDef<Object>( null);
       
     valueDef.setValid(
@@ -341,6 +343,14 @@ public class RequestCaseDefiner
         });
     
     return valueDef;
+    }
+
+  /**
+   * Returns a new {@link ValueDef} using the given domain.
+   */
+  private <T> ValueDef<T> valueOf( ValueDomain<T> domain)
+    {
+    return new ValueDef<T>( domain);
     }
 
   /**

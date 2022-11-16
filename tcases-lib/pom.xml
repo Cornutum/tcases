@@ -82,7 +82,8 @@
             </goals>
               <configuration>
                 <includes>
-                  <include>org/cornutum/tcases/*Matcher.class</include>
+                  <include>org/cornutum/tcases/**/*Matcher.class</include>
+                  <include>org/cornutum/tcases/**/*Matcher$*.class</include>
                 </includes>
               </configuration>
           </execution>
@@ -95,6 +96,11 @@
     <dependency>
       <groupId>org.cornutum.testing</groupId>
       <artifactId>hamcrest-composites</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cornutum.regexp</groupId>
+      <artifactId>regexp-gen</artifactId>
     </dependency>
     
     <dependency>

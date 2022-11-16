@@ -10,7 +10,7 @@ package org.cornutum.tcases.openapi;
 import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.io.SystemTestResources;
 import org.cornutum.tcases.openapi.ApiCommand.Options;
-import org.cornutum.tcases.openapi.resolver.ResolverException;
+import org.cornutum.tcases.resolve.ResolverException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;

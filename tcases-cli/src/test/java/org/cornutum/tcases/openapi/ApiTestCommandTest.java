@@ -12,8 +12,8 @@ import org.cornutum.tcases.openapi.moco.CertConfigResource;
 import org.cornutum.tcases.openapi.moco.MocoServerConfig;
 import org.cornutum.tcases.openapi.moco.MocoTestConfig;
 import org.cornutum.tcases.openapi.moco.MocoTestConfigWriter;
-import org.cornutum.tcases.openapi.resolver.ResolverException;
 import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
+import org.cornutum.tcases.resolve.ResolverException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;

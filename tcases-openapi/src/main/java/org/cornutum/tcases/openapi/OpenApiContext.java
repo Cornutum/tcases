@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.ExecutionContext;
+
 /**
  * Provides a context for exceptions that occur when processing an OpenAPI definition
  */
