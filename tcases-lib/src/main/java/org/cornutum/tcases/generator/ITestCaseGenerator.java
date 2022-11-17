@@ -10,6 +10,8 @@ package org.cornutum.tcases.generator;
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.util.CloneableType;
 
+import java.util.List;
+
 /**
  * Generates {@link TestCase test cases} for a {@link FunctionInputDef function}.
  *
@@ -26,5 +28,5 @@ public interface ITestCaseGenerator extends CloneableType<ITestCaseGenerator>
    * If the given base test definition is non-null, returns a set of new test cases
    * that extend the base tests.
    */
-  FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests);  
+  List<ITestCaseDef> getTests( FunctionInputDef inputDef, FunctionTestDef baseTests);  
   }

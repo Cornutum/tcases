@@ -8,6 +8,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.generator.*;
+import org.cornutum.tcases.resolve.TestCaseResolver;
 
 import java.util.Iterator;
 
@@ -27,17 +28,21 @@ public class Tcases
     }
 
   /**
-   * Returns test case definitions for the given system input definition, using the given generator set and
-   * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.
-   * If <CODE>baseDef</CODE> is null, no base test definitions are used.
-   * <P/>
-   * The <CODE>options</CODE> are optional and may be null. See also {@link #getTests(SystemInputDef,IGeneratorSet,SystemTestDef)}.
+   * Returns test case definitions for the given system input definition, using the given generator set, resolver, and
+   * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.  If <CODE>baseDef</CODE> is
+   * null, no base test definitions are used.  <P/> The <CODE>options</CODE> are optional and may be null. See also
+   * {@link #getTests(SystemInputDef,IGeneratorSet,SystemTestDef)}.
    */
-  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef, GeneratorOptions options)
+  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, TestCaseResolver resolver, SystemTestDef baseDef, GeneratorOptions options)
     {
     if( genDef == null)
       {
       genDef = GeneratorSet.basicGenerator();
+      }
+
+    if( resolver == null)
+      {
+      resolver = new TestCaseResolver();
       }
 
     SystemTestDef testDef = new SystemTestDef( inputDef.getName());
@@ -46,7 +51,7 @@ public class Tcases
       FunctionInputDef functionDef = functionDefs.next();
       FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
       ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
-      FunctionTestDef functionTestDef = getTests( functionDef, functionGen, functionBase, options);
+      FunctionTestDef functionTestDef = getTests( functionDef, functionGen, resolver, functionBase, options);
       annotateTests( inputDef, functionTestDef);
 
       testDef.addFunctionTestDef(functionTestDef);
@@ -57,17 +62,21 @@ public class Tcases
     }
 
   /**
-   * Returns test case definitions for the given function input definition, using the given test case generator and
-   * base test definitions. The <CODE>functionGen</CODE> must be non-null.
-   * If <CODE>functionBase</CODE> is null, no base test definitions are used.
-   * <P/>
-   * The <CODE>options</CODE> are optional and may be null. See also {@link #getTests(FunctionInputDef,ITestCaseGenerator,FunctionTestDef)}.
+   * Returns test case definitions for the given function input definition, using the given test case generator,
+   * resolver, and base test definitions. The <CODE>functionGen</CODE> must be non-null.  If <CODE>functionBase</CODE>
+   * is null, no base test definitions are used.  <P/> The <CODE>options</CODE> are optional and may be null. See also
+   * {@link #getTests(FunctionInputDef,ITestCaseGenerator,FunctionTestDef)}.
    */
-  public static FunctionTestDef getTests( FunctionInputDef functionDef, ITestCaseGenerator functionGen, FunctionTestDef functionBase, GeneratorOptions options)
+  public static FunctionTestDef getTests( FunctionInputDef functionDef, ITestCaseGenerator functionGen, TestCaseResolver resolver, FunctionTestDef functionBase, GeneratorOptions options)
     {
     if( functionGen == null)
       {
       throw new RuntimeException( "No generator for function=" + functionDef.getName());
+      }
+
+    if( resolver == null)
+      {
+      resolver = new TestCaseResolver();
       }
 
     // If applicable, apply specified generator options.
@@ -82,7 +91,10 @@ public class Tcases
       ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
       }
 
-    FunctionTestDef functionTestDef = functionGen.getTests(functionDef, functionBase);
+    FunctionTestDef functionTestDef = new FunctionTestDef( functionDef.getName());
+    resolver.resolve( functionDef, f -> functionGen.getTests( f, functionBase))
+      .forEach( testCase -> functionTestDef.addTestCase( testCase));
+
     annotateTests( functionDef, functionTestDef);
 
     return functionTestDef;
@@ -95,7 +107,7 @@ public class Tcases
    */
   public static FunctionTestDef getTests( FunctionInputDef functionDef, ITestCaseGenerator functionGen, FunctionTestDef functionBase)
     {
-    return getTests( functionDef, functionGen, functionBase, null);
+    return getTests( functionDef, functionGen, null, functionBase, null);
     }
 
   /**
@@ -105,7 +117,7 @@ public class Tcases
    */
   public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, SystemTestDef baseDef)
     {
-    return getTests( inputDef, genDef, baseDef, null);
+    return getTests( inputDef, genDef, null, baseDef, null);
     }
 
   /**

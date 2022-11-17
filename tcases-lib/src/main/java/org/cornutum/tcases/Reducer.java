@@ -222,7 +222,7 @@ public class Reducer
    */
   private static int getTestCaseCount( FunctionInputDef inputDef, ITestCaseGenerator generator, FunctionTestDef baseDef)
     {
-    return (int) toStream( generator.getTests( inputDef, baseDef).getTestCases()).count();
+    return (int) toStream( Tcases.getTests( inputDef, generator, baseDef).getTestCases()).count();
     }
 
 

@@ -1315,7 +1315,7 @@ public class TcasesCommand
       }
 
     // Generate new test definitions.
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, baseDef, options.getGeneratorOptions());
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, null, baseDef, options.getGeneratorOptions());
 
     // Identify test definition transformations.
     AbstractFilter transformer = null;
