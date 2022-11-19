@@ -15,17 +15,10 @@ import java.util.function.Function;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Resolves {@link {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances.
+ * Resolves {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances.
  */
-public class TestCaseResolver
+public abstract class TestCaseResolver
   {
-  /**
-   * Creates a new TestCaseResolver instance.
-   */
-  public TestCaseResolver()
-    {
-    }
-
   /**
    * Resolves the {@link {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances for the given input model.
    */
@@ -66,17 +59,36 @@ public class TestCaseResolver
   /**
    * Resolves a variable value definition.
    */
-  protected VarValueDef resolveValueDef( VarValueDef valueDef)
-    {
-    return valueDef;
-    }
+  protected abstract VarValueDef resolveValueDef( VarValueDef valueDef);
   
   /**
    * Prepare for resolution of input value definitions
    */
-  protected void prepareValueDefs( FunctionInputDef inputDef)
-    {
-    }
+  protected abstract void prepareValueDefs( FunctionInputDef inputDef);
 
-  private int nextId_ = 0;
+  /**
+   * The default TestCaseResolver uses only the basic input model without schemas.
+   */
+  public static TestCaseResolver DEFAULT =
+    new TestCaseResolver()
+      {
+      /**
+       * Resolves a variable value definition.
+       */
+      @Override
+      protected VarValueDef resolveValueDef( VarValueDef valueDef)
+        {
+        return valueDef;
+        }
+  
+      /**
+       * Prepare for resolution of input value definitions
+       */
+      @Override
+      protected void prepareValueDefs( FunctionInputDef inputDef)
+        {
+        }
+      };
+
+  private int nextId_;
   }

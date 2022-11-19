@@ -42,7 +42,7 @@ public class Tcases
 
     if( resolver == null)
       {
-      resolver = new TestCaseResolver();
+      resolver = TestCaseResolver.DEFAULT;
       }
 
     SystemTestDef testDef = new SystemTestDef( inputDef.getName());
@@ -76,7 +76,7 @@ public class Tcases
 
     if( resolver == null)
       {
-      resolver = new TestCaseResolver();
+      resolver = TestCaseResolver.DEFAULT;
       }
 
     // If applicable, apply specified generator options.
