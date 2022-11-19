@@ -20,22 +20,21 @@ import static java.util.stream.Collectors.toList;
 public abstract class TestCaseResolver
   {
   /**
-   * Resolves the {@link {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances for the given input model.
+   * Resolves the {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances for the given input model.
    */
   public List<TestCase> resolve(  FunctionInputDef inputDef, Function<FunctionInputDef,List<ITestCaseDef>> testCaseDefSupplier)
     {
-    prepareValueDefs( inputDef);
     nextId_ = -1;
     
     return
-      testCaseDefSupplier.apply( inputDef)
+      testCaseDefSupplier.apply( prepareValueDefs( inputDef))
       .stream()
       .map( this::resolveTestDef)
       .collect( toList());
     }
 
   /**
-   * Resolves a {@link {@link ITestCaseDef test case definition} to create a new {@link TestCase}.
+   * Resolves a {@link ITestCaseDef test case definition} to create a new {@link TestCase}.
    */
   private TestCase resolveTestDef( ITestCaseDef testCaseDef)
     {
@@ -57,14 +56,14 @@ public abstract class TestCaseResolver
     }
 
   /**
-   * Resolves a variable value definition.
+   * Resolves an input value definition.
    */
   protected abstract VarValueDef resolveValueDef( VarValueDef valueDef);
   
   /**
-   * Prepare for resolution of input value definitions
+   * Returns a {@link FunctionInputDef function input model} that is ready for resolution of input value definitions.
    */
-  protected abstract void prepareValueDefs( FunctionInputDef inputDef);
+  protected abstract FunctionInputDef prepareValueDefs( FunctionInputDef inputDef);
 
   /**
    * The default TestCaseResolver uses only the basic input model without schemas.
@@ -73,7 +72,7 @@ public abstract class TestCaseResolver
     new TestCaseResolver()
       {
       /**
-       * Resolves a variable value definition.
+       * Resolves an input value definition.
        */
       @Override
       protected VarValueDef resolveValueDef( VarValueDef valueDef)
@@ -82,11 +81,12 @@ public abstract class TestCaseResolver
         }
   
       /**
-       * Prepare for resolution of input value definitions
+       * Returns a {@link FunctionInputDef function input model} that is ready for resolution of input value definitions.
        */
       @Override
-      protected void prepareValueDefs( FunctionInputDef inputDef)
+      protected FunctionInputDef prepareValueDefs( FunctionInputDef inputDef)
         {
+        return inputDef;
         }
       };
 

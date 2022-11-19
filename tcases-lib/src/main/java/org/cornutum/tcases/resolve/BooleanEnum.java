@@ -9,6 +9,7 @@ package org.cornutum.tcases.resolve;
 
 import static org.cornutum.tcases.resolve.DataValue.Type;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -16,6 +17,14 @@ import java.util.Collection;
  */
 public class BooleanEnum extends EnumDomain<Boolean>
   {
+  /**
+   * Creates a new BooleanEnum instance.
+   */
+  public BooleanEnum()
+    {
+    this( Arrays.asList( Boolean.TRUE, Boolean.FALSE));
+    }
+  
   /**
    * Creates a new BooleanEnum instance.
    */

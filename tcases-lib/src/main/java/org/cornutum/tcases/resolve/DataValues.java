@@ -312,6 +312,22 @@ public final class DataValues
     return null;
     }
 
+  /**
+   * Returns the given {@link BigDecimal} value as an Integer.
+   */
+  public static Integer integerOf( BigDecimal value)
+    {
+    return Optional.ofNullable( value).map( BigDecimal::intValue).orElse( null);
+    }
+
+  /**
+   * Returns the given {@link BigDecimal} value as Long.
+   */
+  public static Long longOf( BigDecimal value)
+    {
+    return Optional.ofNullable( value).map( BigDecimal::longValue).orElse( null);
+    }
+
   public static class ObjectValueBuilder
     {
     public ObjectValueBuilder with( String name, DataValue<?> value)
