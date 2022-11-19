@@ -33,7 +33,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
     /**
      * Creates a new Position object.
      */
-    public Position( IVarDef parent, int seqNum)
+    public Position( VarSet parent, int seqNum)
       {
       int[] parentPosition =
         parent == null
@@ -128,7 +128,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
       {
       StringBuilder pathName = new StringBuilder();
 
-      IVarDef parent = getParent();
+      VarSet parent = getParent();
       if( parent != null)
         {
         pathName
@@ -163,7 +163,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
   @Override
   public String getType()
     {
-    IVarDef parent = getParent();
+    VarSet parent = getParent();
     return parent==null? type_ : parent.getType();
     }
 
@@ -171,7 +171,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * Changes the parent of this variable.
    */
   @Override
-  public void setParent( IVarDef parent)
+  public void setParent( VarSet parent)
     {
     parent_ = parent;
     pathName_ = null;
@@ -183,7 +183,7 @@ public abstract class AbstractVarDef extends Conditional implements IVarDef
    * If this is member of another variable, returns the parent variable. Otherwise, returns null.
    */
   @Override
-  public IVarDef getParent()
+  public VarSet getParent()
     {
     return parent_;
     }
@@ -325,7 +325,7 @@ abstract public IVarDef find( String... path);
 
   private String name_;
   private String type_;
-  private IVarDef parent_;
+  private VarSet parent_;
   private String pathName_;
   private Position position_;
   private int seqNum_;

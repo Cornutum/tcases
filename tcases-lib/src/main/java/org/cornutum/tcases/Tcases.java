@@ -151,12 +151,9 @@ public class Tcases
         binding.addAnnotations( varDef);
 
         // ...and any other annotations for variable sets that contain this variable.
-        for( IVarDef ancestor = varDef.getParent(); ancestor != null; ancestor = ancestor.getParent())
+        for( VarSet ancestor = varDef.getParent(); ancestor != null; ancestor = ancestor.getParent())
           {
-          if( ancestor instanceof Annotated)
-            {
-            binding.addAnnotations( (Annotated) ancestor);
-            }
+          binding.addAnnotations( ancestor);
           }
         }
       }

@@ -25,12 +25,12 @@ public interface IVarDef extends IConditional, IAnnotated, Comparable<IVarDef>
   /**
    * Changes the parent of this variable.
    */
-  void setParent( IVarDef parent);
+  void setParent( VarSet parent);
 
   /**
    * If this is member of another variable, returns the parent variable. Otherwise, returns null.
    */
-  IVarDef getParent();
+  VarSet getParent();
 
   /**
    * Returns the position of this variable definition.

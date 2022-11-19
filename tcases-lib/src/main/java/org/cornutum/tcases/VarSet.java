@@ -61,7 +61,7 @@ public class VarSet extends AbstractVarDef
    * Changes the parent of this variable.
    */
   @Override
-  public void setParent( IVarDef parent)
+  public void setParent( VarSet parent)
     {
     super.setParent( parent);
 
