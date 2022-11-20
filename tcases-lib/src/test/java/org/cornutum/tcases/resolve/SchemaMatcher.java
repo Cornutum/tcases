@@ -6,10 +6,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases;
+package org.cornutum.tcases.resolve;
 
 import org.cornutum.hamcrest.BaseCompositeMatcher;
-import org.cornutum.tcases.resolve.Schema;
 import org.hamcrest.Matchers;
 
 /**

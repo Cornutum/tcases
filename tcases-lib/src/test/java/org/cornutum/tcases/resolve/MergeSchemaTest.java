@@ -7,7 +7,6 @@
 
 package org.cornutum.tcases.resolve;
 
-import org.cornutum.tcases.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 
 import org.junit.Test;
