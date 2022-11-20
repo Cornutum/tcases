@@ -8,6 +8,8 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.Optional;
+
 /**
  * Builds {@link GeneratorSet} instances.
  *
@@ -61,9 +63,9 @@ public class GeneratorSetBuilder
   public GeneratorSetBuilder start( GeneratorSet generatorSet)
     {
     generatorSet_ =
-      generatorSet == null
-      ? new GeneratorSet()
-      : generatorSet;
+      Optional.ofNullable( generatorSet)
+      .map( GeneratorSet::cloneOf)
+      .orElse( new GeneratorSet());
     
     return this;
     }

@@ -8,6 +8,9 @@
 
 package org.cornutum.tcases;
 
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -71,9 +74,16 @@ public class SystemTestDefBuilder extends AnnotatedBuilder<SystemTestDefBuilder>
   public SystemTestDefBuilder start( SystemTestDef systemTestDef)
     {
     systemTestDef_ =
-      systemTestDef == null
-      ? new SystemTestDef( "S")
-      : systemTestDef;
+      Optional.ofNullable( systemTestDef)
+      .map( s ->
+            SystemTestDefBuilder.with( s.getName())
+            .functions(
+              toStream( s.getFunctionTestDefs())
+              .map( f -> FunctionTestDefBuilder.with( f).build()))
+            .annotations( s)
+            .build())
+            
+      .orElse( new SystemTestDef( "S"));
     
     return this;
     }

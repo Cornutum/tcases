@@ -10,6 +10,8 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.resolve.Schema;
+import org.cornutum.tcases.resolve.SchemaBuilder;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -75,9 +77,18 @@ public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
   public VarDefBuilder start( VarDef varDef)
     {
     varDef_ =
-      varDef == null
-      ? new VarDef( "V")
-      : varDef;
+      Optional.ofNullable( varDef)
+      .map( v ->
+            VarDefBuilder.with( v.getName())
+            .type( v.getType())
+            .when( v.getCondition())
+            .schema( SchemaBuilder.with( v.getSchema()).build())
+            .values(
+              toStream( v.getValues())
+              .map( value -> VarValueDefBuilder.with( value).build()))
+            .annotations( v)
+            .build())
+      .orElse( new VarDef( "V"));
     
     return this;
     }

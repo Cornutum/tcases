@@ -84,6 +84,7 @@ public class TestSystemTestDocWriter
       }
 
     assertThat( "Output from definition=" + systemTestResource, systemTestAfter, matches( new SystemTestDefMatcher( systemTestBefore)));
+    assertThat( "Copy of definition=" + systemTestResource, SystemTestDefBuilder.with( systemTestAfter).build(), matches( new SystemTestDefMatcher( systemTestBefore)));
     }
 
   /**

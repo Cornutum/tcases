@@ -91,4 +91,14 @@ public abstract class AnnotatedBuilder<T extends AnnotatedBuilder<T>>
     value.ifPresent( v -> has( name, v));
     return (T) this;
     }
+
+  /**
+   * Adds an annotation if the given value is non-null
+   */
+  @SuppressWarnings("unchecked")
+  public T annotations( Annotated other)
+    {
+    getAnnotated().addAnnotations( other);
+    return (T) this;
+    }
   }

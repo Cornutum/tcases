@@ -58,6 +58,7 @@ public abstract class SystemInputJsonTest
 
     // Then...
     assertThat( "Output from definition=" + systemInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+    assertThat( "Copy of definition=" + systemInputResource, SystemInputDefBuilder.with( systemInputAfter).build(), matches( new SystemInputDefMatcher( systemInputBefore)));
 
     return systemInputAfter;
     }
@@ -69,6 +70,7 @@ public abstract class SystemInputJsonTest
 
     // Then...
     assertThat( systemInputResource, inputDefAfter, matches( new SystemInputDefMatcher( inputDef)));
+    assertThat( "Copy of " + systemInputResource, SystemInputDefBuilder.with( inputDefAfter).build(), matches( new SystemInputDefMatcher( inputDef)));
     }
 
   public void assertDefinitionError( String systemInputResource, String expected)

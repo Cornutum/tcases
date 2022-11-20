@@ -8,6 +8,7 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -63,9 +64,9 @@ public class TupleGeneratorBuilder
   public TupleGeneratorBuilder start( TupleGenerator tupleGenerator)
     {
     tupleGenerator_ =
-      tupleGenerator == null
-      ? new TupleGenerator()
-      : tupleGenerator;
+      Optional.ofNullable( tupleGenerator)
+      .map( g -> (TupleGenerator) g.cloneOf())
+      .orElse( new TupleGenerator());
     
     return this;
     }

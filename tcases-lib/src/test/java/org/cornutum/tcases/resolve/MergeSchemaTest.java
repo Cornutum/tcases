@@ -58,6 +58,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -99,6 +100,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -140,6 +142,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -181,6 +184,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -219,6 +223,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -257,6 +262,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -295,6 +301,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -333,6 +340,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -368,6 +376,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -403,6 +412,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -438,6 +448,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -473,6 +484,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -500,6 +512,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -526,6 +539,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -554,6 +568,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -583,6 +598,7 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -612,6 +628,7 @@ public class MergeSchemaTest
     Schema expected = other;
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   
   @Test
@@ -642,5 +659,6 @@ public class MergeSchemaTest
       .build();
     
     assertThat( "Merged", merged, matches( new SchemaMatcher( expected)));
+    assertThat( "Copied", SchemaBuilder.with( merged).build(), matches( new SchemaMatcher( expected)));
     }
   }

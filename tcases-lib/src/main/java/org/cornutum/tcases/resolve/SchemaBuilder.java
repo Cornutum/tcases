@@ -12,6 +12,7 @@ import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  * Builds {@link Schema} instances.
@@ -25,6 +26,15 @@ public class SchemaBuilder
     {
     schema_ = schema;
     }
+
+  /**
+   * Returns a builder for a copy of the given schema.
+   */
+  public static SchemaBuilder with( Schema schema)
+    {
+    return new SchemaBuilder( Optional.ofNullable( schema).map( s -> new Schema( s)).orElse( null));
+    }
+
 
   /**
    * Returns a builder for a schema of the given type.

@@ -109,6 +109,7 @@ public class TestSystemInputDocWriter
       }
 
     assertThat( "Output from definition=" + systemInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+    assertThat( "Copy of definition=" + systemInputResource, SystemInputDefBuilder.with( systemInputAfter).build(), matches( new SystemInputDefMatcher( systemInputBefore)));
     }
 
   /**

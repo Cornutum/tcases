@@ -8,6 +8,9 @@
 
 package org.cornutum.tcases;
 
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -71,9 +74,15 @@ public class SystemInputDefBuilder extends AnnotatedBuilder<SystemInputDefBuilde
   public SystemInputDefBuilder start( SystemInputDef systemInputDef)
     {
     systemInputDef_ =
-      systemInputDef == null
-      ? new SystemInputDef( "S")
-      : systemInputDef;
+      Optional.ofNullable( systemInputDef)
+      .map( s ->
+            SystemInputDefBuilder.with( s.getName())
+            .functions(
+              toStream( s.getFunctionInputDefs())
+              .map( f -> FunctionInputDefBuilder.with( f).build()))
+            .annotations( s)
+            .build())
+      .orElse( new SystemInputDef( "S"));
     
     return this;
     }

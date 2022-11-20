@@ -8,9 +8,13 @@
 
 package org.cornutum.tcases.generator;
 
-import java.util.stream.Stream;
-
 import org.cornutum.tcases.VarBinding;
+import org.cornutum.tcases.VarBindingBuilder;
+
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Builds {@link TupleRef} instances.
@@ -72,9 +76,14 @@ public class TupleRefBuilder
   public TupleRefBuilder start( TupleRef tupleRef)
     {
     tupleRef_ =
-      tupleRef == null
-      ? new TupleRef()
-      : tupleRef;
+      Optional.ofNullable( tupleRef)
+      .map( tr ->
+            new TupleRefBuilder()
+            .bindings(
+              toStream( tr.getVarBindings())
+              .map( b -> VarBindingBuilder.with( b).build()))
+            .build())
+      .orElse( new TupleRef());
     
     return this;
     }

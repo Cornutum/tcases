@@ -8,7 +8,9 @@
 
 package org.cornutum.tcases;
 
-import java.util.Arrays;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -71,9 +73,18 @@ public class FunctionInputDefBuilder extends AnnotatedBuilder<FunctionInputDefBu
   public FunctionInputDefBuilder start( FunctionInputDef functionInputDef)
     {
     functionInputDef_ =
-      functionInputDef == null
-      ? new FunctionInputDef( "F")
-      : functionInputDef;
+      Optional.ofNullable( functionInputDef)
+      .map( f ->
+            FunctionInputDefBuilder.with( f.getName())
+            .vars(
+              toStream( f.getVarDefs())
+              .map( v ->
+                    v.getMembers() == null
+                    ? (IVarDef) VarDefBuilder.with( (VarDef) v).build()
+                    : (IVarDef) VarSetBuilder.with( (VarSet) v).build()))
+            .annotations( f)
+            .build())
+      .orElse( new FunctionInputDef( "F"));
 
     return this;
     }
@@ -131,76 +142,6 @@ public class FunctionInputDefBuilder extends AnnotatedBuilder<FunctionInputDefBu
       functionInputDef_.addVarDef( var);
       }
     return this;
-    }
-
-  /**
-   * Adds a new {@link VarSet} with the given path name and returns a builder
-   * for the new <CODE>VarSet</CODE>.
-   */
-  public VarSetBuilder varSetAtPath( String pathName)
-    {
-    return varSetAtPath( DefUtils.toPath( pathName));
-    }
-
-  /**
-   * Adds a new {@link VarSet} with the given path name and returns a builder
-   * for the new <CODE>VarSet</CODE>.
-   */
-  public VarSetBuilder varSetAtPath( String[] path)
-    {
-    VarSet varSet = null;
-    if( path != null && path.length > 0)
-      {
-      varSet = new VarSet( path[0]);
-      functionInputDef_.addVarDef( varSet);
-
-      for( int i = 1; i < path.length; i++)
-        {
-        VarSet child = new VarSet( path[i]);
-        varSet.addMember( child);
-        varSet = child;
-        }
-      }
-
-    return
-      varSet == null
-      ? null
-      : new VarSetBuilder( varSet);
-    }
-
-  /**
-   * Adds a new {@link VarDef} with the given path name and returns a builder
-   * for the new <CODE>VarDef</CODE>.
-   */
-  public VarDefBuilder varDefAtPath( String pathName)
-    {
-    return varDefAtPath( DefUtils.toPath( pathName));
-    }
-
-  /**
-   * Adds a new {@link VarDef} with the given path name and returns a builder
-   * for the new <CODE>VarDef</CODE>.
-   */
-  public VarDefBuilder varDefAtPath( String[] path)
-    {
-    VarDefBuilder varDefBuilder = null;
-    if( path != null && path.length > 0)
-      {
-      String varDefName = path[ path.length - 1];
-      VarSetBuilder parentBuilder = varSetAtPath( Arrays.copyOfRange( path, 0, path.length - 1));
-      if( parentBuilder != null)
-        {
-        varDefBuilder = parentBuilder.varDefAtPath( varDefName);
-        }
-      else
-        {
-        VarDef varDef = new VarDef( varDefName);
-        functionInputDef_.addVarDef( varDef);
-        varDefBuilder = new VarDefBuilder( varDef);
-        }
-      }
-
-    return varDefBuilder;
     }
 
   /**

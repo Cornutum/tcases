@@ -193,7 +193,10 @@ public class Schema
    */
   public void setMinimum( BigDecimal minimum)
     {
-    setType( assertRequiredType( "minimum", NUMBER, INTEGER));
+    if( minimum != null)
+      {
+      setType( assertRequiredType( "minimum", NUMBER, INTEGER));
+      }
     minimum_ = minimum;
     }
 
@@ -210,7 +213,10 @@ public class Schema
    */
   public void setMaximum( BigDecimal maximum)
     {
-    setType( assertRequiredType( "maximum", NUMBER, INTEGER));
+    if( maximum != null)
+      {
+      setType( assertRequiredType( "maximum", NUMBER, INTEGER));
+      }
     maximum_ = maximum;
     }
 
@@ -227,7 +233,10 @@ public class Schema
    */
   public void setExclusiveMinimum( BigDecimal exclusiveMinimum)
     {
-    setType( assertRequiredType( "exclusiveMinimum", NUMBER, INTEGER));
+    if( exclusiveMinimum != null)
+      {
+      setType( assertRequiredType( "exclusiveMinimum", NUMBER, INTEGER));
+      }
     exclusiveMinimum_ = exclusiveMinimum;
     }
 
@@ -244,7 +253,10 @@ public class Schema
    */
   public void setExclusiveMaximum( BigDecimal exclusiveMaximum)
     {
-    setType( assertRequiredType( "exclusiveMaximum", NUMBER, INTEGER));
+    if( exclusiveMaximum != null)
+      {
+      setType( assertRequiredType( "exclusiveMaximum", NUMBER, INTEGER));
+      }
     exclusiveMaximum_ = exclusiveMaximum;
     }
 
@@ -261,7 +273,10 @@ public class Schema
    */
   public void setMultipleOf( BigDecimal multipleOf)
     {
-    setType( assertRequiredType( "multipleOf", NUMBER, INTEGER));
+    if( multipleOf != null)
+      {
+      setType( assertRequiredType( "multipleOf", NUMBER, INTEGER));
+      }
     multipleOf_ = multipleOf;
     }
 
@@ -278,7 +293,10 @@ public class Schema
    */
   public void setMinLength( Integer minLength)
     {
-    setType( assertRequiredType( "minLength", STRING));
+    if( minLength != null)
+      {
+      setType( assertRequiredType( "minLength", STRING));
+      }
     minLength_ = minLength;
     }
 
@@ -295,7 +313,10 @@ public class Schema
    */
   public void setMaxLength( Integer maxLength)
     {
-    setType( assertRequiredType( "maxLength", STRING));
+    if( maxLength != null)
+      {
+      setType( assertRequiredType( "maxLength", STRING));
+      }
     maxLength_ = maxLength;
     }
 
@@ -312,7 +333,10 @@ public class Schema
    */
   public void setPattern( String pattern)
     {
-    setType( assertRequiredType( "pattern", STRING));
+    if( pattern != null)
+      {
+      setType( assertRequiredType( "pattern", STRING));
+      }
     pattern_ = pattern;
     }
 
@@ -329,7 +353,10 @@ public class Schema
    */
   public void setMinItems( Integer minItems)
     {
-    setType( assertRequiredType( "minItems", ARRAY));
+    if( minItems != null)
+      {
+      setType( assertRequiredType( "minItems", ARRAY));
+      }
     minItems_ = minItems;
     }
 
@@ -346,7 +373,10 @@ public class Schema
    */
   public void setMaxItems( Integer maxItems)
     {
-    setType( assertRequiredType( "maxItems", ARRAY));
+    if( maxItems != null)
+      {
+      setType( assertRequiredType( "maxItems", ARRAY));
+      }
     maxItems_ = maxItems;
     }
 
@@ -363,7 +393,10 @@ public class Schema
    */
   public void setUniqueItems( Boolean uniqueItems)
     {
-    setType( assertRequiredType( "uniqueItems", ARRAY));
+    if( uniqueItems != null)
+      {
+      setType( assertRequiredType( "uniqueItems", ARRAY));
+      }
     uniqueItems_ = uniqueItems;
     }
 
@@ -380,7 +413,10 @@ public class Schema
    */
   public void setItems( Schema items)
     {
-    setType( assertRequiredType( "items", ARRAY));
+    if( items != null)
+      {
+      setType( assertRequiredType( "items", ARRAY));
+      }
     items_ = items;
     }
 

@@ -11,9 +11,13 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.VarValueDef.Type;
 import org.cornutum.tcases.conditions.ICondition;
 import org.cornutum.tcases.resolve.Schema;
+import org.cornutum.tcases.resolve.SchemaBuilder;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Builds {@link VarValueDef} instances.
@@ -76,9 +80,16 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
   public VarValueDefBuilder start( VarValueDef varValueDef)
     {
     varValueDef_ =
-      varValueDef == null
-      ? new VarValueDef( "?")
-      : varValueDef;
+      Optional.ofNullable( varValueDef)
+      .map( v ->
+            VarValueDefBuilder.with( v.getName())
+            .type( v.getType())
+            .when( v.getCondition())
+            .properties( toStream( v.getProperties()))
+            .schema( SchemaBuilder.with( v.getSchema()).build())
+            .annotations( v)
+            .build())
+      .orElse( new VarValueDef( "?"));
     
     return this;
     }
@@ -135,6 +146,14 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
     {
     varValueDef_.addProperties( properties);
     return this;
+    }
+
+  /**
+   * Adds value properties.
+   */
+  public VarValueDefBuilder properties( Stream<String> properties)
+    {
+    return properties( properties.collect( toList()));
     }
 
   /**

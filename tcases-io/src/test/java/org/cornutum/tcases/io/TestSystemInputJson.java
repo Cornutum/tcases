@@ -110,6 +110,7 @@ public class TestSystemInputJson extends SystemInputJsonTest
 
     // Then...
     assertThat( "Output from definition=" + jsonInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+    assertThat( "Copy of definition=" + jsonInputResource, SystemInputDefBuilder.with( systemInputAfter).build(), matches( new SystemInputDefMatcher( systemInputBefore)));
 
     // Given...
     String xmlInputResource = "find-Input.xml";

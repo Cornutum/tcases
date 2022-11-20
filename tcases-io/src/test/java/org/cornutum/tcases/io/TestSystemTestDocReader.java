@@ -109,6 +109,7 @@ public class TestSystemTestDocReader
 
     // Then...
     assertThat( "system-test-def-0.xml", systemTestDef, matches( new SystemTestDefMatcher( expected)));
+    assertThat( "Copy of system-test-def-0.xml", SystemTestDefBuilder.with( systemTestDef).build(), matches( new SystemTestDefMatcher( expected)));
     }
 
   /**
@@ -145,6 +146,7 @@ public class TestSystemTestDocReader
 
     // Then...
     assertThat( "system-test-def-1.xml", systemTestDef, matches( new SystemTestDefMatcher( expected)));
+    assertThat( "Copy of system-test-def-1.xml", SystemTestDefBuilder.with( systemTestDef).build(), matches( new SystemTestDefMatcher( expected)));
     }
 
   /**
@@ -201,6 +203,7 @@ public class TestSystemTestDocReader
 
     // Then...
     assertThat( "system-test-def-2.xml", systemTestDef, matches( new SystemTestDefMatcher( expected)));
+    assertThat( "Copy of system-test-def-2.xml", SystemTestDefBuilder.with( systemTestDef).build(), matches( new SystemTestDefMatcher( expected)));
     }
 
   /**
@@ -240,6 +243,7 @@ public class TestSystemTestDocReader
 
     // Then...
     assertThat( "system-test-def-3.xml", systemTestDef, matches( new SystemTestDefMatcher( expected)));
+    assertThat( "Copy of system-test-def-3.xml", SystemTestDefBuilder.with( systemTestDef).build(), matches( new SystemTestDefMatcher( expected)));
     }
 
   /**
@@ -349,6 +353,7 @@ public class TestSystemTestDocReader
 
     // Then...
     assertThat( "system-test-def-4.xml", systemTestDef, matches( new SystemTestDefMatcher( expected)));
+    assertThat( "Copy of system-test-def-4.xml", SystemTestDefBuilder.with( systemTestDef).build(), matches( new SystemTestDefMatcher( expected)));
     }
 
   /**
@@ -914,6 +919,7 @@ public class TestSystemTestDocReader
 
     // Then...
     assertThat( "system-test-def-24.xml", systemTestDef, matches( new SystemTestDefMatcher( expected)));
+    assertThat( "Copy of system-test-def-24.xml", SystemTestDefBuilder.with( systemTestDef).build(), matches( new SystemTestDefMatcher( expected)));
     }
 
   /**

@@ -8,6 +8,7 @@
 
 package org.cornutum.tcases;
 
+import java.util.Optional;
 
 /**
  * Builds {@link VarBinding} instances.
@@ -70,9 +71,16 @@ public class VarBindingBuilder extends AnnotatedBuilder<VarBindingBuilder>
   public VarBindingBuilder start( VarBinding binding)
     {
     varBinding_ =
-      binding == null
-      ? new VarBinding( "V", IVarDef.ARG, "?")
-      : binding;
+      Optional.ofNullable( binding)
+      .map( b ->
+            VarBindingBuilder.with( b.getVar())
+            .value( b.getValue())
+            .type( b.getType())
+            .valid( b.isValueValid())
+            .notApplicable( b.isValueNA())
+            .annotations( b)
+            .build())
+      .orElse( new VarBinding( "V", IVarDef.ARG, "?"));
     
     return this;
     }
@@ -114,12 +122,23 @@ public class VarBindingBuilder extends AnnotatedBuilder<VarBindingBuilder>
     }
 
   /**
+   * Changes if this binding is "not applicable".
+   */
+  public VarBindingBuilder notApplicable( boolean na)
+    {
+    if( na)
+      {
+      varBinding_ = new VarNaBinding( varBinding_.getVar(), varBinding_.getType());
+      }
+    return this;
+    }
+
+  /**
    * Changes this binding to "not applicable".
    */
   public VarBindingBuilder notApplicable()
     {
-    varBinding_ = new VarNaBinding( varBinding_.getVar(), varBinding_.getType());
-    return this;
+    return notApplicable( true);
     }
 
   /**
