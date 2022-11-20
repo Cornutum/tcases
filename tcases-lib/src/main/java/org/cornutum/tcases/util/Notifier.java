@@ -38,8 +38,8 @@ public interface Notifier
     {
     return
       String.format(
-        "%s: %s.%s",
-        StringUtils.join( location, ","),
+        "%s%s.%s",
+        location.length == 0? "" : String.format( "%s: ", StringUtils.join( location, ",")),
         reason,
         StringUtils.isBlank( resolution)? "" : String.format( " %s.", resolution));
     }
