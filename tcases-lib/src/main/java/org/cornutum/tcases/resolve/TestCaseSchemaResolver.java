@@ -287,9 +287,9 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     }
 
   /**
-   * Updates the given numeric {@link Schema} to normalize property values.
+   * Updates the given {@link Schema} to normalize property values.
    */
-  private Schema normalize( Schema schema)
+  protected Schema normalize( Schema schema)
     {
     if( schema != null)
       {
@@ -297,9 +297,20 @@ public class TestCaseSchemaResolver extends TestCaseResolver
         {
         case ARRAY:
           {
+          schema.setMaxItems(
+            Optional.ofNullable( schema.getMaxItems())
+            .filter( max -> max >= 0)
+            .orElse( null));
+          
           schema.setMinItems(
             Optional.ofNullable( schema.getMinItems())
+            .filter( min -> min >= 0)
             .map( min -> Optional.ofNullable( schema.getMaxItems()).map( max -> adjustedMinOf( "Items", min, max)).orElse( min))
+            .orElse( null));
+
+          schema.setItems(
+            Optional.ofNullable( schema.getItems())
+            .map( items -> getContext().resultFor( "items", () -> normalize( new Schema( items))))
             .orElse( null));
           break;
           }
@@ -313,15 +324,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
         case STRING:
           {
-          String format = schema.getFormat();
-
-          schema.setMaxLength( maxPatternMatch( schema, maxStringFormat( format, schema.getMaxLength())));
-
-          schema.setMinLength(
-            Optional.ofNullable( minPatternMatch( schema, minStringFormat( format, schema.getMinLength())))
-            .map( min -> Optional.ofNullable( schema.getMaxLength()).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
-            .orElse( null));
-
+          normalizeStringLength( schema); 
           break;
           }
 
@@ -331,7 +334,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
           }
         }
       }
-        
+    
     return schema;
     }
 
@@ -354,12 +357,13 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
     BigDecimal effMultipleOf =
       Optional.ofNullable( schema.getMultipleOf())
+      .filter( m -> m.compareTo( BigDecimal.ZERO) != 0)
       .orElse( unit);
     
     BigDecimal effMin =
       Optional.ofNullable(
         Optional.ofNullable( schema.getExclusiveMinimum())
-        .map( xm -> xm.add( unit))
+        .map( xm -> xm.add( effMultipleOf))
         .map( xm -> Optional.ofNullable( schema.getMinimum()).filter( m -> m.compareTo( xm) >= 0).orElse( xm))
         .orElse( schema.getMinimum()))
 
@@ -370,7 +374,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     BigDecimal effMax =
       Optional.ofNullable(
         Optional.ofNullable( schema.getExclusiveMaximum())
-        .map( xm -> xm.subtract( unit))
+        .map( xm -> xm.subtract( effMultipleOf))
         .map( xm -> Optional.ofNullable( schema.getMaximum()).filter( m -> m.compareTo( xm) <= 0).orElse( xm))
         .orElse( schema.getMaximum()))
 
@@ -385,6 +389,54 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
     schema.setExclusiveMinimum( null);
     schema.setExclusiveMaximum( null);
+
+    return schema;
+    }
+
+  /**
+   * Updates the given string {@link Schema} to define the effective minimum and maximum (inclusive) length.
+   */
+  private Schema normalizeStringLength( Schema schema)
+    {
+    String format = schema.getFormat();
+    Integer formatMin = stringFormatMin( format);
+    Integer formatMax = stringFormatMax( format);
+
+    Integer patternMin = minPatternMatch( schema);
+    Integer patternMax = maxPatternMatch( schema);
+
+    Integer minRequired =
+      Optional.ofNullable( formatMin)
+      .map( fm -> Optional.ofNullable( patternMin).map( pm -> Math.max( fm, pm)).orElse( fm))
+      .orElse( patternMin);
+
+    Integer maxRequired =
+      Optional.ofNullable( formatMax)
+      .map( fm -> Optional.ofNullable( patternMax).map( pm -> Math.min( fm, pm)).orElse( fm))
+      .orElse( patternMax);
+
+    Optional.ofNullable( minRequired)
+      .flatMap( min -> Optional.ofNullable( maxRequired))
+      .filter( max -> max < minRequired)
+      .ifPresent( infeasible -> {
+        notifyError(
+          String.format( "Required length for pattern='%s'is incompatible with format='%s'", schema.getPattern(), format),
+          "Ignoring the pattern for this schema");
+        schema.setPattern( null);
+        }); 
+
+    schema.setMaxLength(
+      Optional.ofNullable( schema.getMaxLength())
+      .filter( max -> max >= 0)
+      .map( max -> adjustToRange( "maxLength", max, minRequired, maxRequired))
+      .orElse( maxRequired));
+
+    schema.setMinLength(
+      Optional.ofNullable( schema.getMinLength())
+      .filter( min -> min >= 0)
+      .map( min -> adjustToRange( "minLength", min, minRequired, maxRequired))
+      .map( min -> Optional.ofNullable( schema.getMaxLength()).map( max -> adjustedMinOf( "Length", min, max)).orElse( min))
+      .orElse( minRequired));
 
     return schema;
     }
@@ -414,15 +466,41 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     }
 
   /**
+   * Adjusts the given value to lie within the given range.
+   */
+  private <T extends Comparable<T>> T adjustToRange( String description, T value, T min, T max)
+    {
+    if( max != null && value.compareTo( max) > 0)
+      {
+      notifyError(
+        String.format( "%s=%s is greater than the required maximum=%s", description, value, max),
+        String.format( "Adjusting %s to the required maximum", description));
+
+      value = max;
+      }
+
+    if( min != null && value.compareTo( min) < 0)
+      {
+      notifyError(
+        String.format( "%s=%s is less than the required minimum=%s", description, value, min),
+        String.format( "Adjusting %s to the required minimum", description));
+
+      value = min;
+      }
+
+    return value;
+    }
+
+  /**
    * Return the largest number less than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
    */
   private BigDecimal multipleBelow( BigDecimal value, BigDecimal multipleOf)
-  {
-  return
-    isMultipleOf( value, multipleOf)
-    ? value
-    : value.divide( multipleOf, 0, UP).subtract( BigDecimal.ONE).multiply( multipleOf);
-  }
+    { 
+    return
+      isMultipleOf( value, multipleOf)
+      ? value
+      : value.divide( multipleOf, 0, FLOOR).multiply( multipleOf);
+    }
 
   /**
    * Return the smallest number greater than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
@@ -432,7 +510,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     return
       isMultipleOf( value, multipleOf)
       ? value
-      : value.divide( multipleOf, 0, DOWN).add( BigDecimal.ONE).multiply( multipleOf);
+      : value.divide( multipleOf, 0, CEILING).multiply( multipleOf);
     }
 
   /**
@@ -447,154 +525,28 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     }
 
   /**
-   * If the given <CODE>maxLength</CODE> is valid for a string in the given format, returns <CODE>maxLength</CODE>.
-   * Otherwise, returns the format-specific maximum length.
+   * Returns the maximum length required for pattern matches.
    */
-  private Integer maxStringFormat( String format, Integer maxLength)
+  private Integer maxPatternMatch( Schema schema)
     {
-    Integer max;
-    Integer maxAllowed = DataValues.stringFormatMax( format);
-
-    if( maxAllowed == null)
-      {
-      max = maxLength;
-      }
-    else if( maxLength == null)
-      {
-      max = maxAllowed;
-      }
-    else if( maxLength <= maxAllowed)
-      {
-      max = maxLength;
-      }
-    else
-      {
-      notifyWarning(
-        String.format(
-          "maxLength=%s exceeds maximum allowed for format=%s -- using maxLength=%s instead",
-          maxLength,
-          format,
-          maxAllowed));
-      max = maxAllowed;
-      }
-
-    return max;
-    }
-
-  /**
-   * If the given <CODE>minLength</CODE> is valid for a string in the given format, returns <CODE>minLength</CODE>.
-   * Otherwise, returns the format-specific minimum length.
-   */
-  private Integer minStringFormat( String format, Integer minLength)
-    {
-    Integer min;
-    Integer minAllowed = DataValues.stringFormatMin( format);
-
-    if( minAllowed == null)
-      {
-      min = minLength;
-      }
-    else if( minLength == null)
-      {
-      min = minAllowed;
-      }
-    else if( minLength >= minAllowed)
-      {
-      min = minLength;
-      }
-    else
-      {
-      notifyWarning(
-        String.format(
-          "minLength=%s is below the minimum allowed for format=%s -- using minLength=%s instead",
-          minLength,
-          format,
-          minAllowed));
-      min = minAllowed;
-      }
-
-    return min;
-    }
-
-  /**
-   * If the given <CODE>maxLength</CODE> is valid for values matching the patterns required for the
-   * given schema, returns <CODE>maxLength</CODE>.  Otherwise, returns the maximum
-   * length required for pattern matches.
-   */
-  private Integer maxPatternMatch( Schema schema, Integer maxLength)
-    {
-    Integer max;
-
-    Integer maxAllowed =
+    return
       Optional.ofNullable( schema.getPattern())
       .map( pattern -> Parser.parseRegExp( pattern))
       .map( RegExpGen::getMaxLength)
       .flatMap( matchMax -> bounded( matchMax))
       .orElse( null);
-
-    if( maxAllowed == null)
-      {
-      max = maxLength;
-      }
-    else if( maxLength == null)
-      {
-      max = maxAllowed;
-      }
-    else if( maxLength <= maxAllowed)
-      {
-      max = maxLength;
-      }
-    else
-      {
-      notifyWarning(
-        String.format(
-          "maxLength=%s exceeds maximum allowed for pattern matches -- using maxLength=%s instead",
-          maxLength,
-          maxAllowed));
-      max = maxAllowed;
-      }
-
-    return max;
     }
 
   /**
-   * If the given <CODE>minLength</CODE> is valid for values matching the patterns required for the
-   * given schema, returns <CODE>minLength</CODE>.  Otherwise, returns the minimum
-   * length required for pattern matches.
+   * Returns the minimum length required for pattern matches.
    */
-  private Integer minPatternMatch( Schema schema, Integer minLength)
+  private Integer minPatternMatch( Schema schema)
     {
-    Integer min;
-
-    Integer minAllowed =
+    return
       Optional.ofNullable( schema.getPattern())
       .map( pattern -> Parser.parseRegExp( pattern))
       .map( RegExpGen::getMinLength)
       .orElse( null);
-
-    if( minAllowed == null)
-      {
-      min = minLength;
-      }
-    else if( minLength == null)
-      {
-      min = minAllowed;
-      }
-    else if( minLength >= minAllowed)
-      {
-      min = minLength;
-      }
-    else
-      {
-      notifyWarning(
-        String.format(
-          "minLength=%s is below the minimum allowed for pattern matches -- using minLength=%s instead",
-          minLength,
-          minAllowed));
-      min = minAllowed;
-      }
-
-    return min;
     }  
 
   /**
@@ -603,16 +555,6 @@ public class TestCaseSchemaResolver extends TestCaseResolver
   private ResolverContext getContext()
     {
     return context_;
-    }
-
-  /**
-   * Reports a condition that will affect the expected test cat.
-   *
-   * @param reason  A description of the condition
-   */
-  private void notifyWarning( String reason)
-    {
-    getContext().warn( reason);
     }
 
   /**

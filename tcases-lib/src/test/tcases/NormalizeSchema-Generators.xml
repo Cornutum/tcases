@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Generators>
+  <TupleGenerator function="*" tuples="1"/>
+  <TupleGenerator function="Array" seed="629928606701091840" tuples="1"/>
+  <TupleGenerator function="Number" seed="9158153218986316800" tuples="1"/>
+  <TupleGenerator function="String" seed="8125618484695169024" tuples="1"/>
+</Generators>

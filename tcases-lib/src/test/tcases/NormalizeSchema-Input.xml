@@ -1,0 +1,94 @@
+<System name="Normalize">
+    <Function name="Array">
+        <Input>
+            <Var name="format">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="minItems">
+                <Value name="Integer"/>
+                <Value name="&lt; 0"/>
+                <Value name="&gt; maxItems" when="arrayMax"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="maxItems">
+                <Value name="Integer" property="arrayMax"/>
+                <Value name="&lt; 0"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="uniqueItems">
+                <Value name="Boolean"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="items">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+        </Input>
+    </Function>
+    <Function name="Number">
+        <Input>
+            <Var name="format">
+                <Value name="Defined"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="minimum">
+                <Value name="Number" property="numberMin"/>
+                <Value name="&gt; maximum" when="numberMax"/>
+                <Value name="&gt; exclusiveMinimum" when="numberMinEx"/>
+                <Value name="&lt; exclusiveMinimum" when="numberMinEx"/>
+                <Value name="Not multiple" when="numberMult"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="maximum">
+                <Value name="Number" property="numberMax"/>
+                <Value name="&gt; exclusiveMaximum" when="numberMaxEx"/>
+                <Value name="&lt; exclusiveMaximum" when="numberMaxEx"/>
+                <Value name="Not multiple" when="numberMult"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="exclusiveMinimum">
+                <Value name="Number" property="numberMin, numberMinEx"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="exclusiveMaximum">
+                <Value name="Number" property="numberMax, numberMaxEx"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="multipleOf">
+                <Value name="Number" property="numberMult"/>
+                <Value name="Undefined"/>
+            </Var>
+        </Input>
+    </Function>
+    <Function name="String">
+        <Input>
+            <Var name="format">
+                <Value name="date"/>
+                <Value name="date-time"/>
+                <Value name="email"/>
+                <Value name="uuid"/>
+                <Value name="Undefined" property="stringFormatNone"/>
+            </Var>
+            <Var name="minLength">
+                <Value name="Integer"/>
+                <Value name="&lt; 0"/>
+                <Value name="&gt; maxLength" when="stringMax"/>
+                <Value name="&lt; formatMin" whenNot="stringFormatNone"/>
+                <Value name="&lt; patternMin" when="stringPattern"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="maxLength">
+                <Value name="Integer" property="stringMax"/>
+                <Value name="&lt; 0"/>
+                <Value name="&gt; formatMax" whenNot="stringFormatNone"/>
+                <Value name="&gt; patternMax" when="stringPattern"/>
+                <Value name="Undefined"/>
+            </Var>
+            <Var name="pattern">
+                <Value name="String" property="stringPattern"/>
+                <Value name="Undefined"/>
+            </Var>
+        </Input>
+    </Function>
+</System>
