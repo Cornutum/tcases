@@ -367,13 +367,16 @@ public final class SystemInputJson
 
         // Get the schema for this variable
         var.setSchema( getSchema( json));
-        
-        getValueDefs( json.getJsonObject( VALUES_KEY))
-          .forEach( valueDef -> var.addValue( valueDef));
 
-        if( !var.getValidValues().hasNext())
+        Optional.ofNullable( json.getJsonObject( VALUES_KEY))
+          .ifPresent( values -> getValueDefs( values).forEach( valueDef -> var.addValue( valueDef)));
+
+        if( var.getValues().hasNext() || var.getSchema() == null)
           {
-          throw new SystemInputException( String.format( "No valid values defined for Var=%s", varName));
+          if( !var.getValidValues().hasNext())
+            {
+            throw new SystemInputException( String.format( "No valid values defined for Var=%s", varName));
+            }
           }
         }
 

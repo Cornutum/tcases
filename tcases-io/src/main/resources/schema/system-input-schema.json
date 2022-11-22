@@ -64,7 +64,7 @@
                 },
                 "values": {
                     "type": "object",
-                    "minProperties": 1,
+                    "minProperties": 0,
                     "patternProperties": {
                         ".": {
                             "$ref": "#/definitions/valueDef"
@@ -98,6 +98,17 @@
                     "properties": {
                         "values": false
                     }
+                },
+                {
+                    "properties": {
+                        "values": false,
+                        "members": false
+                    },
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/schema"
+                        }
+                    ]
                 }
             ]
         },

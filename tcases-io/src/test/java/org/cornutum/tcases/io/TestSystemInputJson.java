@@ -171,7 +171,7 @@ public class TestSystemInputJson extends SystemInputJsonTest
   @Test
   public void testSystemInput_Values_Missing()
     {
-    assertValidationFailure( "system-input-values-missing.json", "The object must have at least 1 property(ies), but actual number is 0");
+    assertDefinitionError( "system-input-values-missing.json", "No valid values defined for Var=Hue");
     }
 
   @Test

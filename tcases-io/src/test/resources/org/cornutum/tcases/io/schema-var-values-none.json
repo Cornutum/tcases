@@ -1,0 +1,9 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVar": {
+            }
+        }
+    }
+}

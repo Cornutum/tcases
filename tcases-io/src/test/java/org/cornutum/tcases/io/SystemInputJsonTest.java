@@ -96,7 +96,7 @@ public abstract class SystemInputJsonTest
         assertThat( "Cause", cause.getClass(), equalTo( JsonValidatingException.class));
 
         JsonValidatingException jve = (JsonValidatingException)cause;
-        List<String> problems = problems( jve).map( p -> p.getMessage()).collect( toList());
+        List<String> problems = problems( jve).map( p -> p.getMessage()).distinct().collect( toList());
         assertThat( "Problems", problems, containsInAnyOrder( Arrays.stream( expected).map( m -> containsString(m)).collect( toList())));
         });
     }
