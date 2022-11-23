@@ -8,6 +8,7 @@
 package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.*;
+import static org.cornutum.tcases.VarValueDef.Type.FAILURE;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
@@ -22,6 +23,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Stream;
 import static java.math.RoundingMode.*;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Uses the {@link Schema} definitions in {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances.
@@ -59,14 +61,16 @@ public class TestCaseSchemaResolver extends TestCaseResolver
   @Override
   protected FunctionInputDef prepareValueDefs( FunctionInputDef inputDef)
     {
+    FunctionInputDef prepared = FunctionInputDefBuilder.with( inputDef).build();
+    
     getContext().doFor(
-      inputDef.getName(),
+      prepared.getName(),
       () ->
-      toStream( new VarDefIterator( inputDef))
+      toStream( new VarDefIterator( prepared))
       .map( this::addValueDefs)
       .forEach( varDef -> prepareValueDefs( varDef)));
 
-    return inputDef;
+    return prepared;
     }
   
   /**
@@ -97,7 +101,380 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private VarDef addValueDefs( VarDef varDef)
     {
+    if( !varDef.getValues().hasNext())
+      {
+      getContext().doFor(
+        varDef.getPathName(),
+        () ->
+        valuesForSchema( varDef.getSchema())
+        .forEach( value -> varDef.addValue( value)));
+      }
+
     return varDef;
+    }
+
+  /**
+   * Returns value definitions derived from the given {@link Schema}.
+   */
+  protected Stream<VarValueDef> valuesForSchema( Schema schema)
+    {
+    normalize( schema);
+    
+    return
+      schema.getConstant() != null
+      ? Stream.of( new VarValueDef( valueObject( schema.getConstant())))
+      : valuesForSchema( schema.getType(), schema);
+    }
+
+  /**
+   * Returns value object represent by the given {@link DataValue}.
+   */
+  private Object valueObject( DataValue<?> dataValue)
+    {
+    return
+      dataValue.getType() == ARRAY
+      ? ((ArrayValue<?>) dataValue).getValue().stream().map( this::valueObject).collect( toList())
+      : dataValue.getValue();
+    }
+
+  /**
+   * Returns value definitions derived from the given {@link Schema}.
+   */
+  private Stream<VarValueDef> valuesForSchema( DataValue.Type type, Schema schema)
+    {
+    Stream.Builder<VarValueDef> values = Stream.builder();
+    switch( type)
+      {
+      case ARRAY:
+        {
+        addArrayValues( values, schema);
+        break;
+        }
+      case BOOLEAN:
+        {
+        addBooleanValues( values, schema);
+        break;
+        }
+      case INTEGER:
+      case NUMBER:
+        {
+        addNumberValues( values, schema);
+        break;
+        }
+      case STRING:
+        {
+        addStringValues( values, schema);
+        break;
+        }
+      default:
+        {
+        break;
+        }
+      }
+    
+    return values.build();
+    }
+
+  /**
+   * Adds value definitions derived from an array {@link Schema} to the given stream.
+   */
+  private void addArrayValues( Stream.Builder<VarValueDef> values, Schema schema)
+    {
+    Integer minItems = schema.getMinItems();
+    int effMinItems = Optional.ofNullable( minItems).orElse( 0);
+    if( minItems == null)
+      {
+      values.add(
+        VarValueDefBuilder.with( "empty")
+        .schema(
+          SchemaBuilder.type( "array")
+          .format( schema.getFormat())
+          .maxItems(0)
+          .build())
+        .build());
+      }
+    else
+      {
+      values.add(
+        VarValueDefBuilder.with( "minimumSize")
+        .schema( SchemaBuilder.with( schema).maxItems( minItems).build())
+        .build());
+
+      int belowMin = minItems - 1;
+      if( belowMin >= 0)
+        {
+        values.add(
+          VarValueDefBuilder.with( "tooSmall")
+          .type( FAILURE)
+          .schema( SchemaBuilder.with( schema).minItems( 0).maxItems( belowMin).build())
+          .build());
+        }
+      }
+
+    Integer maxItems = schema.getMaxItems();
+    if( maxItems == null)
+      {
+      values.add(
+        VarValueDefBuilder.with( "anySize")
+        .schema( SchemaBuilder.with( schema).minItems( effMinItems + 1).build())
+        .build());
+      }
+    else 
+      {
+      if( maxItems != effMinItems)
+        {
+        values.add(
+          VarValueDefBuilder.with( "maximumSize")
+          .schema( SchemaBuilder.with( schema).minItems( maxItems).maxItems( maxItems).build())
+          .build());
+        }
+
+      int aboveMax = maxItems + 1;
+      values.add(
+        VarValueDefBuilder.with( "tooLarge")
+        .type( FAILURE)
+        .schema( SchemaBuilder.with( schema).minItems( aboveMax).maxItems( null).build())
+        .build());
+      }
+
+    if( Optional.ofNullable( schema.getUniqueItems()).orElse( false)
+        && Optional.ofNullable( schema.getMaxItems()).map( max -> max > 1).orElse( true))
+      {
+      int minUnique = Math.max( effMinItems, 2);
+      
+      values.add(
+        VarValueDefBuilder.with( "notUnique")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .uniqueItems( false)
+          .minItems( minUnique)
+          .build())
+        .build());
+      }
+    }
+
+  /**
+   * Adds value definitions derived from a boolean {@link Schema} to the given stream.
+   */
+  private void addBooleanValues( Stream.Builder<VarValueDef> values, Schema schema)
+    {
+    values.add( new VarValueDef( Boolean.TRUE));
+    values.add( new VarValueDef( Boolean.FALSE));
+    }
+
+  /**
+   * Adds value definitions derived from a numeric {@link Schema} to the given stream.
+   */
+  private void addNumberValues( Stream.Builder<VarValueDef> values, Schema schema)
+    {
+    BigDecimal minimum = schema.getMinimum();
+    BigDecimal maximum = schema.getMaximum();
+    if( minimum == null && maximum == null)
+      {
+      values.add(
+        VarValueDefBuilder.with( "negative")
+        .schema( SchemaBuilder.with( schema).exclusiveMaximum( BigDecimal.ZERO).build())
+        .build());
+      values.add(
+        VarValueDefBuilder.with( "zero")
+        .schema( SchemaBuilder.type( "number").constant( BigDecimal.ZERO).build())
+        .build());
+      values.add(
+        VarValueDefBuilder.with( "positive")
+        .schema( SchemaBuilder.with( schema).exclusiveMinimum( BigDecimal.ZERO).build())
+        .build());
+      }
+    else
+      {
+      if( minimum != null)
+        {
+        values.add(
+          VarValueDefBuilder.with( "minimum")
+          .schema( SchemaBuilder.with( schema).maximum( minimum).build())
+          .build());
+
+        values.add(
+          VarValueDefBuilder.with( "belowMinimum")
+          .type( FAILURE)
+          .schema(
+            SchemaBuilder.with( schema)
+            .exclusiveMaximum( minimum)
+            .minimum( bigDecimalNull())
+            .maximum( bigDecimalNull())
+            .build())
+          .build());
+        }
+      else
+        {
+        values.add(
+          VarValueDefBuilder.with( "belowMaximum")
+          .schema(
+            SchemaBuilder.with( schema)
+            .exclusiveMaximum( maximum)
+            .maximum( bigDecimalNull())
+            .build())
+          .build());
+        }
+
+      if( maximum != null)
+        {
+        if( !(minimum != null && minimum.compareTo( maximum) == 0))
+          {
+          values.add(
+            VarValueDefBuilder.with( "maximum")
+            .schema( SchemaBuilder.with( schema).minimum( maximum).build())
+            .build());
+          }
+
+        values.add(
+          VarValueDefBuilder.with( "aboveMaximum")
+          .type( FAILURE)
+          .schema(
+            SchemaBuilder.with( schema)
+            .exclusiveMinimum( maximum)
+            .minimum( bigDecimalNull())
+            .maximum( bigDecimalNull())
+            .build())
+          .build());
+        }
+      else
+        {
+        values.add(
+          VarValueDefBuilder.with( "aboveMinimum")
+          .schema(
+            SchemaBuilder.with( schema)
+            .exclusiveMinimum( minimum)
+            .minimum( bigDecimalNull())
+            .build())
+          .build());
+        }
+      }
+
+    Optional.ofNullable( schema.getMultipleOf())
+      .flatMap( multipleOf -> {
+        BigDecimal unit = unitOf( schema);
+        BigDecimal factor = multipleOf.compareTo( unit) == 0? multipleOf.divide( new BigDecimal( 2)) : unit;
+
+        boolean multiple;
+        BigDecimal notMultiple;
+        if( maximum != null)
+          {
+          for(
+            multiple = true,
+              notMultiple = maximum.subtract( factor);
+            
+            (minimum == null || notMultiple.compareTo( minimum) > 0)
+              && (multiple = isMultipleOf( notMultiple, multipleOf));
+            
+            notMultiple = notMultiple.subtract( factor));
+          }
+        else
+          {
+          BigDecimal floor = Optional.ofNullable( minimum).orElse( BigDecimal.ZERO);
+          for(
+            multiple = true,
+              notMultiple = floor.add( factor);
+            
+            (maximum == null || notMultiple.compareTo( maximum) < 0)
+              && (multiple = isMultipleOf( notMultiple, multipleOf));
+            
+            notMultiple = notMultiple.add( factor));
+          }
+
+        return
+          !multiple
+          ? Optional.of( notMultiple)
+          : Optional.empty();
+        })
+      .ifPresent( notMultiple -> {
+        values.add(
+          VarValueDefBuilder.with( "notMultiple")
+          .type( FAILURE)
+          .schema( SchemaBuilder.type( "number").constant( notMultiple).build())
+          .build());
+        });
+
+    }
+
+  /**
+   * Adds value definitions derived from a string {@link Schema} to the given stream.
+   */
+  private void addStringValues( Stream.Builder<VarValueDef> values, Schema schema)
+    {
+    Integer[] lengthRequired = lengthRequired( schema); 
+    Integer minRequired = lengthRequired[0];
+    Integer maxRequired = lengthRequired[1];
+
+    Integer minLength = schema.getMinLength();
+    int effMinLength = Optional.ofNullable( minLength).orElse( 0);
+    if( minLength == null)
+      {
+      values.add(
+        VarValueDefBuilder.with( "empty")
+        .schema(
+          SchemaBuilder.type( "string")
+          .format( schema.getFormat())
+          .maxLength(0)
+          .build())
+        .build());
+      }
+    else
+      {
+      values.add(
+        VarValueDefBuilder.with( "minimumLength")
+        .schema( SchemaBuilder.with( schema).maxLength( minLength).build())
+        .build());
+
+      int belowMin = minLength - 1;
+      if( belowMin >= 0 && Optional.ofNullable( minRequired).map( reqMin -> belowMin >= reqMin).orElse( true))
+        {
+        values.add(
+          VarValueDefBuilder.with( "tooShort")
+          .type( FAILURE)
+          .schema( SchemaBuilder.with( schema).minLength( null).maxLength( belowMin).build())
+          .build());
+        }
+      }
+
+    Integer maxLength = schema.getMaxLength();
+    if( maxLength == null)
+      {
+      values.add(
+        VarValueDefBuilder.with( "anyLength")
+        .schema( SchemaBuilder.with( schema).minLength( effMinLength + 1).build())
+        .build());
+      }
+    else 
+      {
+      if( maxLength != effMinLength)
+        {
+        values.add(
+          VarValueDefBuilder.with( "maximumLength")
+          .schema( SchemaBuilder.with( schema).minLength( maxLength).maxLength( maxLength).build())
+          .build());
+        }
+
+      int aboveMax = maxLength + 1;
+      if( Optional.ofNullable( maxRequired).map( reqMax -> aboveMax <= reqMax).orElse( true))
+        {
+        values.add(
+          VarValueDefBuilder.with( "tooLong")
+          .type( FAILURE)
+          .schema( SchemaBuilder.with( schema).minLength( aboveMax).maxLength( null).build())
+          .build());
+        }
+      }
+
+    Optional.ofNullable( schema.getFormat())
+      .map( format -> format.equals( "email")? "date-time" : "email")
+      .ifPresent( other -> {
+        values.add(
+          VarValueDefBuilder.with( "wrongFormat")
+          .type( FAILURE)
+          .schema( SchemaBuilder.type( "string").format( other).build())
+          .build());
+        });
     }
 
   /**
@@ -213,7 +590,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    * Otherwise, returns null.
    */
   @SuppressWarnings("unchecked")
-  protected ValueDomain<?> toConstantDomain( Schema schema)
+  private ValueDomain<?> toConstantDomain( Schema schema)
     {
     ValueDomain<?> domain = null;
 
@@ -291,7 +668,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   protected Schema normalize( Schema schema)
     {
-    if( schema != null)
+    if( !(schema == null || schema.getConstant() != null))
       {
       switch( schema.getType())
         {
@@ -310,7 +687,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
           schema.setItems(
             Optional.ofNullable( schema.getItems())
-            .map( items -> getContext().resultFor( "items", () -> normalize( new Schema( items))))
+            .map( items -> getContext().resultFor( "items", () -> normalize( items)))
             .orElse( null));
           break;
           }
@@ -343,21 +720,15 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private Schema normalizeNumberRange( Schema schema)
     {
-    BigDecimal unit =
-      new BigDecimal(
-        BigInteger.ONE,
-        Stream.of(
-          Optional.ofNullable( schema.getMultipleOf()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getMinimum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getMaximum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getExclusiveMinimum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getExclusiveMaximum()).map( BigDecimal::scale).orElse( 0))
-        .max( Integer::compareTo)
-        .orElse( 0));
+    BigDecimal unit = unitOf( schema);
 
-    BigDecimal effMultipleOf =
+    schema.setMultipleOf(
       Optional.ofNullable( schema.getMultipleOf())
       .filter( m -> m.compareTo( BigDecimal.ZERO) != 0)
+      .orElse( null));
+      
+    BigDecimal effMultipleOf =
+      Optional.ofNullable( schema.getMultipleOf())
       .orElse( unit);
     
     BigDecimal effMin =
@@ -398,29 +769,16 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private Schema normalizeStringLength( Schema schema)
     {
-    String format = schema.getFormat();
-    Integer formatMin = stringFormatMin( format);
-    Integer formatMax = stringFormatMax( format);
-
-    Integer patternMin = minPatternMatch( schema);
-    Integer patternMax = maxPatternMatch( schema);
-
-    Integer minRequired =
-      Optional.ofNullable( formatMin)
-      .map( fm -> Optional.ofNullable( patternMin).map( pm -> Math.max( fm, pm)).orElse( fm))
-      .orElse( patternMin);
-
-    Integer maxRequired =
-      Optional.ofNullable( formatMax)
-      .map( fm -> Optional.ofNullable( patternMax).map( pm -> Math.min( fm, pm)).orElse( fm))
-      .orElse( patternMax);
+    Integer[] lengthRequired = lengthRequired( schema); 
+    Integer minRequired = lengthRequired[0];
+    Integer maxRequired = lengthRequired[1];
 
     Optional.ofNullable( minRequired)
       .flatMap( min -> Optional.ofNullable( maxRequired))
       .filter( max -> max < minRequired)
       .ifPresent( infeasible -> {
         notifyError(
-          String.format( "Required length for pattern='%s'is incompatible with format='%s'", schema.getPattern(), format),
+          String.format( "Required length for pattern='%s' is incompatible with format='%s'", schema.getPattern(), schema.getFormat()),
           "Ignoring the pattern for this schema");
         schema.setPattern( null);
         }); 
@@ -547,7 +905,74 @@ public class TestCaseSchemaResolver extends TestCaseResolver
       .map( pattern -> Parser.parseRegExp( pattern))
       .map( RegExpGen::getMinLength)
       .orElse( null);
-    }  
+    }
+
+  /**
+   * Returns an array of the form [minLength, maxLength] that defines the string length required by the given schema.
+   */
+  private Integer[] lengthRequired( Schema schema)
+    {
+    Integer minRequired = minLengthRequired( schema);
+    Integer maxRequired = maxLengthRequired( schema);
+    if( minRequired != null && maxRequired != null && minRequired > maxRequired)
+      {
+      notifyError(
+        String.format( "Required length for pattern='%s' is incompatible with format='%s'", schema.getPattern(), schema.getFormat()),
+        "Ignoring the pattern for this schema");
+
+      schema.setPattern( null);
+      minRequired = stringFormatMin( schema.getFormat());
+      maxRequired = stringFormatMax( schema.getFormat());
+      }
+
+    return new Integer[]{ minRequired, maxRequired};
+    }
+
+  /**
+   * Returns the minimum string length required by the given schema.
+   */
+  private Integer minLengthRequired( Schema schema)
+    {
+    Integer formatMin = stringFormatMin( schema.getFormat());
+    Integer patternMin = minPatternMatch( schema);
+
+    return
+      Optional.ofNullable( formatMin)
+      .map( fm -> Optional.ofNullable( patternMin).map( pm -> Math.max( fm, pm)).orElse( fm))
+      .orElse( patternMin);
+    }
+
+  /**
+   * Returns the maximum string length required by the given schema.
+   */
+  private Integer maxLengthRequired( Schema schema)
+    {
+    Integer formatMax = stringFormatMax( schema.getFormat());
+    Integer patternMax = maxPatternMatch( schema);
+
+    return
+      Optional.ofNullable( formatMax)
+      .map( fm -> Optional.ofNullable( patternMax).map( pm -> Math.min( fm, pm)).orElse( fm))
+      .orElse( patternMax);
+    }
+
+  /**
+   * Returns the unit value for the number range defined by the given schema.
+   */
+  private BigDecimal unitOf( Schema schema)
+    {
+    return
+      new BigDecimal(
+        BigInteger.ONE,
+        Stream.of(
+          Optional.ofNullable( schema.getMultipleOf()).map( BigDecimal::scale).orElse( 0),
+          Optional.ofNullable( schema.getMinimum()).map( BigDecimal::scale).orElse( 0),
+          Optional.ofNullable( schema.getMaximum()).map( BigDecimal::scale).orElse( 0),
+          Optional.ofNullable( schema.getExclusiveMinimum()).map( BigDecimal::scale).orElse( 0),
+          Optional.ofNullable( schema.getExclusiveMaximum()).map( BigDecimal::scale).orElse( 0))
+        .max( Integer::compareTo)
+        .orElse( 0));
+    }
 
   /**
    * Returns the context for this resolver.

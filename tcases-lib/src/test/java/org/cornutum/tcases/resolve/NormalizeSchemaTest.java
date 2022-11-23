@@ -87,6 +87,7 @@ public class NormalizeSchemaTest extends ResolverTest
     assertErrors( "items: minimum=12 is greater than maximum=9. Adjusting minimum to maximum.");
     }
 
+  @Test
   public void whenMaxItemsNegative()
     {
     // Given...
