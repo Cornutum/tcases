@@ -1,7 +1,7 @@
 # Tcases: A Model-Based Test Case Generator #
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.cornutum.tcases/tcases-shell/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.cornutum.tcases/tcases-shell)
-[![javadoc](https://javadoc.io/badge2/org.cornutum.tcases/tcases-shell/javadoc.svg?style=plastic)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
+[![Maven](https://img.shields.io/badge/maven-3.8.6-green.svg)](https://search.maven.org/search?q=tcases-shell)
+[![Javadoc](https://img.shields.io/badge/javadoc-3.8.6-green.svg)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
 
 ## What's New? ##
   * The latest version ([Tcases 3.8.6](ReleaseNotes.md#386)) is now available at the Maven Central Repository.
