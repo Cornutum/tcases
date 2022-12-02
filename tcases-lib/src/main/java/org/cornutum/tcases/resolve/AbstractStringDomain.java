@@ -12,7 +12,7 @@ import static org.cornutum.tcases.util.CollectionUtils.restOf;
 
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.RandomGen;
-import org.cornutum.regexpgen.js.Parser;
+import org.cornutum.regexpgen.js.Provider;
 import org.cornutum.regexpgen.random.RandomBoundsGen;
 
 import java.util.AbstractMap.SimpleEntry;
@@ -297,7 +297,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
         generators_.stream()
         .filter( gen -> !gen.getLength().intersects( length.getMin(), length.getMax()))
         .findFirst()
-        .map( gen -> gen.getOptions().getRegExp());
+        .map( gen -> gen.getSource());
       }
 
     /**
@@ -334,7 +334,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
         {
         try
           {
-          generator_ = Parser.parseRegExp( generatedBy_);
+          generator_ = Provider.forEcmaScript().matching( generatedBy_);
           generator_.getOptions().setAnyPrintableChars( getCharacters().filtered( Characters.Ascii.chars()).get());
           random_ = new RandomBoundsGen( context_.getRandom());
           }
@@ -382,7 +382,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
       {
       try
         {
-        return Parser.parseRegExp( regexp);
+        return Provider.forEcmaScript().matching( regexp);
         }
       catch( IllegalArgumentException e)
         {

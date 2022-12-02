@@ -16,7 +16,7 @@ import io.swagger.v3.oas.models.media.Schema;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.cornutum.regexpgen.RegExpGen;
-import org.cornutum.regexpgen.js.Parser;
+import org.cornutum.regexpgen.js.Provider;
 import static org.cornutum.regexpgen.Bounds.bounded;
 
 import java.math.BigDecimal;
@@ -610,7 +610,7 @@ public final class SchemaUtils
               }
             if( combined.getMinLength() != null && combined.getMaxLength() < combined.getMinLength())
               {
-              throw inconsistentAssertions( "minLength: %s", combined.getMinLength(), "pattern: %s", generator.getOptions().getRegExp());
+              throw inconsistentAssertions( "minLength: %s", combined.getMinLength(), "pattern: %s", generator.getSource());
               }
             });
         });
@@ -625,7 +625,7 @@ public final class SchemaUtils
               }
             if( combined.getMaxLength() != null && combined.getMinLength() > combined.getMaxLength())
               {
-              throw inconsistentAssertions( "maxLength: %s", combined.getMaxLength(), "pattern: %s", generator.getOptions().getRegExp());
+              throw inconsistentAssertions( "maxLength: %s", combined.getMaxLength(), "pattern: %s", generator.getSource());
               }
             });
         });
@@ -1042,7 +1042,7 @@ public final class SchemaUtils
       .map( pattern -> {
         try
           {
-          return Parser.parseRegExp( pattern);
+          return Provider.forEcmaScript().matching( pattern);
           }
         catch( Exception e)
           {

@@ -14,7 +14,7 @@ import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.cornutum.regexpgen.RegExpGen;
-import org.cornutum.regexpgen.js.Parser;
+import org.cornutum.regexpgen.js.Provider;
 import static org.cornutum.regexpgen.Bounds.bounded;
 
 import java.math.BigDecimal;
@@ -889,7 +889,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     return
       Optional.ofNullable( schema.getPattern())
-      .map( pattern -> Parser.parseRegExp( pattern))
+      .map( pattern -> Provider.forEcmaScript().matching( pattern))
       .map( RegExpGen::getMaxLength)
       .flatMap( matchMax -> bounded( matchMax))
       .orElse( null);
@@ -902,7 +902,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     return
       Optional.ofNullable( schema.getPattern())
-      .map( pattern -> Parser.parseRegExp( pattern))
+      .map( pattern -> Provider.forEcmaScript().matching( pattern))
       .map( RegExpGen::getMinLength)
       .orElse( null);
     }

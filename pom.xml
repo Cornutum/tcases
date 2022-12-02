@@ -226,7 +226,7 @@
       <dependency>
         <groupId>org.cornutum.regexp</groupId>
         <artifactId>regexp-gen</artifactId>
-        <version>1.2.3</version>
+        <version>2.0.1</version>
       </dependency>
       
       <dependency>
