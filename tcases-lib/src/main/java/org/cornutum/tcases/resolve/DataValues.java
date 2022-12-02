@@ -344,7 +344,7 @@ public final class DataValues
     private Map<String,DataValue<?>> object_ = new LinkedHashMap<String,DataValue<?>>();
     }
 
-/**
+  /**
    * Returns the maximum length of a string in the given format. Returns null if this format has no maximum length.
    */
   public static Integer stringFormatMax( String format)
@@ -357,7 +357,7 @@ public final class DataValues
       null;
     }
 
-/**
+ /**
    * Returns the minimum length of a string in the given format. Returns null if this format has no minimum length.
    */
   public static Integer stringFormatMin( String format)
