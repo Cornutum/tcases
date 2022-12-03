@@ -5,7 +5,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.resolve;
+package org.cornutum.tcases.util;
 
 import org.apache.commons.collections4.ListValuedMap;
 import org.apache.commons.collections4.MultiMapUtils;
@@ -13,9 +13,9 @@ import org.apache.commons.collections4.MultiMapUtils;
 import java.util.List;
 
 /**
- * A {@link ResolverConditionNotifier} keeps a record of all conditions notified.
+ * A {@link Notifier} keeps a record of all conditions notified.
  */
-public class ResolverConditionRecorder implements ResolverConditionNotifier
+public class ConditionRecorder implements Notifier
   {
   @Override
   public void warn( String[] location, String reason)
@@ -38,6 +38,14 @@ public class ResolverConditionRecorder implements ResolverConditionNotifier
     {
     return conditions_.get( "error");
     }
-      
+
+  /**
+   * Clear any previous recordings.
+   */
+  public void clear()
+    {
+    conditions_.clear();
+    }
+
   private ListValuedMap<String,String> conditions_ = MultiMapUtils.newListValuedHashMap();
   }

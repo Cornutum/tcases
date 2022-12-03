@@ -8,6 +8,7 @@
 package org.cornutum.tcases.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
 
 /**
  * Reports conditions found during execution
@@ -42,5 +43,50 @@ public interface Notifier
         location.length == 0? "" : String.format( "%s: ", StringUtils.join( location, ",")),
         reason,
         StringUtils.isBlank( resolution)? "" : String.format( " %s.", resolution));
+    }
+  
+  /**
+   * Returns a {@link Notifier} that ignores all conditions.
+   */
+  public static Notifier ignore()
+    {
+    return
+      new Notifier()
+        {
+        @Override
+        public void warn( String[] location, String reason) {}
+        @Override
+        public void error( String[] location, String reason, String resolution) {}
+        @Override
+        public String toString() {return "IGNORE";}
+        };
+    }
+
+  /**
+   * Returns a {@link Notifier} that logs all conditions, using the given {@link Logger}.
+   */
+  public static Notifier log( final Logger logger)
+    {
+    return
+      new Notifier()
+        {
+        @Override
+        public void warn( String[] location, String reason)
+          {
+          logger.warn( messageFor( location, reason, null));
+          }
+        
+        @Override
+        public void error( String[] location, String reason, String resolution)
+          {
+          logger.error( messageFor( location, reason, resolution));
+          }
+
+        @Override
+        public String toString()
+          {
+          return "LOG";
+          }
+        };
     }
   }

@@ -8,6 +8,7 @@
 package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.resolve.DataValue.Type;
+import org.cornutum.tcases.util.Notifier;
 
 import org.slf4j.LoggerFactory;
 import static org.hamcrest.MatcherAssert.*;
@@ -95,7 +96,7 @@ public abstract class ValueDomainTest
     {
     return
       ResolverContext.builder( getRandom())
-      .notifier( ResolverConditionNotifier.log( LoggerFactory.getLogger( getClass())))
+      .notifier( Notifier.log( LoggerFactory.getLogger( getClass())))
       .build();
     }
 

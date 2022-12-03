@@ -5,23 +5,24 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.resolve;
+package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.resolve.ResolverException;
 import org.cornutum.tcases.util.Notifier;
 
 import org.slf4j.LoggerFactory;
 
 /**
- * Reports conditions found when resolving a {@link org.cornutum.tcases.ITestCaseDef test case definition}.
+ * Reports conditions found when resolving values for a {@link RequestCase}.
  */
-public interface TestCaseConditionNotifier extends Notifier
+public interface RequestCaseConditionNotifier extends Notifier
   {
   /**
    * Returns a {@link Notifier} that logs all conditions.
    */
   public static Notifier log()
     {
-    return Notifier.log( LoggerFactory.getLogger( TestCaseSchemaResolver.class));
+    return Notifier.log( LoggerFactory.getLogger( RequestCaseResolver.class));
     }
   
   /**

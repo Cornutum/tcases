@@ -7,11 +7,8 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.resolve.ResolverConditionNotifier;
 import org.cornutum.tcases.resolve.ResolverContext;
-
 import org.apache.commons.io.filefilter.FileFilterUtils;
-import org.slf4j.LoggerFactory;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 import java.io.File;
@@ -129,7 +126,7 @@ public class RequestCaseTest
     {
     return
       ResolverContext.builder( getRandom())
-      .notifier( ResolverConditionNotifier.log( LoggerFactory.getLogger( RequestCaseResolver.class)))
+      .notifier( RequestCaseConditionNotifier.log())
       .build();
     }
 

@@ -7,8 +7,10 @@
 
 package org.cornutum.tcases.resolve;
 
-import org.cornutum.hamcrest.ExpectedFailure.Failable;
+import org.cornutum.tcases.util.ConditionRecorder;
+import org.cornutum.tcases.util.Notifier;
 
+import org.cornutum.hamcrest.ExpectedFailure.Failable;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
@@ -36,7 +38,7 @@ public abstract class ResolverTest
   /**
    * Returns the {@link ResolverContext} used for this test.
    */
-  protected ResolverContext getResolverContext( ResolverConditionNotifier notifier)
+  protected ResolverContext getResolverContext( Notifier notifier)
     {
     return ResolverContext.builder( getRandom()).notifier( notifier).build();
     }
@@ -46,11 +48,11 @@ public abstract class ResolverTest
    */
   protected ResolverContext withConditionRecorder()
     {
-    conditionRecorder_ = new ResolverConditionRecorder();
+    conditionRecorder_.clear();
     return getResolverContext( getConditionRecorder());
     }
 
-  protected ResolverConditionRecorder getConditionRecorder()
+  protected ConditionRecorder getConditionRecorder()
     {
     return conditionRecorder_;
     }
@@ -112,7 +114,7 @@ public abstract class ResolverTest
     return random_;
     }
 
-  private ResolverConditionRecorder conditionRecorder_;
+  private ConditionRecorder conditionRecorder_ = new ConditionRecorder();
   private Random random_ = new Random( seed_);
 
   private static long seed_ =

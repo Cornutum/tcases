@@ -10,14 +10,12 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.io.SystemTestResource;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
-import org.cornutum.tcases.resolve.ResolverConditionNotifier;
 import org.cornutum.tcases.resolve.ResolverContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
-import org.slf4j.LoggerFactory;
 import org.junit.runners.Parameterized;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -82,8 +80,8 @@ public class RequestCaseResolverTest extends RequestCaseTest
       ResolverContext.builder( getRandom())
       .notifier(
         "fail".equals( System.getProperty( "testNotifier"))
-        ? ResolverConditionNotifier.fail()
-        : ResolverConditionNotifier.log( LoggerFactory.getLogger( RequestCaseResolver.class)))
+        ? RequestCaseConditionNotifier.fail()
+        : RequestCaseConditionNotifier.log())
       .build();
     }
 

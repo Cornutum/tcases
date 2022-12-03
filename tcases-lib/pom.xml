@@ -84,6 +84,7 @@
                 <includes>
                   <include>org/cornutum/tcases/**/*Matcher.class</include>
                   <include>org/cornutum/tcases/**/*Matcher$*.class</include>
+                  <include>org/cornutum/tcases/util/ConditionRecorder.class</include>
                 </includes>
               </configuration>
           </execution>

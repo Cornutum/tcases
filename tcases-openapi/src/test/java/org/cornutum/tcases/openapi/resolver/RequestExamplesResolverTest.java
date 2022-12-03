@@ -12,7 +12,6 @@ import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
-import org.cornutum.tcases.resolve.ResolverConditionNotifier;
 import org.cornutum.tcases.resolve.ResolverContext;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -21,7 +20,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
-import org.slf4j.LoggerFactory;
 import org.junit.runners.Parameterized;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 import static org.cornutum.hamcrest.Composites.*;
@@ -166,8 +164,8 @@ public class RequestExamplesResolverTest
       ResolverContext.builder( random_)
       .notifier(
         "fail".equals( System.getProperty( "testNotifier"))
-        ? ResolverConditionNotifier.fail()
-        : ResolverConditionNotifier.log( LoggerFactory.getLogger( RequestCaseResolver.class)))
+        ? RequestCaseConditionNotifier.fail()
+        : RequestCaseConditionNotifier.log())
       .build();
     }
 

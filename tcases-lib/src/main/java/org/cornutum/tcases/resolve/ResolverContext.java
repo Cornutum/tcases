@@ -7,7 +7,7 @@
 
 package org.cornutum.tcases.resolve;
 
-import org.cornutum.tcases.util.ExecutionContext;
+import org.cornutum.tcases.util.ExecutionNotifier;
 import org.cornutum.tcases.util.Notifier;
 
 import java.util.Iterator;
@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 /**
  * Defines options used to resolve an executable API test case.
  */
-public class ResolverContext extends ExecutionContext<ResolverException>
+public class ResolverContext extends ExecutionNotifier<ResolverException>
   {
   /**
    * Creates a new ResolverContext instance.
@@ -59,22 +59,6 @@ public class ResolverContext extends ExecutionContext<ResolverException>
   public Random getRandom()
     {
     return random_;
-    }
-  
-  /**
-   * Changes the notifier that reports conditions that occur when resolving a test case.
-   */
-  public void setNotifier( Notifier notifier)
-    {
-    notifier_ = notifier;
-    }
-
-  /**
-   * Returns the notifier that reports conditions that occur when resolving a test case.
-   */
-  public Notifier getNotifier()
-    {
-    return notifier_;
     }
 
   /**
@@ -127,27 +111,6 @@ public class ResolverContext extends ExecutionContext<ResolverException>
       }
 
     return result;
-    }    
-
-  /**
-   * Reports a condition that will affect the expected test cat.
-   *
-   * @param reason  A description of the condition
-   */
-  public void warn( String reason)
-    {
-    notifier_.warn( getLocation(), reason);
-    }
-
-  /**
-   * Reports an error that would have resulted in an inconsistent or infeasible test case.
-   *
-   * @param reason  A description of the problem
-   * @param resolution  A description of how the problem was resolved
-   */
-  public void error( String reason, String resolution)
-    {
-    notifier_.error( getLocation(), reason, resolution);
     }
 
   /**
@@ -189,6 +152,5 @@ public class ResolverContext extends ExecutionContext<ResolverException>
     }
 
   private Random random_;
-  private Notifier notifier_;
   private int maxTries_;
   }
