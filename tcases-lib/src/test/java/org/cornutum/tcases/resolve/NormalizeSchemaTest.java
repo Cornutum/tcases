@@ -163,6 +163,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .maximum( "12.34")
       .exclusiveMinimum( "-12.34")
       .exclusiveMaximum( "12.34")
+      .multipleOf( 0)
       .build();
 
     Schema normalized =
@@ -179,6 +180,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .maximum( "12.33")
       .exclusiveMinimum( bigDecimalNull())
       .exclusiveMaximum( bigDecimalNull())
+      .multipleOf( bigDecimalNull())
       .build();
 
     assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
@@ -389,7 +391,7 @@ public class NormalizeSchemaTest extends ResolverTest
 
     Schema schema =
       SchemaBuilder.type( "string")
-      .format( "email")
+      .format( "contact")
       .minLength( -1)
       .maxLength( 16)
       .pattern( "^X[0-9]@my.org$")
@@ -457,7 +459,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .format( "date-time")
       .minLength( 0)
       .maxLength( 100)
-      .pattern( "2022")
+      .pattern( null)
       .build();
 
     Schema normalized =
@@ -509,6 +511,65 @@ public class NormalizeSchemaTest extends ResolverTest
 
     assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
     assertErrors( "minLength=4 is less than the required minimum=8. Adjusting minLength to the required minimum.");
+    }
+
+  @Test
+  public void whenPatternNotApplicable()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "uuid")
+      .pattern( "\\D+")
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = resolver.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.with( schema)
+      .minLength( 36)
+      .maxLength( 36)
+      .pattern( null)
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertWarnings( "Pattern matching not supported for strings with format=uuid. Ignoring the pattern for this schema.");
+    }
+
+  @Test
+  public void whenPatternInvalid()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .pattern( "[/w{2,3}")
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = resolver.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.with( schema)
+      .pattern( null)
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertErrors( "Invalid pattern: Missing ']' at position=8. Ignoring the pattern for this schema.");
     }
 
   @Test

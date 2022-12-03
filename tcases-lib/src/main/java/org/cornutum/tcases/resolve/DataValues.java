@@ -345,6 +345,18 @@ public final class DataValues
     }
 
   /**
+   * Returns true if the given string format required a specific pattern.
+   */
+  public static boolean isPatternedFormat( String format)
+    {
+    return
+      "email".equals( format)
+      || "date".equals( format)
+      || "date-time".equals( format)
+      || "uuid".equals( format);
+    }
+
+  /**
    * Returns the maximum length of a string in the given format. Returns null if this format has no maximum length.
    */
   public static Integer stringFormatMax( String format)

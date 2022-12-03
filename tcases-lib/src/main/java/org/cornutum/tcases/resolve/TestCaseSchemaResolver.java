@@ -467,12 +467,24 @@ public class TestCaseSchemaResolver extends TestCaseResolver
       }
 
     Optional.ofNullable( schema.getFormat())
+      .filter( format -> isPatternedFormat( format))
       .map( format -> format.equals( "email")? "date-time" : "email")
       .ifPresent( other -> {
         values.add(
           VarValueDefBuilder.with( "wrongFormat")
           .type( FAILURE)
           .schema( SchemaBuilder.type( "string").format( other).build())
+          .build());
+        });
+
+    Optional.ofNullable( schema.getPattern())
+      .flatMap( pattern -> Provider.forEcmaScript().notMatching( pattern))
+      .flatMap( notMatching -> withPattern( schema, notMatching))
+      .ifPresent( wrongPattern -> {
+        values.add(
+          VarValueDefBuilder.with( "wrongPattern")
+          .type( FAILURE)
+          .schema( wrongPattern)
           .build());
         });
     }
@@ -701,7 +713,13 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
         case STRING:
           {
-          normalizeStringLength( schema); 
+          schema.setPattern(
+            Optional.ofNullable( schema.getPattern())
+            .filter( pattern -> isPatternApplicable( schema.getFormat()))
+            .filter( this::isPatternValid)
+            .orElse( null));
+
+          normalizeStringLength( schema);
           break;
           }
 
@@ -883,16 +901,84 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     }
 
   /**
+   * Returns true if pattern matching is supported for the given string format.
+   */
+  private boolean isPatternApplicable( String format)
+    {
+    boolean applicable = !isPatternedFormat( format);
+    if( !applicable)
+      {
+      notifyWarning( String.format( "Pattern matching not supported for strings with format=%s. Ignoring the pattern for this schema", format));
+      }
+    return applicable;
+    }
+
+  /**
+   * Returns true if the given pattern is valid
+   */
+  private boolean isPatternValid( String pattern)
+    {
+    try
+      {
+      Provider.forEcmaScript().matching( pattern);
+      return true;
+      }
+    catch( IllegalArgumentException e)
+      {
+      notifyError( String.format( "Invalid pattern: %s", e.getMessage()), "Ignoring the pattern for this schema");
+      return false;
+      }
+    }
+
+  /**
+   * Returns a version of the given schema that will accept strings produced by the given generator.
+   * Returns {@link Optional.empty} if this schema is not compatible with this generator.
+   */
+  private Optional<Schema> withPattern( Schema schema, RegExpGen patternGen)
+    {
+    Integer minPattern = minPatternMatch( patternGen);
+    Integer maxPattern = maxPatternMatch( patternGen);
+    
+    Integer minLength =
+      Optional.ofNullable( schema.getMinLength())
+      .map( mnl -> Math.max( mnl, minPattern))
+      .orElse( minPattern);
+
+    Integer maxLength =
+      Optional.ofNullable( schema.getMaxLength())
+      .map( mxl -> Optional.ofNullable( maxPattern).map( mxp -> Math.min( mxl, mxp)).orElse( mxl))
+      .orElse( maxPattern);
+
+    return
+      Optional.of( schema)
+      .filter( s -> !(maxLength != null && maxLength < minLength))
+      .map( s -> {
+        return
+          SchemaBuilder.with( s)
+          .minLength( minLength)
+          .maxLength( maxLength)
+          .pattern( patternGen.getSource())
+          .build();
+        });      
+    }
+
+  /**
    * Returns the maximum length required for pattern matches.
    */
   private Integer maxPatternMatch( Schema schema)
     {
     return
       Optional.ofNullable( schema.getPattern())
-      .map( pattern -> Provider.forEcmaScript().matching( pattern))
-      .map( RegExpGen::getMaxLength)
-      .flatMap( matchMax -> bounded( matchMax))
+      .flatMap( pattern -> Optional.ofNullable( maxPatternMatch( Provider.forEcmaScript().matching( pattern))))
       .orElse( null);
+    }
+
+  /**
+   * Returns the maximum length required for the given pattern generator.
+   */
+  private Integer maxPatternMatch( RegExpGen patternGen)
+    {
+    return bounded( patternGen.getMaxLength()).orElse( null);
     }
 
   /**
@@ -902,9 +988,16 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     return
       Optional.ofNullable( schema.getPattern())
-      .map( pattern -> Provider.forEcmaScript().matching( pattern))
-      .map( RegExpGen::getMinLength)
+      .map( pattern -> minPatternMatch( Provider.forEcmaScript().matching( pattern)))
       .orElse( null);
+    }
+
+  /**
+   * Returns the minimum length required for the given pattern generator.
+   */
+  private Integer minPatternMatch( RegExpGen patternGen)
+    {
+    return patternGen.getMinLength();
     }
 
   /**
@@ -984,13 +1077,18 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
   /**
    * Reports an error that would have resulted in an inconsistent or infeasible test case.
-   *
-   * @param reason  A description of the problem
-   * @param resolution  A description of how the problem was resolved
    */
   private void notifyError( String reason, String resolution)
     {
     getContext().error( reason, resolution);
+    }
+
+  /**
+   * Reports a warning condition
+   */
+  private void notifyWarning( String reason)
+    {
+    getContext().warn( reason);
     }
 
   private final ResolverContext context_;

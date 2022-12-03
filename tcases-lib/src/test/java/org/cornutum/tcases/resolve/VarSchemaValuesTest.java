@@ -719,7 +719,7 @@ public class VarSchemaValuesTest extends ResolverTest
 
     Schema schema =
       SchemaBuilder.type( "string")
-      .format( "email")
+      .format( "address")
       .minLength( -1)
       .maxLength( 16)
       .pattern( "^X[0-9]@my.org$")
@@ -739,11 +739,13 @@ public class VarSchemaValuesTest extends ResolverTest
           .build())
         .build(),
 
-        VarValueDefBuilder.with( "wrongFormat")
+        VarValueDefBuilder.with( "wrongPattern")
         .type( FAILURE)
         .schema(
-          SchemaBuilder.type( "string")
-          .format( "date-time")
+          SchemaBuilder.with( schema)
+          .minLength( 9)
+          .maxLength( 9)
+          .pattern( "^([ !\"#$%&\\'()*+,\\-./0123456789:;<=>?]{1,}|[X]{0,8})$")
           .build())
         .build()
       };
@@ -759,9 +761,9 @@ public class VarSchemaValuesTest extends ResolverTest
 
     Schema schema =
       SchemaBuilder.type( "string")
-      .format( "date")
-      .minLength( 9)
-      .maxLength( 8)
+      .format( "email")
+      .minLength( 4)
+      .maxLength( 32)
       .build();
         
     // When...
@@ -774,7 +776,25 @@ public class VarSchemaValuesTest extends ResolverTest
         VarValueDefBuilder.with( "minimumLength")
         .schema(
           SchemaBuilder.with( schema)
-          .minLength( 10)
+          .minLength( 7)
+          .maxLength( 7)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximumLength")
+        .schema(
+          SchemaBuilder.with( schema)
+          .minLength( 32)
+          .maxLength( 32)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "tooLong")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minLength( 33)
+          .maxLength( null)
           .build())
         .build(),
 
@@ -782,7 +802,7 @@ public class VarSchemaValuesTest extends ResolverTest
         .type( FAILURE)
         .schema(
           SchemaBuilder.type( "string")
-          .format( "email")
+          .format( "date-time")
           .build())
         .build()
       };
@@ -864,6 +884,16 @@ public class VarSchemaValuesTest extends ResolverTest
           .minLength( 9)
           .maxLength( 9)
           .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongPattern")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minLength( 8)
+          .maxLength( 9)
+          .pattern( "^([ !\"#$%&\\'()*+,\\-./0123456789:;<=>?]{1,}|[X]{0,7})$")
+          .build())
         .build()
       };
 
@@ -900,14 +930,6 @@ public class VarSchemaValuesTest extends ResolverTest
           SchemaBuilder.with( schema)
           .minLength( 1)
           .maxLength( null)
-          .build())
-        .build(),
-
-        VarValueDefBuilder.with( "wrongFormat")
-        .type( FAILURE)
-        .schema(
-          SchemaBuilder.type( "string")
-          .format( "email")
           .build())
         .build()
       };
@@ -965,6 +987,16 @@ public class VarSchemaValuesTest extends ResolverTest
           .minLength( 21)
           .maxLength( null)
           .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongPattern")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minLength( 10)
+          .maxLength( 20)
+          .pattern( "^([ !\"#$%&\\'()*+,\\-./0123456789:;<=>?]{1,}|[X]{0,0})$")
+          .build())
         .build()
       };
 
@@ -1018,7 +1050,7 @@ public class VarSchemaValuesTest extends ResolverTest
     }
 
   @Test
-  public void whenPatternInfeasible()
+  public void whenPatternNotApplicable()
     {
     // Given...
     TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
@@ -1053,7 +1085,7 @@ public class VarSchemaValuesTest extends ResolverTest
       };
 
     assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
-    assertErrors( "Required length for pattern='^[0-9]$' is incompatible with format='uuid'. Ignoring the pattern for this schema.");
+    assertWarnings( "Pattern matching not supported for strings with format=uuid. Ignoring the pattern for this schema.");
     }
 
   @Test
