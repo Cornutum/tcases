@@ -17,6 +17,8 @@ import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.collections4.SetUtils;
+
+import org.cornutum.tcases.util.ContextHandler;
 import org.cornutum.tcases.util.MapBuilder;
 
 import java.util.AbstractMap.SimpleEntry;
@@ -39,7 +41,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * Analyzes the input space defined by an OpenAPI schema.
  */
-public class SchemaAnalyzer extends ConditionReporter<OpenApiContext>
+public class SchemaAnalyzer extends ContextHandler<OpenApiContext>
   {
   /**
    * Creates a new SchemaAnalyzer instance.

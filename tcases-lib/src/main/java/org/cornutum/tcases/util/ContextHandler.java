@@ -1,26 +1,23 @@
 //////////////////////////////////////////////////////////////////////////////
 // 
-//                    Copyright 2020, Cornutum Project
+//                    Copyright 2022, Cornutum Project
 //                             www.cornutum.org
 //
 //////////////////////////////////////////////////////////////////////////////
 
-package org.cornutum.tcases.openapi;
+package org.cornutum.tcases.util;
 
 import java.util.function.Supplier;
 
-import org.cornutum.tcases.util.ExecutionContext;
-import org.cornutum.tcases.util.Notifier;
-
 /**
- * Base class for objects that detect and report execution conditions.
+ * Base class for objects that use an {@link ExecutionNotifier} to handle execution conditions.
  */
-public abstract class ConditionReporter<C extends ExecutionContext<?>>
+public abstract class ContextHandler<C extends ExecutionNotifier<?>>
   {
   /**
-   * Creates a new ConditionReporter instance.
+   * Creates a new ContextHandler instance.
    */
-  protected ConditionReporter( C context)
+  protected ContextHandler( C context)
     {
     context_ = context;
     }
@@ -30,7 +27,7 @@ public abstract class ConditionReporter<C extends ExecutionContext<?>>
    */
   protected void setNotifier( Notifier notifier)
     {
-    notifier_ = notifier;
+    getContext().setNotifier( notifier);
     }
 
   /**
@@ -38,7 +35,7 @@ public abstract class ConditionReporter<C extends ExecutionContext<?>>
    */
   protected Notifier getNotifier()
     {
-    return notifier_;
+    return getContext().getNotifier();
     }
 
   /**
@@ -54,7 +51,7 @@ public abstract class ConditionReporter<C extends ExecutionContext<?>>
    */
   protected void notifyWarning( String reason)
     {
-    getNotifier().warn( getContext().getLocation(), reason);
+    getContext().warn( reason);
     }
 
   /**
@@ -62,7 +59,7 @@ public abstract class ConditionReporter<C extends ExecutionContext<?>>
    */
   protected void notifyError( String reason, String resolution)
     {
-    getNotifier().error( getContext().getLocation(), reason, resolution);
+    getContext().error( reason, resolution);
     }
 
   /**
@@ -82,5 +79,4 @@ public abstract class ConditionReporter<C extends ExecutionContext<?>>
     }
 
   private final C context_;
-  private Notifier notifier_;
   }

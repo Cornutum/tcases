@@ -7,12 +7,12 @@
 
 package org.cornutum.tcases.openapi;
 
-import org.cornutum.tcases.util.ExecutionContext;
+import org.cornutum.tcases.util.ExecutionNotifier;
 
 /**
  * Provides a context for exceptions that occur when processing an OpenAPI definition
  */
-public class OpenApiContext extends ExecutionContext<OpenApiException>
+public class OpenApiContext extends ExecutionNotifier<OpenApiException>
   {
   /**
    * Returns an exception to throw for the given failure.

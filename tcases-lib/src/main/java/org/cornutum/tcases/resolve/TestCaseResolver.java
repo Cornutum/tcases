@@ -8,17 +8,36 @@
 package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.*;
+import org.cornutum.tcases.util.ContextHandler;
+
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Function;
 import static java.util.stream.Collectors.toList;
 
 /**
  * Resolves {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances.
  */
-public abstract class TestCaseResolver
+public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
   {
+  /**
+   * Creates a new TestCaseResolver instance.
+   */
+  protected TestCaseResolver()
+    {
+    this( ResolverContext.builder( new Random()).notifier( TestCaseConditionNotifier.log()).build());
+    }
+  
+  /**
+   * Creates a new TestCaseResolver instance.
+   */
+  protected TestCaseResolver( ResolverContext context)
+    {
+    super( context);
+    }
+  
   /**
    * Resolves the {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances for the given input model.
    */

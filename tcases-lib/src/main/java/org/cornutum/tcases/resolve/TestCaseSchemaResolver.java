@@ -20,7 +20,6 @@ import static org.cornutum.regexpgen.Bounds.bounded;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Stream;
 import static java.math.RoundingMode.*;
 import static java.util.stream.Collectors.toList;
@@ -35,7 +34,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   public TestCaseSchemaResolver()
     {
-    this( ResolverContext.builder( new Random()).notifier( TestCaseConditionNotifier.log()).build());
+    super();
     }
   
   /**
@@ -43,7 +42,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   public TestCaseSchemaResolver( ResolverContext context)
     {
-    context_ = context;
+    super( context);
     }
 
   /**
@@ -1066,30 +1065,4 @@ public class TestCaseSchemaResolver extends TestCaseResolver
         .max( Integer::compareTo)
         .orElse( 0));
     }
-
-  /**
-   * Returns the context for this resolver.
-   */
-  private ResolverContext getContext()
-    {
-    return context_;
-    }
-
-  /**
-   * Reports an error that would have resulted in an inconsistent or infeasible test case.
-   */
-  private void notifyError( String reason, String resolution)
-    {
-    getContext().error( reason, resolution);
-    }
-
-  /**
-   * Reports a warning condition
-   */
-  private void notifyWarning( String reason)
-    {
-    getContext().warn( reason);
-    }
-
-  private final ResolverContext context_;
   }
