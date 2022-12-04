@@ -122,24 +122,6 @@ public class Schema
     }
 
   /**
-   * Creates a new schema by merging the contents of the given schema with the given default schema.
-   */
-  public static Schema merge( Schema defaults, Schema schema)
-    {
-    return
-      defaults != null && schema != null?
-      defaults.merge( schema) :
-
-      schema != null?
-      new Schema( schema) :
-
-      defaults != null?
-      new Schema( defaults) :
-
-      null;
-    }
-
-  /**
    * Changes the type of input values.
    */
   private void setType( Type type)

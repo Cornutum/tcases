@@ -14,7 +14,7 @@ import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 
 /**
- * Runs tests for {@link TestCaseSchemaResolver#normalize}
+ * Runs tests for {@link Schemas#normalize}
  */
 public class NormalizeSchemaTest extends ResolverTest
   {
@@ -22,7 +22,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinItemsAboveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -36,7 +36,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -52,7 +52,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenItemsNormalized()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -69,7 +69,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
      // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -91,7 +91,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMaxItemsNegative()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -105,7 +105,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -121,7 +121,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinItemsNegative()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -139,7 +139,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -155,7 +155,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinimumAboveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -171,7 +171,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -191,7 +191,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMaximumBelowExclusiveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -208,7 +208,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -227,7 +227,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMaximumAboveExclusiveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -240,7 +240,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -258,7 +258,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinimumAboveExclusiveMin()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -274,7 +274,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -293,7 +293,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMaximumNotMultiple()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -308,7 +308,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -326,7 +326,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinimumNotMultiple()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -341,7 +341,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -359,7 +359,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenStringNormal()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -372,7 +372,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -387,7 +387,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMaxLengthAbovePatternMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -402,7 +402,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -419,7 +419,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinLengthBelowFormatMin()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -433,7 +433,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -452,7 +452,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMaxLengthAboveFormatMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -467,7 +467,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -486,7 +486,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenMinLengthBelowPatternMin()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -500,7 +500,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -517,7 +517,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenPatternNotApplicable()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -530,7 +530,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -548,7 +548,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenPatternInvalid()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -560,7 +560,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected =
@@ -576,7 +576,7 @@ public class NormalizeSchemaTest extends ResolverTest
   public void whenUnchanged()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    Schemas schemas = new Schemas( withConditionRecorder());
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -588,7 +588,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .build();
     
     // When...
-    normalized = resolver.normalize( normalized);
+    normalized = schemas.normalize( normalized);
     
     // Then...
     Schema expected = schema;

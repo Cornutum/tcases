@@ -8,7 +8,7 @@
 package org.cornutum.tcases.util;
 
 /**
- * An {@link ExecutionContext} that uses a {@link Notifer} to report execution conditions.
+ * An {@link ExecutionContext} that uses a {@link Notifier} to report execution conditions.
  */
 public abstract class ExecutionNotifier<E extends RuntimeException> extends ExecutionContext<E>
   {

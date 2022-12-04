@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+import static java.math.RoundingMode.*;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -342,6 +342,39 @@ public final class DataValues
       }
     
     private Map<String,DataValue<?>> object_ = new LinkedHashMap<String,DataValue<?>>();
+    }
+
+  /**
+   * Returns true if the given value is a multiple of the given factor.
+   */
+  public static boolean isMultipleOf( BigDecimal value, BigDecimal factor)
+    {
+    return
+      value.compareTo( BigDecimal.ZERO) == 0
+      ||
+      value.remainder( factor).compareTo( BigDecimal.ZERO) == 0;
+    }
+
+  /**
+   * Return the largest number less than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
+   */
+  public static BigDecimal multipleBelow( BigDecimal value, BigDecimal multipleOf)
+    { 
+    return
+      isMultipleOf( value, multipleOf)
+      ? value
+      : value.divide( multipleOf, 0, FLOOR).multiply( multipleOf);
+    }
+
+  /**
+   * Return the smallest number greater than (or, if inclusive, equal to) the given value that satisfies the given (not-)multiple-of constraints.
+   */
+  public static BigDecimal multipleAbove( BigDecimal value, BigDecimal multipleOf)
+    {
+    return
+      isMultipleOf( value, multipleOf)
+      ? value
+      : value.divide( multipleOf, 0, CEILING).multiply( multipleOf);
     }
 
   /**
