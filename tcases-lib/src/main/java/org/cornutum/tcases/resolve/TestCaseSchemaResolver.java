@@ -9,6 +9,7 @@ package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.*;
 import static org.cornutum.tcases.VarValueDef.Type.FAILURE;
+import static org.cornutum.tcases.resolve.AbstractValueDomain.withFormat;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
@@ -52,10 +53,10 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     VarBinding binding = VarBinding.create( varDef, valueDef);
     
     Optional.ofNullable( valueDef.getDomain())
-      .map( this::selectValue)
-      .ifPresent( value -> {
+      .ifPresent( domain -> {
         binding.setSource( binding.getValue());
-        binding.setValue( value);
+        binding.setValue( selectValue( domain));
+        binding.setAnnotation( "format", domain.getFormat());
         });
 
     return binding;
@@ -540,20 +541,20 @@ public class TestCaseSchemaResolver extends TestCaseResolver
             ValueDomain<?> itemDomain = toValueDomain( schema.getItems());
             if( itemDomain == null)
               {
-              itemDomain = new MultiTypeDomain( NUMBER, INTEGER, STRING);
+              itemDomain = withFormat( new MultiTypeDomain( NUMBER, INTEGER, STRING), schema.getFormat());
               }
 
             ArrayDomain<?> arrayDomain = itemDomain.arrayOf();
             arrayDomain.setItemCount( schema.getMinItems(), schema.getMaxItems());
             arrayDomain.setItemsUnique( Optional.ofNullable( schema.getUniqueItems()).orElse( false));
 
-            domain = arrayDomain;
+            domain = withFormat( arrayDomain, schema.getFormat());
             break;
             }
 
           case BOOLEAN:
             {
-            domain = new BooleanEnum();
+            domain = withFormat( new BooleanEnum(), schema.getFormat());
             break;
             }
 
@@ -564,14 +565,14 @@ public class TestCaseSchemaResolver extends TestCaseResolver
               IntegerDomain integerDomain = new IntegerDomain();
               integerDomain.setRange( integerOf( schema.getMinimum()), integerOf( schema.getMaximum()));
               integerDomain.setMultipleOf( integerOf( schema.getMultipleOf()));
-              domain = integerDomain;
+              domain = withFormat( integerDomain, schema.getFormat());
               }
             else
               {
               LongDomain longDomain = new LongDomain();
               longDomain.setRange( longOf( schema.getMinimum()), longOf( schema.getMaximum()));
               longDomain.setMultipleOf( longOf( schema.getMultipleOf()));
-              domain = longDomain;
+              domain = withFormat( longDomain, schema.getFormat());
               }
             break;
             }
@@ -582,7 +583,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
             decimalDomain.setRange( schema.getMinimum(), schema.getMaximum());
             decimalDomain.setMultipleOf( schema.getMultipleOf());
               
-            domain = decimalDomain;
+            domain = withFormat( decimalDomain, schema.getFormat());
             break;
             }
 
@@ -603,7 +604,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
               "email".equals( format)?
               new EmailDomain() :
 
-              new AsciiStringDomain();
+              withFormat( new AsciiStringDomain(), schema.getFormat());
 
             stringDomain.setLengthRange( schema.getMinLength(), schema.getMaxLength());
             Optional.ofNullable( schema.getPattern()).ifPresent( pattern -> stringDomain.setMatching( pattern));
@@ -614,7 +615,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
 
           case NULL:
             {
-            domain = new NullDomain();
+            domain = withFormat( new NullDomain(), schema.getFormat());
             break;
             }
 
@@ -645,13 +646,13 @@ public class TestCaseSchemaResolver extends TestCaseResolver
         {
         case ARRAY:
           {
-          domain = new ArrayConstant( (ArrayValue<Object>) constant);
+          domain = withFormat( new ArrayConstant( (ArrayValue<Object>) constant), schema.getFormat());
           break;
           }
 
         case BOOLEAN:
           {
-          domain = new BooleanConstant( ((BooleanValue) constant).getValue());
+          domain = withFormat( new BooleanConstant( ((BooleanValue) constant).getValue()), schema.getFormat());
           break;
           }
 
@@ -660,40 +661,41 @@ public class TestCaseSchemaResolver extends TestCaseResolver
           domain =
             "int32".equals( constant.getFormat())
             ? new IntegerConstant( ((IntegerValue) constant).getValue())
-            : new LongConstant( ((LongValue) constant).getValue());
+            : withFormat( new LongConstant( ((LongValue) constant).getValue()), schema.getFormat());
           break;
           }
 
         case NUMBER:
           {
-          domain = new DecimalConstant( ((DecimalValue) constant).getValue());
+          domain = withFormat( new DecimalConstant( ((DecimalValue) constant).getValue()), schema.getFormat());
           break;
           }
 
         case STRING:
           {
           String format = constant.getFormat();
+          String constantString = String.valueOf( constant.getValue());
           domain =
             "date".equals( format)?
-            new DateConstant( String.valueOf( constant.getValue())) :
+            new DateConstant( constantString) :
 
             "date-time".equals( format)?
-            new DateTimeConstant( String.valueOf( constant.getValue())) :
+            new DateTimeConstant( constantString) :
 
             "uuid".equals( format)?
-            new UuidConstant( String.valueOf( constant.getValue())) :
+            new UuidConstant( constantString) :
 
             "email".equals( format)?
-            new EmailConstant( String.valueOf( constant.getValue())) :
+            new EmailConstant( constantString) :
 
-            new StringConstant( String.valueOf( constant.getValue()), format);
+            new StringConstant( constantString, format);
 
           break;
           }
 
         case NULL:
           {
-          domain = new NullDomain();
+          domain = withFormat( new NullDomain(), schema.getFormat());
           break;
           }
 
