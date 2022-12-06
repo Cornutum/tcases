@@ -7,13 +7,13 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Defines the binding of an input variable to a specific value.
@@ -107,11 +107,19 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
     }
 
   /**
-   * Returns the value name for this binding.
+   * Changes the name of the value definition for this binding.
    */
-  public Object getExternalValue()
+  public void setSource( Object source)
     {
-    return ObjectUtils.toExternalObject( getValue());
+    source_ = source;
+    }
+
+  /**
+   * Returns the name of the value definition for this binding.
+   */
+  public Object getSource()
+    {
+    return Optional.ofNullable( source_).orElse( getValue());
     }
 
   /**
@@ -234,5 +242,6 @@ public class VarBinding extends Annotated implements Comparable<VarBinding>
   private String varType_;
   private Object value_;
   private boolean valueValid_;
+  private Object source_;
   private IVarDef varDef_;
   }

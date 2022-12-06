@@ -75,6 +75,7 @@ public class VarBindingBuilder extends AnnotatedBuilder<VarBindingBuilder>
       .map( b ->
             VarBindingBuilder.with( b.getVar())
             .value( b.getValue())
+            .source( b.getSource())
             .type( b.getType())
             .valid( b.isValueValid())
             .notApplicable( b.isValueNA())
@@ -100,6 +101,15 @@ public class VarBindingBuilder extends AnnotatedBuilder<VarBindingBuilder>
   public VarBindingBuilder value( Object value)
     {
     varBinding_.setValue( value);
+    return this;
+    }
+
+  /**
+   * Changes the binding value source.
+   */
+  public VarBindingBuilder source( Object source)
+    {
+    varBinding_.setSource( source);
     return this;
     }
 

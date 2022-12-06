@@ -5,6 +5,8 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class ObjectUtilsTest
   {
@@ -245,4 +247,20 @@ public class ObjectUtilsTest
     // Then...
     assertThat( "Boolean", object, is( value));
     }
+
+  @Test
+  @SuppressWarnings("unchecked")
+  public void toExternalObject_whenIterable()
+    {
+    // Given...
+    Object[] elements = new Object[]{ 1, 2.5, null, Arrays.asList( "x", "y", "z"), Boolean.FALSE};
+    List<Object> value = Arrays.asList( elements);
+    
+    // When...
+    Object object = ObjectUtils.toExternalObject( value);
+    
+    // Then...
+    Object[] expected = new Object[]{ 1, new BigDecimal( 2.5), null, Arrays.asList( "x", "y", "z"), Boolean.FALSE};
+    assertThat( "Iterable", (Iterable<Object>) object, contains( expected));
     }
+  }

@@ -9,17 +9,21 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.DefUtils;
+import org.cornutum.tcases.util.ObjectUtils;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonString;
 import javax.json.JsonStructure;
 import javax.json.JsonValue;
 import static javax.json.JsonValue.ValueType.*;
@@ -172,8 +176,9 @@ public final class SystemTestJson
       else
         {
         builder
-          .value( json.getString( VALUE_KEY))
-          .valid( !json.getBoolean( FAILURE_KEY, false));
+          .value( asValueObject( json.get( VALUE_KEY)))
+          .valid( !json.getBoolean( FAILURE_KEY, false))
+          .source( Optional.ofNullable( json.get( SOURCE_KEY)).map( s -> asValueObject( s)).orElse( null));
         }
       
       // Get annotations for this binding
@@ -186,6 +191,42 @@ public final class SystemTestJson
       {
       throw new SystemTestException( String.format( "Error defining binding for variable=%s", varName), e);
       }
+    }
+
+  /**
+   * Returns the variable value represented by the given JSON value.
+   */
+  private static Object asValueObject( JsonValue json)
+    {
+    if( json == null || json.getValueType() == OBJECT)
+      {
+      throw new SystemTestException( String.format( "Invalid value=%s", json));
+      }
+
+    Object object;
+    switch( json.getValueType())
+      {
+      case STRING:
+        {
+        object = ((JsonString) json).getString();
+        break;
+        }
+      case ARRAY:
+        {
+        object =
+          ((JsonArray) json).stream()
+          .map( element -> asValueObject( element))
+          .collect( toList());
+        break;
+        }
+      default:
+        {
+        object = ObjectUtils.toObject( String.valueOf( json));
+        break;
+        }
+      }
+
+    return object;
     }
 
   /**
@@ -297,14 +338,71 @@ public final class SystemTestJson
       }
     else
       {
+      Object value = binding.getValue();
+      Object source = binding.getSource();
+
       if( !binding.isValueValid())
         {
         builder.add( FAILURE_KEY, true);
         }
-      builder.add( VALUE_KEY, String.valueOf( binding.getValue()));
+      builder.add( VALUE_KEY, toJsonValue( value));
+      if( source != value)
+        {
+        builder.add( SOURCE_KEY, toJsonValue( source));
+        }
       }
 
     return builder.build();
+    }
+
+  /**
+   * Returns the JSON value that represents the given variable value.
+   */
+  private static JsonValue toJsonValue( Object value)
+    {
+    JsonValue json;
+
+    Class<?> type = Optional.ofNullable( value).map( Object::getClass).orElse( null);
+    if( type == null)
+      {
+      json = JsonValue.NULL;
+      }
+    else if( type.equals( Boolean.class))
+      {
+      json = ((Boolean) value)? JsonValue.TRUE : JsonValue.FALSE;
+      }
+    else if( type.equals( String.class))
+      {
+      json = Json.createValue( (String) value);
+      }
+    else if( type.equals( Integer.class))
+      {
+      json = Json.createValue( (Integer) value);
+      }
+    else if( type.equals( Long.class))
+      {
+      json = Json.createValue( (Long) value);
+      }
+    else if( type.equals( BigDecimal.class))
+      {
+      json = Json.createValue( (BigDecimal) value);
+      }
+    else if( Number.class.isAssignableFrom( type))
+      {
+      json = Json.createValue( new BigDecimal( ((Number) value).doubleValue()));
+      }
+    else if( Iterable.class.isAssignableFrom( type))
+      {
+      JsonArrayBuilder array = Json.createArrayBuilder();
+      ((Iterable<?>) value).forEach( element -> array.add( toJsonValue( element)));
+      json = array.build();
+      }
+    else
+      {
+      throw new SystemTestException( String.format( "Invalid value=%s, type=%s", value, type.getSimpleName()));
+      }
+
+    return json;
     }
 
   /**
@@ -329,6 +427,7 @@ public final class SystemTestJson
   private static final String ID_KEY = "id";
   private static final String NAME_KEY = "name";
   private static final String NA_KEY = "NA";
+  private static final String SOURCE_KEY = "source";
   private static final String SYSTEM_KEY = "system";
   private static final String TEST_CASES_KEY = "testCases";
   private static final String VALUE_KEY = "value";

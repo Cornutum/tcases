@@ -7,11 +7,14 @@
 
 package org.cornutum.tcases.util;
 
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Defines utility methods for handling value objects.
@@ -42,7 +45,16 @@ public final class ObjectUtils
    */
   public static Object toExternalObject( Object value)
     {
-    return toObject( String.valueOf( value));
+    Iterable<?> iterable =
+      Optional.ofNullable( value)
+      .filter( v -> Iterable.class.isAssignableFrom( v.getClass()))
+      .map( v -> toStream( (Iterable<?>) v).map( e -> toExternalObject( e)).collect( toList()))
+      .orElse( null);
+
+    return
+      iterable == null
+      ? toObject( String.valueOf( value))
+      : iterable;
     }
   
   /**
