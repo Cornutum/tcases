@@ -143,7 +143,7 @@ public class Tcases
         // Add value annotations...
         if( !binding.isValueNA())
           {
-          VarValueDef valueDef = varDef.getValue( binding.getValue());
+          VarValueDef valueDef = varDef.getValue( binding.getSource());
           binding.addAnnotations( valueDef);
           }
 
