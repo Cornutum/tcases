@@ -86,6 +86,9 @@ public class IntegerDomain extends NumberDomain<Integer>
   @Override
   public void setRange( Integer min, Integer max)
     {
+    min = Optional.ofNullable( min).orElse( (int) -getMaxRange());
+    max = Optional.ofNullable( max).orElse( (int) getMaxRange());
+
     if( Integer.signum( min) != Integer.signum( max) && -Math.max( min, -Integer.MAX_VALUE) > Integer.MAX_VALUE - max)
       {
       throw new IllegalArgumentException( String.format( "Range=[%s,%s] exceeds maximum size=%s", min, max, Integer.MAX_VALUE));

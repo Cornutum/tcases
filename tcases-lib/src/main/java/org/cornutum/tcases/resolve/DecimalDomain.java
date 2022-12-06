@@ -135,10 +135,14 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
   @Override
   public void setRange( BigDecimal min, BigDecimal max)
     {
+    min = Optional.ofNullable( min).orElse( new BigDecimal( -getMaxRange()));
+    max = Optional.ofNullable( max).orElse( new BigDecimal( getMaxRange()));
+
     if( max.subtract( min).compareTo( MAX_SIZE) > 0)
       {
       throw new IllegalArgumentException( String.format( "Range=[%s,%s] exceeds maximum size=%s", min, max, MAX_SIZE));
       }
+
     super.setRange( min, max);
     }
 

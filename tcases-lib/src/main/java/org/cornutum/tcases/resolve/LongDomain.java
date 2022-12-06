@@ -86,6 +86,9 @@ public class LongDomain extends NumberDomain<Long>
   @Override
   public void setRange( Long min, Long max)
     {
+    min = Optional.ofNullable( min).orElse( -getMaxRange());
+    max = Optional.ofNullable( max).orElse( getMaxRange());
+
     if( Long.signum( min) != Long.signum( max) && -Math.max( min, -Long.MAX_VALUE) > Long.MAX_VALUE - max)
       {
       throw new IllegalArgumentException( String.format( "Range=[%s,%s] exceeds maximum size=%s", min, max, Long.MAX_VALUE));
