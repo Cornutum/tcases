@@ -252,6 +252,14 @@ public final class DataValues
     }
 
   /**
+   * Returns a list of {@link BigDecimal} values.
+   */
+  public static List<BigDecimal> bigDecimals( String... values)
+    {
+    return Arrays.stream( values).map( DataValues::bigDecimalOf).collect( toList());
+    }
+
+  /**
    * Returns a new integral {@link BigDecimal}.
    */
   public static BigDecimal roundDown( BigDecimal value)
