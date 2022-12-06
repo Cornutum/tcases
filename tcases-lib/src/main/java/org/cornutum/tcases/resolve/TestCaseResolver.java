@@ -41,7 +41,7 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
   /**
    * Resolves the {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances for the given input model.
    */
-  public List<TestCase> resolve(  FunctionInputDef inputDef, Function<FunctionInputDef,List<ITestCaseDef>> testCaseDefSupplier)
+  public List<TestCase> resolve( FunctionInputDef inputDef, Function<FunctionInputDef,List<ITestCaseDef>> testCaseDefSupplier)
     {
     nextId_ = -1;
     
@@ -63,8 +63,17 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
     TestCase testCase = new TestCase( nextId_);
     testCase.setName( testCaseDef.getName());
 
-    toStream( testCaseDef.getVars())
-      .forEach( var -> testCase.addVarBinding( VarBinding.create( var, resolveValueDef( testCaseDef.getValue( var)))));
+    doFor( String.valueOf( testCase.getId()), () -> {
+      toStream( testCaseDef.getVars())
+        .forEach( var -> {
+          doFor( var.getPathName(), () -> {
+            VarValueDef valueDef = testCaseDef.getValue( var);
+            doFor( String.valueOf( valueDef.getName()), () -> {
+              testCase.addVarBinding( resolveBinding( var, valueDef));
+              });
+            });
+          });
+      });
 
     // Annotate test case with its property set
     testCaseDef.getProperties().stream()
@@ -75,9 +84,9 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
     }
 
   /**
-   * Resolves an input value definition.
+   * Returns a binding that resolves the value of the given input variable.
    */
-  protected abstract VarValueDef resolveValueDef( VarValueDef valueDef);
+  protected abstract VarBinding resolveBinding( VarDef varDef, VarValueDef valueDef);
   
   /**
    * Returns a {@link FunctionInputDef function input model} that is ready for resolution of input value definitions.
@@ -91,12 +100,12 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
     new TestCaseResolver()
       {
       /**
-       * Resolves an input value definition.
+       * Returns a binding that resolves the value of the given input variable.
        */
       @Override
-      protected VarValueDef resolveValueDef( VarValueDef valueDef)
+      protected VarBinding resolveBinding( VarDef varDef, VarValueDef valueDef)
         {
-        return valueDef;
+        return VarBinding.create( varDef, valueDef);
         }
   
       /**

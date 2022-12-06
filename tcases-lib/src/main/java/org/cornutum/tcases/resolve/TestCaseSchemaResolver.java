@@ -44,14 +44,42 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     }
 
   /**
-   * Resolves an input value definition.
+   * Returns a binding that resolves the value of the given input variable.
    */
   @Override
-  protected VarValueDef resolveValueDef( VarValueDef valueDef)
+  protected VarBinding resolveBinding( VarDef varDef, VarValueDef valueDef)
     {
-    return valueDef;
+    VarBinding binding = VarBinding.create( varDef, valueDef);
+    
+    Optional.ofNullable( valueDef.getDomain())
+      .map( this::selectValue)
+      .ifPresent( value -> {
+        binding.setSource( binding.getValue());
+        binding.setValue( value);
+        });
+
+    return binding;
     }
-  
+
+  /**
+   * Returns a new value from the given domain.
+   */
+  private Object selectValue( ValueDomain<?> domain)
+    {
+    try
+      {
+      return valueObject( domain.select( getContext()));
+      }
+    catch( ResolverSkipException skip)
+      {
+      throw skip;
+      }
+    catch( Exception e)
+      {
+      throw new ResolverException( String.format( "Can't get value from %s", domain), e);
+      }
+    } 
+
   /**
    * Prepare for resolution of input value definitions
    */
@@ -79,7 +107,13 @@ public class TestCaseSchemaResolver extends TestCaseResolver
       varDef.getPathName(),
       () -> 
       toStream( varDef.getValues())
-      .forEach( valueDef -> prepareValueDef( valueDef, Schemas.merge( varDef.getSchema(), valueDef.getSchema()))));
+      .forEach( valueDef -> {
+        prepareValueDef(
+          valueDef,
+          Optional.ofNullable( valueDef.getSchema())
+          .map( valueSchema -> Schemas.merge( varDef.getSchema(), valueSchema))
+          .orElse( null));
+        }));
     }
   
   /**
