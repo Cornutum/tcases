@@ -17,7 +17,15 @@ public class BooleanValue extends DataValue<Boolean>
    */
   public BooleanValue( Boolean value)
     {
-    super( value, Type.BOOLEAN, null);
+    this( value, null);
+    }
+  
+  /**
+   * Creates a new BooleanValue instance.
+   */
+  public BooleanValue( Boolean value, String format)
+    {
+    super( value, Type.BOOLEAN, format);
     }
 
   /**

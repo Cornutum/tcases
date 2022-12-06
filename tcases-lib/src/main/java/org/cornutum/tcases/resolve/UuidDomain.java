@@ -30,6 +30,24 @@ public class UuidDomain extends AbstractStringDomain
     }
 
   /**
+   * Changes the format for values that belong to this domain.
+   */
+  @Override
+  public void setFormat( String format)
+    {
+    // This domain is defined by a specific format
+    }
+
+  /**
+   * Returns the format for values that belong to this domain.
+   */
+  @Override
+  public String getFormat()
+    {
+    return "uuid";
+    }
+
+  /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override

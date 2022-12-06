@@ -19,7 +19,15 @@ public class ArrayValue<T> extends DataValue<List<DataValue<T>>>
    */
   public ArrayValue( List<DataValue<T>> value)
     {
-    super( value, Type.ARRAY, null);
+    this( value, null);
+    }
+  
+  /**
+   * Creates a new ArrayValue instance.
+   */
+  public ArrayValue( List<DataValue<T>> value, String format)
+    {
+    super( value, Type.ARRAY, format);
     }
 
   /**

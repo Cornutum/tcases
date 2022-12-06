@@ -164,7 +164,7 @@ public class ObjectDomain extends AbstractValueDomain<Map<String,DataValue<?>>>
   @Override
     protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
     {
-    return new ObjectValue( value);
+    return new ObjectValue( value, getFormat());
     }
 
   /**

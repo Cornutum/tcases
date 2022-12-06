@@ -48,7 +48,7 @@ public class NullDomain extends AbstractValueDomain<Object>
   @Override
   protected DataValue<Object> dataValueOf( Object value)
     {
-    return new NullValue();
+    return new NullValue( getFormat());
     }
 
   /**

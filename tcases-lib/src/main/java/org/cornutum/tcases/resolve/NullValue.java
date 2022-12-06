@@ -19,7 +19,15 @@ public class NullValue extends DataValue<Object>
    */
   public NullValue()
     {
-    super( null, Type.NULL, null);
+    this( null);
+    }
+  
+  /**
+   * Creates a new NullValue instance.
+   */
+  public NullValue( String format)
+    {
+    super( null, Type.NULL, format);
     }
 
   /**

@@ -184,7 +184,7 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
   @Override
     protected DataValue<List<DataValue<T>>> dataValueOf( List<DataValue<T>> value)
     {
-    return new ArrayValue<T>( value);
+    return new ArrayValue<T>( value, getFormat());
     }
 
   /**

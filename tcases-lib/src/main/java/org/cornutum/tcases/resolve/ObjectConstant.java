@@ -30,6 +30,6 @@ public class ObjectConstant extends ConstantDomain<Map<String,DataValue<?>>>
   @Override
     protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
     {
-    return new ObjectValue( value);
+    return new ObjectValue( value, getFormat());
     }
   }

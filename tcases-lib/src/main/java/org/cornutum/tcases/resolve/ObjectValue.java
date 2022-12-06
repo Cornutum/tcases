@@ -21,7 +21,15 @@ public class ObjectValue extends DataValue<Map<String,DataValue<?>>>
    */
   public ObjectValue( Map<String,DataValue<?>> value)
     {
-    super( value, Type.OBJECT, null);
+    this( value, null);
+    }
+  
+  /**
+   * Creates a new ObjectValue instance.
+   */
+  public ObjectValue( Map<String,DataValue<?>> value, String format)
+    {
+    super( value, Type.OBJECT, format);
     }
 
   /**

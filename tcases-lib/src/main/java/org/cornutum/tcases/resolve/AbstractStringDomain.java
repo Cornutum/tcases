@@ -123,7 +123,7 @@ public abstract class AbstractStringDomain extends SequenceDomain<String>
   @Override
   protected DataValue<String> dataValueOf( String value)
     {
-    return new StringValue( value);
+    return new StringValue( value, getFormat());
     }
 
   /**

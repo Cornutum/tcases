@@ -17,7 +17,15 @@ public class LongValue extends DataValue<Long>
    */
   public LongValue( Long value)
     {
-    super( value, Type.INTEGER, "int64");
+    this( value, "int64");
+    }
+  
+  /**
+   * Creates a new LongValue instance.
+   */
+  public LongValue( Long value, String format)
+    {
+    super( value, Type.INTEGER, format);
     }
 
   /**

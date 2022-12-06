@@ -30,7 +30,7 @@ public class DecimalConstant extends ConstantDomain<BigDecimal>
   public DecimalConstant( BigDecimal value, String format)
     {
     super( Type.NUMBER, value);
-    format_ = format;
+    setFormat( format);
     }
 
   /**
@@ -39,8 +39,6 @@ public class DecimalConstant extends ConstantDomain<BigDecimal>
   @Override
   protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
     {
-    return new DecimalValue( value, format_);
+    return new DecimalValue( value, getFormat());
     }
-
-  private final String format_;
   }

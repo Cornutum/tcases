@@ -175,6 +175,27 @@ public class LongDomain extends NumberDomain<Long>
     }
 
   /**
+   * Changes the format for values that belong to this domain.
+   */
+  @Override
+  public void setFormat( String format)
+    {
+    super.setFormat(
+      "int32".equals( format)
+      ? getFormat()
+      : format);
+    }
+
+  /**
+   * Returns the format for values that belong to this domain.
+   */
+  @Override
+  public String getFormat()
+    {
+    return Optional.ofNullable( super.getFormat()).orElse( "int64");
+    }
+
+  /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override

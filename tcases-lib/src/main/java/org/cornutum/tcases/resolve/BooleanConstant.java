@@ -28,6 +28,6 @@ public class BooleanConstant extends ConstantDomain<Boolean>
   @Override
   protected DataValue<Boolean> dataValueOf( Boolean value)
     {
-    return new BooleanValue( value);
+    return new BooleanValue( value, getFormat());
     }
   }

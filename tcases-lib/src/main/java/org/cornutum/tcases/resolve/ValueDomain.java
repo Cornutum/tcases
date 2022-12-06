@@ -58,6 +58,11 @@ public interface ValueDomain<T>
     }
 
   /**
+   * Returns the format for values that belong to this domain.
+   */
+  public String getFormat();
+
+  /**
    * Returns the type(s) of values that belong to this domain.
    */
   public Type[] getTypes();

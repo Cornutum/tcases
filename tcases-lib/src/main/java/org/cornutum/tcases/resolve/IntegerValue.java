@@ -17,7 +17,15 @@ public class IntegerValue extends DataValue<Integer>
    */
   public IntegerValue( Integer value)
     {
-    super( value, Type.INTEGER, "int32");
+    this( value, "int32");
+    }
+  
+  /**
+   * Creates a new IntegerValue instance.
+   */
+  public IntegerValue( Integer value, String format)
+    {
+    super( value, Type.INTEGER, format);
     }
 
   /**

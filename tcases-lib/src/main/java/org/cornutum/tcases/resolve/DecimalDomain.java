@@ -52,7 +52,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
   public DecimalDomain( long maxRange, String format)
     {
     super( Type.NUMBER, maxRange);
-    format_ = format;
+    setFormat( format);
     }
   
   /**
@@ -238,7 +238,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
   @Override
   protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
     {
-    return new DecimalValue( value, format_);
+    return new DecimalValue( value, getFormat());
     }
 
   /**
@@ -262,7 +262,5 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     return value.divideToIntegralValue( divisor);
     }
 
-  private final String format_;
-  
   private static final BigDecimal MAX_SIZE = new BigDecimal( Long.MAX_VALUE);
   }

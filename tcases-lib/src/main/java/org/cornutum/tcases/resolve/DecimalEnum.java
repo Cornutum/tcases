@@ -23,7 +23,7 @@ public class DecimalEnum extends EnumDomain<BigDecimal>
   public DecimalEnum( Iterable<String> enums, String format)
     {
     super( Type.NUMBER, enums);
-    format_ = format;
+    setFormat( format);
     }
   
   /**
@@ -32,7 +32,7 @@ public class DecimalEnum extends EnumDomain<BigDecimal>
   public DecimalEnum( Collection<BigDecimal> enums, String format)
     {
     super( Type.NUMBER, enums);
-    format_ = format;
+    setFormat( format);
     }
 
   /**
@@ -57,8 +57,6 @@ public class DecimalEnum extends EnumDomain<BigDecimal>
   @Override
   protected DataValue<BigDecimal> dataValueOf( BigDecimal value)
     {
-    return new DecimalValue( value, format_);
+    return new DecimalValue( value, getFormat());
     }
-
-  private final String format_;
   }

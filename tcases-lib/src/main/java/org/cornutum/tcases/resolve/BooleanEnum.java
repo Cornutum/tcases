@@ -56,6 +56,6 @@ public class BooleanEnum extends EnumDomain<Boolean>
   @Override
   protected DataValue<Boolean> dataValueOf( Boolean value)
     {
-    return new BooleanValue( value);
+    return new BooleanValue( value, getFormat());
     }
   }

@@ -46,7 +46,7 @@ public class StringConstant extends ConstantDomain<String>
   public StringConstant( String value, String format, Characters chars)
     {
     super( Type.STRING, value);
-    format_ = format;
+    setFormat( format);
 
     if( !chars.allowed( value))
       {
@@ -60,8 +60,6 @@ public class StringConstant extends ConstantDomain<String>
   @Override
   protected DataValue<String> dataValueOf( String value)
     {
-    return new StringValue( value, format_);
+    return new StringValue( value, getFormat());
     }
-
-  private final String format_;
   }

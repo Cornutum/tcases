@@ -175,6 +175,27 @@ public class IntegerDomain extends NumberDomain<Integer>
     }
 
   /**
+   * Changes the format for values that belong to this domain.
+   */
+  @Override
+  public void setFormat( String format)
+    {
+    super.setFormat(
+      "int64".equals( format)
+      ? getFormat()
+      : format);
+    }
+
+  /**
+   * Returns the format for values that belong to this domain.
+   */
+  @Override
+  public String getFormat()
+    {
+    return Optional.ofNullable( super.getFormat()).orElse( "int32");
+    }
+
+  /**
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override

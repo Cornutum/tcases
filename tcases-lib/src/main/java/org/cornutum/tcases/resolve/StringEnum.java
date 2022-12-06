@@ -30,7 +30,7 @@ public class StringEnum extends EnumDomain<String>
   public StringEnum( Iterable<String> enums, String format, Characters chars)
     {
     super( Type.STRING, enums);
-    format_ = format;
+    setFormat( format);
 
     for( String value : enums)
       {
@@ -56,8 +56,6 @@ public class StringEnum extends EnumDomain<String>
   @Override
   protected DataValue<String> dataValueOf( String value)
     {
-    return new StringValue( value, format_);
+    return new StringValue( value, getFormat());
     }
-
-  private final String format_;
   }
