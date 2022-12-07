@@ -14,6 +14,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
@@ -391,15 +392,15 @@ public final class SystemTestJson
       {
       json = Json.createValue( new BigDecimal( ((Number) value).doubleValue()));
       }
-    else if( Iterable.class.isAssignableFrom( type))
+    else if( Collection.class.isAssignableFrom( type))
       {
       JsonArrayBuilder array = Json.createArrayBuilder();
-      ((Iterable<?>) value).forEach( element -> array.add( toJsonValue( element)));
+      ((Collection<?>) value).stream().forEach( element -> array.add( toJsonValue( element)));
       json = array.build();
       }
     else
       {
-      throw new SystemTestException( String.format( "Invalid value=%s, type=%s", value, type.getSimpleName()));
+      json = Json.createValue( String.valueOf( value));
       }
 
     return json;
