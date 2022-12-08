@@ -462,6 +462,7 @@ public class VarSchemaValuesTest extends ResolverTest
         .schema(
           SchemaBuilder.type( "number")
           .constant( bigDecimalOf( "9.4"))
+          .format( "double")
           .build())
         .build()
       };
@@ -658,6 +659,7 @@ public class VarSchemaValuesTest extends ResolverTest
         .schema(
           SchemaBuilder.type( "number")
           .constant( bigDecimalOf( "0"))
+          .format( "int32")
           .build())
         .build(),
 
@@ -673,6 +675,7 @@ public class VarSchemaValuesTest extends ResolverTest
         .schema(
           SchemaBuilder.type( "number")
           .constant( bigDecimalOf( "1"))
+          .format( "int32")
           .build())
         .build()
       };
