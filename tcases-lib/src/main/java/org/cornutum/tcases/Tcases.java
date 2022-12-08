@@ -11,6 +11,7 @@ import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.resolve.TestCaseResolver;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -143,8 +144,8 @@ public class Tcases
         // Add value annotations...
         if( !binding.isValueNA())
           {
-          VarValueDef valueDef = varDef.getValue( binding.getSource());
-          binding.addAnnotations( valueDef);
+          Optional.ofNullable( varDef.getValue( binding.getSource()))
+            .ifPresent( valueDef -> binding.addAnnotations( valueDef));
           }
 
         // ...and any other annotations for this variable...
