@@ -137,9 +137,14 @@ public class TestCaseSchemaResolver extends TestCaseResolver
       {
       doFor(
         varDef.getPathName(),
-        () ->
-        valuesForSchema( varDef.getSchema())
-        .forEach( value -> varDef.addValue( value)));
+        () -> {
+
+        valuesForSchema(
+          Optional.ofNullable( varDef.getSchema())
+          .orElseThrow( () -> new IllegalStateException( "No schema or values defined for this variable")))
+          
+          .forEach( value -> varDef.addValue( value));
+        });
 
       varDef.setSchema( null);
       }
@@ -324,7 +329,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
         .build());
       values.add(
         VarValueDefBuilder.with( "zero")
-        .schema( SchemaBuilder.type( "number").constant( BigDecimal.ZERO).build())
+        .schema( SchemaBuilder.type( "number").constant( BigDecimal.ZERO).format( schema.getFormat()).build())
         .build());
       values.add(
         VarValueDefBuilder.with( "positive")
@@ -437,7 +442,11 @@ public class TestCaseSchemaResolver extends TestCaseResolver
         values.add(
           VarValueDefBuilder.with( "notMultiple")
           .type( FAILURE)
-          .schema( SchemaBuilder.type( "number").constant( notMultiple).build())
+          .schema(
+            SchemaBuilder.type( "number")
+            .constant( notMultiple)
+            .format( schema.getFormat())
+            .build())
           .build());
         });
 
