@@ -1,0 +1,276 @@
+<System name="Models">
+    <Function name="Schemas">
+        <Input>
+            <VarSet name="Var">
+                <Var name="hasParent">
+                    <Value name="true"/>
+                    <Value name="false"/>
+                </Var>
+                <VarSet name="schema">
+                    <Var name="defined">
+                        <Value name="true" property="varSchema"/>
+                        <Value name="false"/>
+                    </Var>
+                    <Var name="type" when="varSchema">
+                        <Value name="array" property="varSchemaArray"/>
+                        <Value name="boolean" property="varSchemaBoolean"/>
+                        <Value name="integer" property="varSchemaInteger"/>
+                        <Value name="number" property="varSchemaNumber"/>
+                        <Value name="string" property="varSchemaString"/>
+                    </Var>
+                    <VarSet name="array" when="varSchemaArray">
+                        <Var name="definesValues">
+                            <Value name="true" whenNot="varValues"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="format">
+                            <Value name="Defined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="minItems">
+                            <Value name="Integer"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="maxItems">
+                            <Value name="Integer"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="uniqueItems">
+                            <Value name="Boolean"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="items">
+                            <Value name="Defined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="integer" when="varSchemaInteger">
+                        <Var name="definesValues">
+                            <Value name="true" whenNot="varValues"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="format">
+                            <Value name="Defined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="minimum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="maximum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="exclusiveMinimum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="exclusiveMaximum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="multipleOf">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="number" when="varSchemaNumber">
+                        <Var name="definesValues">
+                            <Value name="true" whenNot="varValues"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="format">
+                            <Value name="Defined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="minimum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="maximum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="exclusiveMinimum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="exclusiveMaximum">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="multipleOf">
+                            <Value name="Number"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                    </VarSet>
+                    <VarSet name="string" when="varSchemaString">
+                        <Var name="definesValues">
+                            <Value name="true" whenNot="varValues"/>
+                            <Value name="false"/>
+                        </Var>
+                        <Var name="format">
+                            <Value name="date"/>
+                            <Value name="date-time"/>
+                            <Value name="email" property="varFormatUnbounded"/>
+                            <Value name="uuid"/>
+                            <Value name="Undefined" property="varFormatNone, varFormatUnbounded"/>
+                        </Var>
+                        <Var name="minLength" when="varFormatUnbounded">
+                            <Value name="Integer"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="maxLength" when="varFormatUnbounded">
+                            <Value name="Integer"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="pattern" when="varFormatNone">
+                            <Value name="String"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+                <VarSet name="values">
+                    <Var name="defined">
+                        <Value name="true" property="varValues"/>
+                        <Value name="false" when="varSchema"/>
+                        <Value name="None" whenNot="varSchema" failure="true"/>
+                    </Var>
+                    <Var name="noSchema" when="varValues">
+                        <Value name="true"/>
+                        <Value name="false"/>
+                    </Var>
+                    <Var name="withSchema" when="varValues">
+                        <Value name="true" property="valueSchema"/>
+                        <Value name="false"/>
+                    </Var>
+                    <VarSet name="schema">
+                        <Var name="type" when="valueSchema">
+                            <Value name="array" property="valueSchemaArray"/>
+                            <Value name="boolean" property="valueSchemaBoolean"/>
+                            <Value name="integer" property="valueSchemaInteger"/>
+                            <Value name="number" property="valueSchemaNumber"/>
+                            <Value name="string" property="valueSchemaString"/>
+                        </Var>
+                        <Var name="const" when="valueSchema">
+                            <Value name="true" property="valueConst"/>
+                            <Value name="null" property="valueConst"/>
+                            <Value name="false"/>
+                        </Var>
+                        <VarSet name="array" whenNot="valueConst" when="valueSchemaArray">
+                            <Var name="merged">
+                                <Value name="true" when="varSchemaArray"/>
+                                <Value name="false" whenNot="varSchemaArray"/>
+                            </Var>
+                            <Var name="format">
+                                <Value name="Defined"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="minItems">
+                                <Value name="Integer"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="maxItems">
+                                <Value name="Integer"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="uniqueItems">
+                                <Value name="Boolean"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="items">
+                                <Value name="Defined"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="integer" whenNot="valueConst" when="valueSchemaInteger">
+                            <Var name="merged">
+                                <Value name="true" when="varSchemaInteger"/>
+                                <Value name="false" whenNot="varSchemaInteger"/>
+                            </Var>
+                            <Var name="format">
+                                <Value name="Defined"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="minimum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="maximum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="exclusiveMinimum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="exclusiveMaximum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="multipleOf">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="number" whenNot="valueConst" when="valueSchemaNumber">
+                            <Var name="merged">
+                                <Value name="true" when="varSchemaNumber"/>
+                                <Value name="false" whenNot="varSchemaNumber"/>
+                            </Var>
+                            <Var name="format">
+                                <Value name="Defined"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="minimum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="maximum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="exclusiveMinimum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="exclusiveMaximum">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="multipleOf">
+                                <Value name="Number"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                        </VarSet>
+                        <VarSet name="string" whenNot="valueConst" when="valueSchemaString">
+                            <Var name="merged">
+                                <Value name="true" when="varSchemaString"/>
+                                <Value name="false" whenNot="varSchemaString"/>
+                            </Var>
+                            <Var name="format">
+                                <Value name="date"/>
+                                <Value name="date-time"/>
+                                <Value name="email" property="valueFormatUnbounded"/>
+                                <Value name="uuid"/>
+                                <Value name="Undefined" property="valueFormatNone, valueFormatUnbounded"/>
+                            </Var>
+                            <Var name="minLength" when="valueFormatUnbounded">
+                                <Value name="Integer"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="maxLength" when="valueFormatUnbounded">
+                                <Value name="Integer"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                            <Var name="pattern" when="valueFormatNone">
+                                <Value name="String"/>
+                                <Value name="Undefined"/>
+                            </Var>
+                        </VarSet>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>
