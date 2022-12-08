@@ -116,6 +116,14 @@ public class VarSchemaValuesTest extends ResolverTest
           SchemaBuilder.with( schema)
           .minItems( 1)
           .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
         .build()
       };
 
@@ -184,6 +192,8 @@ public class VarSchemaValuesTest extends ResolverTest
       .items(
         SchemaBuilder.type( "integer")
         .format( "int32")
+        .minimum( -1)
+        .maximum( 1)
         .build())
       .build();
         
@@ -216,6 +226,14 @@ public class VarSchemaValuesTest extends ResolverTest
           .minItems( 11)
           .maxItems( null)
           .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
         .build()
       };
 
@@ -234,8 +252,8 @@ public class VarSchemaValuesTest extends ResolverTest
       .maxItems( 1)
       .uniqueItems( true)
       .items(
-        SchemaBuilder.type( "integer")
-        .format( "int32")
+        SchemaBuilder.type( "number")
+        .multipleOf( "0.5")
         .build())
       .build();
         
@@ -266,6 +284,14 @@ public class VarSchemaValuesTest extends ResolverTest
           SchemaBuilder.with( schema)
           .minItems( 2)
           .maxItems( null)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
           .build())
         .build()
       };

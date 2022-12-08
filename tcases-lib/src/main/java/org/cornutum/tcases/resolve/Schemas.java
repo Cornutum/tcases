@@ -7,8 +7,10 @@
 
 package org.cornutum.tcases.resolve;
 
+import org.cornutum.tcases.resolve.DataValue.Type;
 import org.cornutum.tcases.util.ContextHandler;
 import org.cornutum.tcases.util.ExecutionNotifier;
+import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 
 import org.cornutum.regexpgen.RegExpGen;
@@ -17,6 +19,7 @@ import static org.cornutum.regexpgen.Bounds.bounded;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -31,6 +34,48 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
   public Schemas( ExecutionNotifier<?> context)
     {
     super( context);
+    }
+
+  /**
+   * Returns a schena that describes values that do not belong to the values described by the given schema.
+   */
+  public static Schema not( Schema schema)
+    {
+    Type schemaType = schema.getType();
+
+    Type[] otherTypes =
+      Arrays.stream( Type.not( schemaType))
+      .filter( type -> !type.isComposite())
+      .filter( type -> !(schemaType == NUMBER && type == INTEGER))
+      .toArray( Type[]::new);
+
+    Type otherType = otherTypes[ Math.abs( schema.propertyHashCode()) % otherTypes.length];
+    SchemaBuilder notSchema = SchemaBuilder.type( otherType);
+
+    switch( otherType)
+      {
+      case INTEGER:
+        {
+        notSchema.minimum( -1024).maximum( 1024);
+        break;
+        }
+      case NUMBER:
+        {
+        notSchema.minimum( "-1024.00").maximum( "1024.00");
+        break;
+        }
+      case STRING:
+        {
+        notSchema.minLength( 0).maxLength( 16);
+        break;
+        }
+      default:
+        {
+        break;
+        }
+      }
+
+    return notSchema.build();
     }
 
   /**

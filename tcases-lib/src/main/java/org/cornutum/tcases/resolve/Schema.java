@@ -526,6 +526,30 @@ public class Schema
       ^ Objects.hashCode( getItems())
       ;
     }
+
+  /**
+   * Returns a constant hash code value defined by the properties of this schema.
+   */
+  public int propertyHashCode()
+    {
+    return
+      String.valueOf( getType()).hashCode()
+      ^ String.valueOf( getConstant()).hashCode()
+      ^ String.valueOf( getFormat()).hashCode()
+      ^ String.valueOf( getMinimum()).hashCode()
+      ^ String.valueOf( getMaximum()).hashCode()
+      ^ String.valueOf( getExclusiveMinimum()).hashCode()
+      ^ String.valueOf( getExclusiveMaximum()).hashCode()
+      ^ String.valueOf( getMultipleOf()).hashCode()
+      ^ String.valueOf( getMinLength()).hashCode()
+      ^ String.valueOf( getMaxLength()).hashCode()
+      ^ String.valueOf( getPattern()).hashCode()
+      ^ String.valueOf( getMinItems()).hashCode()
+      ^ String.valueOf( getMaxItems()).hashCode()
+      ^ String.valueOf( getUniqueItems()).hashCode()
+      ^ String.valueOf( getItems()).hashCode()
+      ;
+    }
   
   private Type type_;
   private DataValue<?> constant_;

@@ -286,6 +286,18 @@ public class TestCaseSchemaResolver extends TestCaseResolver
           .build())
         .build());
       }
+
+    Optional.ofNullable( schema.getItems())
+      .ifPresent( items -> {
+        values.add(
+          VarValueDefBuilder.with( "wrongItems")
+          .type( FAILURE)
+          .schema(
+            SchemaBuilder.with( schema)
+            .items( Schemas.not( items))
+            .build())
+          .build());
+        });
     }
 
   /**
