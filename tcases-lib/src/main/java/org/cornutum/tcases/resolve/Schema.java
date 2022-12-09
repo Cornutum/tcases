@@ -177,7 +177,7 @@ public class Schema
     {
     if( minimum != null)
       {
-      setType( assertRequiredType( "minimum", NUMBER, INTEGER));
+      setType( assertRequiredNumber( "minimum", minimum));
       }
     minimum_ = minimum;
     }
@@ -197,7 +197,7 @@ public class Schema
     {
     if( maximum != null)
       {
-      setType( assertRequiredType( "maximum", NUMBER, INTEGER));
+      setType( assertRequiredNumber( "maximum", maximum));
       }
     maximum_ = maximum;
     }
@@ -217,7 +217,7 @@ public class Schema
     {
     if( exclusiveMinimum != null)
       {
-      setType( assertRequiredType( "exclusiveMinimum", NUMBER, INTEGER));
+      setType( assertRequiredNumber( "exclusiveMinimum", exclusiveMinimum));
       }
     exclusiveMinimum_ = exclusiveMinimum;
     }
@@ -237,7 +237,7 @@ public class Schema
     {
     if( exclusiveMaximum != null)
       {
-      setType( assertRequiredType( "exclusiveMaximum", NUMBER, INTEGER));
+      setType( assertRequiredNumber( "exclusiveMaximum", exclusiveMaximum));
       }
     exclusiveMaximum_ = exclusiveMaximum;
     }
@@ -257,7 +257,7 @@ public class Schema
     {
     if( multipleOf != null)
       {
-      setType( assertRequiredType( "multipleOf", NUMBER, INTEGER));
+      setType( assertRequiredNumber( "multipleOf", multipleOf));
       }
     multipleOf_ = multipleOf;
     }
@@ -436,6 +436,25 @@ public class Schema
     return
       thisType == NULL && requiredTypes.length > 0
       ? requiredTypes[0]
+      : thisType;
+    }
+
+  /**
+   * Reports a failure if this schema does not have the numeric type required for the given property value.
+   */
+  private Type assertRequiredNumber( String property, BigDecimal number)
+    {
+    assertRequiredType( property, NUMBER, INTEGER);
+
+    Type thisType = getType();
+    if( thisType == INTEGER && number.scale() != 0)
+      {
+      throw new IllegalArgumentException( String.format( "Property=%s must be an integer for schema type=integer", property));
+      }
+    
+    return
+      thisType == NULL
+      ? NUMBER
       : thisType;
     }
 
