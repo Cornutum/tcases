@@ -368,8 +368,14 @@ public final class SystemInputJson
         // Get the schema for this variable
         var.setSchema( getSchema( json));
 
+        Optional<String> defaultNumericType =
+          Optional.ofNullable( var.getSchema())
+          .map( Schema::getType)
+          .filter( DataValue.Type::isNumeric)
+          .map( type -> String.valueOf( type).toLowerCase());
+
         Optional.ofNullable( json.getJsonObject( VALUES_KEY))
-          .ifPresent( values -> getValueDefs( values).forEach( valueDef -> var.addValue( valueDef)));
+          .ifPresent( values -> getValueDefs( defaultNumericType, values).forEach( valueDef -> var.addValue( valueDef)));
 
         if( var.getValues().hasNext() || var.getSchema() == null)
           {
@@ -394,17 +400,17 @@ public final class SystemInputJson
   /**
    * Returns the value definitions represented by the given JSON object.
    */
-  private static Stream<VarValueDef> getValueDefs( JsonObject json)
+  private static Stream<VarValueDef> getValueDefs( Optional<String> defaultNumericType, JsonObject json)
     {
     return
       json.keySet().stream()
-      .map( valueName -> asValueDef( valueName, json.getJsonObject( valueName)));
+      .map( valueName -> asValueDef( defaultNumericType, valueName, json.getJsonObject( valueName)));
     }
 
   /**
    * Returns the value definition represented by the given JSON object.
    */
-  private static VarValueDef asValueDef( String valueName, JsonObject json)
+  private static VarValueDef asValueDef( Optional<String> defaultNumericType, String valueName, JsonObject json)
     {
     try
       {
@@ -437,7 +443,7 @@ public final class SystemInputJson
         .ifPresent( properties -> valueDef.addProperties( properties)); 
 
       // Get the schema for this variable
-      valueDef.setSchema( getSchema( json));
+      valueDef.setSchema( getSchema( defaultNumericType, json));
 
       return valueDef;
       }
@@ -679,8 +685,16 @@ public final class SystemInputJson
    */
   private static Schema getSchema( JsonObject json)
     {
+    return getSchema( Optional.empty(), json);
+    }
+
+  /**
+   * Returns the schema represented by the given JSON object.
+   */
+  private static Schema getSchema( Optional<String> defaultNumericType, JsonObject json)
+    {
     return
-      getSchemaType( json)
+      getSchemaType( defaultNumericType, json)
       .map( type -> getSchema( type, json))
       .orElse( null);
     }
@@ -787,7 +801,7 @@ public final class SystemInputJson
   /**
    * Returns the type of the schema represented by the given JSON object.
    */
-  private static Optional<DataValue.Type> getSchemaType( JsonObject json)
+  private static Optional<DataValue.Type> getSchemaType( Optional<String> defaultNumericType, JsonObject json)
     {
     String declaredType = json.getString( TYPE_KEY, null);
 
@@ -807,7 +821,7 @@ public final class SystemInputJson
       String impliedType = impliedTypes.get(0)[0];
       if( declaredType == null)
         {
-        schemaType = impliedType;
+        schemaType = defaultNumericType.filter( type -> "number".equals( impliedType)).orElse( impliedType);
         }
       else if( impliedType.equals( declaredType) || (impliedType.equals( "number") && declaredType.equals( "integer")))
         {

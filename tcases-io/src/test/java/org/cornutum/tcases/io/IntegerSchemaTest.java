@@ -933,4 +933,33 @@ public class IntegerSchemaTest extends SystemInputJsonTest
     {
     assertDefinitionError( "schema-integer-20.json", "Schema has type=integer but defines a 'const' of type=number");
     }
+
+  
+  @Test
+  public void whenValueTypeDefault()
+    {
+    expectSystemInputJson(
+      "schema-integer-default.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "integer")
+        .vars(
+          VarDefBuilder.with( "integerVar")
+          .schema(
+            SchemaBuilder.type( "integer")
+            .minimum( 100)
+            .exclusiveMinimum( 100)
+            .build())
+          .values(
+            VarValueDefBuilder.with( "integerValue")
+            .schema(
+              SchemaBuilder.type( "integer")
+              .multipleOf( 3)
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
+    }
   }

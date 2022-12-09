@@ -31,6 +31,14 @@ public class DataValue<T>
       }
 
     /**
+     * Returns true if this type designates a numeric value
+     */
+    public boolean isNumeric()
+      {
+      return this == INTEGER || this == NUMBER;
+      }
+
+    /**
      * Returns the set containing only the specified type.
      */
     public static Type[] only( Type type)

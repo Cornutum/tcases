@@ -297,4 +297,28 @@ public class NumberSchemaTest extends SystemInputJsonTest
     assertDefinitionError( "schema-number-6.json", "Schema has type=number but defines a 'const' of type=string");
     }
 
+  @Test
+  public void whenValueTypeDefault()
+    {
+    expectSystemInputJson(
+      "schema-number-default.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "number")
+        .vars(
+          VarDefBuilder.with( "numberVar")
+          .schema( SchemaBuilder.type( "number").build())
+          .values(
+            VarValueDefBuilder.with( "numberValue")
+            .schema(
+              SchemaBuilder.type( "number")
+              .exclusiveMaximum( 4)
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
+    }
+
   }
