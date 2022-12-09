@@ -11,9 +11,10 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.resolve.*;
+import org.cornutum.tcases.resolve.DataValue.Type;
 import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.ObjectUtils;
-import static org.cornutum.tcases.VarValueDef.Type.*;
+import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
@@ -21,10 +22,10 @@ import org.apache.commons.collections4.IteratorUtils;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -132,11 +133,11 @@ public final class SystemInputJson
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
-    if( value.getType().equals( FAILURE))
+    if( value.getType().equals( VarValueDef.Type.FAILURE))
       {
       builder.add( FAILURE_KEY, true);
       }
-    else if( value.getType().equals( ONCE))
+    else if( value.getType().equals( VarValueDef.Type.ONCE))
       {
       builder.add( ONCE_KEY, true);
       }
@@ -159,7 +160,7 @@ public final class SystemInputJson
   private static JsonObjectBuilder addSchema( JsonObjectBuilder builder, Schema schema)
     {
     Optional.of( schema.getType())
-      .filter( type -> !type.equals( DataValue.Type.NULL))
+      .filter( type -> type != NULL)
       .ifPresent( type -> builder.add( TYPE_KEY, type.toString().toLowerCase()));
 
     Optional.ofNullable( schema.getConstant()).ifPresent( constant -> builder.add( CONST_KEY, DataValueJson.toJson( constant)));
@@ -368,11 +369,10 @@ public final class SystemInputJson
         // Get the schema for this variable
         var.setSchema( getSchema( json));
 
-        Optional<String> defaultNumericType =
+        Optional<Type> defaultNumericType =
           Optional.ofNullable( var.getSchema())
           .map( Schema::getType)
-          .filter( DataValue.Type::isNumeric)
-          .map( type -> String.valueOf( type).toLowerCase());
+          .filter( Type::isNumeric);
 
         Optional.ofNullable( json.getJsonObject( VALUES_KEY))
           .ifPresent( values -> getValueDefs( defaultNumericType, values).forEach( valueDef -> var.addValue( valueDef)));
@@ -400,7 +400,7 @@ public final class SystemInputJson
   /**
    * Returns the value definitions represented by the given JSON object.
    */
-  private static Stream<VarValueDef> getValueDefs( Optional<String> defaultNumericType, JsonObject json)
+  private static Stream<VarValueDef> getValueDefs( Optional<Type> defaultNumericType, JsonObject json)
     {
     return
       json.keySet().stream()
@@ -410,7 +410,7 @@ public final class SystemInputJson
   /**
    * Returns the value definition represented by the given JSON object.
    */
-  private static VarValueDef asValueDef( Optional<String> defaultNumericType, String valueName, JsonObject json)
+  private static VarValueDef asValueDef( Optional<Type> defaultNumericType, String valueName, JsonObject json)
     {
     try
       {
@@ -691,7 +691,7 @@ public final class SystemInputJson
   /**
    * Returns the schema represented by the given JSON object.
    */
-  private static Schema getSchema( Optional<String> defaultNumericType, JsonObject json)
+  private static Schema getSchema( Optional<Type> defaultNumericType, JsonObject json)
     {
     return
       getSchemaType( defaultNumericType, json)
@@ -702,7 +702,7 @@ public final class SystemInputJson
   /**
    * Returns the schema represented by the given JSON object.
    */
-  private static Schema getSchema( DataValue.Type type, JsonObject json)
+  private static Schema getSchema( Type type, JsonObject json)
     {
     Schema schema = new Schema( type);
 
@@ -801,29 +801,38 @@ public final class SystemInputJson
   /**
    * Returns the type of the schema represented by the given JSON object.
    */
-  private static Optional<DataValue.Type> getSchemaType( Optional<String> defaultNumericType, JsonObject json)
+  private static Optional<Type> getSchemaType( Optional<Type> defaultNumericType, JsonObject json)
     {
-    String declaredType = json.getString( TYPE_KEY, null);
+    Type declaredType =
+      Optional.ofNullable( json.getString( TYPE_KEY, null))
+      .map( type -> Type.valueOf( type.toUpperCase()))
+      .orElse( null);
 
-    List<String[]> impliedTypes = 
-      Stream.of(
-        getImpliedType( "array", json),
-        getImpliedType( "number", json),
-        getImpliedType( "string", json))
-      .filter( Objects::nonNull)
-      .collect( toList());
+    Map<Type,String> impliedTypes =
+      schemaTypeKeys_.keySet().stream()
+      .filter( type -> type != NULL)
+      .collect(
+        HashMap::new,
+
+        (implied,type) -> {
+          Optional.ofNullable( schemaTypeKeys_.get( type))
+          .flatMap( keys -> keys.stream().filter( key -> json.containsKey( key)).findFirst())
+          .ifPresent( key -> implied.put( type, key));
+        },
+
+        Map::putAll);
 
     // Do schema keywords imply a specific type?
-    String schemaType;
+    Type schemaType;
     if( impliedTypes.size() == 1)
       {
       // Yes, reconcile implied type with declared type.
-      String impliedType = impliedTypes.get(0)[0];
+      Type impliedType = impliedTypes.keySet().iterator().next();
       if( declaredType == null)
         {
-        schemaType = defaultNumericType.filter( type -> "number".equals( impliedType)).orElse( impliedType);
+        schemaType = defaultNumericType.filter( type -> impliedType.isNumeric()).orElse( impliedType);
         }
-      else if( impliedType.equals( declaredType) || (impliedType.equals( "number") && declaredType.equals( "integer")))
+      else if( impliedType == declaredType || (impliedType.isNumeric() && declaredType == INTEGER))
         {
         schemaType = declaredType;
         }
@@ -833,9 +842,9 @@ public final class SystemInputJson
           new IllegalStateException(
             String.format(
               "Schema declares type=%s but defines property=%s which implies type=%s",
-              declaredType,
-              impliedTypes.get(0)[1],
-              impliedType));
+              String.valueOf( declaredType).toLowerCase(),
+              impliedTypes.get( impliedType),
+              String.valueOf( impliedType).toLowerCase()));
         }
       }
 
@@ -847,8 +856,8 @@ public final class SystemInputJson
         new IllegalStateException(
           String.format(
             "Ambiguous schema type -- defines properties=%s which implies types=%s",
-            impliedTypes.stream().map( typeProperty -> typeProperty[1]).collect( joining( ", ", "[", "]")),
-            impliedTypes.stream().map( typeProperty -> typeProperty[0]).collect( joining( ", ", "[", "]"))));
+            impliedTypes.keySet().stream().map( type -> impliedTypes.get( type)).collect( joining( ", ", "[", "]")),
+            impliedTypes.keySet().stream().map( type -> String.valueOf( type).toLowerCase()).collect( joining( ", ", "[", "]"))));
       }
 
     else
@@ -858,7 +867,7 @@ public final class SystemInputJson
       }
 
     // Does the schema define a "format" value?
-    String formatType = getFormatType( json);
+    Type formatType = getFormatType( json);
     if( formatType != null)
       {
       // Yes, reconcile format type with schema type.
@@ -866,24 +875,24 @@ public final class SystemInputJson
         {
         schemaType = formatType;
         }
-      else if( declaredType == null && schemaType.equals( "number") && formatType.equals( "integer"))
+      else if( declaredType == null && schemaType.isNumeric() && formatType == INTEGER)
         {
         schemaType = formatType;
         }
-      else if( !formatType.equals( schemaType))
+      else if( formatType != schemaType)
         {
         throw
           new IllegalStateException(
             String.format(
               "Schema has type=%s but defines a '%s' of type=%s",
-              schemaType,
+              String.valueOf( schemaType).toLowerCase(),
               FORMAT_KEY,
-              formatType));
+              String.valueOf( formatType).toLowerCase()));
         }
       }
 
     // Does the schema define a "const" value?
-    String constType = getConstType( json);
+    Type constType = getConstType( json);
     if( constType != null)
       {
       // Yes, reconcile const type with schema type.
@@ -891,61 +900,30 @@ public final class SystemInputJson
         {
         schemaType = constType;
         }
-      else if( !( constType.equals( schemaType) || constType.equals( "null") || (constType.equals( "integer") && schemaType.equals( "number"))))
+      else if( !( constType == schemaType || constType == NULL || (constType == INTEGER && schemaType == NUMBER)))
         {
         throw
           new IllegalStateException(
             String.format(
               "Schema has type=%s but defines a '%s' of type=%s",
-              schemaType,
+              String.valueOf( schemaType).toLowerCase(),
               CONST_KEY,
-              constType));
+              String.valueOf( constType).toLowerCase()));
         }
       }
     
-    return
-      Optional.ofNullable( schemaType)
-      .map( type -> DataValue.Type.valueOf( type.toUpperCase()));
-    }
-
-  /**
-   * If the given JSON object defines a value for any of the properties associated with the given type, returns an array of the form <CODE>[type,property]</CODE>.
-   * Otherwise, returns null.
-   */
-  private static String[] getImpliedType( String type, JsonObject json)
-    {
-    return
-      Optional.ofNullable( schemaKeys_.get( type))
-      .flatMap( properties -> properties.stream().filter( property -> json.containsKey( property)).findFirst())
-      .map( property -> new String[]{ type, property})
-      .orElse( null);
+    return Optional.ofNullable( schemaType);
     }
 
   /**
    * If the given JSON object defines a format that implied a specific data type, returns the type.
    * Otherwise, returns null.
    */
-  private static String getFormatType( JsonObject json)
-    {
-    return
-      Stream.of(
-        getFormatType( "integer", json, "int32", "int64"),
-        getFormatType( "string", json, "date-time", "date", "email", "uuid"))
-      .filter( Objects::nonNull)
-      .findFirst()
-      .orElse( null);      
-    }
-
-  /**
-   * If the given JSON object defines one of the given format values, returns the given type.
-   * Otherwise, returns null.
-   */
-  private static String getFormatType( String type, JsonObject json, String... formats)
+  private static Type getFormatType( JsonObject json)
     {
     return
       Optional.ofNullable( json.getString( FORMAT_KEY, null))
-      .filter( format -> Arrays.stream( formats).anyMatch( f -> f.equals( format)))
-      .map( format -> type)
+      .flatMap( format -> schemaTypeFormats_.keySet().stream().filter( type -> schemaTypeFormats_.get( type).contains( format)).findFirst())
       .orElse( null);
     }
 
@@ -953,11 +931,11 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the "const" property, returns the type of the value.
    * Otherwise, returns null.
    */
-  private static String getConstType( JsonObject json)
+  private static Type getConstType( JsonObject json)
     {
     return
-      Optional.ofNullable( asDataValue( json, CONST_KEY, DataValue.Type.NULL, json.getString( FORMAT_KEY, null)))
-      .map( value -> value.getType().toString().toLowerCase())
+      Optional.ofNullable( asDataValue( json, CONST_KEY, NULL, json.getString( FORMAT_KEY, null)))
+      .map( DataValue::getType)
       .orElse( null);
     }
 
@@ -965,7 +943,7 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the given key, returns the value.
    * Otherwise, returns null.
    */
-  private static DataValue<?> asDataValue( JsonObject json, String key, DataValue.Type expectedType, String format)
+  private static DataValue<?> asDataValue( JsonObject json, String key, Type expectedType, String format)
     {
     return
       Optional.ofNullable( json.get( key))
@@ -974,19 +952,19 @@ public final class SystemInputJson
           {
           DataValue<?> dataValue = asDataValue( value, format);
         
-          if( !(expectedType == DataValue.Type.NULL
+          if( !(expectedType == NULL
                 ||
                 expectedType == dataValue.getType()
                 ||
-                dataValue.getType() == DataValue.Type.NULL
+                dataValue.getType() == NULL
                 ||
-                (expectedType == DataValue.Type.NUMBER && dataValue.getType() == DataValue.Type.INTEGER)))
+                (expectedType == NUMBER && dataValue.getType() == INTEGER)))
             {
             throw
               new SystemInputException(
                 String.format(
-                  "Expected value of type %s, but found '%s'",
-                  expectedType,
+                  "Expected a value of type=%s, but found '%s'",
+                  String.valueOf( expectedType).toLowerCase(),
                   value));
             }
 
@@ -1116,7 +1094,7 @@ public final class SystemInputJson
   private static Integer asInteger( JsonObject json, String key)
     {
     return
-      Optional.ofNullable( asDataValue( json, key, DataValue.Type.INTEGER, "int32"))
+      Optional.ofNullable( asDataValue( json, key, INTEGER, "int32"))
       .map( value -> ((IntegerValue) value).getValue())
       .orElse( null);
     }
@@ -1128,7 +1106,7 @@ public final class SystemInputJson
   private static Boolean asBoolean( JsonObject json, String key)
     {
     return
-      Optional.ofNullable( asDataValue( json, key, DataValue.Type.BOOLEAN, null))
+      Optional.ofNullable( asDataValue( json, key, BOOLEAN, null))
       .map( value -> ((BooleanValue) value).getValue())
       .orElse( null);
     }
@@ -1151,7 +1129,7 @@ public final class SystemInputJson
         .map( schemaDef -> {
 
           schemaDef.keySet().stream()
-            .filter( k -> schemaKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
+            .filter( k -> schemaTypeKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
             .findFirst()
             .ifPresent( k -> {
               throw new SystemInputException( String.format( "Unknown schema key '%s'", k));
@@ -1173,7 +1151,7 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the given key, returns the value as a BigDecimal.
    * Otherwise, returns null.
    */
-  private static BigDecimal asBigDecimal( JsonObject json, String key, DataValue.Type expectedType, String format)
+  private static BigDecimal asBigDecimal( JsonObject json, String key, Type expectedType, String format)
     {
     try
       {
@@ -1543,10 +1521,17 @@ public final class SystemInputJson
   private static final String TYPE_KEY = "type";
   private static final String UNIQUE_ITEMS_KEY = "uniqueItems";
 
-  private static final Map<String,List<String>> schemaKeys_ =
-    MapBuilder.of( "", Arrays.asList( TYPE_KEY, CONST_KEY, FORMAT_KEY))
-    .put( "array", Arrays.asList( ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY))
-    .put( "number", Arrays.asList( MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY))
-    .put( "string", Arrays.asList( MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))
+  private static final Map<Type,List<String>> schemaTypeKeys_ =
+    MapBuilder
+    .of( NULL, Arrays.asList( TYPE_KEY, CONST_KEY, FORMAT_KEY))
+    .put( ARRAY, Arrays.asList( ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY))
+    .put( NUMBER, Arrays.asList( MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY))
+    .put( STRING, Arrays.asList( MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))
+    .build();
+
+  private static final Map<Type,List<String>> schemaTypeFormats_ =
+    MapBuilder
+    .of( INTEGER, Arrays.asList( "int32", "int64"))
+    .put( STRING, Arrays.asList( "date-time", "date", "email", "uuid"))
     .build();
 }

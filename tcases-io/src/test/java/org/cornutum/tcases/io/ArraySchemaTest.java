@@ -206,7 +206,7 @@ public class ArraySchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_4()
     {
-    assertDefinitionError( "schema-array-4.json", "Expected value of type INTEGER, but found '3.0'");
+    assertDefinitionError( "schema-array-4.json", "Expected a value of type=integer, but found '3.0'");
     }
 
   /**
