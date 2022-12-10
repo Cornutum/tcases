@@ -11,6 +11,7 @@ import org.cornutum.tcases.SystemInputDef;
 import org.cornutum.tcases.util.MapBuilder;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -49,6 +50,7 @@ public class SystemInputJsonWriter implements Closeable
    */
   public SystemInputJsonWriter( Writer writer)
     {
+    converter_ = new SystemInputJson( new SystemInputContext( LoggerFactory.getLogger( SystemInputJsonWriter.class)));
     setWriter( writer);
     }
 
@@ -60,7 +62,7 @@ public class SystemInputJsonWriter implements Closeable
     JsonWriterFactory writerFactory = Json.createWriterFactory( MapBuilder.of( PRETTY_PRINTING, true).build());
     JsonWriter jsonWriter = writerFactory.createWriter( getWriter());
 
-    jsonWriter.write( SystemInputJson.toJson( systemInput));
+    jsonWriter.write( getConverter().toJson( systemInput));
     }
 
   /**
@@ -84,6 +86,14 @@ public class SystemInputJsonWriter implements Closeable
   public void close()
     {
     IOUtils.closeQuietly( getWriter(), null);
+    }
+
+  /**
+   * Returns the JSON converter for this writer.
+   */
+  private SystemInputJson getConverter()
+    {
+    return converter_;
     }
 
   /**
@@ -123,5 +133,6 @@ public class SystemInputJsonWriter implements Closeable
       }
     }
 
+  private final SystemInputJson converter_;
   private Writer writer_;  
   }

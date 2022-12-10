@@ -12,6 +12,7 @@ import org.cornutum.tcases.DefUtils;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.resolve.*;
 import org.cornutum.tcases.resolve.DataValue.Type;
+import org.cornutum.tcases.util.ContextHandler;
 import org.cornutum.tcases.util.MapBuilder;
 import org.cornutum.tcases.util.ObjectUtils;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
@@ -46,17 +47,17 @@ import javax.json.JsonValue;
 /**
  * Converts between a {@link SystemInputDef} and its corresponding {@link JsonObject}.
  */
-public final class SystemInputJson
+public class SystemInputJson extends ContextHandler<SystemInputContext>
   {
-  private SystemInputJson()
+  public SystemInputJson( SystemInputContext context)
     {
-    // Static methods only
+    super( context);
     }
 
   /**
    * Returns the JSON object that represents the given system input definition.
    */
-  public static JsonObject toJson( SystemInputDef systemInput)
+  public JsonObject toJson( SystemInputDef systemInput)
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
     builder.add( SYSTEM_KEY, systemInput.getName());
@@ -71,7 +72,7 @@ public final class SystemInputJson
   /**
    * Returns the JSON object that represents the given function input definition.
    */
-  private static JsonStructure toJson( FunctionInputDef functionInput)
+  private JsonStructure toJson( FunctionInputDef functionInput)
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
@@ -85,7 +86,7 @@ public final class SystemInputJson
   /**
    * Returns the JSON object that represents the function variables of the given type.
    */
-  private static JsonStructure toJson( FunctionInputDef functionInput, String varType)
+  private JsonStructure toJson( FunctionInputDef functionInput, String varType)
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
     toStream( functionInput.getVarDefs())
@@ -99,7 +100,7 @@ public final class SystemInputJson
   /**
    * Returns the JSON object that represents the given variable definition.
    */
-  private static JsonStructure toJson( IVarDef varDef)
+  private JsonStructure toJson( IVarDef varDef)
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
@@ -129,7 +130,7 @@ public final class SystemInputJson
   /**
    * Returns the JSON object that represents the given value definition.
    */
-  private static JsonStructure toJson( VarValueDef value)
+  private JsonStructure toJson( VarValueDef value)
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
@@ -157,7 +158,7 @@ public final class SystemInputJson
   /**
    * Add the given schema definition to the given JsonObjectBuilder.
    */
-  private static JsonObjectBuilder addSchema( JsonObjectBuilder builder, Schema schema)
+  private JsonObjectBuilder addSchema( JsonObjectBuilder builder, Schema schema)
     {
     Optional.of( schema.getType())
       .filter( type -> type != NULL)
@@ -184,7 +185,7 @@ public final class SystemInputJson
   /**
    * Returns the JSON object that represents the given schema.
    */
-  private static JsonObject toJson( Schema schema)
+  private JsonObject toJson( Schema schema)
     {
     return addSchema( Json.createObjectBuilder(), schema).build();
     }
@@ -192,7 +193,7 @@ public final class SystemInputJson
   /**
    * Add any annotatations from the given Annotated object to the given JsonObjectBuilder.
    */
-  private static JsonObjectBuilder addAnnotations( JsonObjectBuilder builder, IAnnotated annotated)
+  private JsonObjectBuilder addAnnotations( JsonObjectBuilder builder, IAnnotated annotated)
     {
     JsonObjectBuilder annotations = Json.createObjectBuilder();
     toStream( annotated.getAnnotations()).forEach( name -> annotations.add( name, annotated.getAnnotation( name)));
@@ -209,7 +210,7 @@ public final class SystemInputJson
   /**
    * Add any properties from the given value to the given JsonObjectBuilder.
    */
-  private static JsonObjectBuilder addProperties( JsonObjectBuilder builder, VarValueDef value)
+  private JsonObjectBuilder addProperties( JsonObjectBuilder builder, VarValueDef value)
     {
     JsonArrayBuilder properties = Json.createArrayBuilder();
     propertySeq( value.getProperties()).forEach( property -> properties.add( property));
@@ -224,85 +225,94 @@ public final class SystemInputJson
     }
 
   /**
+   * Returns an ordered sequence of property names.
+   */
+  private static Stream<String> propertySeq( Iterable<String> properties)
+    {
+    return propertySeq( properties.iterator());
+    }
+
+  /**
+   * Returns an ordered sequence of property names.
+   */
+  private static Stream<String> propertySeq( Iterator<String> properties)
+    {
+    return toStream( properties).sorted();
+    }
+
+  /**
    * Returns the SystemInputDef represented by the given JSON object.
    */
-  public static SystemInputDef asSystemInputDef( JsonObject json)
+  public SystemInputDef asSystemInputDef( JsonObject json)
     {
-    String systemName = json.getString( SYSTEM_KEY);
-    try
-      {
-      SystemInputDef systemInputDef = new SystemInputDef( validIdentifier( systemName));
+    String systemName =
+      Optional.ofNullable( json.getString( SYSTEM_KEY, null))
+      .orElseThrow( () -> new SystemInputException( "No system name defined"));
+
+    return
+      resultFor( systemName, () -> {
+        SystemInputDef systemInputDef = new SystemInputDef( validIdentifier( systemName));
       
-      // Get system annotations
-      Optional.ofNullable( json.getJsonObject( HAS_KEY))
-        .ifPresent( has -> has.keySet().stream().forEach( key -> systemInputDef.setAnnotation( key, has.getString( key))));
+        // Get system annotations
+        Optional.ofNullable( json.getJsonObject( HAS_KEY))
+          .ifPresent( has -> has.keySet().stream().forEach( key -> systemInputDef.setAnnotation( key, has.getString( key))));
 
-      // Get system functions
-      json.keySet().stream()
-        .filter( key -> !(key.equals( SYSTEM_KEY) || key.equals( HAS_KEY)))
-        .forEach( function -> systemInputDef.addFunctionInputDef( asFunctionInputDef( function, json.getJsonObject( function))));
+        // Get system functions
+        json.keySet().stream()
+          .filter( key -> !(key.equals( SYSTEM_KEY) || key.equals( HAS_KEY)))
+          .forEach( function -> systemInputDef.addFunctionInputDef( asFunctionInputDef( function, json.getJsonObject( function))));
 
-      return systemInputDef;
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining system=%s", systemName), e);
-      }
+        return systemInputDef;
+        });
     }
 
   /**
    * Returns the FunctionInputDef represented by the given JSON object.
    */
-  private static FunctionInputDef asFunctionInputDef( String functionName, JsonObject json)
+  private FunctionInputDef asFunctionInputDef( String functionName, JsonObject json)
     {
-    FunctionInputDef functionInputDef;
-
-    try
-      {
-      functionInputDef = new FunctionInputDef( validIdentifier( functionName));
+    return
+      resultFor( functionName, () -> {
+        FunctionInputDef functionInputDef = new FunctionInputDef( validIdentifier( functionName));
       
-      // Get function annotations
-      Optional.ofNullable( json.getJsonObject( HAS_KEY))
-        .ifPresent( has -> has.keySet().stream().forEach( key -> functionInputDef.setAnnotation( key, has.getString( key))));
+        // Get function annotations
+        Optional.ofNullable( json.getJsonObject( HAS_KEY))
+          .ifPresent( has -> has.keySet().stream().forEach( key -> functionInputDef.setAnnotation( key, has.getString( key))));
 
-      // Get function variables.
-      json.keySet().stream()
-        .filter( key -> !key.equals( HAS_KEY))
-        .forEach( varType -> getVarDefs( varType, json.getJsonObject( varType)).forEach( varDef -> functionInputDef.addVarDef( varDef)));
+        // Get function variables.
+        json.keySet().stream()
+          .filter( key -> !key.equals( HAS_KEY))
+          .forEach( varType -> {
+            resultFor( varType, () -> getVarDefs( varType, json.getJsonObject( varType)))
+              .forEach( varDef -> functionInputDef.addVarDef( varDef));
+            });
 
-      if( functionInputDef.getVarTypes().length == 0)
-        {
-        throw new SystemInputException( String.format( "No variables defined for function=%s", functionName));
-        }
+        if( functionInputDef.getVarTypes().length == 0)
+          {
+          throw new IllegalStateException( String.format( "No variables defined for function=%s", functionName));
+          }
 
-      SystemInputs.getPropertiesUndefined( functionInputDef)
-        .entrySet().stream()
-        .findFirst()
-        .ifPresent( undefined -> {
-          String property = undefined.getKey();
-          IConditional ref = undefined.getValue().stream().findFirst().orElse( null);
-          throw new SystemInputException
-            ( String.format
-              ( "Property=%s is undefined, but referenced by %s",
-                property,
-                SystemInputs.getReferenceName( ref)));
-          });
+        SystemInputs.getPropertiesUndefined( functionInputDef)
+          .entrySet().stream()
+          .findFirst()
+          .ifPresent( undefined -> {
+            String property = undefined.getKey();
+            IConditional ref = undefined.getValue().stream().findFirst().orElse( null);
+            throw new IllegalStateException
+              ( String.format
+                ( "Property=%s is undefined, but referenced by %s",
+                  property,
+                  SystemInputs.getReferenceName( ref)));
+            });
 
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining function=%s", functionName), e);
-      }
-    
-    return functionInputDef;
+        return functionInputDef;
+        });
     }
 
   /**
    * Returns the variable definitions represented by the given JSON object.
    */
-  private static Stream<IVarDef> getVarDefs( String varType, JsonObject json)
-    {
-    try
+  private Stream<IVarDef> getVarDefs( String varType, JsonObject json)
       {
       // Get annotations for this group of variables
       Annotated groupAnnotations = new Annotated(){};
@@ -315,92 +325,83 @@ public final class SystemInputJson
         .filter( key -> !key.equals( HAS_KEY))
         .map( varName -> asVarDef( varName, varType, groupAnnotations, json.getJsonObject( varName)));
       }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining variables of type=%s", varType), e);
-      }
-    }
 
   /**
    * Returns the variable definition represented by the given JSON object.
    */
-  private static IVarDef asVarDef( String varName, String varType, Annotated groupAnnotations, JsonObject json)
+  private IVarDef asVarDef( String varName, String varType, Annotated groupAnnotations, JsonObject json)
     {
-    try
-      {
-      validIdentifier( varName);
+    return 
+      resultFor( varName, () -> {
+        validIdentifier( varName);
 
-      AbstractVarDef varDef =
-        json.containsKey( MEMBERS_KEY)
-        ? new VarSet( varName)
-        : new VarDef( varName);
+        AbstractVarDef  varDef =
+          json.containsKey( MEMBERS_KEY)
+          ? new VarSet( varName)
+          : new VarDef( varName);
 
-      varDef.setType( varType);
+        varDef.setType( varType);
     
-      // Get annotations for this variable
-      Optional.ofNullable( json.getJsonObject( HAS_KEY))
-        .ifPresent( has -> has.keySet().stream().forEach( key -> varDef.setAnnotation( key, has.getString( key))));
+        // Get annotations for this variable
+        Optional.ofNullable( json.getJsonObject( HAS_KEY))
+          .ifPresent( has -> has.keySet().stream().forEach( key -> varDef.setAnnotation( key, has.getString( key))));
     
-      // Get the condition for this variable
-      Optional.ofNullable( json.getJsonObject( WHEN_KEY))
-        .ifPresent( object -> varDef.setCondition( asValidCondition( object)));
+        // Get the condition for this variable
+        Optional.ofNullable( json.getJsonObject( WHEN_KEY))
+          .ifPresent( object -> varDef.setCondition( asValidCondition( object)));
 
-      if( json.containsKey( MEMBERS_KEY))
-        {
-        VarSet varSet = (VarSet) varDef;
-
-        if( getSchema( json) != null)
+        if( json.containsKey( MEMBERS_KEY))
           {
-          throw new SystemInputException( "A schema cannot be defined for a variable set");
-          }
-        
-        getVarDefs( varType, json.getJsonObject( MEMBERS_KEY))
-          .forEach( member -> varSet.addMember( member));
+          VarSet varSet = (VarSet) varDef;
 
-        if( !varSet.getMembers().hasNext())
-          {
-          throw new SystemInputException( String.format( "No members defined for VarSet=%s", varName));
-          }
-        }
-      else
-        {
-        VarDef var = (VarDef) varDef;
-
-        // Get the schema for this variable
-        var.setSchema( getSchema( json));
-
-        Optional<Type> defaultNumericType =
-          Optional.ofNullable( var.getSchema())
-          .map( Schema::getType)
-          .filter( Type::isNumeric);
-
-        Optional.ofNullable( json.getJsonObject( VALUES_KEY))
-          .ifPresent( values -> getValueDefs( defaultNumericType, values).forEach( valueDef -> var.addValue( valueDef)));
-
-        if( var.getValues().hasNext() || var.getSchema() == null)
-          {
-          if( !var.getValidValues().hasNext())
+          if( getSchema( json) != null)
             {
-            throw new SystemInputException( String.format( "No valid values defined for Var=%s", varName));
+            throw new IllegalStateException( "A schema cannot be defined for a variable set");
+            }
+        
+          getVarDefs( varType, json.getJsonObject( MEMBERS_KEY))
+            .forEach( member -> varSet.addMember( member));
+
+          if( !varSet.getMembers().hasNext())
+            {
+            throw new IllegalStateException( String.format( "No members defined for variable=%s", varName));
             }
           }
-        }
+        else
+          {
+          VarDef var = (VarDef) varDef;
 
-      // Add any group annotations
-      varDef.addAnnotations( groupAnnotations);
+          // Get the schema for this variable
+          var.setSchema( getSchema( json));
 
-      return varDef;
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining variable=%s", varName), e);
-      }
+          Optional<Type> defaultNumericType =
+            Optional.ofNullable( var.getSchema())
+            .map( Schema::getType)
+            .filter( Type::isNumeric);
+
+          Optional.ofNullable( json.getJsonObject( VALUES_KEY))
+            .ifPresent( values -> getValueDefs( defaultNumericType, values).forEach( valueDef -> var.addValue( valueDef)));
+
+          if( var.getValues().hasNext() || var.getSchema() == null)
+            {
+            if( !var.getValidValues().hasNext())
+              {
+              throw new IllegalStateException( String.format( "No valid values defined for variable=%s", varName));
+              }
+            }
+          }
+
+        // Add any group annotations
+        varDef.addAnnotations( groupAnnotations); 
+
+        return varDef;
+        });
     }
 
   /**
    * Returns the value definitions represented by the given JSON object.
    */
-  private static Stream<VarValueDef> getValueDefs( Optional<Type> defaultNumericType, JsonObject json)
+  private Stream<VarValueDef> getValueDefs( Optional<Type> defaultNumericType, JsonObject json)
     {
     return
       json.keySet().stream()
@@ -410,83 +411,74 @@ public final class SystemInputJson
   /**
    * Returns the value definition represented by the given JSON object.
    */
-  private static VarValueDef asValueDef( Optional<Type> defaultNumericType, String valueName, JsonObject json)
+  private VarValueDef asValueDef( Optional<Type> defaultNumericType, String valueName, JsonObject json)
     {
-    try
-      {
-      VarValueDef valueDef = new VarValueDef( ObjectUtils.toObject( valueName));
+    return
+      resultFor( valueName, () -> {
+        VarValueDef valueDef = new VarValueDef( ObjectUtils.toObject( valueName));
 
-      // Get the type of this value
-      boolean failure = json.getBoolean( FAILURE_KEY, false);
-      boolean once = json.getBoolean( ONCE_KEY, false);
-      valueDef.setType
-        ( failure? VarValueDef.Type.FAILURE :
-          once? VarValueDef.Type.ONCE :
-          VarValueDef.Type.VALID);
+        // Get the type of this value
+        boolean failure = json.getBoolean( FAILURE_KEY, false);
+        boolean once = json.getBoolean( ONCE_KEY, false);
+        valueDef.setType
+          ( failure? VarValueDef.Type.FAILURE :
+            once? VarValueDef.Type.ONCE :
+            VarValueDef.Type.VALID);
 
-      if( failure && json.containsKey( PROPERTIES_KEY))
-        {
-        throw new SystemInputException( "Failure type values can't define properties");
-        }
+        if( failure && json.containsKey( PROPERTIES_KEY))
+          {
+          throw new IllegalStateException( "Failure type values can't define properties");
+          }
 
-      // Get annotations for this value
-      Optional.ofNullable( json.getJsonObject( HAS_KEY))
-        .ifPresent( has -> has.keySet().stream().forEach( key -> valueDef.setAnnotation( key, has.getString( key))));
+        // Get annotations for this value
+        Optional.ofNullable( json.getJsonObject( HAS_KEY))
+          .ifPresent( has -> has.keySet().stream().forEach( key -> valueDef.setAnnotation( key, has.getString( key))));
     
-      // Get the condition for this value
-      Optional.ofNullable( json.getJsonObject( WHEN_KEY))
-        .ifPresent( object -> valueDef.setCondition( asValidCondition( object)));
+        // Get the condition for this value
+        Optional.ofNullable( json.getJsonObject( WHEN_KEY))
+          .ifPresent( object -> valueDef.setCondition( asValidCondition( object)));
 
-      // Get properties for this value
-      Optional.ofNullable( json.getJsonArray( PROPERTIES_KEY))
-        .map( properties -> toIdentifiers( properties)) 
-        .ifPresent( properties -> valueDef.addProperties( properties)); 
+        // Get properties for this value
+        doFor( PROPERTIES_KEY, () -> {
+          Optional.ofNullable( json.getJsonArray( PROPERTIES_KEY))
+            .map( properties -> toIdentifiers( properties)) 
+            .ifPresent( properties -> valueDef.addProperties( properties));
+          });
 
-      // Get the schema for this variable
-      valueDef.setSchema( getSchema( defaultNumericType, json));
+        // Get the schema for this variable
+        valueDef.setSchema( getSchema( defaultNumericType, json)); 
 
-      return valueDef;
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining value=%s", valueName), e);
-      }
+        return valueDef;
+        });
     }
 
   /**
    * Returns the condition definition represented by the given JSON object.
    */
-  private static ICondition asValidCondition( JsonObject json)
+  private ICondition asValidCondition( JsonObject json)
     {
-    try
-      {
-      return asCondition( json);
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( "Invalid condition", e);
-      }
+    return resultFor( WHEN_KEY, () -> asCondition( json));
     }
 
   /**
    * Returns the condition definition represented by the given JSON object.
    */
-  private static ICondition asCondition( JsonObject json)
+  private ICondition asCondition( JsonObject json)
     {
     List<Function<JsonObject,Optional<ICondition>>> converters = Arrays.asList
       (
-        SystemInputJson::asContainsAll,
-        SystemInputJson::asContainsAny,
-        SystemInputJson::asContainsNone,
-        SystemInputJson::asNot,
-        SystemInputJson::asAnyOf,
-        SystemInputJson::asAllOf,
-        SystemInputJson::asLessThan,
-        SystemInputJson::asMoreThan,
-        SystemInputJson::asNotLessThan,
-        SystemInputJson::asNotMoreThan,
-        SystemInputJson::asBetween,
-        SystemInputJson::asEquals
+        this::asContainsAll,
+        this::asContainsAny,
+        this::asContainsNone,
+        this::asNot,
+        this::asAnyOf,
+        this::asAllOf,
+        this::asLessThan,
+        this::asMoreThan,
+        this::asNotLessThan,
+        this::asNotMoreThan,
+        this::asBetween,
+        this::asEquals
        );
 
     return
@@ -495,7 +487,7 @@ public final class SystemInputJson
       .filter( Optional::isPresent)
       .map( Optional::get)
       .findFirst()
-      .orElseThrow( () -> new SystemInputException( String.format( "Unknown condition type: %s", json.keySet().iterator().next())))
+      .orElseThrow( () -> new IllegalStateException( String.format( "Unknown condition type: %s", json.keySet().iterator().next())))
       ;
     }
 
@@ -503,164 +495,200 @@ public final class SystemInputJson
    * Returns the ContainsAll condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asContainsAll( JsonObject json)
+  private Optional<ICondition> asContainsAll( JsonObject json)
     {
     return
-      json.containsKey( HAS_ALL_KEY)
-      ? Optional.of( new ContainsAll( toIdentifiers( json.getJsonArray( HAS_ALL_KEY))))
-      : Optional.empty();
+      resultFor(
+        HAS_ALL_KEY,
+        () ->
+        json.containsKey( HAS_ALL_KEY)
+        ? Optional.of( new ContainsAll( toIdentifiers( json.getJsonArray( HAS_ALL_KEY))))
+        : Optional.empty());
     }
 
   /**
    * Returns the ContainsAny condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asContainsAny( JsonObject json)
+  private Optional<ICondition> asContainsAny( JsonObject json)
     {
     return
-      json.containsKey( HAS_ANY_KEY)
-      ? Optional.of( new ContainsAny( toIdentifiers( json.getJsonArray( HAS_ANY_KEY))))
-      : Optional.empty();
+      resultFor(
+        HAS_ANY_KEY,
+        () ->
+        json.containsKey( HAS_ANY_KEY)
+        ? Optional.of( new ContainsAny( toIdentifiers( json.getJsonArray( HAS_ANY_KEY))))
+        : Optional.empty());
     }
 
   /**
    * Returns the Not( ContainsAny) condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asContainsNone( JsonObject json)
+  private Optional<ICondition> asContainsNone( JsonObject json)
     {
     return
-      json.containsKey( HAS_NONE_KEY)
-      ? Optional.of( new Not( new ContainsAny( toIdentifiers( json.getJsonArray( HAS_NONE_KEY)))))
-      : Optional.empty();
+      resultFor(
+        HAS_NONE_KEY,
+        () ->
+        json.containsKey( HAS_NONE_KEY)
+        ? Optional.of( new Not( new ContainsAny( toIdentifiers( json.getJsonArray( HAS_NONE_KEY)))))
+        : Optional.empty());
     }
 
   /**
    * Returns the Not condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asNot( JsonObject json)
+  private Optional<ICondition> asNot( JsonObject json)
     {
     return
-      json.containsKey( NOT_KEY)
-      ? Optional.of( new Not( asCondition( json.getJsonObject( NOT_KEY))))
-      : Optional.empty();
+      resultFor(
+        NOT_KEY,
+        () ->
+        json.containsKey( NOT_KEY)
+        ? Optional.of( new Not( asCondition( json.getJsonObject( NOT_KEY))))
+        : Optional.empty());
     }
 
   /**
    * Returns the AllOf condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asAllOf( JsonObject json)
+  private Optional<ICondition> asAllOf( JsonObject json)
     {
     return
-      json.containsKey( ALL_OF_KEY)
-      ? Optional.of( new AllOf( toConditions( json.getJsonArray( ALL_OF_KEY))))
-      : Optional.empty();
+      resultFor(
+        ALL_OF_KEY,
+        () ->
+        json.containsKey( ALL_OF_KEY)
+        ? Optional.of( new AllOf( toConditions( json.getJsonArray( ALL_OF_KEY))))
+        : Optional.empty());
     }
 
   /**
    * Returns the AnyOf condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asAnyOf( JsonObject json)
+  private Optional<ICondition> asAnyOf( JsonObject json)
     {
     return
-      json.containsKey( ANY_OF_KEY)
-      ? Optional.of( new AnyOf( toConditions( json.getJsonArray( ANY_OF_KEY))))
-      : Optional.empty();
+      resultFor(
+        ANY_OF_KEY,
+        () ->
+        json.containsKey( ANY_OF_KEY)
+        ? Optional.of( new AnyOf( toConditions( json.getJsonArray( ANY_OF_KEY))))
+        : Optional.empty());
     }
 
   /**
    * Returns the AssertLess condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asLessThan( JsonObject json)
+  private Optional<ICondition> asLessThan( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( j -> j.containsKey( LESS_THAN_KEY))
-      .map( j -> j.getJsonObject( LESS_THAN_KEY))
-      .map( a -> new AssertLess( a.getString( PROPERTY_KEY), a.getInt( MAX_KEY)));
+      resultFor(
+        LESS_THAN_KEY,
+        () ->
+        Optional.of( json)
+        .filter( j -> j.containsKey( LESS_THAN_KEY))
+        .map( j -> j.getJsonObject( LESS_THAN_KEY))
+        .map( a -> new AssertLess( a.getString( PROPERTY_KEY), a.getInt( MAX_KEY))));
     }
 
   /**
    * Returns the AssertMore condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asMoreThan( JsonObject json)
+  private Optional<ICondition> asMoreThan( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( j -> j.containsKey( MORE_THAN_KEY))
-      .map( j -> j.getJsonObject( MORE_THAN_KEY))
-      .map( a -> new AssertMore( a.getString( PROPERTY_KEY), a.getInt( MIN_KEY)));
+      resultFor(
+        MORE_THAN_KEY,
+        () ->
+        Optional.of( json)
+        .filter( j -> j.containsKey( MORE_THAN_KEY))
+        .map( j -> j.getJsonObject( MORE_THAN_KEY))
+        .map( a -> new AssertMore( a.getString( PROPERTY_KEY), a.getInt( MIN_KEY))));
     }
 
   /**
    * Returns the AssertNotLess condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asNotLessThan( JsonObject json)
+  private Optional<ICondition> asNotLessThan( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( j -> j.containsKey( NOT_LESS_THAN_KEY))
-      .map( j -> j.getJsonObject( NOT_LESS_THAN_KEY))
-      .map( a -> new AssertNotLess( a.getString( PROPERTY_KEY), a.getInt( MIN_KEY)));
+      resultFor(
+        NOT_LESS_THAN_KEY,
+        () ->
+        Optional.of( json)
+        .filter( j -> j.containsKey( NOT_LESS_THAN_KEY))
+        .map( j -> j.getJsonObject( NOT_LESS_THAN_KEY))
+        .map( a -> new AssertNotLess( a.getString( PROPERTY_KEY), a.getInt( MIN_KEY))));
     }
 
   /**
    * Returns the AssertNotMore condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asNotMoreThan( JsonObject json)
+  private Optional<ICondition> asNotMoreThan( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( j -> j.containsKey( NOT_MORE_THAN_KEY))
-      .map( j -> j.getJsonObject( NOT_MORE_THAN_KEY))
-      .map( a -> new AssertNotMore( a.getString( PROPERTY_KEY), a.getInt( MAX_KEY)));
+      resultFor(
+        NOT_MORE_THAN_KEY,
+        () ->
+        Optional.of( json)
+        .filter( j -> j.containsKey( NOT_MORE_THAN_KEY))
+        .map( j -> j.getJsonObject( NOT_MORE_THAN_KEY))
+        .map( a -> new AssertNotMore( a.getString( PROPERTY_KEY), a.getInt( MAX_KEY))));
     }
 
   /**
    * Returns the between condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asBetween( JsonObject json)
+  private Optional<ICondition> asBetween( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( j -> j.containsKey( BETWEEN_KEY))
-      .map( j -> j.getJsonObject( BETWEEN_KEY))
-      .map( b -> 
-        new Between(
-          b.containsKey( EXCLUSIVE_MIN_KEY)
-          ? new AssertMore( b.getString( PROPERTY_KEY), b.getInt( EXCLUSIVE_MIN_KEY))
-          : new AssertNotLess( b.getString( PROPERTY_KEY), b.getInt( MIN_KEY)),
+      resultFor(
+        BETWEEN_KEY,
+        () ->
+        Optional.of( json)
+        .filter( j -> j.containsKey( BETWEEN_KEY))
+        .map( j -> j.getJsonObject( BETWEEN_KEY))
+        .map( b -> 
+              new Between(
+                b.containsKey( EXCLUSIVE_MIN_KEY)
+                ? new AssertMore( b.getString( PROPERTY_KEY), b.getInt( EXCLUSIVE_MIN_KEY))
+                : new AssertNotLess( b.getString( PROPERTY_KEY), b.getInt( MIN_KEY)),
 
-          b.containsKey( EXCLUSIVE_MAX_KEY)
-          ? new AssertLess( b.getString( PROPERTY_KEY), b.getInt( EXCLUSIVE_MAX_KEY))
-          : new AssertNotMore( b.getString( PROPERTY_KEY), b.getInt( MAX_KEY))));
+                b.containsKey( EXCLUSIVE_MAX_KEY)
+                ? new AssertLess( b.getString( PROPERTY_KEY), b.getInt( EXCLUSIVE_MAX_KEY))
+                : new AssertNotMore( b.getString( PROPERTY_KEY), b.getInt( MAX_KEY)))));
     }
 
   /**
    * Returns the equals condition represented by the given JSON object or an empty
    * value if no such condition is found.
    */
-  private static Optional<ICondition> asEquals( JsonObject json)
+  private Optional<ICondition> asEquals( JsonObject json)
     {
     return
-      Optional.of( json)
-      .filter( j -> j.containsKey( EQUALS_KEY))
-      .map( j -> j.getJsonObject( EQUALS_KEY))
-      .map( e -> new Equals( e.getString( PROPERTY_KEY), e.getInt( COUNT_KEY)));
+      resultFor(
+        EQUALS_KEY,
+        () ->
+        Optional.of( json)
+        .filter( j -> j.containsKey( EQUALS_KEY))
+        .map( j -> j.getJsonObject( EQUALS_KEY))
+        .map( e -> new Equals( e.getString( PROPERTY_KEY), e.getInt( COUNT_KEY))));
     }
 
   /**
    * Returns the contents of the given JSON array as a list of identifiers.
    */
-  private static List<String> toIdentifiers( JsonArray array)
+  private List<String> toIdentifiers( JsonArray array)
     {
     return
       IntStream.range( 0, array.size())
@@ -671,7 +699,7 @@ public final class SystemInputJson
   /**
    * Returns the contents of the given JSON array as an array of conditions.
    */
-  private static ICondition[] toConditions( JsonArray array)
+  private ICondition[] toConditions( JsonArray array)
     {
     return
       IntStream.range( 0, array.size())
@@ -683,7 +711,7 @@ public final class SystemInputJson
   /**
    * Returns the schema represented by the given JSON object.
    */
-  private static Schema getSchema( JsonObject json)
+  private Schema getSchema( JsonObject json)
     {
     return getSchema( Optional.empty(), json);
     }
@@ -691,7 +719,7 @@ public final class SystemInputJson
   /**
    * Returns the schema represented by the given JSON object.
    */
-  private static Schema getSchema( Optional<Type> defaultNumericType, JsonObject json)
+  private Schema getSchema( Optional<Type> defaultNumericType, JsonObject json)
     {
     return
       getSchemaType( defaultNumericType, json)
@@ -702,7 +730,7 @@ public final class SystemInputJson
   /**
    * Returns the schema represented by the given JSON object.
    */
-  private static Schema getSchema( Type type, JsonObject json)
+  private Schema getSchema( Type type, JsonObject json)
     {
     Schema schema = new Schema( type);
 
@@ -801,7 +829,7 @@ public final class SystemInputJson
   /**
    * Returns the type of the schema represented by the given JSON object.
    */
-  private static Optional<Type> getSchemaType( Optional<Type> defaultNumericType, JsonObject json)
+  private Optional<Type> getSchemaType( Optional<Type> defaultNumericType, JsonObject json)
     {
     Type declaredType =
       Optional.ofNullable( json.getString( TYPE_KEY, null))
@@ -919,7 +947,7 @@ public final class SystemInputJson
    * If the given JSON object defines a format that implied a specific data type, returns the type.
    * Otherwise, returns null.
    */
-  private static Type getFormatType( JsonObject json)
+  private Type getFormatType( JsonObject json)
     {
     return
       Optional.ofNullable( json.getString( FORMAT_KEY, null))
@@ -931,7 +959,7 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the "const" property, returns the type of the value.
    * Otherwise, returns null.
    */
-  private static Type getConstType( JsonObject json)
+  private Type getConstType( JsonObject json)
     {
     return
       Optional.ofNullable( asDataValue( json, CONST_KEY, NULL, json.getString( FORMAT_KEY, null)))
@@ -943,45 +971,41 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the given key, returns the value.
    * Otherwise, returns null.
    */
-  private static DataValue<?> asDataValue( JsonObject json, String key, Type expectedType, String format)
+  private DataValue<?> asDataValue( JsonObject json, String key, Type expectedType, String format)
     {
     return
-      Optional.ofNullable( json.get( key))
-      .map( value -> {
-        try
-          {
-          DataValue<?> dataValue = asDataValue( value, format);
+      resultFor( key, () -> {
+        return
+          Optional.ofNullable( json.get( key))
+          .map( value -> {
+            DataValue<?> dataValue = asDataValue( value, format);
         
-          if( !(expectedType == NULL
-                ||
-                expectedType == dataValue.getType()
-                ||
-                dataValue.getType() == NULL
-                ||
-                (expectedType == NUMBER && dataValue.getType() == INTEGER)))
-            {
-            throw
-              new SystemInputException(
-                String.format(
-                  "Expected a value of type=%s, but found '%s'",
-                  String.valueOf( expectedType).toLowerCase(),
-                  value));
-            }
+            if( !(expectedType == NULL
+                  ||
+                  expectedType == dataValue.getType()
+                  ||
+                  dataValue.getType() == NULL
+                  ||
+                  (expectedType == NUMBER && dataValue.getType() == INTEGER)))
+              {
+              throw
+                new IllegalStateException(
+                  String.format(
+                    "Expected a value of type=%s, but found '%s'",
+                    String.valueOf( expectedType).toLowerCase(),
+                    value));
+              }
 
-          return dataValue;
-          }
-        catch( Exception e)
-          {
-          throw new SystemInputException( String.format( "Error defining '%s' value", key), e);
-          }
-        })
-      .orElse( null);
+            return dataValue;
+            })
+          .orElse( null);
+        });
     }
 
   /**
    * Returns the DataValue represented by the given JSON value.
    */
-  private static DataValue<?> asDataValue( JsonValue json, String format)
+  private DataValue<?> asDataValue( JsonValue json, String format)
     {
     DataValue<?> value;
     switch( json.getValueType())
@@ -1045,7 +1069,7 @@ public final class SystemInputJson
    * Returns the IntegerValue represented by the given JSON value.
    * Returns null if this value is not an Integer.
    */
-  private static IntegerValue asIntegerValue( JsonNumber number, String format)
+  private IntegerValue asIntegerValue( JsonNumber number, String format)
     {
     try
       {
@@ -1068,7 +1092,7 @@ public final class SystemInputJson
    * Returns the LongValue represented by the given JSON value.
    * Returns null if this value is not a Long.
    */
-  private static LongValue asLongValue( JsonNumber number, String format)
+  private LongValue asLongValue( JsonNumber number, String format)
     {
     try
       {
@@ -1091,7 +1115,7 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the given key, returns the value as an Integer.
    * Otherwise, returns null.
    */
-  private static Integer asInteger( JsonObject json, String key)
+  private Integer asInteger( JsonObject json, String key)
     {
     return
       Optional.ofNullable( asDataValue( json, key, INTEGER, "int32"))
@@ -1103,7 +1127,7 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the given key, returns the value as a Boolean.
    * Otherwise, returns null.
    */
-  private static Boolean asBoolean( JsonObject json, String key)
+  private Boolean asBoolean( JsonObject json, String key)
     {
     return
       Optional.ofNullable( asDataValue( json, key, BOOLEAN, null))
@@ -1115,85 +1139,50 @@ public final class SystemInputJson
    * If the given JSON object defines a value for the given key, returns the value as a Schema.
    * Otherwise, returns null.
    */
-  private static Schema asSchema( JsonObject json, String key)
+  private Schema asSchema( JsonObject json, String key)
     {
-    try
-      {
-      JsonObject schemaJson = 
-        json.containsKey( key)
-        ? json.getJsonObject( key)
-        : null;
+    return
+      resultFor( key, () -> {
+        JsonObject schemaJson = 
+          json.containsKey( key)
+          ? json.getJsonObject( key)
+          : null;
 
-      return
-        Optional.ofNullable( schemaJson)
-        .map( schemaDef -> {
+        return
+          Optional.ofNullable( schemaJson)
+          .map( schemaDef -> {
 
-          schemaDef.keySet().stream()
-            .filter( k -> schemaTypeKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
-            .findFirst()
-            .ifPresent( k -> {
-              throw new SystemInputException( String.format( "Unknown schema key '%s'", k));
-              });
+            schemaDef.keySet().stream()
+              .filter( k -> schemaTypeKeys_.values().stream().noneMatch( typeKeys -> typeKeys.contains( k)))
+              .findFirst()
+              .ifPresent( k -> {
+                throw new IllegalStateException( String.format( "Unknown schema key '%s'", k));
+                });
           
-          return
-            Optional.ofNullable( getSchema( schemaDef))
-            .orElseThrow( () -> new SystemInputException( "Incomplete schema definition")); 
-          })
-        .orElse( null);
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining '%s' value", key), e);
-      }
+            return
+              Optional.ofNullable( getSchema( schemaDef))
+              .orElseThrow( () -> new IllegalStateException( "Incomplete schema definition")); 
+            })
+          .orElse( null);
+        });
     }
 
   /**
    * If the given JSON object defines a value for the given key, returns the value as a BigDecimal.
    * Otherwise, returns null.
    */
-  private static BigDecimal asBigDecimal( JsonObject json, String key, Type expectedType, String format)
+  private BigDecimal asBigDecimal( JsonObject json, String key, Type expectedType, String format)
     {
-    try
-      {
-      return bigDecimalOf( asDataValue( json, key, expectedType, format));
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( String.format( "Error defining '%s' value", key), e);
-      }
+    return resultFor( key, () -> bigDecimalOf( asDataValue( json, key, expectedType, format)));
     }
 
   /**
    * Reports a SystemInputException if the given string is not a valid identifier. Otherwise, returns this string.
    */
-  private static String validIdentifier( String string)
+  private String validIdentifier( String string)
     {
-    try
-      {
-      DefUtils.assertIdentifier( string);
-      }
-    catch( Exception e)
-      {
-      throw new SystemInputException( e.getMessage());
-      }
-
+    DefUtils.assertIdentifier( string);
     return string;
-    }
-
-  /**
-   * Returns an ordered sequence of property names.
-   */
-  private static Stream<String> propertySeq( Iterable<String> properties)
-    {
-    return propertySeq( properties.iterator());
-    }
-
-  /**
-   * Returns an ordered sequence of property names.
-   */
-  private static Stream<String> propertySeq( Iterator<String> properties)
-    {
-    return toStream( properties).sorted();
     }
 
   private static class ConditionJson implements IConditionVisitor

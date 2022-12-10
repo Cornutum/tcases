@@ -73,17 +73,18 @@ public abstract class SystemInputJsonTest
     assertThat( "Copy of " + systemInputResource, SystemInputDefBuilder.with( inputDefAfter).build(), matches( new SystemInputDefMatcher( inputDef)));
     }
 
-  public void assertDefinitionError( String systemInputResource, String expected)
+  public void assertDefinitionError( String systemInputResource, String... expected)
     {
-    expectFailure( RuntimeException.class)
+    expectFailure( SystemInputException.class)
       .when( () -> systemInputResources_.readJson( systemInputResource), t -> t.getCause())
       .then( failure -> {
-        while( failure.getCause() != null)
+        Stream.Builder<String> causes = Stream.builder();
+        for( Throwable cause = failure; cause != null; cause = cause.getCause())
           {
-          assertThat( "Causes", failure.getClass(), equalTo( SystemInputException.class));
-          failure = (RuntimeException) failure.getCause();
+          causes.add( cause.getMessage());
           }
-        assertThat( "Reason", failure.getMessage(), containsString( expected));
+          
+        assertThat( "Causes", causes.build().collect( toList()), listsMembers( expected));
         });
     }
 

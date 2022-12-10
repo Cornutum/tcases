@@ -53,6 +53,9 @@ public class BooleanSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_1()
     {
-    assertDefinitionError( "schema-boolean-1.json", "Schema has type=boolean but defines a 'const' of type=string");
+    assertDefinitionError(
+      "schema-boolean-1.json",
+      "Error processing Schema, boolean, booleanVar, booleanValue",
+      "Schema has type=boolean but defines a 'const' of type=string");
     }
   }

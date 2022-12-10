@@ -899,7 +899,10 @@ public class IntegerSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_19()
     {
-    assertDefinitionError( "schema-integer-19.json", "Expected an int32 value but found 2147483648");
+    assertDefinitionError(
+      "schema-integer-19.json",
+      "Error processing Schema, integer, integerVar, integerValue, const",
+      "Expected an int32 value but found 2147483648");
     }
 
   /**
@@ -931,7 +934,10 @@ public class IntegerSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_20()
     {
-    assertDefinitionError( "schema-integer-20.json", "Schema has type=integer but defines a 'const' of type=number");
+    assertDefinitionError(
+      "schema-integer-20.json",
+      "Error processing Schema, integer, integerVar, integerValue",
+      "Schema has type=integer but defines a 'const' of type=number");
     }
 
   

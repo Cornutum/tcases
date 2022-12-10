@@ -165,13 +165,18 @@ public class TestSystemInputJson extends SystemInputJsonTest
   @Test
   public void testSystemInput_Property_Duplicated()
     {
-    assertValidationFailure( "system-input-property-duplicated.json", "The array must consists only of unique elements, but the element at [1] is the same as the element at [0]");
+    assertValidationFailure(
+      "system-input-property-duplicated.json",
+      "The array must consists only of unique elements, but the element at [1] is the same as the element at [0]");
     }
 
   @Test
   public void testSystemInput_Values_Missing()
     {
-    assertDefinitionError( "system-input-values-missing.json", "No valid values defined for Var=Hue");
+    assertDefinitionError(
+      "system-input-values-missing.json",
+      "Error processing Things, Make, Color, Hue",
+      "No valid values defined for variable=Hue");
     }
 
   @Test
@@ -186,48 +191,72 @@ public class TestSystemInputJson extends SystemInputJsonTest
   @Test
   public void testSystemInput_Condition_Invalid()
     {
-    assertDefinitionError( "system-input-condition-invalid.json", "\"\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-condition-invalid.json",
+      "Error processing Things, Make, Color, when, allOf, not, hasAny",
+      "\"\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Failure_Properties()
     {
-    assertDefinitionError( "system-input-failure-properties.json", "Failure type values can't define properties");
+    assertDefinitionError(
+      "system-input-failure-properties.json",
+      "Error processing Things, Make, Color, Lightness, Transparent",
+      "Failure type values can't define properties");
     }
 
   @Test
   public void testSystemInput_Name_Invalid()
     {
-    assertDefinitionError( "system-input-name-invalid.json", "\"My System\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-name-invalid.json",
+      "Error processing My System",
+      "\"My System\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Function_Name_Invalid()
     {
-    assertDefinitionError( "system-input-function-name-invalid.json", "\"F(x)\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-function-name-invalid.json",
+      "Error processing Things, F(x)",
+      "\"F(x)\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Var_Name_Invalid()
     {
-    assertDefinitionError( "system-input-var-name-invalid.json", "\"a.b.c.d\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-var-name-invalid.json",
+      "Error processing Things, Make, a.b.c.d",
+      "\"a.b.c.d\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Property_Name_Invalid()
     {
-    assertDefinitionError( "system-input-property-name-invalid.json", "\"a certain quality\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-property-name-invalid.json",
+      "Error processing Things, Make, Size, Small, properties",
+      "\"a certain quality\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Property_Undefined()
     {
-    assertDefinitionError( "system-input-property-undefined.json", "Property=small is undefined, but referenced by variable=Color");
+    assertDefinitionError(
+      "system-input-property-undefined.json",
+      "Error processing Things, Make",
+      "Property=small is undefined, but referenced by variable=Color");
     }
 
   @Test
   public void testSystemInput_Vars_Missing()
     {
-    assertDefinitionError( "system-input-vars-missing.json", "No variables defined for function=Make");
+    assertDefinitionError(
+      "system-input-vars-missing.json",
+      "Error processing Things, Make",
+      "No variables defined for function=Make");
     }
   }

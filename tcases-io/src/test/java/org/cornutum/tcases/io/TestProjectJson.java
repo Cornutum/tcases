@@ -485,7 +485,7 @@ public class TestProjectJson
 
     // Then...
     assertThat( "From JSON", projectAfter, matches( new ProjectMatcher( project)));
-    assertFailure( () -> projectAfter.getSystemInput(), SystemInputException.class, "\"a.b.c.d\" is not a valid identifier");
+    assertFailure( () -> projectAfter.getSystemInput(), SystemInputException.class, "Error processing Things, Make, a.b.c.d");
     }
 
   /**

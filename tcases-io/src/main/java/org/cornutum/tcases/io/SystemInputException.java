@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.io;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Reports an error reading a system input definition.
  */
@@ -28,5 +30,13 @@ public class SystemInputException extends RuntimeException
   public SystemInputException( String reason, Throwable cause)
     {
     super( reason, cause);
+    }
+  
+  /**
+   * Creates a new SystemInputException instance.
+   */
+  public SystemInputException( String[] location, Throwable cause)
+    {
+    super( String.format( "Error processing %s", StringUtils.join( location, ", ")), cause);
     }
   }

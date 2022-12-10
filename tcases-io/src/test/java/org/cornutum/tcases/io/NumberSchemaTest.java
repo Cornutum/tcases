@@ -294,7 +294,10 @@ public class NumberSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_6()
     {
-    assertDefinitionError( "schema-number-6.json", "Schema has type=number but defines a 'const' of type=string");
+    assertDefinitionError(
+      "schema-number-6.json",
+      "Error processing Schema, number, numberVar, numberValue",
+      "Schema has type=number but defines a 'const' of type=string");
     }
 
   @Test

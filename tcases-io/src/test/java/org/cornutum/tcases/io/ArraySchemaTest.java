@@ -206,7 +206,10 @@ public class ArraySchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_4()
     {
-    assertDefinitionError( "schema-array-4.json", "Expected a value of type=integer, but found '3.0'");
+    assertDefinitionError(
+      "schema-array-4.json",
+      "Error processing Schema, array, arrayVar, arrayValue, minItems",
+      "Expected a value of type=integer, but found '3.0'");
     }
 
   /**
@@ -252,7 +255,10 @@ public class ArraySchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_6()
     {
-    assertDefinitionError( "schema-array-6.json", "Incomplete schema definition");
+    assertDefinitionError(
+      "schema-array-6.json",
+      "Error processing Schema, array, arrayVar, arrayValue, items",
+      "Incomplete schema definition");
     }
 
   /**
@@ -275,7 +281,10 @@ public class ArraySchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_7()
     {
-    assertDefinitionError( "schema-array-7.json", "Schema has type=array but defines a 'const' of type=number");
+    assertDefinitionError(
+      "schema-array-7.json",
+      "Error processing Schema, array, arrayVar, arrayValue",
+      "Schema has type=array but defines a 'const' of type=number");
     }
 
   /**
@@ -298,7 +307,10 @@ public class ArraySchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_8()
     {
-    assertDefinitionError( "schema-array-8.json", "Unknown schema key '$ref'");
+    assertDefinitionError(
+      "schema-array-8.json",
+      "Error processing Schema, array, arrayVar, arrayValue, items",
+      "Unknown schema key '$ref'");
     }
 
   /**

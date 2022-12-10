@@ -436,7 +436,10 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_8()
     {
-    assertDefinitionError( "schema-string-8.json", "'const' schema not allowed for a variable definition");
+    assertDefinitionError(
+      "schema-string-8.json",
+      "Error processing Schema, string, stringVarSet, stringVar",
+      "'const' schema not allowed for a variable definition");
     }
 
   /**
@@ -591,7 +594,10 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_13()
     {
-    assertDefinitionError( "schema-string-13.json", "A schema cannot be defined for a variable set");
+    assertDefinitionError(
+      "schema-string-13.json",
+      "Error processing Schema, string, stringVarSet",
+      "A schema cannot be defined for a variable set");
     }
 
   /**
@@ -622,6 +628,9 @@ public class StringSchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_14()
     {
-    assertDefinitionError( "schema-string-14.json", "Schema has type=string but defines a 'const' of type=array");
+    assertDefinitionError(
+      "schema-string-14.json",
+      "Error processing Schema, string, stringVarSet, stringVar, stringValue",
+      "Schema has type=string but defines a 'const' of type=array");
     }
   }

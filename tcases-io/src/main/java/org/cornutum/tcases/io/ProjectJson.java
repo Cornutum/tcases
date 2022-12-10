@@ -12,6 +12,8 @@ import org.cornutum.tcases.SystemTestDef;
 import org.cornutum.tcases.generator.IGeneratorSet;
 import org.cornutum.tcases.generator.io.GeneratorSetJson;
 
+import org.slf4j.Logger;
+
 import java.net.URI;
 import java.util.Optional;
 
@@ -25,17 +27,17 @@ import static javax.json.JsonValue.ValueType.*;
 /**
  * Converts between a {@link Project} and its corresponding {@link JsonObject}.
  */
-public final class ProjectJson
+public class ProjectJson
   {
-  private ProjectJson()
+  public ProjectJson( Logger logger)
     {
-    // Static methods only
+    inputConverter_ = new SystemInputJson( new SystemInputContext( logger));
     }
 
   /**
    * Returns the Project represented by the given JSON object.
    */
-  public static Project asProject( JsonObject json)
+  public Project asProject( JsonObject json)
     {
     return
       ProjectBuilder.with( asSystemInputDef( json.get( INPUTDEF_KEY)))
@@ -54,7 +56,7 @@ public final class ProjectJson
   /**
    * Returns the reference base URI represented by the given JSON string.
    */
-  private static URI asRefBase( JsonString uri)
+  private URI asRefBase( JsonString uri)
     {
     try
       {
@@ -72,14 +74,14 @@ public final class ProjectJson
   /**
    * Returns the system input definition represented by the given JSON value.
    */
-  private static SystemInputDef asSystemInputDef( JsonValue json)
+  private SystemInputDef asSystemInputDef( JsonValue json)
     {
     try
       {
       SystemInputDef systemInput = null;
       if( json != null && json.getValueType() == OBJECT)
         {
-        systemInput = SystemInputJson.asSystemInputDef( (JsonObject) json);
+        systemInput = inputConverter_.asSystemInputDef( (JsonObject) json);
         }
 
       return systemInput;
@@ -93,7 +95,7 @@ public final class ProjectJson
   /**
    * Returns the system input definition URL represented by the given JSON value.
    */
-  private static URI asSystemInputRef( JsonValue json)
+  private URI asSystemInputRef( JsonValue json)
     {
     try
       {
@@ -114,7 +116,7 @@ public final class ProjectJson
   /**
    * Returns the generator set represented by the given JSON value.
    */
-  private static IGeneratorSet asGeneratorSet( JsonValue json)
+  private IGeneratorSet asGeneratorSet( JsonValue json)
     {
     try
       {
@@ -135,7 +137,7 @@ public final class ProjectJson
   /**
    * Returns the generator set URL represented by the given JSON value.
    */
-  private static URI asGeneratorSetRef( JsonValue json)
+  private URI asGeneratorSetRef( JsonValue json)
     {
     try
       {
@@ -156,7 +158,7 @@ public final class ProjectJson
   /**
    * Returns the base test definition represented by the given JSON value.
    */
-  private static SystemTestDef asSystemTestDef( JsonValue json)
+  private SystemTestDef asSystemTestDef( JsonValue json)
     {
     try
       {
@@ -177,7 +179,7 @@ public final class ProjectJson
   /**
    * Returns the base test definition URL represented by the given JSON value.
    */
-  private static URI asSystemTestRef( JsonValue json)
+  private URI asSystemTestRef( JsonValue json)
     {
     try
       {
@@ -198,7 +200,7 @@ public final class ProjectJson
   /**
    * Returns the JSON object that represents the given project definition.
    */
-  public static JsonObject toJson( Project project)
+  public JsonObject toJson( Project project)
     {
     JsonObjectBuilder builder = Json.createObjectBuilder();
 
@@ -211,7 +213,7 @@ public final class ProjectJson
       }
     else if( project.getSystemInput() != null)
       {
-      builder.add( INPUTDEF_KEY, SystemInputJson.toJson( project.getSystemInput()));
+      builder.add( INPUTDEF_KEY, inputConverter_.toJson( project.getSystemInput()));
       }
 
     if( project.getGeneratorsLocation() != null)
@@ -235,6 +237,8 @@ public final class ProjectJson
     return builder.build();
     }
 
+  private final SystemInputJson inputConverter_;
+  
   private static final String BASETESTS_KEY = "baseTests";
   private static final String GENERATORS_KEY = "generators";
   private static final String INPUTDEF_KEY = "inputDef";

@@ -13,6 +13,7 @@ import org.apache.commons.io.IOUtils;
 import org.leadpony.justify.api.JsonSchema;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.ProblemHandler;
+import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
 import java.io.InputStream;
@@ -38,6 +39,7 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
    */
   public SystemInputJsonReader( InputStream stream)
     {
+    converter_ = new SystemInputJson( new SystemInputContext( LoggerFactory.getLogger( SystemInputJsonReader.class)));
     setInputStream( stream);
     }
 
@@ -62,8 +64,16 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
         throw new SystemInputException( "Invalid system input definition", e);
         }
 
-      return SystemInputJson.asSystemInputDef( json);
+      return getConverter().asSystemInputDef( json);
       }
+    }
+
+  /**
+   * Returns the JSON converter for this reader.
+   */
+  private SystemInputJson getConverter()
+    {
+    return converter_;
     }
 
   /**
@@ -91,5 +101,6 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
     IOUtils.closeQuietly( getInputStream(), null);
     }
 
+  private final SystemInputJson converter_;
   private InputStream stream_;
   }

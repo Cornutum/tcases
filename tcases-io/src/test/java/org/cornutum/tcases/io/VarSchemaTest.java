@@ -42,12 +42,18 @@ public class VarSchemaTest extends SystemInputJsonTest
   @Test
   public void whenVarSchemaFailureOnly()
     {
-    assertDefinitionError( "schema-var-failures.json", "No valid values defined for Var=stringVar");
+    assertDefinitionError(
+      "schema-var-failures.json",
+      "Error processing Schema, string, stringVar",
+      "No valid values defined for variable=stringVar");
     }
 
   @Test
   public void whenVarSchemaValuesNone()
     {
-    assertDefinitionError( "schema-var-values-none.json", "No valid values defined for Var=stringVar");
+    assertDefinitionError(
+      "schema-var-values-none.json",
+      "Error processing Schema, string, stringVar",
+      "No valid values defined for variable=stringVar");
     }
   }
