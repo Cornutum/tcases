@@ -41,7 +41,7 @@ public abstract class ContextHandler<C extends ExecutionNotifier<?>>
   /**
    * Returns the execution context for this reporter.
    */
-  protected C getContext()
+  public C getContext()
     {
     return context_;
     }

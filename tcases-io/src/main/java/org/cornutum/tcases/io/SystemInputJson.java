@@ -111,12 +111,12 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
 
     if( varDef.getValues() != null)
       {
+      Optional.ofNullable( ((VarDef) varDef).getSchema())
+        .ifPresent( schema -> addSchema( builder, schema));
+
       JsonObjectBuilder valuesBuilder = Json.createObjectBuilder();
       toStream( varDef.getValues()).forEach( value -> valuesBuilder.add( String.valueOf( value.getName()), toJson( value)));
       builder.add( VALUES_KEY, valuesBuilder.build());
-
-      Optional.ofNullable( ((VarDef) varDef).getSchema())
-        .ifPresent( schema -> addSchema( builder, schema));
       }
     else if( varDef.getMembers() != null)
       {

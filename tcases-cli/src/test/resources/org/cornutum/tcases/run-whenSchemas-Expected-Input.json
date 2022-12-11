@@ -1,0 +1,200 @@
+
+{
+    "system": "Examples",
+    "find": {
+        "arg": {
+            "pattern": {
+                "when": {
+                    "hasAll": [
+                        "fileExists"
+                    ]
+                },
+                "type": "string",
+                "maxLength": 16,
+                "values": {
+                    "empty": {
+                        "properties": [
+                            "patternEmpty"
+                        ],
+                        "type": "string",
+                        "const": ""
+                    },
+                    "unquotedSingle": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 1,
+                        "pattern": "^\\w$"
+                    },
+                    "unquotedMany": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "^\\w+$"
+                    },
+                    "quoted": {
+                        "type": "string",
+                        "minLength": 3,
+                        "pattern": "^\"\\w+\"$"
+                    },
+                    "quotedEmpty": {
+                        "properties": [
+                            "patternEmpty"
+                        ],
+                        "type": "string",
+                        "const": "\"\""
+                    },
+                    "quotedBlanks": {
+                        "type": "string",
+                        "minLength": 3,
+                        "pattern": "^\"\\w*( +\\w*)+\"$"
+                    },
+                    "quotedQuotes": {
+                        "type": "string",
+                        "minLength": 4,
+                        "pattern": "^\"\\w*(\"{2}\\w*)+\"$"
+                    }
+                }
+            },
+            "fileName": {
+                "type": "string",
+                "values": {
+                    "defined": {
+                        "properties": [
+                            "fileName"
+                        ],
+                        "type": "string",
+                        "minLength": 15,
+                        "maxLength": 16,
+                        "pattern": "^find-test-\\d{1,2}\\.txt$"
+                    },
+                    "missing": {
+                        "failure": true,
+                        "const": null
+                    }
+                }
+            }
+        },
+        "env": {
+            "file": {
+                "when": {
+                    "hasAll": [
+                        "fileName"
+                    ]
+                },
+                "members": {
+                    "exists": {
+                        "type": "boolean",
+                        "values": {
+                            "true": {
+                                "properties": [
+                                    "fileExists"
+                                ]
+                            },
+                            "false": {
+                                "failure": true
+                            }
+                        }
+                    },
+                    "contents": {
+                        "when": {
+                            "allOf": [
+                                {
+                                    "hasAll": [
+                                        "fileExists"
+                                    ]
+                                },
+                                {
+                                    "hasNone": [
+                                        "patternEmpty"
+                                    ]
+                                }
+                            ]
+                        },
+                        "members": {
+                            "linesLongerThanPattern": {
+                                "type": "integer",
+                                "values": {
+                                    "1": {
+                                        "once": true,
+                                        "properties": [
+                                            "matchable"
+                                        ]
+                                    },
+                                    "many": {
+                                        "properties": [
+                                            "matchable"
+                                        ],
+                                        "type": "integer",
+                                        "minimum": 2,
+                                        "maximum": 32
+                                    },
+                                    "0": {
+                                        "failure": true
+                                    }
+                                }
+                            },
+                            "patternMatches": {
+                                "when": {
+                                    "allOf": [
+                                        {
+                                            "hasAll": [
+                                                "matchable"
+                                            ]
+                                        },
+                                        {
+                                            "hasNone": [
+                                                "patternEmpty"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "type": "integer",
+                                "values": {
+                                    "0": {
+                                        "once": true
+                                    },
+                                    "1": {
+                                        "properties": [
+                                            "match"
+                                        ]
+                                    },
+                                    "many": {
+                                        "properties": [
+                                            "match",
+                                            "matchMany"
+                                        ],
+                                        "type": "integer",
+                                        "minimum": 2,
+                                        "maximum": 16
+                                    }
+                                }
+                            },
+                            "patternsInLine": {
+                                "when": {
+                                    "hasAll": [
+                                        "match"
+                                    ]
+                                },
+                                "type": "integer",
+                                "values": {
+                                    "1": {
+                                    },
+                                    "many": {
+                                        "once": true,
+                                        "when": {
+                                            "hasAll": [
+                                                "matchMany"
+                                            ]
+                                        },
+                                        "type": "integer",
+                                        "minimum": 2,
+                                        "maximum": 4
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -82,6 +82,18 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     } 
 
   /**
+   * Returns the version of the given input definition that is used for resolution.
+   */
+  public SystemInputDef prepareInputDef( SystemInputDef inputDef)
+    {
+    return
+      SystemInputDefBuilder.with( inputDef.getName())
+      .annotations( inputDef)
+      .functions( toStream( inputDef.getFunctionInputDefs()).map( this::prepareValueDefs))
+      .build();
+    }
+
+  /**
    * Prepare for resolution of input value definitions
    */
   @Override

@@ -1,0 +1,344 @@
+
+{
+    "system": "Examples",
+    "find": {
+        "testCases": [
+            {
+                "id": 0,
+                "name": "pattern='empty'",
+                "has": {
+                    "properties": "fileExists,fileName,patternEmpty"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "",
+                        "source": "empty"
+                    },
+                    "fileName": {
+                        "value": "find-test-51.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patternMatches": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    }
+                }
+            },
+            {
+                "id": 1,
+                "name": "pattern='unquotedSingle'",
+                "has": {
+                    "properties": "fileExists,fileName,matchable"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "R",
+                        "source": "unquotedSingle"
+                    },
+                    "fileName": {
+                        "value": "find-test-0.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "value": 1
+                    },
+                    "file.contents.patternMatches": {
+                        "value": 0
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "name": "pattern='unquotedMany'",
+                "has": {
+                    "properties": "fileExists,fileName,match,matchable"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "MRL1Mji2u",
+                        "source": "unquotedMany"
+                    },
+                    "fileName": {
+                        "value": "find-test-3.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 29,
+                        "source": "many"
+                    },
+                    "file.contents.patternMatches": {
+                        "value": 1
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": 1
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "name": "pattern='quoted'",
+                "has": {
+                    "properties": "fileExists,fileName,match,matchable,matchMany"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "\"qvv\"",
+                        "source": "quoted"
+                    },
+                    "fileName": {
+                        "value": "find-test-2.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 26,
+                        "source": "many"
+                    },
+                    "file.contents.patternMatches": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 8,
+                        "source": "many"
+                    },
+                    "file.contents.patternsInLine": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 3,
+                        "source": "many"
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "name": "pattern='quotedEmpty'",
+                "has": {
+                    "properties": "fileExists,fileName,patternEmpty"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "\"\"",
+                        "source": "quotedEmpty"
+                    },
+                    "fileName": {
+                        "value": "find-test-0.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patternMatches": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "name": "pattern='quotedBlanks'",
+                "has": {
+                    "properties": "fileExists,fileName,match,matchable"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "\"BltCuj       y\"",
+                        "source": "quotedBlanks"
+                    },
+                    "fileName": {
+                        "value": "find-test-10.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 31,
+                        "source": "many"
+                    },
+                    "file.contents.patternMatches": {
+                        "value": 1
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": 1
+                    }
+                }
+            },
+            {
+                "id": 6,
+                "name": "pattern='quotedQuotes'",
+                "has": {
+                    "properties": "fileExists,fileName,match,matchable,matchMany"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "\"x\"\"RVODDF3x\"",
+                        "source": "quotedQuotes"
+                    },
+                    "fileName": {
+                        "value": "find-test-1.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 21,
+                        "source": "many"
+                    },
+                    "file.contents.patternMatches": {
+                        "has": {
+                            "format": "int64"
+                        },
+                        "value": 4,
+                        "source": "many"
+                    },
+                    "file.contents.patternsInLine": {
+                        "value": 1
+                    }
+                }
+            },
+            {
+                "id": 7,
+                "name": "fileName='missing'",
+                "arg": {
+                    "pattern": {
+                        "NA": true
+                    },
+                    "fileName": {
+                        "failure": true,
+                        "value": null,
+                        "source": "missing"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "NA": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patternMatches": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    }
+                }
+            },
+            {
+                "id": 8,
+                "name": "file.exists='false'",
+                "has": {
+                    "properties": "fileName"
+                },
+                "arg": {
+                    "pattern": {
+                        "NA": true
+                    },
+                    "fileName": {
+                        "value": "find-test-2.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "failure": true,
+                        "value": false
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "NA": true
+                    },
+                    "file.contents.patternMatches": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    }
+                }
+            },
+            {
+                "id": 9,
+                "name": "file.contents.linesLongerThanPattern='0'",
+                "has": {
+                    "properties": "fileExists,fileName"
+                },
+                "arg": {
+                    "pattern": {
+                        "value": "y",
+                        "source": "unquotedSingle"
+                    },
+                    "fileName": {
+                        "value": "find-test-12.txt",
+                        "source": "defined"
+                    }
+                },
+                "env": {
+                    "file.exists": {
+                        "value": true
+                    },
+                    "file.contents.linesLongerThanPattern": {
+                        "failure": true,
+                        "value": 0
+                    },
+                    "file.contents.patternMatches": {
+                        "NA": true
+                    },
+                    "file.contents.patternsInLine": {
+                        "NA": true
+                    }
+                }
+            }
+        ]
+    }
+}

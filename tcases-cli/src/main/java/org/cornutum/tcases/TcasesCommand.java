@@ -10,6 +10,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.generator.io.*;
 import org.cornutum.tcases.io.*;
+import org.cornutum.tcases.resolve.*;
 import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.io.Resource.withDefaultType;
 
@@ -23,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -45,6 +47,7 @@ public class TcasesCommand
    * [-f <I>outFile</I>]
    * [-g <I>genDef</I>]
    * [-n]
+   * [-I]
    * [-o <I>outDir</I>]
    * [-p <I>name</I>=<I>value</I>]
    * [-r <I>seed</I>] [-R]
@@ -177,6 +180,20 @@ public class TcasesCommand
    * <TD>
    * If <I>-n</I> is defined, any previous contents of the <I>testDef</I> are ignored.
    * If omitted, new test definitions are based on the previous <I>testDef</I>.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-I </NOBR>
+   * </TD>
+   * <TD>
+   * If <I>-I</I> is defined, no test definitions are produced. Instead, a JSON document containing the effective
+   * system input definition is written to standard output. The effective system input definition, which is used to generate
+   * test definitions, is the result of normalizing all input schemas and adding any schema-derived value definitions.
    * </TD>
    * </TR>
    *
@@ -408,6 +425,11 @@ public class TcasesCommand
         setShowVersion( true);
         }
 
+      else if( arg.equals( "-I"))
+        {
+        setShowEffectiveInput( true);
+        }
+
       else if( arg.equals( "-g"))
         {
         i++;
@@ -589,12 +611,18 @@ public class TcasesCommand
                "              if it exists. Otherwise, the default TupleGenerator is used for all",
                "              functions.",
                "",
+               "  -H          If -H is defined, test definition output is transformed into an HTML report",
+               "              that is written to the specified outDir.",
+               "",
+               "  -I          If -I is defined, no test definitions are produced. Instead, a JSON document",
+               "              containing the effective system input definition is written to standard output.",
+               "              The effective system input definition, which is used to generate test definitions,",
+               "              is the result of normalizing all input schemas and adding any schema-derived",
+               "              value definitions.",
+               "",
                "  -J          If -J is defined, test definition output is transformed into Java source",
                "              code for a JUnit test class. The resulting Java source file is written to",
                "              the specified outDir.",
-               "",
-               "  -H          If -H is defined, test definition output is transformed into an HTML report",
-               "              that is written to the specified outDir.",
                "",
                "  -l logFile  If -l is defined, log output is written to the given file. If omitted,",
                "              log output is written to a file named tcases.log in the current working",
@@ -887,6 +915,22 @@ public class TcasesCommand
       }
 
     /**
+     * Changes if the current effective system input definition should be written.
+     */
+    public void setShowEffectiveInput( boolean showEffectiveInput)
+      {
+      showEffectiveInput_ = showEffectiveInput;
+      }
+
+    /**
+     * Returns if the current effective system input definition should be written.
+     */
+    public boolean showEffectiveInput()
+      {
+      return showEffectiveInput_;
+      }
+
+    /**
      * Changes the default file content type.
      */
     public void setContentType( String option)
@@ -1018,6 +1062,7 @@ public class TcasesCommand
     private boolean showVersion_;
     private GeneratorOptions generatorOptions_ = new GeneratorOptions();
     private Resource.Type contentType_;
+    private boolean showEffectiveInput_;
 
     public static class Builder
       {
@@ -1101,6 +1146,12 @@ public class TcasesCommand
       public Builder contentType( String type)
         {
         options_.setContentType( type);
+        return this;
+        }
+
+      public Builder showEffectiveInput()
+        {
+        options_.setShowEffectiveInput( true);
         return this;
         }
 
@@ -1201,6 +1252,24 @@ public class TcasesCommand
       throw new RuntimeException( "Can't read input definition file=" + inputDefFile, e);
       }
 
+    // Create test case resolver.
+    TestCaseSchemaResolver resolver =
+      new TestCaseSchemaResolver(
+        ResolverContext.builder( new Random())
+        .notifier( TestCaseConditionNotifier.log())
+        .build());
+
+    // Write effective input definition?
+    if( options.showEffectiveInput())
+      {
+      logger_.info( "Writing effective system input definition to standard output");
+      try( SystemInputJsonWriter writer = new SystemInputJsonWriter())
+        {
+        writer.write( resolver.prepareInputDef( inputDef));
+        }
+      return;
+      }
+    
     // Test definition defined?
     String projectName = getProjectName( inputDefFile);
     File testDefFile = options.getTestDef();
@@ -1313,9 +1382,9 @@ public class TcasesCommand
       // No, use default TupleGenerator.
       genDef = GeneratorSet.basicGenerator();
       }
-
+    
     // Generate new test definitions.
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, null, baseDef, options.getGeneratorOptions());
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, resolver, baseDef, options.getGeneratorOptions());
 
     // Identify test definition transformations.
     AbstractFilter transformer = null;

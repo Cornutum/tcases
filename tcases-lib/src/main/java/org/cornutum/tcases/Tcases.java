@@ -12,6 +12,7 @@ import org.cornutum.tcases.resolve.TestCaseResolver;
 
 import java.util.Iterator;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -91,6 +92,9 @@ public class Tcases
       {
       ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
       }
+
+    // Resolve random test case values using a function-specific seed.
+    resolver.getContext().setRandom( new Random( functionDef.getName().hashCode()));
 
     FunctionTestDef functionTestDef = new FunctionTestDef( functionDef.getName());
     resolver.resolve( functionDef, f -> functionGen.getTests( f, functionBase))

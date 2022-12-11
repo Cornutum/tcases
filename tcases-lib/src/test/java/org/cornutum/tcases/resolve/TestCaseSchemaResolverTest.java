@@ -79,7 +79,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='Integer'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( 56L)
+          .value( 42L)
           .source( "Integer")
           .has( "format", "int64")
           .build())
@@ -145,7 +145,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='Array'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( bigDecimals( "-4469906618379619235.75", "-2471231820307629375.25", "-2799448626275174456.00"))
+          .value( bigDecimals( "-2343393567671624395.25", "-2800997551963140523.50", "-3398342997478306290.25"))
           .source( "Array")
           .has( "format", "list")
           .build())
@@ -186,7 +186,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='Integer'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( 2450813644822315045L)
+          .value( 1334464723020079846L)
           .source( "Integer")
           .has( "format", "int64")
           .build())
@@ -236,7 +236,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='String'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "2023-08-10T22:02:48.720-05:00")
+          .value( "2021-06-22T16:05:07.729-05:00")
           .source( "String")
           .has( "format", "date-time")
           .build())
@@ -289,7 +289,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='Array'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( Arrays.asList( true, true, true, true, true, true, true, true, true, true, true, true, true))
+          .value( Arrays.asList( true, true, true, true, true, true, true, true, true, true, true, true, true, true, true))
           .source( "Array")
           .has( "format", "flags")
           .build())
@@ -342,7 +342,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='Number'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( bigDecimalOf( "41.6"))
+          .value( bigDecimalOf( "115.0"))
           .source( "Number")
           .has( "format", "double")
           .build())
@@ -398,7 +398,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='Number'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( bigDecimalOf( "-0.445"))
+          .value( bigDecimalOf( "-2.660"))
           .source( "Number")
           .has( "format", "float")
           .build())
@@ -493,7 +493,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='String'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "2023-02-04")
+          .value( "2023-06-13")
           .source( "String")
           .has( "format", "date")
           .build())
@@ -541,7 +541,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='String'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed")
+          .value( "b5884f65-babf-44fb-9fe9-fa6f89dc06c9")
           .source( "String")
           .has( "format", "uuid")
           .build())
@@ -584,7 +584,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='String'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "2023-08-10T22:02:48.720-05:00")
+          .value( "2021-06-22T16:05:07.729-05:00")
           .source( "String")
           .has( "format", "date-time")
           .build())
@@ -643,7 +643,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='String'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "w.?.W.Q@kDta.com")
+          .value( "Qm.Kt}@R4R.PZ.xA.wm.x7.edu")
           .source( "String")
           .has( "format", "email")
           .build())
@@ -696,7 +696,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='String'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "?5^Hello, you[")
+          .value( "\\Hello, you`nI")
           .source( "String")
           .build())
         .build())
@@ -839,7 +839,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='belowMinimum'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( -286487905)
+          .value( -223886245)
           .valid( false)
           .source( "belowMinimum")
           .has( "format", "int32")
@@ -850,7 +850,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='aboveMaximum'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( 132042812)
+          .value( 1038771053)
           .valid( false)
           .source( "aboveMaximum")
           .has( "format", "int32")
@@ -890,7 +890,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='minimumSize'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( Arrays.asList( 0, 7, 0))
+          .value( Arrays.asList( 7, 6, 6))
           .source( "minimumSize")
           .build())
         .build(),
@@ -899,7 +899,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='maximumSize'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( Arrays.asList( -10, 9, 3, -6, 3, 3, 7, 9))
+          .value( Arrays.asList( 6, 6, 0, 9, 9, -8, -6, -8))
           .source( "maximumSize")
           .build())
         .build(),
@@ -908,7 +908,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='tooSmall'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( Arrays.asList( -2, -2))
+          .value( Arrays.asList( -1))
           .valid( false)
           .source( "tooSmall")
           .build())
@@ -918,7 +918,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='tooLarge'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( Arrays.asList( 4, -7, -9, 0, -8, -5, -2, -1, -5, -1))
+          .value( Arrays.asList( -6, -6, -2, -3, -6, 5, 4, 5, 6, -9))
           .valid( false)
           .source( "tooLarge")
           .build())
@@ -928,7 +928,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='wrongItems'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( bigDecimals( "-388.61", "-596.14", "998.27", "-964.84", "106.39", "-388.61"))
+          .value( bigDecimals( "175.47", "644.93", "692.07", "-569.30", "-870.68", "979.44", "-176.27", "-870.68"))
           .valid( false)
           .source( "wrongItems")
           .build())
@@ -972,7 +972,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='anyLength'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz")
+          .value( "%S3eSa>*U@i*)d0:jHJn/!9bB&BQ;\"X'@~j:9,t^/]Ozajv\\ g:In'e!;wTghmrS<G>QC \\t/^BoHuHE]QIy#68oZ[$sHOIK_Ky_2@")
           .source( "anyLength")
           .build())
         .build())
@@ -1084,7 +1084,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='belowMinimum'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "-4527733255718008336.8")
+          .value( "-1220606618141902418.1")
           .valid( false)
           .source( "belowMinimum")
           .has( "format", "float")
@@ -1095,7 +1095,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='aboveMaximum'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "3192900771962155300.2")
+          .value( "3507603901758925524.0")
           .valid( false)
           .source( "aboveMaximum")
           .has( "format", "float")
@@ -1149,7 +1149,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='minimumLength'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "QJ6uYHb6")
+          .value( "xmv280k0")
           .source( "minimumLength")
           .build())
         .build(),
@@ -1158,7 +1158,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='maximumLength'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "vHLkE8EX9As94fft")
+          .value( "26R72sDmZS61nE9U")
           .source( "maximumLength")
           .build())
         .build(),
@@ -1167,7 +1167,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='tooShort'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "zC")
+          .value( "nb")
           .valid( false)
           .source( "tooShort")
           .build())
@@ -1177,7 +1177,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='tooLong'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "VXOLCa1pbdSFv9r_KvBl6l1eqUdXXOw1TGAkcnWPonC")
+          .value( "u7TEk7pBKwYmv_vEfxWxufQycFcqY0TDBf_9VjWlu3XJ0oZXhHEg5esgLq9GKJ4huvZr55ac55M5sK5yGa5dV2MhAEWWgKwfFAJ2GN8fSrHFP8kIIlqkpERoOVDyJkoqJHgBwtENE1ofzWSGk7pN7Xn1CIYbnkeHc23jxzd3xbai5iofR4MLY9c6FluIbJ37QFUQYjPPDZzG7uuumhH1glRXiydzfopRgB7H8")
           .valid( false)
           .source( "tooLong")
           .build())
@@ -1187,7 +1187,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='wrongPattern'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "'\",+:+,[ '|\"%")
+          .value( "@:%;[`)*{!|>/~&")
           .valid( false)
           .source( "wrongPattern")
           .build())
