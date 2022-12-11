@@ -22,7 +22,7 @@ public class SystemInputContext extends ExecutionNotifier<SystemInputException>
    */
   public SystemInputContext()
     {
-    this( null);
+    this( Notifier.ignore());
     }
   
   /**
@@ -30,10 +30,15 @@ public class SystemInputContext extends ExecutionNotifier<SystemInputException>
    */
   public SystemInputContext( Logger logger)
     {
-    if( logger != null)
-      {
-      setNotifier( Notifier.log( logger));
-      }
+    this( Notifier.log( logger));
+    }
+  
+  /**
+   * Creates a new SystemInputContext instance.
+   */
+  public SystemInputContext( Notifier notifier)
+    {
+    setNotifier( notifier);
     }
   
   /**
