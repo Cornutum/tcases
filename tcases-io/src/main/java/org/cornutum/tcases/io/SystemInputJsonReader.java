@@ -8,6 +8,7 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.SystemInputDef;
+import org.cornutum.tcases.util.ContextHandler;
 
 import org.apache.commons.io.IOUtils;
 import org.leadpony.justify.api.JsonSchema;
@@ -22,9 +23,8 @@ import javax.json.JsonReader;
 
 /**
  * An {@link ISystemInputSource} that reads from an JSON document.
- *
  */
-public class SystemInputJsonReader implements ISystemInputSource, Closeable
+public class SystemInputJsonReader extends ContextHandler<SystemInputContext> implements ISystemInputSource, Closeable
   {  
   /**
    * Creates a new SystemInputJsonReader object.
@@ -39,7 +39,8 @@ public class SystemInputJsonReader implements ISystemInputSource, Closeable
    */
   public SystemInputJsonReader( InputStream stream)
     {
-    converter_ = new SystemInputJson( new SystemInputContext( LoggerFactory.getLogger( SystemInputJsonReader.class)));
+    super( new SystemInputContext( LoggerFactory.getLogger( SystemInputJsonReader.class)));
+    converter_ = new SystemInputJson( getContext());
     setInputStream( stream);
     }
 

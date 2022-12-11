@@ -52,6 +52,7 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
   public SystemInputJson( SystemInputContext context)
     {
     super( context);
+    schemas_ = new Schemas( getContext());
     }
 
   /**
@@ -823,7 +824,7 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
         }
       }
     
-    return schema;
+    return schemas_.normalize( schema);
     }
 
   /**
@@ -1467,6 +1468,8 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
     private JsonValue json_;
     }
 
+  private final Schemas schemas_;
+  
   private static final String ALL_OF_KEY = "allOf";
   private static final String ANY_OF_KEY = "anyOf";
   private static final String BETWEEN_KEY = "between";

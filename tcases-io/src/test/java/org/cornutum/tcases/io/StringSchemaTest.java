@@ -324,7 +324,7 @@ public class StringSchemaTest extends SystemInputJsonTest
               VarValueDefBuilder.with( "stringValue")
               .schema(
                 SchemaBuilder.type( "string")
-                .pattern( "^[0-9]$*")
+                .pattern( "^[0-9]*$")
                 .build())
               .build())
             .build())
