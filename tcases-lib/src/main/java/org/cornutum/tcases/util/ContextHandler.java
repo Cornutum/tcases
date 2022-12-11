@@ -25,7 +25,7 @@ public abstract class ContextHandler<C extends ExecutionNotifier<?>>
   /**
    * Changes the condition notifier for this reporter.
    */
-  protected void setNotifier( Notifier notifier)
+  public void setNotifier( Notifier notifier)
     {
     getContext().setNotifier( notifier);
     }
@@ -33,7 +33,7 @@ public abstract class ContextHandler<C extends ExecutionNotifier<?>>
   /**
    * Returns the condition notifier for this reporter.
    */
-  protected Notifier getNotifier()
+  public Notifier getNotifier()
     {
     return getContext().getNotifier();
     }
