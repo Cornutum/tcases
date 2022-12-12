@@ -8,9 +8,11 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import static org.cornutum.hamcrest.Composites.*;
+
 import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
@@ -247,8 +249,14 @@ public class TestSystemInputJson extends SystemInputJsonTest
     {
     assertDefinitionError(
       "system-input-property-undefined.json",
-      "Error processing Things, Make",
-      "Property=small is undefined, but referenced by variable=Color");
+      "Things, Make, Color: Depends on undefined property=small");
+
+    assertWarnings(
+      "Things,Make,Color,Hue,Red: Property=red is unused.",
+      "Things,Make,Shape,Heart: Property=red is unused.",
+      "Things,Make,Color,Hue,Green: Property=green is unused.",
+      "Things,Make,Color,Hue,Blue: Property=blue is unused.",
+      "Things,Make,Size,Small: Property=smallish is unused.");
     }
 
   @Test

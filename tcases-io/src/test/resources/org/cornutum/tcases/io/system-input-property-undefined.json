@@ -4,24 +4,27 @@
         "arg": {
             "Color": {
                 "when": {
-                    "allOf": [ {"hasAll": ["small"]},  {"not": {"hasAny": ["polygon"]}}
+                    "allOf": [ {"hasAll": ["small", "delicious"]},  {"not": {"hasAny": ["polygon"]}}
                     ]
                 },
                 "members": {
                     "Hue": {
                         "values": {
                             "Red": {
+                                "properties": ["red"]
                             },
                             "Green": {
+                                "properties": ["green"]
                             },
                             "Blue": {
+                                "properties": ["blue"]
                             }
                         }
                     },
                     "Lightness": {
                         "values": {
                             "Bright": {
-                                "when": {"hasAll": ["round"]}
+                                "when": {"hasAll": ["round", "delicious"]}
                             },
                             "Normal": {
                             },
@@ -61,7 +64,7 @@
                         "when": {"allOf": [{"hasAll": ["polygon"]}]}
                     },
                     "Large": {
-                        "when": {"not": {"hasAny": ["polygon"]}
+                        "when": {"not": {"hasAny": ["polygon", "small"]}
                         }
                     }
                 }
@@ -75,6 +78,7 @@
                         "properties": ["round"]
                     },
                     "Heart": {
+                        "properties": ["red"]
                     }
                 }
             }

@@ -20,6 +20,7 @@ import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.collections4.IteratorUtils;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -293,17 +294,24 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
           throw new IllegalStateException( String.format( "No variables defined for function=%s", functionName));
           }
 
-        SystemInputs.getPropertiesUndefined( functionInputDef)
+        SystemInputs systemInputs = new SystemInputs();
+        systemInputs.getPropertiesUnused( functionInputDef)
+          .forEach( (property,valueDefs) -> {
+            valueDefs.stream()
+              .forEach(
+                valueDef ->
+                notifyWarning(
+                  fullLocation( valueDef.getLocation()),
+                  String.format( "Property=%s is unused", property)));
+            });
+          
+        systemInputs.getPropertiesUndefined( functionInputDef)
           .entrySet().stream()
           .findFirst()
           .ifPresent( undefined -> {
             String property = undefined.getKey();
-            IConditional ref = undefined.getValue().stream().findFirst().orElse( null);
-            throw new IllegalStateException
-              ( String.format
-                ( "Property=%s is undefined, but referenced by %s",
-                  property,
-                  SystemInputs.getReferenceName( ref)));
+            String[] refLocation = undefined.getValue().iterator().next().getLocation();
+            throw new SystemInputException( fullLocation( refLocation), String.format( "Depends on undefined property=%s", property));
             });
 
         return functionInputDef;
@@ -1184,6 +1192,17 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
     {
     DefUtils.assertIdentifier( string);
     return string;
+    }
+
+  /**
+   * Returns the full location for a location relative to the current location.
+   */
+  private String[] fullLocation( String[] relativeLocation)
+    {
+    return
+      ArrayUtils.addAll(
+        getContext().getLocation(),
+        ArrayUtils.subarray( relativeLocation, 1, relativeLocation.length));
     }
 
   private static class ConditionJson implements IConditionVisitor

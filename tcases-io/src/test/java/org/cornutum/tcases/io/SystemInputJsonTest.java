@@ -9,16 +9,16 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.resolve.Schemas;
+import org.cornutum.tcases.util.ConditionRecorder;
 import org.cornutum.tcases.util.ContextHandler;
 import org.cornutum.tcases.util.Notifier;
-
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
-import static org.cornutum.hamcrest.Composites.*;
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
-
+import org.junit.Before;
 import org.leadpony.justify.api.JsonValidatingException;
 import org.leadpony.justify.api.Problem;
+import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -35,6 +36,17 @@ import static java.util.stream.Collectors.toList;
  */
 public abstract class SystemInputJsonTest
   {
+  @Before
+  public void setUpReader()
+    {
+    systemInputResources_.setJsonReaderProducer(
+      stream -> {
+      SystemInputJsonReader reader = new SystemInputJsonReader( stream);
+      reader.setNotifier( getConditionRecorder());
+      return reader;
+      });
+    }
+  
   public SystemInputDef testSystemInputResource( String systemInputResource)
     {
     return testSystemInput( systemInputResource, systemInputResources_.read( systemInputResource));
@@ -111,6 +123,34 @@ public abstract class SystemInputJsonTest
         assertThat( "Problems", problems, containsInAnyOrder( Arrays.stream( expected).map( m -> containsString(m)).collect( toList())));
         });
     }
+  
+  protected void assertWarnings( String... warnings)
+    {
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( warnings));
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( emptyList()));
+    }
+
+  protected void assertErrors( String... errors)
+    {
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( errors));
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( emptyList()));
+    }
+  
+  protected void assertConditions( List<String> warnings, List<String> errors)
+    {
+    assertThat( "Warnings", getConditionRecorder().getWarnings(), listsMembers( warnings));
+    assertThat( "Errors", getConditionRecorder().getErrors(), listsMembers( errors));
+    }
+  
+  protected void assertConditionsNone()
+    {
+    assertConditions( emptyList(), emptyList());
+    }
+
+  protected ConditionRecorder getConditionRecorder()
+    {
+    return conditionRecorder_;
+    }
 
   private Stream<Problem> problems( JsonValidatingException jve)
     {
@@ -169,4 +209,5 @@ public abstract class SystemInputJsonTest
     }
 
   protected SystemInputResources systemInputResources_ = new SystemInputResources( SystemInputJsonTest.class);
+  protected ConditionRecorder conditionRecorder_ = new ConditionRecorder();
   }

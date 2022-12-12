@@ -13,7 +13,7 @@ import org.cornutum.tcases.util.Notifier;
 import org.slf4j.Logger;
 
 /**
- * Defines the context for reading or writing a {@link org.cornutum.tcases.io.SystemInputDef}.
+ * Defines the context for reading or writing a {@link org.cornutum.tcases.SystemInputDef}.
  */
 public class SystemInputContext extends ExecutionNotifier<SystemInputException>
   {
