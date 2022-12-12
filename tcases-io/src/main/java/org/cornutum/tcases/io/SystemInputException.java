@@ -35,6 +35,14 @@ public class SystemInputException extends RuntimeException
   /**
    * Creates a new SystemInputException instance.
    */
+  public SystemInputException( String[] location, String reason)
+    {
+    super( String.format( "%s: %s", StringUtils.join( location, ", "), reason));
+    }
+  
+  /**
+   * Creates a new SystemInputException instance.
+   */
   public SystemInputException( String[] location, Throwable cause)
     {
     super( String.format( "Error processing %s", StringUtils.join( location, ", ")), cause);
