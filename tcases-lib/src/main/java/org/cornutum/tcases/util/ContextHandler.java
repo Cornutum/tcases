@@ -55,11 +55,27 @@ public abstract class ContextHandler<C extends ExecutionNotifier<?>>
     }
 
   /**
+   * Reports a warning condition at the given location.
+   */
+  protected void notifyWarning( String[] location, String reason)
+    {
+    getNotifier().warn( location, reason);
+    }
+
+  /**
    * Reports an error condition
    */
   protected void notifyError( String reason, String resolution)
     {
     getContext().error( reason, resolution);
+    }
+
+  /**
+   * Reports an error condition at the given location.
+   */
+  protected void notifyError( String[] location, String reason, String resolution)
+    {
+    getNotifier().error( location, reason, resolution);
     }
 
   /**
