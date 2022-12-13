@@ -24,10 +24,11 @@ public class ResolverContext extends ExecutionNotifier<ResolverException>
   /**
    * Creates a new ResolverContext instance.
    */
-  public ResolverContext( Random random)
+  public ResolverContext( String... startLocation)
     {
-    setRandom( random);
-    setNotifier( null);
+    super( startLocation);
+    setRandom( new Random());
+    setNotifier( Notifier.ignore());
     setMaxTries( 10000);
     }
   
@@ -116,9 +117,9 @@ public class ResolverContext extends ExecutionNotifier<ResolverException>
   /**
    * Returns a new ResolverContext builder.
    */
-  public static Builder builder( Random random)
+  public static Builder builder( String... startLocation)
     {
-    return new Builder( random);
+    return new Builder( startLocation);
     }
   
   /**
@@ -126,9 +127,15 @@ public class ResolverContext extends ExecutionNotifier<ResolverException>
    */
   public static class Builder
     {
-    public Builder( Random random)
+    public Builder( String... startLocation)
       {
-      resolverContext_ = new ResolverContext( random);
+      resolverContext_ = new ResolverContext( startLocation);
+      }
+
+    public Builder random( Random random)
+      {
+      resolverContext_.setRandom( random);
+      return this;
       }
 
     public Builder notifier( Notifier notifier)

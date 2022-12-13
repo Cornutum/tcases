@@ -421,7 +421,7 @@ public class ApiTestCommand
       setResourceOutDir( null);
 
       setResolverContext(
-        ResolverContext.builder( new Random())
+        ResolverContext.builder()
         .notifier( RequestCaseConditionNotifier.log())
         .build());
       }

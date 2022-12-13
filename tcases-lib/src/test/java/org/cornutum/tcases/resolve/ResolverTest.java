@@ -40,7 +40,7 @@ public abstract class ResolverTest
    */
   protected ResolverContext getResolverContext( Notifier notifier)
     {
-    return ResolverContext.builder( getRandom()).notifier( notifier).build();
+    return ResolverContext.builder().random( getRandom()).notifier( notifier).build();
     }
 
   /**

@@ -77,7 +77,8 @@ public class RequestCaseResolverTest extends RequestCaseTest
   protected ResolverContext getResolverContext()
     {
     return
-      ResolverContext.builder( getRandom())
+      ResolverContext.builder()
+      .random( getRandom())
       .notifier(
         "fail".equals( System.getProperty( "testNotifier"))
         ? RequestCaseConditionNotifier.fail()

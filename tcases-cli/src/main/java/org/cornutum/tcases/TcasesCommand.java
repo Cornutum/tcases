@@ -24,7 +24,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -1255,7 +1254,7 @@ public class TcasesCommand
     // Create test case resolver.
     TestCaseSchemaResolver resolver =
       new TestCaseSchemaResolver(
-        ResolverContext.builder( new Random())
+        ResolverContext.builder( inputDef.getName())
         .notifier( TestCaseConditionNotifier.log())
         .build());
 

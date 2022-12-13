@@ -322,7 +322,7 @@ public class ApiCommand
       setModelOptions( new ModelOptions());
 
       setResolverContext(
-        ResolverContext.builder( new Random())
+        ResolverContext.builder()
         .notifier( RequestCaseConditionNotifier.log())
         .build());
       }

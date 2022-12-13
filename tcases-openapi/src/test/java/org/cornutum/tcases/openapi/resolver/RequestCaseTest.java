@@ -125,7 +125,8 @@ public class RequestCaseTest
   protected ResolverContext getResolverContext()
     {
     return
-      ResolverContext.builder( getRandom())
+      ResolverContext.builder()
+      .random( getRandom())
       .notifier( RequestCaseConditionNotifier.log())
       .build();
     }

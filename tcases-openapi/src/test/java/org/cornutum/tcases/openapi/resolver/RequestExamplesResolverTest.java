@@ -161,7 +161,8 @@ public class RequestExamplesResolverTest
   protected ResolverContext getResolverContext()
     {
     return
-      ResolverContext.builder( random_)
+      ResolverContext.builder()
+      .random( random_)
       .notifier(
         "fail".equals( System.getProperty( "testNotifier"))
         ? RequestCaseConditionNotifier.fail()

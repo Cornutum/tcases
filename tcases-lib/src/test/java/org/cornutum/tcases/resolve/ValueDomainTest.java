@@ -95,7 +95,8 @@ public abstract class ValueDomainTest
   protected ResolverContext getResolverContext()
     {
     return
-      ResolverContext.builder( getRandom())
+      ResolverContext.builder()
+      .random( getRandom())
       .notifier( Notifier.log( LoggerFactory.getLogger( getClass())))
       .build();
     }

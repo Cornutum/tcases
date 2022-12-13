@@ -13,7 +13,6 @@ import org.cornutum.tcases.util.ContextHandler;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Function;
 import static java.util.stream.Collectors.toList;
 
@@ -27,7 +26,7 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
    */
   protected TestCaseResolver()
     {
-    this( ResolverContext.builder( new Random()).notifier( TestCaseConditionNotifier.log()).build());
+    this( ResolverContext.builder().notifier( TestCaseConditionNotifier.log()).build());
     }
   
   /**
