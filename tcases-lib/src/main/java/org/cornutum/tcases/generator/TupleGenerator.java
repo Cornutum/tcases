@@ -116,6 +116,7 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns the random number sequence seed for this generator.
    */
+  @Override
   public Long getRandomSeed()
     {
     return seed_;

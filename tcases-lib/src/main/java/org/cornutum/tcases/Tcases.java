@@ -82,19 +82,22 @@ public class Tcases
       }
 
     // If applicable, apply specified generator options.
-    Long seed = options==null? null : options.getRandomSeed();
-    Integer defaultTupleSize = options==null? null : options.getDefaultTupleSize();
-    if( seed != null)
+    if( options != null)
       {
-      functionGen.setRandomSeed( seed);
-      }
-    if( defaultTupleSize != null && functionGen instanceof TupleGenerator)
-      {
-      ((TupleGenerator) functionGen).setDefaultTupleSize( defaultTupleSize);
+      Optional.ofNullable( options.getRandomSeed())
+        .ifPresent( seed -> functionGen.setRandomSeed( seed));
+
+      Optional.ofNullable( options.getDefaultTupleSize())
+        .filter( tuples -> functionGen instanceof TupleGenerator)
+        .ifPresent( tuples -> ((TupleGenerator) functionGen).setDefaultTupleSize( tuples));
       }
 
-    // Resolve random test case values using a function-specific seed.
-    resolver.getContext().setRandom( new Random( functionDef.getName().hashCode()));
+    // Resolve random test case values using a function-specific sequence.
+    resolver.getContext()
+      .setRandom(
+        new Random(
+          Optional.ofNullable( functionGen.getRandomSeed())
+          .orElse( (long) functionDef.getName().hashCode())));
 
     FunctionTestDef functionTestDef = new FunctionTestDef( functionDef.getName());
     resolver.resolve( functionDef, f -> functionGen.getTests( f, functionBase))
