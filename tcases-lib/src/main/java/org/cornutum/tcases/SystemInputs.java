@@ -32,9 +32,9 @@ public class SystemInputs
   /**
    * Creates a new SystemInputs instance.
    */
-  public SystemInputs()
+  public SystemInputs( String... startLocation)
     {
-    context_ = new ProcessingContext();
+    context_ = new ProcessingContext( startLocation);
     }
 
   /**
@@ -313,6 +313,14 @@ public class SystemInputs
    */
   private static class ProcessingContext extends ExecutionContext<ProcessingException>
     {
+    /**
+     * Creates a new ProcessingContext instance, starting at the given location.
+     */
+    public ProcessingContext( String... startLocation)
+      {
+      super( startLocation);
+      }
+    
     /**
      * Returns an exception to throw for the given failure.
      */

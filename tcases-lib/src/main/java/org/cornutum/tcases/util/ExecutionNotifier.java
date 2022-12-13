@@ -12,7 +12,14 @@ package org.cornutum.tcases.util;
  */
 public abstract class ExecutionNotifier<E extends RuntimeException> extends ExecutionContext<E>
   {
-
+  /**
+   * Creates a new ExecutionNotifier instance, starting at the given location.
+   */
+  protected ExecutionNotifier( String... startLocation)
+    {
+    super( startLocation);
+    }
+  
   /**
    * Changes the {@link Notifier} for this context.
    */
