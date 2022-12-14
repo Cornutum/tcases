@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -295,22 +296,30 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
 
         SystemInputs systemInputs = new SystemInputs( getContext().getPrevLocation());
         systemInputs.getPropertiesUnused( functionInputDef)
-          .forEach( (property,valueDefs) -> {
-            valueDefs.stream()
+          .forEach( (valueDef,properties) -> {
+            properties.stream()
               .forEach(
-                valueDef ->
+                property ->
                 notifyWarning(
                   valueDef.getLocation(),
-                  String.format( "Property=%s is unused", property)));
+                  String.format( "property=%s is defined but never used", property)));
             });
           
         systemInputs.getPropertiesUndefined( functionInputDef)
           .entrySet().stream()
           .findFirst()
           .ifPresent( undefined -> {
-            String property = undefined.getKey();
-            String[] refLocation = undefined.getValue().iterator().next().getLocation();
-            throw new SystemInputException( refLocation, String.format( "Depends on undefined property=%s", property));
+            String[] refLocation = undefined.getKey().getLocation();
+            Set<String> properties = undefined.getValue();
+            throw
+              new SystemInputException(
+                refLocation,
+                String.format(
+                  "depends on undefined %s",
+
+                  properties.size() == 1
+                  ? String.format( "property=%s", properties.iterator().next())
+                  : String.format( "properties=%s", properties.stream().collect( joining( ",")))));
             });
 
         return functionInputDef;

@@ -249,14 +249,14 @@ public class TestSystemInputJson extends SystemInputJsonTest
     {
     assertDefinitionError(
       "system-input-property-undefined.json",
-      "Things, Make, Color: Depends on undefined property=small");
+      "Things, Make, Color: depends on undefined properties=small,delicious");
 
     assertWarnings(
-      "Things,Make,Color,Hue,Red: Property=red is unused.",
-      "Things,Make,Shape,Heart: Property=red is unused.",
-      "Things,Make,Color,Hue,Green: Property=green is unused.",
-      "Things,Make,Color,Hue,Blue: Property=blue is unused.",
-      "Things,Make,Size,Small: Property=smallish is unused.");
+      "Things,Make,Color,Hue,Red: property=red is defined but never used.",
+      "Things,Make,Color,Hue,Green: property=green is defined but never used.",
+      "Things,Make,Color,Hue,Blue: property=blue is defined but never used.",
+      "Things,Make,Size,Small: property=smallish is defined but never used.",
+      "Things,Make,Shape,Heart: property=red is defined but never used.");
     }
 
   @Test

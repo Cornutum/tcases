@@ -18,10 +18,13 @@ import java.util.Set;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.IntStream;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -54,7 +57,7 @@ public class SystemInputs
       toStream( varDefs)
       .map( varDef -> getPropertySources( varDef))
       .collect(
-        LinkedHashMap<String,Set<Located<VarValueDef>>>::new,
+        LinkedHashMap::new,
         (result, varMap) -> putAll( result, varMap),
         this::putAll);
     }
@@ -74,7 +77,7 @@ public class SystemInputs
               toStream( varDef.getValues())
               .map( valueDef -> getPropertySources( valueDef))
               .collect(
-                LinkedHashMap<String,Set<Located<VarValueDef>>>::new,
+                LinkedHashMap::new,
                 (result, valueMap) -> putAll( result, valueMap),
                 this::putAll);
               });
@@ -91,7 +94,7 @@ public class SystemInputs
         return
           toStream( valueDef.getProperties())
           .collect(
-            LinkedHashMap<String,Set<Located<VarValueDef>>>::new,
+            LinkedHashMap::new,
             (result, property) -> put( result, property, located( valueDef)),
             this::putAll);
         });
@@ -114,7 +117,7 @@ public class SystemInputs
       toStream( varDefs)
       .map( varDef -> getPropertyReferences( varDef))
       .collect(
-        LinkedHashMap<String,Set<Located<IConditional>>>::new,
+        LinkedHashMap::new,
         (result, varMap) -> putAll( result, varMap),
         this::putAll);
     }
@@ -130,7 +133,7 @@ public class SystemInputs
         Map<String,Set<Located<IConditional>>> varRefs =
           propertiesReferenced( varDef.getCondition())
           .collect(
-            LinkedHashMap<String,Set<Located<IConditional>>>::new,
+            LinkedHashMap::new,
             (result, property) -> put( result, property, located( varDef)),
             this::putAll);
 
@@ -142,7 +145,7 @@ public class SystemInputs
               toStream( varDef.getValues())
               .map( valueDef -> getPropertyReferences( valueDef))
               .collect(
-                LinkedHashMap<String,Set<Located<IConditional>>>::new,
+                LinkedHashMap::new,
                 (result, valueMap) -> putAll( result, valueMap),
                 this::putAll);
             });
@@ -162,46 +165,58 @@ public class SystemInputs
         return
           propertiesReferenced( valueDef.getCondition())
           .collect(
-            LinkedHashMap<String,Set<Located<IConditional>>>::new,
+            LinkedHashMap::new,
             (result, property) -> put( result, property, located( valueDef)),
             this::putAll);
         });
     }
 
   /**
-   * For every property in the given function input definition that is defined but never referenced,
-   * maps the property to the variable value definitions that contribute it.
+   * For every variable value in the given function input definition that defines an unused
+   * property, maps the value to the unused properties it defines.
    */
-  public Map<String,Set<Located<VarValueDef>>> getPropertiesUnused( FunctionInputDef function)
+  public Map<Located<VarValueDef>,Set<String>> getPropertiesUnused( FunctionInputDef function)
     {
     Map<String,Set<Located<VarValueDef>>> sources = getPropertySources( function);
     Set<String> unused = SetUtils.difference( sources.keySet(), getPropertyReferences( function).keySet());
 
     return
-      unused.stream()
-      .collect( toMap( property -> property, property -> sources.get( property)));
+      invert(
+        unused.stream()
+        .collect(
+          toMap(
+            property -> property,
+            property -> sources.get( property),
+            (s1, s2) -> s1,
+            LinkedHashMap::new)));
     }
 
   /**
-   * For every property in the given function input definition that is referenced but never defined,
-   * maps the property to the conditional elements that reference it.
+   * For every conditional element in the given function input definition that references an undefined property,
+   * maps the element to the undefined properties that it references.
    */
-  public Map<String,Set<Located<IConditional>>> getPropertiesUndefined( FunctionInputDef function)
+  public Map<Located<IConditional>,Set<String>> getPropertiesUndefined( FunctionInputDef function)
     {
     Map<String,Set<Located<IConditional>>> refs = getPropertyReferences( function);
     Set<String> undefined = SetUtils.difference( refs.keySet(), getPropertySources( function).keySet());
 
     return
-      undefined.stream()
-      .collect( toMap( property -> property, property -> refs.get( property)));
+      invert(
+        undefined.stream()
+        .collect(
+          toMap(
+            property -> property,
+            property -> refs.get( property),
+            (s1, s2) -> s1,
+            LinkedHashMap::new)));
     }
 
   /**
    * Adds a value to the set associated with the given key.
    */
-  private <T> void put( Map<String,Set<Located<T>>> map, String key, Located<T> value)
+  private <K,V> void put( Map<K,Set<V>> map, K key, V value)
     {
-    Set<Located<T>> values = Optional.ofNullable( map.get( key)).orElseGet( LinkedHashSet<Located<T>>::new);
+    Set<V> values = Optional.ofNullable( map.get( key)).orElseGet( LinkedHashSet::new);
     values.add( value);
     map.put( key, values);
     }
@@ -209,7 +224,7 @@ public class SystemInputs
   /**
    * Merges the entries of that other map into the given map.
    */
-  private <T> void putAll( Map<String,Set<Located<T>>> map, Map<String,Set<Located<T>>> otherMap)
+  private <K,V> void putAll( Map<K,Set<V>> map, Map<K,Set<V>> otherMap)
     {
     otherMap.forEach( (k,v) -> v.stream().forEach( member -> put( map, k, member)));
     }
@@ -217,9 +232,45 @@ public class SystemInputs
   /**
    * Returns a located value.
    */
-  public <T> Located<T> located( T value)
+  private <T> Located<T> located( T value)
     {
     return new Located<T>( getLocation(), value);
+    }
+
+  /**
+   * Returns the inverse of the relationship represented by the given map.
+   */
+  private <K,V> Map<V,Set<K>> invert( Map<K,Set<V>> mapping)
+    {
+    List<List<V>> valueSets =
+      mapping.values().stream()
+      .map( values -> values.stream().collect( toList()))
+      .collect( toList());
+
+    int maxValues =
+      valueSets.stream()
+      .mapToInt( List::size)
+      .max()
+      .orElse( 0);
+
+    Set<V> values = new LinkedHashSet<V>();
+    IntStream.range( 0, maxValues)
+      .forEach( i -> {
+        valueSets.stream()
+          .forEach( valueSet -> {
+            if( i < valueSet.size())
+              {
+              values.add( valueSet.get(i));
+              }
+            });
+        });
+    
+    return
+      values.stream()
+      .collect(
+        LinkedHashMap::new,
+        (result, value) -> mapping.keySet().stream().filter( k -> mapping.get(k).contains( value)).forEach( k -> put( result, value, k)),
+        this::putAll);
     }
 
   /**
@@ -331,6 +382,15 @@ public class SystemInputs
         ProcessingException.class.isAssignableFrom( e.getClass())
         ? (ProcessingException) e
         : new ProcessingException( getLocation(), e);
+      }
+
+    @Override
+    public String toString()
+      {
+      return
+        ToString.getBuilder( this)
+        .append( getLocation())
+        .toString();
       }
     }
   
