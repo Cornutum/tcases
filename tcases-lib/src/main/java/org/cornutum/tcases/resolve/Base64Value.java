@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.resolve;
 
+import org.cornutum.tcases.util.ToString;
+
 /**
  * Represents a generated base64 address value for a request case.
  */
@@ -18,5 +20,14 @@ public class Base64Value extends StringValue
   public Base64Value( String value)
     {
     super( value, "byte");
+    }
+
+  @Override
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( getValue())
+      .toString();
     }
   }

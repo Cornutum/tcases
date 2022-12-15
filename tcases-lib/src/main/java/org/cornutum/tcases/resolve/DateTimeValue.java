@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.resolve;
 
+import org.cornutum.tcases.util.ToString;
+
 /**
  * Represents a generated time string value for a request case.
  */
@@ -18,5 +20,14 @@ public class DateTimeValue extends StringValue
   public DateTimeValue( String value)
     {
     super( value, "date-time");
+    }
+
+  @Override
+  public String toString()
+    {
+    return
+      ToString.getBuilder( this)
+      .append( getValue())
+      .toString();
     }
   }
