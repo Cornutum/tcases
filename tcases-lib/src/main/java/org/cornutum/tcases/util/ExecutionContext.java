@@ -9,8 +9,6 @@ package org.cornutum.tcases.util;
 
 import static org.cornutum.tcases.util.CollectionUtils.*;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.function.Supplier;
@@ -82,18 +80,6 @@ public abstract class ExecutionContext<E extends RuntimeException>
   public String[] getLocation()
     {
     return toStream( context_.iterator()).toArray( String[]::new);
-    }
-
-  /**
-   * Returns the path to the previous context.
-   */
-  public String[] getPrevLocation()
-    {
-    String[] current = getLocation();
-    return
-      current.length > 0
-      ? ArrayUtils.subarray( current, 0, current.length - 1)
-      : current;
     }
 
   @Override

@@ -274,56 +274,66 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
   private FunctionInputDef asFunctionInputDef( String functionName, JsonObject json)
     {
     return
-      resultFor( functionName, () -> {
-        FunctionInputDef functionInputDef = new FunctionInputDef( validIdentifier( functionName));
+      checkingProperties(
+        resultFor( functionName, () -> {
+          FunctionInputDef functionInputDef = new FunctionInputDef( validIdentifier( functionName));
       
-        // Get function annotations
-        Optional.ofNullable( json.getJsonObject( HAS_KEY))
-          .ifPresent( has -> has.keySet().stream().forEach( key -> functionInputDef.setAnnotation( key, has.getString( key))));
+          // Get function annotations
+          Optional.ofNullable( json.getJsonObject( HAS_KEY))
+            .ifPresent( has -> has.keySet().stream().forEach( key -> functionInputDef.setAnnotation( key, has.getString( key))));
 
-        // Get function variables.
-        json.keySet().stream()
-          .filter( key -> !key.equals( HAS_KEY))
-          .forEach( varType -> {
-            resultFor( varType, () -> getVarDefs( varType, json.getJsonObject( varType)))
-              .forEach( varDef -> functionInputDef.addVarDef( varDef));
-            });
+          // Get function variables.
+          json.keySet().stream()
+            .filter( key -> !key.equals( HAS_KEY))
+            .forEach( varType -> {
+              resultFor( varType, () -> getVarDefs( varType, json.getJsonObject( varType)))
+                .forEach( varDef -> functionInputDef.addVarDef( varDef));
+              });
 
-        if( functionInputDef.getVarTypes().length == 0)
-          {
-          throw new IllegalStateException( String.format( "No variables defined for function=%s", functionName));
-          }
+          if( functionInputDef.getVarTypes().length == 0)
+            {
+            throw new IllegalStateException( String.format( "No variables defined for function=%s", functionName));
+            }
 
-        SystemInputs systemInputs = new SystemInputs( getContext().getPrevLocation());
-        systemInputs.getPropertiesUnused( functionInputDef)
-          .forEach( (valueDef,properties) -> {
-            properties.stream()
-              .forEach(
-                property ->
-                notifyWarning(
-                  valueDef.getLocation(),
-                  String.format( "property=%s is defined but never used", property)));
-            });
-          
-        systemInputs.getPropertiesUndefined( functionInputDef)
-          .entrySet().stream()
-          .findFirst()
-          .ifPresent( undefined -> {
-            String[] refLocation = undefined.getKey().getLocation();
-            Set<String> properties = undefined.getValue();
-            throw
-              new SystemInputException(
-                refLocation,
-                String.format(
-                  "depends on undefined %s",
+          return functionInputDef;
+          }));
+    }
 
-                  properties.size() == 1
-                  ? String.format( "property=%s", properties.iterator().next())
-                  : String.format( "properties=%s", properties.stream().collect( joining( ",")))));
-            });
+  /**
+   * Returns the given FunctionInputDef after verifying all property references.
+   */
+  private FunctionInputDef checkingProperties( FunctionInputDef functionInputDef)
+    {
+    SystemInputs systemInputs = new SystemInputs( getContext().getLocation());
 
-        return functionInputDef;
+    systemInputs.getPropertiesUnused( functionInputDef)
+      .forEach( (valueDef,properties) -> {
+        properties.stream()
+          .forEach(
+            property ->
+            notifyWarning(
+              valueDef.getLocation(),
+              String.format( "property=%s is defined but never used", property)));
         });
+          
+    systemInputs.getPropertiesUndefined( functionInputDef)
+      .entrySet().stream()
+      .findFirst()
+      .ifPresent( undefined -> {
+        String[] refLocation = undefined.getKey().getLocation();
+        Set<String> properties = undefined.getValue();
+        throw
+          new SystemInputException(
+            refLocation,
+            String.format(
+              "depends on undefined %s",
+
+              properties.size() == 1
+              ? String.format( "property=%s", properties.iterator().next())
+              : String.format( "properties=%s", properties.stream().collect( joining( ",")))));
+        });
+
+    return functionInputDef;
     }
 
   /**
