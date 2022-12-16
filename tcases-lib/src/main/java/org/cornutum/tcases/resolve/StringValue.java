@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.Optional;
 
 /**
- * Represents a generated string value for a request case.
+ * Represents a generated string value for a test case.
  */
 public class StringValue extends DataValue<String>
   {

@@ -8,7 +8,7 @@
 package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated integer value for a request case.
+ * Represents a generated integer value for a test case.
  */
 public class IntegerValue extends DataValue<Integer>
   {

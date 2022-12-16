@@ -10,7 +10,7 @@ package org.cornutum.tcases.resolve;
 import org.cornutum.tcases.util.ToString;
 
 /**
- * Represents a generated UUID string value for a request case.
+ * Represents a generated UUID string value for a test case.
  */
 public class UuidValue extends StringValue
   {

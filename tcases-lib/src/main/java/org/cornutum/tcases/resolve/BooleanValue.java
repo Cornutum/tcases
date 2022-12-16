@@ -8,7 +8,7 @@
 package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated boolean value for a request case.
+ * Represents a generated boolean value for a test case.
  */
 public class BooleanValue extends DataValue<Boolean>
   {

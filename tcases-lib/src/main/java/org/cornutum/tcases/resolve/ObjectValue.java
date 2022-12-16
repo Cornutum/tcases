@@ -12,7 +12,7 @@ import org.cornutum.tcases.util.ToString;
 import java.util.Map;
 
 /**
- * Represents a generated object value for a request case.
+ * Represents a generated object value for a test case.
  */
 public class ObjectValue extends DataValue<Map<String,DataValue<?>>>
   {

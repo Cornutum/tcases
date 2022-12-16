@@ -10,7 +10,7 @@ package org.cornutum.tcases.resolve;
 import java.math.BigDecimal;
 
 /**
- * Represents a generated decimal value for a request case.
+ * Represents a generated decimal value for a test case.
  */
 public class DecimalValue extends DataValue<BigDecimal>
   {

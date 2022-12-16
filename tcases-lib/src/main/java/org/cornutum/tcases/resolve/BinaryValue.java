@@ -10,7 +10,7 @@ package org.cornutum.tcases.resolve;
 import org.cornutum.tcases.util.ToString;
 
 /**
- * Represents a generated binary value for a request case.
+ * Represents a generated binary value for a test case.
  */
 public class BinaryValue extends DataValue<byte[]>
   {

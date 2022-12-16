@@ -10,7 +10,7 @@ package org.cornutum.tcases.resolve;
 import java.util.List;
 
 /**
- * Represents a generated array value for a request case.
+ * Represents a generated array value for a test case.
  */
 public class ArrayValue<T> extends DataValue<List<DataValue<T>>>
   {

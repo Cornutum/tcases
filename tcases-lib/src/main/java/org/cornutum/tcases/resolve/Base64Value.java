@@ -10,7 +10,7 @@ package org.cornutum.tcases.resolve;
 import org.cornutum.tcases.util.ToString;
 
 /**
- * Represents a generated base64 address value for a request case.
+ * Represents a generated base64 address value for a test case.
  */
 public class Base64Value extends StringValue
   {

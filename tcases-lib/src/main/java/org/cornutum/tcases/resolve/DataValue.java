@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Represents a generated data value for a request case.
+ * Represents a generated data value for a test case.
  */
 public class DataValue<T>
   {

@@ -10,7 +10,7 @@ package org.cornutum.tcases.resolve;
 import org.cornutum.tcases.util.ToString;
 
 /**
- * Represents a generated date string value for a request case.
+ * Represents a generated date string value for a test case.
  */
 public class DateValue extends StringValue
   {

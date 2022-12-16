@@ -8,7 +8,7 @@
 package org.cornutum.tcases.resolve;
 
 /**
- * Represents a generated long value for a request case.
+ * Represents a generated long value for a test case.
  */
 public class LongValue extends DataValue<Long>
   {
