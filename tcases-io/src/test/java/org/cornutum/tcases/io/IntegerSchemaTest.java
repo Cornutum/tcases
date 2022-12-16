@@ -937,7 +937,7 @@ public class IntegerSchemaTest extends SystemInputJsonTest
     assertDefinitionError(
       "schema-integer-20.json",
       "Error processing Schema, integer, integerVar, integerValue",
-      "Schema has type=integer but defines a 'const' of type=number");
+      "Schema has type=integer but 'const' defines a value of type=number");
     }
 
   
@@ -967,5 +967,37 @@ public class IntegerSchemaTest extends SystemInputJsonTest
           .build())
         .build())
       .build());
+    }
+
+  @Test
+  public void Schemas_enum()
+    {
+    expectSystemInputJson(
+      "schema-integer-enum.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "integer")
+        .vars(
+          VarDefBuilder.with( "integerVar")
+          .values(
+            VarValueDefBuilder.with( "integerValue")
+            .schema(
+              SchemaBuilder.type( "integer")
+              .enums( 1, 2, 3, 5, 8, 13)
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
+    }
+
+  @Test
+  public void Schemas_enum_invalid()
+    {
+    assertDefinitionError(
+      "schema-integer-enum-invalid.json",
+      "Error processing Schema, integer, integerVar, integerValue",
+      "Schema has type=integer but 'enum' defines a value of type=number");
     }
   }

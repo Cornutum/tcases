@@ -56,6 +56,29 @@ public class BooleanSchemaTest extends SystemInputJsonTest
     assertDefinitionError(
       "schema-boolean-1.json",
       "Error processing Schema, boolean, booleanVar, booleanValue",
-      "Schema has type=boolean but defines a 'const' of type=string");
+      "Schema has type=boolean but 'const' defines a value of type=string");
+    }
+
+  @Test
+  public void Schemas_enum()
+    {
+    expectSystemInputJson(
+      "schema-boolean-enum.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "boolean")
+        .vars(
+          VarDefBuilder.with( "booleanVar")
+          .values(
+            VarValueDefBuilder.with( "booleanValue")
+            .schema(
+              SchemaBuilder.type( "boolean")
+              .constant( true)
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
   }

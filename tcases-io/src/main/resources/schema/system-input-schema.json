@@ -308,7 +308,14 @@
                     "enum": [ "array", "boolean", "integer", "number", "string"]
                 },
                 "const": {
-                    "type": [ "array", "boolean", "integer", "number", "string", "null"]
+                    "$ref": "#/definitions/const"
+                },
+                "enum": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "$ref": "#/definitions/const"
+                    }
                 },
                 "format": {
                     "type": "string"
@@ -352,6 +359,10 @@
                     "$ref": "#/definitions/schema"
                 }
             }
+        },
+        "const": {
+            "description": "A constant data value",
+            "type": [ "array", "boolean", "integer", "number", "string", "null"]
         }
     }
 }

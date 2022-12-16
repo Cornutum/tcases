@@ -284,7 +284,7 @@ public class ArraySchemaTest extends SystemInputJsonTest
     assertDefinitionError(
       "schema-array-7.json",
       "Error processing Schema, array, arrayVar, arrayValue",
-      "Schema has type=array but defines a 'const' of type=number");
+      "Schema has type=array but 'const' defines a value of type=number");
     }
 
   /**
@@ -356,28 +356,29 @@ public class ArraySchemaTest extends SystemInputJsonTest
   @Test
   public void Schemas_10()
     {
-    // properties = valueSchema,valueTypeDefined
+    assertValidationFailure( "schema-array-10.json", "The value must be of boolean type, but actual type is string");
+    }
 
-    // Given...
-    //
-    //   VarDef.Value.Schema.Defined = Yes
-    //
-    //   VarDef.Value.Schema.type = array
-    //
-    //   VarDef.Value.Schema.format = Undefined
-    //
-    //   VarDef.Value.Schema.const = Undefined
-    //
-    //   VarDef.Value.Schema.minItems = Undefined
-    //
-    //   VarDef.Value.Schema.maxItems = Integer
-    //
-    //   VarDef.Value.Schema.uniqueItems = Invalid
-    //
-    //   VarDef.Value.Schema.items = Undefined
-    
-    // When...
-
-    // Then...
+  @Test
+  public void Schemas_enum()
+    {
+    expectSystemInputJson(
+      "schema-array-enum.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "array")
+        .vars(
+          VarDefBuilder.with( "arrayVar")
+          .values(
+            VarValueDefBuilder.with( "arrayValue")
+            .schema(
+              SchemaBuilder.type( "array")
+              .enums( arrayOf( 1, 2, 3), arrayOf( 2, 4, 6), arrayOf( 3, 6, 9))
+              .build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
   }

@@ -1,0 +1,15 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVar": {
+                "values": {
+                    "stringValue": {
+                        "format": "email",
+                        "enum": [ "my@myself.org", "hello@world.com" ]
+                    }
+                }
+            }
+        }
+    }
+}

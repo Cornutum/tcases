@@ -12,7 +12,10 @@ import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Builds {@link Schema} instances.
@@ -101,6 +104,47 @@ public class SchemaBuilder
   public SchemaBuilder constant( String format, String value)
     {
     return constant( stringOf( format, value)).format( format);
+    }
+
+  public SchemaBuilder enums( List<DataValue<?>> values)
+    {
+    schema_.setEnum( values);
+    return this;
+    }
+
+  public SchemaBuilder enums( DataValue<?>... values)
+    {
+    return enums( Arrays.asList( values));
+    }
+
+  public SchemaBuilder enums( Boolean... values)
+    {
+    return enums( Arrays.stream( values).map( DataValues::valueOf).collect( toList()));
+    }
+
+  public SchemaBuilder enums( BigDecimal... values)
+    {
+    return enums( Arrays.stream( values).map( DataValues::valueOf).collect( toList()));
+    }
+
+  public SchemaBuilder enums( int... values)
+    {
+    return enums( Arrays.stream( values).mapToObj( DataValues::valueOf).collect( toList()));
+    }
+
+  public SchemaBuilder enums( long... values)
+    {
+    return enums( Arrays.stream( values).mapToObj( DataValues::valueOf).collect( toList()));
+    }
+
+  public SchemaBuilder enums( String... values)
+    {
+    return enums( Arrays.stream( values).map( DataValues::stringOf).collect( toList()));
+    }
+
+  public SchemaBuilder enums( String format, StringValue... values)
+    {
+    return enums( Arrays.stream( values).map( s -> stringOf( format, s.getValue())).collect( toList()));
     }
   
   public SchemaBuilder format( String format)

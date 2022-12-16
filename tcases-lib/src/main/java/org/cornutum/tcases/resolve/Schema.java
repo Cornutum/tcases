@@ -14,8 +14,17 @@ import static org.cornutum.tcases.resolve.DataValue.Type.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Defines requirements for the value of a system input variable.
@@ -37,6 +46,7 @@ public class Schema
     {
     this( Optional.ofNullable( other).map( Schema::getType).orElse( null));
     setConstant( other.getConstant());
+    setEnum( other.getEnum());
     setFormat( other.getFormat());
     setMinimum( other.getMinimum());
     setMaximum( other.getMaximum());
@@ -66,14 +76,16 @@ public class Schema
     if( merged.getType() == NULL)
       {
       merged.setFormat( Optional.ofNullable( other.getFormat()).orElse( getFormat()));
-      merged.setConstant( other.getConstant() != null? other.getConstant() :  getConstant());
+      merged.setConstant( other.getConstant() != null? other.getConstant() : getConstant());
+      merged.setEnum( other.getEnum() != null? other.getEnum() : getEnum());
       }
     else
       {
       merged.setFormat( Optional.ofNullable( other.getFormat()).orElse( getType() == other.getType()? getFormat() : null));
       merged.setConstant( Optional.ofNullable( other.getConstant()).orElse( null));
+      merged.setEnum( Optional.ofNullable( other.getEnum()).orElse( null));
 
-      if( merged.getConstant() == null)
+      if( merged.getConstant() == null && merged.getEnum() == null)
         {
         switch( merged.getType())
           {
@@ -152,6 +164,30 @@ public class Schema
   public DataValue<?> getConstant()
     {
     return constant_;
+    }
+
+  /**
+   * Changes the enumeration of all input values.
+   */
+  public void setEnum( Collection<DataValue<?>> enums)
+    {
+    setType( assertValueType( "enum", enums));
+
+    Optional.ofNullable( enums)
+      .filter( Collection::isEmpty)
+      .ifPresent( empty -> {
+        throw new IllegalArgumentException( "'enum' must define at least one value");
+        });
+    
+    enums_ = Optional.ofNullable( enums).map( e -> e.stream().collect( toSet())).orElse( null);
+    }
+
+  /**
+   * Returns the enumeration of all input values.
+   */
+  public Set<DataValue<?>> getEnum()
+    {
+    return enums_;
     }
 
   /**
@@ -411,6 +447,28 @@ public class Schema
     }
 
   /**
+   * Returns true if this schema is a "classifier" that describes a set values
+   * that have specific properties. Returns false if this schema enumerates
+   * a specific set of values.
+   */
+  public boolean isClassifier()
+    {
+    return 
+      !(getMinimum() == null
+        && getMaximum() == null
+        && getExclusiveMinimum() == null
+        && getExclusiveMaximum() == null
+        && getMultipleOf() == null
+        && getMinLength() == null
+        && getMaxLength() == null
+        && getPattern() == null
+        && getMinItems() == null
+        && getMaxItems() == null
+        && getUniqueItems() == null
+        && getItems() == null);
+    }
+
+  /**
    * Reports a failure if the given type is not defined.
    */
   private Type assertType( Type type)
@@ -474,13 +532,63 @@ public class Schema
       Type thisType = getType();
       if( !(valueType == thisType || valueType == NULL || thisType == NULL || (thisType == NUMBER && valueType == INTEGER)))
         {
-        throw new IllegalArgumentException( String.format( "'%s' type=%s is not allowed for schema type=%s", property, valueType, thisType));
+        throw new IllegalArgumentException( String.format( "'%s' value of type=%s is not allowed for schema type=%s", property, valueType, thisType));
         }
 
       type =
         thisType == NULL
         ? valueType
         : thisType;
+      }
+
+    return type;
+    }
+
+  /**
+   * Reports a failure if this schema does not have the type required for the given value list.
+   */
+  private Type assertValueType( String property, Collection<DataValue<?>> values)
+    {
+    Map<Type,List<DataValue<?>>> valuesByType =
+      Optional.ofNullable( values).orElse( emptyList())
+      .stream()
+      .filter( value -> value.getType() != NULL)
+      .collect( groupingBy( value -> Optional.of( value.getType()).filter( type -> !type.isNumeric()).orElse( NUMBER)));
+
+    Optional<Type> numericType =
+      Optional.ofNullable( valuesByType.get( NUMBER))
+      .map( numbers -> numbers.stream().map( DataValue::getType).filter( type -> type == NUMBER).findFirst().orElse( INTEGER));
+
+    Type type;
+    if( valuesByType.isEmpty())
+      {
+      type = getType();
+      }
+
+    else if( valuesByType.size() == 1)
+      {
+      DataValue<?> valueOfType =
+        numericType
+        .flatMap( t -> values.stream().filter( value -> value.getType() == t).findFirst())
+        .orElse( values.iterator().next());
+
+      type = assertValueType( property, valueOfType);
+      }
+
+    else
+      {
+      throw
+        new IllegalArgumentException(
+          String.format(
+            "'%s' values with mixed types (%s) are not allowed",
+            property,
+            
+            valuesByType.keySet()
+            .stream()
+            .map( t -> t == NUMBER? numericType.get() : t)
+            .map( t -> String.valueOf( t).toLowerCase())
+            .sorted()
+            .collect( joining( ","))));
       }
 
     return type;
@@ -507,6 +615,7 @@ public class Schema
       other != null
       && Objects.equals( other.getType(), getType())
       && Objects.equals( other.getConstant(), getConstant())
+      && Objects.equals( other.getEnum(), getEnum())
       && Objects.equals( other.getFormat(), getFormat())
       && Objects.equals( other.getMinimum(), getMinimum())
       && Objects.equals( other.getMaximum(), getMaximum())
@@ -530,6 +639,7 @@ public class Schema
       getClass().hashCode()
       ^ Objects.hashCode( getType())
       ^ Objects.hashCode( getConstant())
+      ^ Objects.hashCode( getEnum())
       ^ Objects.hashCode( getFormat())
       ^ Objects.hashCode( getMinimum())
       ^ Objects.hashCode( getMaximum())
@@ -554,6 +664,7 @@ public class Schema
     return
       String.valueOf( getType()).hashCode()
       ^ String.valueOf( getConstant()).hashCode()
+      ^ String.valueOf( getEnum()).hashCode()
       ^ String.valueOf( getFormat()).hashCode()
       ^ String.valueOf( getMinimum()).hashCode()
       ^ String.valueOf( getMaximum()).hashCode()
@@ -572,6 +683,7 @@ public class Schema
   
   private Type type_;
   private DataValue<?> constant_;
+  private Set<DataValue<?>> enums_;
   private String format_;
   private BigDecimal minimum_;
   private BigDecimal maximum_;

@@ -22,9 +22,11 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 import org.apache.commons.collections4.IteratorUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -34,6 +36,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -117,7 +120,9 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
 
       JsonObjectBuilder valuesBuilder = Json.createObjectBuilder();
       toStream( varDef.getValues()).forEach( value -> valuesBuilder.add( String.valueOf( value.getName()), toJson( value)));
-      builder.add( VALUES_KEY, valuesBuilder.build());
+      Optional.of( valuesBuilder.build())
+        .filter( object -> !object.isEmpty())
+        .ifPresent( object -> builder.add( VALUES_KEY, object));
       }
     else if( varDef.getMembers() != null)
       {
@@ -167,6 +172,7 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
       .ifPresent( type -> builder.add( TYPE_KEY, type.toString().toLowerCase()));
 
     Optional.ofNullable( schema.getConstant()).ifPresent( constant -> builder.add( CONST_KEY, DataValueJson.toJson( constant)));
+    Optional.ofNullable( schema.getEnum()).ifPresent( enums -> builder.add( ENUM_KEY, DataValueJson.toJson( enums)));
     Optional.ofNullable( schema.getFormat()).ifPresent( format -> builder.add( FORMAT_KEY, format));
     Optional.ofNullable( schema.getMinimum()).ifPresent( minimum -> builder.add( MINIMUM_KEY, minimum));
     Optional.ofNullable( schema.getMaximum()).ifPresent( maximum -> builder.add( MAXIMUM_KEY, maximum));
@@ -761,85 +767,45 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
     {
     Schema schema = new Schema( type);
 
-    if( json.containsKey( FORMAT_KEY))
-      {
-      schema.setFormat( json.getString( FORMAT_KEY));
-      }
+    schema.setFormat( json.getString( FORMAT_KEY, null));
+    schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
+    schema.setEnum( asDataValues( json, ENUM_KEY, type, schema.getFormat()));
 
     switch( type)
       {
       case ARRAY:
         {
-        if( json.containsKey( CONST_KEY))
-          {
-          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
-          }
-        else
-          {
-          schema.setMinItems( asInteger( json, MIN_ITEMS_KEY));
-          schema.setMaxItems( asInteger( json, MAX_ITEMS_KEY));
-          schema.setUniqueItems( asBoolean( json, UNIQUE_ITEMS_KEY));
-          schema.setItems( asSchema( json, ITEMS_KEY));
-          }
-        break;
-        }
-
-      case BOOLEAN:
-        {
-        if( json.containsKey( CONST_KEY))
-          {
-          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
-          }
+        schema.setMinItems( asInteger( json, MIN_ITEMS_KEY));
+        schema.setMaxItems( asInteger( json, MAX_ITEMS_KEY));
+        schema.setUniqueItems( asBoolean( json, UNIQUE_ITEMS_KEY));
+        schema.setItems( asSchema( json, ITEMS_KEY));
         break;
         }
 
       case INTEGER:
       case NUMBER:
         {
-        if( json.containsKey( CONST_KEY))
-          {
-          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
-          }
-        else
-          {
-          schema.setMinimum( asBigDecimal( json, MINIMUM_KEY, type, schema.getFormat()));
-          schema.setMaximum( asBigDecimal( json, MAXIMUM_KEY, type, schema.getFormat()));
-          schema.setExclusiveMinimum( asBigDecimal( json, EXCLUSIVE_MINIMUM_KEY, type, schema.getFormat()));
-          schema.setExclusiveMaximum( asBigDecimal( json, EXCLUSIVE_MAXIMUM_KEY, type, schema.getFormat()));
-          schema.setMultipleOf( asBigDecimal( json, MULTIPLE_OF_KEY, type, schema.getFormat()));
-          }
+        schema.setMinimum( asBigDecimal( json, MINIMUM_KEY, type, schema.getFormat()));
+        schema.setMaximum( asBigDecimal( json, MAXIMUM_KEY, type, schema.getFormat()));
+        schema.setExclusiveMinimum( asBigDecimal( json, EXCLUSIVE_MINIMUM_KEY, type, schema.getFormat()));
+        schema.setExclusiveMaximum( asBigDecimal( json, EXCLUSIVE_MAXIMUM_KEY, type, schema.getFormat()));
+        schema.setMultipleOf( asBigDecimal( json, MULTIPLE_OF_KEY, type, schema.getFormat()));
         break;
         }
 
       case STRING:
         {
-        if( json.containsKey( CONST_KEY))
+        if( json.containsKey( MIN_LENGTH_KEY))
           {
-          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
+          schema.setMinLength( json.getInt( MIN_LENGTH_KEY));
           }
-        else
+        if( json.containsKey( MAX_LENGTH_KEY))
           {
-          if( json.containsKey( MIN_LENGTH_KEY))
-            {
-            schema.setMinLength( json.getInt( MIN_LENGTH_KEY));
-            }
-          if( json.containsKey( MAX_LENGTH_KEY))
-            {
-            schema.setMaxLength( json.getInt( MAX_LENGTH_KEY));
-            }
-          if( json.containsKey( PATTERN_KEY))
-            {
-            schema.setPattern( json.getString( PATTERN_KEY));
-            }
+          schema.setMaxLength( json.getInt( MAX_LENGTH_KEY));
           }
-        break;
-        }
-
-      case NULL:
-        {
-        if( json.containsKey( CONST_KEY))
+        if( json.containsKey( PATTERN_KEY))
           {
-          schema.setConstant( asDataValue( json, CONST_KEY, type, schema.getFormat()));
+          schema.setPattern( json.getString( PATTERN_KEY));
           }
         break;
         }
@@ -946,23 +912,25 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
         }
       }
 
-    // Does the schema define a "const" value?
-    Type constType = getConstType( json);
-    if( constType != null)
+    // Does the schema define a "const" or "enum" value?
+    Map<String,Type> constTypes = getConstTypes( json);
+    String constKey = constTypes.keySet().stream().findFirst().orElse( null);
+    if( constKey != null)
       {
       // Yes, reconcile const type with schema type.
+      Type constType = constTypes.get( constKey);
       if( schemaType == null)
         {
         schemaType = constType;
         }
-      else if( !( constType == schemaType || constType == NULL || (constType == INTEGER && schemaType == NUMBER)))
+      else if( !(constType == schemaType || constType == NULL || (constType == INTEGER && schemaType == NUMBER)))
         {
         throw
           new IllegalStateException(
             String.format(
-              "Schema has type=%s but defines a '%s' of type=%s",
+              "Schema has type=%s but '%s' defines a value of type=%s",
               String.valueOf( schemaType).toLowerCase(),
-              CONST_KEY,
+              constKey,
               String.valueOf( constType).toLowerCase()));
         }
       }
@@ -983,7 +951,18 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
     }
 
   /**
-   * If the given JSON object defines a value for the "const" property, returns the type of the value.
+   * Returns types of values associated with the "const" and "enum" properties, if any.
+   */
+  private Map<String,Type> getConstTypes( JsonObject json)
+    {
+    Map<String,Type> constTypes = new LinkedHashMap<String,Type>();
+    Optional.ofNullable( getConstType( json)).ifPresent( type -> constTypes.put( CONST_KEY, type));
+    Optional.ofNullable( getEnumType( json)).ifPresent( type -> constTypes.put( ENUM_KEY, type));
+    return constTypes;
+    }
+
+  /**
+   * If the given JSON object defines a value for either the "const" property, returns the type of the value.
    * Otherwise, returns null.
    */
   private Type getConstType( JsonObject json)
@@ -992,6 +971,30 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
       Optional.ofNullable( asDataValue( json, CONST_KEY, NULL, json.getString( FORMAT_KEY, null)))
       .map( DataValue::getType)
       .orElse( null);
+    }
+
+  /**
+   * If the given JSON object defines a value for the "enum" property, returns the type of the value.
+   * Otherwise, returns null.
+   */
+  private Type getEnumType( JsonObject json)
+    {
+    Set<Type> enumTypes =
+      Optional.ofNullable( asDataValues( json, ENUM_KEY, NULL, json.getString( FORMAT_KEY, null)))
+      .map( enums -> enums.stream().map( DataValue::getType).collect( toSet()))
+      .orElse( null);
+
+    return
+      enumTypes == null?
+      null :
+
+      enumTypes.size() == 1?
+      enumTypes.iterator().next() :
+
+      enumTypes.stream().allMatch( Type::isNumeric)?
+      NUMBER :
+
+      NULL;
     }
 
   /**
@@ -1004,26 +1007,59 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
       resultFor( key, () -> {
         return
           Optional.ofNullable( json.get( key))
+          .map( value -> asDataValue( value, expectedType, format))
+          .orElse( null);
+        });
+    }
+
+  /**
+   * Returns the DataValue of the expected type represented by the given JSON value.
+   */
+  private DataValue<?> asDataValue( JsonValue value, Type expectedType, String format)
+    {
+    DataValue<?> dataValue = asDataValue( value, format);
+
+    if( !(expectedType == NULL
+          ||
+          expectedType == dataValue.getType()
+          ||
+          dataValue.getType() == NULL
+          ||
+          (expectedType == NUMBER && dataValue.getType() == INTEGER)))
+      {
+      throw
+        new IllegalStateException(
+          String.format(
+            "Expected a value of type=%s, but found '%s'",
+            String.valueOf( expectedType).toLowerCase(),
+            value));
+      }
+
+    return dataValue;
+    }
+
+  /**
+   * If the given JSON object defines a value for the given key, returns the value as a list of elements of the expected type.
+   * Otherwise, returns null.
+   */
+  private List<DataValue<?>> asDataValues( JsonObject json, String key, Type expectedType, String format)
+    {
+    return
+      resultFor( key, () -> {
+        return
+          Optional.ofNullable( json.get( key))
           .map( value -> {
-            DataValue<?> dataValue = asDataValue( value, format);
-        
-            if( !(expectedType == NULL
-                  ||
-                  expectedType == dataValue.getType()
-                  ||
-                  dataValue.getType() == NULL
-                  ||
-                  (expectedType == NUMBER && dataValue.getType() == INTEGER)))
+            if( value.getValueType() != JsonValue.ValueType.ARRAY)
               {
-              throw
-                new IllegalStateException(
-                  String.format(
-                    "Expected a value of type=%s, but found '%s'",
-                    String.valueOf( expectedType).toLowerCase(),
-                    value));
+              throw new IllegalStateException( String.format( "Expected an array but found '%s'", value));
               }
 
-            return dataValue;
+            return
+              ((JsonArray) value).stream()
+              .collect(
+                ArrayList<DataValue<?>>::new,
+                (result, item) -> result.add( asDataValue( item, expectedType, format)),
+                ArrayList::addAll);
             })
           .orElse( null);
         });
@@ -1418,9 +1454,16 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
 
   private static class DataValueJson implements DataValueVisitor
     {
-    private static JsonValue toJson( DataValue<?> data)
+    public static JsonValue toJson( DataValue<?> data)
       {
       return new DataValueJson( data).toJson();
+      }
+    
+    public static JsonValue toJson( Set<DataValue<?>> data)
+      {
+      JsonArrayBuilder items = Json.createArrayBuilder();
+      data.forEach( item -> items.add( toJson( item)));
+      return items.build();
       }
     
     private DataValueJson( DataValue<?> data)
@@ -1524,6 +1567,7 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
   private static final String WHEN_KEY = "when";
 
   private static final String CONST_KEY = "const";
+  private static final String ENUM_KEY = "enum";
   private static final String EXCLUSIVE_MAXIMUM_KEY = "exclusiveMaximum";
   private static final String EXCLUSIVE_MINIMUM_KEY = "exclusiveMinimum";
   private static final String FORMAT_KEY = "format";
@@ -1541,7 +1585,7 @@ public class SystemInputJson extends ContextHandler<SystemInputContext>
 
   private static final Map<Type,List<String>> schemaTypeKeys_ =
     MapBuilder
-    .of( NULL, Arrays.asList( TYPE_KEY, CONST_KEY, FORMAT_KEY))
+    .of( NULL, Arrays.asList( TYPE_KEY, CONST_KEY, ENUM_KEY, FORMAT_KEY))
     .put( ARRAY, Arrays.asList( ITEMS_KEY, MAX_ITEMS_KEY, MIN_ITEMS_KEY, UNIQUE_ITEMS_KEY))
     .put( NUMBER, Arrays.asList( MAXIMUM_KEY, EXCLUSIVE_MAXIMUM_KEY, MINIMUM_KEY, EXCLUSIVE_MINIMUM_KEY, MULTIPLE_OF_KEY))
     .put( STRING, Arrays.asList( MAX_LENGTH_KEY, MIN_LENGTH_KEY, PATTERN_KEY))

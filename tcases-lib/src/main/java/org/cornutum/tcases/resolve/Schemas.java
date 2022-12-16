@@ -21,7 +21,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
+import static java.util.Collections.singleton;
 
 /**
  * Provides transformations and analysis of {@link Schema} instances.
@@ -101,7 +103,22 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
    */
   public Schema normalize( Schema schema)
     {
-    if( !(schema == null || schema.getConstant() != null))
+    if( schema == null)
+      {
+      // Nothing to normalize
+      }
+
+    else if( schema.getConstant() != null)
+      {
+      normalizeConstant( schema);
+      }
+
+    else if( schema.getEnum() != null)
+      {
+      normalizeEnum( schema);
+      }
+
+    else
       {
       switch( schema.getType())
         {
@@ -151,6 +168,62 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
         }
       }
     
+    return schema;
+    }
+  
+  /**
+   * Updates the given {@link Schema} to describe only a constant value.
+   */
+  private Schema normalizeConstant( Schema schema)
+    {
+    return normalizeEnum( schema, singleton( schema.getConstant()));
+    }
+  
+  /**
+   * Updates the given {@link Schema} to describe only the specified enumerated values.
+   */
+  private Schema normalizeEnum( Schema schema)
+    {
+    return normalizeEnum( schema, schema.getEnum());
+    }
+  
+  /**
+   * Updates the given {@link Schema} to describe only the specified enumerated values.
+   */
+  private Schema normalizeEnum( Schema schema, Set<DataValue<?>> enums)
+    {
+    if( enums.size() == 1)
+      {
+      schema.setConstant( enums.iterator().next());
+      schema.setEnum( null);
+      }
+    else
+      {
+      schema.setEnum( enums);
+      schema.setConstant( null);
+      }
+
+    if( schema.isClassifier())
+      {
+      notifyWarning(
+        String.format(
+          "Values defined using '%s'. Ignoring all other schema properties",
+          enums.size() == 1? "const" : "enum"));
+
+      schema.setMinimum( null);
+      schema.setMaximum( null);
+      schema.setExclusiveMinimum( null);
+      schema.setExclusiveMaximum( null);
+      schema.setMultipleOf( null);
+      schema.setMinLength( null);
+      schema.setMaxLength( null);
+      schema.setPattern( null);
+      schema.setMinItems( null);
+      schema.setMaxItems( null);
+      schema.setUniqueItems( null);
+      schema.setItems( null);
+      }
+
     return schema;
     }
 

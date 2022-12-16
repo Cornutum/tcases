@@ -928,7 +928,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='wrongItems'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( bigDecimals( "175.47", "644.93", "692.07", "-569.30", "-870.68", "979.44", "-176.27", "-870.68"))
+          .value( Arrays.asList( "", "e!;wTghmr", "", "G>QC \\t", "^", "G>QC \\t", "#68oZ[$sHOIK_K", "_"))
           .valid( false)
           .source( "wrongItems")
           .build())

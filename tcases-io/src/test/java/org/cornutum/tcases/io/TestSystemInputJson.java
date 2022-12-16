@@ -267,4 +267,19 @@ public class TestSystemInputJson extends SystemInputJsonTest
       "Error processing Things, Make",
       "No variables defined for function=Make");
     }
+
+  @Test
+  public void testSystemInput_Enums()
+    {
+    testSystemInputJsonResource( "system-input-enums.json");
+    }
+
+  @Test
+  public void testSystemInput_Enums_Invalid()
+    {
+    assertDefinitionError(
+      "system-input-enums-invalid.json",
+      "Error processing Things, Make, Color, Hue",
+      "'enum' values with mixed types (boolean,integer,string) are not allowed");
+    }
   }

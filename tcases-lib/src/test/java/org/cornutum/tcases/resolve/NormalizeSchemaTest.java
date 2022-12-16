@@ -151,6 +151,39 @@ public class NormalizeSchemaTest extends ResolverTest
     assertConditionsNone();
     }
 
+  @SuppressWarnings("unchecked")
+@Test
+  public void whenClassifierConstantEnum()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .enums( arrayOfAny( valueOf( bigDecimalOf( "1.23")), valueOf( 4), valueOf( 5)))
+      .minItems( 1)
+      .maxItems( 4)
+      .uniqueItems( true)
+      .items( SchemaBuilder.type( "integer").build())
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = schemas.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.type( "array")
+      .constant( arrayOfAny( valueOf( bigDecimalOf( "1.23")), valueOf( 4), valueOf( 5)))
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertWarnings( "Values defined using 'const'. Ignoring all other schema properties.");
+    }
+
   @Test
   public void whenMinimumAboveMax()
     {
@@ -353,6 +386,40 @@ public class NormalizeSchemaTest extends ResolverTest
 
     assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
     assertConditionsNone();
+    }
+
+  @Test
+  public void whenClassifierConst()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "number")
+      .format( "double")
+      .constant( bigDecimalOf( "2.5"))
+      .enums( bigDecimalOf( "-0.5"), bigDecimalOf( "0.5"))
+      .minimum( "-1.6")
+      .maximum( "2.5")
+      .multipleOf( "0.5")
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = schemas.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.type( "number")
+      .format( "double")
+      .constant( bigDecimalOf( "2.5"))
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertWarnings( "Values defined using 'const'. Ignoring all other schema properties.");
     }
 
   @Test
@@ -570,6 +637,39 @@ public class NormalizeSchemaTest extends ResolverTest
 
     assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
     assertErrors( "Invalid pattern: Missing ']' at position=8. Ignoring the pattern for this schema.");
+    }
+
+  @Test
+  public void whenClassifierEnum()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "date")
+      .enums( "date", stringOf("2000-01-03"), stringOf("2004-05-06"), stringOf("2007-08-09"))
+      .minLength( 1)
+      .maxLength( 2)
+      .pattern( ".*")
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = schemas.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.type( "string")
+      .format( "date")
+      .enums( "date", stringOf("2000-01-03"), stringOf("2004-05-06"), stringOf("2007-08-09"))
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertWarnings( "Values defined using 'enum'. Ignoring all other schema properties.");
     }
 
   @Test

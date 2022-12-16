@@ -11,6 +11,9 @@ package org.cornutum.tcases.resolve;
 import org.cornutum.hamcrest.BaseCompositeMatcher;
 import org.hamcrest.Matchers;
 
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+
 /**
  * A composite matcher for {@link Schema} objects.
  */
@@ -24,7 +27,8 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     super( expected);
 
     expectThat( valueOf( "type", Schema::getType).matches( Matchers::equalTo));
-    expectThat( valueOf( "constant", Schema::getConstant).matches( Matchers::equalTo));
+    expectThat( valueOf( "constant", this::getConstant).matches( DataValueMatcher::new));
+    expectThat( valueOf( "enum", this::getEnum).matches( containsMembersMatching( DataValueMatcher::new)));
     expectThat( valueOf( "format", Schema::getFormat).matches( Matchers::equalTo));
     expectThat( valueOf( "minimum", Schema::getMinimum).matches( Matchers::equalTo));
     expectThat( valueOf( "maximum", Schema::getMaximum).matches( Matchers::equalTo));
@@ -38,6 +42,21 @@ public class SchemaMatcher extends BaseCompositeMatcher<Schema>
     expectThat( valueOf( "maxItems", Schema::getMaxItems).matches( Matchers::equalTo));
     expectThat( valueOf( "uniqueItems", Schema::getUniqueItems).matches( Matchers::equalTo));
     expectThat( valueOf( "items", Schema::getItems).matches( SchemaMatcher::new));
+    }
+
+  @SuppressWarnings("rawtypes")
+  private DataValue getConstant( Schema schema)
+    {
+    return schema.getConstant();
+    }
+
+  @SuppressWarnings("rawtypes")
+  private List<DataValue> getEnum( Schema schema)
+    {
+    return
+      schema.getEnum() == null
+      ? null
+      : schema.getEnum().stream().collect( toList());
     }
   }
 

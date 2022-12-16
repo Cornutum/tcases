@@ -117,6 +117,14 @@ public final class DataValues
     }
 
   /**
+   * Returns a new {@link ArrayValue}.
+   */
+  public static ArrayValue<Object>  arrayOfAny( DataValue<?>... items)
+    {
+    return arrayOfAny( Arrays.asList( items));
+    }
+
+  /**
    * Returns a new {@link BinaryValue}.
    */
   public static BinaryValue valueOf( byte[] value)

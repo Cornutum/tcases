@@ -1,0 +1,14 @@
+{
+    "system": "Schema",
+    "number": {
+        "arg": {
+            "numberVar": {
+                "values": {
+                    "numberValue": {
+                        "enum": [ 1, 2.3, 5, null, 13 ]
+                    }
+                }
+            }
+        }
+    }
+}

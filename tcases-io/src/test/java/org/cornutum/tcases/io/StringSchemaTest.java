@@ -631,6 +631,30 @@ public class StringSchemaTest extends SystemInputJsonTest
     assertDefinitionError(
       "schema-string-14.json",
       "Error processing Schema, string, stringVarSet, stringVar, stringValue",
-      "Schema has type=string but defines a 'const' of type=array");
+      "Schema has type=string but 'const' defines a value of type=array");
+    }
+
+  @Test
+  public void Schemas_enum()
+    {
+    expectSystemInputJson(
+      "schema-string-enum.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "string")
+        .vars(
+          VarDefBuilder.with( "stringVar")
+          .values(
+            VarValueDefBuilder.with( "stringValue")
+            .schema(
+              SchemaBuilder.type( "string")
+              .format( "email")
+              .enums( "email", stringOf( "my@myself.org"), stringOf( "hello@world.com"))
+              . build())
+            .build())
+          .build())
+        .build())
+      .build());
     }
   }

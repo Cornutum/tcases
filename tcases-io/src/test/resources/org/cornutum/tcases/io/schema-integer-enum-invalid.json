@@ -1,0 +1,15 @@
+{
+    "system": "Schema",
+    "integer": {
+        "arg": {
+            "integerVar": {
+                "values": {
+                    "integerValue": {
+                        "type": "integer",
+                        "enum": [ 1, 2.3, 5, 8, 13 ]
+                    }
+                }
+            }
+        }
+    }
+}

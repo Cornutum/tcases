@@ -297,7 +297,7 @@ public class NumberSchemaTest extends SystemInputJsonTest
     assertDefinitionError(
       "schema-number-6.json",
       "Error processing Schema, number, numberVar, numberValue",
-      "Schema has type=number but defines a 'const' of type=string");
+      "Schema has type=number but 'const' defines a value of type=string");
     }
 
   @Test
@@ -324,4 +324,26 @@ public class NumberSchemaTest extends SystemInputJsonTest
       .build());
     }
 
+  @Test
+  public void Schemas_enum()
+    {
+    expectSystemInputJson(
+      "schema-number-enum.json",
+      
+      SystemInputDefBuilder.with( "Schema")
+      .functions(
+        FunctionInputDefBuilder.with( "number")
+        .vars(
+          VarDefBuilder.with( "numberVar")
+          .values(
+            VarValueDefBuilder.with( "numberValue")
+            .schema(
+              SchemaBuilder.type( "number")
+              .enums( valueOf( bigDecimalOf( "2.3")), valueOf( 5), valueOf( 1), valueOf( 13), noValue())
+              . build())
+            .build())
+          .build())
+        .build())
+      .build());
+    }
   }
