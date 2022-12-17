@@ -151,8 +151,7 @@ public class NormalizeSchemaTest extends ResolverTest
     assertConditionsNone();
     }
 
-  @SuppressWarnings("unchecked")
-@Test
+  @Test
   public void whenClassifierConstantEnum()
     {
     // Given...
