@@ -17,9 +17,16 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.js.Provider;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Uses the {@link Schema} definitions in {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances.
@@ -231,90 +238,107 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private void addArrayValues( Stream.Builder<VarValueDef> values, Schema schema)
     {
-    Integer minItems = schema.getMinItems();
-    int effMinItems = Optional.ofNullable( minItems).orElse( 0);
-    if( minItems == null)
+    if( schema.getEnum() != null)
       {
+      schema.getEnum().stream().map( this::valueObject).map( VarValueDef::new).forEach( value -> values.add( value));
+
       values.add(
-        VarValueDefBuilder.with( "empty")
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
         .schema(
-          SchemaBuilder.type( "array")
+          SchemaBuilder.type( schema.getType())
           .format( schema.getFormat())
-          .maxItems(0)
+          .constant( arrayNotIn( schema.getEnum()))
           .build())
         .build());
       }
     else
       {
-      values.add(
-        VarValueDefBuilder.with( "minimumSize")
-        .schema( SchemaBuilder.with( schema).maxItems( minItems).build())
-        .build());
-
-      int belowMin = minItems - 1;
-      if( belowMin >= 0)
+      Integer minItems = schema.getMinItems();
+      int effMinItems = Optional.ofNullable( minItems).orElse( 0);
+      if( minItems == null)
         {
         values.add(
-          VarValueDefBuilder.with( "tooSmall")
+          VarValueDefBuilder.with( "empty")
+          .schema(
+            SchemaBuilder.type( "array")
+            .format( schema.getFormat())
+            .maxItems(0)
+            .build())
+          .build());
+        }
+      else
+        {
+        values.add(
+          VarValueDefBuilder.with( "minimumSize")
+          .schema( SchemaBuilder.with( schema).maxItems( minItems).build())
+          .build());
+
+        int belowMin = minItems - 1;
+        if( belowMin >= 0)
+          {
+          values.add(
+            VarValueDefBuilder.with( "tooSmall")
+            .type( FAILURE)
+            .schema( SchemaBuilder.with( schema).minItems( 0).maxItems( belowMin).build())
+            .build());
+          }
+        }
+
+      Integer maxItems = schema.getMaxItems();
+      if( maxItems == null)
+        {
+        values.add(
+          VarValueDefBuilder.with( "anySize")
+          .schema( SchemaBuilder.with( schema).minItems( effMinItems + 1).build())
+          .build());
+        }
+      else 
+        {
+        if( maxItems != effMinItems)
+          {
+          values.add(
+            VarValueDefBuilder.with( "maximumSize")
+            .schema( SchemaBuilder.with( schema).minItems( maxItems).maxItems( maxItems).build())
+            .build());
+          }
+
+        int aboveMax = maxItems + 1;
+        values.add(
+          VarValueDefBuilder.with( "tooLarge")
           .type( FAILURE)
-          .schema( SchemaBuilder.with( schema).minItems( 0).maxItems( belowMin).build())
+          .schema( SchemaBuilder.with( schema).minItems( aboveMax).maxItems( null).build())
           .build());
         }
-      }
 
-    Integer maxItems = schema.getMaxItems();
-    if( maxItems == null)
-      {
-      values.add(
-        VarValueDefBuilder.with( "anySize")
-        .schema( SchemaBuilder.with( schema).minItems( effMinItems + 1).build())
-        .build());
-      }
-    else 
-      {
-      if( maxItems != effMinItems)
+      if( Optional.ofNullable( schema.getUniqueItems()).orElse( false)
+          && Optional.ofNullable( schema.getMaxItems()).map( max -> max > 1).orElse( true))
         {
-        values.add(
-          VarValueDefBuilder.with( "maximumSize")
-          .schema( SchemaBuilder.with( schema).minItems( maxItems).maxItems( maxItems).build())
-          .build());
-        }
-
-      int aboveMax = maxItems + 1;
-      values.add(
-        VarValueDefBuilder.with( "tooLarge")
-        .type( FAILURE)
-        .schema( SchemaBuilder.with( schema).minItems( aboveMax).maxItems( null).build())
-        .build());
-      }
-
-    if( Optional.ofNullable( schema.getUniqueItems()).orElse( false)
-        && Optional.ofNullable( schema.getMaxItems()).map( max -> max > 1).orElse( true))
-      {
-      int minUnique = Math.max( effMinItems, 2);
+        int minUnique = Math.max( effMinItems, 2);
       
-      values.add(
-        VarValueDefBuilder.with( "notUnique")
-        .type( FAILURE)
-        .schema(
-          SchemaBuilder.with( schema)
-          .uniqueItems( false)
-          .minItems( minUnique)
-          .build())
-        .build());
-      }
-
-    Optional.ofNullable( schema.getItems())
-      .ifPresent( items -> {
         values.add(
-          VarValueDefBuilder.with( "wrongItems")
+          VarValueDefBuilder.with( "notUnique")
           .type( FAILURE)
           .schema(
             SchemaBuilder.with( schema)
-            .items( Schemas.not( items))
+            .uniqueItems( false)
+            .minItems( minUnique)
             .build())
           .build());
-        });
+        }
+
+      Optional.ofNullable( schema.getItems())
+        .ifPresent( items -> {
+          values.add(
+            VarValueDefBuilder.with( "wrongItems")
+            .type( FAILURE)
+            .schema(
+              SchemaBuilder.with( schema)
+              .items( Schemas.not( items))
+              .build())
+            .build());
+          });
+      }
     }
 
   /**
@@ -331,137 +355,154 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private void addNumberValues( Stream.Builder<VarValueDef> values, Schema schema)
     {
-    BigDecimal minimum = schema.getMinimum();
-    BigDecimal maximum = schema.getMaximum();
-    if( minimum == null && maximum == null)
+    if( schema.getEnum() != null)
       {
+      schema.getEnum().stream().map( this::valueObject).map( VarValueDef::new).forEach( value -> values.add( value));
+
       values.add(
-        VarValueDefBuilder.with( "negative")
-        .schema( SchemaBuilder.with( schema).exclusiveMaximum( BigDecimal.ZERO).build())
-        .build());
-      values.add(
-        VarValueDefBuilder.with( "zero")
-        .schema( SchemaBuilder.type( "number").constant( BigDecimal.ZERO).format( schema.getFormat()).build())
-        .build());
-      values.add(
-        VarValueDefBuilder.with( "positive")
-        .schema( SchemaBuilder.with( schema).exclusiveMinimum( BigDecimal.ZERO).build())
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( numberNotIn( schema.getEnum()))
+          .build())
         .build());
       }
     else
       {
-      if( minimum != null)
+      BigDecimal minimum = schema.getMinimum();
+      BigDecimal maximum = schema.getMaximum();
+      if( minimum == null && maximum == null)
         {
         values.add(
-          VarValueDefBuilder.with( "minimum")
-          .schema( SchemaBuilder.with( schema).maximum( minimum).build())
+          VarValueDefBuilder.with( "negative")
+          .schema( SchemaBuilder.with( schema).exclusiveMaximum( BigDecimal.ZERO).build())
           .build());
-
         values.add(
-          VarValueDefBuilder.with( "belowMinimum")
-          .type( FAILURE)
-          .schema(
-            SchemaBuilder.with( schema)
-            .exclusiveMaximum( minimum)
-            .minimum( bigDecimalNull())
-            .maximum( bigDecimalNull())
-            .build())
+          VarValueDefBuilder.with( "zero")
+          .schema( SchemaBuilder.type( "number").constant( BigDecimal.ZERO).format( schema.getFormat()).build())
+          .build());
+        values.add(
+          VarValueDefBuilder.with( "positive")
+          .schema( SchemaBuilder.with( schema).exclusiveMinimum( BigDecimal.ZERO).build())
           .build());
         }
       else
         {
-        values.add(
-          VarValueDefBuilder.with( "belowMaximum")
-          .schema(
-            SchemaBuilder.with( schema)
-            .exclusiveMaximum( maximum)
-            .maximum( bigDecimalNull())
-            .build())
-          .build());
-        }
-
-      if( maximum != null)
-        {
-        if( !(minimum != null && minimum.compareTo( maximum) == 0))
+        if( minimum != null)
           {
           values.add(
-            VarValueDefBuilder.with( "maximum")
-            .schema( SchemaBuilder.with( schema).minimum( maximum).build())
+            VarValueDefBuilder.with( "minimum")
+            .schema( SchemaBuilder.with( schema).maximum( minimum).build())
             .build());
-          }
 
-        values.add(
-          VarValueDefBuilder.with( "aboveMaximum")
-          .type( FAILURE)
-          .schema(
-            SchemaBuilder.with( schema)
-            .exclusiveMinimum( maximum)
-            .minimum( bigDecimalNull())
-            .maximum( bigDecimalNull())
-            .build())
-          .build());
-        }
-      else
-        {
-        values.add(
-          VarValueDefBuilder.with( "aboveMinimum")
-          .schema(
-            SchemaBuilder.with( schema)
-            .exclusiveMinimum( minimum)
-            .minimum( bigDecimalNull())
-            .build())
-          .build());
-        }
-      }
-
-    Optional.ofNullable( schema.getMultipleOf())
-      .flatMap( multipleOf -> {
-        BigDecimal unit = Schemas.unitOf( schema);
-        BigDecimal factor = multipleOf.compareTo( unit) == 0? multipleOf.divide( new BigDecimal( 2)) : unit;
-
-        boolean multiple;
-        BigDecimal notMultiple;
-        if( maximum != null)
-          {
-          for(
-            multiple = true,
-              notMultiple = maximum.subtract( factor);
-            
-            (minimum == null || notMultiple.compareTo( minimum) > 0)
-              && (multiple = isMultipleOf( notMultiple, multipleOf));
-            
-            notMultiple = notMultiple.subtract( factor));
+          values.add(
+            VarValueDefBuilder.with( "belowMinimum")
+            .type( FAILURE)
+            .schema(
+              SchemaBuilder.with( schema)
+              .exclusiveMaximum( minimum)
+              .minimum( bigDecimalNull())
+              .maximum( bigDecimalNull())
+              .build())
+            .build());
           }
         else
           {
-          BigDecimal floor = Optional.ofNullable( minimum).orElse( BigDecimal.ZERO);
-          for(
-            multiple = true,
-              notMultiple = floor.add( factor);
-            
-            (maximum == null || notMultiple.compareTo( maximum) < 0)
-              && (multiple = isMultipleOf( notMultiple, multipleOf));
-            
-            notMultiple = notMultiple.add( factor));
+          values.add(
+            VarValueDefBuilder.with( "belowMaximum")
+            .schema(
+              SchemaBuilder.with( schema)
+              .exclusiveMaximum( maximum)
+              .maximum( bigDecimalNull())
+              .build())
+            .build());
           }
 
-        return
-          !multiple
-          ? Optional.of( notMultiple)
-          : Optional.empty();
-        })
-      .ifPresent( notMultiple -> {
-        values.add(
-          VarValueDefBuilder.with( "notMultiple")
-          .type( FAILURE)
-          .schema(
-            SchemaBuilder.type( "number")
-            .constant( notMultiple)
-            .format( schema.getFormat())
-            .build())
-          .build());
-        });
+        if( maximum != null)
+          {
+          if( !(minimum != null && minimum.compareTo( maximum) == 0))
+            {
+            values.add(
+              VarValueDefBuilder.with( "maximum")
+              .schema( SchemaBuilder.with( schema).minimum( maximum).build())
+              .build());
+            }
 
+          values.add(
+            VarValueDefBuilder.with( "aboveMaximum")
+            .type( FAILURE)
+            .schema(
+              SchemaBuilder.with( schema)
+              .exclusiveMinimum( maximum)
+              .minimum( bigDecimalNull())
+              .maximum( bigDecimalNull())
+              .build())
+            .build());
+          }
+        else
+          {
+          values.add(
+            VarValueDefBuilder.with( "aboveMinimum")
+            .schema(
+              SchemaBuilder.with( schema)
+              .exclusiveMinimum( minimum)
+              .minimum( bigDecimalNull())
+              .build())
+            .build());
+          }
+        }
+
+      Optional.ofNullable( schema.getMultipleOf())
+        .flatMap( multipleOf -> {
+          BigDecimal unit = Schemas.unitOf( schema);
+          BigDecimal factor = multipleOf.compareTo( unit) == 0? multipleOf.divide( new BigDecimal( 2)) : unit;
+
+          boolean multiple;
+          BigDecimal notMultiple;
+          if( maximum != null)
+            {
+            for(
+              multiple = true,
+                notMultiple = maximum.subtract( factor);
+            
+              (minimum == null || notMultiple.compareTo( minimum) > 0)
+                && (multiple = isMultipleOf( notMultiple, multipleOf));
+            
+              notMultiple = notMultiple.subtract( factor));
+            }
+          else
+            {
+            BigDecimal floor = Optional.ofNullable( minimum).orElse( BigDecimal.ZERO);
+            for(
+              multiple = true,
+                notMultiple = floor.add( factor);
+            
+              (maximum == null || notMultiple.compareTo( maximum) < 0)
+                && (multiple = isMultipleOf( notMultiple, multipleOf));
+            
+              notMultiple = notMultiple.add( factor));
+            }
+
+          return
+            !multiple
+            ? Optional.of( notMultiple)
+            : Optional.empty();
+          })
+        .ifPresent( notMultiple -> {
+          values.add(
+            VarValueDefBuilder.with( "notMultiple")
+            .type( FAILURE)
+            .schema(
+              SchemaBuilder.type( "number")
+              .constant( notMultiple)
+              .format( schema.getFormat())
+              .build())
+            .build());
+          });
+
+      }
     }
 
   /**
@@ -469,90 +510,270 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private void addStringValues( Stream.Builder<VarValueDef> values, Schema schema)
     {
-    Integer minRequired = Schemas.minLengthRequired( schema);
-    Integer maxRequired = Schemas.maxLengthRequired( schema);
-
-    Integer minLength = schema.getMinLength();
-    int effMinLength = Optional.ofNullable( minLength).orElse( 0);
-    if( minLength == null)
+    if( schema.getEnum() != null)
       {
+      schema.getEnum().stream().map( this::valueObject).map( VarValueDef::new).forEach( value -> values.add( value));
+
       values.add(
-        VarValueDefBuilder.with( "empty")
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
         .schema(
-          SchemaBuilder.type( "string")
+          SchemaBuilder.type( schema.getType())
           .format( schema.getFormat())
-          .maxLength(0)
+          .constant( stringNotIn( schema.getFormat(), schema.getEnum()))
           .build())
         .build());
       }
     else
       {
-      values.add(
-        VarValueDefBuilder.with( "minimumLength")
-        .schema( SchemaBuilder.with( schema).maxLength( minLength).build())
-        .build());
+      Integer minRequired = Schemas.minLengthRequired( schema);
+      Integer maxRequired = Schemas.maxLengthRequired( schema);
 
-      int belowMin = minLength - 1;
-      if( belowMin >= 0 && Optional.ofNullable( minRequired).map( reqMin -> belowMin >= reqMin).orElse( true))
+      Integer minLength = schema.getMinLength();
+      int effMinLength = Optional.ofNullable( minLength).orElse( 0);
+      if( minLength == null)
         {
         values.add(
-          VarValueDefBuilder.with( "tooShort")
-          .type( FAILURE)
-          .schema( SchemaBuilder.with( schema).minLength( null).maxLength( belowMin).build())
+          VarValueDefBuilder.with( "empty")
+          .schema(
+            SchemaBuilder.type( "string")
+            .format( schema.getFormat())
+            .maxLength(0)
+            .build())
           .build());
         }
-      }
-
-    Integer maxLength = schema.getMaxLength();
-    if( maxLength == null)
-      {
-      values.add(
-        VarValueDefBuilder.with( "anyLength")
-        .schema( SchemaBuilder.with( schema).minLength( effMinLength + 1).build())
-        .build());
-      }
-    else 
-      {
-      if( maxLength != effMinLength)
+      else
         {
         values.add(
-          VarValueDefBuilder.with( "maximumLength")
-          .schema( SchemaBuilder.with( schema).minLength( maxLength).maxLength( maxLength).build())
+          VarValueDefBuilder.with( "minimumLength")
+          .schema( SchemaBuilder.with( schema).maxLength( minLength).build())
           .build());
+
+        int belowMin = minLength - 1;
+        if( belowMin >= 0 && Optional.ofNullable( minRequired).map( reqMin -> belowMin >= reqMin).orElse( true))
+          {
+          values.add(
+            VarValueDefBuilder.with( "tooShort")
+            .type( FAILURE)
+            .schema( SchemaBuilder.with( schema).minLength( null).maxLength( belowMin).build())
+            .build());
+          }
         }
 
-      int aboveMax = maxLength + 1;
-      if( Optional.ofNullable( maxRequired).map( reqMax -> aboveMax <= reqMax).orElse( true))
+      Integer maxLength = schema.getMaxLength();
+      if( maxLength == null)
         {
         values.add(
-          VarValueDefBuilder.with( "tooLong")
-          .type( FAILURE)
-          .schema( SchemaBuilder.with( schema).minLength( aboveMax).maxLength( null).build())
+          VarValueDefBuilder.with( "anyLength")
+          .schema( SchemaBuilder.with( schema).minLength( effMinLength + 1).build())
           .build());
         }
+      else 
+        {
+        if( maxLength != effMinLength)
+          {
+          values.add(
+            VarValueDefBuilder.with( "maximumLength")
+            .schema( SchemaBuilder.with( schema).minLength( maxLength).maxLength( maxLength).build())
+            .build());
+          }
+
+        int aboveMax = maxLength + 1;
+        if( Optional.ofNullable( maxRequired).map( reqMax -> aboveMax <= reqMax).orElse( true))
+          {
+          values.add(
+            VarValueDefBuilder.with( "tooLong")
+            .type( FAILURE)
+            .schema( SchemaBuilder.with( schema).minLength( aboveMax).maxLength( null).build())
+            .build());
+          }
+        }
+
+      Optional.ofNullable( schema.getFormat())
+        .filter( format -> isPatternedFormat( format))
+        .map( format -> format.equals( "email")? "date-time" : "email")
+        .ifPresent( other -> {
+          values.add(
+            VarValueDefBuilder.with( "wrongFormat")
+            .type( FAILURE)
+            .schema( SchemaBuilder.type( "string").format( other).build())
+            .build());
+          });
+
+      Optional.ofNullable( schema.getPattern())
+        .flatMap( pattern -> Provider.forEcmaScript().notMatching( pattern))
+        .flatMap( notMatching -> withPattern( schema, notMatching))
+        .ifPresent( wrongPattern -> {
+          values.add(
+            VarValueDefBuilder.with( "wrongPattern")
+            .type( FAILURE)
+            .schema( wrongPattern)
+            .build());
+          });
+      }
+    }
+
+  /**
+   * Returns an array value that is not in the given enumerated set.
+   */
+  private ArrayValue<?> arrayNotIn( Set<DataValue<?>> enums)
+    {
+    return
+      arrayOfAny(
+        enums.stream()
+        .filter( value -> value.getType() == ARRAY)
+        .flatMap( value -> ((ArrayValue<?>) value).getValue().stream())
+        .distinct()
+        .collect( toList()));
+    }
+
+  /**
+   * Returns a number value that is not in the given enumerated set.
+   */
+  private DecimalValue numberNotIn( Set<DataValue<?>> enums)
+    {
+    final BigDecimal factor = new BigDecimal( 7);
+
+    return
+      valueOf(
+        enums.stream()
+        .map( value -> Optional.ofNullable( bigDecimalOf( value)).orElse( BigDecimal.ZERO))
+        .reduce(
+          BigDecimal.ZERO,
+          (result, value) -> result.multiply( factor).add( value.abs()),
+          (result1, result2) -> result2.multiply( factor).add( result2.abs())));
+          
+    }
+
+  /**
+   * Returns a string value that is not in the given enumerated set.
+   */
+  private StringValue stringNotIn( String format, Set<DataValue<?>> enums)
+    {
+    List<String> enumStrings =
+      enums.stream()
+      .map( DataValues::stringOf)
+      .filter( Objects::nonNull)
+      .collect( toList());
+    
+    return
+      "date".equals( format)?
+      dateNotIn( enumStrings) :
+
+      "date-time".equals( format)?
+      dateTimeNotIn( enumStrings) :
+
+      "uuid".equals( format)?
+      uuidNotIn( enumStrings) :
+
+      "email".equals( format)?
+      emailNotIn( enumStrings) :
+
+      new StringValue( stringNotIn( enumStrings), format);
       }
 
-    Optional.ofNullable( schema.getFormat())
-      .filter( format -> isPatternedFormat( format))
-      .map( format -> format.equals( "email")? "date-time" : "email")
-      .ifPresent( other -> {
-        values.add(
-          VarValueDefBuilder.with( "wrongFormat")
-          .type( FAILURE)
-          .schema( SchemaBuilder.type( "string").format( other).build())
-          .build());
-        });
+  /**
+   * Returns a date value that is not in the given enumerated set.
+   */
+  private StringValue dateNotIn( List<String> enums)
+    {
+    return new DateValue( withYearNotIn( enums));
+    }
 
-    Optional.ofNullable( schema.getPattern())
-      .flatMap( pattern -> Provider.forEcmaScript().notMatching( pattern))
-      .flatMap( notMatching -> withPattern( schema, notMatching))
-      .ifPresent( wrongPattern -> {
-        values.add(
-          VarValueDefBuilder.with( "wrongPattern")
-          .type( FAILURE)
-          .schema( wrongPattern)
-          .build());
-        });
+  /**
+   * Returns a date-time value that is not in the given enumerated set.
+   */
+  private StringValue dateTimeNotIn( List<String> enums)
+    {
+    return new DateTimeValue( withYearNotIn( enums));
+    }
+
+  /**
+   * Returns a date(-time) value with a year different those in the given enumerated set.
+   */
+  private String withYearNotIn( List<String> enums)
+    {
+    List<Integer> years =
+      enums.stream()
+      .map( date -> date.substring( 0, 4))
+      .map( Integer::valueOf)
+      .collect( toList());
+
+    int minYear = years.stream().mapToInt( Integer::intValue).min().orElse( 0);
+    int maxYear = years.stream().mapToInt( Integer::intValue).max().orElse( 0);
+
+    Integer yearNotIn = integerNotIn( years, Math.max( 0, minYear - 1), Math.min( 10000, maxYear + 2));
+    return String.format( "%04d-%s", yearNotIn, enums.get(0).substring( 5));
+    }
+
+  /**
+   * Returns an email value that is not in the given enumerated set.
+   */
+  private StringValue emailNotIn( List<String> enums)
+    {
+    List<String> names =
+      enums.stream()
+      .map( email -> email.substring( 0, email.indexOf( '@')))
+      .collect( toList());
+
+    return new EmailValue( stringNotIn( names) + enums.get(0).substring( enums.get(0).indexOf( '@')));
+    }
+
+  /**
+   * Returns a UUID value that is not in the given enumerated set.
+   */
+  private StringValue uuidNotIn( List<String> enums)
+    {
+    List<Integer> suffixes =
+      enums.stream()
+      .map( uuid -> uuid.substring( 30))
+      .map( hex -> Integer.valueOf( hex, 16))
+      .collect( toList());
+
+    int minSuffix = suffixes.stream().mapToInt( Integer::intValue).min().orElse( 0);
+    int maxSuffix = suffixes.stream().mapToInt( Integer::intValue).max().orElse( 0);
+
+    Integer suffixNotIn = integerNotIn( suffixes, Math.max( 0, minSuffix - 1), Math.min( 0x1000000, maxSuffix + 2));
+    return new UuidValue( enums.get(0).substring( 0, 30) + Integer.toHexString( suffixNotIn));
+    }
+
+  /**
+   * Returns a string that is not in the given enumerated set.
+   */
+  private String stringNotIn( List<String> enums)
+    {
+    final Character[] alphas = new Character[]{ Character.valueOf( 'x'), Character.valueOf( 'z')};
+    return stringNotIn( enums, alphas);
+    }
+
+  /**
+   * Returns a string that is not in the given enumerated set.
+   */
+  private String stringNotIn( List<String> enums, Character[] alternateChars)
+    {
+    return
+      IntStream.range( 0, enums.size())
+      .mapToObj( i -> {
+        return
+          Arrays.stream( alternateChars)
+          .filter( c -> !(i < enums.get(i).length() && c.charValue() == enums.get(i).charAt( i)))
+          .findFirst()
+          .map( String::valueOf)
+          .orElse( "?");
+        })
+      .collect( joining());
+    }
+
+  /**
+   * Returns an integer from within the given range that is not in the given enumerated set.
+   */
+  private Integer integerNotIn( List<Integer> enums, int alternateStart, int alternateEnd)
+    {
+    return
+      IntStream.range( alternateStart, alternateEnd)
+      .filter( i -> !enums.contains( i))
+      .findFirst()
+      .orElseThrow( () -> new IllegalStateException( String.format( "Can't find value not in range [%s,%s]", alternateStart, alternateEnd)));
     }
 
   /**
@@ -561,101 +782,98 @@ public class TestCaseSchemaResolver extends TestCaseResolver
   protected ValueDomain<?> toValueDomain( Schema schema)
     {
     ValueDomain<?> domain = null;
-    if( schema != null)
+    if( schema != null
+        && (domain = toConstantDomain( schema)) == null
+        && (domain = toEnumDomain( schema)) == null)
       {
-      domain = toConstantDomain( schema);
-
-      if( domain == null)
+      switch( schema.getType())
         {
-        switch( schema.getType())
+        case ARRAY:
           {
-          case ARRAY:
+          ValueDomain<?> itemDomain = toValueDomain( schema.getItems());
+          if( itemDomain == null)
             {
-            ValueDomain<?> itemDomain = toValueDomain( schema.getItems());
-            if( itemDomain == null)
-              {
-              itemDomain = withFormat( new MultiTypeDomain( NUMBER, INTEGER, STRING), schema.getFormat());
-              }
-
-            ArrayDomain<?> arrayDomain = itemDomain.arrayOf();
-            arrayDomain.setItemCount( schema.getMinItems(), schema.getMaxItems());
-            arrayDomain.setItemsUnique( Optional.ofNullable( schema.getUniqueItems()).orElse( false));
-
-            domain = withFormat( arrayDomain, schema.getFormat());
-            break;
+            itemDomain = withFormat( new MultiTypeDomain( NUMBER, INTEGER, STRING), schema.getFormat());
             }
 
-          case BOOLEAN:
-            {
-            domain = withFormat( new BooleanEnum(), schema.getFormat());
-            break;
-            }
+          ArrayDomain<?> arrayDomain = itemDomain.arrayOf();
+          arrayDomain.setItemCount( schema.getMinItems(), schema.getMaxItems());
+          arrayDomain.setItemsUnique( Optional.ofNullable( schema.getUniqueItems()).orElse( false));
 
-          case INTEGER:
-            {
-            if( "int32".equals( schema.getFormat()))
-              {
-              IntegerDomain integerDomain = new IntegerDomain();
-              integerDomain.setRange( integerOf( schema.getMinimum()), integerOf( schema.getMaximum()));
-              integerDomain.setMultipleOf( integerOf( schema.getMultipleOf()));
-              domain = withFormat( integerDomain, schema.getFormat());
-              }
-            else
-              {
-              LongDomain longDomain = new LongDomain();
-              longDomain.setRange( longOf( schema.getMinimum()), longOf( schema.getMaximum()));
-              longDomain.setMultipleOf( longOf( schema.getMultipleOf()));
-              domain = withFormat( longDomain, schema.getFormat());
-              }
-            break;
-            }
+          domain = withFormat( arrayDomain, schema.getFormat());
+          break;
+          }
 
-          case NUMBER:
+        case BOOLEAN:
+          {
+          domain = withFormat( new BooleanEnum(), schema.getFormat());
+          break;
+          }
+
+        case INTEGER:
+          {
+          if( "int32".equals( schema.getFormat()))
             {
-            DecimalDomain decimalDomain = new DecimalDomain();
-            decimalDomain.setRange( schema.getMinimum(), schema.getMaximum());
-            decimalDomain.setMultipleOf( schema.getMultipleOf());
+            IntegerDomain integerDomain = new IntegerDomain();
+            integerDomain.setRange( integerOf( schema.getMinimum()), integerOf( schema.getMaximum()));
+            integerDomain.setMultipleOf( integerOf( schema.getMultipleOf()));
+            domain = withFormat( integerDomain, schema.getFormat());
+            }
+          else
+            {
+            LongDomain longDomain = new LongDomain();
+            longDomain.setRange( longOf( schema.getMinimum()), longOf( schema.getMaximum()));
+            longDomain.setMultipleOf( longOf( schema.getMultipleOf()));
+            domain = withFormat( longDomain, schema.getFormat());
+            }
+          break;
+          }
+
+        case NUMBER:
+          {
+          DecimalDomain decimalDomain = new DecimalDomain();
+          decimalDomain.setRange( schema.getMinimum(), schema.getMaximum());
+          decimalDomain.setMultipleOf( schema.getMultipleOf());
               
-            domain = withFormat( decimalDomain, schema.getFormat());
-            break;
-            }
+          domain = withFormat( decimalDomain, schema.getFormat());
+          break;
+          }
 
-          case STRING:
-            {
-            String format = schema.getFormat();
+        case STRING:
+          {
+          String format = schema.getFormat();
 
-            AbstractStringDomain stringDomain =
-              "date".equals( format)?
-              new DateDomain() :
+          AbstractStringDomain stringDomain =
+            "date".equals( format)?
+            new DateDomain() :
 
-              "date-time".equals( format)?
-              new DateTimeDomain() :
+            "date-time".equals( format)?
+            new DateTimeDomain() :
 
-              "uuid".equals( format)?
-              new UuidDomain() :
+            "uuid".equals( format)?
+            new UuidDomain() :
 
-              "email".equals( format)?
-              new EmailDomain() :
+            "email".equals( format)?
+            new EmailDomain() :
 
-              withFormat( new AsciiStringDomain(), schema.getFormat());
+            withFormat( new AsciiStringDomain(), schema.getFormat());
 
-            stringDomain.setLengthRange( schema.getMinLength(), schema.getMaxLength());
-            Optional.ofNullable( schema.getPattern()).ifPresent( pattern -> stringDomain.setMatching( pattern));
+          stringDomain.setLengthRange( schema.getMinLength(), schema.getMaxLength());
+          Optional.ofNullable( schema.getPattern()).ifPresent( pattern -> stringDomain.setMatching( pattern));
 
-            domain = stringDomain;
-            break;
-            }
+          domain = stringDomain;
+          break;
+          }
 
-          case NULL:
-            {
-            domain = withFormat( new NullDomain(), schema.getFormat());
-            break;
-            }
+        case NULL:
+          {
+          domain = withFormat( new NullDomain(), schema.getFormat());
+          break;
+          }
 
-          default:
-            {
-            break;
-            }
+        default:
+          {
+          break;
           }
         }
       }
@@ -722,6 +940,111 @@ public class TestCaseSchemaResolver extends TestCaseResolver
             new EmailConstant( constantString) :
 
             new StringConstant( constantString, format);
+
+          break;
+          }
+
+        case NULL:
+          {
+          domain = withFormat( new NullDomain(), schema.getFormat());
+          break;
+          }
+
+        default:
+          {
+          break;
+          }
+        }
+      }
+
+    return domain;
+    }
+
+  /**
+   * If the given {@link Schema} defines enumerated values, returns the corresponding {@link EnumDomain}.
+   * Otherwise, returns null.
+   */
+  @SuppressWarnings("unchecked")
+  private ValueDomain<?> toEnumDomain( Schema schema)
+    {
+    ValueDomain<?> domain = null;
+
+    Set<DataValue<?>> enums = Optional.ofNullable( schema.getEnum()).orElse( null);
+    if( enums != null)
+      {
+      switch( schema.getType())
+        {
+        case ARRAY:
+          {
+          domain =
+            withFormat(
+              new ArrayEnum<Object>(
+                enums.stream()
+                .map( v -> ((ArrayValue<Object>) v).getValue())
+                .collect( toSet())),
+              schema.getFormat());
+          break;
+          }
+
+        case BOOLEAN:
+          {
+          domain =
+            withFormat(
+              new BooleanEnum(
+                enums.stream()
+                .map( v -> ((BooleanValue) v).getValue())
+                .collect( toSet())),
+              schema.getFormat());
+          break;
+          }
+
+        case INTEGER:
+          {
+          AbstractValueDomain<?> integerDomain =
+            "int32".equals( schema.getFormat())?
+            new IntegerEnum(
+              enums.stream()
+              .map( DataValues::integerOf)
+              .collect( toSet())) :
+
+            new LongEnum(
+              enums.stream()
+              .map( DataValues::longOf)
+              .collect( toSet()));
+            
+          domain = withFormat( integerDomain, schema.getFormat());
+          break;
+          }
+
+        case NUMBER:
+          {
+          domain =
+            new DecimalEnum(
+              enums.stream()
+              .map( DataValues::bigDecimalOf)
+              .collect( toSet()),
+              schema.getFormat());
+          break;
+          }
+
+        case STRING:
+          {
+          String format = schema.getFormat();
+          Set<String> values = enums.stream().map( DataValues::stringOf).collect( toSet());
+          domain =
+            "date".equals( format)?
+            new DateEnum( values) :
+
+            "date-time".equals( format)?
+            new DateTimeEnum( values) :
+
+            "uuid".equals( format)?
+            new UuidEnum( values) :
+
+            "email".equals( format)?
+            new EmailEnum( values) :
+
+            new StringEnum( values, format);
 
           break;
           }

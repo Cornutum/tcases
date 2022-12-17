@@ -322,6 +322,43 @@ public class VarSchemaValuesTest extends ResolverTest
 
     assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
     }
+
+  @Test
+  public void whenArrayEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .format( "vector")
+      .enums( arrayOf( -1, 0, 1), noValue(), arrayOf( -2, 0, 2), arrayOf( -3, 0, 3))
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( Arrays.asList( -1, 0, 1)),
+        new VarValueDef( Arrays.asList( -2, 0, 2)),
+        new VarValueDef( Arrays.asList( -3, 0, 3)),
+        new VarValueDef( null),
+
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( arrayOf( -1, 0, 1, -2, 2, -3, 3))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
   
   @Test
   public void whenBoolean()
@@ -676,6 +713,42 @@ public class VarSchemaValuesTest extends ResolverTest
           SchemaBuilder.type( "number")
           .constant( bigDecimalOf( "1"))
           .format( "int32")
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenNumberEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "number")
+      .format( "double")
+      .enums( valueOf( bigDecimalOf( "-1.5")), noValue(), valueOf( 11))
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( bigDecimalOf( "-1.5")),
+        new VarValueDef( null),
+        new VarValueDef( 11),
+
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( valueOf( bigDecimalOf( "84.5")))
           .build())
         .build()
       };
@@ -1161,6 +1234,190 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         new VarValueDef( (Object) null)
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenStringEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .enums( "The", "fox", "jumped", "over", "the", "lazy", "dog", null)
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( "The"),
+        new VarValueDef( "fox"),
+        new VarValueDef( "jumped"),
+        new VarValueDef( "over"),
+        new VarValueDef( "the"),
+        new VarValueDef( "lazy"),
+        new VarValueDef( "dog"),
+        new VarValueDef( null),
+
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( "xxxxxxx")
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenEmailEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "email")
+      .enums( "me@myself.org", "who@what.com", "mixup@loves.com")
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( "me@myself.org"),
+        new VarValueDef( "who@what.com"),
+        new VarValueDef( "mixup@loves.com"),
+
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( emailOf( "xxz@myself.org"))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenDateEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "date")
+      .enums( "2015-12-09", "1987-06-05", "2022-02-02")
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( "2015-12-09"),
+        new VarValueDef( "1987-06-05"),
+        new VarValueDef( "2022-02-02"),
+
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateOf( "1986-12-09"))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenDateTimeEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "date-time")
+      .enums( "1999-01-10T02:03:45.678+00:00", "2000-02-13T03:04:56.789+00:00", "2032-01-10T02:03:45.678+00:00")
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( "1999-01-10T02:03:45.678+00:00"),
+        new VarValueDef( "2000-02-13T03:04:56.789+00:00"),
+        new VarValueDef( "2032-01-10T02:03:45.678+00:00"),
+
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateTimeOf( "1998-01-10T02:03:45.678+00:00"))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenUuidEnum()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "uuid")
+      .enums( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6", "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed", "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6")
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        new VarValueDef( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"),
+        new VarValueDef( "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed"),
+        new VarValueDef( "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6"),
+        
+        VarValueDefBuilder.with( "unexpectedValue")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( uuidOf( "f81d4fae-7dec-11d0-a765-00a0c91e6bf5"))
+          .build())
+        .build()
       };
 
     assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));

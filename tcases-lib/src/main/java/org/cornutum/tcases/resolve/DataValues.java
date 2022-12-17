@@ -212,6 +212,33 @@ public final class DataValues
     }
 
   /**
+   * Returns a new {@link String}.
+   */
+  public static String stringOf( DataValue<?> value)
+    {
+    String string;
+
+    if( value == null)
+      {
+      string = null;
+      }
+    else if( StringValue.class.isAssignableFrom( value.getClass()))
+      {
+      string = ((StringValue) value).getValue();
+      }
+    else if( value.getClass().equals( NullValue.class))
+      {
+      string = null;
+      }
+    else
+      {
+      throw new IllegalArgumentException( String.format( "Expected string value but found %s", value));
+      }
+
+    return string;
+    }
+
+  /**
    * Returns a new {@link Base64Value}.
    */
   public static Base64Value base64Of( String value)
@@ -312,6 +339,10 @@ public final class DataValues
       {
       decimal = ((DecimalValue) value).getValue();
       }
+    else if( value.getClass().equals( NullValue.class))
+      {
+      decimal = null;
+      }
     else
       {
       throw new IllegalArgumentException( String.format( "Expected numeric value but found %s", value));
@@ -337,11 +368,81 @@ public final class DataValues
     }
 
   /**
+   * Returns a new {@link Integer}.
+   */
+  public static Integer integerOf( DataValue<?> value)
+    {
+    Integer integerValue;
+
+    if( value == null)
+      {
+      integerValue = null;
+      }
+    else if( value.getClass().equals( IntegerValue.class))
+      {
+      integerValue = ((IntegerValue) value).getValue();
+      }
+    else if( value.getClass().equals( LongValue.class))
+      {
+      integerValue = ((LongValue) value).getValue().intValue();
+      }
+    else if( value.getClass().equals( DecimalValue.class))
+      {
+      integerValue = ((DecimalValue) value).getValue().intValue();
+      }
+    else if( value.getClass().equals( NullValue.class))
+      {
+      integerValue = null;
+      }
+    else
+      {
+      throw new IllegalArgumentException( String.format( "Expected numeric value but found %s", value));
+      }
+
+    return integerValue;
+    }
+
+  /**
    * Returns the given {@link BigDecimal} value as Long.
    */
   public static Long longOf( BigDecimal value)
     {
     return Optional.ofNullable( value).map( BigDecimal::longValue).orElse( null);
+    }
+
+  /**
+   * Returns a new {@link Long}.
+   */
+  public static Long longOf( DataValue<?> value)
+    {
+    Long longValue;
+
+    if( value == null)
+      {
+      longValue = null;
+      }
+    else if( value.getClass().equals( IntegerValue.class))
+      {
+      longValue = ((IntegerValue) value).getValue().longValue();
+      }
+    else if( value.getClass().equals( LongValue.class))
+      {
+      longValue = ((LongValue) value).getValue();
+      }
+    else if( value.getClass().equals( DecimalValue.class))
+      {
+      longValue = ((DecimalValue) value).getValue().longValue();
+      }
+    else if( value.getClass().equals( NullValue.class))
+      {
+      longValue = null;
+      }
+    else
+      {
+      throw new IllegalArgumentException( String.format( "Expected numeric value but found %s", value));
+      }
+
+    return longValue;
     }
 
   public static class ObjectValueBuilder
