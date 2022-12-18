@@ -342,11 +342,22 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( Arrays.asList( -1, 0, 1)),
-        new VarValueDef( Arrays.asList( -2, 0, 2)),
-        new VarValueDef( Arrays.asList( -3, 0, 3)),
-        new VarValueDef( null),
-
+        VarValueDefBuilder.with( Arrays.asList( -1, 0, 1))
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( Arrays.asList( -2, 0, 2))
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( Arrays.asList( -3, 0, 3))
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( (Object) null)
+        .has( "format", schema.getFormat())
+        .build(),
+        
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)
         .schema(
@@ -739,10 +750,18 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( bigDecimalOf( "-1.5")),
-        new VarValueDef( null),
-        new VarValueDef( 11),
-
+        VarValueDefBuilder.with( bigDecimalOf( "-1.5"))
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( (Object) null)
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( 11)
+        .has( "format", schema.getFormat())
+        .build(),
+        
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)
         .schema(
@@ -1298,10 +1317,18 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( "me@myself.org"),
-        new VarValueDef( "who@what.com"),
-        new VarValueDef( "mixup@loves.com"),
-
+        VarValueDefBuilder.with( "me@myself.org")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "who@what.com")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "mixup@loves.com")
+        .has( "format", schema.getFormat())
+        .build(),
+        
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)
         .schema(
@@ -1334,10 +1361,18 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( "2015-12-09"),
-        new VarValueDef( "1987-06-05"),
-        new VarValueDef( "2022-02-02"),
-
+        VarValueDefBuilder.with( "2015-12-09")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "1987-06-05")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "2022-02-02")
+        .has( "format", schema.getFormat())
+        .build(),
+        
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)
         .schema(
@@ -1370,10 +1405,18 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( "1999-01-10T02:03:45.678+00:00"),
-        new VarValueDef( "2000-02-13T03:04:56.789+00:00"),
-        new VarValueDef( "2032-01-10T02:03:45.678+00:00"),
-
+        VarValueDefBuilder.with( "1999-01-10T02:03:45.678+00:00")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "2000-02-13T03:04:56.789+00:00")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "2032-01-10T02:03:45.678+00:00")
+        .has( "format", schema.getFormat())
+        .build(),
+        
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)
         .schema(
@@ -1406,9 +1449,17 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"),
-        new VarValueDef( "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed"),
-        new VarValueDef( "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6"),
+        VarValueDefBuilder.with( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed")
+        .has( "format", schema.getFormat())
+        .build(),
+        
+        VarValueDefBuilder.with( "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6")
+        .has( "format", schema.getFormat())
+        .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)

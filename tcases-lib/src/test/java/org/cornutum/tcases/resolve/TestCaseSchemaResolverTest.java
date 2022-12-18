@@ -1227,4 +1227,399 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         null,
         null);
     }
+  
+  @Test
+  public void whenVarSchemaArrayEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "array")
+          .enums( arrayOf( 1), arrayOf( 2, 3))
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='[1]'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( Arrays.asList( 1))
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 1)
+        .name( "Var='[2, 3]'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( Arrays.asList( 2, 3))
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 2)
+        .name( "Var='unexpectedValue'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( Arrays.asList( 1, 2, 3))
+          .valid( false)
+          .source( "unexpectedValue")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenValueSchemaArrayEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "array")
+          .items( SchemaBuilder.type( "integer").build())
+          .build())
+
+        .values(
+          VarValueDefBuilder.with( "Array")
+          .schema(
+            SchemaBuilder.type( "array")
+            .enums( arrayOf( "Hello", "World"), arrayOfAny( noValue()))
+            .build())
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='Array'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( Arrays.asList( "Hello", "World"))
+          .source( "Array")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenVarSchemaIntegerEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "integer")
+          .enums( 21, 34)
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='21'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( 21)
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 1)
+        .name( "Var='34'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( 34)
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 2)
+        .name( "Var='unexpectedValue'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( 181)
+          .has( "format", "int32")
+          .valid( false)
+          .source( "unexpectedValue")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenValueSchemaIntegerEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "integer")
+          .minimum( -1)
+          .maximum( 1)
+          .build())
+
+        .values(
+          VarValueDefBuilder.with( "Integer")
+          .schema(
+            SchemaBuilder.type( "integer")
+            .enums( 34, 55, 89)
+            .build())
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='Integer'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( 89)
+          .has( "format", "int64")
+          .source( "Integer")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenVarSchemaNumberEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "number")
+          .enums( bigDecimalOf( "12.35"), bigDecimalOf( "8.13"), bigDecimalOf( "21.34"))
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='12.35'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( bigDecimalOf( "12.35"))
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 1)
+        .name( "Var='8.13'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( bigDecimalOf( "8.13"))
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 2)
+        .name( "Var='21.34'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( bigDecimalOf( "21.34"))
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 3)
+        .name( "Var='unexpectedValue'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( bigDecimalOf( "683.40"))
+          .valid( false)
+          .source( "unexpectedValue")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenValueSchemaNumberEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "number")
+          .minimum( bigDecimalOf( "-1.23"))
+          .maximum( bigDecimalOf( "1.23"))
+          .build())
+
+        .values(
+          VarValueDefBuilder.with( "Number")
+          .schema(
+            SchemaBuilder.type( "number")
+            .enums( bigDecimalOf( "3.4"), bigDecimalOf( "5.5"), bigDecimalOf( "8.9"))
+            .build())
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='Number'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( bigDecimalOf( "3.4"))
+          .source( "Number")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenVarSchemaStringEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "string")
+          .format( "email")
+          .enums( "me@myself.org", "xyz@somewhere.com")
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='me@myself.org'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( "me@myself.org")
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 1)
+        .name( "Var='xyz@somewhere.com'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( "xyz@somewhere.com")
+          .build())
+        .build(),
+
+        TestCaseBuilder.with( 2)
+        .name( "Var='unexpectedValue'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( "xx@myself.org")
+          .has( "format", "email")
+          .valid( false)
+          .source( "unexpectedValue")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+  
+  @Test
+  public void whenValueSchemaStringEnum()
+    {
+    // Given...
+    FunctionInputDef inputDef =
+      FunctionInputDefBuilder.with( "Model")
+      .vars(
+        VarDefBuilder.with( "Var")
+        .schema(
+          SchemaBuilder.type( "string")
+          .minLength( 10)
+          .pattern( "[A-Z]+")
+          .build())
+
+        .values(
+          VarValueDefBuilder.with( "String")
+          .schema(
+            SchemaBuilder.type( "string")
+            .enums( "Hello", "World")
+            .build())
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    FunctionTestDef testDef = resolveTests( inputDef);
+    
+    // Then...
+    FunctionTestDef expected =
+      FunctionTestDefBuilder.with( "Model")
+      .testCases(
+        TestCaseBuilder.with( 0)
+        .name( "Var='String'")
+        .bind(
+          VarBindingBuilder.with( "Var")
+          .value( "Hello")
+          .source( "String")
+          .build())
+        .build())
+      .build();
+
+    assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
   }

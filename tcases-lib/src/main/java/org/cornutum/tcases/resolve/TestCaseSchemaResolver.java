@@ -240,7 +240,10 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     if( schema.getEnum() != null)
       {
-      schema.getEnum().stream().map( this::valueObject).map( VarValueDef::new).forEach( value -> values.add( value));
+      schema.getEnum().stream()
+        .map( this::valueObject)
+        .map( object -> VarValueDefBuilder.with( object).hasIf( "format", schema.getFormat()).build())
+        .forEach( value -> values.add( value));
 
       values.add(
         VarValueDefBuilder.with( "unexpectedValue")
@@ -357,7 +360,10 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     if( schema.getEnum() != null)
       {
-      schema.getEnum().stream().map( this::valueObject).map( VarValueDef::new).forEach( value -> values.add( value));
+      schema.getEnum().stream()
+        .map( this::valueObject)
+        .map( object -> VarValueDefBuilder.with( object).hasIf( "format", schema.getFormat()).build())
+        .forEach( value -> values.add( value));
 
       values.add(
         VarValueDefBuilder.with( "unexpectedValue")
@@ -512,7 +518,10 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     if( schema.getEnum() != null)
       {
-      schema.getEnum().stream().map( this::valueObject).map( VarValueDef::new).forEach( value -> values.add( value));
+      schema.getEnum().stream()
+        .map( this::valueObject)
+        .map( object -> VarValueDefBuilder.with( object).hasIf( "format", schema.getFormat()).build())
+        .forEach( value -> values.add( value));
 
       values.add(
         VarValueDefBuilder.with( "unexpectedValue")
@@ -630,12 +639,12 @@ public class TestCaseSchemaResolver extends TestCaseResolver
   /**
    * Returns a number value that is not in the given enumerated set.
    */
-  private DecimalValue numberNotIn( Set<DataValue<?>> enums)
+  private DataValue<?> numberNotIn( Set<DataValue<?>> enums)
     {
     final BigDecimal factor = new BigDecimal( 7);
 
     return
-      valueOf(
+      numberValueOf(
         enums.stream()
         .map( value -> Optional.ofNullable( bigDecimalOf( value)).orElse( BigDecimal.ZERO))
         .reduce(
