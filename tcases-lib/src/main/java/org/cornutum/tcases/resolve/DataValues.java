@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases.resolve;
 
+import org.cornutum.tcases.util.ObjectUtils;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -146,6 +148,26 @@ public final class DataValues
   public static DecimalValue valueOf( BigDecimal value)
     {
     return new DecimalValue( value);
+    }
+
+  /**
+   * Returns a new numeric {@link DataValue} with most specific type for the given value.
+   */
+  public static DataValue<?> numberValueOf( BigDecimal value)
+    {
+    Object number = ObjectUtils.toExternalNumber( value);
+
+    return
+      number == null?
+      nullValue() :
+
+      number.getClass().equals( Integer.class)?
+      valueOf( (Integer) number) :
+
+      number.getClass().equals( Long.class)?
+      valueOf( (Long) number) :
+
+      valueOf( value);
     }
 
   /**
