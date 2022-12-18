@@ -164,7 +164,7 @@ public final class ObjectUtils
   /**
    * Returns an object equal to the external form of the given number value.
    */
-  private static Object toExternalNumber( BigDecimal number)
+  public static Object toExternalNumber( BigDecimal number)
     {
     return
       Optional.ofNullable(
