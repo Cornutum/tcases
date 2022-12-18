@@ -8,15 +8,18 @@
 package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.resolve.NumberDomain.Range;
-import org.junit.Test;
-
 import static org.cornutum.tcases.resolve.DataValue.Type;
+
+import org.junit.Test;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+
 
 import java.util.Arrays;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Runs tests for {@link ArrayDomain}.
@@ -155,6 +158,23 @@ public class ArrayDomainTest extends ValueDomainTest
 
     assertThat( "Contains", domain.contains( listOf( new String[0])), is( true));
     assertThat( "Contains", domain.contains( listOf( "Oops")), is( false));
+    }
+
+  @Test
+  public void whenEnum()
+    {
+    // Given...
+    List<DataValue<Integer>> fibos = listOf( 1, 2, 3, 5);
+    List<DataValue<Integer>> twos = listOf( 2, 4, 8);
+    List<DataValue<Integer>> threes = listOf( 3, 9, 27);
+    
+    ArrayEnum<Integer> domain = new ArrayEnum<Integer>( Arrays.asList( fibos, twos, threes));
+
+    // Then...
+    List<List<DataValue<Integer>>> values = valuesOf( domain, 1000);
+    assertThat( "Enum values size", values.size(), is( 1000));
+    assertThat( "Enum values content", values.stream().collect( toSet()), containsMembers( fibos, twos, threes));
+    assertThat( "Contains", domain.contains( listOf( 2, 4, 7)), is( false));
     }
 
   /**
