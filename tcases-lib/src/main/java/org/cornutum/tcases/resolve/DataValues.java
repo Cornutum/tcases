@@ -43,13 +43,13 @@ public final class DataValues
    */
   public static ArrayValue<String> arrayOf( String... items)
     {
-    return arrayOf( null, items);
+    return arrayOfFormatted( null, items);
     }
 
   /**
    * Returns a new {@link ArrayValue}.
    */
-  public static ArrayValue<String> arrayOf( String format, String... items)
+  public static ArrayValue<String> arrayOfFormatted( String format, String... items)
     {
     return
       new ArrayValue<String>(
