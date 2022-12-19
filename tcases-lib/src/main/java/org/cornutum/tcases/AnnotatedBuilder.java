@@ -93,7 +93,7 @@ public abstract class AnnotatedBuilder<T extends AnnotatedBuilder<T>>
     }
 
   /**
-   * Adds an annotation if the given value is non-null
+   * Adds annotations from another annotated element.
    */
   @SuppressWarnings("unchecked")
   public T annotations( Annotated other)
