@@ -24,28 +24,37 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
   /**
    * Creates a new TestCaseResolver instance.
    */
-  protected TestCaseResolver()
-    {
-    this( ResolverContext.builder().notifier( TestCaseConditionNotifier.log()).build());
-    }
-  
-  /**
-   * Creates a new TestCaseResolver instance.
-   */
-  protected TestCaseResolver( ResolverContext context)
+  protected TestCaseResolver( ResolverContext context, FunctionInputDef inputDef)
     {
     super( context);
+    inputDef_ = inputDef;
     }
-  
+
+  /**
+   * Changes the input definition for this resolver.
+   */
+  protected void setInputDef( FunctionInputDef inputDef)
+    {
+    inputDef_ = inputDef;
+    }
+
+  /**
+   * Returns the input definition for this resolver.
+   */
+  public FunctionInputDef getInputDef()
+    {
+    return inputDef_;
+    }
+
   /**
    * Resolves the {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances for the given input model.
    */
-  public List<TestCase> resolve( FunctionInputDef inputDef, Function<FunctionInputDef,List<ITestCaseDef>> testCaseDefSupplier)
+  public List<TestCase> resolve( Function<FunctionInputDef,List<ITestCaseDef>> testCaseDefSupplier)
     {
     nextId_ = -1;
     
     return
-      testCaseDefSupplier.apply( prepareValueDefs( inputDef))
+      testCaseDefSupplier.apply( getInputDef())
       .stream()
       .map( this::resolveTestDef)
       .collect( toList());
@@ -86,36 +95,7 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
    * Returns a binding that resolves the value of the given input variable.
    */
   protected abstract VarBinding resolveBinding( VarDef varDef, VarValueDef valueDef);
-  
-  /**
-   * Returns a {@link FunctionInputDef function input model} that is ready for resolution of input value definitions.
-   */
-  protected abstract FunctionInputDef prepareValueDefs( FunctionInputDef inputDef);
-
-  /**
-   * The default TestCaseResolver uses only the basic input model without schemas.
-   */
-  public static TestCaseResolver DEFAULT =
-    new TestCaseResolver()
-      {
-      /**
-       * Returns a binding that resolves the value of the given input variable.
-       */
-      @Override
-      protected VarBinding resolveBinding( VarDef varDef, VarValueDef valueDef)
-        {
-        return VarBinding.create( varDef, valueDef);
-        }
-  
-      /**
-       * Returns a {@link FunctionInputDef function input model} that is ready for resolution of input value definitions.
-       */
-      @Override
-      protected FunctionInputDef prepareValueDefs( FunctionInputDef inputDef)
-        {
-        return inputDef;
-        }
-      };
 
   private int nextId_;
+  private FunctionInputDef inputDef_;
   }

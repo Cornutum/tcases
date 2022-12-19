@@ -13,6 +13,7 @@ import org.cornutum.tcases.io.*;
 import org.cornutum.tcases.resolve.*;
 import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.io.Resource.withDefaultType;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -1251,9 +1252,9 @@ public class TcasesCommand
       throw new RuntimeException( "Can't read input definition file=" + inputDefFile, e);
       }
 
-    // Create test case resolver.
-    TestCaseSchemaResolver resolver =
-      new TestCaseSchemaResolver(
+    // Create test case resolver factory.
+    TestCaseResolverFactory resolverFactory =
+      new TestCaseSchemaResolverFactory(
         ResolverContext.builder( inputDef.getName())
         .notifier( TestCaseConditionNotifier.log())
         .build());
@@ -1264,7 +1265,7 @@ public class TcasesCommand
       logger_.info( "Writing effective system input definition to standard output");
       try( SystemInputJsonWriter writer = new SystemInputJsonWriter())
         {
-        writer.write( resolver.prepareInputDef( inputDef));
+        writer.write( getEffectiveInputDef( resolverFactory, inputDef));
         }
       return;
       }
@@ -1383,7 +1384,7 @@ public class TcasesCommand
       }
     
     // Generate new test definitions.
-    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, resolver, baseDef, options.getGeneratorOptions());
+    SystemTestDef testDef = Tcases.getTests( inputDef, genDef, resolverFactory, baseDef, options.getGeneratorOptions());
 
     // Identify test definition transformations.
     AbstractFilter transformer = null;
@@ -1478,6 +1479,18 @@ public class TcasesCommand
         throw new RuntimeException( "Can't write generator definition file=" + genUpdateFile, e);
         }
       }
+    }
+
+  /**
+   * Returns the effective system input definition.
+   */
+  private static SystemInputDef getEffectiveInputDef( TestCaseResolverFactory resolverFactory, SystemInputDef inputDef)
+    {
+    return
+      SystemInputDefBuilder.with( inputDef.getName())
+      .annotations( inputDef)
+      .functions( toStream( inputDef.getFunctionInputDefs()).map( f -> resolverFactory.resolverFor( f).getInputDef()))
+      .build();
     }
 
   private static final Logger logger_ = LoggerFactory.getLogger( Tcases.class);

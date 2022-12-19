@@ -36,19 +36,11 @@ public class TestCaseSchemaResolver extends TestCaseResolver
   /**
    * Creates a new TestCaseSchemaResolver instance.
    */
-  public TestCaseSchemaResolver()
+  public TestCaseSchemaResolver( ResolverContext context, FunctionInputDef inputDef)
     {
-    super();
-    schemas_ = new Schemas( getContext());
-    }
-  
-  /**
-   * Creates a new TestCaseSchemaResolver instance.
-   */
-  public TestCaseSchemaResolver( ResolverContext context)
-    {
-    super( context);
+    super( context, inputDef);
     schemas_ = new Schemas( context);
+    setInputDef( prepareValueDefs( getInputDef()));
     }
 
   /**
@@ -86,25 +78,12 @@ public class TestCaseSchemaResolver extends TestCaseResolver
       {
       throw new ResolverException( String.format( "Can't get value from %s", domain), e);
       }
-    } 
-
-  /**
-   * Returns the version of the given input definition that is used for resolution.
-   */
-  public SystemInputDef prepareInputDef( SystemInputDef inputDef)
-    {
-    return
-      SystemInputDefBuilder.with( inputDef.getName())
-      .annotations( inputDef)
-      .functions( toStream( inputDef.getFunctionInputDefs()).map( this::prepareValueDefs))
-      .build();
     }
 
   /**
    * Prepare for resolution of input value definitions
    */
-  @Override
-  protected FunctionInputDef prepareValueDefs( FunctionInputDef inputDef)
+  private FunctionInputDef prepareValueDefs( FunctionInputDef inputDef)
     {
     FunctionInputDef prepared = FunctionInputDefBuilder.with( inputDef).build();
     

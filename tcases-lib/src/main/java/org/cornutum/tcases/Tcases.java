@@ -9,6 +9,7 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.generator.*;
 import org.cornutum.tcases.resolve.TestCaseResolver;
+import org.cornutum.tcases.resolve.TestCaseResolverFactory;
 
 import java.util.Iterator;
 import java.util.Optional;
@@ -30,32 +31,36 @@ public class Tcases
     }
 
   /**
-   * Returns test case definitions for the given system input definition, using the given generator set, resolver, and
+   * Returns test case definitions for the given system input definition, using the given generator set, resolvers, and
    * base test definitions. If <CODE>genDef</CODE> is null, the default generator is used.  If <CODE>baseDef</CODE> is
    * null, no base test definitions are used.  <P/> The <CODE>options</CODE> are optional and may be null. See also
    * {@link #getTests(SystemInputDef,IGeneratorSet,SystemTestDef)}.
    */
-  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, TestCaseResolver resolver, SystemTestDef baseDef, GeneratorOptions options)
+  public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, TestCaseResolverFactory resolverFactory, SystemTestDef baseDef, GeneratorOptions options)
     {
-    if( genDef == null)
-      {
-      genDef = GeneratorSet.basicGenerator();
-      }
-
-    if( resolver == null)
-      {
-      resolver = TestCaseResolver.DEFAULT;
-      }
-
     SystemTestDef testDef = new SystemTestDef( inputDef.getName());
     for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
       {
       FunctionInputDef functionDef = functionDefs.next();
-      FunctionTestDef functionBase = baseDef==null? null : baseDef.getFunctionTestDef( functionDef.getName());
-      ITestCaseGenerator functionGen = genDef.getGenerator( functionDef.getName());
-      FunctionTestDef functionTestDef = getTests( functionDef, functionGen, resolver, functionBase, options);
-      annotateTests( inputDef, functionTestDef);
 
+      FunctionTestDef functionBase =
+        Optional.ofNullable( baseDef)
+        .map( base -> base.getFunctionTestDef( functionDef.getName()))
+        .orElse( null);
+
+      ITestCaseGenerator functionGen =
+        Optional.ofNullable( genDef).orElse( GeneratorSet.basicGenerator())
+        .getGenerator( functionDef.getName());
+
+      FunctionTestDef functionTestDef =
+        getTests(
+          functionDef,
+          functionGen,
+          Optional.ofNullable( resolverFactory).orElse( TestCaseResolverFactory.DEFAULT),
+          functionBase,
+          options);
+
+      annotateTests( inputDef, functionTestDef);
       testDef.addFunctionTestDef(functionTestDef);
       }
 
@@ -65,20 +70,15 @@ public class Tcases
 
   /**
    * Returns test case definitions for the given function input definition, using the given test case generator,
-   * resolver, and base test definitions. The <CODE>functionGen</CODE> must be non-null.  If <CODE>functionBase</CODE>
+   * resolvers, and base test definitions. The <CODE>functionGen</CODE> must be non-null.  If <CODE>functionBase</CODE>
    * is null, no base test definitions are used.  <P/> The <CODE>options</CODE> are optional and may be null. See also
    * {@link #getTests(FunctionInputDef,ITestCaseGenerator,FunctionTestDef)}.
    */
-  public static FunctionTestDef getTests( FunctionInputDef functionDef, ITestCaseGenerator functionGen, TestCaseResolver resolver, FunctionTestDef functionBase, GeneratorOptions options)
+  public static FunctionTestDef getTests( FunctionInputDef functionDef, ITestCaseGenerator functionGen, TestCaseResolverFactory resolverFactory, FunctionTestDef functionBase, GeneratorOptions options)
     {
     if( functionGen == null)
       {
       throw new RuntimeException( "No generator for function=" + functionDef.getName());
-      }
-
-    if( resolver == null)
-      {
-      resolver = TestCaseResolver.DEFAULT;
       }
 
     // If applicable, apply specified generator options.
@@ -93,6 +93,11 @@ public class Tcases
       }
 
     // Resolve random test case values using a function-specific sequence.
+    TestCaseResolver resolver =
+      Optional.ofNullable( resolverFactory)
+      .orElse( TestCaseResolverFactory.DEFAULT)
+      .resolverFor( functionDef);
+    
     resolver.getContext()
       .setRandom(
         new Random(
@@ -100,10 +105,10 @@ public class Tcases
           .orElse( (long) functionDef.getName().hashCode())));
 
     FunctionTestDef functionTestDef = new FunctionTestDef( functionDef.getName());
-    resolver.resolve( functionDef, f -> functionGen.getTests( f, functionBase))
+    resolver.resolve( f -> functionGen.getTests( f, functionBase))
       .forEach( testCase -> functionTestDef.addTestCase( testCase));
 
-    annotateTests( functionDef, functionTestDef);
+    annotateTests( resolver.getInputDef(), functionTestDef);
 
     return functionTestDef;
     }
@@ -151,8 +156,8 @@ public class Tcases
         // Add value annotations...
         if( !binding.isValueNA())
           {
-          Optional.ofNullable( varDef.getValue( binding.getSource()))
-            .ifPresent( valueDef -> binding.addAnnotations( valueDef));
+          VarValueDef valueDef = varDef.getValue( binding.getSource());
+          binding.addAnnotations( valueDef);
           }
 
         // ...and any other annotations for this variable...

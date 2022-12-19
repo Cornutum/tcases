@@ -28,7 +28,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMinItemsAboveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -84,7 +84,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenItemsNormalized()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -134,7 +134,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMaxItemsNegative()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -182,7 +182,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMinItemsNegative()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -244,7 +244,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenArraySingleton()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -303,7 +303,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenArrayConstant()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -327,7 +327,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenArrayEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "array")
@@ -375,7 +375,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenBoolean()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "boolean")
@@ -398,7 +398,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMinimumAboveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -450,7 +450,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMaximumBelowExclusiveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -522,7 +522,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMaximumAboveExclusiveMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -570,7 +570,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMinimumAboveExclusiveMin()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -624,7 +624,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMultipleOfUnit()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -681,7 +681,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenAnyMultiple()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "integer")
@@ -735,7 +735,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenNumberEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "number")
@@ -779,7 +779,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenStringNormal()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -836,7 +836,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMaxLengthAbovePatternMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -878,7 +878,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMinLengthBelowFormatMin()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -935,7 +935,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMaxLengthAboveFormatMax()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -975,7 +975,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMinLengthBelowPatternMin()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1025,7 +1025,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenAnyString()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1062,7 +1062,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenPattern()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1128,7 +1128,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenMaxLength()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1174,7 +1174,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenPatternNotApplicable()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1213,7 +1213,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenConstantString()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1238,7 +1238,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenConstantNull()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1262,7 +1262,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenStringEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1302,7 +1302,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenEmailEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1346,7 +1346,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenDateEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1390,7 +1390,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenDateTimeEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1434,7 +1434,7 @@ public class VarSchemaValuesTest extends ResolverTest
   public void whenUuidEnum()
     {
     // Given...
-    TestCaseSchemaResolver resolver = new TestCaseSchemaResolver( withConditionRecorder());
+    TestCaseSchemaResolver resolver = getResolver();
 
     Schema schema =
       SchemaBuilder.type( "string")
@@ -1473,4 +1473,14 @@ public class VarSchemaValuesTest extends ResolverTest
 
     assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
     }
+
+  /**
+   * Returns the TestCaseSchemaResolver for this test.
+   */
+  private TestCaseSchemaResolver getResolver()
+    {
+    return (TestCaseSchemaResolver) resolverFactory_.resolverFor( new FunctionInputDef( "F"));
+    }
+
+  private TestCaseSchemaResolverFactory resolverFactory_ = new TestCaseSchemaResolverFactory( withConditionRecorder());
   }

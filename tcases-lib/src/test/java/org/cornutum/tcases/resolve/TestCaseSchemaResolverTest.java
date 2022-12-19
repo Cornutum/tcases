@@ -1216,17 +1216,6 @@ public class TestCaseSchemaResolverTest extends ResolverTest
       "Error processing Model, Var",
       "No schema or values defined for this variable");
     }
-
-  private FunctionTestDef resolveTests( FunctionInputDef inputDef)
-    {
-    return
-      Tcases.getTests(
-        inputDef,
-        new TupleGenerator(),
-        new TestCaseSchemaResolver( getResolverContext()),
-        null,
-        null);
-    }
   
   @Test
   public void whenVarSchemaArrayEnum()
@@ -1553,6 +1542,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .bind(
           VarBindingBuilder.with( "Var")
           .value( "me@myself.org")
+          .has( "format", "email")
           .build())
         .build(),
 
@@ -1561,6 +1551,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .bind(
           VarBindingBuilder.with( "Var")
           .value( "xyz@somewhere.com")
+          .has( "format", "email")
           .build())
         .build(),
 
@@ -1621,5 +1612,16 @@ public class TestCaseSchemaResolverTest extends ResolverTest
       .build();
 
     assertThat( "Resolved tests", testDef, matches( new FunctionTestDefMatcher( expected)));
+    }
+
+  private FunctionTestDef resolveTests( FunctionInputDef inputDef)
+    {
+    return
+      Tcases.getTests(
+        inputDef,
+        new TupleGenerator(),
+        new TestCaseSchemaResolverFactory( getResolverContext()),
+        null,
+        null);
     }
   }
