@@ -1,7 +1,7 @@
 This is a code block
 
-<p style="background-color: #0F0F0F">
+<pre>
 The highlighted text is in <span style="background-color: yellow">yellow</span>.
-</p>
+</pre>
 
 
