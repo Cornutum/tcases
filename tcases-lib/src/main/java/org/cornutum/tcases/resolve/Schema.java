@@ -9,13 +9,13 @@ package org.cornutum.tcases.resolve;
 
 import org.cornutum.tcases.resolve.DataValue.Type;
 import org.cornutum.tcases.util.ToString;
-import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -25,7 +25,6 @@ import java.util.Set;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toCollection;
 
 /**
  * Defines requirements for the value of a system input variable.
@@ -180,7 +179,7 @@ public class Schema
         throw new IllegalArgumentException( "'enum' must define at least one value");
         });
     
-    enums_ = Optional.ofNullable( enums).map( e -> e.stream().collect( toCollection( LinkedHashSet::new))).orElse( null);
+    enums_ = Optional.ofNullable( enums).map( e -> e.stream().collect( toOrderedSet())).orElse( null);
     }
 
   /**

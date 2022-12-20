@@ -12,15 +12,14 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.generator.*;
 import static org.cornutum.tcases.conditions.Conditions.*;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
-import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -198,7 +197,7 @@ public class Anonymizer
         toStream( new VarDefIterator( inputDef))
         .flatMap( varDef -> toStream( varDef.getValues()))
         .flatMap( valueDef -> toStream( valueDef.getProperties().iterator()).sorted())
-        .collect( toCollection( LinkedHashSet<String>::new))
+        .collect( toOrderedSet())
         .toArray( new String[0]);
 
       int maxLen = String.valueOf( properties.length).length();

@@ -10,6 +10,7 @@ package org.cornutum.tcases;
 import org.cornutum.tcases.util.ExecutionContext;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.conditions.Conditions.propertiesReferenced;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.apache.commons.lang3.StringUtils;
@@ -253,17 +254,11 @@ public class SystemInputs
       .max()
       .orElse( 0);
 
-    Set<V> values = new LinkedHashSet<V>();
-    IntStream.range( 0, maxValues)
-      .forEach( i -> {
-        valueSets.stream()
-          .forEach( valueSet -> {
-            if( i < valueSet.size())
-              {
-              values.add( valueSet.get(i));
-              }
-            });
-        });
+    Set<V> values = 
+      IntStream.range( 0, maxValues)
+      .mapToObj( i -> valueSets.stream().map( valueSet -> i < valueSet.size()? valueSet.get(i) : null).filter( Objects::nonNull))
+      .flatMap( iths -> iths)
+      .collect( toOrderedSet());
     
     return
       values.stream()

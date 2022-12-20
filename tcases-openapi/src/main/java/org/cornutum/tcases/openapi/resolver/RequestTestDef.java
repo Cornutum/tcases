@@ -8,19 +8,18 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toSet;
 
 /**
@@ -134,7 +133,7 @@ public class RequestTestDef
     return
       requestCases_.stream()
       .map( RequestCase::getPath)
-      .collect( toCollection( LinkedHashSet::new));
+      .collect( toOrderedSet());
     }
 
   /**
@@ -145,7 +144,7 @@ public class RequestTestDef
     return
       getRequestCases( path).stream()
       .map( RequestCase::getOperation)
-      .collect( toCollection( LinkedHashSet::new));
+      .collect( toOrderedSet());
     }
 
   /**

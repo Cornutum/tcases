@@ -11,6 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.toCsv;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.slf4j.Logger;
@@ -21,13 +22,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -445,7 +444,7 @@ public class TestCaseDef implements ITestCaseDef
     return
       toStream( properties_.getUniqueProperties())
       .sorted( String.CASE_INSENSITIVE_ORDER)
-      .collect( toCollection( LinkedHashSet::new));
+      .collect( toOrderedSet());
     }
 
   /**
