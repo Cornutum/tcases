@@ -12,6 +12,7 @@ import org.cornutum.tcases.util.ContextHandler;
 import org.cornutum.tcases.util.ExecutionNotifier;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.js.Provider;
@@ -176,7 +177,7 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
    */
   private Schema normalizeConstant( Schema schema)
     {
-    return normalizeEnum( schema, singleton( schema.getConstant()));
+    return normalizeEnum( "const", schema, singleton( schema.getConstant()));
     }
   
   /**
@@ -184,22 +185,24 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
    */
   private Schema normalizeEnum( Schema schema)
     {
-    return normalizeEnum( schema, schema.getEnum());
+    return normalizeEnum( "enum", schema, schema.getEnum());
     }
   
   /**
    * Updates the given {@link Schema} to describe only the specified enumerated values.
    */
-  private Schema normalizeEnum( Schema schema, Set<DataValue<?>> enums)
+  private Schema normalizeEnum( String context, Schema schema, Set<DataValue<?>> enums)
     {
-    if( enums.size() == 1)
+    Set<DataValue<?>> values = resultFor( context, () -> normalizeValues( schema.getType(), schema.getFormat(), enums));
+    boolean constant = values.size() == 1;
+    if( constant)
       {
-      schema.setConstant( enums.iterator().next());
+      schema.setConstant( values.iterator().next());
       schema.setEnum( null);
       }
     else
       {
-      schema.setEnum( enums);
+      schema.setEnum( values);
       schema.setConstant( null);
       }
 
@@ -208,7 +211,7 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
       notifyWarning(
         String.format(
           "Values defined using '%s'. Ignoring all other schema properties",
-          enums.size() == 1? "const" : "enum"));
+          constant? "const" : "enum"));
 
       schema.setMinimum( null);
       schema.setMaximum( null);
@@ -225,6 +228,26 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
       }
 
     return schema;
+    }
+
+  /**
+   * Returns the given set of values in the form specified by the given type and format.
+   */
+  private Set<DataValue<?>> normalizeValues( Type type, String format, Set<DataValue<?>> values)
+    {
+    return
+      type == INTEGER?
+      values.stream()
+      .map( v -> v.getType() == NULL? v : integerValueOf( format, v))
+      .collect( toOrderedSet()) :
+
+      type == STRING?
+      values.stream()
+      .map( DataValues::stringOf)
+      .map( s -> s == null? nullValue() : stringOf( format, s))
+      .collect( toOrderedSet()) :
+
+      values;
     }
 
   /**

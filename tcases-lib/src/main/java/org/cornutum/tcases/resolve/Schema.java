@@ -478,6 +478,11 @@ public class Schema
       {
       throw new IllegalArgumentException( "No schema type defined");
       }
+    if( type == OBJECT)
+      {
+      throw new IllegalArgumentException( "Schema type=object is not supported");
+      }
+    
     return type;
     }
 

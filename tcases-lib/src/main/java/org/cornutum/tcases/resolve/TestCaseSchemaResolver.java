@@ -12,6 +12,7 @@ import static org.cornutum.tcases.VarValueDef.Type.FAILURE;
 import static org.cornutum.tcases.resolve.AbstractValueDomain.withFormat;
 import static org.cornutum.tcases.resolve.DataValue.Type.*;
 import static org.cornutum.tcases.resolve.DataValues.*;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.cornutum.regexpgen.RegExpGen;
@@ -26,7 +27,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 /**
  * Uses the {@link Schema} definitions in {@link ITestCaseDef test case definitions} to create new {@link TestCase} instances.
@@ -220,8 +220,14 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     if( schema.getEnum() != null)
       {
       schema.getEnum().stream()
-        .map( this::valueObject)
-        .map( object -> VarValueDefBuilder.with( object).hasIf( "format", schema.getFormat()).build())
+        .map( e ->
+              VarValueDefBuilder.with( valueObject( e))
+              .schema(
+                SchemaBuilder.type( schema.getType())
+                .constant( e)
+                .format( schema.getFormat())
+                .build())
+              .build())
         .forEach( value -> values.add( value));
 
       values.add(
@@ -340,8 +346,14 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     if( schema.getEnum() != null)
       {
       schema.getEnum().stream()
-        .map( this::valueObject)
-        .map( object -> VarValueDefBuilder.with( object).hasIf( "format", schema.getFormat()).build())
+        .map( e ->
+              VarValueDefBuilder.with( valueObject( e))
+              .schema(
+                SchemaBuilder.type( schema.getType())
+                .constant( e)
+                .format( schema.getFormat())
+                .build())
+              .build())
         .forEach( value -> values.add( value));
 
       values.add(
@@ -498,8 +510,14 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     if( schema.getEnum() != null)
       {
       schema.getEnum().stream()
-        .map( this::valueObject)
-        .map( object -> VarValueDefBuilder.with( object).hasIf( "format", schema.getFormat()).build())
+        .map( e ->
+              VarValueDefBuilder.with( valueObject( e))
+              .schema(
+                SchemaBuilder.type( schema.getType())
+                .constant( e)
+                .format( schema.getFormat())
+                .build())
+              .build())
         .forEach( value -> values.add( value));
 
       values.add(
@@ -969,7 +987,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
               new ArrayEnum<Object>(
                 enums.stream()
                 .map( v -> ((ArrayValue<Object>) v).getValue())
-                .collect( toSet())),
+                .collect( toOrderedSet())),
               schema.getFormat());
           break;
           }
@@ -981,7 +999,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
               new BooleanEnum(
                 enums.stream()
                 .map( v -> ((BooleanValue) v).getValue())
-                .collect( toSet())),
+                .collect( toOrderedSet())),
               schema.getFormat());
           break;
           }
@@ -993,12 +1011,12 @@ public class TestCaseSchemaResolver extends TestCaseResolver
             new IntegerEnum(
               enums.stream()
               .map( DataValues::integerOf)
-              .collect( toSet())) :
+              .collect( toOrderedSet())) :
 
             new LongEnum(
               enums.stream()
               .map( DataValues::longOf)
-              .collect( toSet()));
+              .collect( toOrderedSet()));
             
           domain = withFormat( integerDomain, schema.getFormat());
           break;
@@ -1010,7 +1028,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
             new DecimalEnum(
               enums.stream()
               .map( DataValues::bigDecimalOf)
-              .collect( toSet()),
+              .collect( toOrderedSet()),
               schema.getFormat());
           break;
           }
@@ -1018,7 +1036,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
         case STRING:
           {
           String format = schema.getFormat();
-          Set<String> values = enums.stream().map( DataValues::stringOf).collect( toSet());
+          Set<String> values = enums.stream().map( DataValues::stringOf).collect( toOrderedSet());
           domain =
             "date".equals( format)?
             new DateEnum( values) :

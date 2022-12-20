@@ -1339,6 +1339,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .bind(
           VarBindingBuilder.with( "Var")
           .value( 21)
+          .has( "format", "int64")
           .build())
         .build(),
 
@@ -1347,6 +1348,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .bind(
           VarBindingBuilder.with( "Var")
           .value( 34)
+          .has( "format", "int64")
           .build())
         .build(),
 
@@ -1355,7 +1357,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .bind(
           VarBindingBuilder.with( "Var")
           .value( 181)
-          .has( "format", "int32")
+          .has( "format", "int64")
           .valid( false)
           .source( "unexpectedValue")
           .build())
@@ -1505,7 +1507,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='Number'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( bigDecimalOf( "3.4"))
+          .value( bigDecimalOf( "8.9"))
           .source( "Number")
           .build())
         .build())

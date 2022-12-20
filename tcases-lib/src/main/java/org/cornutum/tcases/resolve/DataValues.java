@@ -186,6 +186,17 @@ public final class DataValues
     return new LongValue( value);
     }
 
+  /**
+   * Returns a INTEGER type value defined by the given format.
+   */
+  public static DataValue<?> integerValueOf( String format, DataValue<?> value)
+    {
+    return
+      "int32".equals( format)
+      ? valueOf( integerOf( value))
+      : valueOf( longOf( value));
+    }
+
   public static NullValue nullValue()
     {
     return new NullValue();
@@ -230,7 +241,7 @@ public final class DataValues
       "uuid".equals( format)?
       uuidOf( value) :
 
-      stringOf( value);
+      new StringValue( value, format);
     }
 
   /**
@@ -273,7 +284,11 @@ public final class DataValues
    */
   public static DateTimeValue dateTimeOf( String value)
     {
-    return new DateTimeValue( value);
+    return
+      new DateTimeValue(
+        Optional.ofNullable( value)
+        .filter( DateTimeConstant::isDateTime)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Invalid date-time value=%s", value))));
     }
 
   /**
@@ -281,7 +296,11 @@ public final class DataValues
    */
   public static DateValue dateOf( String value)
     {
-    return new DateValue( value);
+    return
+      new DateValue(
+        Optional.ofNullable( value)
+        .filter( DateConstant::isDate)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Invalid date value=%s", value))));
     }
 
   /**
@@ -289,7 +308,11 @@ public final class DataValues
    */
   public static EmailValue emailOf( String value)
     {
-    return new EmailValue( value);
+    return
+      new EmailValue(
+        Optional.ofNullable( value)
+        .filter( EmailDomain::isEmail)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Invalid email value=%s", value))));
     }
 
   /**
@@ -297,7 +320,11 @@ public final class DataValues
    */
   public static UuidValue uuidOf( String value)
     {
-    return new UuidValue( value);
+    return
+      new UuidValue(
+        Optional.ofNullable( value)
+        .filter( UuidConstant::isUuid)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Invalid uuid value=%s", value))));
     }
 
   /**

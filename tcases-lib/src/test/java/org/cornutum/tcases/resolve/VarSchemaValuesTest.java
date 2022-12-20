@@ -343,19 +343,35 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         VarValueDefBuilder.with( Arrays.asList( -1, 0, 1))
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( arrayOf( -1, 0, 1))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( Arrays.asList( -2, 0, 2))
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( arrayOf( -2, 0, 2))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( Arrays.asList( -3, 0, 3))
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( arrayOf( -3, 0, 3))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( (Object) null)
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( noValue())
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
@@ -751,15 +767,27 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         VarValueDefBuilder.with( bigDecimalOf( "-1.5"))
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( bigDecimalOf( "-1.5"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( (Object) null)
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( noValue())
+          .build())
         .build(),
         
         VarValueDefBuilder.with( 11)
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( 11)
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
@@ -767,7 +795,7 @@ public class VarSchemaValuesTest extends ResolverTest
         .schema(
           SchemaBuilder.type( schema.getType())
           .format( schema.getFormat())
-          .constant( valueOf( bigDecimalOf( "84.5")))
+          .constant( bigDecimalOf( "84.5"))
           .build())
         .build()
       };
@@ -1276,14 +1304,61 @@ public class VarSchemaValuesTest extends ResolverTest
     VarValueDef[] expected =
       new VarValueDef[]
       {
-        new VarValueDef( "The"),
-        new VarValueDef( "fox"),
-        new VarValueDef( "jumped"),
-        new VarValueDef( "over"),
-        new VarValueDef( "the"),
-        new VarValueDef( "lazy"),
-        new VarValueDef( "dog"),
-        new VarValueDef( null),
+        VarValueDefBuilder.with( "The")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "The")
+          .build())
+        .build(),
+        
+        VarValueDefBuilder.with( "fox")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "fox")
+          .build())
+        .build(),
+        
+        VarValueDefBuilder.with( "jumped")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "jumped")
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "over")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "over")
+          .build())
+        .build(),
+        
+        VarValueDefBuilder.with( "the")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "the")
+          .build())
+        .build(),
+        
+        VarValueDefBuilder.with( "lazy")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "lazy")
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "dog")
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( "dog")
+          .build())
+        .build(),
+        
+        VarValueDefBuilder.with( (Object) null)
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .constant( noValue())
+          .build())
+        .build(),
 
         VarValueDefBuilder.with( "unexpectedValue")
         .type( FAILURE)
@@ -1318,15 +1393,27 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         VarValueDefBuilder.with( "me@myself.org")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( emailOf( "me@myself.org"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "who@what.com")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( emailOf( "who@what.com"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "mixup@loves.com")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( emailOf( "mixup@loves.com"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
@@ -1362,15 +1449,27 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         VarValueDefBuilder.with( "2015-12-09")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateOf( "2015-12-09"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "1987-06-05")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateOf( "1987-06-05"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "2022-02-02")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateOf( "2022-02-02"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
@@ -1406,15 +1505,27 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         VarValueDefBuilder.with( "1999-01-10T02:03:45.678+00:00")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateTimeOf( "1999-01-10T02:03:45.678+00:00"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "2000-02-13T03:04:56.789+00:00")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateTimeOf( "2000-02-13T03:04:56.789+00:00"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "2032-01-10T02:03:45.678+00:00")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( dateTimeOf( "2032-01-10T02:03:45.678+00:00"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
@@ -1450,15 +1561,27 @@ public class VarSchemaValuesTest extends ResolverTest
       new VarValueDef[]
       {
         VarValueDefBuilder.with( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( uuidOf( "f81d4fae-7dec-11d0-a765-00a0c91e6bf6"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( uuidOf( "3c15d95d-e89c-4d0f-9aa2-85c2055ea3ed"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6")
-        .has( "format", schema.getFormat())
+        .schema(
+          SchemaBuilder.type( schema.getType())
+          .format( schema.getFormat())
+          .constant( uuidOf( "01e33e80-4ac4-4b23-ae7e-99cc3d63a8a6"))
+          .build())
         .build(),
         
         VarValueDefBuilder.with( "unexpectedValue")
