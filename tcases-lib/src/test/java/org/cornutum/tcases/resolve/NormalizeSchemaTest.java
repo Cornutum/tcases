@@ -647,7 +647,7 @@ public class NormalizeSchemaTest extends ResolverTest
     Schema schema =
       SchemaBuilder.type( "string")
       .format( "date")
-      .enums( "date", stringOf("2000-01-03"), stringOf("2004-05-06"), stringOf("2007-08-09"))
+      .enums( "2000-01-03", null, "2007-08-09")
       .minLength( 1)
       .maxLength( 2)
       .pattern( ".*")
@@ -664,11 +664,62 @@ public class NormalizeSchemaTest extends ResolverTest
     Schema expected =
       SchemaBuilder.type( "string")
       .format( "date")
-      .enums( "date", stringOf("2000-01-03"), stringOf("2004-05-06"), stringOf("2007-08-09"))
+      .enums( dateOf("2000-01-03"), noValue(), dateOf("2007-08-09"))
       .build();
 
     assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
     assertWarnings( "Values defined using 'enum'. Ignoring all other schema properties.");
+    }
+
+  @Test
+  public void whenEnumFormatWrong()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "string")
+      .format( "email")
+      .enums( "me@myself.org", "2004-05-06")
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    assertResolverException(
+      () -> schemas.normalize( normalized),
+      "Error processing enum",
+      "Invalid email value=2004-05-06");
+    }
+
+  @Test
+  public void whenIntegerEnum()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "integer")
+      .enums( 1, 2, 3)
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = schemas.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.type( "integer")
+      .enums( 1L, 2L, 3L)
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertConditionsNone();
     }
 
   @Test
