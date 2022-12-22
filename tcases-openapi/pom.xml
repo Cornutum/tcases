@@ -173,6 +173,11 @@
             <artifactId>tcases-io</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.cornutum.regexp</groupId>
+            <artifactId>regexp-gen</artifactId>
+        </dependency>
         
         <dependency>
             <groupId>org.cornutum.tcases</groupId>
@@ -184,12 +189,6 @@
             <groupId>io.swagger.parser.v3</groupId>
             <artifactId>swagger-parser</artifactId>
             <version>2.1.9</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.cornutum.regexp</groupId>
-            <artifactId>regexp-gen</artifactId>
-            <version>1.2.3</version>
         </dependency>
         
         <dependency>

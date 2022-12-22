@@ -1,0 +1,15 @@
+{
+    "system": "Schema",
+    "number": {
+        "arg": {
+            "numberVar": {
+                "values": {
+                    "numberValue": {
+                        "type": "number",
+                        "const": 1234
+                    }
+                }
+            }
+        }
+    }
+}

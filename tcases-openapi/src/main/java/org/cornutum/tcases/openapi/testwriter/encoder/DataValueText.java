@@ -7,12 +7,13 @@
 
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import org.cornutum.tcases.openapi.resolver.DataValue;
-
 import java.util.Objects;
 import java.util.Optional;
 import javax.json.JsonString;
 import javax.json.JsonValue.ValueType;
+
+import org.cornutum.tcases.resolve.DataValue;
+
 import javax.json.JsonValue;
 
 /**

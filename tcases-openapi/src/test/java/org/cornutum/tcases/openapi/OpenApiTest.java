@@ -17,6 +17,7 @@ import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.io.SystemTestResources;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 import org.cornutum.tcases.openapi.reader.OpenApiReaderException;
+import org.cornutum.tcases.util.ConditionRecorder;
 import static org.cornutum.tcases.util.CollectionUtils.membersOf;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -365,11 +366,11 @@ public abstract class OpenApiTest
    */
   protected ModelOptions withConditionRecorder()
     {
-    conditionRecorder_ =  new ModelConditionRecorder();
+    conditionRecorder_.clear();
     return ModelOptions.builder().notifier( conditionRecorder_).build();
     }
 
-  protected ModelConditionRecorder getConditionRecorder()
+  protected ConditionRecorder getConditionRecorder()
     {
     return conditionRecorder_;
     }
@@ -400,5 +401,5 @@ public abstract class OpenApiTest
     .map( path -> new File( path))
     .orElse( null);
 
-  private ModelConditionRecorder conditionRecorder_;
+  private ConditionRecorder conditionRecorder_ = new ConditionRecorder();
   }

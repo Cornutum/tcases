@@ -8,6 +8,10 @@ package org.cornutum.tcases.openapi;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.ICondition;
+import org.cornutum.tcases.resolve.DataValues;
+import org.cornutum.tcases.resolve.FormattedString;
+import org.cornutum.tcases.util.Characters;
+import org.cornutum.tcases.util.ContextHandler;
 import org.cornutum.tcases.util.ListBuilder;
 
 import static org.cornutum.tcases.DefUtils.toIdentifier;
@@ -76,7 +80,7 @@ import static java.util.stream.Collectors.toSet;
  * OpenAPI models must conform to <U>OAS version 3</U>.
  * See <A href="https://swagger.io/specification/#specification">https://swagger.io/specification/#specification</A>.
  */
-public abstract class InputModeller extends ConditionReporter<OpenApiContext>
+public abstract class InputModeller extends ContextHandler<OpenApiContext>
   {
   protected enum View { REQUEST, RESPONSE };
   
@@ -100,7 +104,6 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
     setNotifier( getOptions().getConditionNotifier());
 
     analyzer_ = new SchemaAnalyzer( getContext());
-    analyzer_.setNotifier( getNotifier());
     }
 
   /**
@@ -3201,7 +3204,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Integer maxStringFormat( String format, Integer maxLength)
     {
     Integer max;
-    Integer maxAllowed = stringFormatMax( format);
+    Integer maxAllowed = DataValues.stringFormatMax( format);
 
     if( maxAllowed == null)
       {
@@ -3246,7 +3249,7 @@ public abstract class InputModeller extends ConditionReporter<OpenApiContext>
   private Integer minStringFormat( String format, Integer minLength, boolean notify)
     {
     Integer min;
-    Integer minAllowed = stringFormatMin( format);
+    Integer minAllowed = DataValues.stringFormatMin( format);
 
     if( minAllowed == null)
       {

@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.resolve.ResolverContext;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 
@@ -123,7 +124,11 @@ public class RequestCaseTest
    */
   protected ResolverContext getResolverContext()
     {
-    return new ResolverContext( getRandom());
+    return
+      ResolverContext.builder()
+      .random( getRandom())
+      .notifier( RequestCaseConditionNotifier.log())
+      .build();
     }
 
   private Random random_ = new Random( seed_);

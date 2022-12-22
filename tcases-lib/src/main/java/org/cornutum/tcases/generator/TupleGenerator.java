@@ -116,6 +116,7 @@ public class TupleGenerator implements ITestCaseGenerator
   /**
    * Returns the random number sequence seed for this generator.
    */
+  @Override
   public Long getRandomSeed()
     {
     return seed_;
@@ -127,7 +128,7 @@ public class TupleGenerator implements ITestCaseGenerator
    * that extend the base tests.
    */
   @Override
-  public FunctionTestDef getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
+  public List<ITestCaseDef> getTests( FunctionInputDef inputDef, FunctionTestDef baseTests)
     {
     try
       {
@@ -149,24 +150,14 @@ public class TupleGenerator implements ITestCaseGenerator
       List<TestCaseDef> failureCases = getBaseFailureCases( inputDef, validTuples, failureTuples, baseCases);
       failureCases.addAll( getFailureCases( inputDef, failureTuples, validTuples));
 
-      FunctionTestDef testDef = new FunctionTestDef( inputDef.getName());
-
       // Create test cases, in order of increasing id.
-      List<TestCaseDef> testCaseDefs = new ArrayList<TestCaseDef>();
+      List<ITestCaseDef> testCaseDefs = new ArrayList<ITestCaseDef>();
       testCaseDefs.addAll( validCases);
       testCaseDefs.addAll( failureCases);
       Collections.sort( testCaseDefs);
-
-      int nextId = -1;
-      for( TestCaseDef testCase : testCaseDefs)
-        {
-        Integer id = testCase.getId();
-        nextId = id==null? nextId + 1 : id.intValue();
-        testDef.addTestCase( testCase.createTestCase( nextId));
-        }
     
       logger_.info( "{}: Completed {} test cases", inputDef, testCaseDefs.size());
-      return testDef;
+      return testCaseDefs;
       }
     catch( Exception e)
       {
@@ -632,7 +623,7 @@ public class TupleGenerator implements ITestCaseGenerator
       IteratorUtils.toList(
         IteratorUtils.filteredIterator(
           vars,
-          var -> testCase.getBinding( var) == null));
+          var -> testCase.getValue( var) == null));
     }
 
   /**

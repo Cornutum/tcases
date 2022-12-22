@@ -1,0 +1,26 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "members": {
+                    "stringVar": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 1,
+                        "pattern": "^[A-Z]+$",
+                        
+                        "values": {
+                            "stringValue": {
+                                "type": "string",
+                                "format": "date-time",
+                                "minLength": 32,
+                                "pattern": "."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

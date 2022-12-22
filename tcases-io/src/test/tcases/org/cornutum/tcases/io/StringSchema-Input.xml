@@ -1,0 +1,93 @@
+<System name="StringSchema">
+    <Function name="Schemas">
+        <Input>
+            <VarSet name="VarDef">
+                <VarSet name="Parent">
+                    <Var name="Defined">
+                        <Value name="Yes" property="varParent"/>
+                        <Value name="No"/>
+                    </Var>
+                    <VarSet name="Schema" when="varParent">
+                        <Var name="Defined">
+                            <Value name="Yes" failure="true"/>
+                            <Value name="No"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+                <VarSet name="Schema">
+                    <Var name="Defined">
+                        <Value name="Yes" property="varSchema"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="type" when="varSchema">
+                        <Value name="string"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="format" when="varSchema">
+                        <Value name="Defined"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="const" when="varSchema">
+                        <Value name="Undefined"/>
+                        <Value name="Defined" failure="true"/>
+                    </Var>
+                    <Var name="minLength" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="maxLength" when="varSchema">
+                        <Value name="Integer"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                    <Var name="pattern" when="varSchema">
+                        <Value name="String"/>
+                        <Value name="Undefined"/>
+                    </Var>
+                </VarSet>
+                <VarSet name="Value">
+                    <VarSet name="Schema">
+                        <Var name="Defined">
+                            <Value name="Yes" property="valueSchema"/>
+                            <Value name="No"/>
+                        </Var>
+                        <Var name="type" when="valueSchema">
+                            <Value name="string"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="format" when="valueSchema">
+                            <Value name="date"/>
+                            <Value name="date-time"/>
+                            <Value name="uuid"/>
+                            <Value name="email"/>
+                            <Value name="Other"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="const" when="valueSchema">
+                            <Value name="String" property="valueConst"/>
+                            <Value name="null" property="valueConst"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="minLength" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="maxLength" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                        <Var name="pattern" when="valueSchema" whenNot="valueConst">
+                            <Value name="String"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

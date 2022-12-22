@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.Notifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,65 +17,20 @@ import org.slf4j.LoggerFactory;
 public interface ModelConditionNotifier extends Notifier
   {
   /**
-   * Returns a {@link ModelConditionNotifier} that ignores all conditions.
+   * Returns a {@link Notifier} that logs all conditions, using the default {@link Logger}.
    */
-  public static ModelConditionNotifier ignore()
+  public static Notifier log()
     {
-    return
-      new ModelConditionNotifier()
-        {
-        @Override
-        public void warn( String[] location, String reason) {}
-        @Override
-        public void error( String[] location, String reason, String resolution) {}
-        @Override
-        public String toString() {return "IGNORE";}
-        };
+    return Notifier.log( LoggerFactory.getLogger( InputModeller.class));
     }
 
   /**
-   * Returns a {@link ModelConditionNotifier} that logs all conditions, using the given {@link Logger}.
+   * Returns a {@link Notifier} that throws an OpenApiException for any warning or error.
    */
-  public static ModelConditionNotifier log( final Logger logger)
+  public static Notifier fail()
     {
     return
-      new ModelConditionNotifier()
-        {
-        @Override
-        public void warn( String[] location, String reason)
-          {
-          logger.warn( messageFor( location, reason, null));
-          }
-        
-        @Override
-        public void error( String[] location, String reason, String resolution)
-          {
-          logger.error( messageFor( location, reason, resolution));
-          }
-
-        @Override
-        public String toString()
-          {
-          return "LOG";
-          }
-        };
-    }
-
-  /**
-   * Returns a {@link ModelConditionNotifier} that logs all conditions, using the default {@link Logger}.
-   */
-  public static ModelConditionNotifier log()
-    {
-    return log( LoggerFactory.getLogger( InputModeller.class));
-    }
-
-  /**
-   * Returns a {@link ModelConditionNotifier} that throws an OpenApiException for any warning or error.
-   */
-  public static ModelConditionNotifier fail()
-    {
-    return
-      new ModelConditionNotifier()
+      new Notifier()
         {
         @Override
         public void warn( String[] location, String reason)

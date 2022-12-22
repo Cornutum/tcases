@@ -74,6 +74,57 @@ public class TestSystemTestJson
     }
 
   @Test
+  public void testSystemTest_Values()
+    {
+    // Given...
+    SystemTestDef testDef =
+      SystemTestDefBuilder.with( "System")
+      .functions(
+        FunctionTestDefBuilder.with( "Function")
+        .testCases(
+          TestCaseBuilder.with( 0)
+          .bind(
+            VarBindingBuilder.with( "Array")
+            .value( Arrays.asList( 1, 2.5, null, Arrays.asList( "x", "y", "z"), Boolean.FALSE))
+            .build(),
+
+            VarBindingBuilder.with( "Boolean")
+            .value( true)
+            .source( "MyBoolean")
+            .build(),
+
+            VarBindingBuilder.with( "Integer")
+            .value( 1234)
+            .build(),
+
+            VarBindingBuilder.with( "Number")
+            .value( 43.25)
+            .build(),
+
+            VarBindingBuilder.with( "String")
+            .value( "Hello, world!")
+            .source( "Greeting")
+            .build(),
+
+            VarBindingBuilder.with( "Null")
+            .value( null)
+            .build(),
+
+            VarBindingBuilder.with( "NA")
+            .notApplicable()
+            .build())
+          .build())
+        .build())
+      .build();
+    
+    // When...
+    SystemTestDef after = systemTestAfter( testDef);
+    
+    // Then...
+    assertThat( "Tests", after, matches( new SystemTestDefMatcher( testDef)));
+    }
+
+  @Test
   public void testSystemTest_Annotations_Missing()
     {
     assertValidationFailure(
@@ -182,6 +233,15 @@ public class TestSystemTestJson
     SystemTestDef systemTestBefore = systemTestResources_.read( systemTestResource);
 
     // When...
+    SystemTestDef systemTestAfter = systemTestAfter( systemTestBefore);
+
+    // Then...
+    assertThat( "Output from definition=" + systemTestResource, systemTestAfter, matches( new SystemTestDefMatcher( systemTestBefore)));
+    assertThat( "Copy of definition=" + systemTestResource, SystemTestDefBuilder.with( systemTestAfter).build(), matches( new SystemTestDefMatcher( systemTestBefore)));
+    }
+
+  public SystemTestDef systemTestAfter( SystemTestDef systemTestBefore)
+    {
     ByteArrayOutputStream systemTestOut = new ByteArrayOutputStream();
     try( SystemTestJsonWriter writer = new SystemTestJsonWriter( systemTestOut))
       {
@@ -193,10 +253,9 @@ public class TestSystemTestJson
     try( SystemTestJsonReader reader = new SystemTestJsonReader( systemTestIn))
       {
       systemTestAfter = reader.getSystemTestDef();
-      }    
+      }
 
-    // Then...
-    assertThat( "Output from definition=" + systemTestResource, systemTestAfter, matches( new SystemTestDefMatcher( systemTestBefore)));
+    return systemTestAfter;
     }
 
   public void assertDefinitionError( String systemTestResource, String expected)

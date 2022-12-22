@@ -11,6 +11,7 @@ import org.cornutum.tcases.*;
 import org.cornutum.tcases.conditions.*;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.util.CollectionUtils.toCsv;
+import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.slf4j.Logger;
@@ -23,15 +24,15 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 /**
- * Constructs a definition of a {@link TestCase test case}.
- *
+ * Supplies a definition of a {@link TestCase test case}.
  */
-public class TestCaseDef implements Comparable<TestCaseDef>
+public class TestCaseDef implements ITestCaseDef
   {
   /**
    * Creates a new TestCaseDef object.
@@ -50,7 +51,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
       {
       for( VarDef var : other.bindings_.keySet())
         {
-        addBinding( var, other.getBinding( var));
+        addBinding( var, other.getValue( var));
         }
       }
     }
@@ -66,6 +67,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   /**
    * Returns the (optional) id for this test case.
    */
+  @Override 
   public Integer getId()
     {
     return id_;
@@ -95,6 +97,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   /**
    * Returns the (optional) name for this test case.
    */
+  @Override
   public String getName()
     {
     return name_;
@@ -103,6 +106,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   /**
    * Returns the current value binding for the given input variable.
    */
+  @Override
   public VarValueDef getValue( VarDef var)
     {
     return bindings_.get( var);
@@ -389,17 +393,10 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   /**
    * Returns the variables currently bound in this test case.
    */
+  @Override
   public Iterator<VarDef> getVars()
     {
     return bindings_.keySet().iterator();
-    }
-
-  /**
-   * Returns the value currently bound to the given variable.
-   */
-  public VarValueDef getBinding( VarDef var)
-    {
-    return bindings_.get( var);
     }
 
   /**
@@ -413,14 +410,16 @@ public class TestCaseDef implements Comparable<TestCaseDef>
   /**
    * Returns true if the given value is currently bound to the "not applicable" value.
    */
+  @Override
   public boolean isNA( VarDef var)
     {
-    return getBinding( var).isNA();
+    return getValue( var).isNA();
     }
 
   /**
    * Returns the variable bound to an invalid value, if any.
    */
+  @Override
   public VarDef getInvalidVar()
     {
     VarDef invalidVar;
@@ -437,6 +436,18 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     }
 
   /**
+   * Returns the properties of this test case.
+   */
+  @Override
+  public Set<String> getProperties()
+    {
+    return
+      toStream( properties_.getUniqueProperties())
+      .sorted( String.CASE_INSENSITIVE_ORDER)
+      .collect( toOrderedSet());
+    }
+
+  /**
    * Returns the conditions of current bindings not yet satisfied.
    */
   public IConjunct getRequired()
@@ -448,7 +459,7 @@ public class TestCaseDef implements Comparable<TestCaseDef>
            vars.hasNext();)
         {
         VarDef var = vars.next();
-        VarValueDef value = getBinding( var);
+        VarValueDef value = getValue( var);
         if( !value.isNA())
           {
           ICondition bindingCondition = value.getEffectiveCondition( var.getEffectiveCondition());
@@ -504,38 +515,8 @@ public class TestCaseDef implements Comparable<TestCaseDef>
     return unsatisfiable != null;
     }
 
-  /**
-   * Create a new test case using the current definition.
-   */
-  public TestCase createTestCase( int id)
-    {
-    TestCase testCase = new TestCase( id);
-    testCase.setName( getName());
-    for( VarDef var : bindings_.keySet())
-      {
-      testCase.addVarBinding( VarBinding.create( var, bindings_.get( var)));
-      }
-
-    // Annotate test case with its property set
-    propertyStream()
-        .reduce( (properties, property) -> properties + "," + property)
-        .ifPresent( properties -> testCase.setAnnotation( Annotated.TEST_CASE_PROPERTIES, properties));
-    
-    return testCase;
-    }
-
-  /**
-   * Returns a Stream containing the properties defined for this test case.
-   */
-  private Stream<String> propertyStream()
-    {
-    return
-      toStream( properties_.getUniqueProperties())
-      .sorted( String.CASE_INSENSITIVE_ORDER);
-    }
-
   @Override
-  public int compareTo( TestCaseDef other)
+  public int compareTo( ITestCaseDef other)
     {
     int id = getId()==null? Integer.MAX_VALUE : getId();
     int otherId  = other.getId()==null? Integer.MAX_VALUE : other.getId();

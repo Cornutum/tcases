@@ -8,28 +8,19 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import static org.cornutum.hamcrest.Composites.*;
-import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
 import org.junit.Test;
-import org.leadpony.justify.api.JsonValidatingException;
-import org.leadpony.justify.api.Problem;
+import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 
 /**
  * Runs tests for the {@link SystemInputJsonWriter} and {@link SystemInputJsonReadser}.
  *
  */
-public class TestSystemInputJson
+public class TestSystemInputJson extends SystemInputJsonTest
   {
   @Test
   public void testSystemInput_0()
@@ -121,6 +112,7 @@ public class TestSystemInputJson
 
     // Then...
     assertThat( "Output from definition=" + jsonInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+    assertThat( "Copy of definition=" + jsonInputResource, SystemInputDefBuilder.with( systemInputAfter).build(), matches( new SystemInputDefMatcher( systemInputBefore)));
 
     // Given...
     String xmlInputResource = "find-Input.xml";
@@ -175,13 +167,18 @@ public class TestSystemInputJson
   @Test
   public void testSystemInput_Property_Duplicated()
     {
-    assertValidationFailure( "system-input-property-duplicated.json", "The array must consists only of unique elements, but the element at [1] is the same as the element at [0]");
+    assertValidationFailure(
+      "system-input-property-duplicated.json",
+      "The array must consists only of unique elements, but the element at [1] is the same as the element at [0]");
     }
 
   @Test
   public void testSystemInput_Values_Missing()
     {
-    assertValidationFailure( "system-input-values-missing.json", "The object must have at least 1 property(ies), but actual number is 0");
+    assertDefinitionError(
+      "system-input-values-missing.json",
+      "Error processing Things, Make, Color, Hue",
+      "No valid values defined for variable=Hue");
     }
 
   @Test
@@ -196,118 +193,93 @@ public class TestSystemInputJson
   @Test
   public void testSystemInput_Condition_Invalid()
     {
-    assertDefinitionError( "system-input-condition-invalid.json", "\"\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-condition-invalid.json",
+      "Error processing Things, Make, Color, when, allOf, not, hasAny",
+      "\"\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Failure_Properties()
     {
-    assertDefinitionError( "system-input-failure-properties.json", "Failure type values can't define properties");
+    assertDefinitionError(
+      "system-input-failure-properties.json",
+      "Error processing Things, Make, Color, Lightness, Transparent",
+      "Failure type values can't define properties");
     }
 
   @Test
   public void testSystemInput_Name_Invalid()
     {
-    assertDefinitionError( "system-input-name-invalid.json", "\"My System\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-name-invalid.json",
+      "Error processing My System",
+      "\"My System\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Function_Name_Invalid()
     {
-    assertDefinitionError( "system-input-function-name-invalid.json", "\"F(x)\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-function-name-invalid.json",
+      "Error processing Things, F(x)",
+      "\"F(x)\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Var_Name_Invalid()
     {
-    assertDefinitionError( "system-input-var-name-invalid.json", "\"a.b.c.d\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-var-name-invalid.json",
+      "Error processing Things, Make, a.b.c.d",
+      "\"a.b.c.d\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Property_Name_Invalid()
     {
-    assertDefinitionError( "system-input-property-name-invalid.json", "\"a certain quality\" is not a valid identifier");
+    assertDefinitionError(
+      "system-input-property-name-invalid.json",
+      "Error processing Things, Make, Size, Small, properties",
+      "\"a certain quality\" is not a valid identifier");
     }
 
   @Test
   public void testSystemInput_Property_Undefined()
     {
-    assertDefinitionError( "system-input-property-undefined.json", "Property=small is undefined, but referenced by variable=Color");
+    assertDefinitionError(
+      "system-input-property-undefined.json",
+      "Things, Make, Color: depends on undefined properties=small,delicious");
+
+    assertWarnings(
+      "Things,Make,Color,Hue,Red: property=red is defined but never used.",
+      "Things,Make,Color,Hue,Green: property=green is defined but never used.",
+      "Things,Make,Color,Hue,Blue: property=blue is defined but never used.",
+      "Things,Make,Size,Small: property=smallish is defined but never used.",
+      "Things,Make,Shape,Heart: property=red is defined but never used.");
     }
 
   @Test
   public void testSystemInput_Vars_Missing()
     {
-    assertDefinitionError( "system-input-vars-missing.json", "No variables defined for function=Make");
+    assertDefinitionError(
+      "system-input-vars-missing.json",
+      "Error processing Things, Make",
+      "No variables defined for function=Make");
     }
 
-  public void testSystemInputResource( String systemInputResource)
+  @Test
+  public void testSystemInput_Enums()
     {
-    // Given...
-    SystemInputDef systemInputBefore = systemInputResources_.read( systemInputResource);
-
-    // When...
-    ByteArrayOutputStream systemInputOut = new ByteArrayOutputStream();
-    try( SystemInputJsonWriter writer = new SystemInputJsonWriter( systemInputOut))
-      {
-      writer.write( systemInputBefore);
-      }
-
-    SystemInputDef systemInputAfter;
-    ByteArrayInputStream systemInputIn = new ByteArrayInputStream( systemInputOut.toByteArray());
-    try( SystemInputJsonReader reader = new SystemInputJsonReader( systemInputIn))
-      {
-      systemInputAfter = reader.getSystemInputDef();
-      }    
-
-    // Then...
-    assertThat( "Output from definition=" + systemInputResource, systemInputAfter, matches( new SystemInputDefMatcher( systemInputBefore)));
+    testSystemInputJsonResource( "system-input-enums.json");
     }
 
-  public void assertDefinitionError( String systemInputResource, String expected)
+  @Test
+  public void testSystemInput_Enums_Invalid()
     {
-    expectFailure( SystemInputException.class)
-      .when( () -> systemInputResources_.readJson( systemInputResource), t -> t.getCause())
-      .then( failure -> {
-        while( failure.getCause() != null)
-          {
-          assertThat( "Cause", failure.getCause().getClass(), equalTo( SystemInputException.class));
-          failure = (SystemInputException) failure.getCause();
-          }
-        assertThat( "Reason", failure.getMessage(), containsString( expected));
-        });
+    assertDefinitionError(
+      "system-input-enums-invalid.json",
+      "Error processing Things, Make, Color, Hue",
+      "'enum' values with mixed types (boolean,integer,string) are not allowed");
     }
-
-  public void assertValidationFailure( String systemInputResource, String... expected)
-    {
-    expectFailure( SystemInputException.class)
-      .when( () -> systemInputResources_.readJson( systemInputResource), t -> t.getCause())
-      .then( failure -> {
-        Throwable cause = failure.getCause();
-        assertThat( "Cause", cause.getClass(), equalTo( JsonValidatingException.class));
-
-        JsonValidatingException jve = (JsonValidatingException)cause;
-        List<String> problems = problems( jve).map( p -> p.getMessage()).collect( toList());
-        assertThat( "Problems", problems, containsInAnyOrder( Arrays.stream( expected).map( m -> containsString(m)).collect( toList())));
-        });
-    }
-
-  private Stream<Problem> problems( JsonValidatingException jve)
-    {
-    return jve.getProblems().stream().flatMap( p -> problems( p));
-    }
-
-  private Stream<Problem> problems( Problem problem)
-    {
-    return
-      problem.hasBranches()?
-      
-      IntStream.range( 0, problem.countBranches())
-      .mapToObj( i -> problem.getBranch(i))
-      .flatMap( problems -> problems.stream().flatMap( p -> problems( p))) :
-
-      Stream.of( problem);
-    }
-
-  private SystemInputResources systemInputResources_ = new SystemInputResources( TestSystemInputJson.class);
   }

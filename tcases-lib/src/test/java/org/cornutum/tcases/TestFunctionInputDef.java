@@ -21,45 +21,69 @@ public class TestFunctionInputDef
   public void findVarPath_Unknown()
     {
     // Given...
-    FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
+    FunctionInputDef functionInputDef =
+      new FunctionInputDefBuilder()
+      .vars(
+        VarSetBuilder.with( "A")
+        .members(
+          VarSetBuilder.with( "B")
+          .members(
+            VarSetBuilder.with( "C")
+            .members(
+              VarDefBuilder.with( "D")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
     
-    FunctionInputDef functionInputDef = functionInputDefBuilder.build();
     IVarDef var;
 
     // When...
     var = functionInputDef.findVarPath( "X");
     
     // Then...
-    assertThat( "Unknown start", var, is( (Object) null));
+    assertThat( "Unknown start", var, is( nullValue()));
 
     // When...
     var = functionInputDef.findVarPath( "A.B.D");
     
     // Then...
-    assertThat( "Unknown middle", var, is( (Object) null));
+    assertThat( "Unknown middle", var, is( nullValue()));
 
     // When...
     var = functionInputDef.findVarPath( "A.B.C.D.E");
     
     // Then...
-    assertThat( "Unknown end", var, is( (Object) null));
+    assertThat( "Unknown end", var, is( nullValue()));
 
     // When...
     var = functionInputDef.findVarPath( null);
     
     // Then...
-    assertThat( "Null", var, is( (Object) null));
+    assertThat( "Null", var, is( nullValue()));
     }
 
   @Test
   public void findVarPath_VarDef()
     {
     // Given...
-    FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
-    
-    FunctionInputDef functionInputDef = functionInputDefBuilder.build();
+    FunctionInputDef functionInputDef =
+      new FunctionInputDefBuilder()
+      .vars(
+        VarSetBuilder.with( "A")
+        .members(
+          VarSetBuilder.with( "B")
+          .members(
+            VarSetBuilder.with( "C")
+            .members(
+              VarDefBuilder.with( "D")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
     IVarDef var;
 
     // When...
@@ -69,8 +93,7 @@ public class TestFunctionInputDef
     assertThat( "Descendant", var.getPathName(), is( "A.B.C.D"));
 
     // Given...
-    functionInputDefBuilder.varDefAtPath( "X");
-    functionInputDef = functionInputDefBuilder.build();
+    functionInputDef.addVarDef( VarDefBuilder.with( "X").build());
 
     // When...
     var = functionInputDef.findVarPath( "X");
@@ -83,10 +106,22 @@ public class TestFunctionInputDef
   public void findVarPath_VarSet()
     {
     // Given...
-    FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
-    
-    FunctionInputDef functionInputDef = functionInputDefBuilder.build();
+    FunctionInputDef functionInputDef =
+      new FunctionInputDefBuilder()
+      .vars(
+        VarSetBuilder.with( "A")
+        .members(
+          VarSetBuilder.with( "B")
+          .members(
+            VarSetBuilder.with( "C")
+            .members(
+              VarDefBuilder.with( "D")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
     IVarDef var;
 
     // When...
@@ -106,39 +141,63 @@ public class TestFunctionInputDef
   public void findVarDefPath_Unknown()
     {
     // Given...
-    FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
-    
-    FunctionInputDef functionInputDef = functionInputDefBuilder.build();
+    FunctionInputDef functionInputDef =
+      new FunctionInputDefBuilder()
+      .vars(
+        VarSetBuilder.with( "A")
+        .members(
+          VarSetBuilder.with( "B")
+          .members(
+            VarSetBuilder.with( "C")
+            .members(
+              VarDefBuilder.with( "D")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
     VarDef var;
 
     // When...
     var = functionInputDef.findVarDefPath( "A");
     
     // Then...
-    assertThat( "Top-level VarSet", var, is( (Object) null));
+    assertThat( "Top-level VarSet", var, is( nullValue()));
 
     // When...
     var = functionInputDef.findVarDefPath( "A.B.C");
     
     // Then...
-    assertThat( "Ancestor VarSet", var, is( (Object) null));
+    assertThat( "Ancestor VarSet", var, is( nullValue()));
 
     // When...
     var = functionInputDef.findVarDefPath( "A.B.C.E");
     
     // Then...
-    assertThat( "Unknown end", var, is( (Object) null));
+    assertThat( "Unknown end", var, is( nullValue()));
     }
 
   @Test
   public void findVarDefPath_VarDef()
     {
     // Given...
-    FunctionInputDefBuilder functionInputDefBuilder = new FunctionInputDefBuilder();
-    functionInputDefBuilder.varDefAtPath( "A.B.C.D");
-    
-    FunctionInputDef functionInputDef = functionInputDefBuilder.build();
+    FunctionInputDef functionInputDef =
+      new FunctionInputDefBuilder()
+      .vars(
+        VarSetBuilder.with( "A")
+        .members(
+          VarSetBuilder.with( "B")
+          .members(
+            VarSetBuilder.with( "C")
+            .members(
+              VarDefBuilder.with( "D")
+              .build())
+            .build())
+          .build())
+        .build())
+      .build();
+
     VarDef var;
 
     // When...
@@ -148,8 +207,7 @@ public class TestFunctionInputDef
     assertThat( "Descendant", var.getPathName(), is( "A.B.C.D"));
 
     // Given...
-    functionInputDefBuilder.varDefAtPath( "X");
-    functionInputDef = functionInputDefBuilder.build();
+    functionInputDef.addVarDef( VarDefBuilder.with( "X").build());
 
     // When...
     var = functionInputDef.findVarDefPath( "X");

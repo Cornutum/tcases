@@ -8,6 +8,7 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.util.MapBuilder;
+import org.slf4j.LoggerFactory;
 
 import org.apache.commons.io.IOUtils;
 
@@ -48,6 +49,7 @@ public class ProjectJsonWriter implements Closeable
    */
   public ProjectJsonWriter( Writer writer)
     {
+    converter_ = new ProjectJson( LoggerFactory.getLogger( ProjectJsonWriter.class));
     setWriter( writer);
     }
 
@@ -59,7 +61,7 @@ public class ProjectJsonWriter implements Closeable
     JsonWriterFactory writerFactory = Json.createWriterFactory( MapBuilder.of( PRETTY_PRINTING, true).build());
     JsonWriter jsonWriter = writerFactory.createWriter( getWriter());
 
-    jsonWriter.write( ProjectJson.toJson( project));
+    jsonWriter.write( converter_.toJson( project));
     }
 
   /**
@@ -122,5 +124,6 @@ public class ProjectJsonWriter implements Closeable
       }
     }
 
+  private final ProjectJson converter_;
   private Writer writer_;  
   }

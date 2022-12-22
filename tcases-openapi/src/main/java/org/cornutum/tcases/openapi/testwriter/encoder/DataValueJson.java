@@ -9,7 +9,7 @@ package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import java.util.Objects;
 
-import org.cornutum.tcases.openapi.resolver.DataValue;
+import org.cornutum.tcases.resolve.DataValue;
 
 /**
  * Converts a DataValue into a JSON string.

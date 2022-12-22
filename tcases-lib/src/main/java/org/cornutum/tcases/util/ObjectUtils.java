@@ -8,10 +8,12 @@
 package org.cornutum.tcases.util;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Defines utility methods for handling value objects.
@@ -42,7 +44,16 @@ public final class ObjectUtils
    */
   public static Object toExternalObject( Object value)
     {
-    return toObject( String.valueOf( value));
+    Collection<?> collection =
+      Optional.ofNullable( value)
+      .filter( v -> Collection.class.isAssignableFrom( v.getClass()))
+      .map( v -> ((Collection<?>) v).stream().map( e -> toExternalObject( e)).collect( toList()))
+      .orElse( null);
+
+    return
+      collection == null
+      ? toObject( String.valueOf( value))
+      : collection;
     }
   
   /**
@@ -153,7 +164,7 @@ public final class ObjectUtils
   /**
    * Returns an object equal to the external form of the given number value.
    */
-  private static Object toExternalNumber( BigDecimal number)
+  public static Object toExternalNumber( BigDecimal number)
     {
     return
       Optional.ofNullable(

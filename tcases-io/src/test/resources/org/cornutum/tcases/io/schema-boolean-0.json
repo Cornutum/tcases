@@ -1,0 +1,20 @@
+{
+    "system": "Schema",
+    "boolean": {
+        "arg": {
+            "booleanVar": {
+                "type": "boolean",
+                
+                "values": {
+                    "booleanValue": {
+                        "const": false
+                    },
+                    "undefined": {
+                        "type": "boolean",
+                        "const": null
+                    }
+                }
+            }
+        }
+    }
+}

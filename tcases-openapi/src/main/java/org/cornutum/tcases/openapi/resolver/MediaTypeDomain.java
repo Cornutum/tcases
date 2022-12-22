@@ -7,7 +7,9 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.openapi.Characters;
+import org.cornutum.tcases.resolve.AbstractStringDomain;
+import org.cornutum.tcases.resolve.ResolverContext;
+import org.cornutum.tcases.util.Characters;
 
 import java.util.Set;
 

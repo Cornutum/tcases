@@ -64,7 +64,7 @@
                 },
                 "values": {
                     "type": "object",
-                    "minProperties": 1,
+                    "minProperties": 0,
                     "patternProperties": {
                         ".": {
                             "$ref": "#/definitions/valueDef"
@@ -81,19 +81,34 @@
                     }
                 }
             },
-            "additionalProperties": false,
             "oneOf": [
                 {
                     "required": [ "values" ],
                     "properties": {
                         "members": false
-                    }
+                    },
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/schema"
+                        }
+                    ]
                 },
                 {
                     "required": [ "members" ],
                     "properties": {
                         "values": false
                     }
+                },
+                {
+                    "properties": {
+                        "values": false,
+                        "members": false
+                    },
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/schema"
+                        }
+                    ]
                 }
             ]
         },
@@ -122,7 +137,11 @@
                     }
                 }
             },
-            "additionalProperties": false
+            "allOf": [
+                {
+                    "$ref": "#/definitions/schema"
+                }
+            ]
         },
         "condition": {
             "description": "Defines a constraint on the values allowed for an input variable",
@@ -279,6 +298,71 @@
             "minProperties": 1,
             "maxProperties": 1,
             "additionalProperties": false
+        },
+        "schema": {
+            "description": "Defines requirements for the values allowed for an input variable",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [ "array", "boolean", "integer", "number", "string"]
+                },
+                "const": {
+                    "$ref": "#/definitions/const"
+                },
+                "enum": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "$ref": "#/definitions/const"
+                    }
+                },
+                "format": {
+                    "type": "string"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "number"
+                },
+                "exclusiveMaximum": {
+                    "type": "number"
+                },
+                "multipleOf": {
+                    "type": "number"
+                },
+                "minLength": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maxLength": {
+                    "type": "integer"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "minItems": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maxItems": {
+                    "type": "integer"
+                },
+                "uniqueItems": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "$ref": "#/definitions/schema"
+                }
+            }
+        },
+        "const": {
+            "description": "A constant data value",
+            "type": [ "array", "boolean", "integer", "number", "string", "null"]
         }
     }
 }

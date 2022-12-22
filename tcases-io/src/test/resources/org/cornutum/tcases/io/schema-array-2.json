@@ -1,0 +1,19 @@
+{
+    "system": "Schema",
+    "array": {
+        "arg": {
+            "arrayVar": {
+                "values": {
+                    "arrayValue": {
+                        "type": "array",
+                        "format": "list",
+                        "minItems": 3,
+                        "items": {
+                            "format": "email"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

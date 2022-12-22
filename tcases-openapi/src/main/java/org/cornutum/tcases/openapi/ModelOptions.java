@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.util.Notifier;
 import org.cornutum.tcases.util.ToString;
 
 import java.net.URI;
@@ -44,17 +45,17 @@ public class ModelOptions
     }
 
   /**
-   * Changes the {@link ModelConditionNotifier} that reports conditions found when creating a Tcases model from an OpenAPI model.
+   * Changes the {@link Notifier} that reports conditions found when creating a Tcases model from an OpenAPI model.
    */
-  public void setConditionNotifier( ModelConditionNotifier notifier)
+  public void setConditionNotifier( Notifier notifier)
     {
-    notifier_ = Optional.ofNullable( notifier).orElse( ModelConditionNotifier.ignore());
+    notifier_ = Optional.ofNullable( notifier).orElse( Notifier.ignore());
     }
 
   /**
-   * Returns the {@link ModelConditionNotifier} that reports conditions found when creating a Tcases model from an OpenAPI model.
+   * Returns the {@link Notifier} that reports conditions found when creating a Tcases model from an OpenAPI model.
    */
-  public ModelConditionNotifier getConditionNotifier()
+  public Notifier getConditionNotifier()
     {
     return notifier_;
     }
@@ -192,7 +193,7 @@ public class ModelOptions
         }
       }
 
-    public Builder notifier( ModelConditionNotifier notifier)
+    public Builder notifier( Notifier notifier)
       {
       modelOptions_.setConditionNotifier( notifier);
       return this;
@@ -246,7 +247,7 @@ public class ModelOptions
     private ModelOptions modelOptions_;
     }
   
-  private ModelConditionNotifier notifier_;
+  private Notifier notifier_;
   private boolean readOnlyEnforced_;
   private boolean writeOnlyEnforced_;
   private Source source_;

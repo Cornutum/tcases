@@ -9,6 +9,7 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.TcasesCommand.Options;
 import org.cornutum.tcases.generator.io.GeneratorSetResources;
+import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.io.SystemTestResources;
 
 import org.apache.commons.io.FileUtils;
@@ -586,6 +587,58 @@ public class TestTcasesCommand
 
     expectFailure( RuntimeException.class)
       .when( () -> TcasesCommand.run( new Options( args)));
+    }
+  
+  @Test
+  public void run_whenSchemas() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-whenSchemas-Input.json");
+    File outFile = new File( inFile.getParent(), "run-whenSchemas-Test.json");
+
+    outFile.delete();
+    
+    String[] args =
+      {
+        inFile.getPath()
+      };
+
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    SystemTestDef expectedTestDef = testResources_.readJson( "run-whenSchemas-Expected-Test.json");
+    SystemTestDef actualTestDef = testResources_.readJson( outFile);
+    assertThat( "Test def generated", actualTestDef, matches( new SystemTestDefMatcher( expectedTestDef)));
+    }
+  
+  @Test
+  public void run_whenShowEffectiveInput() throws Exception
+    {
+    // Given...
+    File inFile = getResourceFile( "run-whenSchemas-Input.json");
+    File effInFile = getResourceFile( "run-whenSchemas-Effective-Input.json");
+    File outFile = new File( inFile.getParent(), "run-whenSchemas-Test.json");
+
+    effInFile.delete();
+    outFile.delete();
+    
+    String[] args =
+      {
+        "-I",
+        inFile.getPath()
+      };
+
+    // When...
+    TcasesCommand.run( new Options( args));
+        
+    // Then...
+    assertThat( "Effective input created", effInFile.exists(), is( true));
+    assertThat( "Test def created", outFile.exists(), is( false));
+
+    SystemInputDef expectedInputDef = inputResources_.readJson( "run-whenSchemas-Expected-Input.json");
+    SystemInputDef actualInputDef = inputResources_.readJson( effInFile);
+    assertThat( "Effective input def", actualInputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
     }
 
   /**
@@ -1493,5 +1546,6 @@ public class TestTcasesCommand
     }
 
   private SystemTestResources testResources_ = new SystemTestResources( getClass());
+  private SystemInputResources inputResources_ = new SystemInputResources( getClass());
   private GeneratorSetResources generatorResources_ = new GeneratorSetResources( getClass());
   }

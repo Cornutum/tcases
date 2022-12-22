@@ -1,0 +1,25 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "members": {
+                    "stringVar": {
+                        "type": "string",
+                        "format": "uri",
+                        "minLength": 1,
+                        "pattern": ".",
+                        
+                        "values": {
+                            "stringValue": {
+                                "type": "null",
+                                "format": "date",
+                                "const": null
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

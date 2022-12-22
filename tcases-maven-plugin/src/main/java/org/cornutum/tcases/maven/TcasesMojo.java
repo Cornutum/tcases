@@ -117,6 +117,7 @@ public class TcasesMojo extends AbstractMojo
           options.setNewSeed( isNewSeed());
           options.setDefaultTupleSize( getTuples());
           options.setContentType( getContentType());
+          options.setShowEffectiveInput( isShowEffectiveInput());
 
           File transformDef = getTransformDefFile();
           if( transformDef != null)
@@ -338,6 +339,22 @@ public class TcasesMojo extends AbstractMojo
   public boolean isHtml()
     {
     return html;
+    }
+
+  /**
+   * Changes if the current effective system input definition should be written.
+   */
+  public void setShowEffectiveInput( boolean showEffectiveInput)
+    {
+    this.showEffectiveInput = showEffectiveInput;
+    }
+
+  /**
+   * Returns if the current effective system input definition should be written.
+   */
+  public boolean isShowEffectiveInput()
+    {
+    return showEffectiveInput;
     }
 
   /**
@@ -589,6 +606,14 @@ public class TcasesMojo extends AbstractMojo
    */
   @Parameter(property="html",defaultValue="false")
   private boolean html;
+
+  /**
+   * If true, no test definitions are produced. Instead, a JSON document containing the effective system input definition is
+   * written to the <B><CODE>outDir</CODE></B>. The effective system input definition, which is used to generate test
+   * definitions, is the result of normalizing all input schemas and adding any schema-derived value definitions.
+   */
+  @Parameter(property="showEffectiveInput",defaultValue="false")
+  private boolean showEffectiveInput;
 
   /**
    * If true, ignore any initial test definitions. Otherwise, generate new test definitions

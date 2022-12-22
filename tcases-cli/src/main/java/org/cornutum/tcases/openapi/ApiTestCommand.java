@@ -16,6 +16,9 @@ import org.cornutum.tcases.openapi.moco.MocoTestConfigReader;
 import org.cornutum.tcases.openapi.resolver.*;
 import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.*;
+import org.cornutum.tcases.resolve.ResolverContext;
+import org.cornutum.tcases.util.Notifier;
+
 import static org.cornutum.tcases.CommandUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
@@ -415,8 +418,12 @@ public class ApiTestCommand
       setTestType( TestType.JUNIT);
       setExecType( ExecType.RESTASSURED);
       setModelOptions( new ModelOptions());
-      setResolverContext( new ResolverContext( new Random()));
       setResourceOutDir( null);
+
+      setResolverContext(
+        ResolverContext.builder()
+        .notifier( RequestCaseConditionNotifier.log())
+        .build());
       }
 
     /**
@@ -1313,7 +1320,7 @@ public class ApiTestCommand
           ModelConditionNotifier.fail() :
 
           "ignore".equals( notifier)?
-          ModelConditionNotifier.ignore() :
+          Notifier.ignore() :
 
           null)
 
@@ -1328,13 +1335,13 @@ public class ApiTestCommand
       getResolverContext().setNotifier(
         Optional.ofNullable(
           notifier == null || "log".equals( notifier)?
-          ResolverConditionNotifier.log() :
+          RequestCaseConditionNotifier.log() :
 
           "fail".equals( notifier)?
-          ResolverConditionNotifier.fail() :
+          RequestCaseConditionNotifier.fail() :
 
           "ignore".equals( notifier)?
-          ResolverConditionNotifier.ignore() :
+          Notifier.ignore() :
 
           null)
 

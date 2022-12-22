@@ -1,0 +1,51 @@
+<System name="ArraySchema">
+    <Function name="Schemas">
+        <Input>
+            <VarSet name="VarDef">
+                <VarSet name="Value">
+                    <VarSet name="Schema">
+                        <Var name="Defined">
+                            <Value name="Yes" property="valueSchema"/>
+                        </Var>
+                        <Var name="type" when="valueSchema">
+                            <Value name="array" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="format" when="valueSchema, valueTypeDefined">
+                            <Value name="Defined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="const" when="valueSchema">
+                            <Value name="Array" property="valueConst, valueTypeDefined"/>
+                            <Value name="null" property="valueConst"/>
+                            <Value name="Invalid" failure="true" when="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                        </Var>
+                        <Var name="minItems" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true" when="valueTypeDefined"/>
+                        </Var>
+                        <Var name="maxItems" when="valueSchema" whenNot="valueConst">
+                            <Value name="Integer" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true" when="valueTypeDefined"/>
+                        </Var>
+                        <Var name="uniqueItems" when="valueSchema" whenNot="valueConst">
+                            <Value name="Boolean" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid" failure="true" when="valueTypeDefined"/>
+                        </Var>
+                        <Var name="items" when="valueSchema" whenNot="valueConst">
+                            <Value name="Schema" property="valueTypeDefined"/>
+                            <Value name="Undefined"/>
+                            <Value name="Invalid-Type" failure="true" when="valueTypeDefined"/>
+                            <Value name="Invalid-Schema" failure="true" when="valueTypeDefined"/>
+                            <Value name="Empty-Schema" failure="true" when="valueTypeDefined"/>
+                        </Var>
+                    </VarSet>
+                </VarSet>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

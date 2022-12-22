@@ -8,6 +8,9 @@
 
 package org.cornutum.tcases;
 
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -63,9 +66,16 @@ public class FunctionTestDefBuilder extends AnnotatedBuilder<FunctionTestDefBuil
   public FunctionTestDefBuilder start( FunctionTestDef function)
     {
     functionTestDef_ =
-      function == null
-      ? new FunctionTestDef( "F")
-      : function;
+      Optional.ofNullable( function)
+      .map( f ->
+            FunctionTestDefBuilder.with( f.getName())
+            .testCases(
+              toStream( f.getTestCases())
+              .map( tc -> TestCaseBuilder.with( tc).build()))
+            .annotations( f)
+            .build())
+      .orElse( new FunctionTestDef( "F"));
+
     return this;
     }
 

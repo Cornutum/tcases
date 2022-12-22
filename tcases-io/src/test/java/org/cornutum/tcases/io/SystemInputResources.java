@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.util.function.Function;
 
 /**
  * Provides access to system input definition resources.
@@ -190,7 +191,7 @@ public class SystemInputResources
    */
   public SystemInputDef readJson( InputStream stream) throws Exception
     {
-    try( SystemInputJsonReader reader = new SystemInputJsonReader( stream))
+    try( SystemInputJsonReader reader = getJsonReaderProducer().apply( stream))
       {
       return reader.getSystemInputDef();
       }
@@ -211,5 +212,22 @@ public class SystemInputResources
       }
     }
 
+  /**
+   * Changes the producer of a JSON reader.
+   */
+  protected void setJsonReaderProducer( Function<InputStream,SystemInputJsonReader> producer)
+    {
+    jsonReaderProducer_ = producer;
+    }
+
+  /**
+   * Returns the producer of a JSON reader.
+   */
+  protected Function<InputStream,SystemInputJsonReader> getJsonReaderProducer()
+    {
+    return jsonReaderProducer_;
+    }
+
   private Class<?> class_;
+  private Function<InputStream,SystemInputJsonReader> jsonReaderProducer_ = SystemInputJsonReader::new;
   }

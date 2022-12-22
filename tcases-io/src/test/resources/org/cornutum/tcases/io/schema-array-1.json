@@ -1,0 +1,14 @@
+{
+    "system": "Schema",
+    "array": {
+        "arg": {
+            "arrayVar": {
+                "values": {
+                    "arrayValue": {
+                        "const": [ -1, 0, 1 ]
+                    }
+                }
+            }
+        }
+    }
+}

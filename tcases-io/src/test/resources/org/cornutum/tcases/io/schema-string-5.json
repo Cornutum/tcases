@@ -1,0 +1,20 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "members": {
+                    "stringVar": {
+                        "maxLength": 32,
+
+                        "values": {
+                            "stringValue": {
+                                "pattern": "^[0-9]*$"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

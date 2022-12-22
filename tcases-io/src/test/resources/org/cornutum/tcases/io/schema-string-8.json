@@ -1,0 +1,26 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "members": {
+                    "stringVar": {
+                        "type": "string",
+                        "format": "date",
+                        "minLength": 1,
+                        "pattern": ".",
+                        "const": "2024-05-06",
+                        
+                        "values": {
+                            "stringValue": {
+                                "type": "string",
+                                "format": "date",
+                                "const": "2023-04-05"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

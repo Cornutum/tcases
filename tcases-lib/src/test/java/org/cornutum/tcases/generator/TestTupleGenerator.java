@@ -35,7 +35,7 @@ public class TestTupleGenerator
     TupleGenerator generator = new TupleGenerator();
 
     // When...
-    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
+    FunctionTestDef functionTestDef = Tcases.getTests( functionInputDef, generator, null);
 
     // Expect...
     assertTestCasesComplete( functionInputDef, functionTestDef);
@@ -57,7 +57,7 @@ public class TestTupleGenerator
     TupleGenerator generator = new TupleGenerator();
 
     // When...
-    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
+    FunctionTestDef functionTestDef = Tcases.getTests( functionInputDef, generator, null);
 
     // Expect...
     assertTestCasesComplete( functionInputDef, functionTestDef);
@@ -97,7 +97,7 @@ public class TestTupleGenerator
     generator.addCombiner( combiner2);
     
     // When...
-    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
+    FunctionTestDef functionTestDef = Tcases.getTests( functionInputDef, generator, null);
 
     // Expect...
     assertTestCasesComplete( functionInputDef, functionTestDef);
@@ -129,7 +129,7 @@ public class TestTupleGenerator
     generator.addCombiner( combiner);
     
     // When...
-    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
+    FunctionTestDef functionTestDef = Tcases.getTests( functionInputDef, generator, null);
 
     // Expect...
     assertTestCasesComplete( functionInputDef, functionTestDef);
@@ -153,7 +153,7 @@ public class TestTupleGenerator
     TupleGenerator generator = new TupleGenerator();
 
     // When...
-    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, null);
+    FunctionTestDef functionTestDef = Tcases.getTests( functionInputDef, generator, null);
 
     // Expect...
     assertTestCasesComplete( functionInputDef, functionTestDef);
@@ -184,8 +184,8 @@ public class TestTupleGenerator
         .addIncludedVar( "Size"));
     
     // When...
-    FunctionTestDef baseTestDef = generator.getTests( functionInputDef, null);
-    FunctionTestDef functionTestDef = generator.getTests( functionInputDef, baseTestDef);
+    FunctionTestDef baseTestDef = Tcases.getTests( functionInputDef, generator, null);
+    FunctionTestDef functionTestDef = Tcases.getTests( functionInputDef, generator, baseTestDef);
 
     // Expect...
     List<TestCase> expectedTestCases = IteratorUtils.toList( baseTestDef.getTestCases());

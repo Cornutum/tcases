@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.resolve.ValueDomain;
 import org.cornutum.tcases.util.ToString;
 
 import java.util.LinkedHashMap;

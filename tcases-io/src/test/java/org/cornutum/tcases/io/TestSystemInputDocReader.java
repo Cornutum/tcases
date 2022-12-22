@@ -118,6 +118,7 @@ public class TestSystemInputDocReader
 
     // Then...
     assertThat( "system-input-def-0.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-0.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -169,7 +170,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-1.xml");
 
     // Then...
-    assertThat( "system-input-def-1.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-1.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-1.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -338,7 +340,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-2.xml");
 
     // Then...
-    assertThat( "system-input-def-2.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-2.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-2.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -476,7 +479,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-3.xml");
 
     // Then...
-    assertThat( "system-input-def-3.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-3.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-3.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -603,7 +607,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-4.xml");
 
     // Then...
-    assertThat( "system-input-def-4.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-4.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-4.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -716,7 +721,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-5.xml");
 
     // Then...
-    assertThat( "system-input-def-5.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-5.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-5.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -804,7 +810,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-6.xml");
 
     // Then...
-    assertThat( "system-input-def-6.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-6.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-6.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -886,7 +893,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-7.xml");
 
     // Then...
-    assertThat( "system-input-def-7.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-7.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-7.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**
@@ -2072,7 +2080,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-43.xml");
 
     // Then...
-    assertThat( "system-input-def-43.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-43.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-43.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   
@@ -2101,7 +2110,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-objects.xml");
 
     // Then...
-    assertThat( "system-input-def-objects.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-objects.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-objects.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   
@@ -2185,7 +2195,8 @@ public class TestSystemInputDocReader
     SystemInputDef systemInputDef = systemInputResources_.read( "system-input-def-min-max.xml");
 
     // Then...
-    assertThat( "system-input-def-min-max.xml", systemInputDef, matches( new SystemInputDefMatcher( expected))); 
+    assertThat( "system-input-def-min-max.xml", systemInputDef, matches( new SystemInputDefMatcher( expected)));
+    assertThat( "Copy of system-input-def-min-max.xml", SystemInputDefBuilder.with( systemInputDef).build(), matches( new SystemInputDefMatcher( expected)));
     }
 
   /**

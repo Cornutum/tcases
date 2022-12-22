@@ -9,6 +9,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.conditions.ICondition;
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -75,9 +76,20 @@ public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
   public VarSetBuilder start( VarSet varSet)
     {
     varSet_ =
-      varSet == null
-      ? new VarSet( "V")
-      : varSet;
+      Optional.ofNullable( varSet)
+      .map( vs ->
+            VarSetBuilder.with( vs.getName())
+            .type( vs.getType())
+            .when( vs.getCondition())
+            .members(
+              toStream( vs.getMembers())
+              .map( m ->
+                    m.getMembers() == null
+                    ? (IVarDef) VarDefBuilder.with( (VarDef) m).build()
+                    : (IVarDef) VarSetBuilder.with( (VarSet) m).build()))
+            .annotations( vs)
+            .build())
+      .orElse( new VarSet( "V"));
     
     return this;
     }

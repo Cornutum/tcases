@@ -41,6 +41,7 @@ public class TestAnnotations
 
     // Then...
     assertThat( "Writing system input definition", inputDefOut, matches( new SystemInputDefMatcher( inputDef)));
+    assertThat( "Copying system input definition", SystemInputDefBuilder.with( inputDefOut).build(), matches( new SystemInputDefMatcher( inputDef)));
     }
   
   @Test

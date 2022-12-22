@@ -12,6 +12,7 @@ import org.leadpony.justify.api.JsonSchema;
 import org.leadpony.justify.api.JsonSchemaResolver;
 import org.leadpony.justify.api.JsonValidationService;
 import org.leadpony.justify.api.ProblemHandler;
+import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
 import java.io.File;
@@ -39,6 +40,7 @@ public class ProjectJsonReader implements Closeable
    */
   public ProjectJsonReader( InputStream stream)
     {
+    converter_ = new ProjectJson( LoggerFactory.getLogger( ProjectJsonReader.class));
     setInputStream( stream);
     }
 
@@ -67,7 +69,7 @@ public class ProjectJsonReader implements Closeable
         throw new ProjectException( "Invalid project definition", e);
         }
 
-      return ProjectJson.asProject( json);
+      return converter_.asProject( json);
       }
     }
 
@@ -104,6 +106,7 @@ public class ProjectJsonReader implements Closeable
     return ProjectJsonReader.class.getResourceAsStream( "/schema/" + resourceName);
     }
 
+  private final ProjectJson converter_;
   private InputStream stream_;
 
   /**

@@ -1,0 +1,15 @@
+{
+    "system": "Schema",
+    "array": {
+        "arg": {
+            "arrayVar": {
+                "values": {
+                    "arrayValue": {
+                        "format": "list",
+                        "const": null
+                    }
+                }
+            }
+        }
+    }
+}

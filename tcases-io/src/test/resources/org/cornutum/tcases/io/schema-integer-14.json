@@ -1,0 +1,21 @@
+{
+    "system": "Schema",
+    "integer": {
+        "arg": {
+            "integerVar": {
+                "format": "int32",
+                "maximum": 100,
+                "exclusiveMaximum": 100,
+                "multipleOf": 10,
+                
+                "values": {
+                    "integerValue": {
+                        "minimum": 0,
+                        "exclusiveMinimum": -1,
+                        "exclusiveMaximum": true
+                    }
+                }
+            }
+        }
+    }
+}

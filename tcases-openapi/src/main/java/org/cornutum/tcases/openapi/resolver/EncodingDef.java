@@ -7,6 +7,7 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
+import org.cornutum.tcases.resolve.ObjectValue;
 import org.cornutum.tcases.util.ToString;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;

@@ -1,0 +1,26 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVarSet": {
+                "members": {
+                    "stringVar": {
+                        "type": "string",
+                        "format": "date",
+                        "minLength": 1,
+                        "pattern": ".",
+
+                        "values": {
+                            "stringValue": {
+                                "type": "string",
+                                "format": "date",
+                                "minLength": 8,
+                                "pattern": null
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

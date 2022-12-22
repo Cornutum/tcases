@@ -1,0 +1,18 @@
+{
+    "system": "Schema",
+    "number": {
+        "arg": {
+            "numberVar": {
+                "values": {
+                    "numberValue": {
+                        "type": "number",
+                        "format": "float",
+                        "minimum": -1.234,
+                        "exclusiveMinimum": -12.34,
+                        "multipleOf": 1
+                    }
+                }
+            }
+        }
+    }
+}

@@ -7,6 +7,8 @@
 
 package org.cornutum.tcases;
 
+import org.cornutum.tcases.resolve.Schema;
+import org.cornutum.tcases.resolve.ValueDomain;
 import org.cornutum.tcases.util.ObjectUtils;
 import org.cornutum.tcases.util.ToString;
 import static org.cornutum.tcases.DefUtils.*;
@@ -19,7 +21,6 @@ import java.util.Set;
 
 /**
  * Defines the properties of a value for an {@link IVarDef input variable}.
- *
  */
 public class VarValueDef extends Conditional
   {
@@ -211,6 +212,38 @@ public class VarValueDef extends Conditional
     return removeProperties( Arrays.asList( properties));
     }
 
+  /**
+   * Changes the schema for this input value.
+   */
+  public void setSchema( Schema schema)
+    {
+    schema_ = schema;
+    }
+
+  /**
+   * Returns the schema for this input value.
+   */
+  public Schema getSchema()
+    {
+    return schema_;
+    }
+
+  /**
+   * Changes the domain for this input value.
+   */
+  public void setDomain( ValueDomain<?> domain)
+    {
+    domain_ = domain;
+    }
+
+  /**
+   * Returns the domain for this input value.
+   */
+  public ValueDomain<?> getDomain()
+    {
+    return domain_;
+    }
+
   @Override
   public boolean equals( Object object)
     {
@@ -254,5 +287,7 @@ public class VarValueDef extends Conditional
   private Object name_;
   private Type type_;
   private Set<String> properties_;
+  private Schema schema_;
+  private ValueDomain<?> domain_;
   }
 

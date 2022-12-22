@@ -9,9 +9,10 @@ package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
-import static org.cornutum.tcases.openapi.resolver.DataValues.*;
+
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
 
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;

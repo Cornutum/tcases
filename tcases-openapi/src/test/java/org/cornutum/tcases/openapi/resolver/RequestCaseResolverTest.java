@@ -10,6 +10,7 @@ package org.cornutum.tcases.openapi.resolver;
 import org.cornutum.tcases.io.SystemTestResource;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
+import org.cornutum.tcases.resolve.ResolverContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -76,11 +77,12 @@ public class RequestCaseResolverTest extends RequestCaseTest
   protected ResolverContext getResolverContext()
     {
     return
-      ResolverContext.builder( getRandom())
+      ResolverContext.builder()
+      .random( getRandom())
       .notifier(
         "fail".equals( System.getProperty( "testNotifier"))
-        ? ResolverConditionNotifier.fail()
-        : ResolverConditionNotifier.log())
+        ? RequestCaseConditionNotifier.fail()
+        : RequestCaseConditionNotifier.log())
       .build();
     }
 

@@ -1,0 +1,17 @@
+{
+    "system": "Schema",
+    "number": {
+        "arg": {
+            "numberVar": {
+                "values": {
+                    "numberValue": {
+                        "minimum": 0,
+                        "maximum": 2147483647,
+                        "exclusiveMaximum": 2147483648,
+                        "multipleOf": 1.1
+                    }
+                }
+            }
+        }
+    }
+}

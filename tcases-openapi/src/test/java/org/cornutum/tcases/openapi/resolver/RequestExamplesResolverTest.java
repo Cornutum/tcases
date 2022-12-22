@@ -12,6 +12,7 @@ import org.cornutum.tcases.openapi.TcasesOpenApi;
 import org.cornutum.tcases.openapi.reader.OpenApiReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefReader;
 import org.cornutum.tcases.openapi.resolver.io.RequestTestDefWriter;
+import org.cornutum.tcases.resolve.ResolverContext;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import org.apache.commons.io.filefilter.FileFilterUtils;
@@ -160,11 +161,12 @@ public class RequestExamplesResolverTest
   protected ResolverContext getResolverContext()
     {
     return
-      ResolverContext.builder( random_)
+      ResolverContext.builder()
+      .random( random_)
       .notifier(
         "fail".equals( System.getProperty( "testNotifier"))
-        ? ResolverConditionNotifier.fail()
-        : ResolverConditionNotifier.log())
+        ? RequestCaseConditionNotifier.fail()
+        : RequestCaseConditionNotifier.log())
       .build();
     }
 

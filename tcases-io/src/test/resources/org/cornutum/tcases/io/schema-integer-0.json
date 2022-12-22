@@ -1,0 +1,19 @@
+{
+    "system": "Schema",
+    "integer": {
+        "arg": {
+            "integerVar": {
+                "type": "integer",
+                "minimum": 100,
+                "exclusiveMinimum": 100,
+
+                
+                "values": {
+                    "integerValue": {
+                        "const": null
+                    }
+                }
+            }
+        }
+    }
+}

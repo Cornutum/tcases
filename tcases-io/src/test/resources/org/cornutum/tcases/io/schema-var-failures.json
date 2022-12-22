@@ -1,0 +1,19 @@
+{
+    "system": "Schema",
+    "string": {
+        "arg": {
+            "stringVar": {
+                "type": "string",
+                "format": "date",
+                "minLength": 1,
+                "pattern": ".",
+
+                "values": {
+                    "empty": {
+                        "failure": true
+                    }
+                }
+            }
+        }
+    }
+}

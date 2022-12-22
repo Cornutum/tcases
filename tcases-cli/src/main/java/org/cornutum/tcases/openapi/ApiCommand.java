@@ -16,9 +16,10 @@ import org.cornutum.tcases.io.TestDefToHtmlFilter;
 import org.cornutum.tcases.io.TestDefToJUnitFilter;
 import org.cornutum.tcases.io.TransformFilter;
 import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
-import org.cornutum.tcases.openapi.resolver.ResolverConditionNotifier;
-import org.cornutum.tcases.openapi.resolver.ResolverContext;
+import org.cornutum.tcases.openapi.resolver.RequestCaseConditionNotifier;
+import org.cornutum.tcases.resolve.ResolverContext;
 import org.cornutum.tcases.util.MapBuilder;
+import org.cornutum.tcases.util.Notifier;
 import static org.cornutum.tcases.CommandUtils.*;
 
 import org.apache.commons.lang3.StringUtils;
@@ -319,7 +320,11 @@ public class ApiCommand
       setServerTest( true);
       setTests( true);
       setModelOptions( new ModelOptions());
-      setResolverContext( new ResolverContext( new Random()));
+
+      setResolverContext(
+        ResolverContext.builder()
+        .notifier( RequestCaseConditionNotifier.log())
+        .build());
       }
 
     /**
@@ -949,7 +954,7 @@ public class ApiCommand
           ModelConditionNotifier.fail() :
 
           "ignore".equals( notifier)?
-          ModelConditionNotifier.ignore() :
+          Notifier.ignore() :
 
           null)
 
@@ -964,13 +969,13 @@ public class ApiCommand
       getResolverContext().setNotifier(
         Optional.ofNullable(
           notifier == null || "log".equals( notifier)?
-          ResolverConditionNotifier.log() :
+          RequestCaseConditionNotifier.log()  :
 
           "fail".equals( notifier)?
-          ResolverConditionNotifier.fail() :
+          RequestCaseConditionNotifier.fail() :
 
           "ignore".equals( notifier)?
-          ResolverConditionNotifier.ignore() :
+          Notifier.ignore() :
 
           null)
 

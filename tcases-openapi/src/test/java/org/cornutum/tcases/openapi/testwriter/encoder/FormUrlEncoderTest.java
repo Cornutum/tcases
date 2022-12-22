@@ -7,17 +7,15 @@
 
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
-import org.cornutum.tcases.openapi.resolver.Base64Domain;
-import org.cornutum.tcases.openapi.resolver.DataValue;
 import org.cornutum.tcases.openapi.resolver.EncodingData;
 import org.cornutum.tcases.openapi.resolver.EncodingDataBuilder;
+import org.cornutum.tcases.resolve.Base64Domain;
+import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.util.ListBuilder;
 import org.cornutum.tcases.util.MapBuilder;
-
-import static org.cornutum.tcases.openapi.resolver.DataValues.*;
-
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
+import static org.cornutum.tcases.resolve.DataValues.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.is;
 

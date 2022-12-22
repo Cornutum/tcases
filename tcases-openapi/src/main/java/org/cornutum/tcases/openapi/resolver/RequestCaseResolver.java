@@ -7,10 +7,18 @@
 
 package org.cornutum.tcases.openapi.resolver;
 
-import org.cornutum.tcases.openapi.ConditionReporter;
 import org.cornutum.tcases.openapi.InvalidStyleException;
 import org.cornutum.tcases.openapi.OpenApiUtils;
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.resolve.ArrayValue;
+import org.cornutum.tcases.resolve.DataValue;
+import org.cornutum.tcases.resolve.ObjectValue;
+import org.cornutum.tcases.resolve.ResolverContext;
+import org.cornutum.tcases.resolve.ResolverException;
+import org.cornutum.tcases.resolve.ResolverSkipException;
+import org.cornutum.tcases.resolve.ValueDomain;
+import org.cornutum.tcases.util.ContextHandler;
+
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.LinkedHashMap;
@@ -25,7 +33,7 @@ import static java.util.stream.Collectors.toMap;
  * Resolves an {@link RequestCaseDef abstract test case} for an API request by producing a {@link RequestCase}
  * that describes an executable instance of this test case.
  */
-public class RequestCaseResolver extends ConditionReporter<ResolverContext>
+public class RequestCaseResolver extends ContextHandler<ResolverContext>
   {
   /**
    * Creates a new RequestCaseResolver instance.
@@ -33,7 +41,6 @@ public class RequestCaseResolver extends ConditionReporter<ResolverContext>
   public RequestCaseResolver( ResolverContext context)
     {
     super( context);
-    setNotifier( context.getNotifier());
     }
 
   /**

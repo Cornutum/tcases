@@ -8,6 +8,9 @@
 
 package org.cornutum.tcases;
 
+import static org.cornutum.tcases.util.CollectionUtils.toStream;
+
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -71,9 +74,17 @@ public class TestCaseBuilder extends AnnotatedBuilder<TestCaseBuilder>
   public TestCaseBuilder start( TestCase testCase)
     {
     testCase_ =
-      testCase == null
-      ? new TestCase(0)
-      : testCase;
+      Optional.ofNullable( testCase)
+      .map( tc ->
+            new TestCaseBuilder()
+            .id( tc.getId())
+            .name( tc.getName())
+            .bind(
+              toStream( tc.getVarBindings())
+              .map( b -> VarBindingBuilder.with( b).build()))
+            .annotations( tc)
+            .build())
+      .orElse( new TestCase(0));
     
     return this;
     }

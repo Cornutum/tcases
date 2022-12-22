@@ -8,6 +8,7 @@
 package org.cornutum.tcases.openapi.resolver;
 
 import org.cornutum.tcases.openapi.resolver.ParamDef.Location;
+import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.util.ToString;
 
 import java.util.Objects;
