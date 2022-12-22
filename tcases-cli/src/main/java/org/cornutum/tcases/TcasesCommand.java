@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Generates a set of {@link TestCase test cases} from a {@link SystemInputDef system input definition}.
@@ -1240,7 +1241,7 @@ public class TcasesCommand
         Resource.Type.XML);
 
     // Read the system input definition.
-    logger_.info( "Reading system input definition={}", inputDefFile);
+    logger_.info( "Reading system input definition from {}", Optional.ofNullable( inputDefFile).map( File::getPath).orElse( "standard input"));
     SystemInputDef inputDef = null;
     try( SystemInputResource reader = withDefaultType( SystemInputResource.of( inputDefFile), defaultContentType))
       {
@@ -1319,10 +1320,10 @@ public class TcasesCommand
     // Write effective input definition?
     if( options.showEffectiveInput())
       {
-      File effInput = new File( outputDir, String.format( "%s-Effective-Input.json", projectName));
-      logger_.info( "Writing effective system input definition to {}", effInput);
+      File effInput = Optional.ofNullable( outputDir).map( dir -> new File( dir, String.format( "%s-Effective-Input.json", projectName))).orElse( null);
+      logger_.info( "Writing effective system input definition to {}", Optional.ofNullable( effInput).map( File::getPath).orElse( "standard output"));
 
-      try( FileOutputStream effOut = new FileOutputStream( effInput))
+      try( FileOutputStream effOut = effInput==null? null : new FileOutputStream( effInput))
         {
         try( SystemInputJsonWriter writer = new SystemInputJsonWriter( effOut))
           {
@@ -1425,7 +1426,7 @@ public class TcasesCommand
     // Write new test definitions.
     try
       {
-      logger_.info( "Updating test definition file={}", outputFile);
+      logger_.info( "Writing test definition to {}", Optional.ofNullable( outputFile).map( File::getPath).orElse( "standard output"));
 
       OutputStream output =
         // Transformed output?
