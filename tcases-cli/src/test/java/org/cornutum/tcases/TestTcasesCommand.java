@@ -617,8 +617,10 @@ public class TestTcasesCommand
     {
     // Given...
     File inFile = getResourceFile( "run-whenSchemas-Input.json");
+    File effInFile = getResourceFile( "run-whenSchemas-Effective-Input.json");
     File outFile = new File( inFile.getParent(), "run-whenSchemas-Test.json");
 
+    effInFile.delete();
     outFile.delete();
     
     String[] args =
@@ -628,14 +630,14 @@ public class TestTcasesCommand
       };
 
     // When...
-    StringBuffer stdOut = new StringBuffer();
-    runWithStdIO( new Options( args), null, stdOut);
+    TcasesCommand.run( new Options( args));
         
     // Then...
+    assertThat( "Effective input created", effInFile.exists(), is( true));
     assertThat( "Test def created", outFile.exists(), is( false));
 
     SystemInputDef expectedInputDef = inputResources_.readJson( "run-whenSchemas-Expected-Input.json");
-    SystemInputDef actualInputDef = inputResources_.readJson( new ByteArrayInputStream( stdOut.toString().getBytes( "UTF-8")));
+    SystemInputDef actualInputDef = inputResources_.readJson( effInFile);
     assertThat( "Effective input def", actualInputDef, matches( new SystemInputDefMatcher( expectedInputDef)));
     }
 
