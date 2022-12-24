@@ -114,7 +114,7 @@ public class ResponseValidator
    * successfully if the response body conforms to its OpenAPI definition. Otherwise,
    * {@link ResponseValidationHandler#handleInvalid reports an invalid response condition}.
    */
-  public void assertBodyValid( String op, String path, int statusCode, String contentType, String bodyContent)
+  public void assertBodyValid( String op, String path, int statusCode, String contentType, String content)
     {
     try
       {
@@ -125,23 +125,28 @@ public class ResponseValidator
 
       // The actual body and content type must be defined if and only if an expected body content is defined.
       String bodyContentType = Objects.toString( contentType, "").trim();
-      if( responses_.hasBody( op, path, statusCode))
+      String bodyContent = Objects.toString( content, "").trim();
+      boolean bodyExpected = responses_.hasBody( op, path, statusCode);
+      if( bodyExpected)
         {
         if( bodyContentType.isEmpty())
           {
           throw new ResponseValidationException( op, path, statusCode, "body", "no response Content-Type header received");
           }
-        if( bodyContent == null)
+        }
+      else
+        {
+        if( !bodyContentType.isEmpty())
           {
-          throw new ResponseValidationException( op, path, statusCode, "body", "no response body received");
+          throw new ResponseValidationException( op, path, statusCode, "body", "unexpected response Content-Type header received");
+          }
+        if( !bodyContent.isEmpty())
+          {
+          throw new ResponseValidationException( op, path, statusCode, "body", "unexpected response body received");
           }
         }
-      else if( bodyContent != null)
-        {
-        throw new ResponseValidationException( op, path, statusCode, "body", "unexpected response body received");
-        }
 
-      if( bodyContent != null)
+      if( bodyExpected)
         {
         ContentDef bodyContentDef =
           responses_.bodyContentDef( op, path, statusCode, bodyContentType)
