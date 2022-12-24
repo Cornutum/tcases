@@ -81,7 +81,7 @@
                 }
               },
               "patternMatches": {
-                "when": { "allOf": [ { "hasAll": ["matchable"]}, { "hasNone": ["patternEmpty"]}]},
+                "when": { "hasAll": ["matchable"]},
                 "type": "integer",
                 "format": "int32",
                 "values": {

@@ -353,9 +353,9 @@ once, even when it contain multiple matches. Wouldn't you want to test a file th
 Well, there's yet another dimension of variation. One file -- so many dimensions!
 
 
-You can model this complex sort of input as a "variable set" (or "varSet"), using the `members` property.  With a varSet, you
-can describe a single logical input as a set of multiple variable definitions.  A varSet can even contain another varSet, creating
-a hierarchy of logical inputs that can be extended to any number of levels.
+You can model this complex sort of input as a "variable set", using the `members` property.  With a variable set, you can
+describe a single logical input as a set of multiple variable definitions.  A variable set can even contain another variable
+set, creating a hierarchy of logical inputs that can be extended to any number of levels.
 
 
 For example, the single `file` input to the `find` command can modeled by the following <A name="exampleEnv">variable set
@@ -435,15 +435,403 @@ Isn't this hierarchy really just the same as four variable definitions, somethin
 ```
 
 
-Yes, and when generating test cases, that's essentially how Tcases handles it. But defining a complex
-input as a varSet makes the input model simpler to create, read, and maintain. Also,
-it allows you to apply constraints to an entire tree of variables at once, at you'll see in the next section.
+Yes, and when generating test cases, that's essentially how Tcases handles it. But defining a complex input as a variable set
+makes the input model simpler to create, read, and maintain. Also, it allows you to apply constraints to an entire tree of
+variables at once, at you'll see in the next section.
 
 ### Defining Constraints: Properties and Conditions ###
+
+We've seen how to define the value choices for all of the input variables of each function-under-test, including complex input
+variables with multiple dimensions. That's enough for us to complete a system input definition for the `find` command that looks
+something like the following.
+
+```json
+{
+  "system": "Examples",
+  "find": {
+    "arg": {
+      "pattern": {
+        "type": "string",
+        "maxLength": 16,
+        "values": {
+          "empty":          {"const": ""},
+          "unquotedSingle": {"pattern": "^[^\\s\"]$"},
+          "unquotedMany":   {"pattern": "^[^\\s\"]+$"},
+          "quoted":         {"pattern": "^\"[^\\s\"]+\"$"},
+          "quotedEmpty":    {"const": "\"\""},
+          "quotedBlanks":   {"pattern": "^\"[^\\s\"]*( +[^\\s\"]*)+\"$"},
+          "quotedQuotes":   {"pattern": "^\"[^\\s\"]*(\"{2}[^\\s\"]*)+\"$"}
+        }
+      },
+      "fileName": {
+        "type": "string",
+        "values": {
+          "defined": {},
+          "missing": {"failure": true}
+        }
+      }
+    },
+    "env": {
+      "file": {
+        "members": {
+          "exists": {
+            "type": "boolean",
+            "values": {
+              "true":  {},
+              "false": {"failure": true}
+            }
+          },
+          "contents": {
+            "members": {
+              "linesLongerThanPattern": {
+                "type": "integer",
+                "format": "int32",
+                "values": {
+                  "1":    {},
+                  "many": {"minimum": 2, "maximum": 32},
+                  "0":    {"failure": true}
+                }
+              },
+              "patternMatches": {
+                "type": "integer",
+                "format": "int32",
+                "values": {
+                  "0":    {},
+                  "1":    {},
+                  "many": {"minimum": 2, "maximum": 16}
+                }
+              },
+              "patternsInLine": {
+                "type": "integer",
+                "format": "int32",
+                "values": {
+                  "1": {},
+                  "many": {"minimum": 2, "maximum": 4}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+When we run Tcases with this input document, we'll get a list of test case definitions like this:
+
+```json
+{
+  "system": "Examples",
+  "find": {
+    "testCases": [
+      {
+        "id": 0,
+        "name": "pattern='empty'",
+        "arg": {
+          "pattern":  {"value": "", "source": "empty"},
+          "fileName": {"value": "defined"}
+        },
+        "env": {
+          "file.exists":                          {"value": true},
+          "file.contents.linesLongerThanPattern": {"value": 1},
+          "file.contents.patternMatches":         {"value": 0},
+          "file.contents.patternsInLine":         {"value": 1}
+        }
+      },
+      {
+        "id": 1,
+        "name": "pattern='unquotedSingle'",
+        "arg": {
+          "pattern":  {"value": "}", "source": "unquotedSingle"},
+          "fileName": {"value": "defined"}
+        },
+        "env": {
+          "file.exists":                          {"value": true},
+          "file.contents.linesLongerThanPattern": {"value": 26, "source": "many"},
+          "file.contents.patternMatches":         {"value": 1},
+          "file.contents.patternsInLine":         {"value": 4, "source": "many"}
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
+
+But wait up a second -- something doesn't look right here. Take a closer look at test case 0 above. It's telling us to try a
+test case using a file that contains no instances of the test pattern. Oh, and at the same time, the file should contain a line
+that has one match for the test pattern. Not only that, but the pattern to match is the null pattern -- an empty string. That
+pattern will match any line multiple times! In short, this test case seems sort of ... well, impossible.
+
+And look at test case 1 above. It looks equally problematic. For this test case, there should be exactly one match in the file.
+Which must also contain a line that matches the pattern 4 times. No way!
+
+What's happening here? Clearly, some of the "dimensions of variation" described by these variable definitions are not entirely
+independent of each other. Instead, there are relationships among these variables that _constrain_ which combinations of values
+are feasible. We need a way to define those relationships so that infeasible combinations can be excluded from our test cases.
+
+With Tcases, you can do that using _properties_ and _conditions_. The following sections explain how, including some tips about
+how to avoid certain [problems that constraints can introduce](#conditionTips).
+
 #### Value properties ####
+
+A value definition can declare a `properties` list that specifies one or more "properties" for this value. For example:
+
+```json
+...
+"patternMatches": {
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "0": {
+    },
+    "1": {
+      "properties": ["match"]
+    },
+    "many": {
+      "properties": ["match", "matchMany"]
+    }
+  }
+}
+...
+```
+
+A property is just a name that you invent for yourself to identify an important characteristic of this value. The concept is that
+when this value is included in a test case, it contributes all of its properties -- these now become properties of the test case itself.
+That makes it possible for us to later define "conditions" on the properties that a test case must (or must not!) have for certain values
+to be included.
+
+For example, the definition above for the `file.contents.patternMatches` variable says that when we choose the value `1` for a
+test case, the test case acquires a property named `match`.  But if we choose the value `many`, the test case acquires two
+properties -- `match` and `matchMany`.  And if we choose the value `0`, no new properties are added to the test case. Note that
+the correspondence between these particular names of the values and properties is not exactly accidental -- it helps us
+understand what these elements mean -- but it has no special significance. We could have named any of them differently if we
+wanted to.
+
+But note that all of this applies _only_ to valid value definitions, not to failure value definitions that specify `"failure":
+true`. Why? Because [failure values are different!](#failureValues).
+
+
 #### Value conditions ####
+
+We can define the conditions required for a value to be included in a test case using the `when` property, which defines a
+"condition" object.  Adding a condition object means "for this value to be included in a test case, the properties of the test
+case must satisfy this condition.
+
+
+For example, consider the conditions for the values of the `file.contents.patternsInLine` variable.
+
+```json
+...
+"patternsInLine": {
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "1": {
+      "when": {"allOf": [ {"hasAll": ["matchable", "match"]}, {"hasNone": ["patternEmpty"]}]}
+    },
+    "many": {
+      "when": {"allOf": [ {"hasAll": ["matchable", "matchMany"]}, {"hasNone": ["patternEmpty"]}]},
+      "minimum": 2,
+      "maximum": 4
+    }
+  }
+}
+...
+```
+
+This defines _constraints_ on the values of the `file.contents.patternsInLine` variable. We want to have a test case in which
+the value for this variable is `1`, i.e. some line contains exactly one substring that matches the pattern. If so, this must be
+a test case in which the file contains at least one matching line. In other words, the test case must have the `match` property,
+which appears only if the value of `file.contents.patternMatches` is non-zero.
+
+We also want a test case in which the value of `file.contents.patternsInLine` is `many`. For this value, the required conditions
+are much the same, except that this can't be a test case in which the file contains only one instance of a pattern match.
+Therefore, the test case must have the `matchMany` property, as shown below.
+
+
+```json
+...
+"patternMatches": {
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "0": {
+    },
+    "1": {
+      "properties": ["match"]
+    },
+    "many": {
+      "minimum": 2,
+      "maximum": 16,
+      "properties": ["match", "matchMany"]
+    }
+  }
+},
+...
+```
+
+Also, this must be a test case in which the file contains at least one line longer than the pattern. Otherwise, no matches are
+possible.  In other words, the test case must have the `matchable` property, which appears only if the value of
+`file.contents.linesLongerThanPattern` is non-zero, as shown below.
+
+```json
+...
+"linesLongerThanPattern": {
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "1": {
+      "properties": ["matchable"]
+    },
+    "many": {
+      "minimum": 2,
+      "maximum": 32,
+      "properties": ["matchable"]
+    },
+    "0": {
+      "failure": true
+    }
+  }
+},
+...
+```
+
+Moreover, this must be a test case in which the pattern is not empty. Otherwise, the question of how many matches occur in any
+line is irrelevant. In other words, the test case must _not_ have the `patternEmpty` property, which appears the value of the
+`pattern` variable is an empty string. But is that combination of inputs is really infeasible? Strictly speaking, no. But it's
+certainly not very useful. This demonstrates another way for a smart tester to use properties and conditions: to steer toward
+test cases with more potent combinations and away from combinations that add little defect-fighting power.
+
+It's important to note that there are many values with no conditions attached.  A test case can use these value in combination
+with any others. And that's a good thing.  We want to model the reality of the input space for the function, without eliminating
+any test cases that are actually feasible. Otherwise, our tests will have a blind spot that could allow defects to slip by
+undetected. Rule of thumb: Use conditions sparingly and only when necessary to avoid infeasible or unproductive test cases.
+
 #### Failure values are different! ####
+
+Different? Yes, because failure value definitions -- i.e. those that specify `"failure": true` -- _cannot_ define properties.
+
+If you think about it, you can see that there is a fundamental reason why this is so.  Suppose you declare that some value=V
+defines a property=P. Why would you do that? There really is only one reason: so that some other value=X can require combination
+with V (or, to be precise, with any value that defines P). But if V declares `"failure": true`, that doesn't make sense. If the
+other value X is valid, it can't demand combination with a failure value -- otherwise, X could never appear in a success
+case. And if X is a failure value itself, it can't demand combination with a different failure value -- at most one failure
+value can appear in a [failure case](#failureCoverage).
+
+But note that a failure value _can_ define a condition.  In other words, it can demand combination with specific values from
+other variables. By working from this direction, you can control the other values used in a failure case.
+
 #### Variable conditions ####
+
+You may find that, under certain conditions, an input variable becomes irrelevant. It doesn't matter which value you choose --
+none of them make a difference in function behavior. It's easy to model this situation -- just define a condition on the
+variable definition itself.
+
+
+For example, when we're testing the `find` command, we want to try all of the values defined for every dimension of the
+`file.contents.patternMatches` variable. But, in the case when the file contains no lines long enough to match the pattern, the
+question of how many matches it contains is pointless.  In this case, the `file.contents.patternMatches` variable is irrelevant.
+Similarly, when we test a file that contains no matches at all, the `file.contents.patternsInLine` variable is meaningless. We
+can capture these facts about the input space by adding `when` conditions to these variables, as shown below. Notice
+how these variable conditions make it simpler or unnecessary to define conditions for individual values.
+
+```json
+...
+"patternMatches": {
+  "when": { "hasAll": ["matchable"]},
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "0": {
+    },
+    "1": {
+      "properties": ["match"]
+    },
+    "many": {
+      "minimum": 2,
+      "maximum": 16,
+      "properties": ["match", "matchMany"]
+    }
+  }
+},
+
+"patternsInLine": {
+  "when": { "hasAll": ["match"]},
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "1": {
+    },
+    "many": {
+      "when": { "hasAll": ["matchMany"]},
+      "minimum": 2,
+      "maximum": 4
+    }
+  }
+}
+...
+```
+
+You can define variable conditions at any level of a variable set hierarchy. For example, you can see in the example below that
+a condition is defined for the entire `file.contents` variable set. This condition models the fact that the file contents are
+irrelevant when the file specified to search doesn't even exist or when the pattern to match is empty.
+
+```json
+...
+"contents": {
+  "when": { "allOf": [ { "hasAll": ["fileExists"]}, { "hasNone": ["patternEmpty"]}]},
+  "members": {
+    ...
+  }
+}
+...
+```
+
+How does a variable condition affect the test cases generated by Tcases? In a test case where a variable is irrelevant, it is
+not given a `value` but instead is designated as `NA`, meaning "not applicable".  For example, test case 0 below shows how
+testing an empty pattern causes `file.contents` to be irrelevant. Similarly, test case 8 shows how
+testing with a non-existent file makes nearly every other variable irrelevant.
+
+```json
+"testCases": [
+  {
+    "id": 0,
+    "name": "pattern='empty'",
+    "has": {"properties": "fileExists,fileName,patternEmpty"},
+    "arg": {
+      "pattern":  {"value": "", "source": "empty"},
+      "fileName": {"value": "defined"}
+    },
+    "env": {
+      "file.exists":                          {"value": true},
+      "file.contents.linesLongerThanPattern": {"NA": true},
+      "file.contents.patternMatches":         {"NA": true},
+      "file.contents.patternsInLine":         {"NA": true}
+    }
+  },
+  ...
+  {
+    "id": 8,
+    "name": "file.exists='false'",
+    "has": {"properties": "fileName"},
+    "arg": {
+      "pattern":  {"NA": true},
+      "fileName": {"value": "defined"}
+    },
+    "env": {
+      "file.exists":                          {"failure": true, "value": false},
+      "file.contents.linesLongerThanPattern": {"NA": true},
+      "file.contents.patternMatches":         {"NA": true},
+      "file.contents.patternsInLine":         {"NA": true}
+    }
+  }
+]
+...``
+
 #### Complex conditions ####
 #### Cardinality conditions ####
 #### But be careful! ####
@@ -481,12 +869,13 @@ coverage".)
 
 But is that good enough? Experience and [research](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8960929) teach us
 that many failures are triggered by the interaction of two or more variables. So maybe we should aim for a higher level of input
-coverage. We could iterate over every pair of input variables and consider every combination of their values. For example, the
-`pattern.size` variable has 3 valid values and the `pattern.quoted` variable has 2 valid values. That makes 6 combinations for
-this pair of variables (ignoring constraints). For each pair, create a test case and fill it out with values for all of the
-other variables. In the end, we'll have a test suite that uses every such pair at least once -- that's "2-way coverage" or
-"2-tuple coverage" (also known as "pairwise coverage"). This is a much stronger test suite -- more likely to find many defects
--- but it's also a larger number of test cases.
+coverage. We could iterate over every pair of input variables and consider every combination of their values.
+
+For example, the `file.contents.linesLongerThanPattern` variable has 2 valid values and the `file.contents.patternMatches`
+variable has 2 valid values. That makes 4 combinations for this pair of variables. For each pair, create a test case and fill it
+out with values for all of the other variables. In the end, we'll have a test suite that uses every such pair at least once --
+that's "2-way coverage" or "2-tuple coverage" (also known as "pairwise coverage"). This is a much stronger test suite -- more
+likely to find many defects -- but it's also a larger number of test cases.
 
 We can extend the same approach to even higher levels of combinatorial coverage -- 3-way coverage, 4-way coverage, etc. With
 each higher level, our tests become more powerful. But the price is that the number of test cases increases rapidly with each
