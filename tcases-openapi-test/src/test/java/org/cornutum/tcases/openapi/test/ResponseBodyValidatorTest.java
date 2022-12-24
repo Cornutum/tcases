@@ -32,6 +32,13 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
     
     // Then...
     validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
+
+    // When...
+    bodyContentType = "";
+    bodyContent = "";
+    
+    // Then...
+    validator.assertBodyValid( op, path, statusCode, bodyContentType, bodyContent);
     
     // When...
     expectFailure( ResponseValidationException.class)
@@ -43,7 +50,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (200), body: unexpected response body received");
+          "delete /responses (200), body: unexpected response Content-Type header received");
         });
     
     // When...
@@ -71,7 +78,7 @@ public class ResponseBodyValidatorTest extends ResponseValidatorTest
       .then( failure -> {
         assertValidationErrors(
           failure,
-          "delete /responses (404), body: no response body received");
+          "delete /responses (404), body: no schema defined for contentType=text/plain");
         });
     }
   
