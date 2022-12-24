@@ -1,225 +1,120 @@
 {
-    "system": "Examples",
-    "find": {
-        "arg": {
-            "pattern": {
-                "when": {
-                    "hasAll": [
-                        "fileExists"
-                    ]
-                },
-                "members": {
-                    "size": {
-                        "values": {
-                            "empty": {
-                                "properties": [
-                                    "empty"
-                                ]
-                            },
-                            "singleChar": {
-                                "properties": [
-                                    "singleChar"
-                                ]
-                            },
-                            "manyChars": {
-                            }
-                        }
-                    },
-                    "quoted": {
-                        "values": {
-                            "yes": {
-                                "properties": [
-                                    "quoted"
-                                ]
-                            },
-                            "no": {
-                                "when": {
-                                    "hasNone": [
-                                        "empty"
-                                    ]
-                                }
-                            },
-                            "unterminated": {
-                                "failure": true
-                            }
-                        }
-                    },
-                    "blanks": {
-                        "when": {
-                            "hasNone": [
-                                "empty"
-                            ]
-                        },
-                        "values": {
-                            "none": {
-                            },
-                            "one": {
-                                "when": {
-                                    "hasAll": [
-                                        "quoted",
-                                        "singleChar"
-                                    ]
-                                }
-                            },
-                            "many": {
-                                "when": {
-                                    "allOf": [
-                                        {
-                                            "hasAll": [
-                                                "quoted"
-                                            ]
-                                        },
-                                        {
-                                            "hasNone": [
-                                                "singleChar"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "embeddedQuotes": {
-                        "when": {
-                            "hasNone": [
-                                "singleChar",
-                                "empty"
-                            ]
-                        },
-                        "values": {
-                            "none": {
-                            },
-                            "one": {
-                            },
-                            "many": {
-                                "once": true
-                            }
-                        }
-                    }
-                }
-            },
-            "fileName": {
-                "values": {
-                    "defined": {
-                        "properties": [
-                            "fileName"
-                        ]
-                    },
-                    "missing": {
-                        "failure": true
-                    }
-                }
-            }
-        },
-        "env": {
-            "file": {
-                "when": {
-                    "hasAll": [
-                        "fileName"
-                    ]
-                },
-                "members": {
-                    "exists": {
-                        "values": {
-                            "yes": {
-                                "properties": [
-                                    "fileExists"
-                                ]
-                            },
-                            "no": {
-                                "failure": true
-                            }
-                        }
-                    },
-                    "contents": {
-                        "when": {
-                            "allOf": [
-                                {
-                                    "hasAll": [
-                                        "fileExists"
-                                    ]
-                                },
-                                {
-                                    "hasNone": [
-                                        "empty"
-                                    ]
-                                }
-                            ]
-                        },
-                        "members": {
-                            "linesLongerThanPattern": {
-                                "values": {
-                                    "one": {
-                                        "once": true,
-                                        "properties": [
-                                            "matchable"
-                                        ]
-                                    },
-                                    "many": {
-                                        "properties": [
-                                            "matchable"
-                                        ]
-                                    },
-                                    "none": {
-                                        "failure": true
-                                    }
-                                }
-                            },
-                            "patterns": {
-                                "when": {
-                                    "allOf": [
-                                        {
-                                            "hasAll": [
-                                                "matchable"
-                                            ]
-                                        },
-                                        {
-                                            "hasNone": [
-                                                "empty"
-                                            ]
-                                        }
-                                    ]
-                                },
-                                "values": {
-                                    "none": {
-                                        "once": true
-                                    },
-                                    "one": {
-                                        "properties": [
-                                            "match"
-                                        ]
-                                    },
-                                    "many": {
-                                        "properties": [
-                                            "match",
-                                            "many"
-                                        ]
-                                    }
-                                }
-                            },
-                            "patternsInLine": {
-                                "when": {
-                                    "hasAll": [
-                                        "match"
-                                    ]
-                                },
-                                "values": {
-                                    "one": {
-                                    },
-                                    "many": {
-                                        "once": true,
-                                        "when": {
-                                            "hasAll": [
-                                                "many"
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+  "system": "Examples",
+  "find": {
+    "arg": {
+      "pattern": {
+        "when": { "hasAll": ["fileExists"]},
+        "type": "string",
+        "maxLength": 16,
+        "values": {
+          "empty": {
+            "const": "",
+            "properties": ["patternEmpty"]
+          },
+          "unquotedSingle": {
+            "pattern": "^[^\\s\"]$"
+          },
+          "unquotedMany": {
+            "pattern": "^[^\\s\"]+$"
+          },
+          "quoted": {
+            "pattern": "^\"[^\\s\"]+\"$"
+          },
+          "quotedEmpty": {
+            "const": "\"\"",
+            "properties": ["patternEmpty"]
+          },
+          "quotedBlanks": {
+            "pattern": "^\"[^\\s\"]*( +[^\\s\"]*)+\"$"
+          },
+          "quotedQuotes": {
+            "pattern": "^\"[^\\s\"]*(\"{2}[^\\s\"]*)+\"$"
+          }
         }
+      },
+      "fileName": {
+        "type": "string",
+        "values": {
+          "defined": {
+            "properties": ["fileName"]
+          },
+          "missing": {
+            "failure": true
+          }
+        }
+      }
+    },
+    "env": {
+      "file": {
+        "when": { "hasAll": ["fileName"]},
+        "members": {
+          "exists": {
+            "type": "boolean",
+            "values": {
+              "true": {
+                "properties": ["fileExists"]
+              },
+              "false": {
+                "failure": true
+              }
+            }
+          },
+          "contents": {
+            "when": { "allOf": [ { "hasAll": ["fileExists"]}, { "hasNone": ["patternEmpty"]}]},
+            "members": {
+              "linesLongerThanPattern": {
+                "type": "integer",
+                "format": "int32",
+                "values": {
+                  "1": {
+                    "properties": ["matchable"],
+                    "once": true
+                  },
+                  "many": {
+                    "minimum": 2,
+                    "maximum": 32,
+                    "properties": ["matchable"]
+                  },
+                  "0": {
+                    "failure": true
+                  }
+                }
+              },
+              "patternMatches": {
+                "when": { "allOf": [ { "hasAll": ["matchable"]}, { "hasNone": ["patternEmpty"]}]},
+                "type": "integer",
+                "format": "int32",
+                "values": {
+                  "0": {
+                    "once": true
+                  },
+                  "1": {
+                    "properties": ["match"]
+                  },
+                  "many": {
+                    "minimum": 2,
+                    "maximum": 16,
+                    "properties": ["match", "matchMany"]
+                  }
+                }
+              },
+              "patternsInLine": {
+                "when": { "hasAll": ["match"]},
+                "type": "integer",
+                "format": "int32",
+                "values": {
+                  "1": {},
+                  "many": {
+                    "when": { "hasAll": ["matchMany"]},
+                    "minimum": 2,
+                    "maximum": 4
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
