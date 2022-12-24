@@ -748,6 +748,61 @@ public class VarSchemaValuesTest extends ResolverTest
     }
 
   @Test
+  public void whenIntegralNumber()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = getResolver();
+
+    Schema schema =
+      SchemaBuilder.type( "number")
+      .minimum( 0)
+      .exclusiveMaximum( 1)
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        VarValueDefBuilder.with( "minimum")
+        .schema(
+          SchemaBuilder.type( "number")
+          .minimum( 0)
+          .maximum( 0)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximum")
+        .schema(
+          SchemaBuilder.type( "number")
+          .minimum( "0.9")
+          .maximum( "0.9")
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "belowMinimum")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( "number")
+          .exclusiveMaximum( 0)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "aboveMaximum")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.type( "number")
+          .exclusiveMinimum( "0.9")
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
   public void whenNumberEnum()
     {
     // Given...

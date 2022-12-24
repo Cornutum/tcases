@@ -506,16 +506,21 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
    */
   public static BigDecimal unitOf( Schema schema)
     {
-    return
-      new BigDecimal(
-        BigInteger.ONE,
-        Stream.of(
-          Optional.ofNullable( schema.getMultipleOf()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getMinimum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getMaximum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getExclusiveMinimum()).map( BigDecimal::scale).orElse( 0),
-          Optional.ofNullable( schema.getExclusiveMaximum()).map( BigDecimal::scale).orElse( 0))
-        .max( Integer::compareTo)
-        .orElse( 0));
+    int definedScale =
+      Stream.of(
+        Optional.ofNullable( schema.getMultipleOf()).map( BigDecimal::scale).orElse( 0),
+        Optional.ofNullable( schema.getMinimum()).map( BigDecimal::scale).orElse( 0),
+        Optional.ofNullable( schema.getMaximum()).map( BigDecimal::scale).orElse( 0),
+        Optional.ofNullable( schema.getExclusiveMinimum()).map( BigDecimal::scale).orElse( 0),
+        Optional.ofNullable( schema.getExclusiveMaximum()).map( BigDecimal::scale).orElse( 0))
+      .max( Integer::compareTo)
+      .orElse( 0);
+
+    int effectiveScale =
+      schema.getType() == NUMBER
+      ? Math.max( 1, definedScale)
+      : definedScale;
+    
+    return new BigDecimal( BigInteger.ONE, effectiveScale);
     }
   }
