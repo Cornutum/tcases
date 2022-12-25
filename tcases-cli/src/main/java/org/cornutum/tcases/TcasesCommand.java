@@ -1297,6 +1297,10 @@ public class TcasesCommand
           ? outputFile.getParentFile()
           : inputDir;
         }
+      else if( !outputDir.isAbsolute())
+        {
+        outputDir = new File( inputDir, outputDir.getPath());
+        }
       if( !outputDir.exists() && !outputDir.mkdirs())
         {
         throw new RuntimeException( "Can't create output directory=" + outputDir);
