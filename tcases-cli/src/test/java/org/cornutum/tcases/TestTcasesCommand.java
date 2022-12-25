@@ -291,7 +291,7 @@ public class TestTcasesCommand
     String[] args =
       {
         "-n",
-        "-o", outDir.getPath(),
+        "-o", outDir.getName(),
         "-r", "12345",
         inFile.getPath()
       };
