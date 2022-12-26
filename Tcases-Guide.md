@@ -725,6 +725,65 @@ value can appear in a [failure case](#failureCoverage).
 But note that a failure value _can_ define a condition.  In other words, it can demand combination with specific values from
 other variables. By working from this direction, you can control the other values used in a failure case.
 
+#### Condition expressions ####
+
+The value of a `when` property is a condition expression object. A condition expression is a JSON object with a single property, which must be
+one of the following.
+
+* `"hasAll"`
+  * Contains a list of value property names
+  * Satisfied if the test case has all of the listed properties
+
+* `"hasAny"`
+  * Contains a list of value property names
+  * Satisfied if the test case has at least one of the listed properties
+
+* `"hasNone"`
+  * Contains a list of value property names
+  * Equivalent to `"not": { "hasAny": [...]}`
+
+* `"allOf"`
+  * A logical AND expression
+  * Contains a list of condition expression objects
+  * Satisfied if all of the listed expressions are satisfied
+
+* `"anyOf"`
+  * A logical OR expression
+  * Contains a list of condition expression objects
+  * Satisfied if at least one of the listed expressions is satisfied
+
+* `"not"`
+  * A logical negation expression
+  * Contains a single condition expression object
+  * Satisfied if this expression is _not_ satisfied
+
+* `"lessThan"`
+  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * Satisfied when the given `property` occurs less than the given `max` times
+
+* `"notLessThan"`
+  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * Satisfied when the given `property` occurs greater than or equal to the given `min` times
+
+* `"moreThan"`
+  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * Satisfied when the given `property` occurs more than the given `min` times
+
+* `"notMoreThan"`
+  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * Satisfied when the given `property` occurs less than or equal to the given `max` times
+
+* `"between"`
+  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * Satisfied when occurrences of the given `property` are both greater than or equal to the given
+    `min` and less than or equal to the given `max`. If you want to specify a strictly greater/less than relationship,
+    specify an `exclusiveMin` or `exclusiveMax` property instead.
+
+* `"equals"`
+  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * Satisfied when the given `property` occurs exactly the given `count` times
+
+
 #### Variable conditions ####
 
 You may find that, under certain conditions, an input variable becomes irrelevant. It doesn't matter which value you choose --
@@ -830,11 +889,221 @@ testing with a non-existent file makes nearly every other variable irrelevant.
     }
   }
 ]
-...``
+...
+```
 
-#### Complex conditions ####
 #### Cardinality conditions ####
+
+The basic conditions are concerned only with the presence (or absence) of certain properties in a test case. But, of course, a
+test case can accumulate multiple instances of a property, if two or more of the values used in the test case contribute the
+same property. And in some situations, the number of occurrences of a property is a significant constraint on the input
+space. You can model these situations using _cardinality conditions_, which check if the number of property occurrences is
+greater than, less than, or equal to a specific value.
+
+
+For example, consider the case of an ice cream shop that sells different types of ice cream cones. These yummy products come
+only in specific combinations, and the price depends on the combination of scoops and toppings added. But how to test that? The
+input model for these cones might look like the one below. (You can find the full example
+[here](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json).)
+
+```json
+{
+  "system": "Ice-Cream",
+  "Cones": {
+    "arg": {
+      "Cone": {
+        "values": {
+          "Empty": {...},
+          "Plain": {...},
+          "Plenty": {...},
+          "Grande": {...},
+          "Too-Much": {...}
+        }
+      },
+      "Flavors": {
+        "members": {
+          "Vanilla":    {"values": {"Yes": {...}, "No": {}}},
+          "Chocolate":  {"values": {"Yes": {...}, "No": {}}},
+          "Strawberry": {"values": {"Yes": {...}, "No": {}}},
+          ...
+        }
+      },
+      "Toppings": {
+        "members": {
+          "Sprinkles": {"values": {"Yes": {...}, "No": {}}},
+          "Pecans":    {"values": {"Yes": {...}, "No": {}}},
+          "Oreos":     {"values": {"Yes": {...}, "No": {}}},
+          ...
+        }
+      }
+    }
+  }
+}
+```
+
+
+To build a cone, you can add a scoop of any flavor and any of the given toppings. To keep track, each of these choices
+contributes either a `scoop` or a `topping` property to our cone test cases.
+
+```json
+...
+"Flavors": {
+  "members": {
+    "Vanilla":    {"values": {"Yes": {"properties": ["scoop"]}, "No": {}}},
+    "Chocolate":  {"values": {"Yes": {"properties": ["scoop"]}, "No": {}}},
+    "Strawberry": {"values": {"Yes": {"properties": ["scoop"]}, "No": {}}},
+    ...
+  }
+},
+"Toppings": {
+  "members": {
+    "Sprinkles": {"values": {"Yes": {"properties": ["topping"]}, "No": {}}},
+    "Pecans":    {"values": {"Yes": {"properties": ["topping"]}, "No": {}}},
+    "Oreos":     {"values": {"Yes": {"properties": ["topping"]}, "No": {}}},
+    ...
+  }
+}
+```
+
+
+Then we can define specific cone products based on the number of scoops and toppings, using cardinality conditions like
+`lessThan`, `equals`, and `between`.
+
+```json
+...
+"Cone": {
+  "values": {
+    "Empty": {
+      "failure": true,
+      "when": {"lessThan": {"property": "scoop", "max": 1}}
+    },
+    "Plain": {
+      "when": {
+        "allOf": [
+          {"equals": {"property": "scoop", "count": 1}},
+          {"notMoreThan": {"property": "topping", "max": 1}}
+        ]
+      }
+    },
+    "Plenty": {
+      "when": {
+        "allOf": [
+          {"between": {"property": "scoop", "min": 1, "max": 2}},
+          {"notMoreThan": {"property": "topping", "max": 2}}
+        ]
+      }
+    },
+    "Grande": {
+      "when": {
+        "allOf": [
+          {"between": {"property": "scoop", "exclusiveMin": 0, "exclusiveMax": 4}},
+          {"between": {"property": "topping", "min": 1, "max": 3}}
+        ]
+      }
+    },
+    "Too-Much": {
+      "failure": true,
+      "when": {
+        "anyOf": [
+          {"moreThan": {"property": "scoop", "min": 3}},
+          {"notLessThan": {"property": "topping", "min": 4}}
+        ]
+      }
+    }
+  }
+}
+...
+```
+
 #### But be careful! ####
+
+With the constraints defined by properties and conditions comes great power. Use it carefully! It's possible to define
+constraints that make it very difficult or even impossible for Tcases to generate the test cases you want.  If it looks to you
+like Tcases is frozen, that's probably what's going on.  Tcases is not frozen -- it's busy with a very long and perhaps
+fruitless search for a combination of values that will satisfy your constraints.
+
+The following sections describe some of the situations to watch out for.
+
+##### Infeasible combinations #####
+
+Tcases always generates test cases that include specific combinations of values, based on the [coverage level](#coverage) you've
+specified.  But what if you've defined constraints that make some intended value combination impossible? If so, we say that this
+combination is "infeasible". For combinations of 2 or more variables (2-tuples, 3-tuples, etc.), this may be expected, so Tcases
+will simply [log](#logging) a warning and keep going. For "combinations" of a single variable (the default coverage level), this
+is an error, and you must fix the offending constraints before Tcases can continue.
+
+> Tips:
+> * To help find the bad constraint that's giving you grief, try [changing the logging level](#logging) to `DEBUG` or `TRACE`.
+> 
+> * Are you using [higher coverage levels](#higherCoverage) (2-tuples, 3-tuples, etc.)? If so, try running a quick check using
+>   only the default coverage. An easy way to do that is to run Tcases like this: `tcases < ${myInputModelFile}`.
+>   If there is an infeasible value, this check can sometimes show you the error.
+
+
+Usually, Tcases can quickly report when combinations are infeasible. But in some cases, Tcases can find the problem only after
+trying and eliminating all possibilities.  If it looks to you like Tcases is frozen, that's probably what's going on.  Tcases is
+not frozen -- it's busy with a long, exhaustive, and ultimately fruitless search.
+
+
+To avoid such problems, it helps to remember this simple rule: every "success" test case must define a valid value for all
+variables. For any individual variable `V`, no matter which values are chosen for the other variables in a success test case,
+there must be at least one valid value of `V` that is compatible with them.
+
+For example, the following variable definitions are infeasible. There is no way to complete a success test case containing
+`Shape=Square` because there is no valid value for `Color` that is compatible with it.
+
+```json
+...
+"Shape": {
+  "values": {
+    "Square": {"properties": ["quadrilateral"]},
+    "Circle": {}
+  }
+},
+"Color": {
+  "values": {
+    "Red":   {"when": {"hasNone": ["quadrilateral"]}},
+    "Green": {"when": {"hasNone": ["quadrilateral"]}},
+    "Blue":  {"when": {"hasNone": ["quadrilateral"]}},
+    "None":  {"failure": true}
+  }
+}
+...
+```
+
+The only exception is for conditions in which a variable is defined to be entirely [irrelevant](#varConditions).  For example,
+the following definitions are OK, because they explicitly declare that `Color` is incompatible with `Shape=Square`.
+
+```json
+...
+"Shape": {
+  "values": {
+    "Square": {"properties": ["quadrilateral"]},
+    "Circle": {}
+  }
+},
+"Color": {
+  "when": {"hasNone": ["quadrilateral"]},
+  "values": {
+    "Red":   {},
+    "Green": {},
+    "Blue":  {},
+    "None":  {"failure": true}
+  }
+}
+...
+```
+
+##### Large `anyOf` conditions #####
+
+You can use an [`anyOf` condition](#complexConditions) to define a logical "OR" expression. But beware an `anyOf` that contains
+a large number of subexpressions. When Tcases is looking for value combinations to satisfy such a condition, it must evaluate a
+large number of possibilities. As the number of subexpressions increases, the number of possibilities increases exponentially!
+This can quickly get out of hand, even when a satisfying combination exists. And things go from bad to worse if this `anyOf`
+makes an intended test case infeasible.  If it looks to you like Tcases is slow or frozen, that may be what's going on.
+
+If you face this situation, you should try to find a way simplify the large `anyOf` condition. For example, you may be able to
+eliminate subexpressions by assigning special properties that produce an equivalent result.
 
 
 ## Defining Input Coverage ##
