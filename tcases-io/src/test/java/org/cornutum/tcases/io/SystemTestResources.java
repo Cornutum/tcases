@@ -12,6 +12,7 @@ import org.cornutum.tcases.SystemTestDef;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ClassUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -155,6 +156,39 @@ public class SystemTestResources
       }
 
     return systemTestDef;
+    }
+
+  /**
+   * Returns the {@link SystemTestDef} defined by the given input stream.
+   */
+  public SystemTestDef readJson( InputStream input)
+    {
+    SystemTestDef  systemTestDef  = null;
+    try( SystemTestJsonReader reader = new SystemTestJsonReader( input))
+      {
+      systemTestDef = reader.getSystemTestDef();
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read input stream", e);
+      }
+
+    return systemTestDef;
+    }
+
+  /**
+   * Returns the {@link SystemTestDef} defined by the given JSON string.
+   */
+  public SystemTestDef readJsonString( String string)
+    {
+    try
+      {
+      return readJson( new ByteArrayInputStream( string.getBytes( "UTF-8")));
+      }
+    catch( Exception e)
+      {
+      throw new RuntimeException( "Can't read string", e);
+      }
     }
 
   private Class<?> class_;
