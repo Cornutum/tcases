@@ -2,6 +2,55 @@
 
 ## Contents ##
 
+  * [Introduction](#introduction)
+    * [What Does It Do?](#what-does-it-do)
+    * [How Does It Work?](#how-does-it-work)
+  * [Getting Started](#getting-started)
+    * [About This Guide](#about-this-guide)
+    * [Installing The Tcases Maven Plugin](#installing-the-tcases-maven-plugin)
+    * [Installing The Tcases Distribution](#installing-the-tcases-distribution)
+    * [JSON? Or XML?](#json-or-xml)
+    * [Running From the Command Line](#running-from-the-command-line)
+    * [Understanding Tcases Results](#understanding-tcases-results)
+    * [Troubleshooting FAQs](#troubleshooting-faqs)
+  * [Modeling The Input Space](#modeling-the-input-space)
+    * [An Example: The find Command](#an-example-the-find-command)
+    * [Defining System Functions](#defining-system-functions)
+    * [Defining Input Variables](#defining-input-variables)
+    * [Defining Input Values](#defining-input-values)
+    * [Defining Value Schemas](#defining-value-schemas)
+    * [Defining Variable Sets](#defining-variable-sets)
+    * [Defining Constraints: Properties and Conditions](#defining-constraints-properties-and-conditions)
+      * [Value properties](#value-properties)
+      * [Value conditions](#value-conditions)
+      * [Failure values are different!](#failure-values-are-different)
+      * [Condition expressions](#condition-expressions)
+      * [Variable conditions](#variable-conditions)
+      * [Cardinality conditions](#cardinality-conditions)
+      * [But be careful!](#but-be-careful)
+  * [Defining Input Coverage](#defining-input-coverage)
+    * [Combinatorial Testing Basics](#combinatorial-testing-basics)
+    * [Failure Cases Are Different!](#failure-cases-are-different)
+    * [Default Coverage](#default-coverage)
+    * [Defining Higher Coverage](#defining-higher-coverage)
+    * [Defining Multiple Levels Of Coverage](#defining-multiple-levels-of-coverage)
+  * [Managing A Tcases Project](#managing-a-tcases-project)
+    * [Managing Project Files](#managing-project-files)
+    * [Reusing Previous Test Cases](#reusing-previous-test-cases)
+    * [Mix It Up: Random Combinations](#mix-it-up-random-combinations)
+    * [Reducing Test Cases: A Random Walk](#reducing-test-cases-a-random-walk)
+    * [Avoiding Unneeded Combinations](#avoiding-unneeded-combinations)
+    * [Simple Generator Definitions](#simple-generator-definitions)
+      * [Defining A Random Seed](#defining-a-random-seed)
+      * [Defining The Default Coverage Level](#defining-the-default-coverage-level)
+  * [Transforming Test Cases](#transforming-test-cases)
+    * [Creating An HTML Report](#creating-an-html-report)
+    * [Creating JUnit/TestNG Tests](#creating-junittestng-tests)
+    * [Using Output Annotations](#using-output-annotations)
+      * [How it works](#how-it-works)
+      * [Property annotations](#property-annotations)
+  * [Further Reference](#further-reference)
+
 ## Introduction ##
 ### What Does It Do? ###
 
@@ -30,26 +79,27 @@ higher-order combinations of selected input variables.
 
 ### How Does It Work? ###
 
-First, you create a [system input definition](#systemInputDef), a document that defines your system as a set of
-[functions](#functionInputDef). For each system function, the system input definition defines the [variables](#varDef) that
-characterize the function input space.
+First, you create a [system input definition](#defining-system-functions), a document that defines your system as a set of
+[functions](#defining-system-functions). For each system function, the system input definition defines the
+[variables](#defining-input-variables) that characterize the function input space.
 
-Then, you can create a [generator definition](#genDef). That's another document that defines the coverage you want for each
-system function. The generator definition is optional. You can skip this step and still get a basic level of coverage.
+Then, you can create a [generator definition](#defining-higher-coverage). That's another document that defines the coverage you
+want for each system function. The generator definition is optional. You can skip this step and still get a basic level of
+coverage.
 
 Finally, you run Tcases. Tcases is a Java program that you can run from the command line or from your favorite IDE.  Tcases
-comes with built-in support for running using a shell script.  You can also run Tcases with Maven using the
-[Tcases Maven Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html).  Using your input definition and your
-generator definition, Tcases generates a [system test definition](#systemTestDef).  The system test definition is a document
-that lists, for each system function, a set of test cases that provides the specified level of coverage. Each test case defines
-a specific value for every function input variable. Tcases generates not only valid input values that define successful test
-cases but also invalid values for the tests cases that are needed to verify expected error handling.
+comes with built-in support for running using a shell script.  You can also run Tcases with Maven using the [Tcases Maven
+Plugin](http://www.cornutum.org/tcases/docs/tcases-maven-plugin/index.html).  Using your input definition and your generator
+definition, Tcases generates a [system test definition](#understanding-tcases-results).  The system test definition is a
+document that lists, for each system function, a set of test cases that provides the specified level of coverage. Each test case
+defines a specific value for every function input variable. Tcases generates not only valid input values that define successful
+test cases but also invalid values for the tests cases that are needed to verify expected error handling.
 
 Of course, the system test definition is not something you can execute directly. But it follows a well-defined schema, which
 means you can use a variety of transformation tools to convert it into a form that is suitable for testing your system. For
-example, Tcases comes with a built-in transformer that converts a system test definition into a Java source code template
-for a [JUnit or TestNG test class](#junit).  You can also automatically transform a system test definition into a simple
-[HTML report](#html).
+example, Tcases comes with a built-in transformer that converts a system test definition into a Java source code template for a
+[JUnit or TestNG test class](#creating-junittestng-tests).  You can also automatically transform a system test definition into a
+simple [HTML report](#creating-an-html-report).
 
 
 
@@ -116,14 +166,14 @@ help at the command line, run `tcases -help`.
 
 ### Understanding Tcases Results ###
 
-What happens when you run Tcases? Tcases reads a [system input definition](#systemInputDef), a document
-that defines the "input space" of the system function to be tested. From this, Tcases produces a different document
-called a <A name="systemTestDef">_system test definition_</A>, which describes a set of test cases.
+What happens when you run Tcases? Tcases reads a [system input definition](#defining-system-functions), a document that defines
+the "input space" of the system function to be tested. From this, Tcases produces a different document called a <A
+name="systemTestDef">_system test definition_</A>, which describes a set of test cases.
 
 
 Try running Tcases on one of the example system input definitions. The following commands will generate
-test cases for the `find` command [example](#exampleFind), which is
-explained in [full detail](#input) later in this guide.
+test cases for the `find` command [example](#an-example-the-find-command), which is
+explained in [full detail](#modeling-the-input-space) later in this guide.
 
 ```
 cd ${tcases-release-dir}
@@ -133,8 +183,8 @@ tcases < find-Input.json
 
 
 The resulting system test definition is written to standard output. Here's what it looks like: for
-the "find" [function](#functions), a list of test case definitions, each of which defines values for all of
-the function's input [variables](#vars).
+the `find` [function](#defining-system-functions), a list of test case definitions, each of which defines values for all of
+the function's input [variables](#defining-input-variables).
 
 ```json
 {
@@ -177,12 +227,16 @@ the function's input [variables](#vars).
 }
 ```
 
+### Troubleshooting FAQs ###
+
+Something going wrong? See the [Troubleshooting FAQs](./Troubleshooting-FAQs.md#troubleshooting-faqs) for assistance.
+
 ## Modeling The Input Space ##
 
 Tcases creates test definitions based on a _system input definition_ that you create. But how do you do that? That's what this
 section aims to explain.
 
-A _system input definition_ is a document that models the "input space" of the system-under-test (SUT). We say it "models"
+A system input definition is a document that models the "input space" of the system-under-test (SUT). We say it "models"
 system inputs because it doesn't literally itemize all possible input values. Instead, a system input definition lists all the
 important aspects of system inputs that affect system results. Think of this as describing the "dimensions of variation" in the
 "input space" of your system. Some dimensions of variation are obvious. If you are testing the `add` function, you know there
@@ -202,7 +256,7 @@ in which `ls` runs.
 You can see that modeling the input space demands careful thought about the SUT. That's a job that no tool can do for you. But
 Tcases gives you a way to capture that knowledge and to translate it into effective test cases.
 
-### An Example: The find Command ###
+### An Example: The `find` Command ###
 
 To understand input modeling with Tcases, it helps to see an example in action. In this guide, we're
 going to explain how Tcases works by showing how we can use it to test a hypothetical `find`
@@ -227,7 +281,7 @@ Take a look at the `find` specification below. What test cases would you use to 
 
 ### Defining System Functions ###
 
-A <A name="systemInputDef">system input definition</A> describes a specific system-under-test, so the root object of the document looks like this:
+A system input definition describes a specific system-under-test, so the root object of the document looks like this:
 
 ```json
 {
@@ -265,7 +319,7 @@ refers to each such dimension as a "variable" and each basic variable is represe
 In addition, a function definition object groups input variables by type.  The `find` command has two different types of input
 variables. There are direct input arguments, such as the file name, which have input type `arg`. There are also other factors,
 such as the state of the file, which act as indirect "environmental" input variables and are given input type `env`.  (More
-details about these are shown in a [later section](#exampleEnv).)
+details about these are shown in a [later section](#defining-variable-sets).)
 
 ```json
 {
@@ -328,7 +382,7 @@ important part of input space modeling. It would be silly to list every possible
 just doesn't matter. At least for this particular function, the letters and format of the file name have no bearing on the
 behavior of the function. Instead, what's needed is a _model_ of the value domain for this variable that characterizes the
 _types_ of values that are significant to the test. This is a well-known test design technique known as
-[equivalence class partitioning](http://en.wikipedia.org/wiki/Equivalence_partitioning). You use each value definitino to
+[equivalence class partitioning](http://en.wikipedia.org/wiki/Equivalence_partitioning). You use each value definition to
 identify a _class_ of values. By definition, all specific values in this class are test-equivalent. We don't need to test them
 all -- any one of them will do.
 
@@ -358,8 +412,8 @@ describe a single logical input as a set of multiple variable definitions.  A va
 set, creating a hierarchy of logical inputs that can be extended to any number of levels.
 
 
-For example, the single `file` input to the `find` command can modeled by the following <A name="exampleEnv">variable set
-definition</A>.
+For example, the single `file` input to the `find` command can modeled by the following variable set
+definition.
 
 ```json
  {
@@ -574,7 +628,7 @@ independent of each other. Instead, there are relationships among these variable
 are feasible. We need a way to define those relationships so that infeasible combinations can be excluded from our test cases.
 
 With Tcases, you can do that using _properties_ and _conditions_. The following sections explain how, including some tips about
-how to avoid certain [problems that constraints can introduce](#conditionTips).
+how to avoid certain [problems that constraints can introduce](#but-be-careful).
 
 #### Value properties ####
 
@@ -612,7 +666,7 @@ understand what these elements mean -- but it has no special significance. We co
 wanted to.
 
 But note that all of this applies _only_ to valid value definitions, not to failure value definitions that specify `"failure":
-true`. Why? Because [failure values are different!](#failureValues).
+true`. Why? Because [failure values are different!](#failure-values-are-different).
 
 
 #### Value conditions ####
@@ -720,10 +774,58 @@ defines a property=P. Why would you do that? There really is only one reason: so
 with V (or, to be precise, with any value that defines P). But if V declares `"failure": true`, that doesn't make sense. If the
 other value X is valid, it can't demand combination with a failure value -- otherwise, X could never appear in a success
 case. And if X is a failure value itself, it can't demand combination with a different failure value -- at most one failure
-value can appear in a [failure case](#failureCoverage).
+value can appear in a [failure case](#failure-cases-are-different).
 
 But note that a failure value _can_ define a condition.  In other words, it can demand combination with specific values from
 other variables. By working from this direction, you can control the other values used in a failure case.
+For example, the `find` command recognizes an error when there are no lines in the file long enough to match the pattern.
+In other words, for the variable `file.contents.linesLongerThanPattern`, the value `0` is a failure value. But in this case,
+the pattern ought to be longer than just 1 character. With suitable definitions of properties and conditions, we can ensure
+this combination is formed properly.
+
+```json
+...
+"pattern": {
+  "values": {
+    ...
+    "unquotedMany": {
+      "pattern": "^[^\\s\"]+$",
+      "minLength": 2,
+      "maxLength": 16,
+      "properties": ["patternMany"]
+    },
+    "quoted": {
+      "pattern": "^\"[^\\s\"]+\"$",
+      "minLength": 2,
+      "maxLength": 16,
+      "properties": ["patternMany"]
+    },
+    ...
+  }
+},
+...
+"file": {
+  "members": {
+    ...
+    "contents": {
+      "members": {
+        "linesLongerThanPattern": {
+          "values": {
+            ...
+            "0": {
+              "when": { "hasAll": ["patternMany"]},
+              "failure": true
+            }
+          }
+        },
+        ...
+      }
+    }
+  }
+}
+...
+
+```
 
 #### Condition expressions ####
 
@@ -758,29 +860,29 @@ one of the following.
   * Satisfied if this expression is _not_ satisfied
 
 * `"lessThan"`
-  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * A [cardinality condition](#cardinality-conditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
   * Satisfied when the given `property` occurs less than the given `max` times
 
 * `"notLessThan"`
-  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * A [cardinality condition](#cardinality-conditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
   * Satisfied when the given `property` occurs greater than or equal to the given `min` times
 
 * `"moreThan"`
-  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * A [cardinality condition](#cardinality-conditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
   * Satisfied when the given `property` occurs more than the given `min` times
 
 * `"notMoreThan"`
-  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * A [cardinality condition](#cardinality-conditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
   * Satisfied when the given `property` occurs less than or equal to the given `max` times
 
 * `"between"`
-  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * A [cardinality condition](#cardinality-conditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
   * Satisfied when occurrences of the given `property` are both greater than or equal to the given
     `min` and less than or equal to the given `max`. If you want to specify a strictly greater/less than relationship,
     specify an `exclusiveMin` or `exclusiveMax` property instead.
 
 * `"equals"`
-  * A [cardinality condition](#cardinalityConditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
+  * A [cardinality condition](#cardinality-conditions) (see [examples](http://www.cornutum.org/tcases/docs/examples/json/Ice-Cream-Input.json))
   * Satisfied when the given `property` occurs exactly the given `count` times
 
 
@@ -1026,16 +1128,17 @@ The following sections describe some of the situations to watch out for.
 
 ##### Infeasible combinations #####
 
-Tcases always generates test cases that include specific combinations of values, based on the [coverage level](#coverage) you've
-specified.  But what if you've defined constraints that make some intended value combination impossible? If so, we say that this
-combination is "infeasible". For combinations of 2 or more variables (2-tuples, 3-tuples, etc.), this may be expected, so Tcases
-will simply [log](#logging) a warning and keep going. For "combinations" of a single variable (the default coverage level), this
-is an error, and you must fix the offending constraints before Tcases can continue.
+Tcases always generates test cases that include specific combinations of values, based on the [coverage
+level](#defining-input-coverage) you've specified.  But what if you've defined constraints that make some intended value
+combination impossible? If so, we say that this combination is "infeasible". For combinations of 2 or more variables (2-tuples,
+3-tuples, etc.), this may be expected, so Tcases will simply [log](./Troubleshooting-FAQs.md#troubleshooting-faqs) a warning and
+keep going. For "combinations" of a single variable (the default coverage level), this is an error, and you must fix the
+offending constraints before Tcases can continue.
 
 > Tips:
-> * To help find the bad constraint that's giving you grief, try [changing the logging level](#logging) to `DEBUG` or `TRACE`.
+> * To help find the bad constraint that's giving you grief, try [changing the logging level](./Troubleshooting-FAQs.md#troubleshooting-faqs) to `DEBUG` or `TRACE`.
 > 
-> * Are you using [higher coverage levels](#higherCoverage) (2-tuples, 3-tuples, etc.)? If so, try running a quick check using
+> * Are you using [higher coverage levels](#defining-higher-coverage) (2-tuples, 3-tuples, etc.)? If so, try running a quick check using
 >   only the default coverage. An easy way to do that is to run Tcases like this: `tcases < ${myInputModelFile}`.
 >   If there is an infeasible value, this check can sometimes show you the error.
 
@@ -1071,7 +1174,7 @@ For example, the following variable definitions are infeasible. There is no way 
 ...
 ```
 
-The only exception is for conditions in which a variable is defined to be entirely [irrelevant](#varConditions).  For example,
+The only exception is for conditions in which a variable is defined to be entirely [irrelevant](#variable-conditions).  For example,
 the following definitions are OK, because they explicitly declare that `Color` is incompatible with `Shape=Square`.
 
 ```json
@@ -1096,7 +1199,7 @@ the following definitions are OK, because they explicitly declare that `Color` i
 
 ##### Large `anyOf` conditions #####
 
-You can use an [`anyOf` condition](#complexConditions) to define a logical "OR" expression. But beware an `anyOf` that contains
+You can use an [`anyOf` condition](#condition-expressions) to define a logical "OR" expression. But beware an `anyOf` that contains
 a large number of subexpressions. When Tcases is looking for value combinations to satisfy such a condition, it must evaluate a
 large number of possibilities. As the number of subexpressions increases, the number of possibilities increases exponentially!
 This can quickly get out of hand, even when a satisfying combination exists. And things go from bad to worse if this `anyOf`
@@ -1157,7 +1260,7 @@ variables that need a higher level of coverage than the rest.
 Note that the number of test cases required to meet a specific level of coverage depends on many factors. Naturally, the number
 of test cases needed for N-way coverage increases for larger values of N. Also, variables that have a large number of values
 create more combinations to be covered, which may demand more test cases. Also, when there are constraints among input values,
-the number of test cases tends to increase. For example, a [variable condition](#varConditions) means that some test cases must
+the number of test cases tends to increase. For example, a [variable condition](#variable-conditions) means that some test cases must
 use `"NA": true` for that variable, which means that additional test cases are needed to cover the real values.
 
 ### Failure Cases Are Different! ###
@@ -1192,27 +1295,858 @@ But to get the tests you need faster, you may need to selectively apply 2-tuple 
 how.
 
 ### Defining Higher Coverage ###
+
+For higher levels of coverage, you need to create a _generator definition_ that specifies your coverage
+requirements in detail. A generator definition, which is another document that Tcases applies to your system input definition,
+defines a set of "generators".
+
+Generators definitions are optional -- if omitted, [the default coverage generator](#default-coverage) is used for each
+function. By convention, generator definitions appear in a file named `${myProjectName}-Generators.json`.  But, if you prefer,
+you can specify a different file name using the `-g` option of the
+[`tcases` command](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/TcasesCommand.Options.html).
+
+
+The simplest possible generator definition is equivalent to the default: for all functions, 1-tuple coverage for all variables. It looks like this:
+
+```json
+{ 
+  "*": {} 
+} 
+```
+
+
+To require 2-tuple coverage for all variables of the `find` function, you would create a generator definition like this:
+
+```json
+{ 
+  "find": {
+    "tuples": 2
+  } 
+} 
+```
+
+
+To require 3-tuple coverage only for the function named `F`, while generating 2-tuple coverage for all other functions, you
+would create a generator definition like the one below. Notice that you can explicitly identify "all functions" using the
+special function name `*`.
+
+```json
+{ 
+  "*": {
+    "tuples": 2
+  },
+  "F": {
+    "tuples": 3
+  }
+} 
+```
+
 ### Defining Multiple Levels Of Coverage ###
+
+When you look carefully at the functions of your system-under-test, you may well find that some of them call for more intense
+testing than others. That's what a generator definition allows you to do. In fact, when you look carefully at a single function,
+you may be more concerned about the interactions between certain specific variables. You may even want to test every possible
+permutation for a small subset of key variables. Is it possible to get high coverage in a few areas and basic coverage
+everywhere else? Why, yes, you can. This section explains how.
+
+You've already seen how you can specify different levels of coverage for different functions. For finer control, you can use one
+or more _combiner definitions_.  A combiner definition is an object that defines the level of coverage generated for a
+specific subset of variable definitions. You specify which variables to combine using a variable "path pattern".
+
+For example, here is a generator definition for the `find` function that specifies 2-tuple coverage for all variables in the
+`file.contents` variable set, with 1-tuple coverage (the default) for other variables
+
+```json
+{
+  "find": {
+    "combiners": [
+      {
+        "tuples": 2,
+        "include": [ "file.contents.**" ]
+      }
+    ]
+  }
+}
+```
+
+A variable path pattern describes a path to a specific variable definition, possibly nested within a variable set
+hierarchy. Wildcards allow you to match all immediate children (`*`) or all descendants (`**`) of a variable set. Note that a
+pattern can contain at most one wildcard, which can appear only at the end of the path.
+
+
+You can use a combination of `include` and `exclude` properties to concisely describe exactly which variables to combine. 
+For example, here is a generator for the `find` function that generates 1-tuple coverage (the default) for all variables in the
+`file.contents` variable set, _except_ for `file.contents.patternsInLine`, with 2-tuple coverage for all other variables.
+
+```json
+{
+  "find": {
+    "tuples": 2,
+    "combiners": [
+      {
+        "include": [ "file.contents.*" ],
+        "exclude": [ "file.contents.patternsInLine" ]
+      }
+    ]
+  }
+}
+```
+
+
+A combiner definition that specifies the special value `"tuples": 0` generates test cases that include all possible value
+permutations of the included variables.  Obviously, this setting has the potential to create a huge number of test cases, so it
+should be used sparingly and only for small sets of variables. 
+
+
+Each combiner definition describes how to combine a specific set of variables. But what about the variables that are not
+included in any combiner? For these, Tcases automatically creates a default combiner definition, using the default `tuples`
+defined for the function.
 
 
 ## Managing A Tcases Project ##
-### Managing Project Files ###
-### Reusing Previous Test Cases ###
-### Mix It Up: Random Combinations ###
-### Reducing Test Cases: A Random Walk ###
-### Avoiding Unneeded Combinations ###
-### Simple Generator Definitions ###
-### Troubleshooting FAQs ###
 
+Using Tcases to design a test suite means:
+
+* Learning about the expected behavior of the SUT
+* Creating an initial system input definition
+* Generating, evaluating, and improving test case definitions
+* Evaluating and improving coverage requirements
+* Changing input definitions to handle new cases
+
+You might finish all these tasks very quickly. Or this effort might extend over a significant period of time. Either way, that's
+a project.  This section offers some tips to help you complete your Tcases project more effectively.
+
+### Managing Project Files ###
+
+A Tcases project must deal with several closely-related files: a system input definition, zero or more generator definitions,
+and the test case definition document that is generated from them (possibly in multiple forms). The `tcases` command implements
+some conventions that make it easier to keep these files organized.
+
+The `tcases` command allows you to refer to all of the files for a project named `${myProjectName}` using the following
+conventions.
+
+* `${myProjectName}-Input.json`: the system input definition file
+* `${myProjectName}-Generators.json`: the generator definition file
+* `${myProjectName}-Test.json`: the test case definition file
+
+For example, here's a simple command to run Tcases.
+
+```
+tcases ${myProjectName} 
+```
+
+This command performs the following actions.
+
+
+1. Reads the system input definition from `${myProjectName}-Input.json`
+1. Reads the generator definition from `${myProjectName}-Generators.json`, if it exists
+1. Writes test case definitions to `${myProjectName}-Test.json`
+
+Of course, you can use various options for the `tcases` command to customize this default pattern. For details, see the
+[`TcasesCommand.Options`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/TcasesCommand.Options.html) class,
+or run `tcases -help`.
+
+### Reusing Previous Test Cases ###
+
+You know the feeling. You've spent days figuring out a minimal set of test cases that covers all test requirements. Then the
+developer walks up with the great news: they've decided to add a new feature with some new parameters. And they've changed their
+minds about some things. You know that required parameter? Well, it's optional now -- leaving it blank is no longer an
+error. Sometimes is seems they're doing this just to torture you. But, honestly, most of the time it's just the normal
+progression of a development project. After a few iterations, you've gained more knowledge that you need to apply to the system
+you're building. Or after a release or two, it's time to make the system do new tricks.
+
+Either way, it's back to the ol' test drawing board. Or is it? You're not changing everything. Why can't you just tweak the test
+cases you already have? Funny you should ask. Because that's exactly what Tcases can do. In fact, it's the default way of
+working. Remember that simple `tcases` command line?
+
+```
+> tcases ${myProjectName} 
+```
+
+Here's what it _really_ does:
+
+
+1. Reads the system input definition from `${myProjectName}-Input.json`
+1. Reads the generator definition from `${myProjectName}-Generators.json`, if it exists
+1. _And reads previous test cases_  from `${myProjectName}-Test.json`, if it exists
+1. _Then writes new test case definitions_ to `${myProjectName}-Test.json` which
+   reuse as much of the previous test cases as possible, extending or modifying them as needed
+
+You might prefer to ignore previous test cases and just create new ones from scratch. That's especially true in the early stages
+of your project while you're still working out the details of the system input definition. If so, you can use the `-n` option to
+always create new tests cases, ignoring any previous ones.
+
+```
+> tcases -n ${myProjectName} 
+```
+
+### Mix It Up: Random Combinations ###
+
+By default, Tcases creates combinations of input variables by marching through the system input definition top-to-bottom,
+picking things up in the order in which it finds them. You might try to exploit that natural order, although satisfying
+constraints can take things off a predictable sequence. That's why you really shouldn't care too much about which combinations
+Tcases comes up with.  Even better? Ask Tcases to randomize its combination procedure.
+
+You can define random combinations in your generator definition by using the `seed` attribute -- see the example below.  This
+integer value acts as the seed for a random number generator that controls the combination process. Alternatively, you can
+(re)define the seed value using [command line options](#simple-generator-definitions) described in later sections.  By specifying the seed
+explicitly, you ensure that _exactly the same_ random combinations will be used every time you run Tcases with this generator
+definition.
+
+```json
+{
+  "find": {
+    "seed": 200712190644
+  }
+}
+```
+
+The results of random combination can be very interesting. First, you can end up with test cases that you might not have
+considered, even though they are perfectly valid and produce the same coverage. Sometimes that's just enough to expose a defect
+that might otherwise have been overlooked, simply because no one thought to try that case. This is an application of the
+principle of "gratuitous variety" to improve your tests. This also produces another benefit -- sometimes an unusual combination
+can demonstrate a flaw in your test design. If a combination just doesn't make sense, then it's likely that a constraint is
+missing or incorrect.
+
+Finally, random combinations can occasionally reduce the number of test cases needed to meet your coverage requirements. That's
+because some combinations may "consume" variable tuples more efficiently than other equally-valid combinations. Tcases does not
+attempt to spend the enormous effort needed to guarantee an optimally minimal set of test cases. It simply starts at the
+beginning and does its best to get quickly to the end. But a random walk through the combinations may lead Tcases to a more
+efficient path. If you're concerned about the size of your test suite, try the [Tcases Reducer](#reducing-test-cases-a-random-walk).
+
+### Reducing Test Cases: A Random Walk ###
+
+A random walk through the combinations may lead Tcases to a smaller set of test cases. So you could try repeatedly altering your
+generator definition with a bunch of different `seed` values, searching for one that minimizes the size of the generated test
+definition file. Sounds tedious, huh? So, don't do that -- use the Tcases Reducer instead.
+
+Here how to do it, using the `tcases-reducer` command.
+
+```
+cd ${tcases-release-dir}
+cd docs/examples/json 
+tcases-reducer find-Input.json
+```
+
+And the result? Now there is a `find-Generators.json` file that looks something like this:
+a generator definition that uses a random seed for each function.
+
+```json
+{
+  "find": {
+    "seed": 1909310132352748544
+  }
+}
+```
+
+But why this seed value? For a detailed view, look at the resulting `tcases-reducer.log` file (see example below). First, the
+Reducer generates test cases without using a random seed, producing 10 test cases.  Then, the Reducer tries again, and it
+reduces the results to 9 test cases.  Then, the Reducer tries several more time, each time using a different random
+seed. Finally, the Reducer cannot find a greater reduction, so it terminates.
+
+```
+INFO  org.cornutum.tcases.Reducer - Reading system input definition=find-Input.json
+INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: generating test cases
+...
+INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: completed 10 test cases
+INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: generating test cases
+...
+INFO  o.c.t.generator.TupleGenerator - FunctionInputDef[find]: completed 9 test cases
+INFO  org.cornutum.tcases.Reducer - Round 1: after 2 samples, reached 9 test cases
+...
+INFO  org.cornutum.tcases.Reducer - Round 2: after 10 samples, terminating
+INFO  org.cornutum.tcases.Reducer - Updating generator definition=find-Generators.json
+```
+
+
+The Reducer handles all the work of searching for the best random seed, without overwriting any existing test definition files.
+Here's how it works.  The reducing process operates as a sequence of "rounds". Each round consists of a series of test case
+generations called "samples". Each sample uses a new random seed to generate test cases for a specified function (or, by
+default, all functions) in an attempt to find a seed that produces the fewest test cases. If all samples in a round complete
+without reducing the current minimum test case count, the reducing process terminates. Otherwise, as soon as a new minimum is
+reached, a new round begins. The number of samples in each subsequent round is determined using a "resample factor". At the end
+of the reducing process, the generator definition file for the given system input definition is updated with the random seed
+value that produces the minimum test case count.
+
+Even though the Reducer produces a random seed that minimizes test cases, you still have to consider if these test cases are
+satisfactory. You might wonder if a different seed might produce an equally small but more interesting set of test cases. If so,
+try using the `-R` option. This tells the Reducer to ignore any previous random seed in the generator definition and to search
+for a new seed value.
+
+For details about all the options for the `tcases-reducer` command (and its Windows counterpart `tcases-reducer.bat`), see the
+Javadoc for the [`ReducerCommand.Options`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/ReducerCommand.Options.html) class.
+To get help at the command line, run `tcases-reducer -help`.
+
+### Avoiding Unneeded Combinations ###
+
+Even when Tcases is generating test cases for the default 1-tuple coverage, it's typical to see some input values used many
+times. This is most likely for those variable definition that contain only a few Value definitions. Even after these values have
+been used, Tcases will continue to reuse them to fill out the remaining test cases needed to complete the test suite. In some
+situations, this can be a bit of a pain. Sometimes there is a value definition that you need to test at least once, but for
+various reasons, including it multiple times adds complexity without really increasing the likelihood of finding new failures.
+In this case, you can use the `once` property as a hint to avoiding reusing a value more than once.
+
+For example, the `find` command requires that the `pattern` must not exceed the maximum length of a line in the file. Even one
+line longer than the pattern would be enough to avoid this error condition. In fact, the principles of boundary value testing
+suggest that it's a good idea to have a test case that has _exactly_ one line longer. Therefore:
+
+```json
+...
+"linesLongerThanPattern": {
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "1": {
+      "properties": ["matchable"]
+    },
+    "many": {
+      "minimum": 2,
+      "maximum": 32,
+      "properties": ["matchable"]
+    },
+    "0": {
+      "failure": true
+    }
+  }
+},
+...
+```
+
+But this is a corner case that doesn't bear repeating. It's a chore to create a test file that meets this special condition, and
+it's complicated to stretch such a file to meet additional conditions. Moreover, it's unlikely that this special condition will
+have higher-order interactions with other variable combinations. So let's add `"once": true` to request Tcases to include this
+value in only one test case.
+
+```json
+...
+"linesLongerThanPattern": {
+  "type": "integer",
+  "format": "int32",
+  "values": {
+    "1": {
+      "properties": ["matchable"],
+      "once": true
+    },
+    "many": {
+      "minimum": 2,
+      "maximum": 32,
+      "properties": ["matchable"]
+    },
+    "0": {
+      "failure": true
+    }
+  }
+},
+...
+```
+
+Nice! But keep in mind that the `once` hint may not always be respected.  Even when `"once": true`, a value may be used more
+than once if it is needed to satisfy a constraint in remaining test cases.
+
+The `once` hint is actually a shortcut that applies only to a 1-tuple for a single variable value. If
+the [generator definition](#defining-higher-coverage) includes this variable in higher-order tuples, `once` has no effect. But the same situation
+can occur with higher-order combinations, too. For example, although you may want pairwise coverage for a certain set of
+variables, one or more of these 2-tuples may be special cases that should be used at most once. To define such exceptions you
+can add one or more `once` tuples to the combiners in your generator definition. 
+For example, the following generator definition for the `find` function specifies 2-tuple coverage for all variables but tells
+Tcases to create only one test case that uses a certain 2-tuple combination.: a line containing multiple matches of a pattern
+containing quotation marks.
+
+```json
+{ 
+  "find": { 
+    "combiners": [ 
+      { 
+        "tuples": 2, 
+        "once": [ 
+          { 
+            "pattern": "quotedQuotes", 
+            "file.contents.patternsInLine": "many" 
+          } 
+        ]
+      } 
+    ] 
+  } 
+} 
+```
+
+### Simple Generator Definitions ###
+
+Tcases provides some options to make it easier to create and update a simple [generator definition](#defining-higher-coverage)
+document.
+
+#### Defining A Random Seed ####
+
+To define a random combination seed, use the `-r` option. For example, the following command generates test cases with a default
+generator that uses the specified seed value.
+
+```
+tcases -r 299293214 ${myProjectName} 
+```
+
+If you already have a `${myProjectName}-Generators.json` file, this command will update the file by adding or changing the
+default `seed` value, as shown below. If no `${myProjectName}-Generators.json` file exists, it will create one.
+
+```json
+{
+  "find": {
+    "seed": 299293214
+  }
+}
+```
+
+If you'd like to randomize combinations but you're not particular about the seed value, use the `-R` option, and Tcases will
+choose a random seed value for you. This option can be handy when you want to see if a different seed value might produce more
+interesting test case combinations.
+
+#### Defining The Default Coverage Level ####
+
+To define the default coverage level for all functions, use the `-c` option. For example, the following command generates test
+cases with a default generator that uses the specified coverage level.
+
+```
+tcases -c 2 ${myProjectName} 
+```
+
+If you already have a `${myProjectName}-Generators.json` file, this command will
+update the file by adding or changing the default `tuples` value, as shown
+below. If no `${myProjectName}-Generators.json` file exists, it will create one.
+
+```json
+{
+  "find": {
+    "tuples": 2
+  }
+}
+```
 
 ## Transforming Test Cases ##
+
+The test case definitions that Tcases produces are not directly executable. Their purpose is to specify and guide the
+construction of actual tests. But because test case definitions can appear in a well-defined JSON document, it's not hard to
+transform them into a more concrete form. This section describes the options Tcases offers for output transformations.
+
 ### Creating An HTML Report ###
+
+The JSON form for test case definitions is pretty simple. But let's face it -- reading a long JSON document can be tedious.
+It's not necessarily what you'd want to hand someone for guidance during manual testing. So how about looking at the same
+information in a nice Web page on your browser?  To do that, just add the `-H` option to your `tcases` command, and Tcases will
+automatically write test case definitions in the form of an HTML file.
+
+Here's a simple example. Try out these commands:
+
+```
+cd ${tcases-release-dir}
+cd docs/examples/json 
+tcases -H find 
+```
+
+
+This runs Tcases on the input definitions in `find-Input.json` and produces a file named `find-Test.htm`.  Open this file with
+your browser and you'll see something like [this simple HTML report](http://www.cornutum.org/tcases/docs/find-Test-Html.png).
+This report allows you to browse through all of the test cases and look at each one of them in detail. You'll see all of the
+input values needed for the selected test case (omitting any input variables that are [irrelevant](#variable-conditions) for this test
+case).
+
+Don't particularly care for this report format? You can define and apply your own presentation format using the
+[`TestDefToHtmlFilter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/io/TestDefToHtmlFilter.html) class.
+
 ### Creating JUnit/TestNG Tests ###
-### Using XSLT Transforms ###
+
+Transforming test cases into JUnit or TestNG code is a capability that is built into the `tcases` command. How does it work?
+Just add the `-J` option, and Tcases will automatically writes test case definitions in the form of Java code for a JUnit
+test. The same code works for TestNG, too.
+
+Here's a simple example. Try out these commands:
+
+```
+cd ${tcases-release-dir}
+cd docs/examples/json 
+tcases -J < find-Input.json 
+```
+
+Here's what you'll see printed to standard output: each test case definition has been transformed into a `@Test` method. The
+name of the method is based on the function name. And the Javadoc comments describe the input values for this test case.
+Similarly, all input value assignments are shown in the body of the method. Otherwise, the body of the method is empty, waiting
+for the implementation to be filled in by you. For failure test cases, the Javadoc highlights the single invalid value that
+defines the case.
+
+
+```java
+  /**
+   * Tests {@link Examples#find find()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. find (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> pattern </TD> <TD>  </TD> </TR>
+   * <TR><TD> fileName </TD> <TD> defined </TD> </TR>
+   * <TR><TD> file.exists </TD> <TD> true </TD> </TR>
+   * <TR><TD> file.contents.linesLongerThanPattern </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> file.contents.patternMatches </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> file.contents.patternsInLine </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void find_0()
+    {
+    // properties = fileExists,fileName,patternEmpty
+
+    // Given...
+    //
+    //   pattern = 
+    //
+    //   fileName = defined
+    //
+    //   file.exists = true
+    //
+    //   file.contents.linesLongerThanPattern = (not applicable)
+    //
+    //   file.contents.patternMatches = (not applicable)
+    //
+    //   file.contents.patternsInLine = (not applicable)
+    
+    // When...
+
+    // Then...
+    }
+...    
+```
+
+The `-J` option is most useful when the `System` corresponds to a class and each `Function` corresponds to a class method to be
+tested. Accordingly, the Javadoc includes an `@link` to the method-under-test, as shown above. You can customize the form of
+this `@link` by defining either the `class` parameter or the `system` parameter. For example, if you use the options `-J -p
+class=MyClass`, then the output looks like this:
+
+```java
+  /**
+   * Tests {@link MyClass#find find()} using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. find (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> pattern </TD> <TD>  </TD> </TR>
+   * <TR><TD> fileName </TD> <TD> defined </TD> </TR>
+   * <TR><TD> file.exists </TD> <TD> true </TD> </TR>
+   * <TR><TD> file.contents.linesLongerThanPattern </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> file.contents.patternMatches </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> file.contents.patternsInLine </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void find_0()
+    {
+    ...
+```
+
+Alternatively, if you use the options "`-J -p system=MySystem`", then the output looks like this:
+
+```java
+  /**
+   * Tests MySystem using the following inputs.
+   * <P>
+   * <TABLE border="1" cellpadding="8">
+   * <TR align="left"><TH colspan=2> 0. find (Success) </TH></TR>
+   * <TR align="left"><TH> Input Choice </TH> <TH> Value </TH></TR>
+   * <TR><TD> pattern </TD> <TD>  </TD> </TR>
+   * <TR><TD> fileName </TD> <TD> defined </TD> </TR>
+   * <TR><TD> file.exists </TD> <TD> true </TD> </TR>
+   * <TR><TD> file.contents.linesLongerThanPattern </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> file.contents.patternMatches </TD> <TD> (not applicable) </TD> </TR>
+   * <TR><TD> file.contents.patternsInLine </TD> <TD> (not applicable) </TD> </TR>
+   * </TABLE>
+   * </P>
+   */
+  @Test
+  public void find_0()
+    {
+    ...
+```
+
+
+And, if you'd rather not have input value assignments shown in the test method body, you can exclude them by adding the option
+`-p values=false`.
+
+
+Using the `-J` option also changes the default output file for the `tcases` command.  Normally, when you're working with a
+Tcases [project](#managing-project-files), generated test case definitions are written by default to a file named
+`${myProjectName}-Test.json`. But with `-J`, the generated `@Test` methods are written by default to a file named
+`${myProjectName}Test.java`. Exception: if your `${myProjectName}` is not a valid Java class identifier, a slightly modified
+form of the project name is used instead.
+
+For example, the following command will write generated test definitions in the form of `@Test` methods to a file named
+`findTest.java`
+
+```
+tcases -J find 
+```
+
 ### Using Output Annotations ###
-#### Example: Generating test code ####
+
+For a transformation to produce concrete test cases, sometimes the basic information in the input model -- functions, variables,
+and values -- is not enough. You need to add extra information that is not important for generating the test cases but is
+necessary to form the final output. That's what _output annotations_ are for.
+
+An output annotation is a special property setting -- a name-value pair -- that you can add to various
+elements of a system input definition.  It has no effect on test cases that Tcases generates. But Tcases will
+accumulate output annotations and attach them to the resulting system test definition document.
+In addition, Tcases will automatically attach [output annotations listing the properties of each test case](#property-annotations).
+From there, any output transform can use these output annotations to complete tests cases in their final form.
+
 #### How it works ####
+
+
+We can add the following kinds of output annotations. (See examples [here](http://www.cornutum.org/tcases/docs/examples/json/annotations-Input.json).)
+
+
+##### System annotations #####
+
+System annotations are created by adding a `has` object to the top-level system definition object. Each system annotation is
+transferred to the output document by applying it to the top-level test definition object.  In addition, each system annotation is
+added to all function and test case objects in the system test definition.
+
+For example, given the following system annotation...
+
+```json
+{
+  "system": "Things",
+  "has": {
+    "systemType": "Graphics"
+  },
+  ...
+}
+```
+
+... the resulting test definition looks like this:
+
+```json
+{
+  "system": "Things",
+  "has": {
+    "systemType": "Graphics"
+  },
+  "Make": {
+    "has": {
+      "systemType": "Graphics"
+    },
+    "testCases": [
+      {
+        "id": 0,
+        "name": "Color.Hue='Red'",
+        "has": {
+          "systemType": "Graphics"
+        },
+        ...
+      },
+      ...
+    ]
+  }
+}
+```
+          
+##### Function annotations #####
+
+Function annotations are created by adding a `has` object to a function input definition. Each function annotation is
+transferred to the output document by applying it to the corresponding output function defitino.  In addition, each function
+annotation is added to all test cases within its scope. Annotations for a function override any annotations of the same name
+defined for the system.
+
+For example, given the following funtion annotation...
+
+```json
+{
+  "system": "Things",
+  "has": {
+    "systemType": "Graphics"
+  },
+  "Make": {
+    "has": {
+      "measurement": "None"
+    }
+    ...
+  }
+}
+```
+
+... the resulting test definition looks like this:
+
+```json
+{
+  "system": "Things",
+  "has": {
+    "systemType": "Graphics"
+  },
+  "Make": {
+    "has": {
+      "systemType": "Graphics",
+      "measurement": "None"
+    },
+    "testCases": [
+      {
+        "id": 0,
+        "name": "Color.Hue='Red'",
+        "has": {
+          "systemType": "Graphics",
+          "measurement": "None"
+        },
+        ...
+      },
+      ...
+    ]
+  }
+}
+```
+
+          
+##### Variable binding annotations #####
+
+Variable binding annotations are created by adding a `has` object to a variable or a variable set definition. You can also
+create a variable binding annotation that applies to a group of variables by adding a `has` object to an input type group. Or
+you can create a variable binding annotation that is value-specific by adding a `has` object to a value definition. Each
+variable binding annotation is transferred to the output document by applying it to all variable binding objects within its
+scope.
+
+Annotations for a value override any annotations of the same name defined for a variable, which override annotations for a
+variable set, which override annotations for an input type group.
+
+For example, given the following variable binding annotations...
+
+```json
+{
+  "system": "Things",
+  "has": {
+    "systemType": "Graphics"
+  },
+  "Make": {
+    "has": {
+      "measurement": "None"
+    },
+    "arg": {
+      "has": {
+        "valueType": "Valid"
+      },
+      "Color": {
+        "has": {
+          "measurement": "Ordinal"
+        },
+        "members": {
+          "Hue": {
+            "has": {
+              "measurement": "Nominal"
+            },
+            "values": {
+              "Red": {},
+              "Green": {},
+              "Blue": {}
+            }
+          },
+          ...
+          "Saturation": {
+            "values": {
+              "Pale": {},
+              "Even": {},
+              "Intense": {},
+              "Undefined": {
+                "has": {
+                  "valueType": "Invalid"
+                },
+                "failure": true
+              }
+            }
+          }
+        }
+      },
+      ...
+    }
+  }
+}
+```
+
+... the resulting test definition looks like this:
+
+```json
+{
+  "system": "Things",
+  "has": {
+    "systemType": "Graphics"
+  },
+  "Make": {
+    "has": {
+      "systemType": "Graphics",
+      "measurement": "None"
+    },
+    "testCases": [
+      ...
+      {
+        "id": 6,
+        "name": "Color.Saturation='Undefined'",
+        "has": {
+          "systemType": "Graphics",
+          "measurement": "None"
+        },
+        "arg": {
+          "Color.Hue": {
+            "has": {
+              "valueType": "Valid",
+              "measurement": "Nominal"
+            },
+            "value": "Red"
+          },
+          ...
+          "Color.Saturation": {
+            "has": {
+              "valueType": "Invalid",
+              "measurement": "Ordinal"
+            },
+            "failure": true,
+            "value": "Undefined"
+          },
+          ...
+        }
+      }
+    ]
+  }
+}
+```
+
+
+##### Multi-level output annotations #####
+
+Why are system and function annotations also copied to all of the associated test case definitions? Because such annotations can
+have multiple purposes. In some cases, these annotations can be used to form the corresponding level of the transformed output
+document. In other cases, these annotations can be used to define system- or function-wide defaults for values used to form
+individual concrete test cases.
+
 #### Property annotations ####
+
+The [value properties](#value-properties) that characterize a test case can be useful meta-data for further transformations of test case data.
+For this reason, Tcases automatically attaches them to each generated test case using a special output annotation
+named "properties".
 
 
 ## Further Reference ##
+
+Want more technical details about Tcases? Here are links to some additional information.
+
+
+* The [`find` command example](http://www.cornutum.org/tcases/docs/examples/json/find-Input.json)
+
+* The `tcases` [command line](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/TcasesCommand.Options.html)
+
+* Document schemas
+
+  * [System input definition](http://www.cornutum.org/tcases/system-input-schema.json)
+  * [Generator definitions](http://www.cornutum.org/tcases/generators-schema.json)
+  * [System test definition](http://www.cornutum.org/tcases/system-test-schema.json)
+  * [Test project definition](http://www.cornutum.org/tcases/project-schema.json)
+
+
+* Related testing techniques
+
+  * [Black-box test design](http://en.wikipedia.org/wiki/Black-box_testing)
+  * [Equivalence class partitioning](http://en.wikipedia.org/wiki/Equivalence_partitioning)
+  * [Pairwise testing](https://en.wikipedia.org/wiki/All-pairs_testing)
+  * [Combinatorial testing](http://csrc.nist.gov/groups/SNS/acts/index.html)
+

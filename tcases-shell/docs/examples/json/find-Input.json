@@ -5,7 +5,6 @@
       "pattern": {
         "when": { "hasAll": ["fileExists"]},
         "type": "string",
-        "maxLength": 16,
         "values": {
           "empty": {
             "const": "",
@@ -15,20 +14,32 @@
             "pattern": "^[^\\s\"]$"
           },
           "unquotedMany": {
-            "pattern": "^[^\\s\"]+$"
+            "pattern": "^[^\\s\"]+$",
+            "minLength": 2,
+            "maxLength": 16,
+            "properties": ["patternMany"]
           },
           "quoted": {
-            "pattern": "^\"[^\\s\"]+\"$"
+            "pattern": "^\"[^\\s\"]+\"$",
+            "minLength": 2,
+            "maxLength": 16,
+            "properties": ["patternMany"]
           },
           "quotedEmpty": {
             "const": "\"\"",
             "properties": ["patternEmpty"]
           },
           "quotedBlanks": {
-            "pattern": "^\"[^\\s\"]*( +[^\\s\"]*)+\"$"
+            "pattern": "^\"[^\\s\"]*( +[^\\s\"]*)+\"$",
+            "minLength": 2,
+            "maxLength": 16,
+            "properties": ["patternMany"]
           },
           "quotedQuotes": {
-            "pattern": "^\"[^\\s\"]*(\"{2}[^\\s\"]*)+\"$"
+            "pattern": "^\"[^\\s\"]*(\"{2}[^\\s\"]*)+\"$",
+            "minLength": 2,
+            "maxLength": 16,
+            "properties": ["patternMany"]
           }
         }
       },
@@ -76,6 +87,7 @@
                     "properties": ["matchable"]
                   },
                   "0": {
+                    "when": { "hasAll": ["patternMany"]},
                     "failure": true
                   }
                 }
