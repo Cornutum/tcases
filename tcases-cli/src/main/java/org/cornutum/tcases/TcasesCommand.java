@@ -1238,7 +1238,7 @@ public class TcasesCommand
       firstNonNull
       ( options.getContentType(),
         Resource.Type.of( inputDefFile),
-        Resource.Type.XML);
+        Resource.Type.JSON);
 
     // Read the system input definition.
     logger_.info( "Reading system input definition from {}", Optional.ofNullable( inputDefFile).map( File::getPath).orElse( "standard input"));

@@ -36,6 +36,7 @@
           <junit>false</junit>
           <seed>123456789</seed>
           <defaultTupleSize>2</defaultTupleSize>
+          <contentType>xml</contentType>
         </configuration>
       </plugin>
     </plugins>

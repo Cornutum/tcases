@@ -135,7 +135,8 @@ public class TestTcasesCommand
         "-c", "12345",
         "-r", "45678",
         "-g", genFile.getPath(),
-        "-t", testDefFile.getPath()
+        "-t", testDefFile.getPath(),
+        "-T", "xml"
       };
 
     // When...
@@ -186,7 +187,8 @@ public class TestTcasesCommand
     String[] args =
       {
         "-o", outDir.getPath(),
-        "-t", testDefFile.getName()
+        "-t", testDefFile.getName(),
+        "-T", "xml"
       };
 
     // When...
@@ -341,7 +343,8 @@ public class TestTcasesCommand
       {
         "-g", genFile.getPath(),
         "-r", "12345",
-        "-c", "45678"
+        "-c", "45678",
+        "-T", "xml"
       };
 
     // When...
@@ -723,7 +726,8 @@ public class TestTcasesCommand
     String[] args =
       {
         "-x", transformFile.getPath(),
-        "-p", "system=Run_Transform_1"
+        "-p", "system=Run_Transform_1",
+        "-T", "xml"
       };
 
     // When...
@@ -1471,6 +1475,26 @@ public class TestTcasesCommand
         
     // Then...
     assertThat( "Test def created", outFile.exists(), is( true));
+    }
+
+  
+  @Test
+  public void runWithContentType_Default()
+    {
+    // Given...
+    File inFile = getResourceFile( "runWithContentType-1-Input.json");
+    
+    String[] args =
+      {
+      };
+    
+    // When...
+    StringBuffer outFile = new StringBuffer();
+    runWithStdIO( new Options( args), inFile, outFile);
+        
+    // Then...
+    assertThat( "Test def created", outFile.length() > 0, is( true));
+    assertThat( "Test def content type", testResources_.readJsonString( outFile.toString()), is( notNullValue()));
     }
 
   /**
