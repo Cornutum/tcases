@@ -8,6 +8,7 @@
 package org.cornutum.tcases;
 
 import org.apache.commons.io.IOUtils;
+import org.cornutum.hamcrest.ExpectedFailure.Failable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Optional;
 
 /**
  * Base class for CLI command tests.
@@ -32,11 +34,11 @@ public abstract class CommandTest
     }
 
   /**
-   * Performs the given Runnable, using the given standard input/output.
+   * Performs the given Failable, using the given standard input/output.
    * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.
    * If <CODE>stdOut</CODE> is non-null, redirect standard output to write to the given buffer.
    */
-  protected void runWithStdIO( Runnable runnable, File stdIn, StringBuffer stdOut)
+  public static void runWithStdIO( Failable failable, File stdIn, StringBuffer stdOut)
     {
     InputStream prevIn = System.in;
     PrintStream prevOut = System.out;
@@ -58,20 +60,24 @@ public abstract class CommandTest
         System.setOut( (newOut = new PrintStream( (newOutBytes = new ByteArrayOutputStream()))));
         }
 
-      runnable.run();
+      Optional<Throwable> failure = failable.get();
+      if( failure.isPresent())
+        {
+        throw failure.get();
+        }
       }
     catch( RuntimeException r)
       {
       throw r;
       }
-    catch( Exception e)
+    catch( Throwable e)
       {
       throw new RuntimeException( "Can't run", e);
       }
     finally
       {
-      IOUtils.closeQuietly( newIn, null);
-      IOUtils.closeQuietly( newOut, null);
+      IOUtils.closeQuietly( newIn);
+      IOUtils.closeQuietly( newOut);
 
       System.setIn( prevIn);
       System.setOut( prevOut);
@@ -84,9 +90,9 @@ public abstract class CommandTest
     }
 
   /**
-   * Performs the given Runnable, using the given standard error.
+   * Performs the given Failable, using the given standard error.
    */
-  protected void runWithStdErr( Runnable runnable, StringBuffer stdErr)
+  public static void runWithStdErr( Failable failable, StringBuffer stdErr)
     {
     PrintStream prevErr = System.err;
 
@@ -98,19 +104,25 @@ public abstract class CommandTest
       stdErr.delete( 0, stdErr.length());
       System.setErr( (newErr = new PrintStream( (newErrBytes = new ByteArrayOutputStream()))));
 
-      runnable.run();
+      
+
+      Optional<Throwable> failure = failable.get();
+      if( failure.isPresent())
+        {
+        throw failure.get();
+        }
       }
     catch( RuntimeException r)
       {
       throw r;
       }
-    catch( Exception e)
+    catch( Throwable e)
       {
       throw new RuntimeException( "Can't run", e);
       }
     finally
       {
-      IOUtils.closeQuietly( newErr, null);
+      IOUtils.closeQuietly( newErr);
 
       System.setErr( prevErr);
 

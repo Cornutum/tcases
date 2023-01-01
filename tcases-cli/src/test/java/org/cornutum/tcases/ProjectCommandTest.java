@@ -319,24 +319,7 @@ public class ProjectCommandTest extends CommandTest
 
         // When...
     StringBuffer outFile = new StringBuffer();
-    runWithStdIO(
-      new Runnable()
-        {
-        @Override
-		public void run()
-          {
-          try
-            {
-            ProjectCommand.run( options);
-            }
-          catch( Exception e)
-            {
-            throw new RuntimeException( "Can't run command", e);
-            }
-          }
-        },
-      null,
-      outFile);
+    runWithStdIO( () -> ProjectCommand.run( options), null, outFile);
         
     // Then...
     assertThat( "Standard output", outFile.toString(), is( not( nullValue())));

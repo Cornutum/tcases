@@ -7,30 +7,24 @@
 
 package org.cornutum.tcases.openapi;
 
+import org.cornutum.tcases.CommandTest;
 import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.io.SystemTestResources;
 import org.cornutum.tcases.openapi.ApiCommand.Options;
 import org.cornutum.tcases.resolve.ResolverException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.net.URL;
-import java.nio.charset.Charset;
 
 /**
  * Runs tests for {@link ApiCommand}.
  */
-public class ApiCommandTest
+public class ApiCommandTest extends CommandTest
   {
   /**
    * Tests {@link ApiCommand#run run()} using the following inputs.
@@ -135,7 +129,7 @@ public class ApiCommandTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, outFile);
+    runWithStdIO( () -> ApiCommand.run( new Options( args)), apiFile, outFile);
         
     // Then...
     assertThat( "Output model created", outFile.length() > 0, is( true));
@@ -183,7 +177,7 @@ public class ApiCommandTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     assertThat( "Output model created", inputResources_.readJson( outFile), is( notNullValue()));
@@ -322,7 +316,7 @@ public class ApiCommandTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     assertThat( "Output model created", outFile.exists(), is( true));
@@ -411,7 +405,7 @@ public class ApiCommandTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     assertThat( "Output model created", outFile.exists(), is( true));
@@ -503,7 +497,7 @@ public class ApiCommandTest
       };
     
     expectFailure( ResolverException.class)
-      .when( () -> runWithStdIO( new Options( args), apiFile, outFile))
+      .when( () -> runWithStdIO( () -> ApiCommand.run( new Options( args)), apiFile, outFile))
       .then( failure -> {
         assertThat(
           "Failure",
@@ -556,7 +550,7 @@ public class ApiCommandTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     assertThat( "Output model created", outFile.exists(), is( true));
@@ -736,59 +730,6 @@ public class ApiCommandTest
         
     // Then...
     assertThat( "Output model created", outFile.exists(), is( true));
-    }
-
-  /**
-   * Return the file for the given resource.
-   */
-  private File getResourceFile( String resource)
-    {
-    URL classUrl = getClass().getResource( getClass().getSimpleName() + ".class");
-    return new File( new File( classUrl.getFile()).getParent(), resource);
-    }
-
-  /**
-   * Run Tcases with the given options, using the given standard input/output.
-   * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.
-   * If <CODE>stdOut</CODE> is non-null, redirect standard output to write to the given buffer.
-   */
-  private void runWithStdIO( Options options, File stdIn, StringBuffer stdOut) throws Exception
-    {
-    InputStream prevIn = System.in;
-    PrintStream prevOut = System.out;
-
-    InputStream newIn = null;
-    PrintStream newOut = null;
-    ByteArrayOutputStream newOutBytes = null;
-    
-    try
-      {
-      if( stdIn != null)
-        {
-        System.setIn( (newIn = new FileInputStream( stdIn)));
-        }
-
-      if( stdOut != null)
-        {
-        stdOut.delete( 0, stdOut.length());
-        System.setOut( (newOut = new PrintStream( (newOutBytes = new ByteArrayOutputStream()))));
-        }
-
-      ApiCommand.run( options);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( newIn, null);
-      IOUtils.closeQuietly( newOut, null);
-
-      System.setIn( prevIn);
-      System.setOut( prevOut);
-
-      if( newOutBytes != null)
-        {
-        stdOut.append( new String( newOutBytes.toByteArray(), Charset.forName( "UTF-8")));
-        }
-      }
     }
 
   private SystemInputResources inputResources_ = new SystemInputResources( getClass());
