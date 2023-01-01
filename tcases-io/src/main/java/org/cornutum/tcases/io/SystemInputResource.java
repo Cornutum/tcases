@@ -8,7 +8,7 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.SystemInputDef;
-import static org.cornutum.tcases.io.Resource.Type.JSON;
+import static org.cornutum.tcases.io.Resource.Type.*;
 import java.io.File;
 import java.net.URL;
 
@@ -40,10 +40,30 @@ public class SystemInputResource extends Resource implements ISystemInputSource
   public SystemInputDef getSystemInputDef()
     {
     return
-      getType() == JSON?
-      new SystemInputJsonReader( open()).getSystemInputDef() :
+      getType() == XML?
+      new SystemInputDocReader( openInput()).getSystemInputDef() :
+      new SystemInputJsonReader( openInput()).getSystemInputDef() ;
+    }
 
-      new SystemInputDocReader( open()).getSystemInputDef();
+  /**
+   * Writes the given system input definition.
+   */
+  public void write( SystemInputDef systemInput)
+    {
+    if( getType() == XML)
+      {
+      try( SystemInputDocWriter writer = new SystemInputDocWriter( openOutput()))
+        {
+        writer.write( systemInput);
+        }
+      }
+    else
+      {
+      try( SystemInputJsonWriter writer = new SystemInputJsonWriter( openOutput()))
+        {
+        writer.write( systemInput);
+        }
+      }
     }
 
   /**
