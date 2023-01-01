@@ -7,10 +7,10 @@
 
 package org.cornutum.tcases.io;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -120,9 +120,9 @@ public class IndentedWriter implements Closeable
    * Closes the writer.
    */
   @Override
-  public void close() throws IOException
+  public void close()
     {
-    writer_.close();
+    IOUtils.closeQuietly( writer_);
     }
     
 

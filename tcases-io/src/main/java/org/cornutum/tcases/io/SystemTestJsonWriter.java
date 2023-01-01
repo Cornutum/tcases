@@ -83,7 +83,7 @@ public class SystemTestJsonWriter implements Closeable
   @Override
   public void close()
     {
-    IOUtils.closeQuietly( getWriter(), null);
+    IOUtils.closeQuietly( getWriter());
     }
 
   /**
