@@ -19,17 +19,15 @@ import java.io.File;
 import java.util.Optional;
 
 /**
- * Manages a Tcases project
+ * Copies a Tcases project
  */
-public class ProjectCommand
+public class CopyCommand
   {
   /**
    * Represents a set of command line options.
    */
   public static class Options
     {
-    public enum Command { COPY };
-
     /**
      * Creates a new Options object.
      */
@@ -50,73 +48,28 @@ public class ProjectCommand
       // Handle options
       for( i = 0; i < args.length && args[i].charAt(0) == '-'; i = handleOption( args, i));
 
-      // Handle command arguments.
-      handleCommand( args, i);
+      // Handle additional arguments.
+      handleArgs( args, i);
       }
 
     /**
-     * Handles command arguments i, i+1, ...
+     * Handles the i'th option and return the index of the next argument.
      */
-    protected void handleCommand( String[] args, int i)
+    protected int handleOption( String[] args, int i)
       {
-      if( i < args.length)
+      String arg = args[i];
+
+      if( arg.equals( "-help"))
         {
-        setInputDef( new File( args[i++]));
-        }
-      else
-        {
-        throwUsageException( "No project inputDef specified");
+        throwHelpException();
         }
 
-      if( i < args.length)
+      else if( arg.equals( "-v"))
         {
-        setCommand( args[i++]);
-        }
-      else
-        {
-        throwUsageException( "No command specified");
+        setShowVersion( true);
         }
 
-      handleCommandArgs( args, i);
-      }
-
-    /**
-     * Handles command arguments i, i+1, ...
-     */
-    protected void handleCommandArgs( String[] args, int i)
-      {
-      switch( getCommand())
-        {
-        case COPY:
-          {
-          i = handleCopyArgs( args, i);
-          break;
-          }
-
-        default:
-          {
-          // No args expected.
-          break;
-          }
-        }
-
-      if( i < args.length)
-        {
-        throwUsageException( String.format( "Unexpected argument: %s", args[i]));
-        }
-      }
-
-    /**
-     * Handles COPY command args i, i+1, ... Returns the index of the next command arg.
-     */
-    protected int handleCopyArgs( String[] args, int i)
-      {
-      for( boolean moreArgs = true;
-           moreArgs && i < args.length;
-           i += moreArgs? 1 : 0)
-        {
-        String arg = args[i];
-        if( arg.equals( "-t"))
+      else if( arg.equals( "-t"))
           {
           i++;
           if( i >= args.length)
@@ -176,38 +129,32 @@ public class ProjectCommand
           setDestType( args[i]);
           }
 
-        else
-          {
-          moreArgs = false;
-          }
-        }
-
-      return i;
-      }
-
-    /**
-     * Handles the i'th option and return the index of the next argument.
-     */
-    protected int handleOption( String[] args, int i)
-      {
-      String arg = args[i];
-
-      if( arg.equals( "-help"))
-        {
-        throwHelpException();
-        }
-
-      else if( arg.equals( "-v"))
-        {
-        setShowVersion( true);
-        }
-
       else
         {
         throwUsageException( String.format( "Unknown option: %s", arg));
         }
 
       return i + 1;
+      }
+
+    /**
+     * Handles the non-option arguments i, i+1, ...
+     */
+    protected void handleArgs( String[] args, int i)
+      {
+      int nargs = args.length - i;
+
+      if( nargs > 1)
+        {
+        throwUsageException( String.format( "Unexpected argument: %s", args[i+1]));
+        }
+
+      if( nargs < 1)
+        {
+        throwUsageException( "No project inputDef specified");
+        }
+
+      setInputDef( new File( args[i]));
       }
 
     /**
@@ -226,9 +173,9 @@ public class ProjectCommand
       {
       for( String line :
              new String[] {
-               "Usage: tcases-project [options...] inputDef command [args...]",
+               "Usage: tcases-copy [options...] inputDef",
                "",
-               "Manages a Tcases project, according to the given command.",
+               "Copies a Tcases project, according to the given command.",
                "",
                "The project is identified by given system input definition file. The system input",
                "definition is read from the first one of the following files that can be located.",
@@ -239,43 +186,37 @@ public class ProjectCommand
                "  4. inputDef-Input.xml",
                "  5. inputDef.xml",
                "",
-               "The command must be one of the following:",
+               "Each option is one of the following:",
                "",
-               " copy [-g genDef] [-t testDef] [-T type] [--toDir outDir] [--toType type] [--toName name]",
+               "  -g genDef      If defined, the project generator definition is read from the given ",
+               "                 genDef file. Otherwise, the generator definition is read from the",
+               "                 standard location for the project.",
                "",
-               "   Duplicates the specified project using the given contentType. The contentType must be",
-               "   one of 'json' or 'xml'.",
+               "  -t testDef     If defined, base test definitions for the project are read from the ",
+               "                 given testDef file. Otherwise, base test definitions are read from",
+               "                 the standard location for the project.",
                "",
-               "     -g genDef      If defined, the project generator definition is read from the given ",
-               "                    genDef file. Otherwise, the generator definition is read from the",
-               "                    standard location for the project.",
+               "  -T type        If defined, specifies the content type for the inputDef. The contentType",
+               "                 must be one of 'json' or 'xml'. Otherwise, the content type is derived",
+               "                 from the inputDef name.",
                "",
-               "     -t testDef     If defined, base test definitions for the project are read from the ",
-               "                    given testDef file. Otherwise, base test definitions are read from",
-               "                    the standard location for the project.",
+               "  --toDir outDir If defined, copied project files are written to the given directory.",
+               "                 Otherwise, copied project files are written to the parent directory of",
+               "                 the inputDef.",
                "",
-               "     -T type        If defined, specifies the content type for the inputDef. The contentType",
-               "                    must be one of 'json' or 'xml'. Otherwise, the content type is derived",
-               "                    from the inputDef name.",
+               "  --toType type  If defined, the copied files are written using the given content type.",
+               "                 Otherwise, copied files use the same content type as the inputDef.",
                "",
-               "     --toDir outDir If defined, copied project files are written to the given directory.",
-               "                    Otherwise, copied project files are written to the parent directory of",
-               "                    the inputDef.",
+               "  --toName name  If defined, the copied files are written with the given project name.",
+               "                 Otherwise, copied files use the same project name as the inputDef.",
                "",
-               "     --toType type  If defined, the copied files are written using the given content type.",
-               "                    Otherwise, copied files use the same content type as the inputDef.",
+               "  -l logFile     If -l is defined, log output is written to the given file. If omitted,",
+               "                 log output is written to a file named tcases-copy.log in the current",
+               "                 working directory. If logFile is 'stdout', log output is written to",
+               "                 standard output.",
                "",
-               "     --toName name  If defined, the copied files are written with the given project name.",
-               "                    Otherwise, copied files use the same project name as the inputDef.",
-               "",
-               "The following options are accepted:",
-               "",
-               "  -l logFile  If -l is defined, log output is written to the given file. If omitted,",
-               "              log output is written to a file named tcases-project.log in the current working",
-               "              directory. If logFile is 'stdout', log output is written to standard output.",
-               "",
-               "  -v          Shows the current Tcases version. If this option is given, no other",
-               "              action is performed."
+               "  -v             Shows the current Tcases version. If this option is given, no other",
+               "                 action is performed."
              })
         {
         System.err.println( line);
@@ -395,37 +336,6 @@ public class ProjectCommand
       }
 
     /**
-     * Changes the project command.
-     */
-    public void setCommand( String command)
-      {
-      try
-        {
-        setCommand( Command.valueOf( String.valueOf( command).toUpperCase()));
-        }
-      catch( Exception e)
-        {
-        throwUsageException( String.format( "Unknown command=%s", command));
-        }
-      }
-
-    /**
-     * Changes the project command.
-     */
-    public void setCommand( Command command)
-      {
-      command_ = command;
-      }
-
-    /**
-     * Returns the project command.
-     */
-    public Command getCommand()
-      {
-      return command_;
-      }
-
-    /**
      * Changes the destination directory.
      */
     public void setDestDir( File outDir)
@@ -499,16 +409,6 @@ public class ProjectCommand
       {
       StringBuilder builder = new StringBuilder();
 
-      if( getInputDef() != null)
-        {
-        builder.append( " ").append( getInputDef().getPath());
-        }
-
-      if( getCommand() != null)
-        {
-        builder.append( " ").append( getCommand());
-        }
-
       if( getContentType() != null)
         {
         builder.append( " ").append( getContentType());
@@ -544,11 +444,15 @@ public class ProjectCommand
         builder.append( " -v");
         }
 
+      if( getInputDef() != null)
+        {
+        builder.append( " ").append( getInputDef().getPath());
+        }
+
       return builder.toString();
       }
 
     private File inputDef_;
-    private Command command_;
     private Resource.Type contentType_;
     private File destDir_;
     private File testDef_;
@@ -568,18 +472,6 @@ public class ProjectCommand
       public Builder inputDef( File inputDef)
         {
         options_.setInputDef( inputDef);
-        return this;
-        }
-
-      public Builder command( String command)
-        {
-        options_.setCommand( command);
-        return this;
-        }
-
-      public Builder command( Command command)
-        {
-        options_.setCommand( command);
         return this;
         }
 
@@ -629,15 +521,15 @@ public class ProjectCommand
     }
   
   /**
-   * Creates a new Tcases object.
+   * Creates a new CopyCommand object.
    */
-  private ProjectCommand()
+  private CopyCommand()
     {
     // Static methods only
     }
 
   /**
-   * Manages a Tcases project, using the given {@link Options command line options}.
+   * Copies a Tcases project, using the given {@link Options command line options}.
    */
   public static void main( String[] args)
     {
@@ -662,7 +554,7 @@ public class ProjectCommand
     }
 
   /**
-   * Manages a Tcases project, using the given {@link Options command line options}.
+   * Copies a Tcases project, using the given {@link Options command line options}.
    */
   public static void run( Options options) throws Exception
     {
@@ -693,27 +585,6 @@ public class ProjectCommand
         throw new IllegalArgumentException( "Can't locate system input definition input file=" + options.getInputDef());
         }
 
-    // Perform the specified command.
-    Options.Command command =
-      Optional.ofNullable( options.getCommand())
-      .orElseThrow( () -> new IllegalArgumentException( "No command specified"));
-
-    switch( command)
-      {
-      case COPY:
-        {
-        copyProject( options, inputDefFile);
-        break;
-        }
-      }
-    }
-  
-  /**
-   * Copies the project identified by the given  {@link SystemInputDef system input definition}
-   * using the given {@link Options command line options}.
-   */
-  public static void copyProject( Options options, File inputDefFile) throws Exception
-    {
     // Identify the input project.
     String inputProject = getProjectName( inputDefFile);
 
@@ -721,7 +592,9 @@ public class ProjectCommand
 
     Resource.Type inputContentType =
       Optional.ofNullable( options.getContentType())
-      .orElseGet( () -> Optional.ofNullable( Resource.Type.of( inputDefFile)).orElse( Resource.Type.JSON));
+      .orElse(
+        Optional.ofNullable( Resource.Type.of( inputDefFile))
+        .orElse( Resource.Type.JSON));
     
     // Identify the generator definition file.
     File genDefFile =
