@@ -1,0 +1,80 @@
+<System name="ProjectCommand">
+    <Function name="copyProject">
+        <Input>
+            <VarSet name="Options">
+                <Var name="showVersion">
+                    <Value name="Defined" property="infoOnly"/>
+                    <Value name="Undefined"/>
+                </Var>
+                <Var name="help">
+                    <Value name="Defined" property="infoOnly"/>
+                    <Value name="Undefined"/>
+                </Var>
+            </VarSet>
+            <VarSet name="InputDef" whenNot="infoOnly">
+                <Var name="Defined">
+                    <Value name="Yes" property="inputDef"/>
+                    <Value name="No" failure="true"/>
+                </Var>
+                <Var name="Type" when="inputDef">
+                    <Value name="json"/>
+                    <Value name="xml"/>
+                    <Value name="Undefined"/>
+                </Var>
+                <Var name="Path" when="inputDef">
+                    <Value name="Relative" once="true"/>
+                    <Value name="Absolute"/>
+                </Var>
+                <Var name="Generators" when="inputDef">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+                <Var name="Base-Tests" when="inputDef">
+                    <Value name="Yes"/>
+                    <Value name="No"/>
+                </Var>
+            </VarSet>
+            <Var name="Command" when="inputDef">
+                <Value name="copy" property="command"/>
+                <Value name="Undefined" failure="true"/>
+                <Value name="Unknown" failure="true"/>
+            </Var>
+            <VarSet name="Args" when="command">
+                <Var name="contentType">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="genDef">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="testDef">
+                    <Value name="Defined"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="destType">
+                    <Value name="Defined" property="dest"/>
+                    <Value name="Default"/>
+                </Var>
+                <Var name="destName">
+                    <Value name="Defined" property="dest"/>
+                    <Value name="Default"/>
+                </Var>
+                <VarSet name="destDir">
+                    <Var name="Defined">
+                        <Value name="Yes" property="dest, destDir"/>
+                        <Value name="No"/>
+                    </Var>
+                    <Var name="Path" when="destDir">
+                        <Value name="Relative"/>
+                        <Value name="Absolute"/>
+                    </Var>
+                </VarSet>
+                <Var name="Destinaton"> 
+                    <Value name="Defined" when="dest"/>
+                    <Value name="Invalid" whenNot="dest" failure="true"/>
+                </Var>
+            </VarSet>
+        </Input>
+    </Function>
+</System>

@@ -1,0 +1,61 @@
+
+{
+    "system": "Things",
+    "has": {
+        "systemType": "Graphics"
+    },
+    "Make": {
+        "has": {
+            "systemType": "Graphics",
+            "measurement": "None"
+        },
+        "testCases": [
+            {
+                "id": 0,
+                "name": "Size='Medium'",
+                "has": {
+                    "systemType": "Graphics",
+                    "properties": "polygon",
+                    "measurement": "None"
+                },
+                "arg": {
+                    "Color.Hue": {
+                        "has": {
+                            "valueType": "Valid",
+                            "measurement": "Nominal"
+                        },
+                        "NA": true
+                    },
+                    "Color.Lightness": {
+                        "has": {
+                            "valueType": "Valid",
+                            "measurement": "Ordinal"
+                        },
+                        "NA": true
+                    },
+                    "Color.Saturation": {
+                        "has": {
+                            "valueType": "Valid",
+                            "measurement": "Ordinal"
+                        },
+                        "NA": true
+                    },
+                    "Size": {
+                        "has": {
+                            "valueType": "Valid",
+                            "measurement": "Ordinal"
+                        },
+                        "value": "Medium"
+                    },
+                    "Shape": {
+                        "has": {
+                            "valueType": "Valid",
+                            "measurement": "Nominal"
+                        },
+                        "value": "Square"
+                    }
+                }
+            }
+        ]
+    }
+}
