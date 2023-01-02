@@ -48,8 +48,11 @@ public class CopyCommand
       // Handle options
       for( i = 0; i < args.length && args[i].charAt(0) == '-'; i = handleOption( args, i));
 
-      // Handle additional arguments.
-      handleArgs( args, i);
+      if( !showVersion())
+        {
+        // Handle additional arguments.
+        handleArgs( args, i);
+        }
       }
 
     /**
