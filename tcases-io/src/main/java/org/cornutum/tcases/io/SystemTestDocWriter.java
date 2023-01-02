@@ -12,7 +12,6 @@ import org.cornutum.tcases.*;
 import static org.cornutum.tcases.io.SystemTestDoc.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
@@ -164,7 +163,7 @@ public class SystemTestDocWriter extends AbstractSystemTestWriter
    * Closes the writer.
    */
   @Override
-  public void close() throws IOException
+  public void close()
     {
     getXmlWriter().close();
     }

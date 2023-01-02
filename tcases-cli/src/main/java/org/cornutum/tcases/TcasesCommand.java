@@ -591,8 +591,10 @@ public class TcasesCommand
                "the first one of the following files that can be located.",
                "",
                "  1. inputDef",
-               "  2. inputDef-Input.xml",
-               "  3. inputDef.xml",
+               "  2. inputDef-Input.json",
+               "  3. inputDef.json",
+               "  4. inputDef-Input.xml",
+               "  5. inputDef.xml",
                "",
                "Each option is one of the following:",
                "",
@@ -1221,10 +1223,10 @@ public class TcasesCommand
     File inputDefFile = inputDefOption;
     if( inputDefFile != null
         && !inputDefFile.exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists()
         && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.json")).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + ".json")).exists())
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".json")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists())
         {
         throw new RuntimeException( "Can't locate input file for path=" + options.getInputDef());
         }

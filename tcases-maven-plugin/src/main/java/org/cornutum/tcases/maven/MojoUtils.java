@@ -50,7 +50,7 @@ public final class MojoUtils
 
   /**
    * If the given path is not absolute, returns it as an absolute path relative to the
-   * project base directory. Otherwise, returns the given absolute path.
+   * given base directory. Otherwise, returns the given absolute path.
    */
   public static File getDirPath( File baseDir, File dirPath)
     {

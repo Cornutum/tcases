@@ -14,18 +14,13 @@ import org.cornutum.tcases.openapi.moco.MocoTestConfig;
 import org.cornutum.tcases.openapi.moco.MocoTestConfigWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterTest;
 import org.cornutum.tcases.resolve.ResolverException;
+import static org.cornutum.tcases.CommandTest.runWithStdIO;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.nio.charset.Charset;
 
 /**
  * Runs tests for {@link ApiTestCommand}.
@@ -82,7 +77,7 @@ public class ApiTestCommandTest extends TestWriterTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     File testFile = new File( outFile.getParent(), outFile.getName() + "Test.java");
@@ -213,7 +208,7 @@ public class ApiTestCommandTest extends TestWriterTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     File testFile = new File( outDir, outFile.getPath() + ".java");
@@ -332,7 +327,7 @@ public class ApiTestCommandTest extends TestWriterTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     File testFile = new File( outFile.getParent(), outFile.getName() + "Test.java");
@@ -465,7 +460,7 @@ public class ApiTestCommandTest extends TestWriterTest
     try
       {
       // When...
-      runWithStdIO( new Options( args), apiFile, null);
+      runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, null);
         
       // Then...
       File testFile = new File( outDir, outFile.getPath() + ".java");
@@ -590,7 +585,7 @@ public class ApiTestCommandTest extends TestWriterTest
       };
     
     // When...
-    runWithStdIO( new Options( args), apiFile, null);
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, null);
         
     // Then...
     File testFile = new File( outFile.getParent(), outFile.getName() + ".java");
@@ -750,7 +745,7 @@ public class ApiTestCommandTest extends TestWriterTest
 
     // When...
     assertTestWriterException(
-      () -> runWithStdIO( new Options( args), apiFile, null),
+      () -> runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, null),
       "JUnitTestWriter[]: Can't write test for TestSource[RequestTestDef[OpenAPI Request Test Cases]]",
       "Can't write test=OpenAPIRequestTestCases",
       "No package defined for target=JavaTestTarget[package=<null>,STDOUT]");
@@ -953,7 +948,7 @@ public class ApiTestCommandTest extends TestWriterTest
     
     // When...
     StringBuffer stdOut = new StringBuffer();
-    runWithStdIO( new Options( args), apiFile, stdOut);
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, stdOut);
         
     // Then...
     String testFileResults = stdOut.toString();
@@ -1009,50 +1004,6 @@ public class ApiTestCommandTest extends TestWriterTest
 
     File responsesDir = testFile.getParentFile();
     assertResponses( testFile, responsesDir, true);
-    }
-
-  /**
-   * Run Tcases with the given options, using the given standard input/output.
-   * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.
-   * If <CODE>stdOut</CODE> is non-null, redirect standard output to write to the given buffer.
-   */
-  private void runWithStdIO( Options options, File stdIn, StringBuffer stdOut) throws Exception
-    {
-    InputStream prevIn = System.in;
-    PrintStream prevOut = System.out;
-
-    InputStream newIn = null;
-    PrintStream newOut = null;
-    ByteArrayOutputStream newOutBytes = null;
-    
-    try
-      {
-      if( stdIn != null)
-        {
-        System.setIn( (newIn = new FileInputStream( stdIn)));
-        }
-
-      if( stdOut != null)
-        {
-        stdOut.delete( 0, stdOut.length());
-        System.setOut( (newOut = new PrintStream( (newOutBytes = new ByteArrayOutputStream()))));
-        }
-
-      ApiTestCommand.run( options);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( newIn, null);
-      IOUtils.closeQuietly( newOut, null);
-
-      System.setIn( prevIn);
-      System.setOut( prevOut);
-
-      if( newOutBytes != null)
-        {
-        stdOut.append( new String( newOutBytes.toByteArray(), Charset.forName( "UTF-8")));
-        }
-      }
     }
 
   /**

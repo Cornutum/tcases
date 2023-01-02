@@ -15,8 +15,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Closeable;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
+import java.util.Optional;
 
 /**
  * Base class for test project resources.
@@ -112,7 +115,7 @@ public abstract class Resource implements Closeable
   /**
    * Opens a stream to read the contents of this resource.
    */
-  protected InputStream open()
+  protected InputStream openInput()
     {
     try
       {
@@ -126,7 +129,7 @@ public abstract class Resource implements Closeable
       return
         location == null
         ? System.in
-        : (stream_ = location.openStream());
+        : (inputStream_ = location.openStream());
       }
     catch( Exception e)
       {
@@ -134,10 +137,44 @@ public abstract class Resource implements Closeable
       }
     }
 
+  /**
+   * Opens a stream to write the contents of this resource.
+   */
+  protected OutputStream openOutput()
+    {
+    try
+      {
+      if( getType() == null)
+        {
+        throw new IllegalStateException( String.format( "Unknown type for %s", this));
+        }
+
+      URL location = getLocation();
+    
+      OutputStream outputStream =
+        location == null?
+        System.out :
+
+        "file".equals( location.getProtocol())?
+        (outputStream_ = new FileOutputStream( location.getPath())) :
+
+        null;
+
+      return
+        Optional.ofNullable( outputStream)
+        .orElseThrow( () -> new IllegalStateException( String.format( "Can't write to URL=%s", location)));
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( String.format( "Can't write %s", this), e);
+      }
+    }
+
   @Override
   public void close()
     {
-    IOUtils.closeQuietly( stream_, null);
+    IOUtils.closeQuietly( inputStream_);
+    IOUtils.closeQuietly( outputStream_);
     }
 
   /**
@@ -193,5 +230,6 @@ public abstract class Resource implements Closeable
 
   private final URL location_;
   private Type type_;
-  private InputStream stream_;
+  private InputStream inputStream_;
+  private OutputStream outputStream_;
   }

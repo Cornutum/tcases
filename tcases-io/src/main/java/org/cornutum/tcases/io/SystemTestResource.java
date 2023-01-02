@@ -8,7 +8,7 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.SystemTestDef;
-import static org.cornutum.tcases.io.Resource.Type.JSON;
+import static org.cornutum.tcases.io.Resource.Type.*;
 import java.io.File;
 import java.net.URL;
 
@@ -40,10 +40,30 @@ public class SystemTestResource extends Resource implements ISystemTestSource
   public SystemTestDef getSystemTestDef()
     {
     return
-      getType() == JSON?
-      new SystemTestJsonReader( open()).getSystemTestDef() :
+      getType() == XML?
+      new SystemTestDocReader( openInput()).getSystemTestDef() :
+      new SystemTestJsonReader( openInput()).getSystemTestDef();
+    }
 
-      new SystemTestDocReader( open()).getSystemTestDef();
+  /**
+   * Writes the given system test definition.
+   */
+  public void write( SystemTestDef systemTest)
+    {
+    if( getType() == XML)
+      {
+      try( SystemTestDocWriter writer = new SystemTestDocWriter( openOutput()))
+        {
+        writer.write( systemTest);
+        }
+      }
+    else
+      {
+      try( SystemTestJsonWriter writer = new SystemTestJsonWriter( openOutput()))
+        {
+        writer.write( systemTest);
+        }
+      }
     }
 
   /**

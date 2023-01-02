@@ -13,7 +13,6 @@ import org.cornutum.tcases.io.SystemInputResources;
 import org.cornutum.tcases.io.SystemTestResources;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
@@ -23,18 +22,14 @@ import static org.hamcrest.Matchers.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.Optional;
 
 /**
  * Runs tests for {@link TcasesCommand#main}.
  *
  */
-public class TestTcasesCommand
+public class TestTcasesCommand extends CommandTest
   {
   /**
    * Tests {@link TcasesCommand#run run()} using the following inputs.
@@ -140,7 +135,7 @@ public class TestTcasesCommand
       };
 
     // When...
-    runWithStdIO( new Options( args), inFile, null);
+    runWithStdIO( () -> TcasesCommand.run( new Options( args)), inFile, null);
         
     // Then...
     assertThat( "Test def created", testDefFile.exists(), is( true));
@@ -192,7 +187,7 @@ public class TestTcasesCommand
       };
 
     // When...
-    runWithStdIO( new Options( args), inFile, null);
+    runWithStdIO( () -> TcasesCommand.run( new Options( args)), inFile, null);
         
     // Then...
     File outFile = new File( outDir, testDefFile.getName());
@@ -349,7 +344,7 @@ public class TestTcasesCommand
 
     // When...
     StringBuffer outFile = new StringBuffer();
-    runWithStdIO( new Options( args), inFile, outFile);
+    runWithStdIO( () -> TcasesCommand.run( new Options( args)), inFile, outFile);
         
     // Then...
     assertThat( "Test def created", outFile.length() > 0, is( true));
@@ -732,7 +727,7 @@ public class TestTcasesCommand
 
     // When...
     StringBuffer outFile = new StringBuffer();
-    runWithStdIO( new Options( args), inFile, outFile);
+    runWithStdIO( () -> TcasesCommand.run( new Options( args)), inFile, outFile);
         
     // Then...
     assertThat( "Test def created", outFile.length() > 0, is( true));
@@ -1265,7 +1260,7 @@ public class TestTcasesCommand
       };
     
     // When...
-    runWithStdIO( new Options( args), inFile, null);
+    runWithStdIO( () -> TcasesCommand.run( new Options( args)), inFile, null);
         
     // Then...
     assertThat( "Test def created", outFile.exists(), is( true));
@@ -1490,7 +1485,7 @@ public class TestTcasesCommand
     
     // When...
     StringBuffer outFile = new StringBuffer();
-    runWithStdIO( new Options( args), inFile, outFile);
+    runWithStdIO( () -> TcasesCommand.run( new Options( args)), inFile, outFile);
         
     // Then...
     assertThat( "Test def created", outFile.length() > 0, is( true));
@@ -1510,63 +1505,6 @@ public class TestTcasesCommand
             Optional.ofNullable( failure.getCause()).map( Throwable::getMessage).orElse( null),
             is( error));
         });
-    }
-
-  /**
-   * Return the file for the given resource.
-   */
-  private File getResourceFile( String resource)
-    {
-    URL classUrl = getClass().getResource( getClass().getSimpleName() + ".class");
-    return new File( new File( classUrl.getFile()).getParent(), resource);
-    }
-
-  /**
-   * Run Tcases with the given options, using the given standard input/output.
-   * If <CODE>stdIn</CODE> is non-null, redirect standard input to read from the given file.
-   * If <CODE>stdOut</CODE> is non-null, redirect standard output to write to the given buffer.
-   */
-  private void runWithStdIO( Options options, File stdIn, StringBuffer stdOut)
-    {
-    InputStream prevIn = System.in;
-    PrintStream prevOut = System.out;
-
-    InputStream newIn = null;
-    PrintStream newOut = null;
-    ByteArrayOutputStream newOutBytes = null;
-    
-    try
-      {
-      if( stdIn != null)
-        {
-        System.setIn( (newIn = new FileInputStream( stdIn)));
-        }
-
-      if( stdOut != null)
-        {
-        stdOut.delete( 0, stdOut.length());
-        System.setOut( (newOut = new PrintStream( (newOutBytes = new ByteArrayOutputStream()))));
-        }
-
-      TcasesCommand.run( options);
-      }
-    catch( Exception e)
-      {
-      throw new RuntimeException( "Can't run with options=" + options, e);
-      }
-    finally
-      {
-      IOUtils.closeQuietly( newIn, null);
-      IOUtils.closeQuietly( newOut, null);
-
-      System.setIn( prevIn);
-      System.setOut( prevOut);
-
-      if( newOutBytes != null)
-        {
-        stdOut.append( new String( newOutBytes.toByteArray(), Charset.forName( "UTF-8")));
-        }
-      }
     }
 
   private SystemTestResources testResources_ = new SystemTestResources( getClass());

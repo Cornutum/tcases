@@ -1,0 +1,36 @@
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>copy-project</artifactId>
+  <version>1.3.0</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.cornutum.tcases</groupId>
+        <artifactId>tcases-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <inputDefs>
+                <inputDef>**/*.xml</inputDef>
+                <inputDef>**/*.json</inputDef>
+            </inputDefs>
+            <destDir>json</destDir>
+            <destName>MyCopy</destName>
+            <destType>json</destType>
+            <testDef>*-Base-Tests</testDef>
+            <genDef>genDef-*</genDef>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
