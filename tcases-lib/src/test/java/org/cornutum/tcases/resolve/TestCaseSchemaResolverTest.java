@@ -236,7 +236,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='String'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "2021-06-22T16:05:07.729-05:00")
+          .value( "2022-08-29T16:05:42.931-05:00")
           .source( "String")
           .has( "format", "date-time")
           .build())
@@ -493,7 +493,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='String'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( "2023-06-13")
+          .value( "2022-07-05")
           .source( "String")
           .has( "format", "date")
           .build())
@@ -584,7 +584,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='String'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "2021-06-22T16:05:07.729-05:00")
+          .value( "2022-08-29T16:05:42.931-05:00")
           .source( "String")
           .has( "format", "date-time")
           .build())
