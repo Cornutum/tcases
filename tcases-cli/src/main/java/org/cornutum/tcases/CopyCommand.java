@@ -636,7 +636,7 @@ public class CopyCommand
         && destDir.equals( inputDir)
         && destContentType.equals( inputContentType))
       {
-      logger_.info( "No copy made -- the destination project is the same as the input project");
+      logger_.info( "{} not copied -- the destination project is the same as the input project", inputDefFile.getPath());
       }
     else
       {
