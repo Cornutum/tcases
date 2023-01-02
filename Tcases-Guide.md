@@ -36,6 +36,7 @@
     * [Defining Multiple Levels Of Coverage](#defining-multiple-levels-of-coverage)
   * [Managing A Tcases Project](#managing-a-tcases-project)
     * [Managing Project Files](#managing-project-files)
+    * [Copying A Tcases Project](#copying-a-tcases-project)
     * [Reusing Previous Test Cases](#reusing-previous-test-cases)
     * [Mix It Up: Random Combinations](#mix-it-up-random-combinations)
     * [Reducing Test Cases: A Random Walk](#reducing-test-cases-a-random-walk)
@@ -142,9 +143,11 @@ One more step and you're ready to go: add the path to the `bin` subdirectory to 
 ### JSON? Or XML? ###
 
 The preferred form for all Tcases documents is JSON, which is capable of expressing all Tcases features and which is used for
-all of the examples in this guide.  But the original version of Tcases used XML for all documents, and XML is still supported
-for older documents. You can find all the details about using Tcases with XML in the [original version of this
-guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm).
+all of the examples in this guide.
+
+But the original version of Tcases used XML for all documents, and XML is still supported for older documents. You can find all
+the details about using Tcases with XML in the [original version of this guide](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm),
+including [how to convert an existing XML project into JSON](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#json).
 
 ### Running From the Command Line ###
 
@@ -154,7 +157,7 @@ same syntax.
 
 For example, for a quick check, you can run one of the examples that comes with Tcases, using the following commands.
 
-```
+```bash
 cd ${tcases-release-dir}
 cd docs/examples/json 
 tcases < find-Input.json 
@@ -167,15 +170,15 @@ help at the command line, run `tcases -help`.
 ### Understanding Tcases Results ###
 
 What happens when you run Tcases? Tcases reads a [system input definition](#defining-system-functions), a document that defines
-the "input space" of the system function to be tested. From this, Tcases produces a different document called a <A
-name="systemTestDef">_system test definition_</A>, which describes a set of test cases.
+the "input space" of the system function to be tested. From this, Tcases produces a different document called a 
+_system test definition_, which describes a set of test cases.
 
 
 Try running Tcases on one of the example system input definitions. The following commands will generate
 test cases for the `find` command [example](#an-example-the-find-command), which is
 explained in [full detail](#modeling-the-input-space) later in this guide.
 
-```
+```bash
 cd ${tcases-release-dir}
 cd docs/examples/json 
 tcases < find-Input.json 
@@ -824,7 +827,6 @@ this combination is formed properly.
   }
 }
 ...
-
 ```
 
 #### Condition expressions ####
@@ -1431,7 +1433,7 @@ conventions.
 
 For example, here's a simple command to run Tcases.
 
-```
+```bash
 tcases ${myProjectName} 
 ```
 
@@ -1446,6 +1448,24 @@ Of course, you can use various options for the `tcases` command to customize thi
 [`TcasesCommand.Options`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/TcasesCommand.Options.html) class,
 or run `tcases -help`.
 
+### Copying A Tcases Project ###
+
+You can copy all the files in a Tcases project to a different directory or to a different project name or even to a different
+content type, using the `tcases-copy` command (or, if using Maven, the `tcases:copy` goal). For complete details, run `tcases-copy -help`.
+
+For example:
+
+```bash
+# Copy all of the files for the "find" project to /home/tcases/projects
+tcases-copy --toDir /home/tcases/projects find
+
+# Copy all of the files for the "find" project to a project named "myProject" in /home/tcases/projects
+tcases-copy --toDir /home/tcases/projects --toName myProject find
+
+# Convert all of the files for "myProject" to JSON
+tcases-copy --toType json myProject-Input.xml
+```
+
 ### Reusing Previous Test Cases ###
 
 You know the feeling. You've spent days figuring out a minimal set of test cases that covers all test requirements. Then the
@@ -1459,8 +1479,8 @@ Either way, it's back to the ol' test drawing board. Or is it? You're not changi
 cases you already have? Funny you should ask. Because that's exactly what Tcases can do. In fact, it's the default way of
 working. Remember that simple `tcases` command line?
 
-```
-> tcases ${myProjectName} 
+```bash
+tcases ${myProjectName} 
 ```
 
 Here's what it _really_ does:
@@ -1476,8 +1496,8 @@ You might prefer to ignore previous test cases and just create new ones from scr
 of your project while you're still working out the details of the system input definition. If so, you can use the `-n` option to
 always create new tests cases, ignoring any previous ones.
 
-```
-> tcases -n ${myProjectName} 
+```bash
+tcases -n ${myProjectName} 
 ```
 
 ### Mix It Up: Random Combinations ###
@@ -1522,7 +1542,7 @@ definition file. Sounds tedious, huh? So, don't do that -- use the Tcases Reduce
 
 Here how to do it, using the `tcases-reducer` command.
 
-```
+```bash
 cd ${tcases-release-dir}
 cd docs/examples/json 
 tcases-reducer find-Input.json
@@ -1680,7 +1700,7 @@ document.
 To define a random combination seed, use the `-r` option. For example, the following command generates test cases with a default
 generator that uses the specified seed value.
 
-```
+```bash
 tcases -r 299293214 ${myProjectName} 
 ```
 
@@ -1704,7 +1724,7 @@ interesting test case combinations.
 To define the default coverage level for all functions, use the `-c` option. For example, the following command generates test
 cases with a default generator that uses the specified coverage level.
 
-```
+```bash
 tcases -c 2 ${myProjectName} 
 ```
 
@@ -1735,7 +1755,7 @@ automatically write test case definitions in the form of an HTML file.
 
 Here's a simple example. Try out these commands:
 
-```
+```bash
 cd ${tcases-release-dir}
 cd docs/examples/json 
 tcases -H find 
@@ -1759,7 +1779,7 @@ test. The same code works for TestNG, too.
 
 Here's a simple example. Try out these commands:
 
-```
+```bash
 cd ${tcases-release-dir}
 cd docs/examples/json 
 tcases -J < find-Input.json 
@@ -1879,7 +1899,7 @@ form of the project name is used instead.
 For example, the following command will write generated test definitions in the form of `@Test` methods to a file named
 `findTest.java`
 
-```
+```bash
 tcases -J find 
 ```
 
