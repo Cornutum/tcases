@@ -49,7 +49,6 @@ public class GeneratorSetResource extends Resource implements IGeneratorSetSourc
   /**
    * Writes the given generator set.
    */
-  @SuppressWarnings("resource")
   public void write( IGeneratorSet generatorSet)
     {
     if( getType() == XML)
