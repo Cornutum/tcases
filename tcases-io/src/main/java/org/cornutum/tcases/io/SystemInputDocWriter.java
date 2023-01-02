@@ -14,7 +14,6 @@ import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.io.SystemInputDoc.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Optional;
@@ -52,7 +51,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
     }
 
   /**
-   * Writes the given system test definition the form of an XML document.
+   * Writes the given system input definition the form of an XML document.
    */
   @Override
   public void write( SystemInputDef systemInput)
@@ -207,7 +206,7 @@ public class SystemInputDocWriter extends AbstractSystemInputWriter
    * Closes the writer.
    */
   @Override
-  public void close() throws IOException
+  public void close()
     {
     getXmlWriter().close();
     }

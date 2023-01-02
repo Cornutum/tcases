@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<TestCases system="Examples">
+  <Function name="addShape">
+    <Has name="pageName" value="page"/>
+    <Has name="pageType" value="Page"/>
+    <Has name="pageValue" value="new Page()"/>
+    <TestCase id="0" name="Type=&apos;SQUARE&apos;">
+      <Has name="pageName" value="page"/>
+      <Has name="pageType" value="Page"/>
+      <Has name="pageValue" value="new Page()"/>
+      <Input type="arg">
+        <Var name="Type" value="SQUARE">
+          <Has name="varEval" value="new Shape"/>
+          <Has name="varName" value="shape"/>
+          <Has name="varType" value="Shape"/>
+        </Var>
+        <Var name="Size" value="1">
+          <Has name="varApply" value="setSize"/>
+          <Has name="varName" value="size"/>
+          <Has name="varType" value="int"/>
+        </Var>
+        <Var name="Color" value="red">
+          <Has name="varApply" value="setColor"/>
+          <Has name="varName" value="color"/>
+          <Has name="varType" value="String"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

@@ -16,7 +16,6 @@ import static org.cornutum.tcases.generator.io.TupleGeneratorDoc.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.io.Closeable;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Arrays;
@@ -191,7 +190,7 @@ public class GeneratorSetDocWriter implements Closeable
    * Closes the writer.
    */
   @Override
-  public void close() throws IOException
+  public void close()
     {
     writer_.close();
     }

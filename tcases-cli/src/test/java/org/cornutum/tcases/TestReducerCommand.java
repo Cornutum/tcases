@@ -18,13 +18,12 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.io.File;
-import java.net.URL;
 
 /**
  * Runs tests for {@link ReducerCommand}.
  *
  */
-public class TestReducerCommand
+public class TestReducerCommand extends CommandTest
   {
   /**
    * Tests {@link ReducerCommand#run run()} using the following inputs.
@@ -815,15 +814,6 @@ public class TestReducerCommand
   private TupleGenerator getDefaultTupleGenerator( IGeneratorSet generators)
     {
     return (TupleGenerator) generators.getGenerator( null);
-    }
-
-  /**
-   * Return the file for the given resource.
-   */
-  private File getResourceFile( String resource)
-    {
-    URL classUrl = getClass().getResource( getClass().getSimpleName() + ".class");
-    return new File( new File( classUrl.getFile()).getParent(), resource);
     }
 
   private GeneratorSetResources generatorResources_ = new GeneratorSetResources( getClass());

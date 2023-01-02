@@ -9,7 +9,7 @@ package org.cornutum.tcases.generator.io;
 
 import org.cornutum.tcases.generator.IGeneratorSet;
 import org.cornutum.tcases.io.Resource;
-import static org.cornutum.tcases.io.Resource.Type.JSON;
+import static org.cornutum.tcases.io.Resource.Type.*;
 import java.io.File;
 import java.net.URL;
 
@@ -41,10 +41,28 @@ public class GeneratorSetResource extends Resource implements IGeneratorSetSourc
   public IGeneratorSet getGeneratorSet()
     {
     return
-      getType() == JSON?
-      new GeneratorSetJsonReader( open()).getGeneratorSet() :
+      getType() == XML?
+      new GeneratorSetDocReader( openInput()).getGeneratorSet() :
+      new GeneratorSetJsonReader( openInput()).getGeneratorSet() ;
+    }
 
-      new GeneratorSetDocReader( open()).getGeneratorSet();
+  /**
+   * Writes the given generator set.
+   */
+  public void write( IGeneratorSet generatorSet)
+    {
+    if( getType() == XML)
+      {
+      try( GeneratorSetDocWriter writer = new GeneratorSetDocWriter( openOutput()))
+        {
+        writer.write( generatorSet);
+        }
+      }
+    else
+      try( GeneratorSetJsonWriter writer = new GeneratorSetJsonWriter( openOutput()))
+        {
+        writer.write( generatorSet);
+        }
     }
 
   /**

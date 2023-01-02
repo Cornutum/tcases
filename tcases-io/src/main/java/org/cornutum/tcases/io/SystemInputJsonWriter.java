@@ -87,7 +87,7 @@ public class SystemInputJsonWriter extends ContextHandler<SystemInputContext> im
   @Override
   public void close()
     {
-    IOUtils.closeQuietly( getWriter(), null);
+    IOUtils.closeQuietly( getWriter());
     }
 
   /**
