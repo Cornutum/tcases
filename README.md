@@ -64,6 +64,7 @@ definition into a Java source code template for a JUnit or TestNG test class.
 
   * **Helpful Guides**
     * [How To Download Using Maven](HowToDownload.md)
+    * [How To Setup a Tcases Web Service](./Tcases-Web-Service.md)
     * [Troubleshooting FAQ](./Troubleshooting-FAQs.md#troubleshooting-faqs)
     * [Release Notes](ReleaseNotes.md)
 
