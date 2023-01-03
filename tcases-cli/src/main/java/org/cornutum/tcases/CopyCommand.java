@@ -594,9 +594,9 @@ public class CopyCommand
     File inputDir = inputDefFile.getParentFile();
 
     Resource.Type inputContentType =
-      Optional.ofNullable( options.getContentType())
+      Optional.ofNullable( Resource.Type.of( inputDefFile))
       .orElse(
-        Optional.ofNullable( Resource.Type.of( inputDefFile))
+        Optional.ofNullable( options.getContentType())
         .orElse( Resource.Type.JSON));
     
     // Identify the generator definition file.
