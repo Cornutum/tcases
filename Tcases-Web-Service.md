@@ -10,6 +10,7 @@ contains a [system input definition](Tcases-Guide.md#modeling-the-input-space) (
 project definition may also contain a [generator definition](Tcases-Guide.md#defining-higher-coverage) and a
 [system test definition](Tcases-Guide.md#understanding-tcases-results) that supplies the
 [base tests](Tcases-Guide.md#reusing-previous-test-cases) for generating new test cases.
+(For full details, see the [document schemas](#further-reference).)
 
 ### Defining Elements Directly ###
 
@@ -79,3 +80,12 @@ TcasesJson.writeTests
   ( TcasesJson.getTests( projectInputStream), 
     testCaseOutputStream); 
 ```
+
+## Further Reference ##
+
+* Document schemas
+
+  * [Project definition](http://www.cornutum.org/tcases/project-schema.json)
+  * [System input definition](http://www.cornutum.org/tcases/system-input-schema.json)
+  * [Generator definitions](http://www.cornutum.org/tcases/generators-schema.json)
+  * [System test definition](http://www.cornutum.org/tcases/system-test-schema.json)

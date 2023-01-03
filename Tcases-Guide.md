@@ -1600,7 +1600,7 @@ To get help at the command line, run `tcases-reducer -help`.
 ### Avoiding Unneeded Combinations ###
 
 Even when Tcases is generating test cases for the default 1-tuple coverage, it's typical to see some input values used many
-times. This is most likely for those variable definition that contain only a few Value definitions. Even after these values have
+times. This is most likely for those variable definition that contain only a few value definitions. Even after these values have
 been used, Tcases will continue to reuse them to fill out the remaining test cases needed to complete the test suite. In some
 situations, this can be a bit of a pain. Sometimes there is a value definition that you need to test at least once, but for
 various reasons, including it multiple times adds complexity without really increasing the likelihood of finding new failures.
@@ -2160,7 +2160,6 @@ Want more technical details about Tcases? Here are links to some additional info
   * [System input definition](http://www.cornutum.org/tcases/system-input-schema.json)
   * [Generator definitions](http://www.cornutum.org/tcases/generators-schema.json)
   * [System test definition](http://www.cornutum.org/tcases/system-test-schema.json)
-  * [Test project definition](http://www.cornutum.org/tcases/project-schema.json)
 
 
 * Related testing techniques
