@@ -19,6 +19,7 @@
     * [Defining Input Variables](#defining-input-variables)
     * [Defining Input Values](#defining-input-values)
     * [Defining Value Schemas](#defining-value-schemas)
+    * [Defining Variable Schemas](#defining-variable-schemas)
     * [Defining Variable Sets](#defining-variable-sets)
     * [Defining Constraints: Properties and Conditions](#defining-constraints-properties-and-conditions)
       * [Value properties](#value-properties)
@@ -397,7 +398,148 @@ definitions that Tcases generates, to guide your test implementation.
 
 ### Defining Value Schemas ###
 
-TBD
+If you like, you have the option to define the class of values represented by a value definition more concretely, using a value _schema_.
+
+For example, for the `pattern` value, one interesting class of values is an unquoted string containing multiple characters. Of course,
+a pattern string that is unquoted can't contain any spaces or quotation marks. You could define this `unquotedMany` value class using
+the following schema keywords, which describe a string of at least 2 chars matching a certain regular expression.
+
+```json
+...
+"pattern": {
+  "values": {
+    "unquotedMany": {
+      "type": "string",
+      "pattern": "^[^\\s\"]+$",
+      "minLength": 2
+    },
+    ...
+  }
+}
+...
+```
+
+What happens when the `pattern` is an empty string? That's another important value to add to your test cases. Here's how you could use a
+schema keyword to define this `empty` value.
+
+```json
+...
+"pattern": {
+  "values": {
+    "empty": {
+      "const": ""
+    },
+    ...
+  }
+}
+...
+```
+
+To define a value schema, you can use a subset of the standard [JSON Schema Validation vocabulary](https://json-schema.org/draft/2020-12/json-schema-validation.html).
+For full details, see [_Schema Keywords_](Schema-Keywords.md).
+
+Why define a value schema? The difference lies in the test case definitions that Tcases generates. If your input model defines a
+value class using only a name, then any test case that uses this value definition can show only this name. To translate this
+test case into executable form, you must substitute an appropriate concrete value that belongs to this class. However, if you
+define the value class using a schema, Tcases will automatically generate a random member of the value class for you. Morever, a
+different concrete value can be generated for every test case that uses this value definition.  Not only does this save you 
+some effort, but also it can improve your test cases by adding more ["gratuitous variety"](#mix-it-up-random-combinations).
+
+### Defining Variable Schemas ###
+
+Did you know that you can also add schema keywords to a variable definition? You do now.
+
+Why is this useful? For starters, you can use a variable schema to define defaults for all of its value schemas. For example,
+you can specify that that default type for `pattern` value is "string". If so, you don't need to add a "type" keyword to each
+individual value definition.
+
+```json
+...
+"pattern": {
+  "type": "string",
+  "values": {
+    "empty": {
+      "const": ""
+    },
+    "unquotedSingle": {
+      "pattern": "^[^\\s\"]$"
+    },
+    "unquotedMany": {
+      "pattern": "^[^\\s\"]+$",
+      "minLength": 2
+    },
+    "quoted": {
+      "pattern": "^\"[^\\s\"]+\"$",
+      "minLength": 2
+    },
+    ...
+  }
+}
+...
+```
+
+Note that schema keywords in a value definition will override any defaults given in a variable schema. A value definition can define a completely different value for "type"
+or any other schema keyword, including no schema keywords at all.
+
+But in some cases, a variable schema is all you need. Tcases can use this to generate all of the value definitions automatically. For example, suppose your input model
+contained a variable for an email address. You could define such a variable using only a schema, like this:
+
+```json
+{
+  ...
+  "user-email-address": {
+    "format": "email",
+    "minLength": 8,
+    "maxLength": 32
+  },
+  ...
+}
+```
+
+Using this schema, Tcases will generate an _effective input model_ for the `user-email-address` variable, including both valid and invalid value
+classes, as shown below. This effective input model is then what Tcases will use to generate test cases. 
+
+```json
+{
+  ...
+  "user-email-address": {
+    "values": {
+      "minimumLength": {
+        "format": "email",
+        "minLength": 8,
+        "maxLength": 8
+      },
+      "maximumLength": {
+        "format": "email",
+        "minLength": 32,
+        "maxLength": 32
+      },
+      "tooShort": {
+        "failure": true,
+        "format": "email",
+        "maxLength": 7
+      },
+      "tooLong": {
+        "failure": true,
+        "format": "email",
+        "minLength": 33
+      },
+      "wrongFormat": {
+        "failure": true,
+        "format": "date-time"
+      }
+    }
+  }
+  ...
+}
+```
+
+Tip: if you want to see the effective input model that Tcases is using, run `tcases` with the `-I` option.
+
+```bash
+# Instead of creating test cases, just print the effective input model for the "find" project to the /tmp/test directory
+tcases -I -o /tmp/test find
+```
 
 ### Defining Variable Sets ###
 
