@@ -400,7 +400,7 @@ definitions that Tcases generates, to guide your test implementation.
 
 If you like, you have the option to define the class of values represented by a value definition more concretely, using a value _schema_.
 
-For example, for the `pattern` value, one interesting class of values is an unquoted string containing multiple characters. Of course,
+For example, for the `pattern` variable, one interesting class of values is an unquoted string containing multiple characters. Of course,
 a pattern string that is unquoted can't contain any spaces or quotation marks. You could define this `unquotedMany` value class using
 the following schema keywords, which describe a string of at least 2 chars matching a certain regular expression.
 
@@ -450,7 +450,7 @@ some effort, but also it can improve your test cases by adding more ["gratuitous
 Did you know that you can also add schema keywords to a variable definition? You do now.
 
 Why is this useful? For starters, you can use a variable schema to define defaults for all of its value schemas. For example,
-you can specify that that default type for `pattern` value is "string". If so, you don't need to add a "type" keyword to each
+you can specify that the default type for `pattern` variable is "string". If so, you don't need to add a "type" keyword to each
 individual value definition.
 
 ```json

@@ -40,13 +40,13 @@ Tcases Plugin
 
   * {{{./anon-mojo.html}tcases:anon}} Runs the {{{https://github.com/Cornutum/tcases/blob/master/How-To-Anonymize.md#how-to-anonymize-your-input-model}Tcases Anonymizer}}.
 
+  * {{{./copy-mojo.html}tcases:copy}} Copies a {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#copying-a-tcases-project}Tcases project}}.
+
 * Usage
 
   General instructions on how to use the Tcases Plugin can be found on the {{{./usage.html}usage page}}.  
   For full details on Tcases \-\-\- what it does and how it works \-\-\- see
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm}Tcases: The Complete Guide}} at
-  {{http://www.cornutum.org}}.
-
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md}Tcases: The Complete Guide}}.
   If you feel this plugin is missing a feature or has a defect, you can submit the issue
   {{{./issue-tracking.html}here}}. When creating a new issue, please provide a comprehensive
   description of your concern. Especially for fixing defects it is crucial that the developers can

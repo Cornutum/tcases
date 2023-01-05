@@ -6,7 +6,7 @@ Usage
 
   You can use the Tcases Plugin to:
 
-  * {{{Running_Tcases}Generate test cases}} based on a {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#functions} system input definition}} document
+  * {{{Running_Tcases}Generate test cases}} based on a {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-system-functions} system input definition}} document
 
   * {{{Reducing_Test_Cases}Reduce the number of test cases}} needed for specified level of coverage
 
@@ -15,19 +15,19 @@ Usage
 * {Running Tcases}
 
   The {{{./tcases-mojo.html}tcases:tcases}} goal runs Tcases on the
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#functions} system input definition}} for
-  all of the Tcases {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#project}projects}}
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-system-functions} system input definition}} for
+  all of the Tcases {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#managing-a-tcases-project}projects}}
   found in the <<inputDir>> specified by the plugin configuration. By default, the <<inputDir>> is
   assumed to be <<$\{basedir\}/src/test/tcases>>.
 
   Each project defines the input space model and coverage model for a specific system-under-test.
   The {{{./tcases-mojo.html}tcases:tcases}} goal refers to all of the input files for a project named
   <<$\{projectName\}>> using the following default conventions. The file <<$\{type\}>> extension can be
-  either "xml" or {{{http://www.cornutum.org/tcases/docs/Tcases-Json.htm#intro} "json"}}.
+  either "xml" or "json".
 
-  * <<$\{projectName\}-Input.$\{type\}>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#functions} system input definition}} file
+  * <<$\{projectName\}-Input.$\{type\}>>: the {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-system-functions} system input definition}} file
 
-  * <<$\{projectName\}-Generators.$\{type\}>>: the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator definition}} file (optional)
+  * <<$\{projectName\}-Generators.$\{type\}>>: the {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-higher-coverage} generator definition}} file (optional)
   
   * <<$\{projectName\}-Test.$\{type\}>>: the {{{Extending_Previous_Test_Cases_Or_Not} base test case definition}} file (optional)
 
@@ -47,7 +47,7 @@ Usage
 
   Tcases can read and write documents using either XML or JSON data formats. Because XML is the original default format used by
   Tcases, all of the examples in this guide assume you are using XML. But everything described here can also be done using JSON
-  files instead. To learn how, see {{{http://www.cornutum.org/tcases/docs/Tcases-Json.htm}Tcases: The JSON Guide}}.
+  files instead. To learn how, see {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md}Tcases: The Complete Guide}}.
 
 
 * {Generating Test Cases}
@@ -95,7 +95,7 @@ mvn tcases:tcases
 
 * {Generating An HTML Report}
 
-  The XML form for test case definitions is pretty simple. But let's face it -- reading XML is not always a lot of fun.
+  The basic form for test case definitions is pretty simple. But let's face it -- reading this document is not always a lot of fun.
   It's not necessarily what you'd want to hand someone for guidance during manual testing.
   So how about looking at the same information in a nice Web page on your browser?
 
@@ -111,7 +111,7 @@ mvn tcases:tcases -Dhtml=true
 
   Tcases then writes test definitions in the form of an HTML file named
   <<<$\{basedir\}/target/tcases/org/cornutum/tcases/find-Test.htm>>> that looks like
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#html}this}}.
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#creating-an-html-report}this}}.
 
 
 * {Generating JUnit/TestNG Tests}
@@ -200,7 +200,7 @@ mvn tcases:tcases -DinputDef="**/My-Project-Input.xml"
 +--------
 
   You can do the same thing even more simply using the <<project>> parameter, which matches the input definition for the
-  given {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#project}project}} anywhere in the <<inputDir>>. For example:
+  given {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#managing-a-tcases-project}project}} anywhere in the <<inputDir>>. For example:
 
 +--------
 mvn tcases:tcases -Dproject=My-Project
@@ -209,13 +209,13 @@ mvn tcases:tcases -Dproject=My-Project
 * {Modeling The Input Space}
 
   Tcases creates test definitions based on a <system input definition> that you create. But how do you do that? 
-  Learn the answer {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#input}here}}.
+  Learn the answer {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#modeling-the-input-space}here}}.
 
   Often, some of the "dimensions of variation" in the input space are not entirely independent of
   each other. Instead, there are relationships among these variables that constrain which
   combinations of values are feasible. You need a way to define those relationships so that
   infeasible combinations can be excluded from your test cases. And that's where
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#constraints} properties and conditions}}
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-constraints-properties-and-conditions} properties and conditions}}
   come into play.
 
 * {Defining Input Coverage}
@@ -227,7 +227,7 @@ mvn tcases:tcases -Dproject=My-Project
 
   Good questions. And here's the basic answer: Tcases generates the minimum number of test cases
   needed to meet the coverage requirements that you specify. But to understand what that means, you
-  need to understand {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#coverage}how Tcases
+  need to understand {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-input-coverage}how Tcases
   measures coverage}}.
 
   When you look carefully at the functions of your system-under-test, you may well find that some
@@ -236,7 +236,7 @@ mvn tcases:tcases -Dproject=My-Project
   interactions between certain specific variables. You may even want to test every possible
   permutation for a small subset of key variables. Is it possible to get high coverage in a few
   areas and basic coverage everywhere else? Why, yes, you can. It's all explained
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#multiCoverage}here}}.
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-multiple-levels-of-coverage}here}}.
 
 * {Extending Previous Test Cases (Or Not)}
 
@@ -299,7 +299,7 @@ mvn tcases:reduce -DinputDef="**/find-Input.xml"
   fewest test cases.
 
   The {{{./reduce-mojo.html} tcases:reduce}} goal runs the
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#reduce} Tcases Reducer}}, and here's how
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#reducing-test-cases-a-random-walk} Tcases Reducer}}, and here's how
   it works.  The reducing process operates as a sequence of "rounds". Each round consists of a
   series of test case generations executions called "samples". Each sample uses a new random seed
   to generate test cases for a specified function (or, by default, all functions) in an attempt to
@@ -313,7 +313,7 @@ mvn tcases:reduce -DinputDef="**/find-Input.xml"
 * {Simple Generator Definitions}
 
    The Tcases Plugin provides configuration parameters to make it easier to create and update a
-   simple {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator
+   simple {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-higher-coverage} generator
    definition}} document.
 
 ** {Defining A Random Seed}
@@ -374,7 +374,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   with. Even better? Ask Tcases to randomize its combination procedure.
 
   You can define random combinations in your
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage} generator definition}} by
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-higher-coverage} generator definition}} by
   using the seed attribute \-\-\- see the example below. This integer value acts as the seed for a
   random number generator that controls the combination process. Alternatively, you can (re)define
   the seed value using {{{Defining_A_Random_Seed} a configuration parameter}}. By specifying the
@@ -416,7 +416,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   likelihood of finding new failures. In this case, you can use the <<once>> attribute as a hint to
   avoiding reusing a value more than once.
 
-  For example, consider the {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#exampleFind}find
+  For example, consider the {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#an-example-the-find-command}find
   command example}}. The <<find>> command requires that the pattern must not exceed the maximum length
   of a line in the file. Even one line longer than the pattern would be enough to avoid this error
   condition. In fact, the principles of boundary value testing suggest that it's a good idea to
@@ -459,7 +459,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
 
   Although the <<once>> shortcut applies only to a default 1-tuple for a single variable, there is also a more
   general way to define once-only exceptions to higher-order combinations, by adding
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#once-tuples} <<Once>>}} elements to your generator
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#avoiding-unneeded-combinations} <<Once>>}} elements to your generator
   definition.
 
 
@@ -468,7 +468,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
   The test case definitions that Tcases produces are not directly executable. Their purpose is to
   specify and guide the construction of actual tests. But because test case definitions appear in a
   well-defined XML document, it's not hard to transform them into a more concrete form, using XSLT
-  stylesheets and {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#annotations} output annotations}}. 
+  stylesheets and {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#using-output-annotations} output annotations}}. 
 
   For example, the following configuration sends Tcases output to a file named
   <<$\{projectName\}-Output.doc>>. But first it transforms the standard test case definition
@@ -514,7 +514,7 @@ mvn tcases:tcases -DdefaultTupleSize=2
 
   You can even transform test case definitions into executable source code! But to do so, you may need more information
   about the functions, variables, and values in your input model.  Try extending your input model with
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#annotations} output annotations}} that are propagated to your
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#using-output-annotations} output annotations}} that are propagated to your
   XSLT transform.
 
 * {Running Tcases For OpenAPI}
@@ -542,7 +542,7 @@ mvn tcases:api
   <<<My-API-Responses-Test.json>>>. These JSON files describe the inputs needed for tests that fully
   cover both the requests and the responses defined by <<<My-API.yaml>>>. Each file is an example of
   a Tcases "test definition document" -- for details, see
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Json.htm#testCases}Tcases: The JSON Guide}}.
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#understanding-tcases-results}Tcases: The Complete Guide}}.
 
   These tests "fully cover" the API? And exactly sort of "coverage" is this? Good questions. For answers, see
   {{{https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#why-tcases-for-openapi}Why Tcases for OpenAPI?}}.
@@ -628,4 +628,4 @@ mvn tcases:api -DinputModels=true
   the result will be two new files named <<<My-API-Requests-Input.json>>> and
   <<<My-API-Responses-Input.json>>>. Each file is an example of
   a Tcases "input definition document" -- for details, see
-  {{{http://www.cornutum.org/tcases/docs/Tcases-Json.htm#input}Tcases: The JSON Guide}}.
+  {{{https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md#defining-system-functions}Tcases: The Complete Guide}}.
