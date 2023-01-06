@@ -270,9 +270,29 @@
 
       <H3><A name="json">XML or JSON?</A></H3>
       <P>
-        The choice is yours &mdash; Tcases can read and write documents using either XML or JSON data formats. Because XML is the original default format
-        used by Tcases, all of the examples in this guide assume you are using XML. But everything described here can also be done using JSON instead.
-        To learn how, see <A href="Tcases-Json.htm">Tcases: The JSON Guide</A>.
+        The choice is yours &mdash; Tcases can read and write documents using either XML or JSON data formats. Because XML is the original format
+        used by Tcases, all of the examples in this guide assume you are using XML.
+      </P>
+      <P>
+        Starting with Tcases 4.0.0, JSON is the preferred format for all Tcases documents, and new features will be supported only
+        for JSON documents. You can find the complete guide to Tcases using JSON <A href="https://github.com/Cornutum/tcases/blob/master/Tcases-Guide.md">here</A>.
+      </P>
+      <P>
+        You can convert an existing XML project to JSON using the <SPAN class="code">tcases-copy</SPAN> command (or, if using Maven, the
+        <SPAN class="code">tcases:copy</SPAN> goal). For example, the following command will convert <SPAN class="code">myProject-Input.xml</SPAN>
+        and all of its associated <A href="#files">project files</A> into the corresponding <SPAN class="code">*.json</SPAN> files.
+
+        <DIV class="exampleCode">
+          &gt; tcases-copy --toType json myProject-Input.xml <BR/>
+        </DIV>
+      </P>
+      <P>
+        <SPAN class="code">tcases-copy</SPAN> provides many other options for copying a <A href="#files">Tcases project.</A>
+        For complete details, use the <SPAN class="code">-help</SPAN> option.
+
+        <DIV class="exampleCode">
+          &gt; tcases-copy -help <BR/>
+        </DIV>
       </P>
 
       <H3><A name="run">Running From the Command Line</A></H3>

@@ -1,5 +1,20 @@
 # Release Notes #
 
+## 4.0.0 ##
+
+With this major release, JSON becomes the preferred format for all Tcases documents. From now on, unless otherwise stated, new
+features will be supported only in JSON documents, although existing XML documents will continue to be supported as before.
+[_Tcases: The Complete Guide_](./Tcases-Guide.md#tcases-the-complete-guide) has been updated accordingly.
+
+This release also introduces an important new feature: [schema-based value definitions](./Tcases-Guide.md#defining-value-schemas).
+Using standard JSON Schema keywords, you have the option to create a more concrete definition of a value class, which Tcases can
+use to automatically generate test cases with actual representative values. You can even use a schema to generate all of the
+value definitions for a variable automatically.
+
+This release also introduces a new shell command -- `tcases-copy` -- and its Maven counterpart -- `tcases:copy`. You can use
+[`tcases-copy`](./Tcases-Guide.md#copying-a-tcases-project) to copy a Tcases project to a new location or to convert it from XML to JSON.
+
+
 ## 3.8.6 ##
 
 This release provides the following improvements to Tcases for OpenAPI.

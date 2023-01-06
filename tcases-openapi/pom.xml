@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.cornutum.tcases</groupId>
         <artifactId>tcases</artifactId>
-        <version>3.8.7-SNAPSHOT</version>
+        <version>4.0.0</version>
     </parent>
 
     <artifactId>tcases-openapi</artifactId>
@@ -54,7 +54,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.date>${maven.build.timestamp}</project.build.date>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
-        <tcases.maven.version>3.8.6</tcases.maven.version>
+        <tcases.maven.version>4.0.0</tcases.maven.version>
     </properties>
 
     <build>

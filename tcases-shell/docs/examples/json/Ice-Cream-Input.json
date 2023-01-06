@@ -1,131 +1,177 @@
 {
-    "system": "Ice-Cream",
-    "Cones": {
-        "arg": {
-            "Cone": {
-                "values": {
-                    "Empty": {
-                        "failure": true,
-                        "when": {"lessThan": {"property": "scoop", "max": 1}
-                        }
-                    },
-                    "Plain": {
-                        "when": {
-                            "allOf": [
-                                {"equals": {"property": "scoop", "count": 1}},
-                                {"notMoreThan": {"property": "topping", "max": 1}}
-                            ]
-                        }
-                    },
-                    "Plenty": {
-                        "when": {
-                            "allOf": [
-                                {"between": {"property": "scoop", "min": 1, "max": 2}},
-                                {"notMoreThan": {"property": "topping", "max": 2}}
-                            ]
-                        }
-                    },
-                    "Grande": {
-                        "when": {
-                            "allOf": [
-                                {"between": {"property": "scoop", "exclusiveMin": 0, "exclusiveMax": 4}},
-                                {"between": {"property": "topping", "min": 1, "max": 3}}
-                            ]
-                        }
-                    },
-                    "Too-Much": {
-                        "failure": true,
-                        "when": {
-                            "anyOf": [
-                                {"moreThan": {"property": "scoop", "min": 3}},
-                                {"notLessThan": {"property": "topping", "min": 4}}
-                            ]
-                        }
-                    }
-                }
-            },
-            "Flavors": {
-                "members": {
-                    "Vanilla": {
-                        "values": {
-                            "Yes": {"properties": ["scoop"]},
-                            "No": {}
-                        }
-                    },
-                    "Chocolate": {
-                        "values": {
-                            "Yes": {"properties": ["scoop"]},
-                            "No": {}
-                        }
-                    },
-                    "Strawberry": {
-                        "values": {
-                            "Yes": {"properties": ["scoop"]},
-                            "No": {}
-                        }
-                    },
-                    "Pistachio": {
-                        "values": {
-                            "Yes": {"properties": ["scoop"]},
-                            "No": {}
-                        }
-                    },
-                    "Lemon": {
-                        "values": {
-                            "Yes": {"properties": ["scoop"]},
-                            "No": {}
-                        }
-                    },
-                    "Coffee": {
-                        "values": {
-                            "Yes": {"properties": ["scoop"]},
-                            "No": {}
-                        }
-                    }
-                }
-            },
-            "Toppings": {
-                "when": {"hasAll": ["scoop"]
-                },
-                "members": {
-                    "Sprinkles": {
-                        "values": {
-                            "Yes": {"properties": ["topping"]},
-                            "No": {}
-                        }
-                    },
-                    "Pecans": {
-                        "values": {
-                            "Yes": {"properties": ["topping"]},
-                            "No": {}
-                        }
-                    },
-                    "Oreos": {
-                        "values": {
-                            "Yes": {"properties": ["topping"]},
-                            "No": {}
-                        }
-                    },
-                    "Cherries": {
-                        "values": {
-                            "Yes": {"properties": ["topping"]},
-                            "No": {}
-                        }
-                    },
-                    "MMs": {
-                        "values": {
-                            "Yes": {"properties": ["topping"]},
-                            "No": {}
-                        }
-                    },
-                    "Peppermint": {
-                        "values": {
-                            "Yes": {"properties": ["topping"]},
-                            "No": {}
-                        }
-                    }
-                }
+  "system": "Ice-Cream",
+  "Cones": {
+    "arg": {
+      "Cone": {
+        "values": {
+          "Empty": {
+            "failure": true,
+            "when": {"lessThan": {"property": "scoop", "max": 1}}
+          },
+          "Plain": {
+            "when": {
+              "allOf": [
+                {"equals": {"property": "scoop", "count": 1}},
+                {"notMoreThan": {"property": "topping", "max": 1}}
+              ]
             }
+          },
+          "Plenty": {
+            "when": {
+              "allOf": [
+                {"between": {"property": "scoop", "min": 1, "max": 2}},
+                {"notMoreThan": {"property": "topping", "max": 2}}
+              ]
+            }
+          },
+          "Grande": {
+            "when": {
+              "allOf": [
+                {"between": {"property": "scoop", "exclusiveMin": 0, "exclusiveMax": 4}},
+                {"between": {"property": "topping", "min": 1, "max": 3}}
+              ]
+            }
+          },
+          "Too-Much": {
+            "failure": true,
+            "when": {
+              "anyOf": [
+                {"moreThan": {"property": "scoop", "min": 3}},
+                {"notLessThan": {"property": "topping", "min": 4}}
+              ]
+            }
+          }
         }
+      },
+      "Flavors": {
+        "members": {
+          "Vanilla": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "scoop"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Chocolate": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "scoop"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Strawberry": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "scoop"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Pistachio": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "scoop"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Lemon": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "scoop"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Coffee": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "scoop"
+                ]
+              },
+              "No": {}
+            }
+          }
+        }
+      },
+      "Toppings": {
+        "when": {"hasAll": ["scoop"]},
+        "members": {
+          "Sprinkles": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "topping"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Pecans": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "topping"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Oreos": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "topping"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Cherries": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "topping"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "MMs": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "topping"
+                ]
+              },
+              "No": {}
+            }
+          },
+          "Peppermint": {
+            "values": {
+              "Yes": {
+                "properties": [
+                  "topping"
+                ]
+              },
+              "No": {}
+            }
+          }
+        }
+      }
     }
+  }
 }
