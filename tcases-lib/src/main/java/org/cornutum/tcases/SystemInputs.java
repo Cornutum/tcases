@@ -9,7 +9,6 @@ package org.cornutum.tcases;
 
 import org.cornutum.tcases.resolve.DataValue.Type;
 import org.cornutum.tcases.resolve.SchemaBuilder;
-import org.cornutum.tcases.resolve.Schemas;
 import org.cornutum.tcases.util.ExecutionNotifier;
 import org.cornutum.tcases.util.Notifier;
 import org.cornutum.tcases.util.ToString;
@@ -111,44 +110,11 @@ public class SystemInputs
     }
 
   /**
-   * Returns the given {@link SystemInputDef} in normalized form.
-   */
-  public static SystemInputDef normalized( SystemInputDef inputDef)
-    {
-    return new SystemInputs( inputDef.getName()).normalize( inputDef);
-    }
-
-  /**
    * Creates a new SystemInputs instance.
    */
   public SystemInputs( String... startLocation)
     {
     context_ = new ProcessingContext( startLocation);
-    }
-
-  /**
-   * Returns the given {@link SystemInputDef} in normalized form.
-   */
-  public SystemInputDef normalize( SystemInputDef inputDef)
-    {
-    Schemas schemas = new Schemas( getContext());
-    
-    SystemInputDef normalized = SystemInputDefBuilder.with( inputDef).build();
-    toStream( normalized.getFunctionInputDefs())
-      .forEach( function -> {
-        getContext().doFor( function.getName(), () -> {
-          toStream( new VarDefIterator( function))
-            .forEach( var -> {
-              getContext().doFor( var.getPathName(), () -> {
-                schemas.normalize( var.getSchema());
-                toStream( var.getValues())
-                  .forEach( value -> getContext().doFor( String.valueOf( value.getName()), () -> schemas.normalize( value.getSchema())));
-                });
-              });
-          });
-        });
-
-    return normalized;
     }
 
   /**

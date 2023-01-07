@@ -9,6 +9,7 @@ package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
 import org.cornutum.tcases.util.ConditionRecorder;
+import static org.cornutum.tcases.Tcases.getEffectiveInputDef;
 
 import org.junit.Before;
 import org.leadpony.justify.api.JsonValidatingException;
@@ -82,7 +83,7 @@ public abstract class SystemInputJsonTest
     SystemInputDef inputDefAfter = testSystemInputJsonResource( systemInputResource);
 
     // Then...
-    assertThat( systemInputResource, inputDefAfter, matches( new SystemInputDefMatcher( SystemInputs.normalized( inputDef))));
+    assertThat( systemInputResource, getEffectiveInputDef( inputDefAfter), matches( new SystemInputDefMatcher( getEffectiveInputDef( inputDef))));
     assertThat( "Copy of " + systemInputResource, SystemInputDefBuilder.with( inputDef).build(), matches( new SystemInputDefMatcher( inputDef)));
     }
   
