@@ -28,11 +28,13 @@
                     "unquotedMany": {
                         "type": "string",
                         "minLength": 1,
+                        "maxLength": 16,
                         "pattern": "^\\w+$"
                     },
                     "quoted": {
                         "type": "string",
                         "minLength": 3,
+                        "maxLength": 16,
                         "pattern": "^\"\\w+\"$"
                     },
                     "quotedEmpty": {
@@ -45,11 +47,13 @@
                     "quotedBlanks": {
                         "type": "string",
                         "minLength": 3,
+                        "maxLength": 16,
                         "pattern": "^\"\\w*( +\\w*)+\"$"
                     },
                     "quotedQuotes": {
                         "type": "string",
                         "minLength": 4,
+                        "maxLength": 16,
                         "pattern": "^\"\\w*(\"{2}\\w*)+\"$"
                     }
                 }
@@ -68,6 +72,7 @@
                     },
                     "missing": {
                         "failure": true,
+                        "type": "string",
                         "const": null
                     }
                 }
