@@ -1244,7 +1244,7 @@ public class TcasesCommand
 
     // Read the system input definition.
     logger_.info( "Reading system input definition from {}", Optional.ofNullable( inputDefFile).map( File::getPath).orElse( "standard input"));
-    SystemInputDef inputDef = null;
+    SystemInputDef inputDef;
     try( SystemInputResource reader = withDefaultType( SystemInputResource.of( inputDefFile), defaultContentType))
       {
       inputDef = reader.getSystemInputDef();
