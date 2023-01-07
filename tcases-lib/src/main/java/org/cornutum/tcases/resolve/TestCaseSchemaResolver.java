@@ -120,10 +120,11 @@ public class TestCaseSchemaResolver extends TestCaseResolver
    */
   private void prepareValueDef( VarValueDef valueDef, Schema schema)
     {
+	valueDef.setSchema( schemas_.normalize( schema));
     valueDef.setDomain(
       resultFor(
         String.valueOf( valueDef.getName()),
-        () -> toValueDomain( schemas_.normalize( schema))));
+        () -> toValueDomain( valueDef.getSchema())));
     }
 
   /**
