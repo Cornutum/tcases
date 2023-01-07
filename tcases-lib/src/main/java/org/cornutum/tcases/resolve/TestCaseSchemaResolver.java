@@ -104,15 +104,17 @@ public class TestCaseSchemaResolver extends TestCaseResolver
     {
     doFor(
       varDef.getPathName(),
-      () -> 
+      () -> {
+      schemas_.normalize( varDef.getSchema());
       toStream( varDef.getValues())
-      .forEach( valueDef -> {
-        prepareValueDef(
-          valueDef,
-          Optional.ofNullable( valueDef.getSchema())
-          .map( valueSchema -> Schemas.merge( varDef.getSchema(), valueSchema))
-          .orElse( null));
-        }));
+        .forEach( valueDef -> {
+          prepareValueDef(
+            valueDef,
+            Optional.ofNullable( valueDef.getSchema())
+            .map( valueSchema -> Schemas.merge( varDef.getSchema(), valueSchema))
+            .orElse( null));
+          });
+      });
     }
   
   /**
