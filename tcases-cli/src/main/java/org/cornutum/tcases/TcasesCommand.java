@@ -1316,12 +1316,8 @@ public class TcasesCommand
 
     Resource.Type outputFileType = firstNonNull( Resource.Type.of( withDefaultType( outputFile, defaultContentType)), defaultContentType);
 
-    // Create test case resolver factory.
-    TestCaseResolverFactory resolverFactory =
-      new TestCaseSchemaResolverFactory(
-        ResolverContext.builder( inputDef.getName())
-        .notifier( TestCaseConditionNotifier.log())
-        .build());
+    // Create standard test case resolver factory.
+    TestCaseResolverFactory resolverFactory = Tcases.schemaResolverFactoryFor( inputDef);
 
     // Write effective input definition?
     if( options.showEffectiveInput())
