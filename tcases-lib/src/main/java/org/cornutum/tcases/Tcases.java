@@ -8,8 +8,7 @@
 package org.cornutum.tcases;
 
 import org.cornutum.tcases.generator.*;
-import org.cornutum.tcases.resolve.TestCaseResolver;
-import org.cornutum.tcases.resolve.TestCaseResolverFactory;
+import org.cornutum.tcases.resolve.*;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.Iterator;
@@ -196,5 +195,19 @@ public class Tcases
       .annotations( inputDef)
       .functions( toStream( inputDef.getFunctionInputDefs()).map( f -> resolverFactory.resolverFor( f).getInputDef()))
       .build();
+    }
+
+  /**
+   * Returns the effective system input definition, using the default {@link TestCaseResolver}.
+   */
+  public static SystemInputDef getEffectiveInputDef( SystemInputDef inputDef)
+    {
+    TestCaseResolverFactory resolverFactory =
+      new TestCaseSchemaResolverFactory(
+        ResolverContext.builder( inputDef.getName())
+        .notifier( TestCaseConditionNotifier.log())
+        .build());
+    
+    return getEffectiveInputDef( resolverFactory, inputDef);
     }
   }
