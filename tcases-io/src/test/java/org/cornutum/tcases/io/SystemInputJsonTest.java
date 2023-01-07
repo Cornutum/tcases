@@ -8,11 +8,7 @@
 package org.cornutum.tcases.io;
 
 import org.cornutum.tcases.*;
-import org.cornutum.tcases.resolve.Schemas;
 import org.cornutum.tcases.util.ConditionRecorder;
-import org.cornutum.tcases.util.ContextHandler;
-import org.cornutum.tcases.util.Notifier;
-import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.junit.Before;
 import org.leadpony.justify.api.JsonValidatingException;
@@ -86,13 +82,8 @@ public abstract class SystemInputJsonTest
     SystemInputDef inputDefAfter = testSystemInputJsonResource( systemInputResource);
 
     // Then...
-    assertThat( systemInputResource, inputDefAfter, matches( new SystemInputDefMatcher( normalized( systemInputResource, inputDef))));
+    assertThat( systemInputResource, inputDefAfter, matches( new SystemInputDefMatcher( SystemInputs.normalized( inputDef))));
     assertThat( "Copy of " + systemInputResource, SystemInputDefBuilder.with( inputDef).build(), matches( new SystemInputDefMatcher( inputDef)));
-    }
-
-  public SystemInputDef normalized( String systemInputResource, SystemInputDef inputDef)
-    {
-    return new Normalizer( systemInputResource).normalize( inputDef);
     }
   
   public void assertDefinitionError( String systemInputResource, String... expected)
@@ -167,45 +158,6 @@ public abstract class SystemInputJsonTest
       .flatMap( problems -> problems.stream().flatMap( p -> problems( p))) :
 
       Stream.of( problem);
-    }
-
-  private static class Normalizer extends ContextHandler<SystemInputContext>
-    {
-    /**
-     * Creates a new Normalizer instance.
-     */
-    public Normalizer( String systemInputResource)
-      {
-      super( new SystemInputContext( Notifier.ignore()));
-      schemas_ = new Schemas( getContext());
-      resource_ = systemInputResource;
-      }
-
-    public SystemInputDef normalize( SystemInputDef inputDef)
-      {
-      SystemInputDef normalized = SystemInputDefBuilder.with( inputDef).build();
-
-      doFor( resource_, () -> {
-        toStream( normalized.getFunctionInputDefs())
-          .forEach( function -> {
-            doFor( function.getName(), () -> {
-              toStream( new VarDefIterator( function))
-                .forEach( var -> {
-                  doFor( var.getPathName(), () -> {
-                    schemas_.normalize( var.getSchema());
-                    toStream( var.getValues())
-                      .forEach( value -> doFor( String.valueOf( value.getName()), () -> schemas_.normalize( value.getSchema())));
-                    });
-                  });
-              });
-            });
-        });
-
-      return normalized;
-      }
-
-    private final Schemas schemas_;
-    private final String resource_;
     }
 
   protected SystemInputResources systemInputResources_ = new SystemInputResources( SystemInputJsonTest.class);
