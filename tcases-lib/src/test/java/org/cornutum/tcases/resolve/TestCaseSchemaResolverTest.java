@@ -79,7 +79,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Parent.Var='Integer'")
         .bind(
           VarBindingBuilder.with( "Parent.Var")
-          .value( 42L)
+          .value( 21L)
           .source( "Integer")
           .has( "format", "int64")
           .build())
