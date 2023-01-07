@@ -38,6 +38,10 @@ public class Tcases
    */
   public static SystemTestDef getTests( SystemInputDef inputDef, IGeneratorSet genDef, TestCaseResolverFactory resolverFactory, SystemTestDef baseDef, GeneratorOptions options)
     {
+    if( resolverFactory == null)
+      {
+      resolverFactory = schemaResolverFactoryFor( inputDef);
+      }
     SystemTestDef testDef = new SystemTestDef( inputDef.getName());
     for( Iterator<FunctionInputDef> functionDefs = inputDef.getFunctionInputDefs(); functionDefs.hasNext();)
       {
@@ -56,7 +60,7 @@ public class Tcases
         getTests(
           functionDef,
           functionGen,
-          Optional.ofNullable( resolverFactory).orElse( TestCaseResolverFactory.DEFAULT),
+          resolverFactory,
           functionBase,
           options);
 
@@ -198,16 +202,22 @@ public class Tcases
     }
 
   /**
-   * Returns the effective system input definition, using the default {@link TestCaseResolver}.
+   * Returns the effective system input definition, using the standard {@link TestCaseResolver}.
    */
   public static SystemInputDef getEffectiveInputDef( SystemInputDef inputDef)
     {
-    TestCaseResolverFactory resolverFactory =
+    return getEffectiveInputDef( schemaResolverFactoryFor( inputDef), inputDef);
+    }
+
+  /**
+   * Returns the standard {@link TestCaseResolverFactory} for the given system input definition.
+   */
+  public static TestCaseSchemaResolverFactory schemaResolverFactoryFor( SystemInputDef inputDef)
+    {
+    return
       new TestCaseSchemaResolverFactory(
         ResolverContext.builder( inputDef.getName())
         .notifier( TestCaseConditionNotifier.log())
         .build());
-    
-    return getEffectiveInputDef( resolverFactory, inputDef);
     }
   }
