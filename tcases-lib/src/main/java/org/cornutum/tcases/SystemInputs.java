@@ -7,8 +7,13 @@
 
 package org.cornutum.tcases;
 
-import org.cornutum.tcases.util.ExecutionContext;
+import org.cornutum.tcases.resolve.DataValue.Type;
+import org.cornutum.tcases.resolve.SchemaBuilder;
+import org.cornutum.tcases.resolve.Schemas;
+import org.cornutum.tcases.util.ExecutionNotifier;
+import org.cornutum.tcases.util.Notifier;
 import org.cornutum.tcases.util.ToString;
+import static org.cornutum.tcases.VarValueDef.Type.*;
 import static org.cornutum.tcases.conditions.Conditions.propertiesReferenced;
 import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
@@ -34,11 +39,116 @@ import static java.util.stream.Collectors.toMap;
 public class SystemInputs
   {
   /**
+   * Returns a builder for a new {@link SystemInputDef} with the given name.
+   */
+  public static SystemInputDefBuilder system( String name)
+    {
+    return SystemInputDefBuilder.with( name);
+    }
+
+  /**
+   * Returns a builder for a new {@link FunctionInputDef} with the given name.
+   */
+  public static FunctionInputDefBuilder function( String name)
+    {
+    return FunctionInputDefBuilder.with( name);
+    }
+
+  /**
+   * Returns a builder for a new {@link VarSet} with the given name.
+   */
+  public static VarSetBuilder varSet( String name)
+    {
+    return VarSetBuilder.with( name);
+    }
+
+  /**
+   * Returns a builder for a new {@link VarDef} with the given name.
+   */
+  public static VarDefBuilder var( String name)
+    {
+    return VarDefBuilder.with( name);
+    }
+
+  /**
+   * Returns a builder for a new {@link VarValueDef} with the given name.
+   */
+  public static VarValueDefBuilder value( Object name)
+    {
+    return VarValueDefBuilder.with( name);
+    }
+
+  /**
+   * Returns a builder for a new failure {@link VarValueDef} with the given name.
+   */
+  public static VarValueDefBuilder failureValue( Object name)
+    {
+    return VarValueDefBuilder.with( name).type( FAILURE);
+    }
+
+  /**
+   * Returns a builder for a new once {@link VarValueDef} with the given name.
+   */
+  public static VarValueDefBuilder onceValue( Object name)
+    {
+    return VarValueDefBuilder.with( name).type( ONCE);
+    }
+
+  /**
+   * Returns a builder for a new {@link org.cornutum.tcases.resolve.Schema} with the given type.
+   */
+  public static SchemaBuilder schema( Type type)
+    {
+    return SchemaBuilder.type( type);
+    }
+
+  /**
+   * Returns a builder for a new generic {@link org.cornutum.tcases.resolve.Schema}.
+   */
+  public static SchemaBuilder schema()
+    {
+    return SchemaBuilder.generic();
+    }
+
+  /**
+   * Returns the given {@link SystemInputDef} in normalized form.
+   */
+  public static SystemInputDef normalized( SystemInputDef inputDef)
+    {
+    return new SystemInputs( inputDef.getName()).normalize( inputDef);
+    }
+
+  /**
    * Creates a new SystemInputs instance.
    */
   public SystemInputs( String... startLocation)
     {
     context_ = new ProcessingContext( startLocation);
+    }
+
+  /**
+   * Returns the given {@link SystemInputDef} in normalized form.
+   */
+  public SystemInputDef normalize( SystemInputDef inputDef)
+    {
+    Schemas schemas = new Schemas( getContext());
+    
+    SystemInputDef normalized = SystemInputDefBuilder.with( inputDef).build();
+    toStream( normalized.getFunctionInputDefs())
+      .forEach( function -> {
+        getContext().doFor( function.getName(), () -> {
+          toStream( new VarDefIterator( function))
+            .forEach( var -> {
+              getContext().doFor( var.getPathName(), () -> {
+                schemas.normalize( var.getSchema());
+                toStream( var.getValues())
+                  .forEach( value -> getContext().doFor( String.valueOf( value.getName()), () -> schemas.normalize( value.getSchema())));
+                });
+              });
+          });
+        });
+
+    return normalized;
     }
 
   /**
@@ -357,7 +467,7 @@ public class SystemInputs
   /**
    * Defines the context for processing a {@link SystemInputDef}.
    */
-  private static class ProcessingContext extends ExecutionContext<ProcessingException>
+  private static class ProcessingContext extends ExecutionNotifier<ProcessingException>
     {
     /**
      * Creates a new ProcessingContext instance, starting at the given location.
@@ -365,6 +475,7 @@ public class SystemInputs
     public ProcessingContext( String... startLocation)
       {
       super( startLocation);
+      setNotifier( Notifier.ignore());
       }
     
     /**
