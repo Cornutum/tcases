@@ -490,12 +490,13 @@ public class Schema
    */
   private Type assertRequiredType( String property, Type... requiredTypes)
     {
-    if( Arrays.stream( requiredTypes).noneMatch( type -> type == getType()))
+    Type thisType = getType();
+
+    if( thisType != NULL && Arrays.stream( requiredTypes).noneMatch( type -> type == thisType))
       {
-      throw new IllegalArgumentException( String.format( "Property=%s is not allowed for schema type=%s", property, getType()));
+      throw new IllegalArgumentException( String.format( "Property=%s is not allowed for schema type=%s", property, thisType));
       }
 
-    Type thisType = getType();
     return
       thisType == NULL && requiredTypes.length > 0
       ? requiredTypes[0]
