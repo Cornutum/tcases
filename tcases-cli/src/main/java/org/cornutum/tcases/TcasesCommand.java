@@ -1237,9 +1237,9 @@ public class TcasesCommand
       : inputDefFile.getParentFile();
 
     Resource.Type defaultContentType =
-      firstNonNull
-      ( options.getContentType(),
+      firstNonNull(
         Resource.Type.of( inputDefFile),
+        options.getContentType(),
         Resource.Type.JSON);
 
     // Read the system input definition.
