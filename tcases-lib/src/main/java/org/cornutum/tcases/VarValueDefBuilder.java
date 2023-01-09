@@ -41,7 +41,6 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
     return new VarValueDefBuilder( varValueDef);
     }
 
-
   /**
    * Creates a new VarValueDefBuilder object.
    */
@@ -163,6 +162,14 @@ public class VarValueDefBuilder extends AnnotatedBuilder<VarValueDefBuilder>
     {
     property.ifPresent( p -> varValueDef_.addProperties( p));
     return this;
+    }
+
+  /**
+   * Adds a schema.
+   */
+  public VarValueDefBuilder set( SchemaBuilder schema)
+    {
+    return schema( schema.build());
     }
 
   /**

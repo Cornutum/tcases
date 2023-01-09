@@ -54,118 +54,59 @@ public class SystemInputBuilderTest
     VarDef patternVar =
       var( "pattern")
       .when( has( fileExists))
-      .schema( schema( STRING).build())
-
-      .values(
-
-        value( "empty")
-        .properties( patternEmpty)
-        .schema( schema().constant( "").build())
-        .build(),
-
-        value( "unquotedSingle")
-        .schema( schema().pattern( "^[^\\s\"]$").build())
-        .build(),
-
-        value( "unquotedMany")
-        .properties( patternMany)
-        .schema( schema().pattern( "^[^\\s\"]+$").minLength( 2).maxLength( 16).build())
-        .build(),
-
-        value( "quoted")
-        .properties( patternMany)
-        .schema( schema().pattern( "^\"[^\\s\"]+\"$").minLength( 2).maxLength( 16).build())
-        .build(),
-
-        value( "quotedEmpty")
-        .properties( patternEmpty)
-        .schema( schema().constant( "\"\"").build())
-        .build(),
-
-        value( "quotedBlanks")
-        .properties( patternMany)
-        .schema( schema().pattern( "^\"[^\\s\"]*( +[^\\s\"]*)+\"$").minLength( 2).maxLength( 16).build())
-        .build(),
-
-        value( "quotedQuotes")
-        .properties( patternMany)
-        .schema( schema().pattern( "^\"[^\\s\"]*(\"{2}[^\\s\"]*)+\"$").minLength( 2).maxLength( 16).build())
-        .build())
+      .set( schema( STRING))
+      .add(
+        value( "empty").properties( patternEmpty).set( schema().constant( "")),
+        value( "unquotedSingle").set( schema().pattern( "^[^\\s\"]$")),
+        value( "unquotedMany").properties( patternMany).set( schema().pattern( "^[^\\s\"]+$").minLength( 2).maxLength( 16)),
+        value( "quoted").properties( patternMany).set( schema().pattern( "^\"[^\\s\"]+\"$").minLength( 2).maxLength( 16)),
+        value( "quotedEmpty").properties( patternEmpty).set( schema().constant( "\"\"")),
+        value( "quotedBlanks").properties( patternMany).set( schema().pattern( "^\"[^\\s\"]*( +[^\\s\"]*)+\"$").minLength( 2).maxLength( 16)),
+        value( "quotedQuotes").properties( patternMany).set( schema().pattern( "^\"[^\\s\"]*(\"{2}[^\\s\"]*)+\"$").minLength( 2).maxLength( 16)))
       .build();
 
     VarDef fileNameVar =
       var( "fileName")
-      .schema( schema( STRING).build())
-      .values(
-
-        value( "defined")
-        .properties( fileName)
-        .build(),
-
-        failureValue( "missing")
-        .build())
+      .set( schema( STRING))
+      .add(
+        value( "defined").properties( fileName),
+        failureValue( "missing"))
       .build();
 
     VarDef fileExistsVar =
       var( "exists")
-      .schema( schema( BOOLEAN).build())
-      .values(
-        value( true)
-        .properties( fileExists)
-        .build(),
-
-        failureValue( false)
-        .build())
+      .set( schema( BOOLEAN))
+      .add(
+        value( true).properties( fileExists),
+        failureValue( false))
       .build();
 
     VarDef linesLongerThanPatternVar =
       var( "linesLongerThanPattern")
-      .schema( schema( INTEGER).format( "int32").build())
-      .values(
-        onceValue( 1)
-        .properties( matchable)
-        .build(),
-
-        value( "many")
-        .properties( matchable)
-        .schema( schema( INTEGER).minimum( 2).maximum( 32).build())
-        .build(),
-
-        failureValue( 0)
-        .when( has( patternMany))
-        .build())
+      .set( schema( INTEGER).format( "int32"))
+      .add(
+        onceValue( 1).properties( matchable),
+        value( "many").properties( matchable).set( schema( INTEGER).minimum( 2).maximum( 32)),
+        failureValue( 0).when( has( patternMany)))
       .build();
 
     VarDef patternMatchesVar =
       var( "patternMatches")
       .when( has( matchable))
-      .schema( schema( INTEGER).format( "int32").build())
-      .values(
-        onceValue( 0)
-        .build(),
-
-        value( 1)
-        .properties( match)
-        .build(),
-
-        value( "many")
-        .properties( match, matchMany)
-        .schema( schema( INTEGER).minimum( 2).maximum( 16).build())
-        .build())
+      .set( schema( INTEGER).format( "int32"))
+      .add(
+        onceValue( 0),
+        value( 1).properties( match),
+        value( "many").properties( match, matchMany).set( schema( INTEGER).minimum( 2).maximum( 16)))
       .build();
 
     VarDef patternsInLineVar =
       var( "patternsInLine")
       .when( has( match))
-      .schema( schema( INTEGER).format( "int32").build())
-      .values(
-        value( 1)
-        .build(),
-
-        value( "many")
-        .when( has( matchMany))
-        .schema( schema( INTEGER).minimum( 2).maximum( 4).build())
-        .build()) 
+      .set( schema( INTEGER).format( "int32"))
+      .add(
+        value( 1),
+        value( "many").when( has( matchMany)).set( schema( INTEGER).minimum( 2).maximum( 4))) 
       .build();
     
     VarSet fileVar =
@@ -188,10 +129,7 @@ public class SystemInputBuilderTest
     // Create system input definition
     SystemInputDef examples =
       system( "Examples")
-      .functions(
-        function( "find")
-        .vars( patternVar, fileNameVar, fileVar)
-        .build())
+      .add( function( "find").vars( patternVar, fileNameVar, fileVar))
       .build();
 
     // Then...

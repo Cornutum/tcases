@@ -13,6 +13,7 @@ import org.cornutum.tcases.resolve.Schema;
 import org.cornutum.tcases.resolve.SchemaBuilder;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -20,7 +21,7 @@ import java.util.stream.Stream;
  * Builds {@link VarDef} instances.
  *
  */
-public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
+public class VarDefBuilder extends VarBuilder<VarDefBuilder>
   {
   /**
    * Creates a new builder for a VarDef with the given name.
@@ -132,6 +133,14 @@ public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
   /**
    * Adds variable values.
    */
+  public VarDefBuilder add( VarValueDefBuilder... values)
+    {
+    return values( Arrays.stream( values).map( VarValueDefBuilder::build));
+    }
+
+  /**
+   * Adds variable values.
+   */
   public VarDefBuilder values( VarValueDef... values)
     {
     for( VarValueDef value : values)
@@ -165,6 +174,14 @@ public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
   /**
    * Adds a schema.
    */
+  public VarDefBuilder set( SchemaBuilder schema)
+    {
+    return schema( schema.build());
+    }
+
+  /**
+   * Adds a schema.
+   */
   public VarDefBuilder schema( Schema schema)
     {
     varDef_.setSchema( schema);
@@ -176,6 +193,15 @@ public class VarDefBuilder extends AnnotatedBuilder<VarDefBuilder>
    */
   @Override
   protected Annotated getAnnotated()
+    {
+    return varDef_;
+    }
+
+  /**
+   * Returns the {@link IVarDef} instance for this builder.
+   */
+  @Override
+  public IVarDef getVarDef()
     {
     return varDef_;
     }
