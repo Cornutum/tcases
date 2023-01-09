@@ -19,7 +19,7 @@ import java.util.stream.Stream;
  * Builds {@link VarSet} instances.
  *
  */
-public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
+public class VarSetBuilder extends VarBuilder<VarSetBuilder>
   {
   /**
    * Creates a new builder for a VarSet with the given name.
@@ -133,6 +133,14 @@ public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
   /**
    * Adds variable set members.
    */
+  public VarSetBuilder add( VarBuilder<?>... members)
+    {
+    return members( Arrays.stream( members).map( VarBuilder::getVarDef));
+    }
+
+  /**
+   * Adds variable set members.
+   */
   public VarSetBuilder members( IVarDef... members)
     {
     for( IVarDef member : members)
@@ -238,6 +246,15 @@ public class VarSetBuilder extends AnnotatedBuilder<VarSetBuilder>
    */
   @Override
   protected Annotated getAnnotated()
+    {
+    return varSet_;
+    }
+
+  /**
+   * Returns the {@link IVarDef} instance for this builder.
+   */
+  @Override
+  public IVarDef getVarDef()
     {
     return varSet_;
     }

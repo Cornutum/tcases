@@ -10,6 +10,7 @@ package org.cornutum.tcases;
 
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -96,6 +97,14 @@ public class FunctionInputDefBuilder extends AnnotatedBuilder<FunctionInputDefBu
     {
     functionInputDef_.setName( name);
     return this;
+    }
+
+  /**
+   * Adds function input variables.
+   */
+  public FunctionInputDefBuilder add( VarBuilder<?>... vars)
+    {
+    return vars( Arrays.stream( vars).map( VarBuilder::getVarDef));
     }
 
   /**
