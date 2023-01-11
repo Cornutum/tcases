@@ -98,6 +98,14 @@ public class VarBindingBuilder extends AnnotatedBuilder<VarBindingBuilder>
   /**
    * Changes the binding variable value.
    */
+  public VarBindingBuilder is( Object value)
+    {
+    return value( value);
+    }
+
+  /**
+   * Changes the binding variable value.
+   */
   public VarBindingBuilder value( Object value)
     {
     varBinding_.setValue( value);
@@ -141,6 +149,14 @@ public class VarBindingBuilder extends AnnotatedBuilder<VarBindingBuilder>
       varBinding_ = new VarNaBinding( varBinding_.getVar(), varBinding_.getType());
       }
     return this;
+    }
+
+  /**
+   * Changes this binding to "not applicable".
+   */
+  public VarBindingBuilder isNA()
+    {
+    return notApplicable();
     }
 
   /**

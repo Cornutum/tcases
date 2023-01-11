@@ -8,6 +8,7 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -156,6 +157,14 @@ public class TupleCombinerBuilder
       tupleCombiner_.addOnceTuple( tupleRef);
       }
     return this;
+    }
+
+  /**
+   * Adds the given once-only tuples to this combiner.
+   */
+  public TupleCombinerBuilder using( TupleRefBuilder... tupleRefs)
+    {
+    return once( Arrays.stream( tupleRefs).map( TupleRefBuilder::build));
     }
 
   /**

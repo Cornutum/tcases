@@ -73,6 +73,22 @@ public class GeneratorSetBuilder
   /**
    * Adds a generator to this set for the given function.
    */
+  public GeneratorSetBuilder generatingFor( String functionName, TupleGeneratorBuilder generator)
+    {
+    return generator( functionName, generator.build());
+    }
+
+  /**
+   * Adds a default generator to this set.
+   */
+  public GeneratorSetBuilder generatingByDefault( TupleGeneratorBuilder generator)
+    {
+    return defaultGenerator( generator.build());
+    }
+
+  /**
+   * Adds a generator to this set for the given function.
+   */
   public GeneratorSetBuilder generator( String functionName, ITestCaseGenerator generator)
     {
     generatorSet_.addGenerator( functionName, generator);
