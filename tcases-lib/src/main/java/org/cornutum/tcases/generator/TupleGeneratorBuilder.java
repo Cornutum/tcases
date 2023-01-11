@@ -8,6 +8,7 @@
 
 package org.cornutum.tcases.generator;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -87,6 +88,22 @@ public class TupleGeneratorBuilder
     {
     tupleGenerator_.setRandomSeed( seed);
     return this;
+    }
+
+  /**
+   * Changes the random number sequence seed for this generator.
+   */
+  public TupleGeneratorBuilder seed( int seed)
+    {
+    return seed( (long) seed);
+    }
+
+  /**
+   * Add the given {@link TupleCombiner} instances to this generator.
+   */
+  public TupleGeneratorBuilder combining( TupleCombinerBuilder... combiners)
+    {
+    return combiners( Arrays.stream( combiners).map( TupleCombinerBuilder::build));
     }
 
   /**
