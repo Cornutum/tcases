@@ -1,5 +1,36 @@
 # Release Notes #
 
+## 4.0.1 ##
+
+This release provides the following improvements.
+
+  * **Using the Tcases API to generate tests**
+
+    The Tcases command line interface is implemented using a Java API. You can use the same API to do all of the same things in
+    your own Java program, including creating a system input definition, generating test cases, and reading or writing Tcases
+    documents. For details, see [_Using The Tcases API_](./Using-Tcases-API.md).
+
+    Thanks to @grzegorzgrzegorz for inspiring improvements that make this API easier to use.
+
+  * **`Tcases::getTests`: Resolve schemas by default**
+
+    The [`Tcases::getTests`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/Tcases.html#getTests-org.cornutum.tcases.SystemInputDef-org.cornutum.tcases.generator.IGeneratorSet-org.cornutum.tcases.resolve.TestCaseResolverFactory-org.cornutum.tcases.SystemTestDef-org.cornutum.tcases.generator.GeneratorOptions-)
+    method is the basic interface for generating test cases. It includes an optional
+    [`TestCaseResolverFactory`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/resolve/TestCaseResolverFactory.html)
+    parameter that defines how test case values are resolved. In this release, the default `TestCaseResolverFactory` uses the
+    schemas defined by variable definitions and value definitions to resolve test case values.
+
+  * **`Tcases::getEffectiveInputDef`: Normalize all schemas**
+
+    In this release, the `Tcases::getEffectiveInputDef` method ensure that all schema definitions in the resulting system input
+    definition have been "normalized". Schema normalization updates the original schema definition to resolve any
+    inconsistencies. For example, a schema that defined both `"minimum": 0` and `"exclusiveMinimum": 1` would be normalized to
+    define only `"minimum": 2`. Any change made during schema normalization is reported in a log message.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.10.
+
 ## 4.0.0 ##
 
 With this major release, JSON becomes the preferred format for all Tcases documents. From now on, unless otherwise stated, new

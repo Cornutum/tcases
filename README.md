@@ -1,13 +1,13 @@
 # Tcases: A Model-Based Test Case Generator #
 
-[![Maven](https://img.shields.io/badge/maven-4.0.0-green.svg)](https://search.maven.org/search?q=tcases-shell)
-[![Javadoc](https://img.shields.io/badge/javadoc-4.0.0-green.svg)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
+[![Maven](https://img.shields.io/badge/maven-4.0.1-green.svg)](https://search.maven.org/search?q=tcases-shell)
+[![Javadoc](https://img.shields.io/badge/javadoc-4.0.1-green.svg)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
 
 ## What's New? ##
-  * The latest version ([Tcases 4.0.0](ReleaseNotes.md#400)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 4.0.1](ReleaseNotes.md#401)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * With Tcases 4.0.0, JSON becomes the preferred format for all Tcases documents. Also new in this release:
+  * With Tcases 4.0.1, JSON becomes the preferred format for all Tcases documents. Also new in this release:
     [schema-based value definitions](./Tcases-Guide.md#defining-value-schemas) and the
     [`tcases-copy`](./Tcases-Guide.md#copying-a-tcases-project) command.
 
@@ -67,6 +67,7 @@ definition into a Java source code template for a JUnit or TestNG test class.
   * **Helpful Guides**
     * [How To Download Using Maven](HowToDownload.md)
     * [How To Setup a Tcases Web Service](./Tcases-Web-Service.md)
+    * [Using The Tcases API](./Using-Tcases-API.md)
     * [Troubleshooting FAQ](./Troubleshooting-FAQs.md#troubleshooting-faqs)
     * [Release Notes](ReleaseNotes.md)
 
