@@ -22,7 +22,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 /**
- * Reads a {@link Project} definition from an JSON document.
+ * Reads a {@link Project} definition from a JSON document.
  *
  */
 public class ProjectJsonReader implements Closeable
