@@ -9,7 +9,7 @@ including [creating a system input definition](#builders), [generating test case
 
 The [`tcases-lib`](https://search.maven.org/search?q=g:org.cornutum.tcases%20AND%20a:tcases-lib) JAR contains all of the core
 classes needed to create a [system input definition](Tcases-Guide.md#defining-system-functions).  You can use methods from the
-[`SystemInputs`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/SystemInputs.html) for a fluent interface to
+[`SystemInputs`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/SystemInputs.html) class for a fluent interface to
 the various builder classes needed to construct a complete [`SystemInputDef`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/SystemInputDef.html).
 For a complete example, see the [`SystemInputBuilderTest`](./tcases-io/src/test/java/org/cornutum/tcases/io/SystemInputBuilderTest.java).
 

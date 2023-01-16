@@ -10,7 +10,7 @@ This release provides the following improvements.
     your own Java program, including creating a system input definition, generating test cases, and reading or writing Tcases
     documents. For details, see [_Using The Tcases API_](./Using-Tcases-API.md).
 
-    Thanks to @grzegorzgrzegorz for inspiring improvements that make this API easier to use.
+    Thanks to [grzegorzgrzegorz](https://github.com/grzegorzgrzegorz) for inspiring improvements to make this API easier to use.
 
   * **`Tcases::getTests`: Resolve schemas by default**
 
@@ -22,7 +22,7 @@ This release provides the following improvements.
 
   * **`Tcases::getEffectiveInputDef`: Normalize all schemas**
 
-    In this release, the `Tcases::getEffectiveInputDef` method ensure that all schema definitions in the resulting system input
+    In this release, the `Tcases::getEffectiveInputDef` method ensures that all schema definitions in the resulting system input
     definition have been "normalized". Schema normalization updates the original schema definition to resolve any
     inconsistencies. For example, a schema that defined both `"minimum": 0` and `"exclusiveMinimum": 1` would be normalized to
     define only `"minimum": 2`. Any change made during schema normalization is reported in a log message.

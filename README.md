@@ -7,9 +7,8 @@
   * The latest version ([Tcases 4.0.1](ReleaseNotes.md#401)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
 
-  * With Tcases 4.0.1, JSON becomes the preferred format for all Tcases documents. Also new in this release:
-    [schema-based value definitions](./Tcases-Guide.md#defining-value-schemas) and the
-    [`tcases-copy`](./Tcases-Guide.md#copying-a-tcases-project) command.
+  * Tcases 4.0.1 provides several improvements, including a new guide to [using the Tcases API](Using-Tcases-API.md).
+    See the [release notes](ReleaseNotes.md#401) for details.
 
   * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 
