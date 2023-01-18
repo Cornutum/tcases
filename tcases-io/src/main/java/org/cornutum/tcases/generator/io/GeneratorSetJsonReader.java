@@ -20,7 +20,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 /**
- * An {@link IGeneratorSetSource} that reads from an JSON document.
+ * An {@link IGeneratorSetSource} that reads from a JSON document.
  *
  */
 public class GeneratorSetJsonReader implements IGeneratorSetSource, Closeable

@@ -18,7 +18,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 /**
- * Reads a {@link MocoTestConfig} object from an JSON document.
+ * Reads a {@link MocoTestConfig} object from a JSON document.
  *
  */
 public class MocoTestConfigReader implements Closeable

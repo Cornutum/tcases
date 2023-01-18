@@ -22,7 +22,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 /**
- * An {@link ISystemInputSource} that reads from an JSON document.
+ * An {@link ISystemInputSource} that reads from a JSON document.
  */
 public class SystemInputJsonReader extends ContextHandler<SystemInputContext> implements ISystemInputSource, Closeable
   {  

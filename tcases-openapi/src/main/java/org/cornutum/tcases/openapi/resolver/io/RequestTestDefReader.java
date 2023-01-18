@@ -20,7 +20,7 @@ import javax.json.JsonArray;
 import javax.json.JsonReader;
 
 /**
- * Reads a {@link RequestTestDef} object from an JSON document.
+ * Reads a {@link RequestTestDef} object from a JSON document.
  *
  */
 public class RequestTestDefReader implements Closeable

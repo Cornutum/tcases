@@ -20,7 +20,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 /**
- * An {@link ISystemTestSource} that reads from an JSON document.
+ * An {@link ISystemTestSource} that reads from a JSON document.
  *
  */
 public class SystemTestJsonReader implements ISystemTestSource, Closeable
