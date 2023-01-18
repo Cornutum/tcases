@@ -8,7 +8,7 @@
     busy with a long, exhaustive, and possibly fruitless search.
 
     This situation can occur especially when using [higher coverage
-    levels](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#higherCoverage) (2-tuples, 3-tuples, etc), in
+    levels](./Tcases-Guide.md#defining-higher-coverage) (2-tuples, 3-tuples, etc), in
     which case some [infeasible combinations](#infeasible) may be expected.
 
     To fix this, check the conditions and properties in your model until you find the problem. You may find it

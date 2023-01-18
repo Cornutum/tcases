@@ -21,7 +21,7 @@ the `tcases-anon` command. Or if you are using a Windows command line, you can r
 using exactly the same syntax.  For details about `tcases-anon` command syntax, run `tcases-anon -help`.
 
 `tcases-anon` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
-[*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install).
+[*Tcases: The Complete Guide*](./Tcases-Guide.md#installing-the-tcases-distribution).
 
 Some examples:
 
