@@ -181,8 +181,8 @@ that's a pretty good way to go.
 But what is the "input space" for a request? And what exactly does this coverage mean? 100% of what?
 
 Good questions. And to fully understand the answers, you need to know more about how Tcases [models system
-inputs](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#input) and how Tcases [measures
-coverage](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#coverage). But here's the short answer: for every
+inputs](../Tcases-Guide.md#modeling-the-input-space) and how Tcases [measures
+coverage](../Tcases-Guide.md#defining-input-coverage). But here's the short answer: for every
 request, these test cases ensure that every key variation in the value for every input parameter is used at least
 once. That includes not only valid values, which are expected to produce a successful result, but also invalid values,
 which are expected to produce some kind of failure response.
@@ -216,9 +216,9 @@ OpenAPI definition even better.
 
 Your OpenAPI definition defines rules for all the data that flows to and from the API server. Most of these rules are
 represented by the [schema](http://spec.openapis.org/oas/v3.0.2#schema-object) that describe each data item. By default, Tcases
-for OpenAPI uses these schema definitions to compose a [model of the input space](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#input)
+for OpenAPI uses these schema definitions to compose a [model of the input space](../Tcases-Guide.md#modeling-the-input-space)
 of your API -- a model of all the forms of data that could be accepted. From this input model, Tcases can
-[generate a set of test cases](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#coverage), including not only cases of valid
+[generate a set of test cases](../Tcases-Guide.md#defining-input-coverage), including not only cases of valid
 data but also cases of data that do not match the schema and are expected to produce an error response.
 
 Alternatively, Tcases for OpenAPI can create an input model from a different source: the <A name="examples">examples</A> defined
@@ -259,7 +259,7 @@ if you are using a Windows command line, you can run Tcases for OpenAPI with the
 syntax.
 
 `tcases-api` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
-[*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install). After installation, you can
+[*Tcases: The Complete Guide*](../Tcases-Guide.md#installing-the-tcases-distribution). After installation, you can
 find OpenAPI examples in the `docs/examples/openapi` subdirectory.
 
 For details about the interface to the `tcases-api` command (and the `tcases-api.bat` command, too), see the Javadoc for
@@ -349,7 +349,7 @@ mvn tcases:api -Dproject=my-api -Dsource=examples
 
 ## Semantic linting with Tcases for OpenAPI ##
 
-Tcases for OpenAPI works by constructing [a model of the "input space"](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#input)
+Tcases for OpenAPI works by constructing [a model of the "input space"](../Tcases-Guide.md#modeling-the-input-space)
 for API requests or responses. In other words, a representation of all possible valid inputs to your API. As a result, Tcases
 for OpenAPI can detect when an API definition that is syntactically valid nevertheless defines an input space that is
 *semantically* flawed. For example, it may define a schema that is inconsistent and can never by validated by any instance. Or
@@ -411,10 +411,10 @@ construction of actual tests. But because test case definitions can appear in a 
 transform them into a more concrete form. Here are some of the options possible.
 
   - **JUnit/TestNG**: Use the `-J` option of the `tcases-api` command (or if using Maven, the `junit` parameter of the `tcases:api` goal). This transforms test cases into Java source code for JUnit/TestNG test methods. For details, see [*Tcases: The
-Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#junit).
+Complete Guide*](../Tcases-Guide.md#creating-junittestng-tests).
 
   - **HTML**: Use the `-H` option of the `tcases-api` command (or if using Maven, the `html` parameter of the `tcases:api` goal). This transforms test cases into browser-friendly HTML report. For details, see [*Tcases: The
-Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#html).
+Complete Guide*](../Tcases-Guide.md#creating-an-html-report).
 
   - **Custom XSLT transform**: Use the `-x`, `-p`, and `-f` options of the `tcases-api` command (or if using Maven, the `transformDef`, `transformParams`, and `transformOutFile` parameters of the `tcases:api` goal). This generates test cases in the form of an XML document, which is then transformed by the specified XSLT transform. If you want to see what test cases look like in XML, apply the following command to your OpenAPI definition:
 

@@ -66,7 +66,7 @@ using exactly the same syntax.  For details about `tcases-api-test` command synt
 class.  To get help at the command line, run `tcases-api-test -help`.
 
 `tcases-api-test` is included in the Tcases binary distribution file. For instructions on how to download and install it, see
-[*Tcases: The Complete Guide*](http://www.cornutum.org/tcases/docs/Tcases-Guide.htm#install). After installation, you can
+[*Tcases: The Complete Guide*](../Tcases-Guide.md#installing-the-tcases-distribution). After installation, you can
 find OpenAPI examples in the `docs/examples/openapi` subdirectory.
 
 You can also generate tests with the [Tcases Maven Plugin](README.md#running-tcases-for-openapi-using-maven)
