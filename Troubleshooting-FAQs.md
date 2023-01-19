@@ -54,12 +54,12 @@
     ```
     # Generate tests using only the default coverage, reading the input definition from
     # standard input and printing log messages to standard output
-    tcases -l stdout < myProject-Input.xml
+    tcases -l stdout < myProject-Input.json
     ```
 
     ```
-    # Same thing, reading the input definition in JSON form from standard input
-    tcases -l stdout -T json < myProject-Input.json
+    # Same thing, reading the input definition in XML form from standard input
+    tcases -l stdout -T xml < myProject-Input.xml
     ```
 
 
