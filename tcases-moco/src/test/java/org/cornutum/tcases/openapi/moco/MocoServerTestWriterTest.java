@@ -588,7 +588,7 @@ public class MocoServerTestWriterTest extends MocoServerTest
         new PojoWriter()
           {
           @Override
-        public void writePojo( String serverName, IndentedWriter targetWriter)
+          public void writePojo( String serverName, IndentedWriter targetWriter)
             {
             targetWriter.println( String.format( "%s.response( \"Your request has been received.\");", serverName));
             }

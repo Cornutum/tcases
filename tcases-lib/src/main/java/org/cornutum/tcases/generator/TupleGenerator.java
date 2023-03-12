@@ -877,7 +877,7 @@ public class TupleGenerator implements ITestCaseGenerator
     new Comparator<VarBindingDef>()
       {
       @Override
-    public int compare( VarBindingDef binding1, VarBindingDef binding2)
+      public int compare( VarBindingDef binding1, VarBindingDef binding2)
         {
         String var1 = binding1.getVarDef().getPathName();
         String var2 = binding2.getVarDef().getPathName();
@@ -897,7 +897,7 @@ public class TupleGenerator implements ITestCaseGenerator
     new Comparator<Set<VarBindingDef>>()
       {
       @Override
-    public int compare( Set<VarBindingDef> bindingSet1, Set<VarBindingDef> bindingSet2)
+      public int compare( Set<VarBindingDef> bindingSet1, Set<VarBindingDef> bindingSet2)
         {
         int result = bindingSet1.size() - bindingSet2.size();
         if( result == 0)
@@ -920,7 +920,7 @@ public class TupleGenerator implements ITestCaseGenerator
     new Comparator<TupleCombiner>()
       {
       @Override
-    public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
+      public int compare( TupleCombiner combiner1, TupleCombiner combiner2)
         {
         return
           effectiveTupleSize( combiner2.getTupleSize())

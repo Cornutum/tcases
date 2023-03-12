@@ -294,7 +294,7 @@ public class VarTupleSet
     new Comparator<Tuple>()
     {
       @Override
-    public int compare( Tuple tuple1, Tuple tuple2)
+      public int compare( Tuple tuple1, Tuple tuple2)
         {
          return tuple2.size() - tuple1.size();
         }

@@ -173,7 +173,7 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
    * Returns a random sequence of values from this domain.
    */
   @Override
-    public Stream<DataValue<List<DataValue<T>>>> values( ResolverContext context)
+  public Stream<DataValue<List<DataValue<T>>>> values( ResolverContext context)
     {
     return Stream.generate( () -> dataValueOf( newArray( context)));
     }
@@ -182,7 +182,7 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-    protected DataValue<List<DataValue<T>>> dataValueOf( List<DataValue<T>> value)
+  protected DataValue<List<DataValue<T>>> dataValueOf( List<DataValue<T>> value)
     {
     return new ArrayValue<T>( value, getFormat());
     }
@@ -252,7 +252,7 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
    * Returns true if the given value belongs to this domain.
    */
   @Override
-    public boolean contains( List<DataValue<T>> value)
+  public boolean contains( List<DataValue<T>> value)
     {
     int size = value.size();
 
@@ -266,13 +266,13 @@ public class ArrayDomain<T> extends AbstractValueDomain<List<DataValue<T>>>
    * Return the type(s) of values that belong to this domain.
    */
   @Override
-    public Type[] getTypes()
+  public Type[] getTypes()
     {
     return Type.only( Type.ARRAY);
     }
 
   @Override
-    public String toString()
+  public String toString()
     {
     return
       ToString.getBuilder( this)

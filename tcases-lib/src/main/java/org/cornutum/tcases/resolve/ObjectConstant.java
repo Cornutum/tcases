@@ -28,7 +28,7 @@ public class ObjectConstant extends ConstantDomain<Map<String,DataValue<?>>>
    * Returns a {@link DataValue} for the given value in this domain.
    */
   @Override
-    protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
+  protected DataValue<Map<String,DataValue<?>>> dataValueOf( Map<String,DataValue<?>> value)
     {
     return new ObjectValue( value, getFormat());
     }
