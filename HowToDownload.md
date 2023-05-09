@@ -2,13 +2,13 @@
 
 ## Tcases Command Line Tools
 
-To get the command line version of Tcases, download the Tcases binary distribution file from the Maven Central Repository, using the following procedure.
+To get the command line version of Tcases, download the Tcases shell distribution file from the Maven Central Repository, using the following procedure.
 
-  1. Visit the [Central Repository search page](https://search.maven.org/search?q=tcases-shell).
-  1. Search for "tcases-shell".
-  1. You will see the most recent release of `tcases-shell`. (To see all N previous versions, select `(N)` under "Latest Version".)
-  1. Use the :arrow_down: button to select the type of file you want to download. Choose either a ZIP file or a compressed tar file (tar.gz).
-  1. See *The Complete Guide* for [tips on installation](./Tcases-Guide.md#installing-the-tcases-distribution).
+  1. Visit the [Central Repository page](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-shell/4.0.1/versions) for `tcases-shell`.
+  1. Find the entry for the latest version and click on "Browse".
+  1. To download the shell distribution ZIP file, click on "tcases-shell-_${version}_.zip". If you prefer a compressed TAR file, click on "tcases-shell-_${version}_.tar.gz".
+
+After downloading, see *The Complete Guide* for [tips on installation](./Tcases-Guide.md#installing-the-tcases-distribution).
 
 
 ## Tcases Libraries
