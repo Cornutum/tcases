@@ -13,6 +13,7 @@ import org.cornutum.tcases.util.ContextHandler;
 import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import static java.util.stream.Collectors.toList;
 
@@ -51,13 +52,19 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
    */
   public List<TestCase> resolve( Function<FunctionInputDef,List<ITestCaseDef>> testCaseDefSupplier)
     {
+    FunctionInputDef inputDef = getInputDef();
     nextId_ = -1;
     
     return
-      testCaseDefSupplier.apply( getInputDef())
-      .stream()
-      .map( this::resolveTestDef)
-      .collect( toList());
+      resultFor(
+        inputDef.getName(),
+
+        () -> 
+        testCaseDefSupplier.apply( inputDef)
+        .stream()
+        .map( this::resolveTestDef)
+        .filter( Objects::nonNull)
+        .collect( toList()));
     }
 
   /**
@@ -65,30 +72,43 @@ public abstract class TestCaseResolver extends ContextHandler<ResolverContext>
    */
   private TestCase resolveTestDef( ITestCaseDef testCaseDef)
     {
-    Integer defId = testCaseDef.getId();
-    nextId_ = defId == null? nextId_ + 1 : defId;
+    TestCase resolved;
 
-    TestCase testCase = new TestCase( nextId_);
-    testCase.setName( testCaseDef.getName());
+    try
+      {
+      Integer defId = testCaseDef.getId();
+      int nextId = defId == null? nextId_ + 1 : defId;
 
-    doFor( String.valueOf( testCase.getId()), () -> {
-      toStream( testCaseDef.getVars())
-        .forEach( var -> {
-          doFor( var.getPathName(), () -> {
-            VarValueDef valueDef = testCaseDef.getValue( var);
-            doFor( String.valueOf( valueDef.getName()), () -> {
-              testCase.addVarBinding( resolveBinding( var, valueDef));
+      TestCase testCase = new TestCase( nextId);
+      testCase.setName( testCaseDef.getName());
+
+      doFor( String.valueOf( testCase.getId()), () -> {
+        toStream( testCaseDef.getVars())
+          .forEach( var -> {
+            doFor( var.getPathName(), () -> {
+              VarValueDef valueDef = testCaseDef.getValue( var);
+              doFor( String.valueOf( valueDef.getName()), () -> {
+                testCase.addVarBinding( resolveBinding( var, valueDef));
+                });
               });
             });
-          });
-      });
+        });
 
-    // Annotate test case with its property set
-    testCaseDef.getProperties().stream()
-      .reduce( (properties, property) -> properties + "," + property)
-      .ifPresent( properties -> testCase.setAnnotation( Annotated.TEST_CASE_PROPERTIES, properties));
+      // Annotate test case with its property set
+      testCaseDef.getProperties().stream()
+        .reduce( (properties, property) -> properties + "," + property)
+        .ifPresent( properties -> testCase.setAnnotation( Annotated.TEST_CASE_PROPERTIES, properties));
     
-    return testCase;
+      resolved = testCase;
+      nextId_ = nextId;
+      }
+    catch( ResolverSkipException skip)
+      {
+      getNotifier().error( skip.getLocation(), skip.getMessage(), "Ignoring this test case");
+      resolved = null;
+      }
+
+    return resolved;
     }
 
   /**
