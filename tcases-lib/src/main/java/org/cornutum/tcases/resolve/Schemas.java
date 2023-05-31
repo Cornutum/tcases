@@ -125,10 +125,27 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
         {
         case ARRAY:
           {
+          schema.setItems(
+            Optional.ofNullable( schema.getItems())
+            .map( items -> resultFor( "items", () -> normalize( items)))
+            .orElse( null));
+
           schema.setMaxItems(
             Optional.ofNullable( schema.getMaxItems())
             .filter( max -> max >= 0)
             .orElse( null));
+
+          domainSize( schema.getItems())
+            .filter( maxUnique -> Optional.ofNullable( schema.getUniqueItems()).orElse( false))
+            .filter( maxUnique -> Optional.ofNullable( schema.getMaxItems()).map( max -> max > maxUnique).orElse( true))
+            .ifPresent( maxUnique -> {
+
+              notifyError(
+                "maxItems exceeds the number of unique item values",
+                String.format("Adjusting maxItems to max unique items=%s", maxUnique));
+
+              schema.setMaxItems( maxUnique);
+              });
           
           schema.setMinItems(
             Optional.ofNullable( schema.getMinItems())
