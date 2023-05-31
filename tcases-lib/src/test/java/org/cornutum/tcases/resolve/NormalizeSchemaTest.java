@@ -29,6 +29,7 @@ public class NormalizeSchemaTest extends ResolverTest
       .minItems( 10)
       .maxItems( 4)
       .uniqueItems( true)
+      .items( SchemaBuilder.type( "number").minimum( "0.0").maximum( "1.0").build())
       .build();
 
     Schema normalized =
@@ -149,6 +150,65 @@ public class NormalizeSchemaTest extends ResolverTest
 
     assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
     assertConditionsNone();
+    }
+
+  @Test
+  public void whenMaxItemsNoneInfeasible()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .items( SchemaBuilder.type( "string").enums( "A", "B", "C").build())
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = schemas.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.with( schema)
+      .maxItems( 3)
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertErrors( "maxItems exceeds the number of unique item values. Adjusting maxItems to max unique items=3.");
+    }
+
+  @Test
+  public void whenMaxItemsInfeasible()
+    {
+    // Given...
+    Schemas schemas = new Schemas( withConditionRecorder());
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .maxItems( 4)
+      .items( SchemaBuilder.type( "string").enums( "A", "B", "C").build())
+      .build();
+
+    Schema normalized =
+      SchemaBuilder.with( schema)
+      .build();
+    
+    // When...
+    normalized = schemas.normalize( normalized);
+    
+    // Then...
+    Schema expected =
+      SchemaBuilder.with( schema)
+      .maxItems( 3)
+      .build();
+
+    assertThat( "Normalized", normalized, matches( new SchemaMatcher( expected)));
+    assertErrors( "maxItems exceeds the number of unique item values. Adjusting maxItems to max unique items=3.");
     }
 
   @Test
