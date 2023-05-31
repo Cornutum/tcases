@@ -1,14 +1,11 @@
 # Tcases: A Model-Based Test Case Generator #
 
-[![Maven](https://img.shields.io/badge/maven-4.0.1-green.svg)](https://search.maven.org/search?q=tcases-shell)
-[![Javadoc](https://img.shields.io/badge/javadoc-4.0.1-green.svg)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
+[![Maven](https://img.shields.io/badge/maven-4.0.2-green.svg)](https://search.maven.org/search?q=tcases-shell)
+[![Javadoc](https://img.shields.io/badge/javadoc-4.0.2-green.svg)](https://javadoc.io/doc/org.cornutum.tcases/tcases-shell)
 
 ## What's New? ##
-  * The latest version ([Tcases 4.0.1](ReleaseNotes.md#401)) is now available at the Maven Central Repository.
+  * The latest version ([Tcases 4.0.2](ReleaseNotes.md#402)) is now available at the Maven Central Repository.
     See [*How To Download Tcases*](HowToDownload.md) for download instructions.
-
-  * Tcases 4.0.1 provides several improvements, including a new guide to [using the Tcases API](Using-Tcases-API.md).
-    See the [release notes](ReleaseNotes.md#401) for details.
 
   * Having trouble with Tcases? Check out [these tips](./Troubleshooting-FAQs.md).
 

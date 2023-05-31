@@ -1,5 +1,44 @@
 # Release Notes #
 
+## 4.0.2 ##
+
+This release provides the following improvements.
+
+  * **Skip "too large" failure cases for array variables when infeasible** [[276](https://github.com/Cornutum/tcases/issues/276)]
+
+    You can use a [variable schema](./Tcases-Guide.md#defining-variable-schemas) to automatically generate value definitions.
+    For a variable with a schema of type `array`, Tcases will normally generate a "too large" failure value definition, using
+    an array value that exceeds the specified `maxItems`. But in some cases, this failure is infeasible. For example, consider
+    the following definition for the `switches` array.
+
+    ```json
+    {
+      "system": "MySystem",
+      "MyFunction": {
+        "arg": {
+          "switches": {
+            "type": "array",
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+    ```
+
+    A "too large" failure value would require an array containing three or more boolean values. But such an array is not possible without
+    violating the `uniqueItems` condition. Because a failure value must represent single distinct error, the "too large" failure is infeasible.
+
+    In previous versions of Tcases, this situation would cause Tcases to throw an exception and give up. But in this release, Tcases will
+    simply skip the infeasible "too large" case and keep going.
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.15.
+
 ## 4.0.1 ##
 
 This release provides the following improvements.
