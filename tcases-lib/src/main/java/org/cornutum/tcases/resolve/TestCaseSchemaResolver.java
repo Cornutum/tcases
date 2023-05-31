@@ -295,11 +295,18 @@ public class TestCaseSchemaResolver extends TestCaseResolver
           }
 
         int aboveMax = maxItems + 1;
-        values.add(
-          VarValueDefBuilder.with( "tooLarge")
-          .type( FAILURE)
-          .schema( SchemaBuilder.with( schema).minItems( aboveMax).maxItems( null).build())
-          .build());
+        boolean aboveMaxInfeasible = 
+          Optional.ofNullable( schema.getUniqueItems()).orElse( false)
+          && Schemas.domainSize( schema.getItems()).map( maxValues -> maxValues < aboveMax).orElse( false);
+
+        if( !aboveMaxInfeasible)
+          {
+          values.add(
+            VarValueDefBuilder.with( "tooLarge")
+            .type( FAILURE)
+            .schema( SchemaBuilder.with( schema).minItems( aboveMax).maxItems( null).build())
+            .build());
+          }
         }
 
       if( Optional.ofNullable( schema.getUniqueItems()).orElse( false)

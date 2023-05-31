@@ -40,7 +40,7 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
     }
 
   /**
-   * Returns a schena that describes values that do not belong to the values described by the given schema.
+   * Returns a schema that describes values that do not belong to the values described by the given schema.
    */
   public static Schema not( Schema schema)
     {
@@ -499,6 +499,78 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
       Optional.ofNullable( formatMax)
       .map( fm -> Optional.ofNullable( patternMax).map( pm -> Math.min( fm, pm)).orElse( fm))
       .orElse( patternMax);
+    }
+
+  /**
+   * If the given schema value domain is bounded, returns the maximum number of values allowed.
+   * Otherwise, returns <CODE>Optional.empty()</CODE>.
+   */
+  public static Optional<Integer> domainSize( Schema schema)
+    {
+    Integer domainSize;
+
+    if( schema == null)
+      {
+      domainSize = null;
+      }
+    else if( schema.getConstant() != null)
+      {
+      domainSize = 1;
+      }
+    else if( schema.getEnum() != null)
+      {
+      domainSize = schema.getEnum().size();
+      }
+    else
+      {
+      switch( schema.getType())
+        {
+        case INTEGER:
+        case NUMBER:
+          {
+          domainSize = 
+            (schema.getMinimum() == null || schema.getMaximum() == null)
+            ? null
+            : maxBoundedNumbers( schema);
+          break;
+          }
+
+        case BOOLEAN:
+          {
+          domainSize = 2;
+          break;
+          }
+
+        default:
+          {
+          domainSize = null;
+          break;
+          }
+        }
+      }
+    
+    return Optional.ofNullable( domainSize);
+    }
+
+  /**
+   * For a bounded numeric schema, returns the maximum number of values allowed.
+   */
+  private static int maxBoundedNumbers( Schema schema)
+    {
+    int maxValues;
+    BigDecimal multipleOf;
+    BigDecimal nextMultiple;
+
+    for( maxValues = 0,
+           nextMultiple = schema.getMinimum(),
+           multipleOf = Optional.ofNullable( schema.getMultipleOf()).orElse( unitOf( schema));
+         
+         nextMultiple.compareTo( schema.getMaximum()) <= 0;
+         
+         maxValues++,
+           nextMultiple = nextMultiple.add( multipleOf));
+
+    return maxValues;
     }
 
   /**
