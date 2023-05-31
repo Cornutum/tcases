@@ -179,6 +179,286 @@ public class VarSchemaValuesTest extends ResolverTest
     }
 
   @Test
+  public void whenConstItemsTooLargeInfeasible()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = getResolver();
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .minItems( 0)
+      .maxItems( 1)
+      .items( SchemaBuilder.type( "boolean").constant( true).build())
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        VarValueDefBuilder.with( "minimumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .maxItems( 0)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 1)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenEnumItemsTooLargeInfeasible()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = getResolver();
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .minItems( 1)
+      .maxItems( 2)
+      .items( SchemaBuilder.type( "string").enums( "hello", "world").build())
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        VarValueDefBuilder.with( "minimumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .maxItems( 1)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "tooSmall")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 0)
+          .maxItems( 0)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 2)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "notUnique")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 2)
+          .uniqueItems( false)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenBooleanItemsTooLargeInfeasible()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = getResolver();
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .maxItems( 2)
+      .items( SchemaBuilder.type( "boolean").build())
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        VarValueDefBuilder.with( "empty")
+        .schema(
+          SchemaBuilder.type( "array")
+          .maxItems( 0)
+          .items( null)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 2)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "notUnique")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 2)
+          .uniqueItems( false)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenIntegerItemsTooLargeInfeasible()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = getResolver();
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .maxItems( 3)
+      .items( SchemaBuilder.type( "integer").minimum( -1).maximum( 1).build())
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        VarValueDefBuilder.with( "empty")
+        .schema(
+          SchemaBuilder.type( "array")
+          .maxItems( 0)
+          .items( null)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 3)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "notUnique")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 2)
+          .uniqueItems( false)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
+  public void whenNumberItemsTooLargeInfeasible()
+    {
+    // Given...
+    TestCaseSchemaResolver resolver = getResolver();
+
+    Schema schema =
+      SchemaBuilder.type( "array")
+      .uniqueItems( true)
+      .maxItems( 9)
+      .items( SchemaBuilder.type( "number").minimum(     "-2.0").maximum( "2.0").multipleOf( "0.5").build())
+      .build();
+        
+    // When...
+    List<VarValueDef> values = resolver.valuesForSchema( schema).collect( toList());
+    
+    // Then...
+    VarValueDef[] expected =
+      new VarValueDef[]
+      {
+        VarValueDefBuilder.with( "empty")
+        .schema(
+          SchemaBuilder.type( "array")
+          .maxItems( 0)
+          .items( null)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "maximumSize")
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 9)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "notUnique")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .minItems( 2)
+          .uniqueItems( false)
+          .build())
+        .build(),
+
+        VarValueDefBuilder.with( "wrongItems")
+        .type( FAILURE)
+        .schema(
+          SchemaBuilder.with( schema)
+          .items( Schemas.not( schema.getItems()))
+          .build())
+        .build()
+      };
+
+    assertThat( "Values", values, containsMembers( VarValueDefMatcher::new, expected));
+    }
+
+  @Test
   public void whenMinItemsNegative()
     {
     // Given...
