@@ -63,8 +63,8 @@ Nice! A total of 35 test cases were generated for the 4 requests in this API. To
 It's telling you that, for starters, you should have a test case for the `GET /pets` request that supplies two query
 parameters, setting the `tags` parameter to an empty array and the `limit` parameter to a negative 32-bit integer. For
 this particular test case, because `tags` is empty, other aspects of this array are irrelevant and are designated as
-"not applicable" (`NA`). For a complete explanation of this JSON format for tests case definitions, see [*Tcases: The
-JSON Guide*](http://www.cornutum.org/tcases/docs/Tcases-Json.htm#testCases).
+"not applicable" (`NA`). For a complete explanation of this JSON format for test case definitions, see [*Tcases: The
+Complete Guide*](../Tcases-Guide.md#understanding-tcases-results).
 
 ```
 {

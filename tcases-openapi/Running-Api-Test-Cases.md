@@ -725,7 +725,7 @@ tcases-api -T yaml -D < petstore-expanded.yaml
 
 ### How does input resolution work? ###
 
-"Resolving" a [test case description](http://www.cornutum.org/tcases/docs/Tcases-Json.htm#testCases) means generating an actual
+"Resolving" a [test case description](../Tcases-Guide.md#understanding-tcases-results) means generating an actual
 value for each of the request input variables. To do this, Tcases for OpenAPI creates a random dummy value of the required type
 that satisfies all of the requirements described for the test case (with some [limitations](#resolution-limitations)). You can
 control the resolution process using the options described below.
