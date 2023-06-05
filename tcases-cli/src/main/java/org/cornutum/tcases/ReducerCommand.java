@@ -167,10 +167,10 @@ public class ReducerCommand extends Reducer
    * that can be located.
    * <OL> 
    * <LI> <I>inputDef</I> </LI>
-   * <LI> <I>inputDef</I>-Input.xml </LI>
-   * <LI> <I>inputDef</I>.xml </LI>
    * <LI> <I>inputDef</I>-Input.json </LI>
    * <LI> <I>inputDef</I>.json </LI>
+   * <LI> <I>inputDef</I>-Input.xml </LI>
+   * <LI> <I>inputDef</I>.xml </LI>
    * </OL>
    * 
    * </TABLE>
@@ -758,10 +758,10 @@ public class ReducerCommand extends Reducer
 
     File inputDefFile;
     if( !(inputDefFile = inputDefOption).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists()
         && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.json")).exists()
-        && !(inputDefFile = new File( inputDefOption.getPath() + ".json")).exists())
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".json")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + "-Input.xml")).exists()
+        && !(inputDefFile = new File( inputDefOption.getPath() + ".xml")).exists())
         {
         throw new RuntimeException( "Can't locate input file for path=" + inputDefOption);
         };

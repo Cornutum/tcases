@@ -320,10 +320,10 @@ public class TcasesCommand
    * that can be located.
    * <OL>
    * <LI> <I>inputDef</I> </LI>
-   * <LI> <I>inputDef</I>-Input.xml </LI>
-   * <LI> <I>inputDef</I>.xml </LI>
    * <LI> <I>inputDef</I>-Input.json </LI>
    * <LI> <I>inputDef</I>.json </LI>
+   * <LI> <I>inputDef</I>-Input.xml </LI>
+   * <LI> <I>inputDef</I>.xml </LI>
    * </OL>
    *
    * </TABLE>
