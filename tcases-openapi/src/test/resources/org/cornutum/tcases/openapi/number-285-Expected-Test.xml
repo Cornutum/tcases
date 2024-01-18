@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<TestCases system="Number">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Number"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_number">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/number"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Number"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param0.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0,param0Value,param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="-3.14">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="2.718">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="param0.Defined=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="param0.Value.Is=&apos;3.14&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0,param0Value,param1,param1Unbounded,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="3.14">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 2.718">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" value="Yes">
+          <Has name="multipleOf" value="0.001"/>
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="param0.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="null" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="param0.Type=&apos;Not number&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="param0.Value.Is=&apos;-3.15&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="-3.15" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="param0.Value.Is=&apos;3.15&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="3.15" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="param0.Value.Is=&apos;-3.139&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param0,param0Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="Yes">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" value="number">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" value="-3.139" failure="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="No">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="param1.Type=null">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param1"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="null" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="param1.Type=&apos;Not number&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param1"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true" name="param1.Value.Is=&apos;2.719&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param1,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="2.719" failure="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" NA="true">
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true" name="param1.Value.Multiple-Of.0d001=&apos;No&apos;">
+      <Has name="operation" value="POST"/>
+      <Has name="path" value="/number"/>
+      <Has name="properties" value="param1,param1Unbounded,param1Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Number"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="query">
+        <Var name="param0.Defined" value="No">
+          <Has name="paramName" value="param0"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param0.Type" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param0.Value.Is" NA="true">
+          <Has name="paramName" value="param0"/>
+        </Var>
+        <Var name="param1.Defined" value="Yes">
+          <Has name="paramName" value="param1"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param1.Type" value="number">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Is" value="&lt; 2.718">
+          <Has name="paramName" value="param1"/>
+        </Var>
+        <Var name="param1.Value.Multiple-Of.0d001" value="No" failure="true">
+          <Has name="multipleOf" value="0.001"/>
+          <Has name="paramName" value="param1"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

@@ -65,6 +65,7 @@
                 <Value name="11.0" failure="true"/>
                 <Value name="99.9"/>
                 <Value name="100.0" failure="true"/>
+                <Value name="0.01" failure="true"/>
               </Var>
             </VarSet>
           </VarSet>
