@@ -2128,10 +2128,15 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
         if( multipleOf != null)
           {
           // Select a value within bounds that fails the multiple-of constraint.
+          BigDecimal notMultipleUnit =
+            isMultipleOf( unit, multipleOf)
+            ? new BigDecimal( BigInteger.ONE, multipleOf.scale() + 1)
+            : unit;
+          
           BigDecimal multipleOfFailure;
-          for( multipleOfFailure = effectiveMinimum.add( unit);
+          for( multipleOfFailure = effectiveMinimum.add( notMultipleUnit);
                multipleOfFailure.compareTo( maximum) < 0 && isMultipleOf( multipleOfFailure, multipleOf);
-               multipleOfFailure = multipleOfFailure.add( unit));
+               multipleOfFailure = multipleOfFailure.add( notMultipleUnit));
           if( multipleOfFailure.compareTo( maximum) < 0)
             {
             quantity.values(
