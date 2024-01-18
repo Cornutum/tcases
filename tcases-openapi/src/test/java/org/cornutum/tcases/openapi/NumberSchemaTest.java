@@ -254,4 +254,13 @@ public class NumberSchemaTest extends OpenApiTest
     {
     verifyRequestInputModel( "number-9");
     }
+
+  /**
+   * Verifies {@link TcasesOpenApi#getRequestInputModel getRequestInputModel} for issue 285.
+   */
+  @Test
+  public void Schema_285()
+    {
+    verifyRequestInputModel( "number-285");
+    }
   }
