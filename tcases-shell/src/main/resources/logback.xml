@@ -1,5 +1,8 @@
 <configuration> 
 
+  <!-- Ignore logback configuration status messsages -->
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
   <appender name="FILE" class="ch.qos.logback.core.FileAppender"> 
     <file>${tcases.log.file:-tcases.log}</file> 
     <encoder> 
