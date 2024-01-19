@@ -1,5 +1,19 @@
 # Release Notes #
 
+## 4.0.3 ##
+
+This release provides the following improvements.
+
+  * **Generate "not multiple" failure cases correctly** [[285](https://github.com/Cornutum/tcases/issues/285)]
+
+    When an input value is defined by a schema specifying a `multipleOf` requirement, Tcases will generate a failure
+    case using a value that is _not_ a multiple. This release fixes a defect would sometimes cause Tcases to incorrectly omit this
+    failure case or to spin forever trying to generate it. 
+    
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser=2.1.20, slf4j-api=2.0.11, logback-classic=1.3.12
+
 ## 4.0.2 ##
 
 This release provides the following improvements.
