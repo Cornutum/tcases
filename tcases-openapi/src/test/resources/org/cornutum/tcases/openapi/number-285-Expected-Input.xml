@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<System name="Number">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Number"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="POST_number">
+    <Has name="operation" value="POST"/>
+    <Has name="path" value="/number"/>
+    <Input type="query">
+      <VarSet name="param0">
+        <Has name="paramName" value="param0"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param0"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param0">
+          <Value name="number" property="param0Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param0Value">
+          <Var name="Is">
+            <Value name="-3.15" failure="true"/>
+            <Value name="-3.14"/>
+            <Value name="3.14"/>
+            <Value name="3.15" failure="true"/>
+            <Value name="-3.139" failure="true"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param1">
+        <Has name="paramName" value="param1"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param1"/>
+          <Value name="No"/>
+        </Var>
+        <Var name="Type" when="param1">
+          <Value name="number" property="param1Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param1Value">
+          <Var name="Is">
+            <Value name="2.718"/>
+            <Value name="2.719" failure="true"/>
+            <Value name="&lt; 2.718" property="param1Unbounded"/>
+          </Var>
+          <VarSet name="Multiple-Of" when="param1Unbounded">
+            <Var name="0d001">
+              <Value name="Yes">
+                <Has name="multipleOf" value="0.001"/>
+              </Value>
+              <Value name="No" failure="true">
+                <Has name="multipleOf" value="0.001"/>
+              </Value>
+            </Var>
+          </VarSet>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
@@ -177,6 +178,14 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     }
 
   /**
+   * Returns true if <CODE>value</CODE> is a multiple of any member of the <CODE>multiples</CODE>.
+   */
+  private boolean isMultipleOf( BigDecimal value, Set<BigDecimal> multiples)
+    {
+    return multiples.stream().anyMatch( multiple -> isMultipleOf( value, multiple));
+    }
+
+  /**
    * Returns a random sequence of values from this domain.
    */
   @Override
@@ -190,7 +199,7 @@ public class DecimalDomain extends NumberDomain<BigDecimal>
     
     BigDecimal unit;
     for( unit = new BigDecimal( BigInteger.ONE, unitScale);
-         getNotMultipleOfs().contains( unit);
+         isMultipleOf( unit, getNotMultipleOfs());
          unit = new BigDecimal( BigInteger.ONE, ++unitScale));
 
     // Find smallest and largest (multiples) in range

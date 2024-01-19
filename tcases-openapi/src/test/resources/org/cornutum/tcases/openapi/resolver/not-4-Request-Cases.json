@@ -382,6 +382,29 @@
     },
     {
         "id": 17,
+        "name": "param0.Alternative.1.Value.Is='0.01'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Not",
+        "path": "/not",
+        "operation": "POST",
+        "parameters": [
+            {
+                "name": "param0",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 0.01
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param0.Alternative.1.Value.Is=0.01"
+    },
+    {
+        "id": 18,
         "name": "param0.Alternative.2.Value.Multiple-Of.7d5='Yes'",
         "server": "/",
         "version": "0.0.0",
