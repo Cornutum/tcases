@@ -38,7 +38,7 @@ Consider that any such test program must combine all of the following elements.
   1. :white_check_mark: The framework for organizing test execution, e.g. JUnit, etc.
   1. :white_check_mark: The interfaces for submitting HTTP requests and receiving responses
   1. :white_check_mark: The actual request inputs
-  1. :ballot_box_with_check: The expected response outputs
+  1. :x: The expected response outputs
 
 One of the most complicated parts is #3. But Tcases for OpenAPI can automatically generate random request input values,
 including valid values that satisfy the requirements of the OpenAPI definition as well as invalid values that test API error
