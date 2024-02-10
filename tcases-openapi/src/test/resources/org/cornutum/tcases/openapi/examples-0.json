@@ -83,9 +83,29 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "integer"
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                        
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "exempt": {
+                                        "type": "boolean"
+                                    },
+                                    "amount": {
+                                        "type": "number"
+                                    }
+                                }                                
                             },
-                            "example": 123
+                            "example": {
+                                "id": 21345589,
+                                "description": "Final",
+                                "exempt": false,
+                                "amount": 79.99
+                            }
                         }
                     }
                 },

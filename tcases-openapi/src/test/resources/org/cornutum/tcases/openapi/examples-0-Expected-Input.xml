@@ -48,13 +48,11 @@
         </Var>
         <VarSet name="application-json" when="bodyApplication-json">
           <Var name="Type">
-            <Value name="integer" property="bodyApplication-jsonValue"/>
+            <Value name="object" property="bodyApplication-jsonValue"/>
           </Var>
-          <VarSet name="Value" when="bodyApplication-jsonValue">
-            <Var name="Is">
-              <Value name="123"/>
-            </Var>
-          </VarSet>
+          <Var name="Value" when="bodyApplication-jsonValue">
+            <Value name="{&quot;id&quot;:21345589,&quot;description&quot;:&quot;Final&quot;,&quot;exempt&quot;:false,&quot;amount&quot;:79.99}"/>
+          </Var>
         </VarSet>
       </VarSet>
     </Input>

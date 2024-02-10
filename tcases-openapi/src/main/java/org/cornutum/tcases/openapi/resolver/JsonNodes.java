@@ -123,6 +123,9 @@ public final class JsonNodes
       case NUMBER:
         {
         value =
+          !node.isIntegralNumber()?
+          valueOf( node.decimalValue()) :
+          
           node.canConvertToInt()?
           valueOf( node.asInt()) :
 

@@ -57,9 +57,26 @@
         "body": {
             "mediaType": "application/json",
             "data": {
-                "type": "integer",
-                "value": 123,
-                "format": "int32"
+                "type": "object",
+                "value": {
+                    "id": {
+                        "type": "integer",
+                        "value": 21345589,
+                        "format": "int32"
+                    },
+                    "description": {
+                        "type": "string",
+                        "value": "Final"
+                    },
+                    "exempt": {
+                        "type": "boolean",
+                        "value": false
+                    },
+                    "amount": {
+                        "type": "number",
+                        "value": 79.99
+                    }
+                }
             },
             "valid": true
         }
