@@ -45,8 +45,8 @@
         <Var name="Body.Media-Type" value="application-json">
           <Has name="mediaType" value="application/json"/>
         </Var>
-        <Var name="Body.application-json.Type" value="integer"/>
-        <Var name="Body.application-json.Value.Is" value="123"/>
+        <Var name="Body.application-json.Type" value="object"/>
+        <Var name="Body.application-json.Value" value="{&quot;id&quot;:21345589,&quot;description&quot;:&quot;Final&quot;,&quot;exempt&quot;:false,&quot;amount&quot;:79.99}"/>
       </Input>
     </TestCase>
   </Function>
