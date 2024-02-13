@@ -193,9 +193,9 @@ public class ResponseValidator
    * successfully if the response headers conform to its OpenAPI definition. Otherwise,
    * {@link ResponseValidationHandler#handleInvalid reports an invalid response condition}
    *
-   * @param headers Maps each header name to its value
+   * @param headers Maps each header field name to the list of values given for that field name
    */
-  public void assertHeadersValid( String op, String path, int statusCode, Map<String,String> headers)
+  public void assertHeadersValid( String op, String path, int statusCode, Map<String,List<String>> headers)
     {
     try
       {
@@ -221,7 +221,8 @@ public class ResponseValidator
                 .orElseThrow( () -> new ResponseUnvalidatedException( op, path, statusCode, headerName, "no schema defined"));
 
               // ...with actual header content...
-              List<JsonNode> headerContentJson = contentJson( op, path, statusCode, headerName, headerContentDef, headers.get( headerName));
+              String headerContent = headers.get( headerName).stream().collect( joining( ","));
+              List<JsonNode> headerContentJson = contentJson( op, path, statusCode, headerName, headerContentDef, headerContent);
               if( headerContentJson.isEmpty())
                 {
                 throw new ResponseUnvalidatedException( op, path, statusCode, headerName, String.format( "contentType=%s can't be validated", headerContentDef.getContentType()));
