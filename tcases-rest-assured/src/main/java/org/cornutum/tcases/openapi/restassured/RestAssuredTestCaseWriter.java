@@ -55,8 +55,9 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
     targetWriter.println();
     if( getDepends().validateResponses())
       {
+      targetWriter.println( "import java.util.List;");
       targetWriter.println( "import java.util.Map;");
-      targetWriter.println( "import static java.util.stream.Collectors.toMap;");
+      targetWriter.println( "import static java.util.stream.Collectors.*;");
       targetWriter.println();
       targetWriter.println( "import io.restassured.http.Header;");
       targetWriter.println( "import io.restassured.response.Response;");
@@ -173,12 +174,12 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
     if( dependencies.validateResponses())
       {
       targetWriter.println();
-      targetWriter.println( "private static Map<String,String> responseHeaders( Response response) {");
+      targetWriter.println( "private static Map<String,List<String>> responseHeaders( Response response) {");
       targetWriter.indent();
       targetWriter.println( "return");
       targetWriter.indent();
       targetWriter.println( "response.getHeaders().asList().stream()");
-      targetWriter.println( ".collect( toMap( Header::getName, Header::getValue));");
+      targetWriter.println( ".collect( groupingBy( Header::getName, mapping( Header::getValue, toList())));");
       targetWriter.unindent();
       targetWriter.unindent();
       targetWriter.println( "}");

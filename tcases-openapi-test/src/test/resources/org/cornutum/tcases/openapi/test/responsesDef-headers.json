@@ -224,6 +224,26 @@
                         }
                     }
                 }
+            },
+            "204": {
+                "description": "Combined",
+                "headers": {
+                    "My-Numbers": {
+                        "description": "number list",
+                        "required": "true",
+                        "style": "simple",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "put": {

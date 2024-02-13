@@ -12,6 +12,7 @@ import static org.cornutum.tcases.openapi.test.ResponseValidationHandler.FAIL_AL
 import org.junit.Test;
 import static org.cornutum.hamcrest.ExpectedFailure.expectFailure;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +31,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Array", "[ 1, 2, 3 ]")
       .build();
@@ -40,7 +41,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "Unexpected", "?")
       .build();
@@ -52,7 +53,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Array", "null")
           .build();
@@ -79,7 +80,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-String", "\"A,B,C,D\"")
       .put( "My-Simple-Array", "1,2,3,")
@@ -92,7 +93,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Array", "")
       .build();
@@ -104,7 +105,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Array", "1,2,X")
           .put( "My-Mixed-Array", "1.234")
@@ -123,7 +124,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-String", "1.234")
           .put( "My-Simple-Array", "")
@@ -142,7 +143,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-String", "\"\"")
           .put( "My-Mixed-Array", "X,Y")
@@ -160,7 +161,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-String", "\"1.234\"")
           .put( "My-Simple-Array", "")
@@ -174,7 +175,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Array", "")
           .put( "My-Number-Array", "A,B,C")
@@ -195,7 +196,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Array", "")
           .put( "My-Number-Array", "3,9,")
@@ -214,7 +215,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Array", "")
           .put( "My-Number-Array", "3,9,11")
@@ -242,7 +243,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "A=2014-03-21,B=0,C=")
       .build();
@@ -252,7 +253,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "A=2014-03-21,B=123,C=-123")
       .build();
@@ -264,7 +265,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Object", "A=,B=0,C=-123")
           .build();
@@ -282,7 +283,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Object", "")
           .build();
@@ -300,7 +301,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .build();
     
@@ -316,7 +317,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Object", "A,B,C=")
           .build();
@@ -344,7 +345,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Integer", "0")
       .build();
@@ -354,7 +355,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .build();
     
@@ -365,7 +366,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Integer", "")
           .build();
@@ -383,7 +384,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Integer", "-1,0,1")
           .build();
@@ -401,7 +402,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Integer", "-101")
           .build();
@@ -428,7 +429,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "A,true,B,3.12,C,Hello")
       .build();
@@ -438,7 +439,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "A,false,B,,C,3.12,D,?")
       .build();
@@ -448,7 +449,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "")
       .build();
@@ -458,7 +459,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "B=X,")
       .build();
@@ -468,7 +469,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-Object", "C,")
       .build();
@@ -480,7 +481,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Object", "C,Hello,A")
           .build();
@@ -498,7 +499,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Simple-Object", "A,")
           .build();
@@ -525,7 +526,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-String", "123")
       .build();
@@ -535,7 +536,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-String", "")
       .build();
@@ -545,7 +546,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Simple-String", "A,B,C")
       .build();
@@ -566,7 +567,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Json-String", "\"Hello\"")
       .build();
@@ -576,7 +577,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .build();
     
@@ -587,7 +588,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-String", "")
           .build();
@@ -605,7 +606,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-String", "Hello")
           .build();
@@ -624,7 +625,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-String", "null")
           .build();
@@ -651,7 +652,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Json-Integer", "111222333444")
       .build();
@@ -663,7 +664,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-Integer", "111222.333444")
           .build();
@@ -681,7 +682,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-Integer", "123/456")
           .build();
@@ -709,7 +710,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
 
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Json-Object", "{ \"A\": 0 }")
       .build();
@@ -719,7 +720,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     }
     {
     // When...
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Json-Object", "null")
       .build();
@@ -731,7 +732,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-Object", "{ \"A\": 0, \"B\": \"1\" }")
           .build();
@@ -749,7 +750,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     // Then...
     expectFailure( ResponseValidationException.class)
       .when( () -> {
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Json-Object", "[]")
           .build();
@@ -783,7 +784,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
       .field( "S", "")
       .build();
     
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Form", content)
       .build();
@@ -799,7 +800,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
       .field( "B", "true")
       .build();
     
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Form", content)
       .build();
@@ -813,7 +814,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
       FormUrlBuilder.with()
       .build();
     
-    Map<String,String> headers =
+    Map<String,List<String>> headers =
       headers()
       .put( "My-Form", content)
       .build();
@@ -830,7 +831,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
           .field( "O", "X,1,Y,0,")
           .build();
     
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "My-Form", content)
           .build();
@@ -843,6 +844,31 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
           "put /responses (200), My-Form: invalid value",
           "O#type: Type expected 'object', found 'array'.");
         });
+    }
+  
+  @Test
+  public void whenCombinedHeaders()
+    {
+    // Given...
+    ResponseValidator validator = validatorFor( "responsesDef-headers", FAIL_ALL);
+    String op = "post";
+    String path = "/responses";
+    int statusCode = 204;
+
+    // When...
+    Map<String,List<String>> headers =
+      headers()
+      .put( "My-Numbers", "1")
+      .put( "X-Something", "Hello")
+      .put( "My-Numbers", "2")
+      .put( "My-Numbers", "3")
+      .put( "X-Unknown", "World")
+      .put( "My-Numbers", "5")
+      .put( "My-Numbers", "8")
+      .build();
+    
+    // Then...
+    validator.assertHeadersValid( op, path, statusCode, headers);
     }
 
   @Test
@@ -890,7 +916,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     expectFailure( ResponseUnvalidatedException.class)
       .when( () -> {
         int statusCode = 200;
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "X-Xml", "<Hello/>")
           .build();
@@ -907,7 +933,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     expectFailure( ResponseUnvalidatedException.class)
       .when( () -> {
         int statusCode = 400;
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "X-Undefined-Json", "{}")
           .build();
@@ -924,7 +950,7 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
     expectFailure( ResponseUnvalidatedException.class)
       .when( () -> {
         int statusCode = 404;
-        Map<String,String> headers =
+        Map<String,List<String>> headers =
           headers()
           .put( "X-Unknown", "?")
           .build();
@@ -941,9 +967,8 @@ public class ResponseHeadersValidatorTest extends ResponseValidatorTest
   /**
    * Returns a header map builder.
    */
-  private MapBuilder<String,String> headers()
+  private MultiMapBuilder<String,String> headers()
     {
-    return new MapBuilder<String,String>();
+    return new MultiMapBuilder<String,String>();
     }
-
   }

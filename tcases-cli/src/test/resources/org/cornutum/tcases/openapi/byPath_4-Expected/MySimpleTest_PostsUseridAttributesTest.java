@@ -3,8 +3,9 @@ package org.cornutum.examples;
 
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Map;
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.*;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;
@@ -321,9 +322,9 @@ public class MySimpleTest_PostsUseridAttributesTest {
         return uri == null? "" : uri.trim();
     }
 
-    private static Map<String,String> responseHeaders( Response response) {
+    private static Map<String,List<String>> responseHeaders( Response response) {
         return
             response.getHeaders().asList().stream()
-            .collect( toMap( Header::getName, Header::getValue));
+            .collect( groupingBy( Header::getName, mapping( Header::getValue, toList())));
     }
 }
