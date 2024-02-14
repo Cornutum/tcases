@@ -1,5 +1,22 @@
 # Release Notes #
 
+## 4.0.5 ##
+
+This release provides the following improvements.
+
+  * **ResponseValidator: Rework to handle combined header values** [[293](https://github.com/Cornutum/tcases/issues/293)]
+
+    To validate OpenAPI responses, generated tests now combine all values supplied for each header field name into
+    a single comma-separated list. NOTE: To see the effect of this change, you must regenerate your OpenAPI tests.
+    
+  * **Speed up handling of numeric schemas with extremely large ranges**
+
+    When a numeric schema specifies both `minimum` and `maximum` (i.e. a bounded range), Tcases calculates the number of values
+    within the range that will be considered for test case generation, taking into account any `multipleOf` requirements. (This is for
+    the purpose of checking consistency with other schema constraints.) Since OpenAPI allows numeric values to be arbitrarily large,
+    a bounded range can be enormous! In previous releases, counting up the values for extremely large ranges was so slow that
+    Tcases appeared to freeze. This release fixes that problem by speeding up the counting process.
+
 ## 4.0.4 ##
 
 This release provides the following improvements.
