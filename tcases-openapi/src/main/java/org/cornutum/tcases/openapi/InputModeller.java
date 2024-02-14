@@ -3435,24 +3435,29 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
     }
 
   /**
-   * Return the number of values between the given mininim and maximum (inclusive) that satisfy the given (not-)multiple-of constraints.
+   * Returns the number of values between the given mininim and maximum (inclusive) that satisfy the given (not-)multiple-of constraints.
+   * Returns null if the number is effectively infinite.
    */
-  private int multiplesBetween( BigDecimal min, BigDecimal max, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
+  private Integer multiplesBetween( BigDecimal min, BigDecimal max, BigDecimal multipleOf, Set<BigDecimal> notMultipleOfs)
     {
-    int count = 0;
+    BigDecimal countMax =
+      min.compareTo( max) > 0
+      ? BigDecimal.ZERO
+      : max.subtract( min).divide( multipleOf).add( BigDecimal.ONE);
 
-    for( BigDecimal nextMultiple = min;
-         nextMultiple.compareTo( max) <= 0;
-         nextMultiple = nextMultiple.add( multipleOf))
-      {
-      BigDecimal checkValue = nextMultiple;
-      if( notMultipleOfs.stream().allMatch( m -> !isMultipleOf( checkValue, m)))
-        {
-        count++;
-        }
-      }
+    BigDecimal intMax = new BigDecimal( Integer.MAX_VALUE);
+    return
+      countMax.compareTo( intMax) > 0?
+      null :
 
-    return count;
+      notMultipleOfs.isEmpty()?
+      Integer.valueOf( countMax.intValue()) :
+
+      (int)
+      IntStream.range( 0, countMax.intValue())
+      .mapToObj( i -> min.add( multipleOf.multiply( new BigDecimal( i))))
+      .filter( nextMultiple -> notMultipleOfs.stream().noneMatch( m -> isMultipleOf( nextMultiple, m)))
+      .count();
     }
 
   /**
