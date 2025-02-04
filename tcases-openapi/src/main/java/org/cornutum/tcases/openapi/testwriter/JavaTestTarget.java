@@ -167,7 +167,15 @@ public class JavaTestTarget extends TestTarget
    */
   public static Builder builder()
     {
-    return new Builder();
+    return new Builder( null);
+    }
+
+  /**
+   * Returns a new {@link Builder}.
+   */
+  public static Builder builder( JavaTestTarget target)
+    {
+    return new Builder( target);
     }
   
   private String package_;
@@ -181,9 +189,12 @@ public class JavaTestTarget extends TestTarget
     /**
      * Creates a new {@link Builder}
      */
-    private Builder()
+    private Builder( JavaTestTarget target)
       {
-      target_ = new JavaTestTarget();
+      target_ =
+        target == null
+        ? new JavaTestTarget()
+        : target;
       }
 
     /**
