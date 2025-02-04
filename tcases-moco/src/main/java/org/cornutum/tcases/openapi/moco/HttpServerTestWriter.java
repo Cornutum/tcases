@@ -8,11 +8,13 @@
 package org.cornutum.tcases.openapi.moco;
 
 import org.cornutum.tcases.io.IndentedWriter;
+import org.cornutum.tcases.openapi.testwriter.ApiTestWriter;
 import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 
 /**
  * A JUnitTestWriter for API tests that use a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md#http-server">Moco HttpServer</a>
  */
+@ApiTestWriter( name="moco-http", targetClass="org.cornutum.tcases.openapi.testwriter.JavaTestTarget")
 public class HttpServerTestWriter extends MocoServerTestWriter
   {
   /**
