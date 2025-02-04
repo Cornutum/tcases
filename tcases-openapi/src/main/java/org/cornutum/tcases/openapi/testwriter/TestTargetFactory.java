@@ -15,5 +15,5 @@ public interface TestTargetFactory
   /**
    * Creates a new {@link TestTarget} instance.
    */
-  public TestTarget createTestTarget();
+  public TestTarget createTestTarget( Class<? extends TestWriter<?,?>> testWriterClass);
   }

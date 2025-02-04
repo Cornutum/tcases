@@ -14,8 +14,8 @@ import org.cornutum.tcases.openapi.io.TcasesOpenApiIO;
 import org.cornutum.tcases.openapi.moco.MocoServerTestWriter;
 import org.cornutum.tcases.openapi.moco.MocoTestConfigReader;
 import org.cornutum.tcases.openapi.resolver.*;
-import org.cornutum.tcases.openapi.restassured.RestAssuredTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.*;
+import org.cornutum.tcases.openapi.testwriter.Runtime;
 import org.cornutum.tcases.resolve.ResolverContext;
 import org.cornutum.tcases.util.Notifier;
 
@@ -405,18 +405,14 @@ public class ApiTestCommand
    */
   public static class Options implements TestTargetFactory, TestWriterFactory, TestCaseWriterFactory
     {
-    public enum TestType { JUNIT, TESTNG, MOCO };
-
-    public enum ExecType { RESTASSURED };
-
     /**
      * Creates a new Options object.
      */
     public Options()
       {
       setWorkingDir( null);
-      setTestType( TestType.JUNIT);
-      setExecType( ExecType.RESTASSURED);
+      setTestType( "junit");
+      setExecType( "restassured");
       setModelOptions( new ModelOptions());
       setResourceOutDir( null);
 
@@ -860,23 +856,15 @@ public class ApiTestCommand
     /**
      * Changes the test framework used to run API tests.
      */
-    public void setTestType( TestType testType)
+    public void setTestType( String testType)
       {
       testType_ = testType;
       }
 
     /**
-     * Changes the test framework used to run API tests.
-     */
-    public void setTestType( String testType)
-      {
-      setTestType( TestType.valueOf( String.valueOf( testType).toUpperCase()));
-      }
-
-    /**
      * Returns the test framework used to run API tests.
      */
-    public TestType getTestType()
+    public String getTestType()
       {
       return testType_;
       }
@@ -884,23 +872,15 @@ public class ApiTestCommand
     /**
      * Changes the request execution interface used to run API tests.
      */
-    public void setExecType( ExecType execType)
+    public void setExecType( String execType)
       {
       execType_ = execType;
       }
 
     /**
-     * Changes the request execution interface used to run API tests.
-     */
-    public void setExecType( String execType)
-      {
-      setExecType( ExecType.valueOf( String.valueOf( execType).toUpperCase()));
-      }
-
-    /**
      * Returns the request execution interface used to run API tests.
      */
-    public ExecType getExecType()
+    public String getExecType()
       {
       return execType_;
       }
@@ -1421,9 +1401,10 @@ public class ApiTestCommand
     /**
      * Returns the {@link TestTarget} defined by these options.
      */
-    public TestTarget getTestTarget()
+    @SuppressWarnings("unchecked")
+	public TestTarget getTestTarget( TestWriter<?,?> testWriter)
       {
-      return createTestTarget();
+      return createTestTarget( (Class<? extends TestWriter<?,?>>) testWriter.getClass());
       }
 
     /**
@@ -1446,18 +1427,27 @@ public class ApiTestCommand
      * Creates a new {@link TestTarget} instance.
      */
     @Override
-    public TestTarget createTestTarget()
+    public TestTarget createTestTarget( Class<? extends TestWriter<?,?>> testWriterClass)
       {
-      return
-        JavaTestTarget.builder()
-        .named( getTestName())
-        .inPackage( getTestPackage())
-        .extending( getBaseClass())
-        .toFile( getOutFile())
-        .inDir( getOutDir())
-        .withResourcesIn( getResourceOutDir())
-        .timeout( getTimeout())
-        .build();
+      TestTarget target =
+        Runtime.createTestTarget( testWriterClass)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestTarget for TestWriter=%s", testWriterClass.getSimpleName())));
+
+      Optional.of( target)
+        .filter( t -> JavaTestTarget.class.isAssignableFrom( t.getClass()))
+        .map( t -> (JavaTestTarget) t)
+        .ifPresent( jtt -> {
+          JavaTestTarget.builder( jtt)
+            .named( getTestName())
+            .inPackage( getTestPackage())
+            .extending( getBaseClass())
+            .toFile( getOutFile())
+            .inDir( getOutDir())
+            .withResourcesIn( getResourceOutDir())
+            .timeout( getTimeout());
+          });
+
+      return target;
       }
     
     /**
@@ -1466,32 +1456,12 @@ public class ApiTestCommand
     @Override
     public TestWriter<?,?> createTestWriter( TestCaseWriter testCaseWriter)
       {
-      TestWriter<?,?> testWriter;
-      
-      switch( getTestType())
-        {
-        case JUNIT:
-          {
-          testWriter = new JUnitTestWriter( testCaseWriter);
-          break;
-          }
-        case TESTNG:
-          {
-          testWriter = new TestNgTestWriter( testCaseWriter);
-          break;
-          }
-        case MOCO:
-          {
-          testWriter = createMocoServerTestWriter( testCaseWriter);
-          break;
-          }
-        default:
-          {
-          throw new IllegalArgumentException( String.format( "%s is not a valid test type", getTestType()));
-          }
-        }
-      
-      return testWriter;
+      return
+        "moco".equals( getTestType())?
+        createMocoServerTestWriter( testCaseWriter) :
+
+        Runtime.createTestWriter( getTestType(), testCaseWriter)
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestWriter=%s", getTestType())));
       }
     
     /**
@@ -1533,9 +1503,18 @@ public class ApiTestCommand
     @Override
     public TestCaseWriter createTestCaseWriter()
       {
-      RestAssuredTestCaseWriter testCaseWriter = new RestAssuredTestCaseWriter();
-      testCaseWriter.setValidateResponses( hasResources());
-      testCaseWriter.setTrustServer( isServerTrusted());
+      TestCaseWriter testCaseWriter =
+        Runtime.createTestCaseWriter( getExecType())
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestCaseWriter=%s", getExecType())));
+      
+      Optional.of( testCaseWriter)
+        .filter( tcw -> BaseTestCaseWriter.class.isAssignableFrom( tcw.getClass()))
+        .map( tcw -> (BaseTestCaseWriter) tcw)
+        .ifPresent( base -> {
+          base.setValidateResponses( hasResources());
+          base.setTrustServer( isServerTrusted());
+          });
+      
       return testCaseWriter;
       }
 
@@ -1581,8 +1560,8 @@ public class ApiTestCommand
       }
 
     private File apiDef_;
-    private TestType testType_;
-    private ExecType execType_;
+    private String testType_;
+    private String execType_;
     private String testName_;
     private String testPackage_;
     private String baseClass_;
@@ -1618,13 +1597,13 @@ public class ApiTestCommand
         return this;
         }
 
-      public Builder testType( TestType testType)
+      public Builder testType( String testType)
         {
         options_.setTestType( testType);
         return this;
         }
 
-      public Builder execType( ExecType execType)
+      public Builder execType( String execType)
         {
         options_.setExecType( execType);
         return this;
@@ -1859,7 +1838,7 @@ public class ApiTestCommand
       TestCaseWriter testCaseWriter = options.getTestCaseWriter();
       TestWriter<?,?> testWriter = options.getTestWriter( testCaseWriter);
 
-      TestTarget testTarget = options.getTestTarget();
+      TestTarget testTarget = options.getTestTarget( testWriter);
       if( getTestFile( testWriter, testSource, testTarget) == null && apiDefFile != null)
         {
         testTarget.setDir( apiDefFile.getParentFile());
