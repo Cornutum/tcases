@@ -130,6 +130,12 @@
     </dependency>
 
     <dependency>
+      <groupId>eu.infomas</groupId>
+      <artifactId>annotation-detector</artifactId>
+      <version>3.0.5</version>
+    </dependency>
+
+    <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <scope>test</scope>

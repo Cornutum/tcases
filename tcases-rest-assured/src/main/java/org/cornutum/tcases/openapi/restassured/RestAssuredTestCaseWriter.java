@@ -15,6 +15,7 @@ import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.test.MediaRange;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
+import org.cornutum.tcases.openapi.testwriter.ApiTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
@@ -37,6 +38,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * Writes the source code for REST Assured test cases that execute API requests.
  */
+@ApiTestCaseWriter( name="restassured")
 public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
   {
   /**

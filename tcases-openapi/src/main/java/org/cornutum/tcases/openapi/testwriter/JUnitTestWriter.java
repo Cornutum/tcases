@@ -15,6 +15,7 @@ import java.util.Optional;
 /**
  * Writes Java source code for a JUnit test that executes API requests.
  */
+@ApiTestWriter( name="junit", targetClass="org.cornutum.tcases.openapi.testwriter.JavaTestTarget")
 public class JUnitTestWriter extends AnnotatedJavaTestWriter
   {
   /**
