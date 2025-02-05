@@ -17,5 +17,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention( RUNTIME)
 public @interface ApiTestCaseWriter
   {
+  /**
+   * Defines the name used to locate this {@link TestCaseWriter} implementation at runtime
+   */
   String name();
   }
