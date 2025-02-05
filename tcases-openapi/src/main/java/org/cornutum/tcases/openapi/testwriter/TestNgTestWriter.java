@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * Writes Java source code for a TestNG test that executes API requests.
  */
-@ApiTestWriter( name="testng", targetClass="org.cornutum.tcases.openapi.testwriter.JavaTestTarget")
+@ApiTestWriter( name="testng", target="java")
 public class TestNgTestWriter extends AnnotatedJavaTestWriter
   {
   /**
