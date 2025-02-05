@@ -73,9 +73,20 @@ public final class Runtime
     return
       Optional.of( testWriterClass)
       .flatMap( c -> Optional.ofNullable( c.getAnnotation( ApiTestWriter.class)))
-      .flatMap( annotation -> Optional.ofNullable( annotation.targetClass()))
-      .map( targetClassName -> forName( targetClassName))
-      .filter( targetClass -> TestTarget.class.isAssignableFrom( targetClass))
+      .flatMap( annotation -> Optional.ofNullable( annotation.target()))
+      .flatMap( targetName -> createTestTarget( targetName));      
+    }
+
+  /**
+   * Returns an instance of the {@link TestTarget} implementation annotated with the given name.
+   */
+  public static Optional<TestTarget> createTestTarget( String name)
+    {
+    return
+      annotatedClasses( ApiTestTarget.class)
+      .filter( c -> name.equals( c.getAnnotation( ApiTestTarget.class).name()))
+      .filter( c -> TestTarget.class.isAssignableFrom( c))
+      .findFirst()
       .map( targetClass -> {
         try
           {

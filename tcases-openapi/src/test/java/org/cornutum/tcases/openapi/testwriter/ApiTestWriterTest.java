@@ -116,11 +116,11 @@ public class ApiTestWriterTest
   @Test
   public void undefinedTarget()
     {
-    expectFailure( IllegalStateException.class)
-      .when( () -> createTestTarget( UndefinedTarget.class))
-      .then( failure -> {
-        assertThat( "Failure", failure.getMessage(), is( "Can't load class=org.cornutum.tcases.UndefinedTarget"));
-        });
+    // When...
+    Optional<TestTarget> created = createTestTarget( UndefinedTarget.class);
+    
+    // Then...
+    assertThat( "TestTarget found", created.isPresent(), is( false));
     }
 
   @Test
@@ -147,7 +147,7 @@ public class ApiTestWriterTest
       }
     }
 
-  @ApiTestWriter( name="nonTarget", targetClass="org.cornutum.tcases.openapi.testwriter.ApiTestWriterTest$NotTarget")
+  @ApiTestWriter( name="nonTarget", target="notTarget")
   private static class NonTarget extends JUnitTestWriter
     {
     public NonTarget( TestCaseWriter testCaseWriter)
@@ -157,6 +157,7 @@ public class ApiTestWriterTest
     }
 
   @SuppressWarnings("unused")
+  @ApiTestTarget( name="notTarget")
   private static class NotTarget
     {
     }
@@ -169,7 +170,7 @@ public class ApiTestWriterTest
       }
     }
 
-  @ApiTestWriter( name="UndefinedTarget", targetClass="org.cornutum.tcases.UndefinedTarget")
+  @ApiTestWriter( name="UndefinedTarget", target="?")
   private static class UndefinedTarget extends JUnitTestWriter
     {
     public UndefinedTarget( TestCaseWriter testCaseWriter)
@@ -178,7 +179,7 @@ public class ApiTestWriterTest
       }
     }
 
-  @ApiTestWriter( name="UndefinedTargetConstructor", targetClass="org.cornutum.tcases.openapi.testwriter.ApiTestWriterTest$NoDefaultConstructor")
+  @ApiTestWriter( name="UndefinedTargetConstructor", target="noDefaultConstructor")
   private static class UndefinedTargetConstructor extends JUnitTestWriter
     {
     public UndefinedTargetConstructor( TestCaseWriter testCaseWriter)
@@ -188,6 +189,7 @@ public class ApiTestWriterTest
     }
 
   @SuppressWarnings("unused")
+  @ApiTestTarget( name="noDefaultConstructor")
   private static class NoDefaultConstructor extends TestTarget
     {
     public NoDefaultConstructor( String arg)

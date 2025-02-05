@@ -20,6 +20,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * Defines the target for output from a {@link JavaTestWriter}.
  */
+@ApiTestTarget( name="java")
 public class JavaTestTarget extends TestTarget
   {
   /**

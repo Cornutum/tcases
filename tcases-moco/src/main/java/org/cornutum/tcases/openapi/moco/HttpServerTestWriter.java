@@ -14,7 +14,7 @@ import org.cornutum.tcases.openapi.testwriter.TestCaseWriter;
 /**
  * A JUnitTestWriter for API tests that use a <a href="https://github.com/dreamhead/moco/blob/master/moco-doc/junit.md#http-server">Moco HttpServer</a>
  */
-@ApiTestWriter( name="moco-http", targetClass="org.cornutum.tcases.openapi.testwriter.JavaTestTarget")
+@ApiTestWriter( name="moco-http", target="java")
 public class HttpServerTestWriter extends MocoServerTestWriter
   {
   /**
