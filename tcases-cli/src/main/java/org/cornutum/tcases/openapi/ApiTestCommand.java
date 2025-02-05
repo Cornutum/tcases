@@ -1465,7 +1465,7 @@ public class ApiTestCommand
         createMocoServerTestWriter( testCaseWriter) :
 
         Runtime.createTestWriter( getTestType(), testCaseWriter)
-        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestWriter=%s", getTestType())));
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestWriter for test framework=%s", getTestType())));
       }
     
     /**
@@ -1509,7 +1509,7 @@ public class ApiTestCommand
       {
       TestCaseWriter testCaseWriter =
         Runtime.createTestCaseWriter( getExecType())
-        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestCaseWriter=%s", getExecType())));
+        .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestCaseWriter for execution interface=%s", getExecType())));
       
       Optional.of( testCaseWriter)
         .filter( tcw -> BaseTestCaseWriter.class.isAssignableFrom( tcw.getClass()))
