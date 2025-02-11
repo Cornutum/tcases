@@ -14,12 +14,18 @@ import static org.cornutum.tcases.maven.MojoUtils.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.DirectoryScanner;
 import static org.apache.commons.io.FilenameUtils.getPath;
 
+
 import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -29,7 +35,7 @@ import java.util.Set;
  * <A href="https://github.com/Cornutum/tcases/blob/master/tcases-openapi/README.md#tcases-for-openapi-from-rest-ful-to-test-ful">
  * Tcases for OpenAPI: From REST-ful to Test-ful</A>.
  */
-@Mojo(name="api-test")
+@Mojo(name="api-test",defaultPhase=LifecyclePhase.GENERATE_TEST_SOURCES)
 public class ApiTestMojo extends AbstractMojo
   {
   @Override
@@ -101,6 +107,9 @@ public class ApiTestMojo extends AbstractMojo
         options.setReadOnlyEnforced( isReadOnlyEnforced());
         options.setMaxTries( getMaxTries());
         options.setRandomSeed( getRandom());
+        options.addExtensions( getExtensions());
+
+        addProjectClassPath();
 
         ApiTestCommand.run( options);
         }
@@ -108,6 +117,45 @@ public class ApiTestMojo extends AbstractMojo
     catch( Exception e)
       {
       throw new MojoExecutionException( "Can't generate requested tests", e);
+      }
+    }
+
+  /**
+   * Ensure that this execution can access the runtime class path for the current Maven project.
+   */
+  private void addProjectClassPath()
+    {
+    Thread.currentThread().setContextClassLoader
+      ( new URLClassLoader(
+        getProjectClassPath()
+        .stream()
+        .map( element -> {
+          try
+            {
+            File file = new File( element);
+            return file.toURI().toURL();
+            }
+          catch( Exception e)
+            {
+            throw new IllegalArgumentException( String.format( "Can't get URL for file=%s", element), e);
+            }
+          })
+        .toArray( URL[]::new),
+        Thread.currentThread().getContextClassLoader()));
+    }
+
+  /**
+   * Returns the runtime class path for the current Maven project.
+   */
+  private List<String> getProjectClassPath()
+    {
+    try
+      {
+      return mavenProject_.getRuntimeClasspathElements();
+      }
+    catch( Exception e)
+      {
+      throw new IllegalStateException( "Can't get the runtime class path for the current Maven project", e);
       }
     }
 
@@ -581,6 +629,22 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
+   * Changes the extended class path elements.
+   */
+  public void setExtensions( List<File> extensions)
+    {
+    this.extensions = extensions;
+    }
+
+  /**
+   * Returns the extended class path elements.
+   */
+  public List<File> getExtensions()
+    {
+    return extensions;
+    }
+
+  /**
    * Defines a set of patterns that match the OpenAPI definition files read by Tcases for OpenAPI.
    * By default, Tcases for OpenAPI uses the single pattern defined by the <B><CODE>apiDef</CODE></B> parameter.
    */
@@ -784,9 +848,18 @@ public class ApiTestMojo extends AbstractMojo
   @Parameter(property="trustServer",defaultValue="false")
   private boolean trustServer;
 
+  /**
+   * Defines additional class path elements that provide user-defined extensions for test generation.
+   */
+  @Parameter(property="extensions")
+  private List<File> extensions;
+
   @Parameter(readonly=true,defaultValue="${basedir}")
   private File baseDir_;
 
   @Parameter(readonly=true,defaultValue="${project.build.directory}")
   private File targetDir_;
+
+  @Parameter(defaultValue = "${project}", required = true, readonly = true)
+  private MavenProject mavenProject_;
   }

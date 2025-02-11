@@ -17,6 +17,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Optional;
+import static java.util.Collections.emptySet;
 
 /**
  * Runs tests for the {@link ApiTestCaseWriter} annotation.
@@ -27,7 +28,7 @@ public class ApiTestCaseWriterTest
   public void created()
     {
     // When...
-    Optional<TestCaseWriter> created = createTestCaseWriter( "restassured");
+    Optional<TestCaseWriter> created = createTestCaseWriter( "restassured", emptySet());
     
     // Then...
     assertThat( "TestCaseWriter found", created.isPresent(), is( true));
@@ -40,7 +41,7 @@ public class ApiTestCaseWriterTest
   public void notFound()
     {
     // When...
-    Optional<TestCaseWriter> created = createTestCaseWriter( "?");
+    Optional<TestCaseWriter> created = createTestCaseWriter( "?", emptySet());
     
     // Then...
     assertThat( "TestCaseWriter found", created.isPresent(), is( false));
@@ -50,7 +51,7 @@ public class ApiTestCaseWriterTest
   public void notTestCaseWriter()
     {
     // When...
-    Optional<TestCaseWriter> created = createTestCaseWriter( "notTestCaseWriter");
+    Optional<TestCaseWriter> created = createTestCaseWriter( "notTestCaseWriter", emptySet());
     
     // Then...
     assertThat( "TestCaseWriter found", created.isPresent(), is( false));

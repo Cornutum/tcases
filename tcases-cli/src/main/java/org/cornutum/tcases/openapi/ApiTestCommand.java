@@ -32,6 +32,8 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -91,7 +93,7 @@ public class ApiTestCommand
    * <NOBR>-t testType </NOBR>
    * </TD>
    * <TD>
-   * Defines the test framework used to run API tests. Valid values are "junit", "testng", or "moco".
+   * Defines the test framework used to run API tests. Standard values "junit", "testng", and "moco" are supported.
    * If omitted, the default is "junit".
    * <P/>
    * Use "moco" to generate a JUnit test that sends requests to a <A href="https://github.com/dreamhead/moco">Moco stub server</A>.
@@ -107,8 +109,21 @@ public class ApiTestCommand
    * <NOBR>-e execType </NOBR>
    * </TD>
    * <TD>
-   * Defines the request execution interface used to run API tests. Valid values are "restassured".
+   * Defines the request execution interface used to run API tests. Standard values "restassured" are supported.
    * If omitted, the default is "restassured".
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-cp classPath </NOBR>
+   * </TD>
+   * <TD>
+   * Adds the given class path elements to the class path used to provide user-defined extensions for test generation.
+   * The class path argument must follow the Java conventions for the current platform.
    * </TD>
    * </TR>
    *
@@ -403,7 +418,7 @@ public class ApiTestCommand
    * </CODE>
    * </BLOCKQUOTE>
    */
-  public static class Options implements TestTargetFactory, TestWriterFactory, TestCaseWriterFactory
+  public static class Options
     {
     /**
      * Creates a new Options object.
@@ -482,6 +497,23 @@ public class ApiTestCommand
         try
           {
           setExecType( args[i]);
+          }
+        catch( Exception e)
+          {
+          throwUsageException( "Invalid exec type", e);
+          }
+        }
+
+      else if( arg.equals( "-cp"))
+        {
+        i++;
+        if( i >= args.length)
+          {
+          throwMissingValue( arg);
+          }
+        try
+          {
+          addExtensions( args[i]);
           }
         catch( Exception e)
           {
@@ -750,22 +782,22 @@ public class ApiTestCommand
                "                  apiDef. Otherwise, by default, test cases are created by generating random",
                "                  request input values.",
                "",
-               "  -t testType     Defines the test framework used to run API tests. Valid values are 'junit', 'testng',",
-               "                  or 'moco'. If omitted, the default is 'junit'.",
+               "  -t testType     Defines the test framework used to run API tests. Standard values 'junit', 'testng',",
+               "                  'moco' are supported. If omitted, the default is 'junit'.",
                "",
                "                  Use 'moco' to generate a JUnit test that sends requests to a Moco stub server.",
                "                  To define the Moco server test configuration, use the '-M' option.",
                "",
-               "  -e execType     Defines the request execution interface used to run API tests. Valid values are",
-               "                  'restassured'. If omitted, the default is 'restassured'.",
+               "  -e execType     Defines the request execution interface used to run API tests. Standard values",
+               "                  'restassured' are supported. If omitted, the default is 'restassured'.",
                "",
                "  -n testName     Defines the name of the test class that is generated. This can be either a fully-",
                "                  qualified class name or a simple class name. If omitted, the default is based on",
                "                  the title of the apiDef.",
                "",
-               "  -cp classPath   Adds the given class path to the class path used to run this command. The given",
-               "                  class path argument must follow the Java conventions for the current platform.",
-               "                  Use this option to provide user-defined extensions for test generation.",
+               "  -cp classPath   Adds the given class path elements to the class path used to provide user-defined",
+               "                  extensions for test generation. The class path argument must follow the Java",
+               "                  conventions for the current platform.",
                "",
                "  -p testPackage  Defines the package for the test class that is generated. This can be omitted if",
                "                  the testName is a fully-qualified class name or if the package can be determined",
@@ -887,6 +919,43 @@ public class ApiTestCommand
     public String getExecType()
       {
       return execType_;
+      }
+
+    /**
+     * Adds class path elements used to provide user-defined extensions for test generation.
+     */
+    public void addExtensions( String classPath)
+      {
+      if( !Optional.ofNullable( classPath).map( String::isEmpty).orElse( true))
+        {
+        Arrays.stream( classPath.split( System.getProperty( "path.separator")))
+          .map( File::new)
+          .forEach( file -> addExtension( file));
+        }
+      }
+
+    /**
+     * Adds class path elements used to provide user-defined extensions for test generation.
+     */
+    public void addExtensions( Collection<File> classFiles)
+      {
+      classFiles.stream().forEach( file -> addExtension( file));
+      }
+
+    /**
+     * Adds a class path element used to provide user-defined extensions for test generation.
+     */
+    public void addExtension( File classFile)
+      {
+      extensions_.add( classFile);
+      }
+
+    /**
+     * Returns the class path elements used to provide user-defined extensions for test generation.
+     */
+    public Set<File> getExtensions()
+      {
+      return extensions_;
       }
 
     /**
@@ -1430,11 +1499,10 @@ public class ApiTestCommand
     /**
      * Creates a new {@link TestTarget} instance.
      */
-    @Override
     public TestTarget createTestTarget( Class<? extends TestWriter<?,?>> testWriterClass)
       {
       TestTarget target =
-        Runtime.createTestTarget( testWriterClass)
+        Runtime.createTestTarget( testWriterClass, getExtensions())
         .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestTarget for TestWriter=%s", testWriterClass.getSimpleName())));
 
       Optional.of( target)
@@ -1457,14 +1525,13 @@ public class ApiTestCommand
     /**
      * Creates a new {@link TestWriter} instance.
      */
-    @Override
     public TestWriter<?,?> createTestWriter( TestCaseWriter testCaseWriter)
       {
       return
         "moco".equals( getTestType())?
         createMocoServerTestWriter( testCaseWriter) :
 
-        Runtime.createTestWriter( getTestType(), testCaseWriter)
+        Runtime.createTestWriter( getTestType(), testCaseWriter, getExtensions())
         .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestWriter for test framework=%s", getTestType())));
       }
     
@@ -1504,11 +1571,10 @@ public class ApiTestCommand
     /**
      * Creates a new {@link TestCaseWriter} instance.
      */
-    @Override
     public TestCaseWriter createTestCaseWriter()
       {
       TestCaseWriter testCaseWriter =
-        Runtime.createTestCaseWriter( getExecType())
+        Runtime.createTestCaseWriter( getExecType(), getExtensions())
         .orElseThrow( () -> new IllegalArgumentException( String.format( "Can't find TestCaseWriter for execution interface=%s", getExecType())));
       
       Optional.of( testCaseWriter)
@@ -1538,6 +1604,18 @@ public class ApiTestCommand
       Optional.of( getSource()).filter( s -> ModelOptions.Source.EXAMPLES.equals( s)).ifPresent( g -> builder.append( " -X"));
       builder.append( " -t ").append( getTestType());
       builder.append( " -e ").append( getExecType());
+
+      Optional.of( getExtensions())
+        .filter( exts -> !exts.isEmpty())
+        .ifPresent( exts -> {
+          builder
+            .append( " -cp")
+            .append(
+              exts.stream()
+              .map( File::getPath)
+              .collect( joining( System.getProperty( "path.separator"))));
+          });
+
       Optional.ofNullable( getTestName()).ifPresent( name -> builder.append( " -n ").append( name));
       Optional.ofNullable( getTestPackage()).ifPresent( pkg -> builder.append( " -p ").append( pkg));
       Optional.ofNullable( getBaseClass()).ifPresent( base -> builder.append( " -b ").append( base));
@@ -1585,6 +1663,7 @@ public class ApiTestCommand
     private boolean showVersion_;
     private Long randomSeed_;
     private boolean serverTrusted_;
+    private Set<File> extensions_ = new LinkedHashSet<File>();
 
     private static final Pattern serverExprPattern_ = Pattern.compile( "(index|contains|uri)=(.+)");
       
