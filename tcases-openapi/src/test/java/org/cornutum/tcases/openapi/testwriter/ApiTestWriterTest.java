@@ -15,6 +15,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.Optional;
+import static java.util.Collections.emptySet;
 
 /**
  * Runs tests for the {@link ApiTestWriter} annotation.
@@ -25,7 +26,7 @@ public class ApiTestWriterTest
   public void junitCreated()
     {
     // When...
-    Optional<TestWriter<?,?>> created = createTestWriter( "junit", null);
+    Optional<TestWriter<?,?>> created = createTestWriter( "junit", null, emptySet());
     
     // Then...
     assertThat( "JUnitTestWriter found", created.isPresent(), is( true));
@@ -38,7 +39,7 @@ public class ApiTestWriterTest
   public void testngCreated()
     {
     // When...
-    Optional<TestWriter<?,?>> created = createTestWriter( "testng", null);
+    Optional<TestWriter<?,?>> created = createTestWriter( "testng", null, emptySet());
     
     // Then...
     assertThat( "TestNgTestWriter found", created.isPresent(), is( true));
@@ -51,7 +52,7 @@ public class ApiTestWriterTest
   public void notFound()
     {
     // When...
-    Optional<TestWriter<?,?>> created = createTestWriter( "?", null);
+    Optional<TestWriter<?,?>> created = createTestWriter( "?", null, emptySet());
     
     // Then...
     assertThat( "TestWriter found", created.isPresent(), is( false));
@@ -61,7 +62,7 @@ public class ApiTestWriterTest
   public void notTestWriter()
     {
     // When...
-    Optional<TestWriter<?,?>> created = createTestWriter( "notTestWriter", null);
+    Optional<TestWriter<?,?>> created = createTestWriter( "notTestWriter", null, emptySet());
     
     // Then...
     assertThat( "TestWriter found", created.isPresent(), is( false));
@@ -71,7 +72,7 @@ public class ApiTestWriterTest
   public void targetCreated()
     {
     // When...
-    Optional<TestTarget> created = createTestTarget( JUnitTestWriter.class);
+    Optional<TestTarget> created = createTestTarget( JUnitTestWriter.class, emptySet());
     
     // Then...
     assertThat( "TestTarget found", created.isPresent(), is( true));
@@ -84,7 +85,7 @@ public class ApiTestWriterTest
   public void defaultTargetCreated()
     {
     // When...
-    Optional<TestTarget> created = createTestTarget( DefaultTarget.class);
+    Optional<TestTarget> created = createTestTarget( DefaultTarget.class, emptySet());
     
     // Then...
     assertThat( "TestTarget found", created.isPresent(), is( true));
@@ -97,7 +98,7 @@ public class ApiTestWriterTest
   public void notTarget()
     {
     // When...
-    Optional<TestTarget> created = createTestTarget( NonTarget.class);
+    Optional<TestTarget> created = createTestTarget( NonTarget.class, emptySet());
     
     // Then...
     assertThat( "TestTarget found", created.isPresent(), is( false));
@@ -107,7 +108,7 @@ public class ApiTestWriterTest
   public void notAnnotated()
     {
     // When...
-    Optional<TestTarget> created = createTestTarget( NotAnnotated.class);
+    Optional<TestTarget> created = createTestTarget( NotAnnotated.class, emptySet());
     
     // Then...
     assertThat( "TestTarget found", created.isPresent(), is( false));
@@ -117,7 +118,7 @@ public class ApiTestWriterTest
   public void undefinedTarget()
     {
     // When...
-    Optional<TestTarget> created = createTestTarget( UndefinedTarget.class);
+    Optional<TestTarget> created = createTestTarget( UndefinedTarget.class, emptySet());
     
     // Then...
     assertThat( "TestTarget found", created.isPresent(), is( false));
@@ -127,7 +128,7 @@ public class ApiTestWriterTest
   public void undefinedTargetConstructor()
     {
     expectFailure( IllegalStateException.class)
-      .when( () -> createTestTarget( UndefinedTargetConstructor.class))
+      .when( () -> createTestTarget( UndefinedTargetConstructor.class, emptySet()))
       .then( failure -> {
         assertThat( "Failure", failure.getMessage(), is( "Can't create instance of class=NoDefaultConstructor"));
         });

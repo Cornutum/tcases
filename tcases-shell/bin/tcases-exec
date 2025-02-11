@@ -28,7 +28,6 @@ while [ $# -gt 0 ] ; do
   case $1 in
     -l) shift; logFile="$1";;
     -L) shift; logLevel="$1";;
-    -cp) shift; classPathExt="$1";;
      *) args="${args}${args:+${ARGDELIM}}$1";;
   esac
   shift
@@ -47,7 +46,7 @@ binDir=`dirname "$0"`
 releaseDir=`cd "$binDir"/..; pwd`
 libDir=${releaseDir}/lib
 
-classPath=${libDir}${classPathExt:+:}${classPathExt}
+classPath=${libDir}
 for jar in "${libDir}"/*.jar; do
   classPath="${classPath}:${jar}"
 done
