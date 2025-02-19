@@ -103,6 +103,11 @@
       <groupId>org.cornutum.regexp</groupId>
       <artifactId>regexp-gen</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.cornutum.annotation</groupId>
+      <artifactId>finder</artifactId>
+    </dependency>
     
     <dependency>
         <groupId>org.hamcrest</groupId>
@@ -127,12 +132,6 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>eu.infomas</groupId>
-      <artifactId>annotation-detector</artifactId>
-      <version>3.0.5</version>
     </dependency>
 
     <dependency>

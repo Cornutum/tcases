@@ -7,11 +7,11 @@
 
 package org.cornutum.tcases.annotations;
 
-import eu.infomas.annotation.AnnotationDetector;
-import eu.infomas.annotation.AnnotationDetector.TypeReporter;
+import org.cornutum.annotation.Annotated;
+import org.cornutum.annotation.Finder;
+import org.cornutum.annotation.PackageFilter;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.net.JarURLConnection;
 import java.net.URL;
@@ -36,6 +36,7 @@ public class AnnotationFinder
    */
   public AnnotationFinder()
     {
+    finder_ = new Finder().filter( filter_);
     }
   
   /**
@@ -52,7 +53,7 @@ public class AnnotationFinder
    */
   public AnnotationFinder annotation( Class<? extends Annotation> annotation)
     {
-    annotation_ = annotation;
+    filter_.annotation( annotation);
     return this;
     }
 
@@ -87,10 +88,8 @@ public class AnnotationFinder
    */
   public AnnotationFinder inClasses( Collection<File> classPath)
     {
-    for( File file : classPath)
-      {
-      searchable_.add( file);
-      }
+    finder_.inClasses( classPath);
+    searchable_.addAll( classPath);
     
     return this;
     }
@@ -120,7 +119,6 @@ public class AnnotationFinder
               .toArray( URL[]::new),
               Thread.currentThread().getContextClassLoader()));
 
-        loadable_.addAll( searchable_);
         searchable_.clear();
         }
       }
@@ -131,12 +129,13 @@ public class AnnotationFinder
     try
       {
       return
-        getClasses()
-        .map( className -> forName( className));
+        finder_.find()
+        .filter( Annotated::isClass)
+        .map( annotated -> forName( annotated.getClassName()));
       }
     catch( Exception e)
       {
-      throw new IllegalStateException( String.format( "Can't find classes with annotation=%s", annotation_.getSimpleName()), e);
+      throw new IllegalStateException( String.format( "Can't find classes with annotation=%s", filter_.getAnnotations()), e);
       }
     }
 
@@ -252,56 +251,7 @@ public class AnnotationFinder
       }
     }
 
-  /**
-   * Returns a stream of annotated classes.
-   */
-  private Stream<String> getClasses() throws IOException
-    {
-    ClassAnnotationReporter reporter = new ClassAnnotationReporter();
-    new AnnotationDetector( reporter).detect( loadable_.stream().toArray( File[]::new));
-    return reporter.getStream();
-    }
-
-  /**
-   * Creates a stream of annotated classes.
-   */
-  private class ClassAnnotationReporter implements TypeReporter
-    {
-    /**
-     * Creates a new ClassAnnotationReporter instance.
-     */
-    @SuppressWarnings("unchecked")
-	public ClassAnnotationReporter()
-      {
-      annotations_ = new Class[] {annotation_};
-      builder_ = Stream.builder();
-      }
-
-    @Override
-	public void reportTypeAnnotation( Class<? extends Annotation> annotation, String className)
-      {
-      builder_.add( className);
-      }
-
-    @Override
-	public Class<? extends Annotation>[] annotations()
-      {
-      return annotations_;
-      }
-
-    /**
-     * Returns a stream of reported classes.
-     */
-    public Stream<String> getStream()
-      {
-      return builder_.build();
-      }
-
-    private Class<? extends Annotation>[] annotations_;
-    private Stream.Builder<String> builder_;
-    }
-
-  private Class<? extends Annotation> annotation_;
+  private Finder finder_;
+  private PackageFilter filter_ = new PackageFilter();
   private Set<File> searchable_ = new LinkedHashSet<File>();
-  private Set<File> loadable_ = new LinkedHashSet<File>();
   }
