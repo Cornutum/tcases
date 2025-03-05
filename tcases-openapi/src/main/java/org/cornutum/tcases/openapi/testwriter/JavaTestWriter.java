@@ -77,7 +77,7 @@ public abstract class JavaTestWriter extends TestWriter<TestSource,JavaTestTarge
     
     Optional.ofNullable( target.getBaseClassPackage())
       .filter( basePkg -> !basePkg.equals( target.getTargetPackage()))
-      .ifPresent( basePkg -> targetWriter.println( String.format( "import %s", target.getBaseClass())));
+      .ifPresent( basePkg -> targetWriter.println( String.format( "import %s;", target.getBaseClass())));
     }
 
   /**

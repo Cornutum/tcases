@@ -1,6 +1,6 @@
 package org.examples;
 
-import org.examples.util.BaseClass
+import org.examples.util.BaseClass;
 
 import org.junit.Test;
 // Test case dependencies
