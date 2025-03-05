@@ -1,6 +1,6 @@
 package org.cornutum;
 
-import org.cornutum.utils.MyBaseClass
+import org.cornutum.utils.MyBaseClass;
 
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package org.examples;
 
-import org.cornutum.tcases.openapi.OpenApiTest
+import org.cornutum.tcases.openapi.OpenApiTest;
 
 import org.junit.Test;
 // Test case dependencies

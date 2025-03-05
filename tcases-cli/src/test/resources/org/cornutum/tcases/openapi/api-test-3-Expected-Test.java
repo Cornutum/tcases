@@ -1,6 +1,6 @@
 package org.cornutum.examples;
 
-import org.cornutum.testwriter.BaseTest
+import org.cornutum.testwriter.BaseTest;
 
 import org.testng.annotations.Test;
 
