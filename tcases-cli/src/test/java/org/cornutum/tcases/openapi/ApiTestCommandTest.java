@@ -956,6 +956,50 @@ public class ApiTestCommandTest extends TestWriterTest
     }
 
   @Test
+  public void whenSuccessExcluded() throws Exception
+    {
+    // Given...
+    File apiFile = stdApiDef( "OpenApiTest");
+    
+    String[] args =
+      {
+        "-p", "org.cornutum.examples",
+        "-r", "99999",
+        "-xs"
+      };
+    
+    // When...
+    StringBuffer stdOut = new StringBuffer();
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, stdOut);
+        
+    // Then...
+    String testFileResults = stdOut.toString();
+    verifyTest( "api-test-exclude-success", testFileResults);
+    }
+
+  @Test
+  public void whenFailureExcluded() throws Exception
+    {
+    // Given...
+    File apiFile = stdApiDef( "OpenApiTest");
+    
+    String[] args =
+      {
+        "-p", "org.cornutum.examples",
+        "-r", "99999",
+        "-xf"
+      };
+    
+    // When...
+    StringBuffer stdOut = new StringBuffer();
+    runWithStdIO( () -> ApiTestCommand.run( new Options( args)), apiFile, stdOut);
+        
+    // Then...
+    String testFileResults = stdOut.toString();
+    verifyTest( "api-test-exclude-failure", testFileResults);
+    }
+
+  @Test
   public void whenSourceExamples() throws Exception
     {
     // Given...
