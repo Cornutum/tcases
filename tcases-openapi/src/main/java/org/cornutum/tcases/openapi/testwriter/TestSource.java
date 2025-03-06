@@ -117,10 +117,6 @@ public class TestSource
    */
   public void setSuccessIncluded( boolean included)
     {
-    if( !included && !isFailureIncluded())
-      {
-      throw new IllegalStateException( "Must include either success or failure cases");
-      }
     includeSuccess_ = included;
     }
 
@@ -137,10 +133,6 @@ public class TestSource
    */
   public void setFailureIncluded( boolean included)
     {
-    if( !included && !isSuccessIncluded())
-      {
-      throw new IllegalStateException( "Must include either success or failure cases");
-      }
     includeFailure_ = included;
     }
 

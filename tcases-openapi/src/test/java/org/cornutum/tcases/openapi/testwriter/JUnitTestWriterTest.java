@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.Arrays;
@@ -597,5 +598,94 @@ public class JUnitTestWriterTest extends TestWriterTest
       () -> testWriter.writeTest( source, target),
       "Can't write test=TestDef8",
       String.format( "No package defined for target=%s", target));
+    }
+  
+  @Test
+  public void writeTest_9() throws Exception
+    {
+    // Given...
+    String testDefName = "testDef-0";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .includeSuccess( false)
+      .build();
+
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .inPackage( "org.examples")
+      .extending( "org.examples.util.BaseClass")
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
+    
+    // When...
+    String results = toStdOut( () -> testWriter.writeTest( source, target));
+
+    // Then
+    String testOutName = "testDef-9";
+    verifyTest( testOutName, results);
+    }
+
+
+  @Test
+  public void writeTest_10() throws Exception
+    {
+    // Given...
+    String testDefName = "testDef-5";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .paths( "/object")
+      .operations( "post")
+      .includeFailure( false)
+      .includeSuccess( true)
+      .build();
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( "ApiTests")
+      .inPackage( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .extending( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
+    
+    // When...
+    String results = toStdOut( () -> testWriter.writeTest( source, target));
+
+    // Then
+    String testOutName = "testDef-10";
+    verifyTest( testOutName, results);
+    }
+
+
+  @Test
+  public void writeTest_11() throws Exception
+    {
+    // Given...
+    String testDefName = "testDef-5";
+    
+    TestSource source =
+      TestSource.from( requestTestDefFor( testDefName))
+      .paths( "/object")
+      .operations( "post")
+      .includeFailure( false)
+      .includeSuccess( false)
+      .build();
+    
+    JavaTestTarget target =
+      JavaTestTarget.builder()
+      .named( "ApiTests")
+      .inPackage( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .extending( org.cornutum.tcases.openapi.OpenApiTest.class)
+      .build();
+
+    JUnitTestWriter testWriter = new JUnitTestWriter( new MockTestCaseWriter());
+
+    // Then...
+    assertTestWriterException(
+      () -> testWriter.writeTest( source, target),
+      "Test source must include either success or failure cases");
     }
   }
