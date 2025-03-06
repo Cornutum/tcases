@@ -97,6 +97,8 @@ public class ApiTestMojo extends AbstractMojo
         options.setByPath( getByPath());
         options.setPaths( getPaths());
         options.setOperations( getOperations());
+        options.setSuccessExcluded( isSuccessExcluded());
+        options.setFailureExcluded( isFailureExcluded());
         options.setServerUri( getBaseUri());
         options.setServerTrusted( getTrustServer());
         options.setContentType( getContentType());
@@ -597,6 +599,38 @@ public class ApiTestMojo extends AbstractMojo
     }
 
   /**
+   * Changes if success cases are excluded from generated tests.
+   */
+  public void setSuccessExcluded( boolean excluded)
+    {
+    excludeSuccess = excluded;
+    }
+
+  /**
+   * Returns if success cases are excluded from generated tests.
+   */
+  public boolean isSuccessExcluded()
+    {
+    return excludeSuccess;
+    }
+
+  /**
+   * Changes if failure cases are excluded from generated tests.
+   */
+  public void setFailureExcluded( boolean excluded)
+    {
+    excludeFailure = excluded;
+    }
+
+  /**
+   * Returns if failure cases are excluded from generated tests.
+   */
+  public boolean isFailureExcluded()
+    {
+    return excludeFailure;
+    }
+
+  /**
    * Changes the expression that identifies the API server URI used by generated tests.
    */
   public void setBaseUri( String serverExpr)
@@ -813,6 +847,18 @@ public class ApiTestMojo extends AbstractMojo
    */
   @Parameter(property="operations")
   private Set<String> operations;
+
+  /**
+   * If true, success cases are excluded from generated tests.
+   */
+  @Parameter(property="excludeSuccess",defaultValue="false")
+  private boolean excludeSuccess;
+
+  /**
+   * If true, failure cases are excluded from generated tests.
+   */
+  @Parameter(property="excludeFailure",defaultValue="false")
+  private boolean excludeFailure;
 
   /**
    * If defined, specifies the base URI for the API server used by the generated tests.

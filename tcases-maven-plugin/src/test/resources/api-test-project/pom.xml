@@ -43,6 +43,8 @@
             <timeout>12345</timeout>
             <withResources>false</withResources>
             <trustServer>true</trustServer>
+            <excludeSuccess>false</excludeSuccess>
+            <excludeFailure>false</excludeFailure>
         </configuration>
       </plugin>
     </plugins>
