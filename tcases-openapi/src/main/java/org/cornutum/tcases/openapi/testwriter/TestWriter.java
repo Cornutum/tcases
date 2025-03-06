@@ -42,6 +42,11 @@ public abstract class TestWriter<S extends TestSource, T extends TestTarget>
    */
   public void writeTest( S source, T target)
     {
+    if( !source.isSuccessIncluded() && !source.isFailureIncluded())
+      {
+      throw new TestWriterException( "Test source must include either success or failure cases");
+      }
+    
     String testName = getTestName( source, target);
     File targetFile = getTargetFile( target, testName);
 
