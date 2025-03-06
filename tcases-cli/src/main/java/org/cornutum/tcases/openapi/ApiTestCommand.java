@@ -278,6 +278,30 @@ public class ApiTestCommand
    * &nbsp;
    * </TD>
    * <TD>
+   * <NOBR>-xs</NOBR>
+   * </TD>
+   * <TD>
+   * If specified, success cases are excluded from generated tests.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
+   * <NOBR>-xf</NOBR>
+   * </TD>
+   * <TD>
+   * If specified, failure cases are excluded from generated tests.
+   * </TD>
+   * </TR>
+   *
+   * <TR valign="top">
+   * <TD>
+   * &nbsp;
+   * </TD>
+   * <TD>
    * <NOBR>-B <I>server</I> </NOBR>
    * </TD>
    * <TD>
@@ -633,6 +657,16 @@ public class ApiTestCommand
         setOperations( Arrays.asList( args[i].split( " *, *")));
         }
 
+      else if( arg.equals( "-xs"))
+        {
+        setSuccessExcluded( true);
+        }
+
+      else if( arg.equals( "-xf"))
+        {
+        setFailureExcluded( true);
+        }
+
       else if( arg.equals( "-B"))
         {
         i++;
@@ -835,6 +869,10 @@ public class ApiTestCommand
                "  -O operations   If defined, tests are generated only for the specified HTTP methods. The operations",
                "                  option must be a comma-separated list of path operations defined in the apiDef. If",
                "                  omitted, tests are generated for all operations.",
+               "",
+               "  -xs             If specified, success cases are excluded from the generated tests.",
+               "",
+               "  -xf             If specified, failure cases are excluded from the generated tests.",
                "",
                "  -B server       If defined, specifies the base URI for the API server used by the generated tests.",
                "                  The server expression has one of the following forms. If omitted, the default is index=0.",
@@ -1194,6 +1232,38 @@ public class ApiTestCommand
       }
 
     /**
+     * Changes if success cases are excluded from generated tests.
+     */
+    public void setSuccessExcluded( boolean excluded)
+      {
+      excludeSuccess_ = excluded;
+      }
+
+    /**
+     * Returns if success cases are excluded from generated tests.
+     */
+    public boolean isSuccessExcluded()
+      {
+      return excludeSuccess_;
+      }
+
+    /**
+     * Changes if failure cases are excluded from generated tests.
+     */
+    public void setFailureExcluded( boolean excluded)
+      {
+      excludeFailure_ = excluded;
+      }
+
+    /**
+     * Returns if failure cases are excluded from generated tests.
+     */
+    public boolean isFailureExcluded()
+      {
+      return excludeFailure_;
+      }
+
+    /**
      * Changes the expression that identifies the API server URI used by generated tests.
      */
     public void setServerUri( String serverExpr) throws Exception
@@ -1468,6 +1538,8 @@ public class ApiTestCommand
       TestSource testSource = new TestSource( testDef);
       testSource.setPaths( getPaths());
       testSource.setOperations( getOperations());
+      testSource.setSuccessIncluded( !isSuccessExcluded());
+      testSource.setFailureIncluded( !isFailureExcluded());
       return testSource;
       }
 
@@ -1627,6 +1699,8 @@ public class ApiTestCommand
       if( isByPath()) builder.append( " -S");
       Optional.ofNullable( getPaths()).ifPresent( paths -> builder.append( " -P ").append( paths.stream().collect( joining( ","))));   
       Optional.ofNullable( getOperations()).ifPresent( operations -> builder.append( " -O ").append( operations.stream().collect( joining( ","))));
+      if( isSuccessExcluded()) builder.append( " -xs");
+      if( isFailureExcluded()) builder.append( " -xf");
       builder.append( " -c ").append( String.format( "%s,%s", getModelOptions().getConditionNotifier(), getResolverContext().getNotifier()));
       Optional.of( getModelOptions()).filter( ModelOptions::isReadOnlyEnforced).ifPresent( o -> builder.append( " -R")); 
       builder.append( " -m ").append( getMaxTries());
@@ -1664,6 +1738,8 @@ public class ApiTestCommand
     private Long randomSeed_;
     private boolean serverTrusted_;
     private Set<File> extensions_ = new LinkedHashSet<File>();
+    private boolean excludeSuccess_;
+    private boolean excludeFailure_;
 
     private static final Pattern serverExprPattern_ = Pattern.compile( "(index|contains|uri)=(.+)");
       
@@ -1766,6 +1842,18 @@ public class ApiTestCommand
       public Builder operations( String... operations)
         {
         options_.setOperations( Arrays.asList( operations));
+        return this;
+        }
+
+      public Builder successExcluded( boolean excluded)
+        {
+        options_.setSuccessExcluded( excluded);
+        return this;
+        }
+
+      public Builder failureExcluded( boolean excluded)
+        {
+        options_.setFailureExcluded( excluded);
         return this;
         }
 
