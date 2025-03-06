@@ -18,8 +18,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 /**
@@ -112,11 +113,55 @@ public class TestSource
     }
 
   /**
+   * Changes if success test cases are included in this source.
+   */
+  public void setSuccessIncluded( boolean included)
+    {
+    if( !included && !isFailureIncluded())
+      {
+      throw new IllegalStateException( "Must include either success or failure cases");
+      }
+    includeSuccess_ = included;
+    }
+
+  /**
+   * Returns if success test cases are included in this source.
+   */
+  public boolean isSuccessIncluded()
+    {
+    return includeSuccess_;
+    }
+
+  /**
+   * Changes if failure test cases are included in this source.
+   */
+  public void setFailureIncluded( boolean included)
+    {
+    if( !included && !isSuccessIncluded())
+      {
+      throw new IllegalStateException( "Must include either success or failure cases");
+      }
+    includeFailure_ = included;
+    }
+
+  /**
+   * Returns if failure test cases are included in this source.
+   */
+  public boolean isFailureIncluded()
+    {
+    return includeFailure_;
+    }
+
+  /**
    * Returns the request test cases for this source.
    */
   public List<RequestCase> getRequestCases()
     {
-    return getTestDef().getRequestCases( getPaths(), getOperations());
+    return
+      getTestDef().getRequestCases( getPaths(), getOperations())
+      .stream()
+      .filter( rc -> rc.isFailure()? isFailureIncluded() : isSuccessIncluded())
+      .collect( toList());
     }
 
   /**
@@ -146,6 +191,14 @@ public class TestSource
     builder.append( getTestDef());
     Optional.ofNullable( getOperations()).ifPresent( ops -> builder.append( ops));
     Optional.ofNullable( getPaths()).ifPresent( paths -> builder.append( paths));
+    if( !isSuccessIncluded())
+      {
+      builder.append( "success", false);
+      }
+    if( !isFailureIncluded())
+      {
+      builder.append( "failure", false);
+      }
     
     return builder.toString();    
     }
@@ -162,6 +215,8 @@ public class TestSource
   private Set<String> paths_;
   private Set<String> ops_;
   private ResponsesDef responses_;
+  private boolean includeSuccess_ = true;
+  private boolean includeFailure_ = true;
 
   /**
    * Builds a {@link TestSource} instance.
@@ -185,6 +240,18 @@ public class TestSource
     public Builder operations( String... operations)
       {
       source_.setOperations( operations);
+      return this;
+      }
+
+    public Builder includeSuccess( boolean include)
+      {
+      source_.setSuccessIncluded( include);
+      return this;
+      }
+
+    public Builder includeFailure( boolean include)
+      {
+      source_.setFailureIncluded( include);
       return this;
       }
 
