@@ -20,10 +20,10 @@ Tcases for OpenAPI generates executable tests using the TestWriter API, which br
   * A [request test definition](Request-Test-Definition.md) that defines the inputs for request test cases (and that is created
     automatically from an OpenAPI definition via [input resolution](#get-actual-input-values)),
   
-  * a [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
+  * a [**TestWriter**](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
     responsible for producing the code required for a specific test framework,
 
-  * and a [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
+  * and a [**TestCaseWriter**](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html)
     that is responsible for producing the code that uses a specific request execution interface to submit
     API requests and evaluate API responses.
 
@@ -36,15 +36,41 @@ add extensions to Tcases for OpenAPI that produce the results you want.
 
 #### Java? Nope. I need tests to be written in another language ####
 
-#### JUnit tests are fine, but I want to use a different request execution interface ####
+#### Java tests are fine, but I don't use JUnit or TestNG ####
+
+#### I use JUnit (or TestNG), but I want to use a different request execution interface ####
 
 #### Since I'm adding extensions to Tcases, do I have to create my own fork? ####
 
-#### How can I test my own `TestWriter` implementation? ####
+#### How can I test my own TestWriter implementation? ####
 
-#### Can I get the `tcases-api-test` command to use my own `TestWriter`? ####
+#### Can I get the `tcases-api-test` command to use my own TestWriter? ####
 
 #### Is there a different way to generate test input values? ####
 
 
 ## The TestWriter Lifecycle ##
+
+The work of a TestWriter is carried out via the **TestWriter lifecyle**. This lifecycle consists of a series of steps that
+incrementally produce each part of a complete test program.
+
+The TestWriter lifecycle is an example of the [Template pattern](https://en.wikipedia.org/wiki/Template_method_pattern).  A
+TestWriter is implemented by a subclass of the abstract `TestWriter` class, which provides the template. Each step of the
+lifecycle is then implemented by a `TestWriter` method.  A lifecycle method may be abstract, in which case every TestWriter
+implementation must provide its own implementation. Or, in other cases, a lifecycle method may act as a "hook" that a new
+TestWriter subclass can choose to override, either to replace the superclass method or to add new actions before or after
+invoking the superclass method.
+
+| Lifecycle Method  |                       |                   |                       | Purpose |
+| ---:              | ---                   | :---              | ---                   | --- |
+| prepareTestCases  |                       |                   |                       | Initial TestWriter setup |
+| writeProlog       |                       |                   |                       | Write parts that precede test cases |
+|                   | :arrow_right_hook:    | writeOpening      | :small_blue_diamond:  | Write the opening part of the test program |
+|                   |                       | writeDependencies | :small_blue_diamond:  | Write test case dependencies |
+|                   |                       | writeDeclarations | :small_blue_diamond:  | Write declarations of test components |
+| writeTestCases    |                       |                   |                       | Write all test cases |
+|                   | :arrow_right_hook:    | writeTestCase     |                       | Write a single test case |
+| writeEpilog       |                       |                   |                       | Write parts that follow test cases |
+|                   | :arrow_right_hook:    | writeClosing      | :small_blue_diamond:  | Write the closing part of the test |
+
+
