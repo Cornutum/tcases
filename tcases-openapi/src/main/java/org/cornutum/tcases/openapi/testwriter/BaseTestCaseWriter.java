@@ -76,6 +76,14 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
     }
 
   /**
+   * Changes the test case dependencies used by this writer.
+   */
+  private void setDepends( Depends depends)
+    {
+    depends_ = depends;
+    }
+
+  /**
    * Returns the test case dependencies used by this writer.
    */
   public Depends getDepends()
@@ -89,10 +97,10 @@ public abstract class BaseTestCaseWriter implements TestCaseWriter
   @Override
   public void prepareTestCases( List<RequestCase> requestCases)
     {
-    depends_ = new Depends();
+    setDepends( new Depends());
 
-    depends_.setValidateResponses( validateResponses());
-    depends_.setTrustServer( trustServer());
+    getDepends().setValidateResponses( validateResponses());
+    getDepends().setTrustServer( trustServer());
 
     AuthDependsVisitor authDependsVisitor = new AuthDependsVisitor();
     requestCases.stream()
