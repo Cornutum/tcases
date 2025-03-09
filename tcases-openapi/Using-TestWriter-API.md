@@ -42,7 +42,7 @@ add extensions to Tcases for OpenAPI that produce the results you want.
 
 #### Since I'm adding extensions to Tcases, do I have to create my own fork? ####
 
-#### How can I test my own TestWriter implementation? ####
+### How can I test my own TestWriter implementation? ####
 
 #### Can I get the `tcases-api-test` command to use my own TestWriter? ####
 
@@ -56,14 +56,17 @@ incrementally produce each part of a complete test program.
 
 ### Overview ###
 
-The TestWriter lifecycle is an example of the [Template pattern](https://en.wikipedia.org/wiki/Template_method_pattern).  A
-TestWriter is implemented by a subclass of the abstract `TestWriter` class, which provides the template. Each step of the
-lifecycle is then implemented by a `TestWriter` method.  A lifecycle method may be abstract, in which case every TestWriter
-implementation must provide its own implementation. Or, in other cases, a lifecycle method may act as a "hook" that a new
-TestWriter subclass can choose to override, either to replace the superclass method or to add new actions before or after
-invoking the superclass method.
+The TestWriter lifecycle is an example of the [Template pattern](https://en.wikipedia.org/wiki/Template_method_pattern). The
+template is provided by the abstract `TestWriter` class. A TestWriter must be implemented by a subclass of `TestWriter`.
 
-Here is an overview of the TestWriter lifecycle. Each abstract lifecyle method is indicated by :small_blue_diamond:.
+The TestWriter lifecycle is invoked by calling the
+[`writeTest` method](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-).
+Each step of the lifecycle is implemented by a `TestWriter` method.  A lifecycle method may be abstract, in which case every
+TestWriter implementation must provide its own implementation. Or, in other cases, a lifecycle method may act as a "hook" that a
+new TestWriter subclass can choose to override, usually to add new actions before or after invoking the superclass method.
+Completely replacing the behavior of a hook method is not recommended.
+
+Here is an overview of the TestWriter lifecycle. Each abstract `TestWriter` lifecyle method is indicated by :small_blue_diamond:.
 
 | Lifecycle Method  |     |                   | Purpose |
 | ---:              | --- | :---              | --- |
@@ -85,7 +88,7 @@ A TestCaseWriter must be an implementation of the `TestCaseWriter` interface and
 lifecycle methods.
 
 Here is a overview of how a TestWriter delegates responsibilities to a TestCaseWriter.
-Each TestCaseWriter method is indicated by :small_orange_diamond:.
+Each `TestCaseWriter` lifecycle method is indicated by :small_orange_diamond:.
 
 | Lifecycle Method  |     |                   |     |               | Purpose |
 | ---:              | --- | :---              | --- | ---           | --- |
@@ -103,3 +106,165 @@ Each TestCaseWriter method is indicated by :small_orange_diamond:.
 | writeEpilog       | :arrow_heading_down:  |                   |     |               | Write parts that follow test cases |
 |                   | :small_orange_diamond:  | writeClosing      |     |               | Write request execution parts that follow test cases |
 |                   | :small_blue_diamond:  | writeClosing      |     |               | Write the closing part of the test program |
+
+### The TestWriter lifecycle in action ###
+
+To see how the TestWriter lifecyle works, let's look at an example using the standard `JUnitTestWriter`. This section shows the result produced
+by each step of the lifecycle.
+
+#### writeTests ####
+
+This `TestWriter` method invokes the lifecyle, using a specified [TestSource]() and [TestTarget]().
+
+#### prepareTestCases ####
+
+This hook method simply invokes the TestCaseWriter `prepareTestCases` method. Input to this method is the [request test definition]() that
+describes the test cases generated from the OpenAPI definition.
+
+#### writeProlog ####
+
+This hook method invokes the lifecycle methods that produce the parts of the test program that precede the actual test cases.
+
+#### writeOpening ####
+
+This method writes the opening part of the test program. For example:
+
+```java
+package org.examples;
+```
+
+#### writeDependencies ####
+
+This method writes framework-dependent dependencies. For example:
+
+```java
+
+import org.examples.util.BaseClass
+
+import org.junit.Test;
+```
+
+#### writeDeclarations ####
+
+This method writes framework-dependent declarations. For example:
+
+```java
+
+public class MyApiTestCase extends BaseClass {
+```
+
+#### writeTestCases ####
+
+This hook method simply calls `writeTestCase` for each `RequestCase` in the [request test definition]().
+
+#### writeTestCase ####
+
+This hook method simply calls the TestCaseWriter `writeTestCase` method for a single `RequestCase`.
+The `JUnitTestWriter` overrides this method to write the framework-dependent parts of the test case
+that appear before and after the results of the superclass method. For example:
+
+```java
+    @Test
+    public void deleteResource_IdDefined_Is_Yes() {
+        ...
+        ...
+        ...
+    }
+```
+
+#### writeEpilog ####
+
+This hook method invokes the lifecycle methods that produce the parts of the test program that follow the actual test cases.
+
+#### writeClosing ####
+
+This method writes the closing part of the test program. For example:
+
+```java
+}
+```
+
+### The TestCaseWriter in action ###
+
+To see the role played by the TestCaseWriter in the lifecycle, let's look at an example using the standard `RestAssuredTestCaseWriter`.
+
+#### prepareTestCases ####
+
+This method sets up the TestCaseWriter for the [request test definition]().
+
+#### writeDependencies ####
+
+This method writes dependencies for the request execution interface. For example:
+
+```java
+import java.util.List;
+import java.util.Map;
+import static java.util.stream.Collectors.*;
+
+import io.restassured.http.Header;
+import io.restassured.response.Response;
+
+import org.cornutum.tcases.openapi.test.ResponseValidator;
+
+import org.hamcrest.Matcher;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+```
+
+#### writeDeclarations ####
+
+This method writes declarations for the request execution interface. For example:
+
+```java
+
+    private ResponseValidator responseValidator = new ResponseValidator( getClass());
+```
+
+
+#### writeTestCase ####
+
+This method writes the code for the body of a single test case. For example:
+
+```java
+        Response response =
+            given()
+                .baseUri( forTestServer())
+                .header( "Authorization", tcasesApiBasicCredentials())
+                .queryParam( "id", "0")
+            .when()
+                .request( "DELETE", "/resource")
+            .then()
+                .statusCode( isSuccess())
+            .extract()
+                .response()
+                ;
+
+        responseValidator.assertBodyValid( "DELETE", "/resource", response.statusCode(), response.getContentType(), response.asString());
+        responseValidator.assertHeadersValid( "DELETE", "/resource", response.statusCode(), responseHeaders( response));
+```
+
+
+#### writeClosing ####
+
+This method write request execution parts that follow test cases. For the `RestAssuredTestCaseWriter`,
+this includes the definition of several standard helper methods:
+
+```java
+
+    private static Matcher<Integer> isSuccess() {
+        return allOf( greaterThanOrEqualTo(200), lessThan(300));
+    }
+
+    private static Matcher<Integer> isBadRequest() {
+        return allOf( greaterThanOrEqualTo(400), lessThan(500));
+    }
+
+    private static Matcher<Integer> isUnauthorized() {
+        return is(401);
+    }
+    ...
+    ...
+    ...
+```
+
+
