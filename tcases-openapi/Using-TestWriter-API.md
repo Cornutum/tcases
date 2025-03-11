@@ -1,3 +1,24 @@
+# Using the TestWriter API #
+
+## Contents ##
+
+  * [Overview](#overview)
+  * [Get Started](#get-started)
+      * [Java? Nope. I need tests to be written in another language](#java-nope-i-need-tests-to-be-written-in-another-language)
+      * [Java tests are fine, but I don't use JUnit or TestNG](#java-tests-are-fine-but-i-dont-use-junit-or-testng)
+      * [I use JUnit (or TestNG), but I want to replace REST Assured with something different](#i-use-junit-or-testng-but-i-want-to-replace-rest-assured-with-something-different)
+      * [Since I'm adding extensions to Tcases, do I have to create my own fork?](#since-im-adding-extensions-to-tcases-do-i-have-to-create-my-own-fork)
+      * [Can I get the `tcases-api-test` command to use my own TestWriter?](#can-i-get-the-tcases-api-test-command-to-use-my-own-testwriter)
+      * [Is there a different way to generate test input values?](#is-there-a-different-way-to-generate-test-input-values)
+  * [The TestWriter Lifecycle](#the-testwriter-lifecycle)
+  * [What is a TestSource?](#what-is-a-testsource)
+  * [What is a TestTarget?](#what-is-a-testtarget)
+  * [Developer Requirements](#developer-requirements)
+    * [TestWriter requirements](#testwriter-requirements)
+    * [TestCaseWriter requirements](#testcasewriter-requirements)
+    * [TestTarget requirements](#testtarget-requirements)
+
+
 ## Overview ##
 
 When Tcases for OpenAPI generates an executable test for your API, the result is one or more source code files that implement
@@ -38,7 +59,7 @@ add extensions to Tcases for OpenAPI that produce the results you want.
 
 #### Java tests are fine, but I don't use JUnit or TestNG ####
 
-#### I use JUnit (or TestNG), but I want to use a different request execution interface ####
+#### I use JUnit (or TestNG), but I want to replace REST Assured with something different ####
 
 #### Since I'm adding extensions to Tcases, do I have to create my own fork? ####
 
@@ -304,7 +325,7 @@ based on options provided in the command line.
 
 ## Developer Requirements ##
 
-## TestWriter requirements ##
+### TestWriter requirements ###
 
 Here are the requirements for implementing a new TestWriter.
 
@@ -358,7 +379,7 @@ public class JUnitTestWriter extends AnnotatedJavaTestWriter
 
 - **Implement the TestWriter lifecycle**
 
-  A TestWriter class must provide an implementation for all of the abstract [TestWriter lifecycle methods](the-testwriter-lifecycle).
+  A TestWriter class must provide an implementation for all of the abstract [TestWriter lifecycle methods](#the-testwriter-lifecycle).
 
 - **Use environment variables to customize properties**
 
@@ -366,7 +387,7 @@ public class JUnitTestWriter extends AnnotatedJavaTestWriter
   initialized by the standard constructor. To customize these properties at runtime, use well-documented environment variables.
   
 
-## TestCaseWriter requirements ##
+### TestCaseWriter requirements ###
 
 Here are the requirements for implementing a new TestCaseWriter.
 
@@ -402,14 +423,14 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
     
 - **Implement the TestCaseWriter lifecycle**
 
-  A TestCaseWriter class must provide an implementation for all of the abstract [TestCaseWriter lifecycle methods](delegation-to-testcasewriter).
+  A TestCaseWriter class must provide an implementation for all of the abstract [TestCaseWriter lifecycle methods](#delegation-to-testcasewriter).
 
 - **Use environment variables to customize properties**
 
-  Properties that are unique to a TestCaseWriter subclass cannot be initialized by the command line. Instead, such properties must be
+  Properties that are unique to a TestCaseWriter implementation cannot be initialized by the command line. Instead, such properties must be
   initialized by the standard constructor. To customize these properties at runtime, use well-documented environment variables.
 
-## TestTarget requirements ##
+### TestTarget requirements ###
 
 Here are the requirements for implementing a new TestTarget.
 
