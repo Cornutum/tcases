@@ -63,7 +63,7 @@ add extensions to Tcases for OpenAPI that produce the results you want.
 
 #### Since I'm adding extensions to Tcases, do I have to create my own fork? ####
 
-### How can I test my own TestWriter implementation? ####
+#### How can I test my own TestWriter implementation? ####
 
 #### Can I get the `tcases-api-test` command to use my own TestWriter? ####
 
@@ -325,8 +325,13 @@ based on options provided in the command line.
 
 ## Developer Requirements ##
 
-To include the TestWriter API in your development project, add [tcases-openapi](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-openapi/overview)
-as a dependency.
+To include the TestWriter API in your development project, add
+[`tcases-openapi`](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-openapi/overview) as a dependency.
+
+Alternatively, for better testing support, consider adding
+[`tcases-cli`](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-cli/overview) as a dependency.
+This makes it possible to run the [ApiTestCommand](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ApiTestCommand.html)
+directly in your IDE.
 
 The following sections describe detailed requirements for implementing TestWriter API components.
 
