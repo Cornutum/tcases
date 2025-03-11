@@ -60,7 +60,7 @@ The TestWriter lifecycle is an example of the [Template pattern](https://en.wiki
 template is provided by the abstract `TestWriter` class. A TestWriter must be implemented by a subclass of `TestWriter`.
 
 The TestWriter lifecycle is invoked by calling the
-[`writeTest` method](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-).
+[`writeTest`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-) method.
 Each step of the lifecycle is implemented by a `TestWriter` method.  A lifecycle method may be abstract, in which case every
 TestWriter implementation must provide its own implementation. Or, in other cases, a lifecycle method may act as a "hook" that a
 new TestWriter subclass can choose to override, usually to add new actions before or after invoking the superclass method.
@@ -79,6 +79,7 @@ Here is an overview of the TestWriter lifecycle. Each abstract `TestWriter` life
 |                   |     | writeTestCase     | Write a single test case |
 | writeEpilog       | :arrow_heading_down:  |                   | Write parts that follow test cases |
 |                   | :small_blue_diamond:  | writeClosing      | Write the closing part of the test program |
+| writeResponsesDef |     |                   | Write [definitions](#what-is-a-testsource) for response validation |
 
 ### Delegation to TestCaseWriter ###
 
@@ -106,6 +107,7 @@ Each `TestCaseWriter` lifecycle method is indicated by :small_orange_diamond:.
 | writeEpilog       | :arrow_heading_down:  |                   |     |               | Write parts that follow test cases |
 |                   | :small_orange_diamond:  | writeClosing      |     |               | Write request execution parts that follow test cases |
 |                   | :small_blue_diamond:  | writeClosing      |     |               | Write the closing part of the test program |
+| writeResponsesDef |     |                   | Write [definitions](#what-is-a-testsource) for response validation |
 
 ### The TestWriter lifecycle in action ###
 
@@ -114,12 +116,13 @@ by each step of the lifecycle.
 
 #### writeTests ####
 
-This `TestWriter` method invokes the lifecyle, using a specified [TestSource]() and [TestTarget]().
+This `TestWriter` method invokes the lifecyle, using a specified [TestSource](#what-is-a-testsource) and [TestTarget](#what-is-a-testtarget).
 
 #### prepareTestCases ####
 
-This hook method simply invokes the TestCaseWriter `prepareTestCases` method. Input to this method is the [request test definition]() that
-describes the test cases generated from the OpenAPI definition.
+This hook method simply invokes the TestCaseWriter `prepareTestCases` method. Input to this method is the
+[request test definition](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestTestDef.html)
+that describes the test cases generated from the OpenAPI definition.
 
 #### writeProlog ####
 
@@ -155,7 +158,8 @@ public class MyApiTestCase extends BaseClass {
 
 #### writeTestCases ####
 
-This hook method simply calls `writeTestCase` for each `RequestCase` in the [request test definition]().
+This hook method simply calls `writeTestCase` for each `RequestCase` in the
+[request test definition](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestTestDef.html).
 
 #### writeTestCase ####
 
@@ -190,7 +194,8 @@ To see the role played by the TestCaseWriter in the lifecycle, let's look at an 
 
 #### prepareTestCases ####
 
-This method sets up the TestCaseWriter for the [request test definition]().
+This method sets up the TestCaseWriter for the
+[request test definition](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestTestDef.html).
 
 #### writeDependencies ####
 
@@ -267,4 +272,33 @@ this includes the definition of several standard helper methods:
     ...
 ```
 
+
+## What is a TestSource? ##
+
+One of the required inputs to the
+[`TestWriter.writeTest`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-) method
+is an instance of the `TestSource` class. A TestSource encapsulates all of the information that has been derived from the OpenAPI
+definition in order to generate the test program. That includes not only the
+[request test definition](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestTestDef.html) but also the
+[request response definitions](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/test/ResponsesDef.html) used to
+validate the results of API requests. In addition, the `TestSource` can act as a filter that limits test generation to specific
+API paths or operations.
+
+The `tcases-api-test` command (or the Maven `tcases:api-test` goal) creates a TestSource using the
+[TestSource.Builder](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestSource.Builder.html),
+based on options provided in the command line. The request response definitions are derived from the OpenAPI definition
+using the [getResponsesDef](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/io/TcasesOpenApiIO.html#getResponsesDef-java.io.File-) method.
+
+## What is a TestTarget? ##
+
+One of the required inputs to the
+[`TestWriter.writeTest`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-) method
+is an instance of the `TestTarget` class. A TestTarget defines the location and form of generated test program files.
+Typically, a TestWriter depends on a designated `TestTarget` subclass that describes attributes of the test program that
+are specific to the programming language and test framework supported by the TestWriter. For example, the `JUnitTestWriter` depends on the
+[`JavaTestTarget`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/JavaTestTarget.html) class.
+
+The `tcases-api-test` command (or the Maven `tcases:api-test` goal) creates a TestTarget using the
+[JavaTestTarget.Builder](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/JavaTestTarget.Builder.html),
+based on options provided in the command line. 
 
