@@ -325,6 +325,11 @@ based on options provided in the command line.
 
 ## Developer Requirements ##
 
+To include the TestWriter API in your development project, add [tcases-openapi](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-openapi/overview)
+as a dependency.
+
+The following sections describe detailed requirements for implementing TestWriter API components.
+
 ### TestWriter requirements ###
 
 Here are the requirements for implementing a new TestWriter.
