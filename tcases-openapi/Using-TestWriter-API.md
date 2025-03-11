@@ -188,7 +188,7 @@ This method writes the closing part of the test program. For example:
 }
 ```
 
-### The TestCaseWriter in action ###
+### The TestCaseWriter lifecycle in action ###
 
 To see the role played by the TestCaseWriter in the lifecycle, let's look at an example using the standard `RestAssuredTestCaseWriter`.
 
@@ -302,3 +302,152 @@ The `tcases-api-test` command (or the Maven `tcases:api-test` goal) creates a Te
 [JavaTestTarget.Builder](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/JavaTestTarget.Builder.html),
 based on options provided in the command line. 
 
+## Developer Requirements ##
+
+## TestWriter requirements ##
+
+Here are the requirements for implementing a new TestWriter.
+
+- **Extend `TestWriter`**
+
+  A TestWriter must be implemented by a subclass of the `TestWriter` class. For a TestWriter that supports a Java-based test framework, consider
+  extending the [`JavaTestWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/JavaTestWriter.html) class.
+
+- **Define the standard constructor**
+
+  The standard constructor has a `TestCaseWriter` instance as its single argument and must invoke the `super` constructor. For example:
+
+```java
+/**
+ * Creates a new JUnitTestWriter instance.
+ */
+public JUnitTestWriter( TestCaseWriter testCaseWriter)
+  {
+  super( testCaseWriter);
+  }
+```
+
+- **Use the `ApiTestWriter` annotation**
+
+  For a TestWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
+  class definition must have the `ApiTestWriter` annotation. For example:
+
+```java
+/**
+ * Writes Java source code for a JUnit test that executes API requests.
+ */
+@ApiTestWriter( name="junit", target="java")
+public class JUnitTestWriter extends AnnotatedJavaTestWriter
+  {
+  ...
+  ...
+  ...
+  }
+```
+
+  The `ApiTestWriter` annotation has up to two arguments.
+
+  - `name` (required)
+
+    An identifier string. The `name` of this TestWriter is used in the command line to select this TestWriter for test case generation.
+    
+  - `target` (optional)
+
+    An identifier string. The `target` of this TestWriter is the `name` of the [TestTarget implementation](#testtarget-requirements) that is required for this TestWriter.
+    If omitted, the default is "java", which selects the `JavaTestTarget`.
+
+- **Implement the TestWriter lifecycle**
+
+  A TestWriter class must provide an implementation for all of the abstract [TestWriter lifecycle methods](the-testwriter-lifecycle).
+
+- **Use environment variables to customize properties**
+
+  Properties that are unique to a TestWriter subclass cannot be initialized by the command line. Instead, such properties must be
+  initialized by the standard constructor. To customize these properties at runtime, use well-documented environment variables.
+  
+
+## TestCaseWriter requirements ##
+
+Here are the requirements for implementing a new TestCaseWriter.
+
+- **Implement `TestCaseWriter`**
+
+  A TestCaseWriter must implement the `TestCaseWriter` interface. To provide some standard properties that can be customized in the command line,
+  consider extending the [`BaseTestCaseWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.html) class.
+
+- **Define the standard constructor**
+
+  The standard constructor is the default no-args constructor.
+
+- **Use the `ApiTestCaseWriter` annotation**
+
+  For a TestCaseWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
+  class definition must have the `ApiTestCaseWriter` annotation. For example:
+
+```java
+@ApiTestCaseWriter( name="restassured")
+public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
+  {
+  ...
+  ...
+  ...
+  }
+```
+
+  The `ApiTestCaseWriter` annotation has one argument.
+
+  - `name` (required)
+
+    An identifier string. The `name` of this TestCaseWriter is used in the command line to select this TestCaseWriter for test case generation.
+    
+- **Implement the TestCaseWriter lifecycle**
+
+  A TestCaseWriter class must provide an implementation for all of the abstract [TestCaseWriter lifecycle methods](delegation-to-testcasewriter).
+
+- **Use environment variables to customize properties**
+
+  Properties that are unique to a TestCaseWriter subclass cannot be initialized by the command line. Instead, such properties must be
+  initialized by the standard constructor. To customize these properties at runtime, use well-documented environment variables.
+
+## TestTarget requirements ##
+
+Here are the requirements for implementing a new TestTarget.
+
+- **Extend `TestTarget`**
+
+  A TestTarget must be implemented by a subclass of the `TestTarget` class. For a TestTarget that supports a Java-based test framework, consider
+  extending the [`JavaTestTarget`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/JavaTestTarget.html) class.
+
+- **Define the standard constructor**
+
+  The standard constructor is the default no-args constructor.
+
+- **Use the `ApiTestTarget` annotation**
+
+  For a TestTarget to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
+  class definition must have the `ApiTestTarget` annotation. For example:
+
+```java
+/**
+ * Defines the target for output from a {@link JavaTestWriter}.
+ */
+@ApiTestTarget( name="java")
+public class JavaTestTarget extends TestTarget
+  {
+  ...
+  ...
+  ...
+  }
+```
+
+  The `ApiTestTarget` annotation has one argument.
+
+  - `name` (required)
+
+    An identifier string. The `name` of this TestTarget is referenced by the `ApiTestWriter` annotation to select this TestTarget
+    for test case generation.
+
+- **Use environment variables to customize properties**
+
+  Properties that are unique to a TestTarget subclass cannot be initialized by the command line. Instead, such properties must be
+  initialized by the standard constructor. To customize these properties at runtime, use well-documented environment variables.
