@@ -343,33 +343,33 @@ Here are the requirements for implementing a new TestWriter.
 
   The standard constructor has a `TestCaseWriter` instance as its single argument and must invoke the `super` constructor. For example:
 
-```java
-/**
- * Creates a new JUnitTestWriter instance.
- */
-public JUnitTestWriter( TestCaseWriter testCaseWriter)
-  {
-  super( testCaseWriter);
-  }
-```
+  ```java
+  /**
+   * Creates a new JUnitTestWriter instance.
+   */
+  public JUnitTestWriter( TestCaseWriter testCaseWriter)
+    {
+    super( testCaseWriter);
+    }
+  ```
 
 - **Use the `ApiTestWriter` annotation**
 
   For a TestWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
   class definition must have the `ApiTestWriter` annotation. For example:
 
-```java
-/**
- * Writes Java source code for a JUnit test that executes API requests.
- */
-@ApiTestWriter( name="junit", target="java")
-public class JUnitTestWriter extends AnnotatedJavaTestWriter
-  {
-  ...
-  ...
-  ...
-  }
-```
+  ```java
+  /**
+   * Writes Java source code for a JUnit test that executes API requests.
+   */
+  @ApiTestWriter( name="junit", target="java")
+  public class JUnitTestWriter extends AnnotatedJavaTestWriter
+    {
+    ...
+    ...
+    ...
+    }
+  ```
 
   The `ApiTestWriter` annotation has up to two arguments.
 
@@ -410,15 +410,15 @@ Here are the requirements for implementing a new TestCaseWriter.
   For a TestCaseWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
   class definition must have the `ApiTestCaseWriter` annotation. For example:
 
-```java
-@ApiTestCaseWriter( name="restassured")
-public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
-  {
-  ...
-  ...
-  ...
-  }
-```
+  ```java
+  @ApiTestCaseWriter( name="restassured")
+  public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
+    {
+    ...
+    ...
+    ...
+    }
+  ```
 
   The `ApiTestCaseWriter` annotation has one argument.
 
@@ -453,18 +453,18 @@ Here are the requirements for implementing a new TestTarget.
   For a TestTarget to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
   class definition must have the `ApiTestTarget` annotation. For example:
 
-```java
-/**
- * Defines the target for output from a {@link JavaTestWriter}.
- */
-@ApiTestTarget( name="java")
-public class JavaTestTarget extends TestTarget
-  {
-  ...
-  ...
-  ...
-  }
-```
+  ```java
+  /**
+   * Defines the target for output from a {@link JavaTestWriter}.
+   */
+  @ApiTestTarget( name="java")
+  public class JavaTestTarget extends TestTarget
+    {
+    ...
+    ...
+    ...
+    }
+  ```
 
   The `ApiTestTarget` annotation has one argument.
 
