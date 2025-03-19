@@ -15,13 +15,14 @@ import org.cornutum.tcases.openapi.resolver.HttpBasicDef;
 import org.cornutum.tcases.openapi.resolver.HttpBearerDef;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter.Depends;
-import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.stringLiteral;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URI;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Defines common methods for generating standard Java methods used by {@link org.cornutum.tcases.openapi.testwriter.TestCaseWriter} implementations.
@@ -254,4 +255,28 @@ public final class TestCaseWriterUtils
   
     private String value_;
     }
+
+  /**
+   * Returns a string containing the source code for a Java string literal representing the given value.
+   */
+  public static String stringLiteral( Object value)
+    {
+    String literal = null;
+    if( value != null)
+      {
+      Matcher escapeMatcher = TestCaseWriterUtils.literalEscaped_.matcher( Objects.toString( value, ""));
+      StringBuffer escaped = new StringBuffer();
+      while( escapeMatcher.find())
+        {
+        escapeMatcher.appendReplacement( escaped, String.format( "\\\\%s", Matcher.quoteReplacement( escapeMatcher.group())));
+        }
+      escapeMatcher.appendTail( escaped);
+
+      literal = String.format( "\"%s\"", escaped.toString());
+      }
+
+    return literal;
+    }
+
+  private static final Pattern literalEscaped_ = Pattern.compile( "[\\\\\"]");
   }

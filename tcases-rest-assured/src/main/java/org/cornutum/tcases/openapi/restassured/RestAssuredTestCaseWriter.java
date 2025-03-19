@@ -14,15 +14,14 @@ import org.cornutum.tcases.openapi.resolver.MessageData;
 import org.cornutum.tcases.openapi.resolver.ParamData;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.test.MediaRange;
-import org.cornutum.tcases.openapi.testwriter.TestWriterException;
 import org.cornutum.tcases.openapi.testwriter.ApiTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter;
+import org.cornutum.tcases.openapi.testwriter.TestWriterException;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
 import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.resolve.ObjectValue;
-
 import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
 import static org.cornutum.tcases.openapi.testwriter.java.TestCaseWriterUtils.*;
 

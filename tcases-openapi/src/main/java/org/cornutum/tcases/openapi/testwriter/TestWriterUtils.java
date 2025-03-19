@@ -18,10 +18,7 @@ import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Defines common methods for representing request test definitions in API tests.
@@ -153,28 +150,6 @@ public final class TestWriterUtils
     }
 
   /**
-   * Returns a string containing the source code for a Java string literal representing the given value.
-   */
-  public static String stringLiteral( Object value)
-    {
-    String literal = null;
-    if( value != null)
-      {
-      Matcher escapeMatcher = literalEscaped_.matcher( Objects.toString( value, ""));
-      StringBuffer escaped = new StringBuffer();
-      while( escapeMatcher.find())
-        {
-        escapeMatcher.appendReplacement( escaped, String.format( "\\\\%s", Matcher.quoteReplacement( escapeMatcher.group())));
-        }
-      escapeMatcher.appendTail( escaped);
-
-      literal = String.format( "\"%s\"", escaped.toString());
-      }
-
-    return literal;
-    }
-
-  /**
    * If the given value contains leading or trailing whitespace, returns the given value enclosed in double quotes.
    * Otherwise, returns the given value.
    */
@@ -185,6 +160,4 @@ public final class TestWriterUtils
       ? String.format( "\"%s\"", value)
       : value;
     }
-
-  private static final Pattern literalEscaped_ = Pattern.compile( "[\\\\\"]");
   }
