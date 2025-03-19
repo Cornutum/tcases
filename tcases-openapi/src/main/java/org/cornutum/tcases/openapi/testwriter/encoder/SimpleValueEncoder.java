@@ -41,21 +41,33 @@ public class SimpleValueEncoder extends UriEncoder implements DataValueVisitor
     exploded_ = exploded;
     }
 
+  /**
+   * Returns an encoding of a parameter in the "simple" style.
+   */
   public static String encode( ParamData param, Component component)
     {
     return encode( param.getValue(), param.isExploded(), component);
     }
 
+  /**
+   * Returns an encoding of a {@link DataValue} in the "simple" style.
+   */
   public static String encode( DataValue<?> value, Component component)
     {
     return encode( value, false, component);
     }
 
+  /**
+   * Returns an encoding of a {@link DataValue} in the "simple" style for {@link UriEncoder.Component Component.NONE}.
+   */
   public static String encode( DataValue<?> value, boolean exploded)
     {
     return encode( value, exploded, Component.NONE);
     }
 
+  /**
+   * Returns an encoding of a {@link DataValue} in the "simple" style.
+   */
   public static String encode( DataValue<?> value, boolean exploded, Component component)
     {
     return new SimpleValueEncoder( value, exploded, component).accepted();

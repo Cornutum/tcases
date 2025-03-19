@@ -41,11 +41,17 @@ public class MatrixValueEncoder extends UriEncoder implements DataValueVisitor
     exploded_ = exploded;
     }
 
+  /**
+   * Returns an encoding of a parameter in the "matrix" style.
+   */
   public static String encode( ParamData param, Component component)
     {
     return encode( param.getName(), param.getValue(), param.isExploded(), component);
     }
 
+  /**
+   * Returns an encoding of a {@link DataValue} in the "matrix" style.
+   */
   public static String encode( String name, DataValue<?> value, boolean exploded, Component component)
     {
     return new MatrixValueEncoder( name, value, exploded, component).accepted();

@@ -41,11 +41,17 @@ public class LabelValueEncoder extends UriEncoder implements DataValueVisitor
     exploded_ = exploded;
     }
 
+  /**
+   * Returns an encoding of a parameter in the "label" style.
+   */
   public static String encode( ParamData param, Component component)
     {
     return encode( param.getValue(), param.isExploded(), component);
     }
 
+  /**
+   * Returns an encoding of a {@link DataValue} in the "label" style.
+   */
   public static String encode( DataValue<?> value, boolean exploded, Component component)
     {
     return new LabelValueEncoder( value, exploded, component).accepted();

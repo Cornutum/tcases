@@ -17,7 +17,25 @@ import java.util.regex.Pattern;
  */
 public abstract class UriEncoder
   {
-  public enum Component { NONE, PATH, QUERY };
+  /**
+   * Identifies the component of a URI where an encoded value is located
+   */
+  public enum Component {
+    /**
+     * Value not located in a URI component
+     */
+    NONE,
+    
+    /**
+     * Value located in the URI path
+     */ 
+    PATH,
+
+    /**
+     * Value located in the URI query
+     */ 
+    QUERY
+  };
     
   /**
    * Creates a new UriEncoder instance.

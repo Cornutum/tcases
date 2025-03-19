@@ -56,11 +56,17 @@ public class FormParameterEncoder extends UriEncoder implements DataValueVisitor
     value_ = value;
     }
 
+  /**
+   * Returns the name/value pairs that encode a parameter in the "form" style.
+   */
   public static List<Map.Entry<String,String>> encode( ParamData param, Component component)
     {
     return new FormParameterEncoder( param, component).accepted();
     }
 
+  /**
+   * Returns the name/value pairs that encode a property value in the "form" style.
+   */
   public static List<Map.Entry<String,String>> encode( String name, String style, boolean exploded, DataValue<?> value)
     {
     return new FormParameterEncoder( name, style, exploded, value, Component.NONE).accepted();
