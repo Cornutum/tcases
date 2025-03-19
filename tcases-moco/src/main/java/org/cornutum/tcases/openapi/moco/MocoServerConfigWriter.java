@@ -10,7 +10,7 @@ package org.cornutum.tcases.openapi.moco;
 import org.cornutum.tcases.openapi.resolver.RequestCase;
 import org.cornutum.tcases.openapi.resolver.RequestCaseException;
 import org.cornutum.tcases.openapi.resolver.RequestTestDef;
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+import org.cornutum.tcases.openapi.testwriter.RequestCaseUtils;
 import org.cornutum.tcases.openapi.testwriter.encoder.DataValueText;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.resolve.ArrayValue;
@@ -218,7 +218,7 @@ public class MocoServerConfigWriter implements Closeable
         toStream( requestCase.getParams())
         .filter( param -> param.getLocation() == PATH)
         .filter( param -> param.getName().equals( paramName))
-        .map( TestWriterUtils::getPathParameterValue)
+        .map( RequestCaseUtils::getPathParameterValue)
         .findFirst()
         .orElseThrow( () -> new RequestCaseException( String.format( "%s: no path parameter named '%s' found", requestCase, paramName)));
       
@@ -238,7 +238,7 @@ public class MocoServerConfigWriter implements Closeable
 
     toStream( requestCase.getParams())
       .filter( param -> param.getLocation() == QUERY)
-      .flatMap( param -> TestWriterUtils.getQueryParameters( param).stream())
+      .flatMap( param -> RequestCaseUtils.getQueryParameters( param).stream())
       .forEach( entry -> queries.add( entry.getKey(), entry.getValue()));
 
     return Optional.of( queries.build()).filter( json -> !json.isEmpty());
@@ -253,7 +253,7 @@ public class MocoServerConfigWriter implements Closeable
 
     toStream( requestCase.getParams())
       .filter( param -> param.getLocation() == COOKIE)
-      .flatMap( param -> TestWriterUtils.getCookieParameters( param).stream())
+      .flatMap( param -> RequestCaseUtils.getCookieParameters( param).stream())
       .forEach( entry -> cookies.add( entry.getKey(), entry.getValue()));
 
     return Optional.of( cookies.build()).filter( json -> !json.isEmpty());
@@ -330,7 +330,7 @@ public class MocoServerConfigWriter implements Closeable
 
     toStream( requestCase.getParams())
       .filter( param -> param.getLocation() == HEADER)
-      .forEach( param -> TestWriterUtils.getHeaderParameterValue( param).ifPresent( value -> headers.add( param.getName(), value)));
+      .forEach( param -> RequestCaseUtils.getHeaderParameterValue( param).ifPresent( value -> headers.add( param.getName(), value)));
 
     Optional.ofNullable( requestCase.getBody())
       .flatMap( body -> Optional.ofNullable( body.getMediaType()))

@@ -21,14 +21,14 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Defines common methods for representing request test definitions in API tests.
+ * Defines common methods for representing request case definitions in API tests.
  */
-public final class TestWriterUtils
+public final class RequestCaseUtils
   {
   /**
-   * Creates a new TestWriterUtils instance.
+   * Creates a new RequestCaseUtils instance.
    */
-  private TestWriterUtils()
+  private RequestCaseUtils()
     {
     // Static methods only
     }

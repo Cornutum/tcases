@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+import org.cornutum.tcases.openapi.testwriter.RequestCaseUtils;
 import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component;
 import org.cornutum.tcases.util.ListBuilder;
 
@@ -44,7 +44,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -65,7 +65,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param);
+    params = RequestCaseUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -89,7 +89,7 @@ public class QueryParameterEncoderTest
       ;
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param);
     
     // Then...
     assertThat( "Parameters", params, is( emptyList()));
@@ -107,7 +107,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -128,7 +128,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -152,7 +152,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -173,7 +173,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param);
+    params = RequestCaseUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -197,7 +197,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -218,7 +218,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -242,7 +242,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -263,7 +263,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -287,7 +287,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -308,7 +308,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -335,7 +335,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -356,7 +356,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -380,7 +380,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -401,7 +401,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -426,7 +426,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -447,7 +447,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -477,7 +477,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -503,7 +503,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param);
+    params = RequestCaseUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -535,7 +535,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -561,7 +561,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param);
+    params = RequestCaseUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -593,7 +593,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -619,7 +619,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param);
+    params = RequestCaseUtils.getQueryParameters( param);
     
     // Then...
     assertThat(
@@ -651,7 +651,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    List<Map.Entry<String,String>> params = TestWriterUtils.getQueryParameters( param, true);
+    List<Map.Entry<String,String>> params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(
@@ -677,7 +677,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, false);
+    params = RequestCaseUtils.getQueryParameters( param, false);
     
     // Then...
     assertThat(
@@ -706,7 +706,7 @@ public class QueryParameterEncoderTest
       .build();
 
     // When...
-    params = TestWriterUtils.getQueryParameters( param, true);
+    params = RequestCaseUtils.getQueryParameters( param, true);
     
     // Then...
     assertThat(

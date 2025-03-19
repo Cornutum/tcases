@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+import org.cornutum.tcases.openapi.testwriter.RequestCaseUtils;
 
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -38,7 +38,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "123.45"));
@@ -53,7 +53,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "123.45"));
@@ -71,7 +71,7 @@ public class SimpleValueEncoderTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -89,7 +89,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -104,7 +104,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( ""));
@@ -122,7 +122,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B"));
@@ -137,13 +137,13 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B C"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "A,B%20C"));
@@ -161,7 +161,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick name,X,sex,?"));
@@ -176,13 +176,13 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick name=X,sex=?"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Simple encoding", encoded, is( "nick%20name=X,sex=%3F"));
@@ -201,7 +201,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
+    Optional<String> value = RequestCaseUtils.getHeaderParameterValue( param);
 
     // Then...
     assertThat( "Header value", value.orElse(null), is( reservedChars));
@@ -220,7 +220,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
+    Optional<String> value = RequestCaseUtils.getHeaderParameterValue( param);
 
     // Then...
     assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", lws)));
@@ -235,7 +235,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    value = TestWriterUtils.getHeaderParameterValue( param);
+    value = RequestCaseUtils.getHeaderParameterValue( param);
 
     // Then...
     assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", tws)));
@@ -250,7 +250,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    value = TestWriterUtils.getHeaderParameterValue( param);
+    value = RequestCaseUtils.getHeaderParameterValue( param);
 
     // Then...
     assertThat( "Header value", value.orElse(null), is( empty));
@@ -267,7 +267,7 @@ public class SimpleValueEncoderTest
       .build();
 
     // When...
-    Optional<String> value = TestWriterUtils.getHeaderParameterValue( param);
+    Optional<String> value = RequestCaseUtils.getHeaderParameterValue( param);
 
     // Then...
     assertThat( "Header value", value, is( Optional.empty()));

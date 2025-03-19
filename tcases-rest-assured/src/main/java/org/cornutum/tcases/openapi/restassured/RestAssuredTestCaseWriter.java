@@ -22,7 +22,7 @@ import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
 import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.resolve.ObjectValue;
-import static org.cornutum.tcases.openapi.testwriter.TestWriterUtils.*;
+import static org.cornutum.tcases.openapi.testwriter.RequestCaseUtils.*;
 import static org.cornutum.tcases.openapi.testwriter.java.TestCaseWriterUtils.*;
 
 import org.apache.commons.lang3.StringUtils;

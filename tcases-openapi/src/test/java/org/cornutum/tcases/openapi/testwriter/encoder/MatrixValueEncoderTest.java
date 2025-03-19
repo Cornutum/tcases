@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+import org.cornutum.tcases.openapi.testwriter.RequestCaseUtils;
 
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -37,7 +37,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=123.45"));
@@ -52,13 +52,13 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";my Param=123.45"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";my%20Param=123.45"));
@@ -76,7 +76,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=X[Y]"));
@@ -91,7 +91,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=X%5BY%5D"));
@@ -106,7 +106,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam"));
@@ -124,7 +124,7 @@ public class MatrixValueEncoderTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ""));
@@ -142,7 +142,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, true);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ""));
@@ -157,7 +157,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ""));
@@ -175,7 +175,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=A,B"));
@@ -190,13 +190,13 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B C"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=A;myParam=B%20C"));
@@ -214,7 +214,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam"));
@@ -229,13 +229,13 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam"));
@@ -253,7 +253,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param, false);
+    String encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";myParam=name,X,sex,true"));
@@ -268,7 +268,7 @@ public class MatrixValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param);
+    encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Matrix encoding", encoded, is( ";name=X;sex=true"));

@@ -8,7 +8,7 @@
 package org.cornutum.tcases.openapi.testwriter.encoder;
 
 import org.cornutum.tcases.openapi.resolver.ParamData;
-import org.cornutum.tcases.openapi.testwriter.TestWriterUtils;
+import org.cornutum.tcases.openapi.testwriter.RequestCaseUtils;
 
 import static org.cornutum.tcases.openapi.resolver.ParamDataBuilder.param;
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
@@ -37,7 +37,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".123.45"));
@@ -52,7 +52,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".123.45"));
@@ -70,7 +70,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".X[Y]"));
@@ -85,7 +85,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".X%5BY%5D"));
@@ -100,7 +100,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( "."));
@@ -118,7 +118,7 @@ public class LabelValueEncoderTest
       ;
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ""));
@@ -136,7 +136,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ""));
@@ -151,7 +151,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ""));
@@ -169,7 +169,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".A.B"));
@@ -184,13 +184,13 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, false);
+    encoded = RequestCaseUtils.getPathParameterValue( param, false);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".A.B C"));
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".A.B%20C"));
@@ -208,7 +208,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    String encoded = TestWriterUtils.getPathParameterValue( param);
+    String encoded = RequestCaseUtils.getPathParameterValue( param);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".name.X.sex.true"));
@@ -223,7 +223,7 @@ public class LabelValueEncoderTest
       .build();
 
     // When...
-    encoded = TestWriterUtils.getPathParameterValue( param, true);
+    encoded = RequestCaseUtils.getPathParameterValue( param, true);
     
     // Then...
     assertThat( "Label encoding", encoded, is( ".name=X.sex=true"));
