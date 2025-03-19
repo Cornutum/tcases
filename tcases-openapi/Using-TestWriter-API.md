@@ -1,15 +1,15 @@
+
 # Using the TestWriter API #
 
 ## Contents ##
 
   * [Overview](#overview)
   * [Get Started](#get-started)
-      * [Java? Nope. I need tests to be written in another language](#java-nope-i-need-tests-to-be-written-in-another-language)
+      * [Java? Nope. I need to produce tests in another language](#java-nope-i-need-tests-to-be-written-in-another-language)
       * [Java tests are fine, but I don't use JUnit or TestNG](#java-tests-are-fine-but-i-dont-use-junit-or-testng)
       * [I use JUnit (or TestNG), but I want to replace REST Assured with something different](#i-use-junit-or-testng-but-i-want-to-replace-rest-assured-with-something-different)
       * [Since I'm adding extensions to Tcases, do I have to create my own fork?](#since-im-adding-extensions-to-tcases-do-i-have-to-create-my-own-fork)
       * [Can I get the `tcases-api-test` command to use my own TestWriter?](#can-i-get-the-tcases-api-test-command-to-use-my-own-testwriter)
-      * [Is there a different way to generate test input values?](#is-there-a-different-way-to-generate-test-input-values)
   * [The TestWriter Lifecycle](#the-testwriter-lifecycle)
   * [What is a TestSource?](#what-is-a-testsource)
   * [What is a TestTarget?](#what-is-a-testtarget)
@@ -17,6 +17,13 @@
     * [TestWriter requirements](#testwriter-requirements)
     * [TestCaseWriter requirements](#testcasewriter-requirements)
     * [TestTarget requirements](#testtarget-requirements)
+  * [TestCaseWriter Tips](#testcasewriter-tips)
+    * [Using `IndentedWriter`](#using-indentedwriter)
+    * [Using `BaseTestCaseWriter`](#using-basetestcasewriter)
+    * [Understanding `RequestCase`](#understanding-requestcase)
+    * [Validating responses](#validating-responses)
+    * [Using `RequestCaseUtils`](#using-requestcaseutils)
+    * [Using `TestCaseWriterUtils`](#using-testcasewriterutils)
 
 
 ## Overview ##
@@ -25,7 +32,7 @@ When Tcases for OpenAPI generates an executable test for your API, the result is
 the test program. You can immediately build this source code and run the test.  To do this, Tcases for OpenAPI has to deal with
 all of the issues of constructing an API test program.
 
-* **Which language?** Which programming language are you using to write the test? Java? JavaScript? Some more exotic?
+* **Which language?** Which programming language are you using to write the test? Java? JavaScript? Something more exotic?
 
 * **Which test framework?** Most test programs are built around a _test framework_ that is used to run test cases and report
   results.  For test developers, such frameworks generally define how to designate individual tests and how to control their
@@ -39,7 +46,7 @@ all of the issues of constructing an API test program.
 Tcases for OpenAPI generates executable tests using the TestWriter API, which brings together the following three elements:
 
   * A [request test definition](Request-Test-Definition.md) that defines the inputs for request test cases (and that is created
-    automatically from an OpenAPI definition via [input resolution](#get-actual-input-values)),
+    automatically from an OpenAPI definition via [input resolution](Running-Api-Test-Cases.md#get-actual-input-values)),
   
   * a [TestWriter](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) that is
     responsible for producing the code required for a specific test framework,
@@ -55,7 +62,7 @@ add extensions to Tcases for OpenAPI that produce the results you want.
 
 ## Get Started ##
 
-#### Java? Nope. I need tests to be written in another language ####
+#### Java? Nope. I need to produce tests in another language ####
 
 #### Java tests are fine, but I don't use JUnit or TestNG ####
 
@@ -67,12 +74,11 @@ add extensions to Tcases for OpenAPI that produce the results you want.
 
 #### Can I get the `tcases-api-test` command to use my own TestWriter? ####
 
-#### Is there a different way to generate test input values? ####
 
 
 ## The TestWriter Lifecycle ##
 
-The work of a TestWriter is carried out via the **TestWriter lifecyle**. This lifecycle consists of a series of steps that
+The work of a TestWriter is carried out via the _TestWriter lifecyle_. This lifecycle consists of a series of steps that
 incrementally produce each part of a complete test program.
 
 ### Overview ###
@@ -128,7 +134,7 @@ Each `TestCaseWriter` lifecycle method is indicated by :small_orange_diamond:.
 | writeEpilog       | :arrow_heading_down:  |                   |     |               | Write parts that follow test cases |
 |                   | :small_orange_diamond:  | writeClosing      |     |               | Write request execution parts that follow test cases |
 |                   | :small_blue_diamond:  | writeClosing      |     |               | Write the closing part of the test program |
-| writeResponsesDef |     |                   | Write [definitions](#what-is-a-testsource) for response validation |
+| writeResponsesDef |     |                   |     |               | Write [definitions](#what-is-a-testsource) for response validation |
 
 ### The TestWriter lifecycle in action ###
 
@@ -403,8 +409,8 @@ Here are the requirements for implementing a new TestCaseWriter.
 
 - **Implement `TestCaseWriter`**
 
-  A TestCaseWriter must implement the `TestCaseWriter` interface. To provide some standard properties that can be customized in the command line,
-  consider extending the [`BaseTestCaseWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.html) class.
+  A TestCaseWriter must implement the `TestCaseWriter` interface. To provide some helpful generic properties,
+  consider extending the [`BaseTestCaseWriter`](#using-basetestcasewriter) class.
 
 - **Define the standard constructor**
 
@@ -482,3 +488,83 @@ Here are the requirements for implementing a new TestTarget.
 
   Properties that are unique to a TestTarget subclass cannot be initialized by the command line. Instead, such properties must be
   initialized by the standard constructor. To customize these properties at runtime, use well-documented environment variables.
+
+## TestCaseWriter Tips ##
+
+The fundamental task of a TestCaseWriter is to produce the test code that prepares an API request message, delivers it to an API server,
+and (optionally) validates the resulting response message. This requires a thorough understanding of the OpenAPI definition and the
+requirements it defines for serializing test case data. That can be a complicated job! But this section describes 
+several utilities provided by Tcases for OpenAPI that can help out.
+
+### Using `IndentedWriter` ###
+
+All of the TestWriter and TestCaseWriter lifecycle methods that write test code use the
+[`IndentedWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/io/IndentedWriter.html).
+This class provides a simple facade for a standard `PrintWriter` that handles code indentation. The
+basic pattern for using `IndentedWriter` looks like this:
+
+* `setIndent( width)`: Initialize the "tab width" for each level of indentation. The default _width_ is 2 spaces.
+* `indent()`: Increment the current level of indentation.
+* Write a line of code, using one of the following techniques.
+  * The easy way
+    * `println( string)`: Print a line containing the given _string_ at the current level of indentation.
+  * The complicated way
+    * `startLine()`: Begin a new empty line at the current level of indentation.
+    * `print( string)`: Append the given _string_ to the current line. Repeat as needed to finish the content of the line.
+    * `println()`: Append a newline to complete the current line.
+* `unindent()`: Decrement the current level of indentation.
+
+### Using `BaseTestCaseWriter` ###
+
+To provide some helpful generic properties, consider extending the
+[`BaseTestCaseWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.html)
+class. For example, `BaseTestCaseWriter` provides support for [test case dependencies](#test-case-dependencies) and
+[data value converters](#data-value-converters) that serialize data values according to a specified
+[media type](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+
+#### Test case dependencies ####
+
+Test case dependencies are boolean flags that indicate the how the generated test code must be prepared. A `BaseTestCaseWriter`
+initializes test case dependencies when its `prepareTestCases` method is called. Test case dependencies are returned by the
+`getDepends` method in the form of a [`Depends`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.Depends.html)
+object.
+
+Some dependencies are initialized according to standard options of the `tcases-api-test` command. For example,
+[`trustServer`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.Depends.html#trustServer--)
+indicates if generated HTTPS requests must accept an untrusted API server. Other dependencies are derived from the
+[request test definition](Request-Test-Definition.md) that is given to `prepareTestCases`. For example,
+[`dependsMultipart`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.Depends.html#dependsMultipart--)
+indicates if any test cases require data encoded for the "multipart/form-data" media type.
+
+#### Data value converters ####
+
+The OpenAPI definition defines when request input data must encoded as a specific media type. To support these requirements, a `BaseTestCaseWriter`
+maintains a mapping that associates a media type with a specific
+[`DataValueConverter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/DataValueConverter.html)
+that serializes a test case `DataValue` as a string. By default, a `BaseTestCaseWriter` comes with converters for common media types
+like "\*/\*", "text/plain", and "application/json".
+
+
+### Understanding `RequestCase` ###
+
+The central method for any TestCaseWriter implementation is `writeTestCase`. And the key input to this method is a
+[`RequestCase`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestCase.html)
+object. A `RequestCase` defines all of the information needed to execute a specific API request with specific
+test data.
+
+A `RequestCase` defines the parameters and the body of the request, including the
+[`DataValue`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/resolve/DataValue.html)
+objects that are automatically generated by Tcases for OpenAPI. A `RequestCase` also indicates
+if executing this request is expected to produce an authorization failure or some other type of error.
+
+A `RequestCase` also defines properties of the request that are specified in the OpenAPI definition, such as the
+API server URI, the location of parameter values, and the encoding styles used to serialize data values.
+For a complete description of the semantics of such properties, see the [_OpenAPI Specification_](https://spec.openapis.org/oas/v3.0.2).
+
+### Validating responses ###
+
+### Using `RequestCaseUtils` ###
+
+### Using `TestCaseWriterUtils` ###
+
+
