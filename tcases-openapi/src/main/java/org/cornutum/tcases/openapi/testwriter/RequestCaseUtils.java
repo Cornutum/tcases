@@ -35,7 +35,7 @@ public final class RequestCaseUtils
 
   /**
    * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter.
-   * All parameter names and values are returned without URI encodeding.
+   * All parameter names and values are returned without URI encoding.
    */
   public static List<Map.Entry<String,String>> getQueryParameters( ParamData param)
     {
@@ -44,7 +44,8 @@ public final class RequestCaseUtils
 
 
   /**
-   * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter. 
+   * Returns the set of request query parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#QUERY QUERY} parameter.
+   * If <CODE>uriEncoded</CODE> is true, all parameter names and values are returned with URI encoding. 
    */
   public static List<Map.Entry<String,String>> getQueryParameters( ParamData param, boolean uriEncoded)
     {
@@ -66,7 +67,7 @@ public final class RequestCaseUtils
 
   /**
    * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
-   * The result is returned without URI encodeding.
+   * The result is returned without URI encoding.
    */
   public static String getPathParameterValue( ParamData param)
     {
@@ -75,6 +76,7 @@ public final class RequestCaseUtils
 
   /**
    * Returns the value of the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#PATH PATH} parameter. 
+   * If <CODE>uriEncoded</CODE> is true, the result is returned with URI encoding.
    */
   public static String getPathParameterValue( ParamData param, boolean uriEncoded)
     {
