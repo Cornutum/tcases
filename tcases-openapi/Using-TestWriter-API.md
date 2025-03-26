@@ -563,6 +563,46 @@ For a complete description of the semantics of such properties, see the [_OpenAP
 
 ### Validating responses ###
 
+By default, the test case code produced by a TestCaseWriter is expected to validate the response received after executing an API
+request. This does _not_ mean verifying that a response contains the specific data values expected for the given request inputs. Instead,
+response validation entails checking the response status code (i.e. does it indicate an expected failure?) and validating that the
+form of the response meets the requirements specified in the OpenAPI definition.
+
+#### Checking the status code ####
+
+The [`RequestCase`](#understanding-requestcase) object specifies if the test case is expected to fail or not.
+
+If
+[`isFailure()`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestCase.html#isFailure--)
+is false, then the request is expected to succeed and return a status code in the 2xx range.
+
+Otherwise, if
+[`isAuthFailure()`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/resolver/RequestCase.html#isAuthFailure--)
+is true, then the request is expected to return a 401 (Unauthorized) status code.
+
+Otherwise, the request is expected to report a API client error by returning a different status code in the 4xx range.
+
+
+#### Validating response definitions ####
+
+Validating response definitions is optional. For a `BaseTestCaseWriter`, validation is expected if and only if `getDepends().validateResponses()` is
+true.
+
+The [TestSource](#what-is-a-testsource) given to the `TestWriter.writeTest` method specifies the _response definitions_ for each API request
+defined in the OpenAPI definition. Response definitions are described by a
+[`ResponsesDef`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/test/ResponsesDef.html)
+object that is returned by the
+[`TestSource.getResponses`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestSource.html#getResponses--)
+method.
+
+Calling `TestWriter.writeTest` invokes the TestWriter lifecycle. This eventually results in a call to `TestWriter.writeResponsesDef`, which
+writes the `ResponsesDef` to a JSON resource file associated with the generated test program file, as described by the
+[`TestTarget`](#what-is-a-testtarget). When the generated test program is executed, it must read this resource file to access the requirements
+for each response specified by the OpenAPI definition.
+
+The location of the response definition resource file is defined by the TestTarget. By default, this will be a file of form "\*-Responses.json"
+in the same directory as the generated test program file.
+
 ### Using `RequestCaseUtils` ###
 
 ### Using `TestCaseWriterUtils` ###
