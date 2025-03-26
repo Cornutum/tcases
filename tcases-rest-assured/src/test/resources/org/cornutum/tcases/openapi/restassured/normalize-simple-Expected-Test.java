@@ -1297,7 +1297,7 @@ public class NormalizeSimpleTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .header( "nullable", "\" rPt/*vom*\\V:v/&5fr=P=Wa~s''#q\":CoWP^zw`E)Ss?gt@T+8''!Q7[>W$}xlw5C6xw}n975cB9C7d<1v[4&13(7giO~HtA7GA@;UM&<y/c^PS{u{j>X+c+mz=(BJ`)Q%Y?C~r2Y$Q^:~]7kY~)2XReg230od3D2R%rXN$wvKQOG\"UBx{D|=G#U_+$\"")
+                .header( "nullable", "\" rPt/*vom*\\V:v/&5fr=P=Wa~s''#q\\\":CoWP^zw`E)Ss?gt@T+8''!Q7[>W$}xlw5C6xw}n975cB9C7d<1v[4&13(7giO~HtA7GA@;UM&<y/c^PS{u{j>X+c+mz=(BJ`)Q%Y?C~r2Y$Q^:~]7kY~)2XReg230od3D2R%rXN$wvKQOG\\\"UBx{D|=G#U_+$\"")
                 .header( "nonEmpty", "")
                 .header( "nullableNonEmpty", "")
                 .header( "empty", "F/-~Wv^Ij3QRe]QgSxqqIFk\"Y[cn<w:EYv3qSUy>{V@DVZ#y?]>?H^YNRWo,V67l'D{8AvIQT;wrW_2bSG0gNzVEBzAVheOMT3RzN`fTSro.#'Ql*w'|x)7 i+Fs/fIf)U^d)oG\"y0ls;+4F0T?")

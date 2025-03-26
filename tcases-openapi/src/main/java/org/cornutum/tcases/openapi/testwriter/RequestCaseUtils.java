@@ -159,7 +159,7 @@ public final class RequestCaseUtils
     {
     return
       !value.isEmpty() && (Character.isWhitespace( value.charAt( 0)) || Character.isWhitespace( value.charAt( value.length() - 1)))
-      ? String.format( "\"%s\"", value)
+      ? String.format( "\"%s\"", value.replace( "\"", "\\\""))
       : value;
     }
   }

@@ -239,6 +239,21 @@ public class SimpleValueEncoderTest
 
     // Then...
     assertThat( "Header value", value.orElse(null), is( String.format( "\"%s\"", tws)));
+    
+    // Given...
+    String quotes = " Insert \"here\"... ";
+    param =
+      param( "myParam")
+      .location( HEADER)
+      .style( "simple")
+      .stringData( quotes)
+      .build();
+
+    // When...
+    value = RequestCaseUtils.getHeaderParameterValue( param);
+
+    // Then...
+    assertThat( "Header value", value.orElse(null), is( "\" Insert \\\"here\\\"... \""));
 
     // Given...
     String empty = "";
