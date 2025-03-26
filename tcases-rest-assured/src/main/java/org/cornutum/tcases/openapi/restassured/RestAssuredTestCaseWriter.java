@@ -17,9 +17,6 @@ import org.cornutum.tcases.openapi.test.MediaRange;
 import org.cornutum.tcases.openapi.testwriter.ApiTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.BaseTestCaseWriter;
 import org.cornutum.tcases.openapi.testwriter.TestWriterException;
-import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
-import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
-import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
 import org.cornutum.tcases.resolve.DataValue;
 import org.cornutum.tcases.resolve.ObjectValue;
 import static org.cornutum.tcases.openapi.testwriter.RequestCaseUtils.*;
@@ -431,7 +428,7 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
    */
   protected void writeBodyForm( String testName, MessageData body, IndentedWriter targetWriter)
     {
-    FormUrlEncoder.encode( body.getValue(), body.getEncodings(), false)
+    formUrlEncoded( body, false)
       .stream()
       .forEach( entry -> {
         String formParamFormat =
@@ -505,7 +502,7 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
       String partData;
       if( "application/x-www-form-urlencoded".equals( contentType.base()))
         {
-        partData = FormUrlEncoder.toForm( value);
+        partData = formUrlEncoded( value);
         }
       else
         {
@@ -527,7 +524,7 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
           String.format(
             ".header( %s, %s)",
             stringLiteral( headerData.getName()),
-            stringLiteral( SimpleValueEncoder.encode( headerData.getValue(), headerData.isExploded()))));
+            stringLiteral( getHeaderValue( headerData))));
         });
     
     targetWriter.println( ".emptyFileName()");
@@ -543,7 +540,7 @@ public class RestAssuredTestCaseWriter extends BaseTestCaseWriter
     final int lineSize = 16;
 
     List<String> segments = new ArrayList<String>();
-    byte[] bytes = DataValueBinary.toBytes( value);
+    byte[] bytes = toOctetStream( value);
 
     int from;
     for( from = 0; bytes.length - from > lineSize; from += lineSize)

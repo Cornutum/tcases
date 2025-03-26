@@ -8,11 +8,14 @@
 package org.cornutum.tcases.openapi.testwriter;
 
 import org.cornutum.tcases.openapi.resolver.*;
+import org.cornutum.tcases.openapi.testwriter.encoder.DataValueBinary;
 import org.cornutum.tcases.openapi.testwriter.encoder.FormParameterEncoder;
+import org.cornutum.tcases.openapi.testwriter.encoder.FormUrlEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.LabelValueEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.MatrixValueEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.SimpleValueEncoder;
 import org.cornutum.tcases.openapi.testwriter.encoder.UriEncoder.Component;
+import org.cornutum.tcases.resolve.DataValue;
 
 import static org.cornutum.tcases.openapi.resolver.ParamDef.Location.*;
 
@@ -131,6 +134,14 @@ public final class RequestCaseUtils
     }
 
   /**
+   * Returns a string representing the value of the given header.
+   */
+  public static String getHeaderValue( HeaderData header)
+    {
+    return SimpleValueEncoder.encode( header.getValue(), header.isExploded());
+    }
+
+  /**
    * Returns the set of request cookie parameter bindings defined by the given {@link org.cornutum.tcases.openapi.resolver.ParamDef.Location#COOKIE COOKIE} parameter.
    * All parameter names and values are URI-encoded if necessary.
    */
@@ -149,6 +160,31 @@ public final class RequestCaseUtils
       {
       throw new TestWriterException( String.format( "%s: can't get cookie parameter values", param), e);
       }
+    }
+
+  /**
+   * Returns the name/value pairs that encode the given {@link MessageData} for the <CODE>application/x-www-form-urlencoded</CODE> media type.
+   * If <CODE>encoded</CODE> is true, apply the <CODE>application/x-www-form-urlencoded</CODE> encoding to all pairs.
+   */
+  public static List<Map.Entry<String,String>> formUrlEncoded( MessageData data, boolean encoded)
+    {
+    return FormUrlEncoder.encode( data.getValue(), data.getEncodings(), encoded);
+    }
+
+  /**
+   * Returns a string that encodes the given {@link DataValue} for the <CODE>application/x-www-form-urlencoded</CODE> media type.
+   */
+  public static String formUrlEncoded( DataValue<?> value)
+    {
+    return FormUrlEncoder.toForm( value);
+    }
+
+  /**
+   * Returns the given {@link DataValue} for the <CODE>application/octet-stream</CODE> media type.
+   */
+  public static byte[] toOctetStream( DataValue<?> value)
+    {
+    return DataValueBinary.toBytes( value);
     }
 
   /**
