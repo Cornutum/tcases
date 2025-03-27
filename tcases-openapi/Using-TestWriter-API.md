@@ -5,7 +5,7 @@
 
   * [Overview](#overview)
   * [Get Started](#get-started)
-      * [Java? Nope. I need to produce tests in another language](#java-nope-i-need-tests-to-be-written-in-another-language)
+      * [Java? Nope. I need to produce tests in another language](#java-nope-i-need-to-produce-tests-in-another-language)
       * [Java tests are fine, but I don't use JUnit or TestNG](#java-tests-are-fine-but-i-dont-use-junit-or-testng)
       * [I use JUnit (or TestNG), but I want to replace REST Assured with something different](#i-use-junit-or-testng-but-i-want-to-replace-rest-assured-with-something-different)
       * [Since I'm adding extensions to Tcases, do I have to create my own fork?](#since-im-adding-extensions-to-tcases-do-i-have-to-create-my-own-fork)
@@ -59,28 +59,52 @@ Tcases for OpenAPI generates executable tests using the TestWriter API, which br
 
 If you want to generate a Java test program, it's likely that Tcases for OpenAPI already has everything you need. Tcases for
 OpenAPI has built-in support for the two most common Java test frameworks (JUnit and TestNG) and for a powerful request
-execution interface (REST Assured).  But what if you need something different? In that case, you can use the TestWriter API to
-add extensions to Tcases for OpenAPI that produce the results you want.
+execution interface ([REST Assured](https://github.com/rest-assured/rest-assured)).  But what if you need something different?
+In that case, you can use the TestWriter API to add extensions to Tcases for OpenAPI that produce the results you want.
 
 ## Get Started ##
 
 #### Java? Nope. I need to produce tests in another language ####
 
+You will need to create a new TestWriter to write the code for the target test framework in that language.
+You will also need to create a new TestCaseWriter to write the code for the target request execution interface in that language.
+To learn how, read all of the following sections, starting with [_The TestWriter Lifecycle_](#the-testwriter-lifecycle).
+
 #### Java tests are fine, but I don't use JUnit or TestNG ####
+
+You will need to create a new TestWriter to write the code for the target test framework.
+To learn how, read all of the following sections, starting with [_The TestWriter Lifecycle_](#the-testwriter-lifecycle).
+Be sure to learn about using the [`IndentedWriter`](#using-indentedwriter).
+
+You can skip the [_TestCaseWriter requirements_](#testcasewriter-requirements) and [_TestCaseWriter Tips_](#testcasewriter-tips) sections
+if you're happy with [REST Assured](https://github.com/rest-assured/rest-assured).
+Otherwise, read [this](#i-use-junit-or-testng-but-i-want-to-replace-rest-assured-with-something-different), too.
 
 #### I use JUnit (or TestNG), but I want to replace REST Assured with something different ####
 
+You will need to create a new TestCaseWriter to write the code for the target request execution interface.
+To learn how, start with the [_The TestWriter Lifecycle_](#the-testwriter-lifecycle) section.
+Then read [_TestCaseWriter requirements_](#testcasewriter-requirements) and [_TestCaseWriter Tips_](#testcasewriter-tips)
+
 #### Since I'm adding extensions to Tcases, do I have to create my own fork? ####
+
+No! In fact, it's better to create your new TestWriter or TestCaseWriter as an independent package, with
+[`tcases-openapi`](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-openapi/overview) as a dependency. By
+decoupling from the Tcases source code, you won't have to modify your extension when a new Tcases release is published.
+Better still: publish your new extension for everyone else to use!
 
 #### How can I test my own TestWriter implementation? ####
 
+You can test your new TestWriter or TestCaseWriter by plugging them into an execution of the `tcases-api-test` command.
+To learn how, read [_Testing Tips_](#testing-tips).
+
 #### Can I get the `tcases-api-test` command to use my own TestWriter? ####
 
-
+Yes, you can! To learn how, read [_Testing with the CLI_](#testing-with-the-cli).
 
 ## The TestWriter Lifecycle ##
 
-The work of a TestWriter is carried out via the _TestWriter lifecyle_. This lifecycle consists of a series of steps that
+The work of a TestWriter is carried out via the _TestWriter lifecycle_. This lifecycle consists of a series of steps that
 incrementally produce each part of a complete test program.
 
 ### Overview ###
@@ -95,7 +119,7 @@ TestWriter implementation must provide its own implementation. Or, in other case
 new TestWriter subclass can choose to override, usually to add new actions before or after invoking the superclass method.
 Completely replacing the behavior of a hook method is not recommended.
 
-Here is an overview of the TestWriter lifecycle. Each abstract `TestWriter` lifecyle method is indicated by :small_blue_diamond:.
+Here is an overview of the TestWriter lifecycle. Each abstract `TestWriter` lifecycle method is indicated by :small_blue_diamond:.
 
 | Lifecycle Method  |     |                   | Purpose |
 | ---:              | --- | :---              | --- |
@@ -113,7 +137,7 @@ Here is an overview of the TestWriter lifecycle. Each abstract `TestWriter` life
 ### Delegation to TestCaseWriter ###
 
 A TestWriter delegates part of its job to a TestCaseWriter, which is responsible for producing the code that executes a test case.
-Consequently, the TestWriter lifecyle also orchestrates the interplay between TestWriter and TestCaseWriter responsibilities.
+Consequently, the TestWriter lifecycle also orchestrates the interplay between TestWriter and TestCaseWriter responsibilities.
 A TestCaseWriter must be an implementation of the `TestCaseWriter` interface and must provide an implementation for each of its
 lifecycle methods.
 
@@ -140,12 +164,12 @@ Each `TestCaseWriter` lifecycle method is indicated by :small_orange_diamond:.
 
 ### The TestWriter lifecycle in action ###
 
-To see how the TestWriter lifecyle works, let's look at an example using the standard `JUnitTestWriter`. This section shows the result produced
+To see how the TestWriter lifecycle works, let's look at an example using the standard `JUnitTestWriter`. This section shows the result produced
 by each step of the lifecycle.
 
 #### writeTests ####
 
-This `TestWriter` method invokes the lifecyle, using a specified [TestSource](#what-is-a-testsource) and [TestTarget](#what-is-a-testtarget).
+This `TestWriter` method invokes the lifecycle, using a specified [TestSource](#what-is-a-testsource) and [TestTarget](#what-is-a-testtarget).
 
 #### prepareTestCases ####
 
