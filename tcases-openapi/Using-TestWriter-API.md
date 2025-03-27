@@ -23,7 +23,9 @@
     * [Understanding `RequestCase`](#understanding-requestcase)
     * [Validating responses](#validating-responses)
     * [Using `RequestCaseUtils`](#using-requestcaseutils)
-    * [Using `TestCaseWriterUtils`](#using-testcasewriterutils)
+  * [Testing Tips](#testing-tips)
+    * [Testing with the CLI](#testing-with-the-cli)
+    * [Testing with Maven](#testing-with-maven)
 
 
 ## Overview ##
@@ -366,6 +368,7 @@ Here are the requirements for implementing a new TestWriter.
 
 - **Use the `ApiTestWriter` annotation**
 
+  <a name="apitestwriter"></a>
   For a TestWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
   class definition must have the `ApiTestWriter` annotation. For example:
 
@@ -418,6 +421,7 @@ Here are the requirements for implementing a new TestCaseWriter.
 
 - **Use the `ApiTestCaseWriter` annotation**
 
+  <a name="apitestcasewriter"></a>
   For a TestCaseWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
   class definition must have the `ApiTestCaseWriter` annotation. For example:
 
@@ -625,6 +629,81 @@ class provides methods to simplify the job.
 | [`toOctetStream`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#toOctetStream-org.cornutum.tcases.resolve.DataValue-)           | Returns a data value for the `application/octet-stream` media type        |
 
 
-### Using `TestCaseWriterUtils` ###
+## Testing Tips ##
+
+You can test your new TestWriter or TestCaseWriter by plugging them into an execution of the `tcases-api-test` command. You can
+run this command in your Java development environment by using the [CLI](#testing-with-the-cli) or the
+[Tcases Maven plugin](#testing-with-maven).
+
+### Testing with the CLI ###
+
+To run the CLI, you must add [`tcases-cli`](https://central.sonatype.com/artifact/org.cornutum.tcases/tcases-cli/overview) as a dependency.
+You can then run the [ApiTestCommand](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/ApiTestCommand.html)
+directly in your IDE.
+
+To integrate you own TestWriter or TestCaseWriter, use the following command line arguments.
+
+* `-t` _testWriterName_
+
+  To select your new TestWriter, add the `-t` option using the `name` argument from the [`ApiTestWriter`](#apitestwriter) annotation.
+
+* `-e` _testCaseWriterName_
+
+  To select your new TestCaseWriter, add the `-e` option using the `name` argument from the [`ApiTestCaseWriter`](#apitestcasewriter) annotation.
+
+* `-cp` _classPath_
+
+  Use the `-cp` option to specify a _classPath_ containing the directories or JAR files that provide the implementation of your new TestWriter or TestCaseWriter.
+  The _classPath_ must follow the same syntax conventions used by the `java` command on your platform.
 
 
+### Testing with Maven ###
+
+To test using Maven, you must add the [Tcases Maven plugin](https://www.cornutum.org/tcases/docs/tcases-maven-plugin/) to your Maven project.
+You can then run tests using the [`tcases:api-test`](http://cornutum.org/tcases/docs/tcases-maven-plugin/api-test-mojo.html) goal.
+
+To integrate you own TestWriter or TestCaseWriter, use the following `tcases:api-test` configuration parameters.
+
+* `-DtestType=`_testWriterName_
+
+  To select your new TestWriter, configure the `testType` using the `name` argument from the [`ApiTestWriter`](#apitestwriter) annotation.
+
+* `-DexecType=`_testCaseWriterName_
+
+  To select your new TestCaseWriter, configure the `execType` using the `name` argument from the [`ApiTestCaseWriter`](#apitestcasewriter) annotation.
+
+* `-Dextensions=`_classPathElements_
+
+  Configure `extensions` to specify the class path elements that provide the implementation of your new TestWriter or TestCaseWriter.
+  For example, the following configuration will ensure that the `tcases:api-test` goal uses all of the class files produced by
+  building your Maven project.
+
+  ```xml
+  ...
+  ...
+  ...
+  <plugin>
+    <groupId>org.cornutum.tcases</groupId>
+    <artifactId>tcases-maven-plugin</artifactId>
+    <version>${tcases.version}</version>
+    <executions>
+      <execution>
+        <id>...</id>
+        <phase>...</phase>
+        <goals>
+          <goal>api-test</goal>
+        </goals>
+        <configuration>
+          <testType>myTestWriter</testType>
+          <execType>myTestCaseWriter</execType>
+          <extensions>
+            <extension>${project.build.outputDirectory}</extension>
+          </extensions>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+  ...
+  ...
+  ...
+  ```
