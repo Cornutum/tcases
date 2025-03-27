@@ -605,6 +605,26 @@ in the same directory as the generated test program file.
 
 ### Using `RequestCaseUtils` ###
 
+For each test case, a TestCaseWriter must produce code to compose the HTTP message for an API request. This requires an
+understanding of the requirements specified by the OpenAPI definition for handling the values for all request inputs.  For each
+request input, the `RequestCase` object defines not only the input value to be used but also the OpenAPI properties that
+describe where this value must be located and how this value must be serialized.
+
+OpenAPI serialization rules can be complicated, but the
+[`RequestCaseUtils`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html)
+class provides methods to simplify the job.
+
+| Method                  | Description                                                               |
+| ---                     | ---                                                                       |
+| [`getCookieParameters`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#getCookieParameters-org.cornutum.tcases.openapi.resolver.ParamData-)     | Returns the parameter bindings defined by a cookie parameter              |
+| [`getHeaderParameterValue`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#getHeaderParameterValue-org.cornutum.tcases.openapi.resolver.ParamData-) | Returns the value of a header parameter                                   |
+| [`getPathParameterValue`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#getPathParameterValue-org.cornutum.tcases.openapi.resolver.ParamData-)   | Returns the value of a path parameter                                     |
+| [`getQueryParameters`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#getQueryParameters-org.cornutum.tcases.openapi.resolver.ParamData-)      | Returns the parameter bindings defined by a query parameter               |
+| [`getHeaderValue`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#getHeaderValue-org.cornutum.tcases.openapi.resolver.HeaderData-)          | Returns a string representing the value of a header                       |
+| [`formUrlEncoded`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#formUrlEncoded-org.cornutum.tcases.openapi.resolver.MessageData-boolean-)          | Returns encodings for the `application/x-www-form-urlencoded` media type  |
+| [`toOctetStream`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/RequestCaseUtils.html#toOctetStream-org.cornutum.tcases.resolve.DataValue-)           | Returns a data value for the `application/octet-stream` media type        |
+
+
 ### Using `TestCaseWriterUtils` ###
 
 
