@@ -376,7 +376,7 @@ such frameworks. For test developers, such frameworks generally define how to de
 their execution. And they are general-purpose, equally applicable for all kinds of testing. There is nothing about them that
 specifically supports API testing. To create tests for a different test framework, create a new subclass of the basic
 [`TestWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html) class.
-Several [helpful utilities](#some-helpful-utilities) are available to make this easier.
+For details, see [_Using the TestWriter API_](./Using-TestWriter-API.md).
 
 Also, API tests must rely on an additional set of <A name="request-execution">"request execution"</A> interfaces. These are
 the interfaces used to construct a request message, deliver it to an API server, and collect the resulting response. Here, too,
@@ -385,9 +385,7 @@ candidates range from basic APIs like [HttpClient](http://hc.apache.org/httpcomp
 domain-specific micro-languages like [REST Assured](https://github.com/rest-assured/rest-assured). To create tests that use a
 different execution interface, create a new implementation of the
 [`TestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestCaseWriter.html) interface.
-`TestCaseWriter` implementations often start with a subclass of
-[`BaseTestCaseWriter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/BaseTestCaseWriter.html).
-Several [helpful utilities](#some-helpful-utilities) are available to make this easier.
+For details, see [_Using the TestWriter API_](./Using-TestWriter-API.md).
 
 #### Creating an API test, step-by-step ####
 
@@ -405,20 +403,6 @@ Here's a step-by-step outline of how to use the TestWriter API to convert an Ope
   1. Create a [`TestTarget`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestTarget.html) that
      defines the test source file to be generated. Note that this `TestTarget` must be compatible with the `TestWriter`.
   1. Call [`TestWriter.writeTest()`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriter.html#writeTest-S-T-).
-
-#### Some helpful utilities ####
-
-  - **To serialize a request parameter** according to the `style` and `explode` properties specified in the OpenAPI definition, use the public methods
-    of the [`TestWriterUtils`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html) class,
-    such as [`getQueryParameters()`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/TestWriterUtils.html#getQueryParameters-org.cornutum.tcases.openapi.resolver.ParamData-).
-
-  - **To serialize form data** using the `application/x-www-form-urlencoded` media type, use the
-    [`FormUrlEncoder`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/FormUrlEncoder.html).
-
-  - **To serialize request body data** using another media type specified in the OpenAPI definition, use a
-    [`DataValueConverter`](http://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/encoder/DataValueConverter.html).
-    The `BaseTestCaseWriter` class automatically registers converters for many common media types. Alternatively, create and register your own
-    implementation.
 
 ## Running generated tests ##
 

@@ -394,7 +394,8 @@ Here are the requirements for implementing a new TestWriter.
 
   <a name="apitestwriter"></a>
   For a TestWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
-  class definition must have the `ApiTestWriter` annotation. For example:
+  class definition must have the [`ApiTestWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/ApiTestWriter.html)
+  annotation. For example:
 
   ```java
   /**
@@ -447,7 +448,8 @@ Here are the requirements for implementing a new TestCaseWriter.
 
   <a name="apitestcasewriter"></a>
   For a TestCaseWriter to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
-  class definition must have the `ApiTestCaseWriter` annotation. For example:
+  class definition must have the [`ApiTestCaseWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/ApiTestCaseWriter.html)
+  annotation. For example:
 
   ```java
   @ApiTestCaseWriter( name="restassured")
@@ -490,7 +492,8 @@ Here are the requirements for implementing a new TestTarget.
 - **Use the `ApiTestTarget` annotation**
 
   For a TestTarget to be discovered at runtime by the `tcases-api-test` command (or the Maven `tcases:api-test` goal) the
-  class definition must have the `ApiTestTarget` annotation. For example:
+  class definition must have the [`ApiTestTarget`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/ApiTestTarget.html)
+  annotation. For example:
 
   ```java
   /**
