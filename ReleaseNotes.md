@@ -30,7 +30,7 @@ This release provides the following improvements to Tcases for OpenAPI.
 
   * **Fixed generated base class import** [[313](https://github.com/Cornutum/tcases/issues/313)]
 
-    Yikes! When the base class for the generated test class is in different package, the generated `import` statement
+    Yikes! When the base class for the generated test class is in a different package, the generated `import` statement
     was missing a final ';'. But not anymore.
   
   * **Upgraded dependencies**
