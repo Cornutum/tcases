@@ -1,5 +1,42 @@
 # Release Notes #
 
+## 4.1.0 ##
+
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **More info for TestWriter and TestCaseWriter authors**
+
+    Want to add support for non-Java test cases or different test frameworks? There's some things you need to know. And now you can find them
+    in the new guide to [_Using the TestWriter API_](tcases-openapi/Using-TestWriter-API.md).
+
+  * **TestWriter annotations**
+
+    To support test case generation for different test frameworks, new `TestWriter` implementations using the
+    [`ApiTestWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/ApiTestWriter.html)
+    annotation can be integrated at runtime.
+    Similarly, the
+    [`ApiTestCaseWriter`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/ApiTestCaseWriter.html)
+    and
+    [`ApiTestTarget`](https://www.cornutum.org/tcases/docs/api/org/cornutum/tcases/openapi/testwriter/ApiTestTarget.html)
+    annotations can be used to integrate new `TestCaseWriter` and `TestTarget` implementations, respectively. For details, see
+    [_Using the TestWriter API_](tcases-openapi/Using-TestWriter-API.md).
+
+  * **Exclude success or failure cases**
+
+    It can be helpful to generate success cases and failure cases separately. For example, you might want to generate success cases
+    based on OpenAPI examples but generate random failures based on OpenAPI schemas. (See discussion [318](https://github.com/Cornutum/tcases/discussions/318).)
+    To exclude success cases, use the `-xs` option of the `tcases-api-test` command (or `-DexcludeSuccess=true` if using the Maven `tcases:api-test` goal).
+    Similarly, to exclude failure cases, use the `-xf` option of the `tcases-api-test` command (or `-DexcludeFailure=true` if using the Maven `tcases:api-test` goal).
+
+  * **Fixed generated base class import** [[313](https://github.com/Cornutum/tcases/issues/313)]
+
+    Yikes! When the base class for the generated test class is in different package, the generated `import` statement
+    was missing a final ';'. But not anymore.
+  
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.25.
+
 ## 4.0.5 ##
 
 This release provides the following improvements.
