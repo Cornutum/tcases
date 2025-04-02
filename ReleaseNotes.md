@@ -6,7 +6,7 @@ This release provides the following improvements to Tcases for OpenAPI.
 
   * **More info for TestWriter and TestCaseWriter authors**
 
-    Want to add support for non-Java test cases or different test frameworks? There's some things you need to know. And now you can find them
+    Want to add support for non-Java test cases or different test frameworks? There are some things you need to know. And now you can find them
     in the new guide to [_Using the TestWriter API_](tcases-openapi/Using-TestWriter-API.md).
 
   * **TestWriter annotations**
@@ -30,7 +30,7 @@ This release provides the following improvements to Tcases for OpenAPI.
 
   * **Fixed generated base class import** [[313](https://github.com/Cornutum/tcases/issues/313)]
 
-    Yikes! When the base class for the generated test class is in a different package, the generated `import` statement
+    Yikes! Given a base class in a different package from the generated test class, the generated `import` statement
     was missing a final ';'. But not anymore.
   
   * **Upgraded dependencies**
