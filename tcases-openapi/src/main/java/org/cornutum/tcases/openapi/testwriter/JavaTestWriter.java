@@ -12,8 +12,8 @@ import org.cornutum.tcases.io.IndentedWriter;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.FilenameUtils.getExtension;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.apache.commons.lang3.text.WordUtils.capitalize;
-import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
+import static org.apache.commons.text.WordUtils.capitalize;
+import static org.apache.commons.text.WordUtils.capitalizeFully;
 
 import java.io.File;
 import java.util.List;
