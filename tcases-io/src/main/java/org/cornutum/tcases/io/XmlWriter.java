@@ -7,8 +7,8 @@
 
 package org.cornutum.tcases.io;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
+import org.apache.commons.text.StringEscapeUtils;
+import org.apache.commons.text.translate.NumericEntityEscaper;
 
 import java.io.OutputStream;
 import java.io.Writer;

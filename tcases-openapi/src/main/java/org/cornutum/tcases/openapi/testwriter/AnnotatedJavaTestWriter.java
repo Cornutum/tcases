@@ -12,11 +12,11 @@ import org.cornutum.tcases.openapi.resolver.RequestCase;
 import static org.cornutum.tcases.DefUtils.toNumberIdentifiers;
 import static org.cornutum.tcases.util.CollectionUtils.fromCsv;
 
+import org.apache.commons.lang3.Strings;
 import static org.apache.commons.io.FilenameUtils.getBaseName;
 import static org.apache.commons.io.FilenameUtils.getExtension;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.apache.commons.lang3.StringUtils.removeEnd;
-import static org.apache.commons.lang3.text.WordUtils.capitalize;
+import static org.apache.commons.text.WordUtils.capitalize;
 
 import java.io.File;
 import java.util.Arrays;
@@ -173,7 +173,7 @@ public abstract class AnnotatedJavaTestWriter extends JavaTestWriter
     Matcher varBindingMatcher = varBindingPattern_.matcher( text);
     while( varBindingMatcher.find())
       {
-      String varId = toIdentifier( removeEnd( varBindingMatcher.group(1), ".Is"));
+      String varId = toIdentifier( Strings.CS.removeEnd( varBindingMatcher.group(1), ".Is"));
 
       String[] value = fromCsv( varBindingMatcher.group(2)).toArray( String[]::new);
       String valueId =
