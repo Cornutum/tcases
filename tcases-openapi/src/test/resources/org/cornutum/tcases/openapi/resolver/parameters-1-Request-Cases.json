@@ -1,0 +1,608 @@
+
+[
+    {
+        "id": 0,
+        "name": "_Pparam_Lpath_.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -4273563035268397094.6
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "0"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "_Pparam_Lpath_.Value.Length='> 1'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 0
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\"]Y,9fw7?5 K"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "_Pparam_Lheader_.Value.Is='> 0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 366482426572193034.8
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "u"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "_Pparam_Lpath_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -4331687602484798354.3
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "_Pparam_Lpath_.Defined=No"
+    },
+    {
+        "id": 4,
+        "name": "_Pparam_Lpath_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -3909632955011848189.9
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "_Pparam_Lpath_.Type=null"
+    },
+    {
+        "id": 5,
+        "name": "_Pparam_Lpath_.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -3904421912511463620.0
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "_Pparam_Lpath_.Type=Not string"
+    },
+    {
+        "id": 6,
+        "name": "_Pparam_Lpath_.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -3959679073202263074.8
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "_Pparam_Lpath_.Value.Length=0"
+    },
+    {
+        "id": 7,
+        "name": "_Pparam_Lheader_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "FT Dsdo=T.~p4;!D6|${Go|hn\";j^)1=$}o%zg\\bD`dep5FtnA\":SD4:uw,pGY`UWA9GqrV'Au!L.sq*Pf%z&b?lK{2hFEDwG[AcSVW%M'|y3{f5xCL8-Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "_Pparam_Lheader_.Defined=No"
+    },
+    {
+        "id": 8,
+        "name": "_Pparam_Lheader_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "_Pparam_Lheader_.Type=null"
+    },
+    {
+        "id": 9,
+        "name": "_Pparam_Lheader_.Type='Not number'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "mwsaxj": {
+                            "type": "string",
+                            "value": "y^5as@"
+                        },
+                        "lzzo": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "2kNWE"
+                                }
+                            ]
+                        },
+                        "juk": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "bE"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "zR;"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "Y#'("
+                                }
+                            ]
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "boolean",
+                    "value": false
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ "
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "_Pparam_Lheader_.Type=Not number"
+    },
+    {
+        "id": 10,
+        "name": "_Pparam_Lquery_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -4052829058284574138.4
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "+4e/QXQFoMTvrLW#X}bu (P,&tLxMMRrgg;PU{$X/&13;Oq9B]BAEm+ET;&8pY>.SkrSOH<zOh.ISql!.*/Y@S}4zRlE7O]^Oj;R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "_Pparam_Lquery_.Defined=No"
+    },
+    {
+        "id": 11,
+        "name": "_Pparam_Lquery_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -4188802493395480552.3
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "$L MJd0T$mTU|Te.j./Z~wa[oW79@!}GdOxSX4_HQoZsW F4j#G(9$4Z9gxd+p>N0dO\\9hw3dRq9;79pOa~ZqI^em4Hd@2*2WW}8ow RJ=\"8Uu^|B}T\\<*e}$Yl!&( 3hQ.G3P{C_2`OKs914cJYO&=(T>{hfh'##I/*uigZ6GmM&Pm%`"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "_Pparam_Lquery_.Type=null"
+    },
+    {
+        "id": 12,
+        "name": "_Pparam_Lquery_.Type='Not boolean'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/multiple/{param}",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param",
+                "in": "header",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": -4373704515226026676.2
+                },
+                "valid": true
+            },
+            {
+                "name": "param",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 477,
+                    "format": "int32"
+                },
+                "valid": false
+            },
+            {
+                "name": "param",
+                "in": "path",
+                "style": "simple",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "!jA,:\\(DkCa \"+#%nm,B5L3@': xQ`YeX<nq9zrZ\\>W/i'FFp3[cDuks&|t5vCKQjPAF_@KB&HOD7y]8s#C'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JX"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "_Pparam_Lquery_.Type=Not boolean"
+    }
+]

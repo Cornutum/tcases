@@ -1,0 +1,1613 @@
+<?xml version="1.0"?>
+<TestCases system="Parameters">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Parameters"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_parameters-multiple">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/parameters/multiple"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Parameters"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="_PobjectParam_Lquery_.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Id,_PobjectParam_Lcookie_IdValue,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Name,_PobjectParam_Lquery_NameLengthValid,_PobjectParam_Lquery_NameNotEmpty,_PobjectParam_Lquery_NameValue,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" value="integer">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" value="0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="_PobjectParam_Lquery_.Value.Properties.name.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length=&apos;0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Id,_PobjectParam_Lcookie_IdValue,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Name,_PobjectParam_Lquery_NameLengthValid,_PobjectParam_Lquery_NameValue,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" value="integer">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" value="0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="_PobjectParam_Lquery_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="No" failure="true">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="_PobjectParam_Lquery_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="null" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="_PobjectParam_Lquery_.Type=&apos;Not object&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="Not object" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="_PobjectParam_Lquery_.Value.Property-Count=&apos;&lt; 1&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="_PobjectParam_Lquery_.Value.Properties.name.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Name,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" value="null" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="_PobjectParam_Lquery_.Value.Properties.name.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Name,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" value="Not string" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="_PobjectParam_Lquery_.Value.Properties.value.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="null" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true" name="_PobjectParam_Lquery_.Value.Properties.value.Type=&apos;Not number&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="Not number" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true" name="_PobjectParam_Lcookie_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="No" failure="true">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true" name="_PobjectParam_Lcookie_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="null" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true" name="_PobjectParam_Lcookie_.Type=&apos;Not object&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="Not object" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" NA="true">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="14" failure="true" name="_PobjectParam_Lcookie_.Value.Property-Count=&apos;&lt; 1&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&lt; 1" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="15" failure="true" name="_PobjectParam_Lcookie_.Value.Properties.tag.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="null" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="16" failure="true" name="_PobjectParam_Lcookie_.Value.Properties.tag.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="Not string" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="17" failure="true" name="_PobjectParam_Lcookie_.Value.Properties.id.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Id,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" value="null" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="18" failure="true" name="_PobjectParam_Lcookie_.Value.Properties.id.Type=&apos;Not integer&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Id,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" value="Not integer" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="19" failure="true" name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is=&apos;-1&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple"/>
+      <Has name="properties" value="_PobjectParam_Lcookie_,_PobjectParam_Lcookie_Id,_PobjectParam_Lcookie_IdValue,_PobjectParam_Lcookie_Properties,_PobjectParam_Lcookie_Tag,_PobjectParam_Lcookie_TagLengthValid,_PobjectParam_Lcookie_TagNotEmpty,_PobjectParam_Lcookie_TagValue,_PobjectParam_Lcookie_Value,_PobjectParam_Lquery_,_PobjectParam_Lquery_Properties,_PobjectParam_Lquery_Value,_PobjectParam_Lquery_ValueValue"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="_PobjectParam_Lcookie_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="tag"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Type" value="string">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.tag.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="id"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Type" value="integer">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.id.Value.Is" value="-1" failure="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lcookie_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_PobjectParam_Lquery_.Defined" value="Yes">
+          <Has name="explode" value="true"/>
+          <Has name="paramName" value="objectParam"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Type" value="object">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Property-Count" value="&gt;= 1">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Defined" value="No">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="name"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Type" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.name.Value.Length" NA="true">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Defined" value="Yes">
+          <Has name="paramName" value="objectParam"/>
+          <Has name="propertyName" value="value"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Type" value="number">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.value.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+        <Var name="_PobjectParam_Lquery_.Value.Properties.Additional" value="No">
+          <Has name="paramName" value="objectParam"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

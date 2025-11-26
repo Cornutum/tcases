@@ -348,7 +348,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
     {
     return
       Stream.concat( membersOf( pathItem.getParameters()), membersOf( op.getParameters()))
-      .collect( toMap( Parameter::getName, Function.identity(), (pathParam, opParam) -> opParam, () -> new LinkedHashMap<String,Parameter>()))
+      .collect( toMap( ParameterId::of, Function.identity(), (pathParam, opParam) -> opParam, () -> new LinkedHashMap<ParameterId,Parameter>()))
       .values()
       .stream();
     }
@@ -970,7 +970,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
         // Normalize parameter schema
         normalizeParameterDnf( parameter, parameterSchema);
         
-        String parameterVarName = toIdentifier( parameterName);
+        String parameterVarName = toIdentifier( String.valueOf( ParameterId.of( parameter)));
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameter.getIn())
@@ -1013,7 +1013,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
         // Normalize parameter schema
         normalizeParameterDnf( parameter, parameterSchema);
         
-        String parameterVarName = toIdentifier( parameterName);
+        String parameterVarName = toIdentifier( String.valueOf( ParameterId.of( parameter)));
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameterIn)

@@ -103,7 +103,7 @@ public class RequestCaseDefiner
           .orElse( false));
 
         paramProperties( testCase)
-          .forEach( (paramName, paramProperties) -> requestCaseDef.addParam( toParamDef( paramName, paramProperties)));
+          .forEach( paramProperties -> requestCaseDef.addParam( toParamDef( paramProperties)));
 
         requestCaseDef.setBody(
           bodyValues( testCase)
@@ -126,17 +126,15 @@ public class RequestCaseDefiner
    * Returns a mapping of each request parameter defined by the given test case to the
    * set of all parameter properties.
    */
-  private Map<String,Map<String,Object>> paramProperties( TestCase testCase)
+  private List<Map<String,Object>> paramProperties( TestCase testCase)
     {
     return
       toStream( testCase.getVarBindings())
       .filter( binding -> isParamInputType( binding.getType()))
       .collect( groupingBy( this::getInputName))
-      .entrySet().stream()
-      .collect(
-        toMap(
-          paramBindings -> getParamName( paramBindings.getValue()),
-          paramBindings -> getPropertyValues( paramBindings.getValue())));
+      .values().stream()
+      .map( paramBindings -> getPropertyValues( paramBindings))
+      .collect( toList());
     }
 
   /**
@@ -212,24 +210,17 @@ public class RequestCaseDefiner
     }
 
   /**
-   * Returns the request parameter name for the given variable bindings.
-   */
-  private String getParamName( List<VarBinding> bindings)
-    {
-    VarBinding binding = bindings.get(0);
-    return
-      Optional.ofNullable( binding.getAnnotation( "paramName"))
-      .orElseThrow( () -> new RequestCaseException( String.format( "No parameter name defined for var=%s", getInputName( binding))));
-    }
-
-  /**
    * Returns the request parameter definition specified by the given properties.
    */
-  private ParamDef toParamDef( String paramName, Map<String,Object> propertyValues)
+  private ParamDef toParamDef( Map<String,Object> propertyValues)
     {
-    ParamDef paramDef = new ParamDef( paramName);
-
     VarBinding defined = expectVarBinding( propertyValues, "Defined");
+
+    String paramName = 
+      Optional.ofNullable( defined.getAnnotation( "paramName"))
+      .orElseThrow( () -> new RequestCaseException( String.format( "No parameter name defined for var=%s", getInputName( defined))));
+
+    ParamDef paramDef = new ParamDef( paramName);
     paramDef.setLocation( defined.getType());
     paramDef.setStyle( defined.getAnnotation( "style"));
     paramDef.setExploded( Boolean.parseBoolean( defined.getAnnotation( "explode")));

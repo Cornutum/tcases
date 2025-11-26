@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<System name="Parameters">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Parameters"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_parameters-multiple-param">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/parameters/multiple/{param}"/>
+    <Input type="header">
+      <VarSet name="_Pparam_Lheader_">
+        <Has name="paramName" value="param"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="_Pparam_Lheader_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="_Pparam_Lheader_">
+          <Value name="number" property="_Pparam_Lheader_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not number" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="_Pparam_Lheader_Value">
+          <Var name="Is">
+            <Value name="&lt; 0"/>
+            <Value name="0"/>
+            <Value name="&gt; 0"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="path">
+      <VarSet name="_Pparam_Lpath_">
+        <Has name="paramName" value="param"/>
+        <Var name="Defined">
+          <Has name="style" value="simple"/>
+          <Value name="Yes" property="_Pparam_Lpath_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="_Pparam_Lpath_">
+          <Value name="string" property="_Pparam_Lpath_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="_Pparam_Lpath_Value">
+          <Var name="Length">
+            <Value name="0" failure="true"/>
+            <Value name="1" property="_Pparam_Lpath_LengthValid, _Pparam_Lpath_NotEmpty"/>
+            <Value name="&gt; 1" property="_Pparam_Lpath_LengthValid, _Pparam_Lpath_NotEmpty"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="query">
+      <VarSet name="_Pparam_Lquery_">
+        <Has name="paramName" value="param"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="_Pparam_Lquery_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="_Pparam_Lquery_">
+          <Value name="boolean" property="_Pparam_Lquery_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not boolean" failure="true"/>
+        </Var>
+        <Var name="Value" when="_Pparam_Lquery_Value">
+          <Value name="true"/>
+          <Value name="false"/>
+        </Var>
+      </VarSet>
+    </Input>
+  </Function>
+</System>
