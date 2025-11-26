@@ -1,0 +1,585 @@
+<?xml version="1.0"?>
+<TestCases system="Parameters">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Parameters"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_parameters-multiple-param">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/parameters/multiple/{param}"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Parameters"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="_Pparam_Lpath_.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="_Pparam_Lpath_.Value.Length=&apos;&gt; 1&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2" name="_Pparam_Lheader_.Value.Is=&apos;&gt; 0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&gt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="_Pparam_Lpath_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="No" failure="true">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="_Pparam_Lpath_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="null" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="_Pparam_Lpath_.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="_Pparam_Lpath_.Value.Length=&apos;0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="0" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="_Pparam_Lheader_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="No" failure="true">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="_Pparam_Lheader_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="null" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="_Pparam_Lheader_.Type=&apos;Not number&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_,_Pparam_Lquery_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="Not number" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="boolean">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" value="false">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true" name="_Pparam_Lquery_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="No" failure="true">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true" name="_Pparam_Lquery_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="null" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true" name="_Pparam_Lquery_.Type=&apos;Not boolean&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/multiple/{param}"/>
+      <Has name="properties" value="_Pparam_Lheader_,_Pparam_Lheader_Value,_Pparam_Lpath_,_Pparam_Lpath_LengthValid,_Pparam_Lpath_NotEmpty,_Pparam_Lpath_Value,_Pparam_Lquery_"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="header">
+        <Var name="_Pparam_Lheader_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Type" value="number">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lheader_.Value.Is" value="&lt; 0">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="path">
+        <Var name="_Pparam_Lpath_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="simple"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Type" value="string">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lpath_.Value.Length" value="&gt; 1">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="_Pparam_Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Type" value="Not boolean" failure="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+        <Var name="_Pparam_Lquery_.Value" NA="true">
+          <Has name="paramName" value="param"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

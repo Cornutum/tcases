@@ -152,6 +152,7 @@ public class RequestCaseTest
     "object",
     "oneOf",
     "operations",
+    "parameters",
     "petstore-requests",
     "realize",
     "readOnly-1-enforced",
