@@ -1,5 +1,31 @@
 # Release Notes #
 
+## 4.1.1 ##
+This release provides the following improvements to Tcases for OpenAPI.
+
+  * **Correctly handle request parameters with the same name** [[322](https://github.com/Cornutum/tcases/issues/322)]
+
+    The OpenAPI Specification states that each request parameter must have a unique combination of name and location (as defined by
+    the `in` attribute). In other words, two parameters can have the same name as long as they appear in different locations.
+    But previous versions of Tcases for OpenAPI did not handle this situation, silently ignoring all but one of the parameters
+    that shared the same name. In this release, the generated input model correctly defines an input variable for each parameter.
+    Because the input variable name is normally defined by the parameter name, parameters that share the same name are
+    given input variable names that also designate the location. For example, "paramName_Lquery_", "paramName_Lcookie_", etc.
+  
+  * **Avoid conflict between non-identifier parameter names**
+
+    In a Tcases input model, the name of an input variable must be a valid identifier, containing only alphanumeric characters or
+    separators (hyphen or underscore). But OpenAPI allows request parameter names to contain any Unicode character. Accordingly,
+    Tcases for OpenAPI derives an input variable for each parameter using a name that "identifier-izes" the parameter name.
+    In previous versions, that made it possible for two parameters with non-identifier names to be assigned the same input
+    variable name -- a Tcases input model error. In this release, a distinct identifier is created for each parameter input variable.
+    For example, parameters named "param123", "param#123", and "@param123" will produce input variables named "param123_V0_",
+    "param123_V1_", and "param123_V2_".
+
+  * **Upgraded dependencies**
+
+    Upgraded to swagger-parser 2.1.36.
+
 ## 4.1.0 ##
 
 This release provides the following improvements to Tcases for OpenAPI.
