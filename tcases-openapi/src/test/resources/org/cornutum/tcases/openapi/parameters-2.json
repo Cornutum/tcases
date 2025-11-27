@@ -1,0 +1,81 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Parameters",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/parameters/unique": {
+            "parameters": [
+                {
+                    "name": "param123",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "get": {
+                "parameters": [
+                    {
+                        "name": "param#123",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "@param123",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                    "name": "param#123",
+                    "in": "cookie",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/success"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/failure"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "success": {
+                "description": "Success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "failure": {
+                "description": "Error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

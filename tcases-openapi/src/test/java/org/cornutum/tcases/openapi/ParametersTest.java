@@ -26,4 +26,10 @@ public class ParametersTest extends OpenApiTest
     {
     verifyRequestInputModel( "parameters-1");
     }
+  
+  @Test
+  public void whenDuplicateIdChars()
+    {
+    verifyRequestInputModel( "parameters-2");
+    }
   }

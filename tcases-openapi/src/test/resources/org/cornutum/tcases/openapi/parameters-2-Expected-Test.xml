@@ -1,0 +1,741 @@
+<?xml version="1.0"?>
+<TestCases system="Parameters">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Parameters"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_parameters-unique">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/parameters/unique"/>
+    <Has name="server" value="/"/>
+    <Has name="title" value="Parameters"/>
+    <Has name="version" value="0.0.0"/>
+    <TestCase id="0" name="param123_V1_.Defined=&apos;Yes&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="1" name="param123_V1_.Value.Length=&apos;0&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="2" failure="true" name="param123_V1_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="No" failure="true">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" NA="true">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" NA="true">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="3" failure="true" name="param123_V1_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="null" failure="true">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" NA="true">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="4" failure="true" name="param123_V1_.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" NA="true">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="5" failure="true" name="param123_V0__Lquery_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="No" failure="true">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="6" failure="true" name="param123_V0__Lquery_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="null" failure="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="7" failure="true" name="param123_V0__Lquery_.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="8" failure="true" name="param123_V2_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="No" failure="true">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" NA="true">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" NA="true">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="9" failure="true" name="param123_V2_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="null" failure="true">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" NA="true">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="10" failure="true" name="param123_V2_.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lcookie_LengthValid,param123_V0__Lcookie_NotEmpty,param123_V0__Lcookie_Value,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="Not string" failure="true">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" NA="true">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="11" failure="true" name="param123_V0__Lcookie_.Defined=&apos;No&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="No" failure="true">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="12" failure="true" name="param123_V0__Lcookie_.Type=null">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="null" failure="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+    <TestCase id="13" failure="true" name="param123_V0__Lcookie_.Type=&apos;Not string&apos;">
+      <Has name="operation" value="GET"/>
+      <Has name="path" value="/parameters/unique"/>
+      <Has name="properties" value="param123_V0__Lcookie_,param123_V0__Lquery_,param123_V0__Lquery_LengthValid,param123_V0__Lquery_NotEmpty,param123_V0__Lquery_Value,param123_V1_,param123_V1_LengthValid,param123_V1_NotEmpty,param123_V1_Value,param123_V2_,param123_V2_LengthValid,param123_V2_NotEmpty,param123_V2_Value"/>
+      <Has name="server" value="/"/>
+      <Has name="title" value="Parameters"/>
+      <Has name="version" value="0.0.0"/>
+      <Input type="cookie">
+        <Var name="param123_V0__Lcookie_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Type" value="Not string" failure="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lcookie_.Value.Length" NA="true">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+      </Input>
+      <Input type="query">
+        <Var name="param123_V1_.Defined" value="Yes">
+          <Has name="paramName" value="param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V1_.Type" value="string">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V1_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Defined" value="Yes">
+          <Has name="paramName" value="param#123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Type" value="string">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V0__Lquery_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="param#123"/>
+        </Var>
+        <Var name="param123_V2_.Defined" value="Yes">
+          <Has name="paramName" value="@param123"/>
+          <Has name="style" value="form"/>
+        </Var>
+        <Var name="param123_V2_.Type" value="string">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+        <Var name="param123_V2_.Value.Length" value="&gt; 0">
+          <Has name="paramName" value="@param123"/>
+        </Var>
+      </Input>
+    </TestCase>
+  </Function>
+</TestCases>

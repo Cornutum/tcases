@@ -59,7 +59,15 @@ public class ParameterId
   @Override
   public String toString()
     {
-    return String.format( "_P%s_L%s_", name_, location_);
+    return stringValue( name_, location_);
+    }
+
+  /**
+   * Returns a parameter id string.
+   */
+  public static String stringValue( String name, String location)
+    {
+    return String.format( "%s_L%s_", name, location);    
     }
 
   private final String name_;
