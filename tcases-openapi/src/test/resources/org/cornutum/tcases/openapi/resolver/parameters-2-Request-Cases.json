@@ -1,0 +1,784 @@
+
+[
+    {
+        "id": 0,
+        "name": "param123_V1_.Defined='Yes'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "S0)$yhhlf~$]%`4'D{wM*8*b<L3%IRa|8C(`KgUnbd:8?1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wz"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgGr%5`+=w*aG)@b&1avN2IsK#EWAwleN\""
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "XcB2mnH{'nX)7&d{Q!B]?-l0X'8:%oKXyo!7^b3$N`8jKDNihc~h1|`AJe[QR!3>+*Kf(:KxxX>{]zHVS4pF?Z%kTfyCXP)YGgUen#-0BaGbC{]sv@cdDR/P&Jcle=2!r^<j]!3sa&P"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Cu|k*Ia9A+*A,|L?-G=V]L8CYg t<P]#{k%AlU1l`p?H|Q~4%@~[NgZ> 9M3>cv.$m]f7qH[r3.GC#rU f7R#?y[aaJ#Y:%`$s(A{@\\@s<\"M5rH[vC?>7(^zKpUPb{ CO2qR}\\Dk iFXrX\"XH&hN'7dl-FE7F$i?^G*Q\\N x*:/3GOUKk5L\"y^5as@3O-;]90Q2kNWES$tnaIbbEvzR;]Y"
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "param123_V1_.Value.Length='0'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ""
+                },
+                "valid": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "param123_V1_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "'(0I4{Lr>ddf523Cj{(#ur5@!]i@lNx2T>[ T.n+4e/QXQFoMTvrLW#X}bu (P,&t"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "xMMRrgg;PU{$X/&"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "ASIW'Z8jx|Db?INq~V|k63[|#9'*L/NZq#{MbAQB$wRsfuLW/nI3^c"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": false
+            }
+        ],
+        "invalidInput": "param123_V1_.Defined=No"
+    },
+    {
+        "id": 3,
+        "name": "param123_V1_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ";R(hB:\\#EOdZX@_#9h>Sx*]@2vCg\\z\"N`DZ<):0'yx-G\\$L MJd0T$mTU|"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "e.j./Z~wa[oW79@!}GdOxSX4_H"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "FJ:uG0z~nZi!UkdaMx:M''(8E42=r)`%G.=$Ju7)!Z0bl$FDf!:cn-*BudAt9ukIer~nQc?o%)z%[U}14qb8skPI++yyx]=@@AS_xuSQ$hIwq~shBgIuN90E{f72@>nNZIGCscGZQLl}=HjT|W=T(af2aS._a@cX<lK6|NWQ"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param123_V1_.Type=null"
+    },
+    {
+        "id": 4,
+        "name": "param123_V1_.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Q`YeX<nq9zrZ\\>W/i'FFp3[cDuks&|t5vCKQjPAF_@KB&HOD7y]8s#C'wGb{A1k?w(RX{T1Jrw#^pfc'V[nyu0(uBY\"upE!j`fgJ${JXIpa67M2i@.lwXgIZjb%WWDG:>2AvL#|L1:8E;u#>Dmy:o27HkDZ%rt)listU>?]sAviyah`46\"yhpb\"~'tm1ZV>& S{DOg6(3Wtz>n1bF%j|UIqx[@`~t0Yub"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "x>\"&w<b|xQ#,:t\"S`9T\\[450nSg],I=BTHC6;vgsi}{1YsSiTi|>S:c`%\";D'[b&IY0S#=[fBQR|Yk_o#)?iw1sv09rscxxp8%X/#>V|=KN(ip@[:+&rE"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "Gwg<*&|Way[-q(OfgT[yw`q^CwXn`6hs$d$*t%^6!JZm`<Z%k%S{A7jiyhH$%ZtDE0|xwq(8/}oGBL<y(ZlQwc0X1{5BS!3G&!wpu']Jgt9amIB-Qe?Jqc1U|W]B$:QLQ_8Sr=FJvI$nFev0]ia/~HFD#*fqyi<`g:S?4h<+GP&2#TTT`tkRa7!:kj&upi}.Au<h.O0A>z9}InR4Fi>r}[w"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "integer",
+                    "value": 65,
+                    "format": "int32"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "param123_V1_.Type=Not string"
+    },
+    {
+        "id": 5,
+        "name": "param123_V0__Lquery_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "o_oc=[`Pal#.G`.4{wREEbl'H<q%|EdyDlPp`z<rpJWEwMgaqlhIs6/-b9X9sg~x>>tB%,/k~ c\"V_Ak1T=Jco~ D\\X2>_qzE`@c% Kg,)xak\\Q:bcGrj6(F(g8"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "X]g/u[+k@ywWYz0#0$CO76#bKxaF*YLMIPJ_-sn9fh]W)!k<hjct#LMYWf<nN<7TmQ:Q19uq!he?{GviX-w:R)/M5A{gDYU%@[6jfe]5T)mS3K?x^9|8%*E^^Y{A38Y`mC.*{cG+1tFaKy]lx`v%z&N1Siu1o:>O9xDKMgd5p&$NjOp_ybZu{ErxDQ^e/spkJdUNtz6O*~:?U'EVnc9JOW4QyeSm6E0c#rE0g?gp|!i2kKF?"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "'JU(8+l\"o! G-M3VX_UxHz~rHo&3mshX&U{Bu9J_GI'ekwfY})Fo{JuFa}]]Sd8$&x9_%Bh,Bu3p}9%{Q,2e>=R/-)D`0Q;@f_~3+2Dys=ohR+{T8*hW$:%2Z7Udz)VMKq)8$Zc\\DOqfvFSDLh@^8BwBC)q*6(H](E4iEMT205M.w2pMI;$B"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V0__Lquery_.Defined=No"
+    },
+    {
+        "id": 6,
+        "name": "param123_V0__Lquery_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "M\"4-/cp^f1W<R,',~~6E'{_>(ZTh_wt'k_.uo}b#<`j^P@xz&}?\"e,XS$plN ~[0E(:bVT}nN+D8~L7Ni'\\|_}g7N@:04p}o)\"&0 V|_3bYGA\"vho1:\"%13?BvplkOt4ublrE>JSCa+m&{#pK5{JxIb?+TH#eN7PJo\"Y[b-YBNtB~L{[#pc _qpTW"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "yv|+-Hci$r*t0xh!55B-daL8YD}Iy"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": ",h7 -5)L7~N[?fj\"|_n]elp:aA?k5O}NCLA1\"7\"4n'#CeJ@`EJ+{HM/mwM`,.BR0A#!Z3Y!}Zg4DbmFZ;sjRz4\" X}x3Bpak+~?D:?5j_D&;leD)#wGUu?pED[.7c/\\B~PaT\\:4x"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V0__Lquery_.Type=null"
+    },
+    {
+        "id": 7,
+        "name": "param123_V0__Lquery_.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "number",
+                    "value": 851.9
+                },
+                "valid": false
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "}Tn[?V50smO.%s8!QXwg~b*]ALUF&CH~0V_Pd`-3xbZmws?v2Rpj/f1^i^2iVySVmj8~t++\".1L9Mk_d~2x&q}7Lf19C-A Kg~K4XfU^7i&{<p94(=j4*lDd@=q| o?%]s rPt/*vom"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "=~q.=gbpX6}~LVA_D^ER$vuyVs$aSU/Av5H.jSD]~INq~_UfB1x0{w(kr5?5O2i8my7Gx}dDRP7(9Un}(J9~7P0Y1d^Niu(@ALNcO#{-{ZG#]N.)=<%Pm6AeL$Ha+DJwP6S(jqOz|jA0qVj8:6WontH5LfXH3tD.n6rAw@ex(v|yjd_J#e=%GdP7gIWeA<pUvj.8nHWMJamry)E:)#N"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "v3qSUy>{V@DVZ#y?]>?H^YNRWo,V67l'D{8AvIQT;wrW_2bSG0gNzVEBzAVheOMT3RzN`fTSro.#'Ql*w'|x)7 i+Fs/fIf)U^d)oG\"y0ls;+4F0T?1&^fD}V]j-U~2g=dDBY2MZ{Kjd$>-T,V2Zpid~eSCkct=I%B2H_}OtD^*b}mMlhvG/h+kgJ1|Rx^X<fl0>UO! -:}'OT7c(VNF8W6H@5HYFGo"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V0__Lquery_.Type=Not string"
+    },
+    {
+        "id": 8,
+        "name": "param123_V2_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "`c@T\\Gq"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "P6^+Zi2NWgZB5+rrgaiuKw5TsUIL5[]6>TrQ_@OJR>Pro]vBxd)aBD)FH&}3.HW(WN7[>C=|?s0x*s8P9$2bhEFjyLR~KTIl2pN]OYH~HLX3uy^ZrLgl'_*t:*:C1m6~:{6My:{UEYen55g}t8TZw/w+b1(S&(TR[U3Z"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "PxZFw4IEWD78](;}-T~CjbL+qt:p_74B*rt)(Tl`faB*GO|3>~N:L.WROM U[)6t|]a]_`hvb;"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V2_.Defined=No"
+    },
+    {
+        "id": 9,
+        "name": "param123_V2_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "k(ov:4,\"/w)v]B`VV /n\"LB0MuH\"Vt]W`{J{;Z73tB}7LL2Z}+iO3pFe\"^6&7XQZm85j,n,O<w kD)Awt0K93L=D4r>!=d`mRox8mx@e$0`6H~iAJ{,XtT=@)4W8r<_*]WTp_9;b?2:piu4RDl`UPTIE$A9=KuGLSrg}M.fErV+$@wZ$v7%D\\z5soZ<Hi|o^EIU!<rs+jt<}sEKs0:]x`Qv$S(P\\Q~Qkr]6L>}DXTz k$O,pt"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "zi@UT#9e}a)JZ2tfnZdtw76thz](|0k9x]gpCFu_H~Tj`})>$D5>eP9ImaDLTYSO4WYkg)-([H3ZxiPDf+IC//-I(R~h1y@sMGeR6((k6.dvm+(f(lxVp3tyWu6}<6)CzRMclz7'MZ"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "5+\\~c!%"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V2_.Type=null"
+    },
+    {
+        "id": 10,
+        "name": "param123_V2_.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "~WkmaNOR+^*I!`zy}pD<,A'3@3h\"|uXQNd8yCU)ow`xSOFxIfrc] 7vY.YGU|Kc'2e)_:uH$clo$xDn`nk$U$&b\"JPJ5YeDxMR%(]necb|EUa[1zWu\\2y$,D_@7&swhL9~o(XbW-U=gv2|**b6;A"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "zwvmdikuyaczbse": {
+                            "type": "number",
+                            "value": 939.3
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "oCOHbmF7yi&Q)+):9OtJTDV3!h=Bv27PM*6ah)S*P!6TEJl5}53rt/7YA<v`Smgi'Sk7sfca36f(oKm2}928Z3ts)s9SD]V~_{X7~ORpL)Bo36h+mI5F.wIlAdfCfI}Es!0IknCfeQt&@><)?Zx=)C&h<L]xpGb2_kw`#8(T-~wJ|tj/rSXBh/=ZYvM1%I7Mmf~ZYPgF'S~:TH[SeC(iTrCLoTlqEo6?}B_!Bd~G^-KS1p"
+                },
+                "valid": true
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "!ZfYWo{qEFoZ)DiMa(K/\\DW;u*j\"C?lsNptCBOuUr%$^|m=]z I3SY]ud.c3~SAY'D[yHHC'd)5x|Q4M*|:s;2C]6*W`hSOgR!WOv.`NVW~bmLQt;xE\"vuk *Tgu%?0VVt+\\{/hLP0GY/@xG=LFzsm;bVCvW/tcT8ViXXLfBR=eR6e]+kuUbl[\\nrPv/'!92NYcqkO(6dDZ9^~_!BA][B"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V2_.Type=Not string"
+    },
+    {
+        "id": 11,
+        "name": "param123_V0__Lcookie_.Defined='No'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "[[Q/YW9\\y:(MN*WazDVopn:{%!"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "H}aumWV^l*r$A)K@1r7Wx!hRflRfGvf9X3//C|6h:Ci,~Qyg\"r2:$S)#e3R^Lkg&8<-Xh%=x+\"r)FS/Z* ?o4wol8"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": null,
+                "valid": false
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "B#J>UY]%+~vtHp$FXd`B0g4X|\\{K\\E/&sLj*!I7urAs13./#r#1,io.:N=YWu;b?(Z_cbh.G,MuF0XeE ~#!|/Ak<[~Jf W)HF9%I) `HR$pYUUgI*mIf`Ijesidzsv~'Y$rz3[q|BV\"N@~\\/d:}%rbwRqnyV]jkUpTTd'QGW!q TmR@T*9a^NIzCWE)6,yhEX9,l9k6f])m{qle^74ze"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V0__Lcookie_.Defined=No"
+    },
+    {
+        "id": 12,
+        "name": "param123_V0__Lcookie_.Type=null",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "R9{aNY4G 2#jtKv37$\\jT,L6KVsJ3YCiZ;57XZP{svzzo`Dt[,:5Mu**Hr#daxwST;zEvc&i`ez/#)nj/`bu_1=#te}sG^IGe3_[{zNsZ8Xd|c\"i6A-Wx!Rcb;RA-uYS6`u^_3h8q:pK&psPFAIT^CK&Y3{!m1rS.?UlY$Iz|\\t<1'\\dI~;~TL[,l&o<=@2[g't;~ZxbRh1[e9({jKgZpgVB=`7^QG\"8YgUlbB%_-^XuZ!z@+:YY"
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "BEZiq\\2=UYMof13'XuWaQn{s$:f% '2[M{Y}@m`Oxe+!vi=prkD6c|i5>6o;;08q"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "X nAd^\"Q~4Ba;aQ;nmpQ3Z5a^"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V0__Lcookie_.Type=null"
+    },
+    {
+        "id": 13,
+        "name": "param123_V0__Lcookie_.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Parameters",
+        "path": "/parameters/unique",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "param#123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "fZVe|g{+$g8{z'{0a:Ly9[,a.:k#PP', 0.xG*|'IL BRiGvJz}p1DrAn1/{>xN+}:wl mbdP2g_M27%Xj$UdN6DqC+V?^b9n=a(g_%s-C1r|r5t^3}9%&mcg\""
+                },
+                "valid": true
+            },
+            {
+                "name": "@param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "_mz52xk$'07wCF@Hc}@rQC}Zm)%{1LGpA s $@87hN/jW,(<JI^see@>5eRh%8,oPiHT4&$=F/DWL;$vdK+i~e!2|jt|D5.s\\Y[cs'0y<WTh;Q'l4X/#6&tTXg8@-%0~!j{0<\"zk4aDstY<=f7rGg\"9o4l*)(${:vlt]qPJSv}QSHDA\\MrUxp&udXGAhpVOSZHl>eC6*@fu>uDn!fB"
+                },
+                "valid": true
+            },
+            {
+                "name": "param#123",
+                "in": "cookie",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "%4A6IE25"
+                        }
+                    ]
+                },
+                "valid": false
+            },
+            {
+                "name": "param123",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "I}`CwI.IT(x~m?~bApUOPpy(vyAk(Wf.P1w~j}^,t|Z+_Id\"EJ|;\"e8m7BXdPS,y%;j^dIh\\(Wu6%\\O`w/;FG \">Az *h:+ ;5AbQrAzQ[Q%l=sho*qc,xb;JI=jmuTL/6bXSe%Y7&FWAXgDG&"
+                },
+                "valid": true
+            }
+        ],
+        "invalidInput": "param123_V0__Lcookie_.Type=Not string"
+    }
+]

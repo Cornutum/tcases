@@ -17,6 +17,7 @@ import org.cornutum.tcases.util.ListBuilder;
 import static org.cornutum.tcases.DefUtils.toIdentifier;
 import static org.cornutum.tcases.conditions.Conditions.*;
 import static org.cornutum.tcases.openapi.OpenApiUtils.*;
+import static org.cornutum.tcases.openapi.ParameterUtils.withUniqueVarName;
 import static org.cornutum.tcases.openapi.SchemaExtensions.*;
 import static org.cornutum.tcases.openapi.SchemaUtils.*;
 import static org.cornutum.tcases.util.CollectionUtils.*;
@@ -265,7 +266,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
       hasInputs( api, pathItem, op)?
 
       Stream.concat(
-        opParameters( pathItem, op).map( p -> parameterVarDef( api, resolveParameter( api, p))),
+        withUniqueVarName( opParameters( pathItem, op)).map( p -> parameterVarDef( api, resolveParameter( api, p))),
         Stream.concat(
           requestBodyVarDef( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty()),
           authVarDef( api, op.getSecurity()).map( Stream::of).orElse( Stream.empty()))) :
@@ -304,7 +305,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
       hasInputs( api, pathItem, op)?
 
       Stream.concat(
-        opParameters( pathItem, op).map( p -> parameterExamples( api, resolveParameter( api, p))),
+        withUniqueVarName( opParameters( pathItem, op)).map( p -> parameterExamples( api, resolveParameter( api, p))),
         Stream.concat(
           requestBodyExamples( api, op.getRequestBody()).map( Stream::of).orElse( Stream.empty()),
           authVarDef( api, op.getSecurity()).map( Stream::of).orElse( Stream.empty()))) :
@@ -970,7 +971,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
         // Normalize parameter schema
         normalizeParameterDnf( parameter, parameterSchema);
         
-        String parameterVarName = toIdentifier( String.valueOf( ParameterId.of( parameter)));
+        String parameterVarName = ParameterUtils.getVarName( parameter);
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameter.getIn())
@@ -1013,7 +1014,7 @@ public abstract class InputModeller extends ContextHandler<OpenApiContext>
         // Normalize parameter schema
         normalizeParameterDnf( parameter, parameterSchema);
         
-        String parameterVarName = toIdentifier( String.valueOf( ParameterId.of( parameter)));
+        String parameterVarName = ParameterUtils.getVarName( parameter);
         return
           VarSetBuilder.with( parameterVarName)
           .type( parameterIn)

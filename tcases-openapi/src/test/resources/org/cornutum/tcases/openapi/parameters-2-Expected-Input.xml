@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<System name="Parameters">
+  <Has name="server" value="/"/>
+  <Has name="title" value="Parameters"/>
+  <Has name="version" value="0.0.0"/>
+  <Function name="GET_parameters-unique">
+    <Has name="operation" value="GET"/>
+    <Has name="path" value="/parameters/unique"/>
+    <Input type="cookie">
+      <VarSet name="param123_V0__Lcookie_">
+        <Has name="paramName" value="param#123"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param123_V0__Lcookie_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param123_V0__Lcookie_">
+          <Value name="string" property="param123_V0__Lcookie_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param123_V0__Lcookie_Value">
+          <Var name="Length">
+            <Value name="&gt; 0" property="param123_V0__Lcookie_LengthValid, param123_V0__Lcookie_NotEmpty"/>
+            <Value name="0" property="param123_V0__Lcookie_LengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+    <Input type="query">
+      <VarSet name="param123_V1_">
+        <Has name="paramName" value="param123"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param123_V1_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param123_V1_">
+          <Value name="string" property="param123_V1_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param123_V1_Value">
+          <Var name="Length">
+            <Value name="&gt; 0" property="param123_V1_LengthValid, param123_V1_NotEmpty"/>
+            <Value name="0" property="param123_V1_LengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param123_V0__Lquery_">
+        <Has name="paramName" value="param#123"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param123_V0__Lquery_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param123_V0__Lquery_">
+          <Value name="string" property="param123_V0__Lquery_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param123_V0__Lquery_Value">
+          <Var name="Length">
+            <Value name="&gt; 0" property="param123_V0__Lquery_LengthValid, param123_V0__Lquery_NotEmpty"/>
+            <Value name="0" property="param123_V0__Lquery_LengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+      <VarSet name="param123_V2_">
+        <Has name="paramName" value="@param123"/>
+        <Var name="Defined">
+          <Has name="style" value="form"/>
+          <Value name="Yes" property="param123_V2_"/>
+          <Value name="No" failure="true"/>
+        </Var>
+        <Var name="Type" when="param123_V2_">
+          <Value name="string" property="param123_V2_Value"/>
+          <Value name="null" failure="true"/>
+          <Value name="Not string" failure="true"/>
+        </Var>
+        <VarSet name="Value" when="param123_V2_Value">
+          <Var name="Length">
+            <Value name="&gt; 0" property="param123_V2_LengthValid, param123_V2_NotEmpty"/>
+            <Value name="0" property="param123_V2_LengthValid"/>
+          </Var>
+        </VarSet>
+      </VarSet>
+    </Input>
+  </Function>
+</System>

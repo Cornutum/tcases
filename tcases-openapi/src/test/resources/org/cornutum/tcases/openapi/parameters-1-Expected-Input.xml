@@ -7,19 +7,19 @@
     <Has name="operation" value="GET"/>
     <Has name="path" value="/parameters/multiple/{param}"/>
     <Input type="header">
-      <VarSet name="_Pparam_Lheader_">
+      <VarSet name="param_Lheader_">
         <Has name="paramName" value="param"/>
         <Var name="Defined">
           <Has name="style" value="simple"/>
-          <Value name="Yes" property="_Pparam_Lheader_"/>
+          <Value name="Yes" property="param_Lheader_"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Type" when="_Pparam_Lheader_">
-          <Value name="number" property="_Pparam_Lheader_Value"/>
+        <Var name="Type" when="param_Lheader_">
+          <Value name="number" property="param_Lheader_Value"/>
           <Value name="null" failure="true"/>
           <Value name="Not number" failure="true"/>
         </Var>
-        <VarSet name="Value" when="_Pparam_Lheader_Value">
+        <VarSet name="Value" when="param_Lheader_Value">
           <Var name="Is">
             <Value name="&lt; 0"/>
             <Value name="0"/>
@@ -29,41 +29,41 @@
       </VarSet>
     </Input>
     <Input type="path">
-      <VarSet name="_Pparam_Lpath_">
+      <VarSet name="param_Lpath_">
         <Has name="paramName" value="param"/>
         <Var name="Defined">
           <Has name="style" value="simple"/>
-          <Value name="Yes" property="_Pparam_Lpath_"/>
+          <Value name="Yes" property="param_Lpath_"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Type" when="_Pparam_Lpath_">
-          <Value name="string" property="_Pparam_Lpath_Value"/>
+        <Var name="Type" when="param_Lpath_">
+          <Value name="string" property="param_Lpath_Value"/>
           <Value name="null" failure="true"/>
           <Value name="Not string" failure="true"/>
         </Var>
-        <VarSet name="Value" when="_Pparam_Lpath_Value">
+        <VarSet name="Value" when="param_Lpath_Value">
           <Var name="Length">
             <Value name="0" failure="true"/>
-            <Value name="1" property="_Pparam_Lpath_LengthValid, _Pparam_Lpath_NotEmpty"/>
-            <Value name="&gt; 1" property="_Pparam_Lpath_LengthValid, _Pparam_Lpath_NotEmpty"/>
+            <Value name="1" property="param_Lpath_LengthValid, param_Lpath_NotEmpty"/>
+            <Value name="&gt; 1" property="param_Lpath_LengthValid, param_Lpath_NotEmpty"/>
           </Var>
         </VarSet>
       </VarSet>
     </Input>
     <Input type="query">
-      <VarSet name="_Pparam_Lquery_">
+      <VarSet name="param_Lquery_">
         <Has name="paramName" value="param"/>
         <Var name="Defined">
           <Has name="style" value="form"/>
-          <Value name="Yes" property="_Pparam_Lquery_"/>
+          <Value name="Yes" property="param_Lquery_"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Type" when="_Pparam_Lquery_">
-          <Value name="boolean" property="_Pparam_Lquery_Value"/>
+        <Var name="Type" when="param_Lquery_">
+          <Value name="boolean" property="param_Lquery_Value"/>
           <Value name="null" failure="true"/>
           <Value name="Not boolean" failure="true"/>
         </Var>
-        <Var name="Value" when="_Pparam_Lquery_Value">
+        <Var name="Value" when="param_Lquery_Value">
           <Value name="true"/>
           <Value name="false"/>
         </Var>

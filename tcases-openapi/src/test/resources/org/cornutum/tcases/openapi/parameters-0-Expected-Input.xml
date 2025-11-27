@@ -7,29 +7,29 @@
     <Has name="operation" value="GET"/>
     <Has name="path" value="/parameters/multiple"/>
     <Input type="cookie">
-      <VarSet name="_PobjectParam_Lcookie_">
+      <VarSet name="objectParam_Lcookie_">
         <Has name="paramName" value="objectParam"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
-          <Value name="Yes" property="_PobjectParam_Lcookie_"/>
+          <Value name="Yes" property="objectParam_Lcookie_"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Type" when="_PobjectParam_Lcookie_">
-          <Value name="object" property="_PobjectParam_Lcookie_Value"/>
+        <Var name="Type" when="objectParam_Lcookie_">
+          <Value name="object" property="objectParam_Lcookie_Value"/>
           <Value name="null" failure="true"/>
           <Value name="Not object" failure="true"/>
         </Var>
-        <VarSet name="Value" when="_PobjectParam_Lcookie_Value">
+        <VarSet name="Value" when="objectParam_Lcookie_Value">
           <Var name="Property-Count">
             <Value name="&gt;= 1">
               <When>
-                <NotLessThan property="_PobjectParam_Lcookie_Properties" min="1"/>
+                <NotLessThan property="objectParam_Lcookie_Properties" min="1"/>
               </When>
             </Value>
             <Value name="&lt; 1" failure="true">
               <When>
-                <LessThan property="_PobjectParam_Lcookie_Properties" max="1"/>
+                <LessThan property="objectParam_Lcookie_Properties" max="1"/>
               </When>
             </Value>
           </Var>
@@ -37,33 +37,33 @@
             <VarSet name="tag">
               <Var name="Defined">
                 <Has name="propertyName" value="tag"/>
-                <Value name="Yes" property="_PobjectParam_Lcookie_Properties, _PobjectParam_Lcookie_Tag"/>
+                <Value name="Yes" property="objectParam_Lcookie_Properties, objectParam_Lcookie_Tag"/>
                 <Value name="No"/>
               </Var>
-              <Var name="Type" when="_PobjectParam_Lcookie_Tag">
-                <Value name="string" property="_PobjectParam_Lcookie_TagValue"/>
+              <Var name="Type" when="objectParam_Lcookie_Tag">
+                <Value name="string" property="objectParam_Lcookie_TagValue"/>
                 <Value name="null" failure="true"/>
                 <Value name="Not string" failure="true"/>
               </Var>
-              <VarSet name="Value" when="_PobjectParam_Lcookie_TagValue">
+              <VarSet name="Value" when="objectParam_Lcookie_TagValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="_PobjectParam_Lcookie_TagLengthValid, _PobjectParam_Lcookie_TagNotEmpty"/>
-                  <Value name="0" property="_PobjectParam_Lcookie_TagLengthValid"/>
+                  <Value name="&gt; 0" property="objectParam_Lcookie_TagLengthValid, objectParam_Lcookie_TagNotEmpty"/>
+                  <Value name="0" property="objectParam_Lcookie_TagLengthValid"/>
                 </Var>
               </VarSet>
             </VarSet>
             <VarSet name="id">
               <Var name="Defined">
                 <Has name="propertyName" value="id"/>
-                <Value name="Yes" property="_PobjectParam_Lcookie_Id, _PobjectParam_Lcookie_Properties"/>
+                <Value name="Yes" property="objectParam_Lcookie_Id, objectParam_Lcookie_Properties"/>
                 <Value name="No"/>
               </Var>
-              <Var name="Type" when="_PobjectParam_Lcookie_Id">
-                <Value name="integer" property="_PobjectParam_Lcookie_IdValue"/>
+              <Var name="Type" when="objectParam_Lcookie_Id">
+                <Value name="integer" property="objectParam_Lcookie_IdValue"/>
                 <Value name="null" failure="true"/>
                 <Value name="Not integer" failure="true"/>
               </Var>
-              <VarSet name="Value" when="_PobjectParam_Lcookie_IdValue">
+              <VarSet name="Value" when="objectParam_Lcookie_IdValue">
                 <Var name="Is">
                   <Value name="-1" failure="true"/>
                   <Value name="0"/>
@@ -72,7 +72,7 @@
               </VarSet>
             </VarSet>
             <Var name="Additional">
-              <Value name="Yes" property="_PobjectParam_Lcookie_Properties"/>
+              <Value name="Yes" property="objectParam_Lcookie_Properties"/>
               <Value name="No"/>
             </Var>
           </VarSet>
@@ -80,29 +80,29 @@
       </VarSet>
     </Input>
     <Input type="query">
-      <VarSet name="_PobjectParam_Lquery_">
+      <VarSet name="objectParam_Lquery_">
         <Has name="paramName" value="objectParam"/>
         <Var name="Defined">
           <Has name="explode" value="true"/>
           <Has name="style" value="form"/>
-          <Value name="Yes" property="_PobjectParam_Lquery_"/>
+          <Value name="Yes" property="objectParam_Lquery_"/>
           <Value name="No" failure="true"/>
         </Var>
-        <Var name="Type" when="_PobjectParam_Lquery_">
-          <Value name="object" property="_PobjectParam_Lquery_Value"/>
+        <Var name="Type" when="objectParam_Lquery_">
+          <Value name="object" property="objectParam_Lquery_Value"/>
           <Value name="null" failure="true"/>
           <Value name="Not object" failure="true"/>
         </Var>
-        <VarSet name="Value" when="_PobjectParam_Lquery_Value">
+        <VarSet name="Value" when="objectParam_Lquery_Value">
           <Var name="Property-Count">
             <Value name="&gt;= 1">
               <When>
-                <NotLessThan property="_PobjectParam_Lquery_Properties" min="1"/>
+                <NotLessThan property="objectParam_Lquery_Properties" min="1"/>
               </When>
             </Value>
             <Value name="&lt; 1" failure="true">
               <When>
-                <LessThan property="_PobjectParam_Lquery_Properties" max="1"/>
+                <LessThan property="objectParam_Lquery_Properties" max="1"/>
               </When>
             </Value>
           </Var>
@@ -110,33 +110,33 @@
             <VarSet name="name">
               <Var name="Defined">
                 <Has name="propertyName" value="name"/>
-                <Value name="Yes" property="_PobjectParam_Lquery_Name, _PobjectParam_Lquery_Properties"/>
+                <Value name="Yes" property="objectParam_Lquery_Name, objectParam_Lquery_Properties"/>
                 <Value name="No"/>
               </Var>
-              <Var name="Type" when="_PobjectParam_Lquery_Name">
-                <Value name="string" property="_PobjectParam_Lquery_NameValue"/>
+              <Var name="Type" when="objectParam_Lquery_Name">
+                <Value name="string" property="objectParam_Lquery_NameValue"/>
                 <Value name="null" failure="true"/>
                 <Value name="Not string" failure="true"/>
               </Var>
-              <VarSet name="Value" when="_PobjectParam_Lquery_NameValue">
+              <VarSet name="Value" when="objectParam_Lquery_NameValue">
                 <Var name="Length">
-                  <Value name="&gt; 0" property="_PobjectParam_Lquery_NameLengthValid, _PobjectParam_Lquery_NameNotEmpty"/>
-                  <Value name="0" property="_PobjectParam_Lquery_NameLengthValid"/>
+                  <Value name="&gt; 0" property="objectParam_Lquery_NameLengthValid, objectParam_Lquery_NameNotEmpty"/>
+                  <Value name="0" property="objectParam_Lquery_NameLengthValid"/>
                 </Var>
               </VarSet>
             </VarSet>
             <VarSet name="value">
               <Var name="Defined">
                 <Has name="propertyName" value="value"/>
-                <Value name="Yes" property="_PobjectParam_Lquery_Properties, _PobjectParam_Lquery_Value"/>
+                <Value name="Yes" property="objectParam_Lquery_Properties, objectParam_Lquery_Value"/>
                 <Value name="No"/>
               </Var>
-              <Var name="Type" when="_PobjectParam_Lquery_Value">
-                <Value name="number" property="_PobjectParam_Lquery_ValueValue"/>
+              <Var name="Type" when="objectParam_Lquery_Value">
+                <Value name="number" property="objectParam_Lquery_ValueValue"/>
                 <Value name="null" failure="true"/>
                 <Value name="Not number" failure="true"/>
               </Var>
-              <VarSet name="Value" when="_PobjectParam_Lquery_ValueValue">
+              <VarSet name="Value" when="objectParam_Lquery_ValueValue">
                 <Var name="Is">
                   <Value name="&lt; 0"/>
                   <Value name="0"/>
@@ -145,7 +145,7 @@
               </VarSet>
             </VarSet>
             <Var name="Additional">
-              <Value name="Yes" property="_PobjectParam_Lquery_Properties"/>
+              <Value name="Yes" property="objectParam_Lquery_Properties"/>
               <Value name="No"/>
             </Var>
           </VarSet>
