@@ -7,7 +7,7 @@
   <groupId>org.cornutum.tcases</groupId>
   <artifactId>tcases</artifactId>
   <packaging>pom</packaging>
-  <version>4.1.1-SNAPSHOT</version>
+  <version>4.1.1</version>
 
   <name>Tcases</name>
   <description>Generates test cases from system input space models</description>
@@ -116,6 +116,10 @@
       </plugins>
     </pluginManagement>
     <plugins>
+        <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
