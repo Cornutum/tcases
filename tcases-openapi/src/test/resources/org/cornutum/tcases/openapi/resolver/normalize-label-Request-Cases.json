@@ -549,10 +549,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -561,10 +561,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -623,10 +623,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -640,10 +640,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -736,10 +736,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -817,10 +817,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -997,10 +997,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1009,10 +1009,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1081,10 +1081,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1098,10 +1098,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1215,10 +1215,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1307,10 +1307,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1459,10 +1459,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1471,10 +1471,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1530,10 +1530,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1542,10 +1542,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1604,10 +1604,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1616,10 +1616,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1678,10 +1678,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1690,10 +1690,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1766,10 +1766,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1778,10 +1778,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1827,10 +1827,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1839,10 +1839,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1891,10 +1891,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1903,10 +1903,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1956,10 +1956,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -1968,10 +1968,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -2031,10 +2031,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "array",
                     "value": [
@@ -2043,10 +2043,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "array",
                     "value": [
@@ -2110,14 +2110,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": null,
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -2128,6 +2120,14 @@
                     ]
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -2186,17 +2186,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "null",
-                    "value": null
-                },
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -2207,6 +2196,17 @@
                     ]
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -2265,17 +2265,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "c"
-                },
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -2286,6 +2275,17 @@
                     ]
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "c"
+                },
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -2344,6 +2344,18 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -2363,18 +2375,6 @@
                     ]
                 },
                 "valid": false
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "array",
-                    "value": [
-                    ]
-                },
-                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -2433,6 +2433,14 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": null,
+                "valid": false
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -2443,14 +2451,6 @@
                     ]
                 },
                 "valid": true
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": null,
-                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -2509,6 +2509,17 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -2519,17 +2530,6 @@
                     ]
                 },
                 "valid": true
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "null",
-                    "value": null
-                },
-                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -2588,18 +2588,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "array",
-                    "value": [
-                    ]
-                },
-                "valid": true
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -2610,6 +2598,18 @@
                     "format": "int32"
                 },
                 "valid": false
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -2668,18 +2668,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "array",
-                    "value": [
-                    ]
-                },
-                "valid": true
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -2694,6 +2682,18 @@
                     ]
                 },
                 "valid": false
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                    ]
+                },
+                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -2752,10 +2752,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2764,10 +2764,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2799,10 +2799,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2825,10 +2825,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2888,10 +2888,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2904,10 +2904,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2947,10 +2947,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -2976,10 +2976,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3048,10 +3048,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3065,10 +3065,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3110,10 +3110,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3140,10 +3140,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3227,10 +3227,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3244,10 +3244,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3281,10 +3281,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3298,10 +3298,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3338,10 +3338,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3355,10 +3355,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3408,10 +3408,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3425,10 +3425,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3475,10 +3475,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3492,10 +3492,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3543,10 +3543,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3560,10 +3560,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3605,10 +3605,10 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
+                "name": "exploded",
                 "in": "path",
                 "style": "label",
-                "explode": false,
+                "explode": true,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3622,10 +3622,10 @@
                 "valid": true
             },
             {
-                "name": "exploded",
+                "name": "nullable",
                 "in": "path",
                 "style": "label",
-                "explode": true,
+                "explode": false,
                 "data": {
                     "type": "object",
                     "value": {
@@ -3668,14 +3668,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": null,
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -3691,6 +3683,14 @@
                     }
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": null,
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -3722,17 +3722,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "null",
-                    "value": null
-                },
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -3748,6 +3737,17 @@
                     }
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -3779,17 +3779,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "vIQT;"
-                },
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -3805,6 +3794,17 @@
                     }
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "vIQT;"
+                },
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -3836,22 +3836,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "number",
-                            "value": 520.4
-                        }
-                    }
-                },
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -3867,6 +3851,22 @@
                     }
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "number",
+                            "value": 520.4
+                        }
+                    }
+                },
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -3898,23 +3898,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "integer",
-                            "value": -1,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": false
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -3930,6 +3913,23 @@
                     }
                 },
                 "valid": true
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": -1,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -3961,6 +3961,23 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -3981,23 +3998,6 @@
                     }
                 },
                 "valid": false
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -4029,6 +4029,23 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -4049,23 +4066,6 @@
                     }
                 },
                 "valid": false
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -4097,6 +4097,14 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": null,
+                "valid": false
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -4112,14 +4120,6 @@
                     }
                 },
                 "valid": true
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": null,
-                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -4151,6 +4151,17 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "null",
+                    "value": null
+                },
+                "valid": false
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -4166,17 +4177,6 @@
                     }
                 },
                 "valid": true
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "null",
-                    "value": null
-                },
-                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -4208,6 +4208,17 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "boolean",
+                    "value": true
+                },
+                "valid": false
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -4223,17 +4234,6 @@
                     }
                 },
                 "valid": true
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "boolean",
-                    "value": true
-                },
-                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -4265,6 +4265,22 @@
         "operation": "GET",
         "parameters": [
             {
+                "name": "exploded",
+                "in": "path",
+                "style": "label",
+                "explode": true,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "boolean",
+                            "value": true
+                        }
+                    }
+                },
+                "valid": false
+            },
+            {
                 "name": "nullable",
                 "in": "path",
                 "style": "label",
@@ -4280,22 +4296,6 @@
                     }
                 },
                 "valid": true
-            },
-            {
-                "name": "exploded",
-                "in": "path",
-                "style": "label",
-                "explode": true,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "boolean",
-                            "value": true
-                        }
-                    }
-                },
-                "valid": false
             },
             {
                 "name": "nonEmpty",
@@ -4327,23 +4327,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": true
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -4359,6 +4342,23 @@
                     }
                 },
                 "valid": false
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -4390,23 +4390,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": true
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -4426,6 +4409,23 @@
                     }
                 },
                 "valid": false
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
             },
             {
                 "name": "nonEmpty",
@@ -4457,23 +4457,6 @@
         "operation": "GET",
         "parameters": [
             {
-                "name": "nullable",
-                "in": "path",
-                "style": "label",
-                "explode": false,
-                "data": {
-                    "type": "object",
-                    "value": {
-                        "width": {
-                            "type": "integer",
-                            "value": 0,
-                            "format": "int32"
-                        }
-                    }
-                },
-                "valid": true
-            },
-            {
                 "name": "exploded",
                 "in": "path",
                 "style": "label",
@@ -4494,6 +4477,23 @@
                     }
                 },
                 "valid": false
+            },
+            {
+                "name": "nullable",
+                "in": "path",
+                "style": "label",
+                "explode": false,
+                "data": {
+                    "type": "object",
+                    "value": {
+                        "width": {
+                            "type": "integer",
+                            "value": 0,
+                            "format": "int32"
+                        }
+                    }
+                },
+                "valid": true
             },
             {
                 "name": "nonEmpty",
