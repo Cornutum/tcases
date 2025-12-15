@@ -18,6 +18,7 @@ import org.apache.commons.text.WordUtils;
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.js.Provider;
 import static org.cornutum.regexpgen.Bounds.bounded;
+import static org.cornutum.regexpgen.RegExpGenBuilder.generateRegExp;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -1042,7 +1043,7 @@ public final class SchemaUtils
       .map( pattern -> {
         try
           {
-          return Provider.forEcmaScript().matching( pattern);
+          return generateRegExp( Provider.forEcmaScript()).matching( pattern);
           }
         catch( Exception e)
           {

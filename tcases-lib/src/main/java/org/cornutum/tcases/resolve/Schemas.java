@@ -17,6 +17,7 @@ import static org.cornutum.tcases.util.CollectionUtils.toOrderedSet;
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.js.Provider;
 import static org.cornutum.regexpgen.Bounds.bounded;
+import static org.cornutum.regexpgen.RegExpGenBuilder.generateRegExp;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -408,7 +409,7 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
     {
     return
       Optional.ofNullable( schema.getPattern())
-      .flatMap( pattern -> Optional.ofNullable( maxPatternMatch( Provider.forEcmaScript().matching( pattern))))
+      .flatMap( pattern -> Optional.ofNullable( maxPatternMatch( generateRegExp( Provider.forEcmaScript()).matching( pattern))))
       .orElse( null);
     }
 
@@ -427,7 +428,7 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
     {
     return
       Optional.ofNullable( schema.getPattern())
-      .map( pattern -> minPatternMatch( Provider.forEcmaScript().matching( pattern)))
+      .map( pattern -> minPatternMatch( generateRegExp( Provider.forEcmaScript()).matching( pattern)))
       .orElse( null);
     }
 
@@ -459,7 +460,7 @@ public class Schemas extends ContextHandler<ExecutionNotifier<?>>
     {
     try
       {
-      Provider.forEcmaScript().matching( pattern);
+      generateRegExp( Provider.forEcmaScript()).matching( pattern);
       return true;
       }
     catch( IllegalArgumentException e)

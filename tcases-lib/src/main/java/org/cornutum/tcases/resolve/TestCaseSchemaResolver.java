@@ -17,6 +17,8 @@ import static org.cornutum.tcases.util.CollectionUtils.toStream;
 
 import org.cornutum.regexpgen.RegExpGen;
 import org.cornutum.regexpgen.js.Provider;
+import static org.cornutum.regexpgen.RegExpGenBuilder.generateRegExp;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -617,7 +619,7 @@ public class TestCaseSchemaResolver extends TestCaseResolver
           });
 
       Optional.ofNullable( schema.getPattern())
-        .flatMap( pattern -> Provider.forEcmaScript().notMatching( pattern))
+        .flatMap( pattern -> generateRegExp( Provider.forEcmaScript()).notMatching( pattern))
         .flatMap( notMatching -> withPattern( schema, notMatching))
         .ifPresent( wrongPattern -> {
           values.add(
