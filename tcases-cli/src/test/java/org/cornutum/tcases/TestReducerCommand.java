@@ -62,7 +62,7 @@ public class TestReducerCommand extends CommandTest
         "-f", function2,
         "-g", genFile.getName(),
         "-r", "0.5",
-        "-s", "8",
+        "-s", "16",
         inFile.getPath()
       };
     
@@ -284,7 +284,7 @@ public class TestReducerCommand extends CommandTest
       {
         "-f", function1,
         "-r", "0.5",
-        "-s", "8",
+        "-s", "16",
         new File( inFile.getParentFile(), "Reducer-whenNoFunctionGenerator-Input").getPath()
       };
     
@@ -559,7 +559,7 @@ public class TestReducerCommand extends CommandTest
       {
         "-f", function2,
         "-r", "0.5",
-        "-s", "8",
+        "-s", "16",
         "-t", "Reducer-whenBaseTests-Test.xml",
         inFile.getPath()
       };
