@@ -53,7 +53,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.version>3.9.4</maven.version>
-    <maven.plugin.version>3.6.0</maven.plugin.version>
+    <maven.plugin.version>3.15.2</maven.plugin.version>
   </properties>
 
   <dependencies>
@@ -138,12 +138,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.3</version>
+        <version>3.21.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.7</version>
+        <version>3.9.0</version>
       </plugin>
     </plugins>
   </build>
@@ -153,7 +153,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.7</version>
+        <version>3.9.0</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -170,7 +170,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>${maven.plugin.version}</version>
       </plugin>
     </plugins>
   </reporting>
