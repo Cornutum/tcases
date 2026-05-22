@@ -169,7 +169,7 @@ public class LongDomain extends NumberDomain<Long>
       .map( i -> originMultiple + i * multiple)
       .filter( i -> isNotExcluded( i, getExcluded()))
       .filter( i -> isNotMultipleOf( i, getNotMultipleOfs()))
-      .mapToObj( Long::new);
+      .mapToObj( Long::valueOf);
 
     return longs.map( this::dataValueOf);
     }

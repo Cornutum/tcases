@@ -32,7 +32,7 @@ public class MapBuilder<K,V>
     {
     try
       {
-      map_ = type.newInstance();
+      map_ = type.getDeclaredConstructor().newInstance();
       }
     catch( Exception e)
       {

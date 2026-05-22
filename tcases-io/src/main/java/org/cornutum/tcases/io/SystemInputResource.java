@@ -39,10 +39,23 @@ public class SystemInputResource extends Resource implements ISystemInputSource
   @Override
   public SystemInputDef getSystemInputDef()
     {
-    return
-      getType() == XML?
-      new SystemInputDocReader( openInput()).getSystemInputDef() :
-      new SystemInputJsonReader( openInput()).getSystemInputDef() ;
+    SystemInputDef systemInputDef;
+    if( getType() == XML)
+      {
+      try( SystemInputDocReader reader = new SystemInputDocReader( openInput()))
+        {
+        systemInputDef = reader.getSystemInputDef();
+        }
+      }
+    else
+      {
+      try( SystemInputJsonReader reader = new SystemInputJsonReader( openInput()))
+        {
+        systemInputDef = reader.getSystemInputDef();
+        }
+      }
+
+    return systemInputDef;
     }
 
   /**

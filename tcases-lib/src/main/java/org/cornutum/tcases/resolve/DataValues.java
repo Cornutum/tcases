@@ -10,6 +10,7 @@ package org.cornutum.tcases.resolve;
 import org.cornutum.tcases.util.ObjectUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -350,7 +351,7 @@ public final class DataValues
     {
     return
       Optional.ofNullable( value)
-      .map( decimal -> decimal.setScale( 0, BigDecimal.ROUND_FLOOR))
+      .map( decimal -> decimal.setScale( 0, RoundingMode.FLOOR))
       .orElse( null);
     }
 
@@ -361,7 +362,7 @@ public final class DataValues
     {
     return
       Optional.ofNullable( value)
-      .map( decimal -> decimal.setScale( 0, BigDecimal.ROUND_CEILING))
+      .map( decimal -> decimal.setScale( 0, RoundingMode.CEILING))
       .orElse( null);
     }
 

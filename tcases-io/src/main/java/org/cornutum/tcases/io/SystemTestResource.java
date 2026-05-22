@@ -39,10 +39,23 @@ public class SystemTestResource extends Resource implements ISystemTestSource
   @Override
   public SystemTestDef getSystemTestDef()
     {
-    return
-      getType() == XML?
-      new SystemTestDocReader( openInput()).getSystemTestDef() :
-      new SystemTestJsonReader( openInput()).getSystemTestDef();
+    SystemTestDef systemTestDef;
+    if( getType() == XML)
+      {
+      try( SystemTestDocReader reader = new SystemTestDocReader( openInput()))
+        {
+        systemTestDef = reader.getSystemTestDef();
+        }
+      }
+    else
+      {
+      try( SystemTestJsonReader reader = new SystemTestJsonReader( openInput()))
+        {
+        systemTestDef = reader.getSystemTestDef();
+        }
+      }
+
+    return systemTestDef;
     }
 
   /**

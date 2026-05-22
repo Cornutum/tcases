@@ -40,10 +40,23 @@ public class GeneratorSetResource extends Resource implements IGeneratorSetSourc
   @Override
   public IGeneratorSet getGeneratorSet()
     {
-    return
-      getType() == XML?
-      new GeneratorSetDocReader( openInput()).getGeneratorSet() :
-      new GeneratorSetJsonReader( openInput()).getGeneratorSet() ;
+    IGeneratorSet generatorSet;
+    if( getType() == XML)
+      {
+      try( GeneratorSetDocReader reader = new GeneratorSetDocReader( openInput()))
+        {
+        generatorSet = reader.getGeneratorSet();
+        }
+      }
+    else
+      {
+      try( GeneratorSetJsonReader reader = new GeneratorSetJsonReader( openInput()))
+        {
+        generatorSet = reader.getGeneratorSet();
+        }
+      }
+
+    return generatorSet;
     }
 
   /**

@@ -30,7 +30,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.io.IOUtils;
 import static io.swagger.v3.oas.models.parameters.Parameter.StyleEnum.*;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -199,7 +199,7 @@ public final class OpenApiUtils
       {
       try
         {
-        value = IOUtils.toString( new URL( externalUrl), "UTF-8");
+        value = IOUtils.toString( URI.create( externalUrl).toURL(), "UTF-8");
         }
       catch( Exception e)
         {

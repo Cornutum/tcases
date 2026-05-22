@@ -635,6 +635,7 @@ public class ApiMojo extends AbstractMojo
    *
    * @deprecated Replace with "onModellingCondition"
    */
+  @Deprecated
   @Parameter(property="onCondition",defaultValue="log")
   private String onCondition;
 

@@ -169,7 +169,7 @@ public class IntegerDomain extends NumberDomain<Integer>
       .map( i -> originMultiple + i * multiple)
       .filter( i -> isNotExcluded( i, getExcluded()))
       .filter( i -> isNotMultipleOf( i, getNotMultipleOfs()))
-      .mapToObj( Integer::new);
+      .mapToObj( Integer::valueOf);
 
     return integers.map( this::dataValueOf);
     }

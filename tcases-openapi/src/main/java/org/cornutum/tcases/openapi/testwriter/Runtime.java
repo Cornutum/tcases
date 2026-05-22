@@ -64,7 +64,7 @@ public final class Runtime
       .map( c -> {
         try
           {
-          return (TestCaseWriter) c.newInstance();
+          return (TestCaseWriter) c.getDeclaredConstructor().newInstance();
           }
         catch( Exception e)
           {
@@ -101,7 +101,7 @@ public final class Runtime
       .map( targetClass -> {
         try
           {
-          return (TestTarget) targetClass.newInstance();
+          return (TestTarget) targetClass.getDeclaredConstructor().newInstance();
           }
         catch( Exception e)
           {

@@ -23,7 +23,7 @@ import org.junit.Test;
 import static org.cornutum.hamcrest.Composites.*;
 import static org.hamcrest.MatcherAssert.*;
 
-import java.net.URL;
+import java.net.URI;
 
 /**
  * Runs tests for {@link SystemInputs} builder interfaces.
@@ -36,7 +36,7 @@ public class SystemInputBuilderTest
     // Given...
     SystemInputDef examplesExpected =
       systemInputResources_.readJson(
-        new URL( "http://www.cornutum.org/tcases/docs/examples/json/find-Input.json")
+        URI.create( "http://www.cornutum.org/tcases/docs/examples/json/find-Input.json").toURL()
         .openStream());
     
     // When...
