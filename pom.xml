@@ -64,6 +64,7 @@
             <encoding>UTF-8</encoding>
             <compilerArgument>-Xlint:all</compilerArgument>
             <compilerArgument>-Xlint:-processing</compilerArgument>
+            <compilerArgument>-Xlint:-options</compilerArgument>
           </configuration>
         </plugin>
         <plugin>

@@ -126,6 +126,8 @@
                   <configuration>
                       <name>build.year</name>
                       <pattern>yyyy</pattern>
+                      <locale>en_US</locale>
+                      <timeZone>GMT</timeZone>
                   </configuration>
               </execution>
           </executions>
