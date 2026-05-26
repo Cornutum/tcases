@@ -123,7 +123,7 @@
             <plugin>
                 <groupId>org.cornutum.tcases</groupId>
                 <artifactId>tcases-maven-plugin</artifactId>
-                <version>${tcases.maven.version}</version>
+                <version>${tcases.maven.version}</version><!--$NO-MVN-MAN-VER$-->
                 <executions>
                     <execution>
                         <id>std-test-defs</id>
