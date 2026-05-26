@@ -66,6 +66,7 @@ public class AbstractMojoTest
     return new File( PlexusTestCase.getBasedir(), "src/test/resources");
     }
 
+  @SuppressWarnings("deprecation")
   @Rule
   public MojoRule mojoHelper = new MojoRule();
   }
