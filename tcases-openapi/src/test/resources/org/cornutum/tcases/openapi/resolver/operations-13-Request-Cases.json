@@ -83,6 +83,10 @@
                     {
                         "type": "string",
                         "value": "hhlf~$]"
+                    },
+                    {
+                        "type": "string",
+                        "value": "`4"
                     }
                 ]
             },
@@ -106,16 +110,16 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "4'D{w"
+                    "value": "{wM*8*"
                 },
                 "valid": true
             }
         ],
         "body": {
-            "mediaType": "text/xml",
+            "mediaType": "application/json",
             "data": {
-                "type": "boolean",
-                "value": true
+                "type": "number",
+                "value": 533.4
             },
             "valid": false
         },
@@ -136,21 +140,9 @@
                 "style": "simple",
                 "explode": false,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "L3"
-                        },
-                        {
-                            "type": "string",
-                            "value": "IRa"
-                        },
-                        {
-                            "type": "string",
-                            "value": "8C(`Kg"
-                        }
-                    ]
+                    "type": "integer",
+                    "value": 105,
+                    "format": "int32"
                 },
                 "valid": true
             }

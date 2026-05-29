@@ -181,7 +181,7 @@ public class MyTestClassTest extends MyBaseClass {
         Response response =
             given()
                 .baseUri( forTestServer( "http://localhost:12306"))
-                .queryParam( "ids", "%lB,,iZ7s")
+                .queryParam( "ids", "%lB,")
             .when()
                 .request( "GET", "/posts")
             .then()
@@ -238,7 +238,7 @@ public class MyTestClassTest extends MyBaseClass {
         Response response =
             given()
                 .baseUri( forTestServer( "http://localhost:12306"))
-                .queryParam( "ids", "0|82|16|16")
+                .queryParam( "ids", "0|0|87|8")
             .when()
                 .request( "GET", "/posts")
             .then()

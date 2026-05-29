@@ -44,7 +44,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "B|A")
+                .cookie( "postId", "B|C")
             .when()
                 .request( "TRACE", "/posts")
             .then()
@@ -117,7 +117,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "568.0")
+                .cookie( "postId", "ftyqhpdtdbqf|-509|mwrtsmrqtiqkhvc|433|rizv|80.8")
             .when()
                 .request( "TRACE", "/posts")
             .then()
@@ -174,7 +174,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "|B")
+                .cookie( "postId", "|C")
             .when()
                 .request( "TRACE", "/posts")
             .then()
@@ -193,7 +193,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .cookie( "postId", "jLId'31*^UjExCZerfw#(S_b#m[(L&~c@x{Xp7Btyr+R+'p[jrH_o$X`LnQgI'mW?MxXRGcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.5ef?WOZ+>MHIUD-{?yH$5-DM3*T>hR%ct'(7EzCR]8|A")
+                .cookie( "postId", "jrH_o$X`LnQgI'mW?MxXRGcS[=P2R2jAx5z4OLaEDo=8cde$AvZR#F#0>Z[cld8Em_%vE!{(9$+z!(Ghc.{J[m^1HdT/7PKLdR0v:@srfapHf(c/l2s&<{QFg8oMlvF<0@dbS:.5ef?WOZ+>MHIUD-{?yH$5-DM3*T>hR%ct'(7EzCR]8D=vL#m4-h23+#VHsMG[K:u@iQR9D@$=:8GOlaBS5=h=(rixn|B")
             .when()
                 .request( "TRACE", "/posts")
             .then()
@@ -249,7 +249,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=597033979")
+                .pathParam( "attributes", ";approved=false;likes=222686173")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -323,7 +323,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";attributes=-441")
+                .pathParam( "attributes", ";attributes=true")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -342,7 +342,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";likes=1035843385")
+                .pathParam( "attributes", ";likes=279878075")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -361,7 +361,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved;likes=127128009")
+                .pathParam( "attributes", ";approved;likes=1006574698")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -380,7 +380,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=\"+DZYOH4;likes=222686173")
+                .pathParam( "attributes", ";approved=121;likes=832858988")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -437,7 +437,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=true")
+                .pathParam( "attributes", ";approved=false;likes=:.-g")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -475,7 +475,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;subject;likes=279878075")
+                .pathParam( "attributes", ";approved=false;subject;likes=141365157")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -494,7 +494,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;subject=~+:.-g:o)lz~^hL-;. o1\\Vc64a#.Sm!*Y`|qrPD^$*wXi2.a22Qkgt|f8T;#g33QP&F3Sq{<43[l#SP:C>1C~NW?G\\a _%Jkm?u2\"l\"H7*]q:f9@re;likes=859073676")
+                .pathParam( "attributes", ";approved=false;subject=;#g33QP&F3Sq{<43[;likes=19340462")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -513,7 +513,7 @@ public class OpenAPIRequestTestCasesTest extends BaseTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=776704486;wuf")
+                .pathParam( "attributes", ";approved=false;likes=70759329;yzpjpn=-744.5")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()

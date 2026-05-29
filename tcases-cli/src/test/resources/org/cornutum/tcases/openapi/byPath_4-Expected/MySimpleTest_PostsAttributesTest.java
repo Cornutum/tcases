@@ -43,7 +43,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=514682280")
+                .pathParam( "attributes", ";approved=false;likes=1033374122")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -117,7 +117,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";attributes")
+                .pathParam( "attributes", ";attributes=670")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -136,7 +136,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";likes=640659892")
+                .pathParam( "attributes", ";likes=240095113")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -155,7 +155,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved;likes=835347369")
+                .pathParam( "attributes", ";approved;likes=588204475")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -174,7 +174,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=ltgjsaarufjsntz,39.8,nmjvnsa,-388.5,asyxuquvohcwtz,true;likes=6787962")
+                .pathParam( "attributes", ";approved=0;likes=655969793")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -231,7 +231,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=-663.1")
+                .pathParam( "attributes", ";approved=false;likes=noxodj,]G8te^,q,/ZGRSe'")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -269,7 +269,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;subject;likes=187325925")
+                .pathParam( "attributes", ";approved=false;subject;likes=275507395")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -288,7 +288,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;subject=(/fQ+iXAv6[oToMT*B60a#-lu2U[ 6M~/]G8te^x?ev/ZGRSe'o_7G'lT6n:2 TGq64S?G55LA}?\"nCf4bt)Jda:O-1JP/r\\#*;DZkLr}5v=:[OgEJkwNsAWd#w{=acXgFE}K+}U5Hk5KT'maYikYsS{R$VAC2mS{:D/I~Sd\"%HcE.3j|/& #e2Ak5-H52vY6QA-FsF|~nyK9bCaxM.}DpZ%9,j].;likes=831591488")
+                .pathParam( "attributes", ";approved=false;subject=T6n:2 TGq64S?G55LA}?\"nCf4bt)Jda:O-1JP/r\\#*;DZkLr}5v=:[OgEJkwNsAWd#w{=acXgFE}K+}U5Hk5KT'maYikYsS{R$VAC2mS{:D/I~Sd\"%HcE.3j|/& #e2Ak5-H52vY6QA-FsF|~nyK9bCaxM.}DpZ%9,j;likes=179317882")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()
@@ -307,7 +307,7 @@ public class MySimpleTest_PostsAttributesTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "attributes", ";approved=false;likes=803777274;i")
+                .pathParam( "attributes", ";approved=false;likes=188710057;sd;ldwrnjti=701.0")
             .when()
                 .request( "TRACE", "/posts/{attributes}")
             .then()

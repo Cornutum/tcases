@@ -972,7 +972,7 @@ public class TestCaseSchemaResolverTest extends ResolverTest
         .name( "Var='anyLength'")
         .bind(
           VarBindingBuilder.with( "Var")
-          .value( "%S3eSa>*U@i*)d0:jHJn/!9bB&BQ;\"X'@~j:9,t^/]Ozajv\\ g:In'e!;wTghmrS<G>QC \\t/^BoHuHE]QIy#68oZ[$sHOIK_Ky_2@")
+          .value( "%S3eSa>*U@i*)d0:jHJn/!9bB&BQ;\"X'@~j:9,t^/]Ozajv\\ g:In'e!;wTghmrS<G>QC \\t/^BoHuHE]QIy#68oZ[$sHOIK_Ky_2@?A@;-g-yz%JGjP5Ys?CKRuGzHiS1>+.K7B8wF1\\./|YyRrSc,Ta`!|RH\\sWlNaT}IkDfdbJAkY5g!Mxc")
           .source( "anyLength")
           .build())
         .build())

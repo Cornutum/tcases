@@ -13,23 +13,19 @@
             "data": {
                 "type": "object",
                 "value": {
-                    "x": {
-                        "type": "array",
-                        "value": [
-                            {
-                                "type": "string",
-                                "value": "hhlf~$]"
-                            }
-                        ]
-                    },
-                    "wyxwjwlawartveh": {
+                    "xijwcjcjl": {
                         "type": "integer",
-                        "value": 105,
+                        "value": 908,
                         "format": "int32"
                     },
-                    "zh": {
+                    "wyxwjwla": {
+                        "type": "object",
+                        "value": {
+                        }
+                    },
+                    "tve": {
                         "type": "number",
-                        "value": 694.6
+                        "value": -1006.6
                     }
                 }
             },
@@ -76,11 +72,19 @@
         "path": "/operations",
         "operation": "POST",
         "body": {
-            "mediaType": "text/plain",
+            "mediaType": "application/x-www-form-urlencoded",
             "data": {
-                "type": "object",
-                "value": {
-                }
+                "type": "array",
+                "value": [
+                    {
+                        "type": "string",
+                        "value": "C(`"
+                    },
+                    {
+                        "type": "string",
+                        "value": "gUnbd:8"
+                    }
+                ]
             },
             "valid": false
         },
@@ -115,8 +119,17 @@
         "body": {
             "mediaType": "application/json",
             "data": {
-                "type": "boolean",
-                "value": true
+                "type": "array",
+                "value": [
+                    {
+                        "type": "string",
+                        "value": "uM}"
+                    },
+                    {
+                        "type": "string",
+                        "value": "-i+U~"
+                    }
+                ]
             },
             "valid": false
         },

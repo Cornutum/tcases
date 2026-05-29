@@ -89,18 +89,6 @@
                 "data": {
                     "type": "array",
                     "value": [
-                        {
-                            "type": "string",
-                            "value": "hlf~$]%`"
-                        },
-                        {
-                            "type": "string",
-                            "value": "'D{wM*8*"
-                        },
-                        {
-                            "type": "string",
-                            "value": "<L3%IR"
-                        }
                     ]
                 },
                 "valid": true
@@ -152,13 +140,9 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "C(`"
-                        }
-                    ]
+                    "type": "integer",
+                    "value": -857,
+                    "format": "int32"
                 },
                 "valid": true
             },
@@ -169,7 +153,7 @@
                 "explode": false,
                 "data": {
                     "type": "number",
-                    "value": 816303347454470714.5
+                    "value": 462053653971873847.0
                 },
                 "valid": true
             }
@@ -254,8 +238,9 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "integer",
+                    "value": 908,
+                    "format": "int32"
                 },
                 "valid": true
             },
@@ -288,8 +273,8 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "number",
-                    "value": -502.5
+                    "type": "string",
+                    "value": "4'D{w"
                 },
                 "valid": true
             },
@@ -322,8 +307,8 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "number",
-                    "value": 798.5
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": true
             },
@@ -356,8 +341,13 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "boolean",
-                    "value": true
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "b<L3%I"
+                        }
+                    ]
                 },
                 "valid": true
             },

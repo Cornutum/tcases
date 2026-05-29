@@ -19,7 +19,7 @@
                     "value": [
                         {
                             "type": "string",
-                            "value": "v%.7jH9FoM}8A4\\iZO@id@jcc~6;6Qb7-I5&(ZY]iQkm?#MgV\\<#Cj n,w X#vh>3<?\"6nf,,SF}oi^4(>d(fY)x0-uFb7"
+                            "value": "v%.7jH9FoM}8A4\\iZO@id@jcc~6;6Qb7-I5&(ZY]iQkm?#MgV\\<#Cj n,w X#"
                         }
                     ]
                 },
@@ -107,34 +107,12 @@
             {
                 "name": "param0",
                 "in": "query",
-                "style": "pipeDelimited",
+                "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "object",
-                    "value": {
-                        "izmfncghyfhgtxc": {
-                            "type": "boolean",
-                            "value": true
-                        },
-                        "xsbwonebwihjr": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "g"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "ml6)@"
-                                }
-                            ]
-                        },
-                        "bmg": {
-                            "type": "array",
-                            "value": [
-                            ]
-                        }
-                    }
+                    "type": "integer",
+                    "value": 810,
+                    "format": "int32"
                 },
                 "valid": false
             }
@@ -184,11 +162,11 @@
                     "value": [
                         {
                             "type": "string",
-                            "value": "o&,KuFqaY#)fH'4K;9r=f!v ~Uyi(vAP}GZw'L$FU5Pv(@H[!6/V{#@5osAGFb0`OmlxX_-C4ux%faYmh77-9/2LDD$f-F>)T4H}>p^9"
+                            "value": "3<?\"6nf,,SF}oi^4(>d(fY)x0-uFb7UwSh[(=u`&gX-S4k=B~DIB1(xCvSjHA{!<Ssg ml6)@v_ffk"
                         },
                         {
                             "type": "string",
-                            "value": "o&,KuFqaY#)fH'4K;9r=f!v ~Uyi(vAP}GZw'L$FU5Pv(@H[!6/V{#@5osAGFb0`OmlxX_-C4ux%faYmh77-9/2LDD$f-F>)T4H}>p^9"
+                            "value": "3<?\"6nf,,SF}oi^4(>d(fY)x0-uFb7UwSh[(=u`&gX-S4k=B~DIB1(xCvSjHA{!<Ssg ml6)@v_ffk"
                         }
                     ]
                 },
@@ -243,13 +221,8 @@
                     "type": "array",
                     "value": [
                         {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "]t\\~zMF"
-                                }
-                            ]
+                            "type": "boolean",
+                            "value": true
                         }
                     ]
                 },

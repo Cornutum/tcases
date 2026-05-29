@@ -37,23 +37,19 @@
             "data": {
                 "type": "object",
                 "value": {
-                    "x": {
-                        "type": "array",
-                        "value": [
-                            {
-                                "type": "string",
-                                "value": "hhlf~$]"
-                            }
-                        ]
-                    },
-                    "wyxwjwlawartveh": {
+                    "xijwcjcjl": {
                         "type": "integer",
-                        "value": 105,
+                        "value": 908,
                         "format": "int32"
                     },
-                    "zh": {
+                    "wyxwjwla": {
+                        "type": "object",
+                        "value": {
+                        }
+                    },
+                    "tve": {
                         "type": "number",
-                        "value": 694.6
+                        "value": -1006.6
                     }
                 }
             },
@@ -189,9 +185,17 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "object",
-                    "value": {
-                    }
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "pne"
+                        },
+                        {
+                            "type": "string",
+                            "value": "]0nW0v+"
+                        }
+                    ]
                 },
                 "valid": false
             },
@@ -303,13 +307,9 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "object",
-                    "value": {
-                        "l": {
-                            "type": "boolean",
-                            "value": true
-                        }
-                    }
+                    "type": "integer",
+                    "value": 115,
+                    "format": "int32"
                 },
                 "valid": false
             }
@@ -350,10 +350,10 @@
             }
         ],
         "body": {
-            "mediaType": "text/xml",
+            "mediaType": "text/plain",
             "data": {
-                "type": "number",
-                "value": 798.5
+                "type": "boolean",
+                "value": true
             },
             "valid": false
         },
@@ -430,17 +430,8 @@
         "body": {
             "mediaType": "application/json",
             "data": {
-                "type": "array",
-                "value": [
-                    {
-                        "type": "string",
-                        "value": "}4-"
-                    },
-                    {
-                        "type": "string",
-                        "value": "+U~"
-                    }
-                ]
+                "type": "boolean",
+                "value": true
             },
             "valid": false
         },

@@ -104,7 +104,7 @@ public class MySimpleTest_PostUseridApprovedTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "approved", ".0")
-                .pathParam( "userId", ".248.1")
+                .pathParam( "userId", ".-72.0")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")
             .then()
@@ -203,7 +203,7 @@ public class MySimpleTest_PostUseridApprovedTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "approved", ".")
+                .pathParam( "approved", ".-782.0")
                 .pathParam( "userId", ".0")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")
@@ -223,7 +223,7 @@ public class MySimpleTest_PostUseridApprovedTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "approved", ".925787165")
+                .pathParam( "approved", ".557495789")
                 .pathParam( "userId", ".0")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")

@@ -79,7 +79,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": ">#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+vSzABaBn'*TqsjaV#]X-ST`V}(1/*8V-S%cq{VHyTpYF/IOaB'"
+                    "value": ">#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+vSzABaBn'*TqsjaV#"
                 },
                 "valid": true
             }
@@ -145,8 +145,9 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": 190.9
+                    "type": "object",
+                    "value": {
+                    }
                 },
                 "valid": false
             }

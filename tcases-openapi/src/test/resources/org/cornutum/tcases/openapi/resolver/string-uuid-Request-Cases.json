@@ -146,18 +146,6 @@
                 "data": {
                     "type": "array",
                     "value": [
-                        {
-                            "type": "string",
-                            "value": "*b<L"
-                        },
-                        {
-                            "type": "string",
-                            "value": "%IRa|8C("
-                        },
-                        {
-                            "type": "string",
-                            "value": "K"
-                        }
                     ]
                 },
                 "valid": false
@@ -169,7 +157,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "904cb817-9f53-4322-9aa9-db4572347b08",
+                    "value": "1d877288-949c-400c-b2f1-add0deb86798",
                     "format": "uuid"
                 },
                 "valid": true
@@ -181,7 +169,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "6eb9592f-5fd3-4d45-b386-30caa6a76021",
+                    "value": "d2e331f2-cc28-41e4-9f3c-0bce94121398",
                     "format": "uuid"
                 },
                 "valid": true
@@ -205,7 +193,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "8f346e87-de4a-47a3-8aef-33417061445",
+                    "value": "031fc17c-fd62-4217-a6a5-d473d3bba0f",
                     "format": "uuid"
                 },
                 "valid": false
@@ -217,7 +205,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "856c9597-b19a-49ab-b7ba-0f21a7d52400",
+                    "value": "46bd6875-b796-4f20-8110-70a164d791e2",
                     "format": "uuid"
                 },
                 "valid": true
@@ -229,7 +217,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "cc1f88b9-d012-40e8-9956-ecda550839ac",
+                    "value": "904cb817-9f53-4322-9aa9-db4572347b08",
                     "format": "uuid"
                 },
                 "valid": true
@@ -253,7 +241,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "0a4b3b09-8c3d-43a7-b16c-ad52cb53e4680",
+                    "value": "6eb9592f-5fd3-4d45-b386-30caa6a760210",
                     "format": "uuid"
                 },
                 "valid": false
@@ -265,7 +253,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "987711e5-c0e5-41b3-8d3c-bca1fafbd7bc",
+                    "value": "8f346e87-de4a-47a3-8aef-334170614453",
                     "format": "uuid"
                 },
                 "valid": true
@@ -277,7 +265,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "41eef397-46cc-472f-a817-d9b005236ae2",
+                    "value": "856c9597-b19a-49ab-b7ba-0f21a7d52400",
                     "format": "uuid"
                 },
                 "valid": true
@@ -301,7 +289,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "48d285d4-adc0-454c-909c-9fb011f38e05",
+                    "value": "cc1f88b9-d012-40e8-9956-ecda550839ac",
                     "format": "uuid"
                 },
                 "valid": true
@@ -324,7 +312,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "af683f5b-2811-4637-899c-ffd45f115a94",
+                    "value": "0a4b3b09-8c3d-43a7-b16c-ad52cb53e468",
                     "format": "uuid"
                 },
                 "valid": true
@@ -348,7 +336,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "b60f60fd-c885-4362-b1c3-a69f9daebbb4",
+                    "value": "987711e5-c0e5-41b3-8d3c-bca1fafbd7bc",
                     "format": "uuid"
                 },
                 "valid": true
@@ -359,13 +347,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "-HZ"
-                        }
-                    ]
+                    "type": "number",
+                    "value": -230.6
                 },
                 "valid": false
             },
@@ -376,7 +359,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "218bdb8f-7570-4b25-a6f6-b65047176dd6",
+                    "value": "05236ae2-48d2-45d4-adc0-354cd09c9fb0",
                     "format": "uuid"
                 },
                 "valid": true
@@ -400,7 +383,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "ed919f2d-012c-4502-823c-fce05b504a93",
+                    "value": "11f38e05-af68-4f5b-a811-c637499cffd4",
                     "format": "uuid"
                 },
                 "valid": true
@@ -412,7 +395,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "f72e5ee9-c6c1-42ea-9166-1a7a5a3d889",
+                    "value": "5f115a94-b60f-40fd-8885-536271c3a69",
                     "format": "uuid"
                 },
                 "valid": false
@@ -424,7 +407,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "fc883c7b-3f08-448b-a73c-2748bc2a4e31",
+                    "value": "9daebbb4-a1aa-4980-ad5a-585d24797586",
                     "format": "uuid"
                 },
                 "valid": true
@@ -448,7 +431,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "acaa1b65-8e89-47c1-b87d-085c3f88d703",
+                    "value": "78c88d19-be85-400a-baee-ad69218bdb8f",
                     "format": "uuid"
                 },
                 "valid": true
@@ -460,7 +443,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "8ea750d1-8d10-4790-96e6-eb5b1e8ecc180",
+                    "value": "75703b25-a6f6-4650-8717-6dd6ed919f2d0",
                     "format": "uuid"
                 },
                 "valid": false
@@ -472,7 +455,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "20abbf05-2273-47a8-b8d1-77c583816339",
+                    "value": "012c9502-c23c-4ce0-9b50-4a93f72e5ee9",
                     "format": "uuid"
                 },
                 "valid": true
@@ -496,7 +479,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "41567669-d62d-4a43-bc67-4197394ced89",
+                    "value": "c6c102ea-1166-4a7a-9a3d-8893fc883c7b",
                     "format": "uuid"
                 },
                 "valid": true
@@ -508,7 +491,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "d30ec4b5-a8a4-448a-aeb9-6194a55b670d",
+                    "value": "3f08748b-273c-4748-bc2a-4e31acaa1b65",
                     "format": "uuid"
                 },
                 "valid": true
@@ -543,7 +526,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "9c25952a-1f1d-4a6c-8a2e-d3d2f6fad741",
+                    "value": "8e8977c1-787d-485c-bf88-d7038ea750d1",
                     "format": "uuid"
                 },
                 "valid": true
@@ -555,7 +538,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "6cf6bf5a-9ec5-42b9-bf18-d5e79b9cd974",
+                    "value": "8d10f790-d6e6-4b5b-9e8e-cc1820abbf05",
                     "format": "uuid"
                 },
                 "valid": true
@@ -590,7 +573,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "fb5d8b62-f57a-4bd5-b5c6-0c9d36655850",
+                    "value": "38d177c5-8381-4339-8156-7669d62d3a43",
                     "format": "uuid"
                 },
                 "valid": true
@@ -602,7 +585,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "51556e6b-112d-4d22-8e98-6f6cc952467c",
+                    "value": "bc674197-394c-4d89-930e-c4b5a8a4b48a",
                     "format": "uuid"
                 },
                 "valid": true
@@ -614,7 +597,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "157190e9-b7fb-4223-8816-151c9e71746",
+                    "value": "eeb96194-a55b-470d-9c25-952a1f1d3a6",
                     "format": "uuid"
                 },
                 "valid": false
@@ -638,7 +621,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "675118fe-9076-4ed3-99bb-a5c297c51cd1",
+                    "value": "4a2ed3d2-f6fa-4741-acf6-bf5a9ec592b9",
                     "format": "uuid"
                 },
                 "valid": true
@@ -650,7 +633,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "aa66c951-8c78-479d-b6f9-b52fb70597b8",
+                    "value": "ff18d5e7-9b9c-4974-8566-419efb5d8b62",
                     "format": "uuid"
                 },
                 "valid": true
@@ -662,7 +645,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "562c10a0-2aac-4ba8-8ea4-968d058450da0",
+                    "value": "f57a2bd5-f5c6-4c9d-b665-585051556e6b0",
                     "format": "uuid"
                 },
                 "valid": false

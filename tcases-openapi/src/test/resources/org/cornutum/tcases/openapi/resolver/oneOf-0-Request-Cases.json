@@ -147,6 +147,15 @@
                 "data": {
                     "type": "object",
                     "value": {
+                        "ysnac": {
+                            "type": "integer",
+                            "value": 918,
+                            "format": "int32"
+                        },
+                        "xxym": {
+                            "type": "number",
+                            "value": -564.9
+                        }
                     }
                 },
                 "valid": false
@@ -170,7 +179,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "]f7qH[r3.G"
+                    "value": "7R#?y[aaJ#"
                 },
                 "valid": false
             }
@@ -193,7 +202,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "BX"
+                    "value": "=u"
                 },
                 "valid": false
             }

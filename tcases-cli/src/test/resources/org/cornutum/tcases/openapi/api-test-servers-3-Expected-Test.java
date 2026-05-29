@@ -170,7 +170,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/root"))
-                .queryParam( "id", "564115328")
+                .queryParam( "id", "1007528042")
             .when()
                 .request( "DELETE", "/servers/op")
             .then()
@@ -207,7 +207,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/root"))
-                .queryParam( "id", "true")
+                .queryParam( "id", "")
             .when()
                 .request( "DELETE", "/servers/op")
             .then()
@@ -280,7 +280,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-                .queryParam( "id", "679410555")
+                .queryParam( "id", "753657235")
             .when()
                 .request( "GET", "/servers/op")
             .then()
@@ -317,7 +317,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-                .queryParam( "id", "-374.6")
+                .queryParam( "id", ";M:kf3")
             .when()
                 .request( "GET", "/servers/op")
             .then()
@@ -390,7 +390,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-                .queryParam( "id", "753657235")
+                .queryParam( "id", "647110248")
             .when()
                 .request( "GET", "/servers/op/path")
             .then()
@@ -427,7 +427,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/op"))
-                .queryParam( "id", ";M:kf3")
+                .queryParam( "id", "V2\".")
             .when()
                 .request( "GET", "/servers/op/path")
             .then()
@@ -537,7 +537,7 @@ public class ApiTestServers_3_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/prod/path"))
-                .queryParam( "id", "")
+                .queryParam( "id", "T TWg")
             .when()
                 .request( "GET", "/servers/path")
             .then()

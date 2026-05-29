@@ -146,14 +146,9 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "lwyxwj": {
-                            "type": "integer",
-                            "value": 1014,
-                            "format": "int32"
-                        },
-                        "wartvehglmzhv": {
-                            "type": "number",
-                            "value": 995.8
+                        "lwyxw": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -166,7 +161,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-09-13",
+                    "value": "2026-11-05",
                     "format": "date"
                 },
                 "valid": true
@@ -178,7 +173,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-07-11",
+                    "value": "2026-03-15",
                     "format": "date"
                 },
                 "valid": true
@@ -202,7 +197,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-12-2",
+                    "value": "2026-12-0",
                     "format": "date"
                 },
                 "valid": false
@@ -214,7 +209,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-11-28",
+                    "value": "2026-03-18",
                     "format": "date"
                 },
                 "valid": true
@@ -226,7 +221,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-12-08",
+                    "value": "2025-08-12",
                     "format": "date"
                 },
                 "valid": true
@@ -250,7 +245,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-10-140",
+                    "value": "2026-01-130",
                     "format": "date"
                 },
                 "valid": false
@@ -262,7 +257,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-04-10",
+                    "value": "2025-09-09",
                     "format": "date"
                 },
                 "valid": true
@@ -274,7 +269,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-07-18",
+                    "value": "2026-03-04",
                     "format": "date"
                 },
                 "valid": true
@@ -298,7 +293,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-11-15",
+                    "value": "2025-12-19",
                     "format": "date"
                 },
                 "valid": true
@@ -321,7 +316,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-06-20",
+                    "value": "2026-06-29",
                     "format": "date"
                 },
                 "valid": true
@@ -345,7 +340,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-08-27",
+                    "value": "2027-01-20",
                     "format": "date"
                 },
                 "valid": true
@@ -356,13 +351,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "^H"
-                        }
-                    ]
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": false
             },
@@ -373,7 +363,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-01-31",
+                    "value": "2027-12-24",
                     "format": "date"
                 },
                 "valid": true
@@ -397,7 +387,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-07-22",
+                    "value": "2025-11-28",
                     "format": "date"
                 },
                 "valid": true
@@ -409,7 +399,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-09-2",
+                    "value": "2027-12-0",
                     "format": "date"
                 },
                 "valid": false
@@ -421,7 +411,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-10-24",
+                    "value": "2027-10-14",
                     "format": "date"
                 },
                 "valid": true
@@ -445,7 +435,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-08-23",
+                    "value": "2026-04-10",
                     "format": "date"
                 },
                 "valid": true
@@ -457,7 +447,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-06-140",
+                    "value": "2026-07-180",
                     "format": "date"
                 },
                 "valid": false
@@ -469,7 +459,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-07-21",
+                    "value": "2027-11-15",
                     "format": "date"
                 },
                 "valid": true
@@ -493,7 +483,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-08-21",
+                    "value": "2025-06-20",
                     "format": "date"
                 },
                 "valid": true
@@ -505,7 +495,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-02-24",
+                    "value": "2025-08-27",
                     "format": "date"
                 },
                 "valid": true
@@ -527,6 +517,110 @@
     {
         "id": 11,
         "name": "none.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Date",
+        "path": "/date",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2026-06-02",
+                    "format": "date"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2026-01-20",
+                    "format": "date"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": ".\\<"
+                        },
+                        {
+                            "type": "string",
+                            "value": ")^dq%k"
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Type=Not string"
+    },
+    {
+        "id": 12,
+        "name": "none.Value.Length='9'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Date",
+        "path": "/date",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2027-07-21",
+                    "format": "date"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2025-08-21",
+                    "format": "date"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2027-02-2",
+                    "format": "date"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Value.Length=9"
+    },
+    {
+        "id": 13,
+        "name": "none.Value.Length='11'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date",
@@ -563,103 +657,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": -430.3
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "none.Type=Not string"
-    },
-    {
-        "id": 12,
-        "name": "none.Value.Length='9'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Date",
-        "path": "/date",
-        "operation": "GET",
-        "parameters": [
-            {
-                "name": "within",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
                     "type": "string",
-                    "value": "2027-06-27",
-                    "format": "date"
-                },
-                "valid": true
-            },
-            {
-                "name": "outside",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2025-11-01",
-                    "format": "date"
-                },
-                "valid": true
-            },
-            {
-                "name": "none",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2027-04-1",
-                    "format": "date"
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "none.Value.Length=9"
-    },
-    {
-        "id": 13,
-        "name": "none.Value.Length='11'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Date",
-        "path": "/date",
-        "operation": "GET",
-        "parameters": [
-            {
-                "name": "within",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2027-06-27",
-                    "format": "date"
-                },
-                "valid": true
-            },
-            {
-                "name": "outside",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2026-06-26",
-                    "format": "date"
-                },
-                "valid": true
-            },
-            {
-                "name": "none",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2025-12-020",
+                    "value": "2025-12-270",
                     "format": "date"
                 },
                 "valid": false

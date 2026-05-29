@@ -147,23 +147,9 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "llinyhozb": {
-                            "type": "integer",
-                            "value": -595,
-                            "format": "int32"
-                        },
-                        "xblbqey": {
-                            "type": "number",
-                            "value": 478.4
-                        },
-                        "mczosccgaahwfei": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "Yu$s]/H"
-                                }
-                            ]
+                        "llinyhoz": {
+                            "type": "string",
+                            "value": "b&1a"
                         }
                     }
                 },
@@ -188,7 +174,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "fv"
+                    "value": "vN"
                 },
                 "valid": false
             }
@@ -211,7 +197,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "4"
+                    "value": "0"
                 },
                 "valid": false
             }

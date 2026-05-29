@@ -22,17 +22,18 @@
                             "value": -286487905,
                             "format": "int32"
                         },
-                        "ijwcjcjlymlwy": {
-                            "type": "string",
-                            "value": "{wM*8*"
+                        "ijwcjcjlyml": {
+                            "type": "integer",
+                            "value": -707,
+                            "format": "int32"
                         },
-                        "tvehglmzhvriwg": {
+                        "wjw": {
                             "type": "boolean",
                             "value": true
                         },
-                        "flrbh": {
-                            "type": "string",
-                            "value": "t\\uM"
+                        "wartvehglmzhv": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -87,21 +88,16 @@
                     "value": {
                         "myInteger": {
                             "type": "integer",
-                            "value": 277339484,
+                            "value": 280496162,
                             "format": "int32"
                         },
-                        "cqwncerecohw": {
-                            "type": "string",
-                            "value": "<S)^d"
-                        },
-                        "sybnoo": {
-                            "type": "integer",
-                            "value": 439,
-                            "format": "int32"
-                        },
-                        "mofnig": {
+                        "n": {
                             "type": "boolean",
                             "value": true
+                        },
+                        "lrb": {
+                            "type": "number",
+                            "value": -960.1
                         }
                     }
                 },
@@ -167,8 +163,8 @@
                 "style": "label",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": -951.5
+                    "type": "string",
+                    "value": "uM}"
                 },
                 "valid": false
             }
@@ -247,14 +243,6 @@
                         "myInteger": {
                             "type": "array",
                             "value": [
-                                {
-                                    "type": "string",
-                                    "value": "{<h}W\"Sk"
-                                },
-                                {
-                                    "type": "string",
-                                    "value": "%-L"
-                                }
                             ]
                         }
                     }

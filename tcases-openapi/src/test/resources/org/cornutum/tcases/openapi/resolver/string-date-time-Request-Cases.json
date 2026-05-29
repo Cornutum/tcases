@@ -146,14 +146,9 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "lwyxwj": {
-                            "type": "integer",
-                            "value": 1014,
-                            "format": "int32"
-                        },
-                        "wartvehglmzhv": {
-                            "type": "number",
-                            "value": 995.8
+                        "lwyxw": {
+                            "type": "boolean",
+                            "value": true
                         }
                     }
                 },
@@ -166,7 +161,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-01-16T11:55:13.895-06:00",
+                    "value": "2027-10-15T00:24:57.596-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -178,7 +173,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-09-27T08:18:22.053-05:00",
+                    "value": "2025-04-30T00:50:29.871-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -202,7 +197,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-11-04T08:55:36.138-06:0",
+                    "value": "2026-12-01T08:24:10.082-06:0",
                     "format": "date-time"
                 },
                 "valid": false
@@ -214,7 +209,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-03-22T06:07:30.837-05:00",
+                    "value": "2025-10-15T14:13:22.227-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -226,7 +221,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-05-17T02:05:26.273-05:00",
+                    "value": "2026-09-07T22:09:35.670-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -250,7 +245,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-03-25T14:45:06.783-05:000",
+                    "value": "2027-06-04T06:41:46.543-05:000",
                     "format": "date-time"
                 },
                 "valid": false
@@ -262,7 +257,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-12-19T22:19:09.095-06:00",
+                    "value": "2025-11-18T10:23:43.041-06:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -274,7 +269,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-01-09T14:17:28.090-06:00",
+                    "value": "2027-02-18T01:24:57.608-06:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -298,7 +293,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-01-27T09:26:30.423-06:00",
+                    "value": "2026-06-28T22:19:02.653-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -321,7 +316,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-10-09T00:34:09.970-05:00",
+                    "value": "2027-06-07T13:40:24.447-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -345,7 +340,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-09-01T19:10:19.766-05:00",
+                    "value": "2027-09-27T07:52:16.933-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -356,13 +351,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "array",
-                    "value": [
-                        {
-                            "type": "string",
-                            "value": "^H"
-                        }
-                    ]
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": false
             },
@@ -373,7 +363,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-02-07T15:38:12.863-06:00",
+                    "value": "2025-11-04T08:55:36.138-06:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -397,7 +387,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-04-08T17:56:37.088-05:00",
+                    "value": "2026-03-22T06:07:30.837-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -409,7 +399,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-07-26T16:51:28.531-05:0",
+                    "value": "2026-05-17T02:05:26.273-05:0",
                     "format": "date-time"
                 },
                 "valid": false
@@ -421,7 +411,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-12-30T09:09:10.672-06:00",
+                    "value": "2026-03-25T14:45:06.783-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -445,7 +435,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2025-01-11T10:43:17.568-06:00",
+                    "value": "2026-12-19T22:19:09.095-06:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -457,7 +447,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-02-02T11:53:12.447-06:000",
+                    "value": "2025-01-09T14:17:28.090-06:000",
                     "format": "date-time"
                 },
                 "valid": false
@@ -469,7 +459,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-06-03T21:11:55.733-05:00",
+                    "value": "2026-01-27T09:26:30.423-06:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -493,7 +483,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2027-06-30T04:57:42.529-05:00",
+                    "value": "2026-10-09T00:34:09.970-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -505,7 +495,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "2026-12-31T06:20:51.924-06:00",
+                    "value": "2026-09-01T19:10:19.766-05:00",
                     "format": "date-time"
                 },
                 "valid": true
@@ -527,6 +517,110 @@
     {
         "id": 11,
         "name": "none.Type='Not string'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Date-Time",
+        "path": "/date-time",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2025-05-07T23:14:40.932-05:00",
+                    "format": "date-time"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2027-07-24T06:37:57.325-05:00",
+                    "format": "date-time"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": ".\\<"
+                        },
+                        {
+                            "type": "string",
+                            "value": ")^dq%k"
+                        }
+                    ]
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Type=Not string"
+    },
+    {
+        "id": 12,
+        "name": "none.Value.Length='28'",
+        "server": "/",
+        "version": "0.0.0",
+        "api": "Date-Time",
+        "path": "/date-time",
+        "operation": "GET",
+        "parameters": [
+            {
+                "name": "within",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2027-06-03T21:11:55.733-05:00",
+                    "format": "date-time"
+                },
+                "valid": true
+            },
+            {
+                "name": "outside",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2027-06-30T04:57:42.529-05:00",
+                    "format": "date-time"
+                },
+                "valid": true
+            },
+            {
+                "name": "none",
+                "in": "query",
+                "style": "form",
+                "explode": false,
+                "data": {
+                    "type": "string",
+                    "value": "2026-12-31T06:20:51.924-06:0",
+                    "format": "date-time"
+                },
+                "valid": false
+            }
+        ],
+        "invalidInput": "none.Value.Length=28"
+    },
+    {
+        "id": 13,
+        "name": "none.Value.Length='30'",
         "server": "/",
         "version": "0.0.0",
         "api": "Date-Time",
@@ -563,103 +657,8 @@
                 "style": "form",
                 "explode": false,
                 "data": {
-                    "type": "number",
-                    "value": -430.3
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "none.Type=Not string"
-    },
-    {
-        "id": 12,
-        "name": "none.Value.Length='28'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Date-Time",
-        "path": "/date-time",
-        "operation": "GET",
-        "parameters": [
-            {
-                "name": "within",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
                     "type": "string",
-                    "value": "2027-02-11T06:46:44.383-06:00",
-                    "format": "date-time"
-                },
-                "valid": true
-            },
-            {
-                "name": "outside",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2027-10-21T01:26:44.970-05:00",
-                    "format": "date-time"
-                },
-                "valid": true
-            },
-            {
-                "name": "none",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2025-05-13T16:28:49.998-05:0",
-                    "format": "date-time"
-                },
-                "valid": false
-            }
-        ],
-        "invalidInput": "none.Value.Length=28"
-    },
-    {
-        "id": 13,
-        "name": "none.Value.Length='30'",
-        "server": "/",
-        "version": "0.0.0",
-        "api": "Date-Time",
-        "path": "/date-time",
-        "operation": "GET",
-        "parameters": [
-            {
-                "name": "within",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2026-05-06T20:36:14.638-05:00",
-                    "format": "date-time"
-                },
-                "valid": true
-            },
-            {
-                "name": "outside",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2026-04-24T10:51:27.705-05:00",
-                    "format": "date-time"
-                },
-                "valid": true
-            },
-            {
-                "name": "none",
-                "in": "query",
-                "style": "form",
-                "explode": false,
-                "data": {
-                    "type": "string",
-                    "value": "2025-05-27T03:04:19.672-05:000",
+                    "value": "2025-01-07T05:32:21.985-06:000",
                     "format": "date-time"
                 },
                 "valid": false

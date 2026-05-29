@@ -60,7 +60,7 @@ public class ApiTestServers_1_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/beta/op"))
-                .queryParam( "id", "856182706")
+                .queryParam( "id", "1018521451")
             .when()
                 .request( "GET", "/servers/op")
             .then()
@@ -97,7 +97,7 @@ public class ApiTestServers_1_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/beta/op"))
-                .queryParam( "id", "true")
+                .queryParam( "id", "%22#x=*c,1hRD,[9")
             .when()
                 .request( "GET", "/servers/op")
             .then()
@@ -170,7 +170,7 @@ public class ApiTestServers_1_Test {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "id", "498527769")
+                .queryParam( "id", "780995287")
             .when()
                 .request( "DELETE", "/servers/op/path")
             .then()
@@ -280,7 +280,7 @@ public class ApiTestServers_1_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/beta/op"))
-                .queryParam( "id", "535990035")
+                .queryParam( "id", "441479600")
             .when()
                 .request( "GET", "/servers/op/path")
             .then()
@@ -317,7 +317,7 @@ public class ApiTestServers_1_Test {
         Response response =
             given()
                 .baseUri( forTestServer( "http://api.cornutum.org/beta/op"))
-                .queryParam( "id", "1&!q")
+                .queryParam( "id", "true")
             .when()
                 .request( "GET", "/servers/op/path")
             .then()
@@ -427,7 +427,7 @@ public class ApiTestServers_1_Test {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .queryParam( "id", "fhrlstmy,506.3,u,-939.4,kcts,798")
+                .queryParam( "id", "fhrlst,")
             .when()
                 .request( "GET", "/servers/path")
             .then()

@@ -17,23 +17,19 @@
                 "data": {
                     "type": "object",
                     "value": {
-                        "x": {
-                            "type": "array",
-                            "value": [
-                                {
-                                    "type": "string",
-                                    "value": "hhlf~$]"
-                                }
-                            ]
-                        },
-                        "wyxwjwlawartveh": {
+                        "xijwcjcjl": {
                             "type": "integer",
-                            "value": 105,
+                            "value": 908,
                             "format": "int32"
                         },
-                        "zh": {
+                        "wyxwjwla": {
+                            "type": "object",
+                            "value": {
+                            }
+                        },
+                        "tve": {
                             "type": "number",
-                            "value": 694.6
+                            "value": -1006.6
                         }
                     }
                 },
@@ -98,8 +94,17 @@
                 "style": "simple",
                 "explode": true,
                 "data": {
-                    "type": "number",
-                    "value": 387.2
+                    "type": "array",
+                    "value": [
+                        {
+                            "type": "string",
+                            "value": "C(`"
+                        },
+                        {
+                            "type": "string",
+                            "value": "gUnbd:8"
+                        }
+                    ]
                 },
                 "valid": false
             }

@@ -155,10 +155,6 @@
                     {
                         "type": "string",
                         "value": "*"
-                    },
-                    {
-                        "type": "string",
-                        "value": "*b<L"
                     }
                 ]
             },
@@ -196,7 +192,7 @@
             "mediaType": "application/json",
             "data": {
                 "type": "number",
-                "value": 822598788478072481.2
+                "value": 491603474767153210.3
             },
             "valid": false
         },

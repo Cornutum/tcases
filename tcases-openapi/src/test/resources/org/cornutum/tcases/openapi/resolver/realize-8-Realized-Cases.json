@@ -99,7 +99,7 @@
                 "explode": false,
                 "data": {
                     "type": "string",
-                    "value": "1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dT"
+                    "value": "1zt\\uM}4-i+U~pW?5^HEi.\\<S)^dq%k\"dTq+>gy-HZt6rZ%Wzx6{<h}W\"Sk}%-Ll/f10( t^]}<M[_JfU29nXt{k]_oNvmA\\*|\\_GMhY&TgKd[m/3[Xi2s[@b'^1)jCHcY=x\\gDBQyHj[tB6)2c<2,{r[wp4k9sI;5(@jgG"
                 },
                 "valid": true
             }
@@ -128,11 +128,10 @@
             }
         ],
         "body": {
-            "mediaType": "text/plain",
+            "mediaType": "application/xml",
             "data": {
-                "type": "integer",
-                "value": -853,
-                "format": "int32"
+                "type": "string",
+                "value": "=w*aG)"
             },
             "valid": false
         },

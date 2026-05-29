@@ -104,7 +104,7 @@ public class AllPaths_PostUseridApprovedTest {
             given()
                 .baseUri( forTestServer())
                 .pathParam( "approved", ".0")
-                .pathParam( "userId", ".Ti0q{}")
+                .pathParam( "userId", ".pfbn0z")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")
             .then()
@@ -203,7 +203,7 @@ public class AllPaths_PostUseridApprovedTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "approved", ".true")
+                .pathParam( "approved", "")
                 .pathParam( "userId", ".0")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")
@@ -223,7 +223,7 @@ public class AllPaths_PostUseridApprovedTest {
         Response response =
             given()
                 .baseUri( forTestServer())
-                .pathParam( "approved", ".-39383625")
+                .pathParam( "approved", ".747903263")
                 .pathParam( "userId", ".0")
             .when()
                 .request( "DELETE", "/post/{userId}/{approved}")

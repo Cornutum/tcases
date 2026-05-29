@@ -19,7 +19,7 @@
                     "value": {
                         "alpha": {
                             "type": "string",
-                            "value": ">#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+vSzABaBn'*TqsjaV#]X-ST`V}(1/*8V-S%cq{VHyTpYF/IOaB'"
+                            "value": ">#<KFcS(=UPgf1ur(vw[!&aWx6Pp{za|Kpne}]0nW0v+vSzABaBn'*TqsjaV#"
                         }
                     }
                 },
@@ -111,8 +111,8 @@
                 "style": "form",
                 "explode": true,
                 "data": {
-                    "type": "number",
-                    "value": 190.9
+                    "type": "boolean",
+                    "value": true
                 },
                 "valid": false
             }
@@ -189,8 +189,9 @@
                     "type": "object",
                     "value": {
                         "alpha": {
-                            "type": "number",
-                            "value": 485.3
+                            "type": "integer",
+                            "value": -90,
+                            "format": "int32"
                         }
                     }
                 },
@@ -218,20 +219,33 @@
                     "value": {
                         "alpha": {
                             "type": "string",
-                            "value": "IgL%a0A>zG/b}'P|H}:Lt@N2:0Ln#`{']_6{q)_azDfneBI)3hWE0UXk`&vxx*U/bX9hjt2aw|o}Qg86e1kU`o&$eT4n_h]^A9=f22xRDHJh`(o/2WA(+9zu~jh(b)=v.TgJJsN'@XM<"
+                            "value": "T`V}(1/*8V-S%cq{VHyTpYF/IOaB'x4W_I*'IgL%a0A>zG/b}'P|H}:Lt@N2:0Ln#`{']_6{q)_azDfneBI)3hWE0UXk`&vxx*U/bX9hjt2aw|o}Qg86e1kU`o&$eT4n_h]^A9=f22xRDHJh`(o/2WA(+9zu~jh(b)=v.TgJJsN'@XM<qmRXcB2mnH{'nX)7&d{Q!B]?-l0X'8:%oKXyo!7^b3$N`8jKDNihc~h1|`AJe[QR!3>+*Kf(:Kx"
                         },
-                        "cgaahwfeixd": {
-                            "type": "object",
-                            "value": {
-                                "mpqfusqjwpdih": {
-                                    "type": "boolean",
-                                    "value": true
+                        "ooqzmmbvre": {
+                            "type": "number",
+                            "value": -319.3
+                        },
+                        "mbave": {
+                            "type": "integer",
+                            "value": -588,
+                            "format": "int32"
+                        },
+                        "xevstlmngwvxdki": {
+                            "type": "array",
+                            "value": [
+                                {
+                                    "type": "string",
+                                    "value": "c"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "R/P&J"
                                 }
-                            }
-                        },
-                        "zmnaiwmybjkac": {
-                            "type": "string",
-                            "value": "jKD"
+                            ]
                         }
                     }
                 },
