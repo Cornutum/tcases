@@ -113,6 +113,9 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-resources-plugin</artifactId>
             <version>3.5.0</version>
+            <configuration>
+                <propertiesEncoding>UTF-8</propertiesEncoding>
+            </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
