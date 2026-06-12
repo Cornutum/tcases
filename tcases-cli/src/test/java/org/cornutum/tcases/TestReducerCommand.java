@@ -176,7 +176,7 @@ public class TestReducerCommand extends CommandTest
     String[] args =
       {
         "-g", genFileName,
-        "-r", "-0.5",
+        "-r", "-0.95",
         new File( inFile.getParentFile(), "Reducer-whenGeneratorsNew").getPath()
       };
     
