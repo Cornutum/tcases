@@ -7,14 +7,13 @@
 
 package org.cornutum.tcases.util;
 
-import org.apache.commons.collections4.Predicate;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Iterates over the <A href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</A> of a list of sets.
@@ -127,7 +126,7 @@ public class CartesianProduct<T> implements Iterator<List<T>>
       filter_ == null?
       addedTo_ :
 
-      filter_.evaluate( (builder = ListBuilder.<T>to().addAll( addedTo_).add( firstSetNext)).build())?
+      filter_.test( (builder = ListBuilder.<T>to().addAll( addedTo_).add( firstSetNext)).build())?
       builder.build() :
 
       null;
