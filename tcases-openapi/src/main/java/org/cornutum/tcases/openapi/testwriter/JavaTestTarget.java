@@ -112,7 +112,9 @@ public class JavaTestTarget extends TestTarget
     }
 
   /**
-   * Returns the Java package for this target.
+   * Returns the Java package to be used for this target. This is either the package
+   * {@link #getPackage explicitly defined} for this target or, if none defined, the
+   * package implied by the output directory specified by {@link #getDir} and {@link #getFile}.
    */
   public String getTargetPackage()
     {
