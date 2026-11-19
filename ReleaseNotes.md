@@ -1,5 +1,14 @@
 # Release Notes #
 
+## 4.1.3 ##
+
+The sole purpose of this release is to upgrade dependencies. In particular, Tcases is now built using Java 21 -- you may need a more up-to-date
+version of Java to run it. Tcases is now built using the Oracle JDK 21.0.13.1, which fixes the notorious Java4Shell flaw (CVE-2026-114938).
+
+## ~~4.1.2~~ ##
+
+Incomplete -- do not use. This release was the victim of a failed deployment. 
+
 ## 4.1.1 ##
 This release provides the following improvements to Tcases for OpenAPI.
 
