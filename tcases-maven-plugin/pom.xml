@@ -29,7 +29,7 @@
   <licenses>
     <license>
       <name>The MIT License</name>
-      <url>http://opensource.org/licenses/MIT</url>
+      <url>https://opensource.org/licenses/MIT</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -52,8 +52,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.version>3.9.4</maven.version>
-    <maven.plugin.version>3.15.2</maven.plugin.version>
+    <maven.version>3.9.16</maven.version>
+    <maven.plugin.version>3.16.0</maven.plugin.version>
   </properties>
 
   <dependencies>
@@ -141,7 +141,17 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.21.0</version>
+        <version>3.22.0</version>
+        <configuration>
+            <locales>en</locales>
+        </configuration>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.maven.doxia</groupId>
+                <artifactId>doxia-module-apt</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -154,26 +164,34 @@
   <reporting>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.9.0</version>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-report-plugin</artifactId>
+          <version>${maven.plugin.version}</version>
         <reportSets>
           <reportSet>
             <reports>
-              <report>summary</report>
-              <report>dependency-info</report>
-              <report>license</report>
-              <report>mailing-list</report>
-              <report>scm</report>
-              <report>issue-tracking</report>
+              <report>report-no-fork</report>
             </reports>
           </reportSet>
         </reportSets>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <version>${maven.plugin.version}</version>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.9.0</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>index</report>
+              <report>summary</report>
+              <report>dependency-info</report>
+              <report>licenses</report>
+              <report>mailing-lists</report>
+              <report>scm</report>
+              <report>issue-management</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
   </reporting>
